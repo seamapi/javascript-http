@@ -1,7 +1,7 @@
 {
-  "name": "@seamapi/makenew-tsmodule",
-  "version": "1.2.6",
-  "description": "Package skeleton for a TypeScript module.",
+  "name": "@seamapi/http",
+  "version": "0.0.0",
+  "description": "JavaScript HTTP client for the Seam API written in TypeScript.",
   "type": "module",
   "main": "index.js",
   "types": "index.d.ts",
@@ -16,9 +16,9 @@
   "keywords": [
     "node"
   ],
-  "homepage": "https://github.com/seamapi/makenew-tsmodule",
-  "bugs": "https://github.com/seamapi/makenew-tsmodule/issues",
-  "repository": "seamapi/makenew-tsmodule",
+  "homepage": "https://github.com/seamapi/javascript-http",
+  "bugs": "https://github.com/seamapi/javascript-http/issues",
+  "repository": "seamapi/javascript-http",
   "license": "MIT",
   "author": {
     "name": "Seam Labs, Inc.",
