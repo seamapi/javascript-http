@@ -9,10 +9,13 @@ import {
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
 } from './client-options.js'
+import { LegacyWorkspaces } from './legacy/workspaces.js'
 import { Workspaces } from './routes/workspaces.js'
 
 export class SeamHttp {
   client: Axios
+
+  #legacy: boolean
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions) {
     const options = parseOptions(
@@ -20,6 +23,8 @@ export class SeamHttp {
         ? { apiKey: apiKeyOrOptions }
         : apiKeyOrOptions,
     )
+
+    this.#legacy = options.enableLegacyMethodBehaivor
 
     // TODO: axiosRetry? Allow options to configure this if so
     this.client = axios.create({
@@ -67,7 +72,9 @@ export class SeamHttp {
   // makeRequest
 
   get workspaces(): Workspaces {
-    return new Workspaces(this.client)
+    const workspaces = new Workspaces(this.client)
+    if (this.#legacy) return new LegacyWorkspaces(this.client)
+    return workspaces
   }
 }
 
@@ -88,5 +95,6 @@ const parseOptions = (options: SeamHttpOptions): Required<SeamHttpOptions> => {
     ...(apiKey != null ? { apiKey } : {}),
     endpoint,
     axiosOptions: options.axiosOptions ?? {},
+    enableLegacyMethodBehaivor: false,
   }
 }

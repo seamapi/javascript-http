@@ -1,16 +1,11 @@
-// TODO: This file is generated from route spec
+// TODO: Example of non-generated overrides to methods to preserve legacy behavior
 import type { Routes } from '@seamapi/types/connect'
-import type { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
-export class Workspaces {
-  client: Axios
+import { Workspaces } from 'lib/seam/connect/routes/workspaces.js'
 
-  constructor(client: Axios) {
-    this.client = client
-  }
-
-  async get(params: WorkspacesGetParams = {}): Promise<Workspace> {
+export class LegacyWorkspaces extends Workspaces {
+  override async get(params: WorkspacesGetParams = {}): Promise<Workspace> {
     const {
       data: { workspace },
     } = await this.client.get<WorkspacesGetResponse>('/workspaces/get', {

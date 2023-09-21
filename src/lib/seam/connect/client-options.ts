@@ -7,6 +7,7 @@ export type SeamHttpOptions =
 interface SeamHttpCommonOptions {
   endpoint?: string
   axiosOptions?: AxiosRequestConfig
+  enableLegacyMethodBehaivor?: boolean
 }
 
 export interface SeamHttpOptionsWithApiKey extends SeamHttpCommonOptions {
