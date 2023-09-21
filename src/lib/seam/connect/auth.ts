@@ -1,11 +1,29 @@
-import type {
-  SeamHttpOptionsWithApiKey,
-  SeamHttpOptionsWithClientSessionToken,
+import {
+  InvalidSeamHttpOptionsError,
+  isSeamHttpOptionsWithApiKey,
+  isSeamHttpOptionsWithClientSessionToken,
+  type SeamHttpOptions,
+  type SeamHttpOptionsWithApiKey,
+  type SeamHttpOptionsWithClientSessionToken,
 } from './client-options.js'
 
 type Headers = Record<string, string>
 
-export const getAuthHeadersForApiKey = ({
+export const getAuthHeaders = (options: SeamHttpOptions): Headers => {
+  if (isSeamHttpOptionsWithApiKey(options)) {
+    return getAuthHeadersForApiKey(options)
+  }
+
+  if (isSeamHttpOptionsWithClientSessionToken(options)) {
+    return getAuthHeadersForClientSessionToken(options)
+  }
+
+  throw new InvalidSeamHttpOptionsError(
+    'Must specify an apiKey or clientSessionToken',
+  )
+}
+
+const getAuthHeadersForApiKey = ({
   apiKey,
 }: SeamHttpOptionsWithApiKey): Headers => {
   if (isClientSessionToken(apiKey)) {
@@ -31,7 +49,7 @@ export const getAuthHeadersForApiKey = ({
   }
 }
 
-export const getAuthHeadersForClientSessionToken = ({
+const getAuthHeadersForClientSessionToken = ({
   clientSessionToken,
 }: SeamHttpOptionsWithClientSessionToken): Headers => {
   if (!isClientSessionToken(clientSessionToken)) {

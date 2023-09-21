@@ -1,9 +1,6 @@
 import axios, { type Axios } from 'axios'
 
-import {
-  getAuthHeadersForApiKey,
-  getAuthHeadersForClientSessionToken,
-} from './auth.js'
+import { getAuthHeaders } from './auth.js'
 import {
   InvalidSeamHttpOptionsError,
   isSeamHttpOptionsWithApiKey,
@@ -12,6 +9,7 @@ import {
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
 } from './client-options.js'
+import { Workspaces } from './routes/workspaces.js'
 
 export class SeamHttp {
   client: Axios
@@ -23,37 +21,14 @@ export class SeamHttp {
         : apiKeyOrOptions,
     )
 
-    const axiosOptions = {
+    this.client = axios.create({
       baseURL: options.endpoint,
       ...options.axiosOptions,
-      headers: options.axiosOptions.headers ?? {},
-    }
-
-    if (isSeamHttpOptionsWithApiKey(options)) {
-      this.client = axios.create({
-        ...axiosOptions,
-        headers: {
-          ...getAuthHeadersForApiKey(options),
-          ...axiosOptions.headers,
-        },
-      })
-      return
-    }
-
-    if (isSeamHttpOptionsWithClientSessionToken(options)) {
-      this.client = axios.create({
-        ...axiosOptions,
-        headers: {
-          ...getAuthHeadersForClientSessionToken(options),
-          ...axiosOptions.headers,
-        },
-      })
-      return
-    }
-
-    throw new InvalidSeamHttpOptionsError(
-      'Must specify an apiKey or clientSessionToken',
-    )
+      headers: {
+        ...getAuthHeaders(options),
+        ...options.axiosOptions.headers,
+      },
+    })
   }
 
   static fromApiKey(
@@ -81,13 +56,8 @@ export class SeamHttp {
     return new SeamHttp(opts)
   }
 
-  public readonly workspaces = {
-    get: async (): Promise<{ workspace_id: string }> => {
-      const {
-        data: { workspace },
-      } = await this.client.get('/workspaces/get')
-      return workspace
-    },
+  get workspaces(): Workspaces {
+    return new Workspaces(this.client)
   }
 }
 
