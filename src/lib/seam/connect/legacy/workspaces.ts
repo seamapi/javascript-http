@@ -7,12 +7,13 @@ export class LegacyWorkspaces extends Workspaces {
   override async get(
     params: WorkspacesGetParams = {},
   ): Promise<WorkspacesGetResponse['workspace']> {
-    const {
-      data: { workspace },
-    } = await this.client.get<WorkspacesGetResponse>('/workspaces/get', {
-      params,
-    })
-    return workspace
+    const { data } = await this.client.get<WorkspacesGetResponse>(
+      '/workspaces/get',
+      {
+        params,
+      },
+    )
+    return data.workspace
   }
 }
 
