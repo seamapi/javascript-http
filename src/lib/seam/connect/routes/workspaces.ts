@@ -1,5 +1,4 @@
-// TODO: This file is generated from route spec
-import type { Routes } from '@seamapi/types/connect'
+import type { RouteRequestParams, RouteResponse } from '@seamapi/types/connect'
 import type { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
@@ -10,7 +9,9 @@ export class Workspaces {
     this.client = client
   }
 
-  async get(params: WorkspacesGetParams = {}): Promise<Workspace> {
+  async get(
+    params: WorkspacesGetParams = {},
+  ): Promise<WorkspacesGetResponse['workspace']> {
     const {
       data: { workspace },
     } = await this.client.get<WorkspacesGetResponse>('/workspaces/get', {
@@ -21,16 +22,9 @@ export class Workspaces {
 }
 
 export type WorkspacesGetParams = SetNonNullable<
-  Required<Routes['/workspaces/get']['commonParams']>
+  Required<RouteRequestParams<'/workspaces/get'>>
 >
 
 export type WorkspacesGetResponse = SetNonNullable<
-  Required<Routes['/workspaces/get']['jsonResponse']>
+  Required<RouteResponse<'/workspaces/get'>>
 >
-
-// UPSTREAM: Should come from @seamapi/types/connect
-// import type { Workspace } from @seamapi/types
-// export type { Workspace } from '@seamapi/types/connect'
-export interface Workspace {
-  workspace_id: string
-}

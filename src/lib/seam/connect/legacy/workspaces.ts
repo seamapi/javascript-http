@@ -1,11 +1,12 @@
-// TODO: Example of non-generated overrides to methods to preserve legacy behavior
-import type { Routes } from '@seamapi/types/connect'
+import type { RouteRequestParams, RouteResponse } from '@seamapi/types/connect'
 import type { SetNonNullable } from 'type-fest'
 
 import { Workspaces } from 'lib/seam/connect/routes/workspaces.js'
 
 export class LegacyWorkspaces extends Workspaces {
-  override async get(params: WorkspacesGetParams = {}): Promise<Workspace> {
+  override async get(
+    params: WorkspacesGetParams = {},
+  ): Promise<WorkspacesGetResponse['workspace']> {
     const {
       data: { workspace },
     } = await this.client.get<WorkspacesGetResponse>('/workspaces/get', {
@@ -16,16 +17,9 @@ export class LegacyWorkspaces extends Workspaces {
 }
 
 export type WorkspacesGetParams = SetNonNullable<
-  Required<Routes['/workspaces/get']['commonParams']>
+  Required<RouteRequestParams<'/workspaces/get'>>
 >
 
 export type WorkspacesGetResponse = SetNonNullable<
-  Required<Routes['/workspaces/get']['jsonResponse']>
+  Required<RouteResponse<'/workspaces/get'>>
 >
-
-// UPSTREAM: Should come from @seamapi/types/connect
-// import type { Workspace } from @seamapi/types
-// export type { Workspace } from '@seamapi/types/connect'
-export interface Workspace {
-  workspace_id: string
-}
