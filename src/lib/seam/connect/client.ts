@@ -21,12 +21,15 @@ export class SeamHttp {
         : apiKeyOrOptions,
     )
 
+    // TODO: axiosRetry? Allow options to configure this if so
     this.client = axios.create({
       baseURL: options.endpoint,
+      withCredentials: isSeamHttpOptionsWithClientSessionToken(options),
       ...options.axiosOptions,
       headers: {
         ...getAuthHeaders(options),
         ...options.axiosOptions.headers,
+        // TODO: User-Agent
       },
     })
   }
@@ -55,6 +58,13 @@ export class SeamHttp {
     }
     return new SeamHttp(opts)
   }
+
+  // TODO
+  // static fromPublishableKey and deprecate getClientSessionToken
+
+  // TODO: Should we keep makeRequest?
+  // Better to implement error handling and wrapping in an error handler.
+  // makeRequest
 
   get workspaces(): Workspaces {
     return new Workspaces(this.client)

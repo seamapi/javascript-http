@@ -1,7 +1,7 @@
+// TODO: This file is generated from route spec
 import type { Routes } from '@seamapi/types/connect'
 import type { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
-// import type { Workspace } from @seamapi/types
 
 export class Workspaces {
   #client: Axios
@@ -29,6 +29,7 @@ export type WorkspacesGetResponse = SetNonNullable<
 >
 
 // UPSTREAM: Should come from @seamapi/types/connect
+// import type { Workspace } from @seamapi/types
 // export type { Workspace } from '@seamapi/types/connect'
 export interface Workspace {
   workspace_id: string
