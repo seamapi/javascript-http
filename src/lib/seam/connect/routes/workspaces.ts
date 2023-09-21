@@ -1,12 +1,22 @@
 import type { RouteRequestParams, RouteResponse } from '@seamapi/types/connect'
-import type { Axios } from 'axios'
+import { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
-export class Workspaces {
+import { createAxiosClient } from 'lib/seam/connect/axios.js'
+import type { SeamHttpOptions } from 'lib/seam/connect/client-options.js'
+import { parseOptions } from 'lib/seam/connect/parse-options.js'
+
+export class WorkspacesHttp {
   client: Axios
 
-  constructor(client: Axios) {
-    this.client = client
+  constructor(apiKeyOrOptionsOrClient: Axios | string | SeamHttpOptions) {
+    if (apiKeyOrOptionsOrClient instanceof Axios) {
+      this.client = apiKeyOrOptionsOrClient
+      return
+    }
+
+    const options = parseOptions(apiKeyOrOptionsOrClient)
+    this.client = createAxiosClient(options)
   }
 
   async get(

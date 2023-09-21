@@ -1,6 +1,6 @@
-import axios, { type Axios } from 'axios'
+import type { Axios } from 'axios'
 
-import { getAuthHeaders } from './auth.js'
+import { createAxiosClient } from './axios.js'
 import {
   InvalidSeamHttpOptionsError,
   isSeamHttpOptionsWithApiKey,
@@ -9,8 +9,9 @@ import {
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
 } from './client-options.js'
-import { LegacyWorkspaces } from './legacy/workspaces.js'
-import { Workspaces } from './routes/workspaces.js'
+import { LegacyWorkspacesHttp } from './legacy/workspaces.js'
+import { parseOptions } from './parse-options.js'
+import { WorkspacesHttp } from './routes/workspaces.js'
 
 export class SeamHttp {
   client: Axios
@@ -20,18 +21,7 @@ export class SeamHttp {
   constructor(apiKeyOrOptions: string | SeamHttpOptions) {
     const options = parseOptions(apiKeyOrOptions)
     this.#legacy = options.enableLegacyMethodBehaivor
-
-    // TODO: axiosRetry? Allow options to configure this if so
-    this.client = axios.create({
-      baseURL: options.endpoint,
-      withCredentials: isSeamHttpOptionsWithClientSessionToken(options),
-      ...options.axiosOptions,
-      headers: {
-        ...getAuthHeaders(options),
-        ...options.axiosOptions.headers,
-        // TODO: User-Agent
-      },
-    })
+    this.client = createAxiosClient(options)
   }
 
   static fromApiKey(
@@ -66,37 +56,8 @@ export class SeamHttp {
   // Better to implement error handling and wrapping in an error handler.
   // makeRequest
 
-  get workspaces(): Workspaces {
-    const workspaces = new Workspaces(this.client)
-    if (this.#legacy) return new LegacyWorkspaces(this.client)
-    return workspaces
-  }
-}
-
-const parseOptions = (
-  apiKeyOrOptions: string | SeamHttpOptions,
-): Required<SeamHttpOptions> => {
-  const options =
-    typeof apiKeyOrOptions === 'string'
-      ? { apiKey: apiKeyOrOptions }
-      : apiKeyOrOptions
-
-  const endpoint =
-    options.endpoint ??
-    globalThis.process?.env?.['SEAM_ENDPOINT'] ??
-    globalThis.process?.env?.['SEAM_API_URL'] ??
-    'https://connect.getseam.com'
-
-  const apiKey =
-    'apiKey' in options
-      ? options.apiKey
-      : globalThis.process?.env?.['SEAM_API_KEY']
-
-  return {
-    ...options,
-    ...(apiKey != null ? { apiKey } : {}),
-    endpoint,
-    axiosOptions: options.axiosOptions ?? {},
-    enableLegacyMethodBehaivor: false,
+  get workspaces(): WorkspacesHttp {
+    if (this.#legacy) return new LegacyWorkspacesHttp(this.client)
+    return new WorkspacesHttp(this.client)
   }
 }
