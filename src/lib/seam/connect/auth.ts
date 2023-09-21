@@ -34,13 +34,13 @@ const getAuthHeadersForApiKey = ({
 
   if (isAccessToken(apiKey)) {
     throw new InvalidSeamTokenError(
-      'An access token cannot be used as an apiKey without specifying a workspaceId',
+      'An access token cannot be used as an apiKey',
     )
   }
 
   if (isJwt(apiKey) || !isSeamToken(apiKey)) {
     throw new InvalidSeamTokenError(
-      `Unknown or Invalid apiKey format, expected token to start with ${tokenPrefix}`,
+      `Unknown or invalid apiKey format, expected token to start with ${tokenPrefix}`,
     )
   }
 
@@ -66,7 +66,7 @@ const getAuthHeadersForClientSessionToken = ({
 
 export class InvalidSeamTokenError extends Error {
   constructor(message: string) {
-    super(`SeamHttp received an authorization invalid token: ${message}`)
+    super(`SeamHttp received an invalid token: ${message}`)
     this.name = this.constructor.name
     Error.captureStackTrace(this, this.constructor)
   }
