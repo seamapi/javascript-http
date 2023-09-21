@@ -18,12 +18,7 @@ export class SeamHttp {
   #legacy: boolean
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions) {
-    const options = parseOptions(
-      typeof apiKeyOrOptions === 'string'
-        ? { apiKey: apiKeyOrOptions }
-        : apiKeyOrOptions,
-    )
-
+    const options = parseOptions(apiKeyOrOptions)
     this.#legacy = options.enableLegacyMethodBehaivor
 
     // TODO: axiosRetry? Allow options to configure this if so
@@ -78,7 +73,14 @@ export class SeamHttp {
   }
 }
 
-const parseOptions = (options: SeamHttpOptions): Required<SeamHttpOptions> => {
+const parseOptions = (
+  apiKeyOrOptions: string | SeamHttpOptions,
+): Required<SeamHttpOptions> => {
+  const options =
+    typeof apiKeyOrOptions === 'string'
+      ? { apiKey: apiKeyOrOptions }
+      : apiKeyOrOptions
+
   const endpoint =
     options.endpoint ??
     globalThis.process?.env?.['SEAM_ENDPOINT'] ??
