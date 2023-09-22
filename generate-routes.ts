@@ -1,5 +1,8 @@
+import { writeFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
+
 import { camelCase, pascalCase, snakeCase } from 'change-case'
-import { format } from 'prettier'
+import { format, resolveConfig } from 'prettier'
 
 interface Route {
   namespace: string
@@ -95,7 +98,7 @@ type ${renderRequestType({
   namespace,
   requestFormat,
 })} = SetNonNullable<
-  Required<RouteRequest${requestFormat}<'${path}'>>
+  Required<RouteRequest${pascalCase(requestFormat)}<'${path}'>>
 >
 
 type ${renderResponseType({ name, namespace })}= SetNonNullable<
@@ -132,15 +135,19 @@ const exampleRoute: Route = {
       resource: 'workspace',
       requestFormat: getRequestFormat('GET'),
     },
-    {
-      name: 'create',
-      namespace: 'workspaces',
-      path: '/workspaces/create',
-      method: 'POST',
-      resource: 'workspace',
-      requestFormat: getRequestFormat('POST'),
-    },
   ],
 }
 
-console.log(await format(renderRoute(exampleRoute), { parser: 'typescript' }))
+const write = async (data: string, ...path: string[]): Promise<void> => {
+  const filepath = resolve(...path)
+  const prettierConfig = await resolveConfig(filepath)
+  if (prettierConfig == null) {
+    throw new Error('Failed to resolve Prettier config')
+  }
+  const output = await format(data, { ...prettierConfig, filepath })
+  await writeFile(filepath, output)
+}
+
+const routeRootPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
+
+await write(renderRoute(exampleRoute), routeRootPath, 'workspaces.ts')

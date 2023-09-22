@@ -22,20 +22,19 @@ export class SeamHttpWorkspaces {
   async get(
     params: WorkspacesGetParams = {},
   ): Promise<WorkspacesGetResponse['workspace']> {
-    const { data } = await this.client.get<WorkspacesGetResponse>(
-      '/workspaces/get',
-      {
-        params,
-      },
-    )
+    const { data } = await this.client.request<WorkspacesGetResponse>({
+      url: '/workspaces/get',
+      method: 'get',
+      params,
+    })
     return data.workspace
   }
 }
 
-export type WorkspacesGetParams = SetNonNullable<
+type WorkspacesGetParams = SetNonNullable<
   Required<RouteRequestParams<'/workspaces/get'>>
 >
 
-export type WorkspacesGetResponse = SetNonNullable<
+type WorkspacesGetResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/get'>>
 >

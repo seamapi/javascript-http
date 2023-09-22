@@ -62,6 +62,7 @@
     "postversion": "git push --follow-tags",
     "example": "tsx examples",
     "example:inspect": "tsx --inspect examples",
+    "generate": "tsx generate-routes.ts",
     "format": "eslint --ignore-path .gitignore --fix .",
     "preformat": "prettier --write --ignore-path .gitignore .",
     "report": "c8 report"
