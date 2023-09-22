@@ -36,7 +36,7 @@ import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
 const renderClass = ({ endpoints }: Route): string =>
   `
-export class WorkspacesHttp {
+export class SeamHttpWorkspaces {
   client: Axios
 
   constructor(apiKeyOrOptionsOrClient: Axios | string | SeamHttpOptions) {
@@ -90,7 +90,7 @@ const renderEndpointExports = ({
   namespace,
   requestFormat,
 }: Endpoint): string => `
-export type ${renderRequestType({
+type ${renderRequestType({
   name,
   namespace,
   requestFormat,
@@ -98,7 +98,7 @@ export type ${renderRequestType({
   Required<RouteRequest${requestFormat}<'${path}'>>
 >
 
-export type ${renderResponseType({ name, namespace })}= SetNonNullable<
+type ${renderResponseType({ name, namespace })}= SetNonNullable<
   Required<RouteResponse<'${path}'>>
 >
   `

@@ -1,9 +1,9 @@
 import type { RouteRequestParams, RouteResponse } from '@seamapi/types/connect'
 import type { SetNonNullable } from 'type-fest'
 
-import { WorkspacesHttp } from 'lib/seam/connect/routes/workspaces.js'
+import { SeamHttpWorkspaces } from 'lib/seam/connect/routes/workspaces.js'
 
-export class LegacyWorkspacesHttp extends WorkspacesHttp {
+export class SeamHttpLegacyWorkspaces extends SeamHttpWorkspaces {
   override async get(
     params: WorkspacesGetParams = {},
   ): Promise<WorkspacesGetResponse['workspace']> {

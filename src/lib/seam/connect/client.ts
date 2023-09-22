@@ -2,16 +2,16 @@ import type { Axios } from 'axios'
 
 import { createAxiosClient } from './axios.js'
 import {
-  InvalidSeamHttpOptionsError,
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClientSessionToken,
+  SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
 } from './client-options.js'
-import { LegacyWorkspacesHttp } from './legacy/workspaces.js'
+import { SeamHttpLegacyWorkspaces } from './legacy/workspaces.js'
 import { parseOptions } from './parse-options.js'
-import { WorkspacesHttp } from './routes/workspaces.js'
+import { SeamHttpWorkspaces } from './routes/workspaces.js'
 
 export class SeamHttp {
   client: Axios
@@ -30,7 +30,7 @@ export class SeamHttp {
   ): SeamHttp {
     const opts = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(opts)) {
-      throw new InvalidSeamHttpOptionsError('Missing apiKey')
+      throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
     return new SeamHttp(opts)
   }
@@ -44,7 +44,7 @@ export class SeamHttp {
   ): SeamHttp {
     const opts = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(opts)) {
-      throw new InvalidSeamHttpOptionsError('Missing clientSessionToken')
+      throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
     return new SeamHttp(opts)
   }
@@ -56,8 +56,8 @@ export class SeamHttp {
   // Better to implement error handling and wrapping in an error handler.
   // makeRequest
 
-  get workspaces(): WorkspacesHttp {
-    if (this.#legacy) return new LegacyWorkspacesHttp(this.client)
-    return new WorkspacesHttp(this.client)
+  get workspaces(): SeamHttpWorkspaces {
+    if (this.#legacy) return new SeamHttpLegacyWorkspaces(this.client)
+    return new SeamHttpWorkspaces(this.client)
   }
 }

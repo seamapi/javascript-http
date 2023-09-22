@@ -6,7 +6,7 @@ import { createAxiosClient } from 'lib/seam/connect/axios.js'
 import type { SeamHttpOptions } from 'lib/seam/connect/client-options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
-export class WorkspacesHttp {
+export class SeamHttpWorkspaces {
   client: Axios
 
   constructor(apiKeyOrOptionsOrClient: Axios | string | SeamHttpOptions) {
