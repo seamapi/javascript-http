@@ -2,6 +2,7 @@ import { writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 import { camelCase, pascalCase, snakeCase } from 'change-case'
+import { ESLint } from 'eslint'
 import { format, resolveConfig } from 'prettier'
 
 interface Route {
@@ -140,12 +141,30 @@ const exampleRoute: Route = {
 
 const write = async (data: string, ...path: string[]): Promise<void> => {
   const filepath = resolve(...path)
+  const eslint = new ESLint({ fix: true })
+
   const prettierConfig = await resolveConfig(filepath)
   if (prettierConfig == null) {
     throw new Error('Failed to resolve Prettier config')
   }
-  const output = await format(data, { ...prettierConfig, filepath })
-  await writeFile(filepath, output)
+
+  const [linted] = await eslint.lintText(data)
+
+  if (linted == null) {
+    throw new Error('ESLint returned empty results')
+  }
+
+  if (linted.fatalErrorCount > 0) {
+    // TODO: ESLint is failing to parse, seems it may not be loading the right config.
+    // throw new Error(
+    //   `ESLint returned fatal errors: ${JSON.stringify(linted.messages)}`,
+    // )
+  }
+
+  const output = linted.output ?? linted.source ?? ''
+
+  const prettyData = await format(output, { ...prettierConfig, filepath })
+  await writeFile(filepath, prettyData)
 }
 
 const routeRootPath = resolve('src', 'lib', 'seam', 'connect', 'routes')

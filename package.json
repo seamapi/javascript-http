@@ -88,6 +88,7 @@
   },
   "devDependencies": {
     "@seamapi/types": "^1.14.0",
+    "@types/eslint": "^8.44.2",
     "@types/node": "^18.11.18",
     "ava": "^5.0.1",
     "c8": "^8.0.0",
