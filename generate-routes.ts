@@ -168,8 +168,9 @@ const write = async (data: string, ...path: string[]): Promise<void> => {
 }
 
 const routeRootPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
-const writeRoute = async (route: Route): Promise<void> =>
-  { await write(renderRoute(route), routeRootPath, `${route.namespace}.ts`); }
+const writeRoute = async (route: Route): Promise<void> => {
+  await write(renderRoute(route), routeRootPath, `${route.namespace}.ts`)
+}
 
 const routes = [exampleRoute]
 
