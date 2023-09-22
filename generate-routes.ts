@@ -168,5 +168,9 @@ const write = async (data: string, ...path: string[]): Promise<void> => {
 }
 
 const routeRootPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
+const writeRoute = async (route: Route): Promise<void> =>
+  { await write(renderRoute(route), routeRootPath, `${route.namespace}.ts`); }
 
-await write(renderRoute(exampleRoute), routeRootPath, 'workspaces.ts')
+const routes = [exampleRoute]
+
+await Promise.all(routes.map(writeRoute))
