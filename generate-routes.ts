@@ -145,31 +145,46 @@ const exampleRoute: Route = {
 }
 
 const write = async (data: string, ...path: string[]): Promise<void> => {
-  const filepath = resolve(...path)
-  const eslint = new ESLint({ fix: true })
+  const filePath = resolve(...path)
+  const fixedOutput = await eslintFixOutput(data, filePath)
+  const prettyOutput = await prettierOutput(fixedOutput, filePath)
+  await writeFile(filePath, prettyOutput)
+}
 
-  const prettierConfig = await resolveConfig(filepath)
-  if (prettierConfig == null) {
+const prettierOutput = async (
+  data: string,
+  filepath: string,
+): Promise<string> => {
+  const config = await resolveConfig(filepath)
+  if (config == null) {
     throw new Error('Failed to resolve Prettier config')
   }
+  return await format(data, { ...config, filepath })
+}
 
-  const [linted] = await eslint.lintText(data)
+const eslintFixOutput = async (
+  data: string,
+  filePath: string,
+): Promise<string> => {
+  const eslint = new ESLint({ fix: true })
+
+  const [linted] = await eslint.lintText(data, { filePath })
 
   if (linted == null) {
     throw new Error('ESLint returned empty results')
   }
 
   if (linted.fatalErrorCount > 0) {
-    // TODO: ESLint is failing to parse, seems it may not be loading the right config.
-    // throw new Error(
-    //   `ESLint returned fatal errors: ${JSON.stringify(linted.messages)}`,
-    // )
+    throw new Error(
+      `ESLint returned fatal errors:\n${JSON.stringify(
+        linted.messages,
+        null,
+        2,
+      )}`,
+    )
   }
 
-  const output = linted.output ?? linted.source ?? ''
-
-  const prettyData = await format(output, { ...prettierConfig, filepath })
-  await writeFile(filepath, prettyData)
+  return linted.output ?? linted.source ?? data
 }
 
 const routeRootPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
