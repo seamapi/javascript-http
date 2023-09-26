@@ -3,10 +3,12 @@ import type { Axios } from 'axios'
 import { createAxiosClient } from './axios.js'
 import {
   isSeamHttpOptionsWithApiKey,
+  isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
+  type SeamHttpOptionsWithClient,
   type SeamHttpOptionsWithClientSessionToken,
 } from './client-options.js'
 import { SeamHttpLegacyWorkspaces } from './legacy/workspaces.js'
@@ -21,7 +23,19 @@ export class SeamHttp {
   constructor(apiKeyOrOptions: string | SeamHttpOptions) {
     const options = parseOptions(apiKeyOrOptions)
     this.#legacy = options.enableLegacyMethodBehaivor
-    this.client = createAxiosClient(options)
+    const client = 'client' in options ? options.client : null
+    this.client = client ?? createAxiosClient(options)
+  }
+
+  static fromClient(
+    client: SeamHttpOptionsWithClient['client'],
+    options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
+  ): SeamHttp {
+    const opts = { ...options, client }
+    if (!isSeamHttpOptionsWithClient(opts)) {
+      throw new SeamHttpInvalidOptionsError('Missing client')
+    }
+    return new SeamHttp(opts)
   }
 
   static fromApiKey(
@@ -49,15 +63,15 @@ export class SeamHttp {
     return new SeamHttp(opts)
   }
 
-  // TODO
-  // static fromPublishableKey and deprecate getClientSessionToken
-
-  // TODO: Should we keep makeRequest?
-  // Better to implement error handling and wrapping in an error handler.
-  // makeRequest
-
   get workspaces(): SeamHttpWorkspaces {
     if (this.#legacy) return new SeamHttpLegacyWorkspaces(this.client)
-    return new SeamHttpWorkspaces(this.client)
+    return new SeamHttpWorkspaces({ client: this.client })
   }
 }
+
+// TODO
+// static fromPublishableKey and deprecate getClientSessionToken
+
+// TODO: Should we keep makeRequest?
+// Better to implement error handling and wrapping in an error handler.
+// makeRequest
