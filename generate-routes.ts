@@ -41,6 +41,16 @@ const ignoredEndpointPaths = [
   '/noise_sensors/simulate/trigger_noise_threshold',
 ]
 
+const endpointMethods: Partial<Record<keyof typeof openapi.paths, Method>> = {
+  '/access_codes/create_multiple': 'POST',
+  '/access_codes/unmanaged/convert_to_managed': 'POST',
+  // '/access_codes/update': 'PATCH',
+  '/client_sessions/create': 'POST',
+  // '/noise_sensors/noise_thresholds/update': 'PATCH',
+  '/thermostats/climate_setting_schedules/delete': 'DELETE',
+  // '/thermostats/climate_setting_schedules/update': 'PATCH',
+}
+
 const endpointResources: Partial<
   Record<
     keyof typeof openapi.paths,
@@ -137,7 +147,7 @@ const createEndpoint = (
     throw new Error(`Did not find ${endpointPath} in OpenAPI spec`)
   }
   const spec = openapi.paths[endpointPath]
-  const method = deriveSemanticMethod(Object.keys(spec))
+  const method = deriveSemanticMethod(endpointPath, Object.keys(spec))
   const name = endpointPath.split(routePath)[1]?.slice(1)
   if (name == null) {
     throw new Error(`Could not parse name from ${endpointPath}`)
@@ -158,10 +168,8 @@ const deriveResource = (
   name: string,
   method: Method,
 ): string | null => {
-  if (endpointPath in endpointResources) {
-    return (
-      endpointResources[endpointPath as keyof typeof endpointResources] ?? null
-    )
+  if (isEndpointResource(endpointPath)) {
+    return endpointResources[endpointPath] ?? null
   }
   if (['DELETE', 'PATCH', 'PUT'].includes(method)) return null
   if (['update', 'delete'].includes(name)) return null
@@ -189,7 +197,17 @@ const deriveGroupFromRoutePath = (routePath: string): string | undefined => {
   return parts[0]
 }
 
-const deriveSemanticMethod = (methods: string[]): Method => {
+const deriveSemanticMethod = (
+  endpointPath: string,
+  methods: string[],
+): Method => {
+  if (isEndpointMethod(endpointPath)) {
+    const endpointMethod = endpointMethods[endpointPath]
+    if (endpointMethod == null) {
+      throw new Error(`Got undefined method for ${endpointMethod}`)
+    }
+    return endpointMethod
+  }
   if (methods.includes('get')) return 'GET'
   if (methods.includes('delete')) return 'DELETE'
   if (methods.includes('patch')) return 'PATCH'
@@ -197,6 +215,13 @@ const deriveSemanticMethod = (methods: string[]): Method => {
   if (methods.includes('post')) return 'POST'
   throw new Error(`Could not find valid method in ${methods.join(', ')}`)
 }
+
+const isEndpointResource = (
+  key: string,
+): key is keyof typeof endpointResources => key in endpointResources
+
+const isEndpointMethod = (key: string): key is keyof typeof endpointMethods =>
+  key in endpointMethods
 
 const isOpenApiPath = (key: string): key is keyof typeof openapi.paths =>
   key in openapi.paths

@@ -64,12 +64,15 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(opts)
   }
 
-  async create(body: ClientSessionsCreateBody): Promise<void> {
-    await this.client.request<ClientSessionsCreateResponse>({
+  async create(
+    body: ClientSessionsCreateBody,
+  ): Promise<ClientSessionsCreateResponse['client_session']> {
+    const { data } = await this.client.request<ClientSessionsCreateResponse>({
       url: '/client_sessions/create',
-      method: 'put',
+      method: 'post',
       data: body,
     })
+    return data.client_session
   }
 
   async delete(body: ClientSessionsDeleteBody): Promise<void> {
