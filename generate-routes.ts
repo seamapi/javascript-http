@@ -1,9 +1,43 @@
 import { writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
-import { camelCase, pascalCase, snakeCase } from 'change-case'
+import { openapi } from '@seamapi/types/connect'
+import { camelCase, paramCase, pascalCase, snakeCase } from 'change-case'
 import { ESLint } from 'eslint'
 import { format, resolveConfig } from 'prettier'
+
+const routeOutputPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
+
+const routePaths: string[] = [
+  '/access_codes',
+  '/access_codes/unmanaged',
+  '/acs/access_groups',
+  '/acs/credentials',
+  '/acs/systems',
+  '/acs/users',
+  '/action_attempts',
+  '/client_sessions',
+  '/connect_webviews',
+  '/connected_accounts',
+  '/devices',
+  '/devices/unmanaged',
+  '/events',
+  '/locks',
+  '/noise_sensors/noise_thresholds',
+  '/thermostats/climate_setting_schedules',
+  '/thermostats',
+  '/webhooks',
+  '/workspaces',
+]
+
+const ignoredEndpointPaths = [
+  '/access_codes/simulate/create_unmanaged_access_code',
+  '/health',
+  '/health/get_health',
+  '/health/get_service_health',
+  '/health/service/[service_name]',
+  '/noise_sensors/simulate/trigger_noise_threshold',
+]
 
 interface Route {
   namespace: string
@@ -18,6 +52,58 @@ interface Endpoint {
   method: 'GET' | 'POST'
   requestFormat: 'params' | 'body'
 }
+
+const exampleRoute: Route = {
+  namespace: 'workspaces',
+  endpoints: [
+    {
+      name: 'get',
+      namespace: 'workspaces',
+      path: '/workspaces/get',
+      method: 'GET',
+      resource: 'workspace',
+      requestFormat: ['GET', 'DELETE'].includes('GET') ? 'params' : 'body',
+    },
+  ],
+}
+
+const isEndpointUnderRoute = (
+  endpointPath: string,
+  routePath: string,
+): boolean =>
+  endpointPath.startsWith(routePath) &&
+  endpointPath.split('/').length - 1 === routePath.split('/').length
+
+const createRoutes = (): Route[] => {
+  const paths = Object.keys(openapi.paths)
+
+  const unmatchedEndpointPaths = paths
+    .filter(
+      (path) =>
+        !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
+    )
+    .filter((path) => !ignoredEndpointPaths.includes(path))
+
+  if (unmatchedEndpointPaths.length > 0) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `The following endpoints will not be generated:\n${unmatchedEndpointPaths.join(
+        '\n',
+      )}`,
+    )
+  }
+
+  return routePaths.map(createRoute)
+}
+
+const createRoute = (routePath: string): Route => {
+  return {
+    namespace: routePath.split('/').join('_').slice(1),
+    endpoints: [],
+  }
+}
+
+const routes = createRoutes()
 
 const renderRoute = (route: Route): string => `
 /*
@@ -43,9 +129,9 @@ import type { SeamHttpOptions } from 'lib/seam/connect/client-options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 `
 
-const renderClass = ({ endpoints }: Route): string =>
+const renderClass = ({ namespace, endpoints }: Route): string =>
   `
-export class SeamHttpWorkspaces {
+export class SeamHttp${pascalCase(namespace)} {
   client: Axios
 
   constructor(apiKeyOrOptionsOrClient: Axios | string | SeamHttpOptions) {
@@ -112,11 +198,6 @@ type ${renderResponseType({ name, namespace })}= SetNonNullable<
 >
   `
 
-const getRequestFormat = (
-  method: Endpoint['method'],
-): Endpoint['requestFormat'] =>
-  ['GET', 'DELETE'].includes(method) ? 'params' : 'body'
-
 const renderRequestType = ({
   name,
   namespace,
@@ -130,22 +211,12 @@ const renderResponseType = ({
 }: Pick<Endpoint, 'name' | 'namespace'>): string =>
   [pascalCase(namespace), pascalCase(name), 'Response'].join('')
 
-const exampleRoute: Route = {
-  namespace: 'workspaces',
-  endpoints: [
-    {
-      name: 'get',
-      namespace: 'workspaces',
-      path: '/workspaces/get',
-      method: 'GET',
-      resource: 'workspace',
-      requestFormat: getRequestFormat('GET'),
-    },
-  ],
-}
-
 const write = async (data: string, ...path: string[]): Promise<void> => {
   const filePath = resolve(...path)
+  await writeFile(
+    filePath,
+    '// Generated empty file to allow ESLint parsing by filename',
+  )
   const fixedOutput = await eslintFixOutput(data, filePath)
   const prettyOutput = await prettierOutput(fixedOutput, filePath)
   await writeFile(filePath, prettyOutput)
@@ -187,11 +258,12 @@ const eslintFixOutput = async (
   return linted.output ?? linted.source ?? data
 }
 
-const routeRootPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
 const writeRoute = async (route: Route): Promise<void> => {
-  await write(renderRoute(route), routeRootPath, `${route.namespace}.ts`)
+  await write(
+    renderRoute(route),
+    routeOutputPath,
+    `${paramCase(route.namespace)}.ts`,
+  )
 }
-
-const routes = [exampleRoute]
 
 await Promise.all(routes.map(writeRoute))
