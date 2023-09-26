@@ -88,7 +88,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   async list(
-    params: ConnectedAccountsListParams,
+    params?: ConnectedAccountsListParams,
   ): Promise<ConnectedAccountsListResponse['connected_accounts']> {
     const { data } = await this.client.request<ConnectedAccountsListResponse>({
       url: '/connected_accounts/list',
@@ -99,26 +99,26 @@ export class SeamHttpConnectedAccounts {
   }
 }
 
-type ConnectedAccountsDeleteBody = SetNonNullable<
+export type ConnectedAccountsDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/connected_accounts/delete'>>
 >
 
-type ConnectedAccountsDeleteResponse = SetNonNullable<
+export type ConnectedAccountsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/delete'>>
 >
 
-type ConnectedAccountsGetBody = SetNonNullable<
+export type ConnectedAccountsGetBody = SetNonNullable<
   Required<RouteRequestBody<'/connected_accounts/get'>>
 >
 
-type ConnectedAccountsGetResponse = SetNonNullable<
+export type ConnectedAccountsGetResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/get'>>
 >
 
-type ConnectedAccountsListParams = SetNonNullable<
+export type ConnectedAccountsListParams = SetNonNullable<
   Required<RouteRequestParams<'/connected_accounts/list'>>
 >
 
-type ConnectedAccountsListResponse = SetNonNullable<
+export type ConnectedAccountsListResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/list'>>
 >

@@ -41,6 +41,36 @@ const ignoredEndpointPaths = [
   '/noise_sensors/simulate/trigger_noise_threshold',
 ]
 
+const endpointResources: Partial<
+  Record<
+    keyof typeof openapi.paths,
+    | 'action_attempt'
+    | 'device_providers'
+    | 'generated_code'
+    | 'backup_access_code'
+    | 'acs_users'
+    | null
+  >
+> = {
+  '/access_codes/generate_code': 'generated_code',
+  '/access_codes/pull_backup_access_code': 'backup_access_code',
+  '/acs/users/add_to_access_group': null,
+  '/acs/users/remove_from_access_group': null,
+  '/acs/access_groups/list_users': 'acs_users',
+  '/acs/access_groups/remove_user': null,
+  '/connect_webviews/view': null,
+  '/devices/list_device_providers': 'device_providers',
+  '/locks/lock_door': null,
+  '/locks/unlock_door': null,
+  '/noise_sensors/noise_thresholds/create': null,
+  '/thermostats/cool': null,
+  '/thermostats/heat': null,
+  '/thermostats/heat_cool': null,
+  '/thermostats/off': null,
+  '/thermostats/set_fan_mode': null,
+  '/workspaces/reset_sandbox': null,
+}
+
 interface Route {
   namespace: string
   endpoints: Endpoint[]
@@ -117,22 +147,46 @@ const createEndpoint = (
     namespace,
     path: endpointPath,
     method,
-    resource: deriveResource(routePath, name, method),
+    resource: deriveResource(endpointPath, routePath, name, method),
     requestFormat: ['GET', 'DELETE'].includes(method) ? 'params' : 'body',
   }
 }
 
 const deriveResource = (
+  endpointPath: string,
   routePath: string,
   name: string,
   method: Method,
 ): string | null => {
+  if (endpointPath in endpointResources) {
+    return (
+      endpointResources[endpointPath as keyof typeof endpointResources] ?? null
+    )
+  }
   if (['DELETE', 'PATCH', 'PUT'].includes(method)) return null
   if (['update', 'delete'].includes(name)) return null
-  const group = routePath.split('/')[1]
+  const group = deriveGroupFromRoutePath(routePath)
   if (group == null) throw new Error(`Could not parse group from ${routePath}`)
   if (name === 'list') return group
   return pluralize.singular(group)
+}
+
+const deriveGroupFromRoutePath = (routePath: string): string | undefined => {
+  const parts = routePath.split('/').slice(1)
+
+  if (routePath.endsWith('/unmanaged')) {
+    return parts[0]
+  }
+
+  if (routePath.startsWith('/acs')) {
+    return [parts[0], parts[1]].join('_')
+  }
+
+  if (parts.length === 2) {
+    return parts[1]
+  }
+
+  return parts[0]
 }
 
 const deriveSemanticMethod = (methods: string[]): Method => {
@@ -213,7 +267,9 @@ const renderClassMethod = ({
   path,
 }: Endpoint): string => `
   async ${camelCase(name)}(
-    ${requestFormat}: ${renderRequestType({
+    ${requestFormat}${
+      requestFormat === 'params' ? '?' : ''
+    }: ${renderRequestType({
       name,
       namespace,
       requestFormat,
@@ -247,7 +303,7 @@ const renderEndpointExports = ({
   namespace,
   requestFormat,
 }: Endpoint): string => `
-type ${renderRequestType({
+export type ${renderRequestType({
   name,
   namespace,
   requestFormat,
@@ -255,7 +311,7 @@ type ${renderRequestType({
   Required<RouteRequest${pascalCase(requestFormat)}<'${path}'>>
 >
 
-type ${renderResponseType({ name, namespace })}= SetNonNullable<
+export type ${renderResponseType({ name, namespace })}= SetNonNullable<
   Required<RouteResponse<'${path}'>>
 >
   `

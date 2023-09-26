@@ -74,13 +74,13 @@ export class SeamHttpAcsAccessGroups {
 
   async create(
     body: AcsAccessGroupsCreateBody,
-  ): Promise<AcsAccessGroupsCreateResponse['ac']> {
+  ): Promise<AcsAccessGroupsCreateResponse['acs_access_group']> {
     const { data } = await this.client.request<AcsAccessGroupsCreateResponse>({
       url: '/acs/access_groups/create',
       method: 'post',
       data: body,
     })
-    return data.ac
+    return data.acs_access_group
   }
 
   async delete(body: AcsAccessGroupsDeleteBody): Promise<void> {
@@ -93,48 +93,44 @@ export class SeamHttpAcsAccessGroups {
 
   async get(
     body: AcsAccessGroupsGetBody,
-  ): Promise<AcsAccessGroupsGetResponse['ac']> {
+  ): Promise<AcsAccessGroupsGetResponse['acs_access_group']> {
     const { data } = await this.client.request<AcsAccessGroupsGetResponse>({
       url: '/acs/access_groups/get',
       method: 'post',
       data: body,
     })
-    return data.ac
+    return data.acs_access_group
   }
 
   async list(
     body: AcsAccessGroupsListBody,
-  ): Promise<AcsAccessGroupsListResponse['acs']> {
+  ): Promise<AcsAccessGroupsListResponse['acs_access_groups']> {
     const { data } = await this.client.request<AcsAccessGroupsListResponse>({
       url: '/acs/access_groups/list',
       method: 'post',
       data: body,
     })
-    return data.acs
+    return data.acs_access_groups
   }
 
   async listUsers(
     body: AcsAccessGroupsListUsersBody,
-  ): Promise<AcsAccessGroupsListUsersResponse['ac']> {
+  ): Promise<AcsAccessGroupsListUsersResponse['acs_users']> {
     const { data } =
       await this.client.request<AcsAccessGroupsListUsersResponse>({
         url: '/acs/access_groups/list_users',
         method: 'post',
         data: body,
       })
-    return data.ac
+    return data.acs_users
   }
 
-  async removeUser(
-    body: AcsAccessGroupsRemoveUserBody,
-  ): Promise<AcsAccessGroupsRemoveUserResponse['ac']> {
-    const { data } =
-      await this.client.request<AcsAccessGroupsRemoveUserResponse>({
-        url: '/acs/access_groups/remove_user',
-        method: 'post',
-        data: body,
-      })
-    return data.ac
+  async removeUser(body: AcsAccessGroupsRemoveUserBody): Promise<void> {
+    await this.client.request<AcsAccessGroupsRemoveUserResponse>({
+      url: '/acs/access_groups/remove_user',
+      method: 'post',
+      data: body,
+    })
   }
 
   async update(body: AcsAccessGroupsUpdateBody): Promise<void> {
@@ -146,66 +142,66 @@ export class SeamHttpAcsAccessGroups {
   }
 }
 
-type AcsAccessGroupsAddUserBody = SetNonNullable<
+export type AcsAccessGroupsAddUserBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/access_groups/add_user'>>
 >
 
-type AcsAccessGroupsAddUserResponse = SetNonNullable<
+export type AcsAccessGroupsAddUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/add_user'>>
 >
 
-type AcsAccessGroupsCreateBody = SetNonNullable<
+export type AcsAccessGroupsCreateBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/access_groups/create'>>
 >
 
-type AcsAccessGroupsCreateResponse = SetNonNullable<
+export type AcsAccessGroupsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/create'>>
 >
 
-type AcsAccessGroupsDeleteBody = SetNonNullable<
+export type AcsAccessGroupsDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/access_groups/delete'>>
 >
 
-type AcsAccessGroupsDeleteResponse = SetNonNullable<
+export type AcsAccessGroupsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/delete'>>
 >
 
-type AcsAccessGroupsGetBody = SetNonNullable<
+export type AcsAccessGroupsGetBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/access_groups/get'>>
 >
 
-type AcsAccessGroupsGetResponse = SetNonNullable<
+export type AcsAccessGroupsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/get'>>
 >
 
-type AcsAccessGroupsListBody = SetNonNullable<
+export type AcsAccessGroupsListBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/access_groups/list'>>
 >
 
-type AcsAccessGroupsListResponse = SetNonNullable<
+export type AcsAccessGroupsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list'>>
 >
 
-type AcsAccessGroupsListUsersBody = SetNonNullable<
+export type AcsAccessGroupsListUsersBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/access_groups/list_users'>>
 >
 
-type AcsAccessGroupsListUsersResponse = SetNonNullable<
+export type AcsAccessGroupsListUsersResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list_users'>>
 >
 
-type AcsAccessGroupsRemoveUserBody = SetNonNullable<
+export type AcsAccessGroupsRemoveUserBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/access_groups/remove_user'>>
 >
 
-type AcsAccessGroupsRemoveUserResponse = SetNonNullable<
+export type AcsAccessGroupsRemoveUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/remove_user'>>
 >
 
-type AcsAccessGroupsUpdateBody = SetNonNullable<
+export type AcsAccessGroupsUpdateBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/access_groups/update'>>
 >
 
-type AcsAccessGroupsUpdateResponse = SetNonNullable<
+export type AcsAccessGroupsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/update'>>
 >

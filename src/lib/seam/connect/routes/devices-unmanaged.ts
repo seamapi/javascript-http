@@ -95,26 +95,26 @@ export class SeamHttpDevicesUnmanaged {
   }
 }
 
-type DevicesUnmanagedGetBody = SetNonNullable<
+export type DevicesUnmanagedGetBody = SetNonNullable<
   Required<RouteRequestBody<'/devices/unmanaged/get'>>
 >
 
-type DevicesUnmanagedGetResponse = SetNonNullable<
+export type DevicesUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/unmanaged/get'>>
 >
 
-type DevicesUnmanagedListBody = SetNonNullable<
+export type DevicesUnmanagedListBody = SetNonNullable<
   Required<RouteRequestBody<'/devices/unmanaged/list'>>
 >
 
-type DevicesUnmanagedListResponse = SetNonNullable<
+export type DevicesUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/devices/unmanaged/list'>>
 >
 
-type DevicesUnmanagedUpdateBody = SetNonNullable<
+export type DevicesUnmanagedUpdateBody = SetNonNullable<
   Required<RouteRequestBody<'/devices/unmanaged/update'>>
 >
 
-type DevicesUnmanagedUpdateResponse = SetNonNullable<
+export type DevicesUnmanagedUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/devices/unmanaged/update'>>
 >

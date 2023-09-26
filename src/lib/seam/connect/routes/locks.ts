@@ -82,49 +82,51 @@ export class SeamHttpLocks {
     return data.locks
   }
 
-  async lockDoor(
-    body: LocksLockDoorBody,
-  ): Promise<LocksLockDoorResponse['lock']> {
-    const { data } = await this.client.request<LocksLockDoorResponse>({
+  async lockDoor(body: LocksLockDoorBody): Promise<void> {
+    await this.client.request<LocksLockDoorResponse>({
       url: '/locks/lock_door',
       method: 'post',
       data: body,
     })
-    return data.lock
   }
 
-  async unlockDoor(
-    body: LocksUnlockDoorBody,
-  ): Promise<LocksUnlockDoorResponse['lock']> {
-    const { data } = await this.client.request<LocksUnlockDoorResponse>({
+  async unlockDoor(body: LocksUnlockDoorBody): Promise<void> {
+    await this.client.request<LocksUnlockDoorResponse>({
       url: '/locks/unlock_door',
       method: 'post',
       data: body,
     })
-    return data.lock
   }
 }
 
-type LocksGetBody = SetNonNullable<Required<RouteRequestBody<'/locks/get'>>>
+export type LocksGetBody = SetNonNullable<
+  Required<RouteRequestBody<'/locks/get'>>
+>
 
-type LocksGetResponse = SetNonNullable<Required<RouteResponse<'/locks/get'>>>
+export type LocksGetResponse = SetNonNullable<
+  Required<RouteResponse<'/locks/get'>>
+>
 
-type LocksListBody = SetNonNullable<Required<RouteRequestBody<'/locks/list'>>>
+export type LocksListBody = SetNonNullable<
+  Required<RouteRequestBody<'/locks/list'>>
+>
 
-type LocksListResponse = SetNonNullable<Required<RouteResponse<'/locks/list'>>>
+export type LocksListResponse = SetNonNullable<
+  Required<RouteResponse<'/locks/list'>>
+>
 
-type LocksLockDoorBody = SetNonNullable<
+export type LocksLockDoorBody = SetNonNullable<
   Required<RouteRequestBody<'/locks/lock_door'>>
 >
 
-type LocksLockDoorResponse = SetNonNullable<
+export type LocksLockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/lock_door'>>
 >
 
-type LocksUnlockDoorBody = SetNonNullable<
+export type LocksUnlockDoorBody = SetNonNullable<
   Required<RouteRequestBody<'/locks/unlock_door'>>
 >
 
-type LocksUnlockDoorResponse = SetNonNullable<
+export type LocksUnlockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/unlock_door'>>
 >

@@ -111,42 +111,42 @@ export class SeamHttpClientSessions {
   }
 }
 
-type ClientSessionsCreateBody = SetNonNullable<
+export type ClientSessionsCreateBody = SetNonNullable<
   Required<RouteRequestBody<'/client_sessions/create'>>
 >
 
-type ClientSessionsCreateResponse = SetNonNullable<
+export type ClientSessionsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/create'>>
 >
 
-type ClientSessionsDeleteBody = SetNonNullable<
+export type ClientSessionsDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/client_sessions/delete'>>
 >
 
-type ClientSessionsDeleteResponse = SetNonNullable<
+export type ClientSessionsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/delete'>>
 >
 
-type ClientSessionsGetBody = SetNonNullable<
+export type ClientSessionsGetBody = SetNonNullable<
   Required<RouteRequestBody<'/client_sessions/get'>>
 >
 
-type ClientSessionsGetResponse = SetNonNullable<
+export type ClientSessionsGetResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/get'>>
 >
 
-type ClientSessionsGrantAccessBody = SetNonNullable<
+export type ClientSessionsGrantAccessBody = SetNonNullable<
   Required<RouteRequestBody<'/client_sessions/grant_access'>>
 >
 
-type ClientSessionsGrantAccessResponse = SetNonNullable<
+export type ClientSessionsGrantAccessResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/grant_access'>>
 >
 
-type ClientSessionsListBody = SetNonNullable<
+export type ClientSessionsListBody = SetNonNullable<
   Required<RouteRequestBody<'/client_sessions/list'>>
 >
 
-type ClientSessionsListResponse = SetNonNullable<
+export type ClientSessionsListResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/list'>>
 >

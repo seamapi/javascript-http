@@ -69,7 +69,7 @@ export class SeamHttpWorkspaces {
   }
 
   async get(
-    params: WorkspacesGetParams,
+    params?: WorkspacesGetParams,
   ): Promise<WorkspacesGetResponse['workspace']> {
     const { data } = await this.client.request<WorkspacesGetResponse>({
       url: '/workspaces/get',
@@ -80,7 +80,7 @@ export class SeamHttpWorkspaces {
   }
 
   async list(
-    params: WorkspacesListParams,
+    params?: WorkspacesListParams,
   ): Promise<WorkspacesListResponse['workspaces']> {
     const { data } = await this.client.request<WorkspacesListResponse>({
       url: '/workspaces/list',
@@ -90,38 +90,35 @@ export class SeamHttpWorkspaces {
     return data.workspaces
   }
 
-  async resetSandbox(
-    body: WorkspacesResetSandboxBody,
-  ): Promise<WorkspacesResetSandboxResponse['workspace']> {
-    const { data } = await this.client.request<WorkspacesResetSandboxResponse>({
+  async resetSandbox(body: WorkspacesResetSandboxBody): Promise<void> {
+    await this.client.request<WorkspacesResetSandboxResponse>({
       url: '/workspaces/reset_sandbox',
       method: 'post',
       data: body,
     })
-    return data.workspace
   }
 }
 
-type WorkspacesGetParams = SetNonNullable<
+export type WorkspacesGetParams = SetNonNullable<
   Required<RouteRequestParams<'/workspaces/get'>>
 >
 
-type WorkspacesGetResponse = SetNonNullable<
+export type WorkspacesGetResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/get'>>
 >
 
-type WorkspacesListParams = SetNonNullable<
+export type WorkspacesListParams = SetNonNullable<
   Required<RouteRequestParams<'/workspaces/list'>>
 >
 
-type WorkspacesListResponse = SetNonNullable<
+export type WorkspacesListResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/list'>>
 >
 
-type WorkspacesResetSandboxBody = SetNonNullable<
+export type WorkspacesResetSandboxBody = SetNonNullable<
   Required<RouteRequestBody<'/workspaces/reset_sandbox'>>
 >
 
-type WorkspacesResetSandboxResponse = SetNonNullable<
+export type WorkspacesResetSandboxResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/reset_sandbox'>>
 >

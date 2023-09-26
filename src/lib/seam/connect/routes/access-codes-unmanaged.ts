@@ -116,42 +116,42 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 }
 
-type AccessCodesUnmanagedConvertToManagedBody = SetNonNullable<
+export type AccessCodesUnmanagedConvertToManagedBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/unmanaged/convert_to_managed'>>
 >
 
-type AccessCodesUnmanagedConvertToManagedResponse = SetNonNullable<
+export type AccessCodesUnmanagedConvertToManagedResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/convert_to_managed'>>
 >
 
-type AccessCodesUnmanagedDeleteBody = SetNonNullable<
+export type AccessCodesUnmanagedDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/unmanaged/delete'>>
 >
 
-type AccessCodesUnmanagedDeleteResponse = SetNonNullable<
+export type AccessCodesUnmanagedDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/delete'>>
 >
 
-type AccessCodesUnmanagedGetBody = SetNonNullable<
+export type AccessCodesUnmanagedGetBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/unmanaged/get'>>
 >
 
-type AccessCodesUnmanagedGetResponse = SetNonNullable<
+export type AccessCodesUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/get'>>
 >
 
-type AccessCodesUnmanagedListBody = SetNonNullable<
+export type AccessCodesUnmanagedListBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/unmanaged/list'>>
 >
 
-type AccessCodesUnmanagedListResponse = SetNonNullable<
+export type AccessCodesUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/list'>>
 >
 
-type AccessCodesUnmanagedUpdateBody = SetNonNullable<
+export type AccessCodesUnmanagedUpdateBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/unmanaged/update'>>
 >
 
-type AccessCodesUnmanagedUpdateResponse = SetNonNullable<
+export type AccessCodesUnmanagedUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/update'>>
 >

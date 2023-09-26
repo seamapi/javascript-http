@@ -87,18 +87,18 @@ export class SeamHttpActionAttempts {
   }
 }
 
-type ActionAttemptsGetBody = SetNonNullable<
+export type ActionAttemptsGetBody = SetNonNullable<
   Required<RouteRequestBody<'/action_attempts/get'>>
 >
 
-type ActionAttemptsGetResponse = SetNonNullable<
+export type ActionAttemptsGetResponse = SetNonNullable<
   Required<RouteResponse<'/action_attempts/get'>>
 >
 
-type ActionAttemptsListBody = SetNonNullable<
+export type ActionAttemptsListBody = SetNonNullable<
   Required<RouteRequestBody<'/action_attempts/list'>>
 >
 
-type ActionAttemptsListResponse = SetNonNullable<
+export type ActionAttemptsListResponse = SetNonNullable<
   Required<RouteResponse<'/action_attempts/list'>>
 >

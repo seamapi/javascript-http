@@ -96,8 +96,8 @@ export class SeamHttpAccessCodes {
   }
 
   async generateCode(
-    params: AccessCodesGenerateCodeParams,
-  ): Promise<AccessCodesGenerateCodeResponse['access_code']> {
+    params?: AccessCodesGenerateCodeParams,
+  ): Promise<AccessCodesGenerateCodeResponse['generated_code']> {
     const { data } = await this.client.request<AccessCodesGenerateCodeResponse>(
       {
         url: '/access_codes/generate_code',
@@ -105,7 +105,7 @@ export class SeamHttpAccessCodes {
         params,
       },
     )
-    return data.access_code
+    return data.generated_code
   }
 
   async get(
@@ -132,14 +132,14 @@ export class SeamHttpAccessCodes {
 
   async pullBackupAccessCode(
     body: AccessCodesPullBackupAccessCodeBody,
-  ): Promise<AccessCodesPullBackupAccessCodeResponse['access_code']> {
+  ): Promise<AccessCodesPullBackupAccessCodeResponse['backup_access_code']> {
     const { data } =
       await this.client.request<AccessCodesPullBackupAccessCodeResponse>({
         url: '/access_codes/pull_backup_access_code',
         method: 'post',
         data: body,
       })
-    return data.access_code
+    return data.backup_access_code
   }
 
   async update(body: AccessCodesUpdateBody): Promise<void> {
@@ -151,66 +151,66 @@ export class SeamHttpAccessCodes {
   }
 }
 
-type AccessCodesCreateBody = SetNonNullable<
+export type AccessCodesCreateBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/create'>>
 >
 
-type AccessCodesCreateResponse = SetNonNullable<
+export type AccessCodesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/create'>>
 >
 
-type AccessCodesCreateMultipleBody = SetNonNullable<
+export type AccessCodesCreateMultipleBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/create_multiple'>>
 >
 
-type AccessCodesCreateMultipleResponse = SetNonNullable<
+export type AccessCodesCreateMultipleResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/create_multiple'>>
 >
 
-type AccessCodesDeleteBody = SetNonNullable<
+export type AccessCodesDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/delete'>>
 >
 
-type AccessCodesDeleteResponse = SetNonNullable<
+export type AccessCodesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/delete'>>
 >
 
-type AccessCodesGenerateCodeParams = SetNonNullable<
+export type AccessCodesGenerateCodeParams = SetNonNullable<
   Required<RouteRequestParams<'/access_codes/generate_code'>>
 >
 
-type AccessCodesGenerateCodeResponse = SetNonNullable<
+export type AccessCodesGenerateCodeResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/generate_code'>>
 >
 
-type AccessCodesGetBody = SetNonNullable<
+export type AccessCodesGetBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/get'>>
 >
 
-type AccessCodesGetResponse = SetNonNullable<
+export type AccessCodesGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/get'>>
 >
 
-type AccessCodesListBody = SetNonNullable<
+export type AccessCodesListBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/list'>>
 >
 
-type AccessCodesListResponse = SetNonNullable<
+export type AccessCodesListResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/list'>>
 >
 
-type AccessCodesPullBackupAccessCodeBody = SetNonNullable<
+export type AccessCodesPullBackupAccessCodeBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/pull_backup_access_code'>>
 >
 
-type AccessCodesPullBackupAccessCodeResponse = SetNonNullable<
+export type AccessCodesPullBackupAccessCodeResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/pull_backup_access_code'>>
 >
 
-type AccessCodesUpdateBody = SetNonNullable<
+export type AccessCodesUpdateBody = SetNonNullable<
   Required<RouteRequestBody<'/access_codes/update'>>
 >
 
-type AccessCodesUpdateResponse = SetNonNullable<
+export type AccessCodesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/update'>>
 >

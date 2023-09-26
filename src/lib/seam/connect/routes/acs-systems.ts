@@ -68,39 +68,41 @@ export class SeamHttpAcsSystems {
     return new SeamHttpAcsSystems(opts)
   }
 
-  async get(body: AcsSystemsGetBody): Promise<AcsSystemsGetResponse['ac']> {
+  async get(
+    body: AcsSystemsGetBody,
+  ): Promise<AcsSystemsGetResponse['acs_system']> {
     const { data } = await this.client.request<AcsSystemsGetResponse>({
       url: '/acs/systems/get',
       method: 'post',
       data: body,
     })
-    return data.ac
+    return data.acs_system
   }
 
   async list(
-    params: AcsSystemsListParams,
-  ): Promise<AcsSystemsListResponse['acs']> {
+    params?: AcsSystemsListParams,
+  ): Promise<AcsSystemsListResponse['acs_systems']> {
     const { data } = await this.client.request<AcsSystemsListResponse>({
       url: '/acs/systems/list',
       method: 'get',
       params,
     })
-    return data.acs
+    return data.acs_systems
   }
 }
 
-type AcsSystemsGetBody = SetNonNullable<
+export type AcsSystemsGetBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/systems/get'>>
 >
 
-type AcsSystemsGetResponse = SetNonNullable<
+export type AcsSystemsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/get'>>
 >
 
-type AcsSystemsListParams = SetNonNullable<
+export type AcsSystemsListParams = SetNonNullable<
   Required<RouteRequestParams<'/acs/systems/list'>>
 >
 
-type AcsSystemsListResponse = SetNonNullable<
+export type AcsSystemsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/list'>>
 >

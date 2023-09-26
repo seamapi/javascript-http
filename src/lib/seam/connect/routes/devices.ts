@@ -92,14 +92,14 @@ export class SeamHttpDevices {
 
   async listDeviceProviders(
     body: DevicesListDeviceProvidersBody,
-  ): Promise<DevicesListDeviceProvidersResponse['device']> {
+  ): Promise<DevicesListDeviceProvidersResponse['device_providers']> {
     const { data } =
       await this.client.request<DevicesListDeviceProvidersResponse>({
         url: '/devices/list_device_providers',
         method: 'post',
         data: body,
       })
-    return data.device
+    return data.device_providers
   }
 
   async update(body: DevicesUpdateBody): Promise<void> {
@@ -111,40 +111,42 @@ export class SeamHttpDevices {
   }
 }
 
-type DevicesDeleteBody = SetNonNullable<
+export type DevicesDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/devices/delete'>>
 >
 
-type DevicesDeleteResponse = SetNonNullable<
+export type DevicesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/devices/delete'>>
 >
 
-type DevicesGetBody = SetNonNullable<Required<RouteRequestBody<'/devices/get'>>>
+export type DevicesGetBody = SetNonNullable<
+  Required<RouteRequestBody<'/devices/get'>>
+>
 
-type DevicesGetResponse = SetNonNullable<
+export type DevicesGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/get'>>
 >
 
-type DevicesListBody = SetNonNullable<
+export type DevicesListBody = SetNonNullable<
   Required<RouteRequestBody<'/devices/list'>>
 >
 
-type DevicesListResponse = SetNonNullable<
+export type DevicesListResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list'>>
 >
 
-type DevicesListDeviceProvidersBody = SetNonNullable<
+export type DevicesListDeviceProvidersBody = SetNonNullable<
   Required<RouteRequestBody<'/devices/list_device_providers'>>
 >
 
-type DevicesListDeviceProvidersResponse = SetNonNullable<
+export type DevicesListDeviceProvidersResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list_device_providers'>>
 >
 
-type DevicesUpdateBody = SetNonNullable<
+export type DevicesUpdateBody = SetNonNullable<
   Required<RouteRequestBody<'/devices/update'>>
 >
 
-type DevicesUpdateResponse = SetNonNullable<
+export type DevicesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/devices/update'>>
 >

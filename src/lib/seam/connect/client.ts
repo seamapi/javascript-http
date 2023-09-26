@@ -63,7 +63,8 @@ export class SeamHttp {
   }
 
   get workspaces(): SeamHttpWorkspaces {
-    if (this.#legacy) return new SeamHttpLegacyWorkspaces(this.client)
+    if (this.#legacy)
+      return new SeamHttpLegacyWorkspaces({ client: this.client })
     return new SeamHttpWorkspaces({ client: this.client })
   }
 }

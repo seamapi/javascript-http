@@ -97,7 +97,7 @@ export class SeamHttpWebhooks {
   }
 
   async list(
-    params: WebhooksListParams,
+    params?: WebhooksListParams,
   ): Promise<WebhooksListResponse['webhooks']> {
     const { data } = await this.client.request<WebhooksListResponse>({
       url: '/webhooks/list',
@@ -108,34 +108,34 @@ export class SeamHttpWebhooks {
   }
 }
 
-type WebhooksCreateBody = SetNonNullable<
+export type WebhooksCreateBody = SetNonNullable<
   Required<RouteRequestBody<'/webhooks/create'>>
 >
 
-type WebhooksCreateResponse = SetNonNullable<
+export type WebhooksCreateResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/create'>>
 >
 
-type WebhooksDeleteBody = SetNonNullable<
+export type WebhooksDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/webhooks/delete'>>
 >
 
-type WebhooksDeleteResponse = SetNonNullable<
+export type WebhooksDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/delete'>>
 >
 
-type WebhooksGetBody = SetNonNullable<
+export type WebhooksGetBody = SetNonNullable<
   Required<RouteRequestBody<'/webhooks/get'>>
 >
 
-type WebhooksGetResponse = SetNonNullable<
+export type WebhooksGetResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/get'>>
 >
 
-type WebhooksListParams = SetNonNullable<
+export type WebhooksListParams = SetNonNullable<
   Required<RouteRequestParams<'/webhooks/list'>>
 >
 
-type WebhooksListResponse = SetNonNullable<
+export type WebhooksListResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/list'>>
 >

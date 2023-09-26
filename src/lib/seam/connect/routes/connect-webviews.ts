@@ -99,7 +99,7 @@ export class SeamHttpConnectWebviews {
   }
 
   async list(
-    params: ConnectWebviewsListParams,
+    params?: ConnectWebviewsListParams,
   ): Promise<ConnectWebviewsListResponse['connect_webviews']> {
     const { data } = await this.client.request<ConnectWebviewsListResponse>({
       url: '/connect_webviews/list',
@@ -109,54 +109,51 @@ export class SeamHttpConnectWebviews {
     return data.connect_webviews
   }
 
-  async view(
-    params: ConnectWebviewsViewParams,
-  ): Promise<ConnectWebviewsViewResponse['connect_webview']> {
-    const { data } = await this.client.request<ConnectWebviewsViewResponse>({
+  async view(params?: ConnectWebviewsViewParams): Promise<void> {
+    await this.client.request<ConnectWebviewsViewResponse>({
       url: '/connect_webviews/view',
       method: 'get',
       params,
     })
-    return data.connect_webview
   }
 }
 
-type ConnectWebviewsCreateBody = SetNonNullable<
+export type ConnectWebviewsCreateBody = SetNonNullable<
   Required<RouteRequestBody<'/connect_webviews/create'>>
 >
 
-type ConnectWebviewsCreateResponse = SetNonNullable<
+export type ConnectWebviewsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/create'>>
 >
 
-type ConnectWebviewsDeleteBody = SetNonNullable<
+export type ConnectWebviewsDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/connect_webviews/delete'>>
 >
 
-type ConnectWebviewsDeleteResponse = SetNonNullable<
+export type ConnectWebviewsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/delete'>>
 >
 
-type ConnectWebviewsGetBody = SetNonNullable<
+export type ConnectWebviewsGetBody = SetNonNullable<
   Required<RouteRequestBody<'/connect_webviews/get'>>
 >
 
-type ConnectWebviewsGetResponse = SetNonNullable<
+export type ConnectWebviewsGetResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/get'>>
 >
 
-type ConnectWebviewsListParams = SetNonNullable<
+export type ConnectWebviewsListParams = SetNonNullable<
   Required<RouteRequestParams<'/connect_webviews/list'>>
 >
 
-type ConnectWebviewsListResponse = SetNonNullable<
+export type ConnectWebviewsListResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/list'>>
 >
 
-type ConnectWebviewsViewParams = SetNonNullable<
+export type ConnectWebviewsViewParams = SetNonNullable<
   Required<RouteRequestParams<'/connect_webviews/view'>>
 >
 
-type ConnectWebviewsViewResponse = SetNonNullable<
+export type ConnectWebviewsViewResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/view'>>
 >

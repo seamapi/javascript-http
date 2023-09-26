@@ -64,15 +64,12 @@ export class SeamHttpThermostats {
     return new SeamHttpThermostats(opts)
   }
 
-  async cool(
-    body: ThermostatsCoolBody,
-  ): Promise<ThermostatsCoolResponse['thermostat']> {
-    const { data } = await this.client.request<ThermostatsCoolResponse>({
+  async cool(body: ThermostatsCoolBody): Promise<void> {
+    await this.client.request<ThermostatsCoolResponse>({
       url: '/thermostats/cool',
       method: 'post',
       data: body,
     })
-    return data.thermostat
   }
 
   async get(
@@ -86,26 +83,20 @@ export class SeamHttpThermostats {
     return data.thermostat
   }
 
-  async heat(
-    body: ThermostatsHeatBody,
-  ): Promise<ThermostatsHeatResponse['thermostat']> {
-    const { data } = await this.client.request<ThermostatsHeatResponse>({
+  async heat(body: ThermostatsHeatBody): Promise<void> {
+    await this.client.request<ThermostatsHeatResponse>({
       url: '/thermostats/heat',
       method: 'post',
       data: body,
     })
-    return data.thermostat
   }
 
-  async heatCool(
-    body: ThermostatsHeatCoolBody,
-  ): Promise<ThermostatsHeatCoolResponse['thermostat']> {
-    const { data } = await this.client.request<ThermostatsHeatCoolResponse>({
+  async heatCool(body: ThermostatsHeatCoolBody): Promise<void> {
+    await this.client.request<ThermostatsHeatCoolResponse>({
       url: '/thermostats/heat_cool',
       method: 'post',
       data: body,
     })
-    return data.thermostat
   }
 
   async list(
@@ -119,26 +110,20 @@ export class SeamHttpThermostats {
     return data.thermostats
   }
 
-  async off(
-    body: ThermostatsOffBody,
-  ): Promise<ThermostatsOffResponse['thermostat']> {
-    const { data } = await this.client.request<ThermostatsOffResponse>({
+  async off(body: ThermostatsOffBody): Promise<void> {
+    await this.client.request<ThermostatsOffResponse>({
       url: '/thermostats/off',
       method: 'post',
       data: body,
     })
-    return data.thermostat
   }
 
-  async setFanMode(
-    body: ThermostatsSetFanModeBody,
-  ): Promise<ThermostatsSetFanModeResponse['thermostat']> {
-    const { data } = await this.client.request<ThermostatsSetFanModeResponse>({
+  async setFanMode(body: ThermostatsSetFanModeBody): Promise<void> {
+    await this.client.request<ThermostatsSetFanModeResponse>({
       url: '/thermostats/set_fan_mode',
       method: 'post',
       data: body,
     })
-    return data.thermostat
   }
 
   async update(body: ThermostatsUpdateBody): Promise<void> {
@@ -150,66 +135,66 @@ export class SeamHttpThermostats {
   }
 }
 
-type ThermostatsCoolBody = SetNonNullable<
+export type ThermostatsCoolBody = SetNonNullable<
   Required<RouteRequestBody<'/thermostats/cool'>>
 >
 
-type ThermostatsCoolResponse = SetNonNullable<
+export type ThermostatsCoolResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/cool'>>
 >
 
-type ThermostatsGetBody = SetNonNullable<
+export type ThermostatsGetBody = SetNonNullable<
   Required<RouteRequestBody<'/thermostats/get'>>
 >
 
-type ThermostatsGetResponse = SetNonNullable<
+export type ThermostatsGetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/get'>>
 >
 
-type ThermostatsHeatBody = SetNonNullable<
+export type ThermostatsHeatBody = SetNonNullable<
   Required<RouteRequestBody<'/thermostats/heat'>>
 >
 
-type ThermostatsHeatResponse = SetNonNullable<
+export type ThermostatsHeatResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/heat'>>
 >
 
-type ThermostatsHeatCoolBody = SetNonNullable<
+export type ThermostatsHeatCoolBody = SetNonNullable<
   Required<RouteRequestBody<'/thermostats/heat_cool'>>
 >
 
-type ThermostatsHeatCoolResponse = SetNonNullable<
+export type ThermostatsHeatCoolResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/heat_cool'>>
 >
 
-type ThermostatsListBody = SetNonNullable<
+export type ThermostatsListBody = SetNonNullable<
   Required<RouteRequestBody<'/thermostats/list'>>
 >
 
-type ThermostatsListResponse = SetNonNullable<
+export type ThermostatsListResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/list'>>
 >
 
-type ThermostatsOffBody = SetNonNullable<
+export type ThermostatsOffBody = SetNonNullable<
   Required<RouteRequestBody<'/thermostats/off'>>
 >
 
-type ThermostatsOffResponse = SetNonNullable<
+export type ThermostatsOffResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/off'>>
 >
 
-type ThermostatsSetFanModeBody = SetNonNullable<
+export type ThermostatsSetFanModeBody = SetNonNullable<
   Required<RouteRequestBody<'/thermostats/set_fan_mode'>>
 >
 
-type ThermostatsSetFanModeResponse = SetNonNullable<
+export type ThermostatsSetFanModeResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/set_fan_mode'>>
 >
 
-type ThermostatsUpdateBody = SetNonNullable<
+export type ThermostatsUpdateBody = SetNonNullable<
   Required<RouteRequestBody<'/thermostats/update'>>
 >
 
-type ThermostatsUpdateResponse = SetNonNullable<
+export type ThermostatsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/update'>>
 >

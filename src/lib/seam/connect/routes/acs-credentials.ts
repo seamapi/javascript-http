@@ -66,13 +66,13 @@ export class SeamHttpAcsCredentials {
 
   async create(
     body: AcsCredentialsCreateBody,
-  ): Promise<AcsCredentialsCreateResponse['ac']> {
+  ): Promise<AcsCredentialsCreateResponse['acs_credential']> {
     const { data } = await this.client.request<AcsCredentialsCreateResponse>({
       url: '/acs/credentials/create',
       method: 'post',
       data: body,
     })
-    return data.ac
+    return data.acs_credential
   }
 
   async delete(body: AcsCredentialsDeleteBody): Promise<void> {
@@ -85,55 +85,55 @@ export class SeamHttpAcsCredentials {
 
   async get(
     body: AcsCredentialsGetBody,
-  ): Promise<AcsCredentialsGetResponse['ac']> {
+  ): Promise<AcsCredentialsGetResponse['acs_credential']> {
     const { data } = await this.client.request<AcsCredentialsGetResponse>({
       url: '/acs/credentials/get',
       method: 'post',
       data: body,
     })
-    return data.ac
+    return data.acs_credential
   }
 
   async list(
     body: AcsCredentialsListBody,
-  ): Promise<AcsCredentialsListResponse['acs']> {
+  ): Promise<AcsCredentialsListResponse['acs_credentials']> {
     const { data } = await this.client.request<AcsCredentialsListResponse>({
       url: '/acs/credentials/list',
       method: 'post',
       data: body,
     })
-    return data.acs
+    return data.acs_credentials
   }
 }
 
-type AcsCredentialsCreateBody = SetNonNullable<
+export type AcsCredentialsCreateBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/credentials/create'>>
 >
 
-type AcsCredentialsCreateResponse = SetNonNullable<
+export type AcsCredentialsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/create'>>
 >
 
-type AcsCredentialsDeleteBody = SetNonNullable<
+export type AcsCredentialsDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/credentials/delete'>>
 >
 
-type AcsCredentialsDeleteResponse = SetNonNullable<
+export type AcsCredentialsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/delete'>>
 >
 
-type AcsCredentialsGetBody = SetNonNullable<
+export type AcsCredentialsGetBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/credentials/get'>>
 >
 
-type AcsCredentialsGetResponse = SetNonNullable<
+export type AcsCredentialsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/get'>>
 >
 
-type AcsCredentialsListBody = SetNonNullable<
+export type AcsCredentialsListBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/credentials/list'>>
 >
 
-type AcsCredentialsListResponse = SetNonNullable<
+export type AcsCredentialsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/list'>>
 >

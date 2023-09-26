@@ -74,13 +74,13 @@ export class SeamHttpAcsUsers {
 
   async create(
     body: AcsUsersCreateBody,
-  ): Promise<AcsUsersCreateResponse['ac']> {
+  ): Promise<AcsUsersCreateResponse['acs_user']> {
     const { data } = await this.client.request<AcsUsersCreateResponse>({
       url: '/acs/users/create',
       method: 'post',
       data: body,
     })
-    return data.ac
+    return data.acs_user
   }
 
   async delete(body: AcsUsersDeleteBody): Promise<void> {
@@ -91,34 +91,34 @@ export class SeamHttpAcsUsers {
     })
   }
 
-  async get(body: AcsUsersGetBody): Promise<AcsUsersGetResponse['ac']> {
+  async get(body: AcsUsersGetBody): Promise<AcsUsersGetResponse['acs_user']> {
     const { data } = await this.client.request<AcsUsersGetResponse>({
       url: '/acs/users/get',
       method: 'post',
       data: body,
     })
-    return data.ac
+    return data.acs_user
   }
 
-  async list(body: AcsUsersListBody): Promise<AcsUsersListResponse['acs']> {
+  async list(
+    body: AcsUsersListBody,
+  ): Promise<AcsUsersListResponse['acs_users']> {
     const { data } = await this.client.request<AcsUsersListResponse>({
       url: '/acs/users/list',
       method: 'post',
       data: body,
     })
-    return data.acs
+    return data.acs_users
   }
 
   async removeFromAccessGroup(
     body: AcsUsersRemoveFromAccessGroupBody,
-  ): Promise<AcsUsersRemoveFromAccessGroupResponse['ac']> {
-    const { data } =
-      await this.client.request<AcsUsersRemoveFromAccessGroupResponse>({
-        url: '/acs/users/remove_from_access_group',
-        method: 'post',
-        data: body,
-      })
-    return data.ac
+  ): Promise<void> {
+    await this.client.request<AcsUsersRemoveFromAccessGroupResponse>({
+      url: '/acs/users/remove_from_access_group',
+      method: 'post',
+      data: body,
+    })
   }
 
   async update(body: AcsUsersUpdateBody): Promise<void> {
@@ -130,58 +130,58 @@ export class SeamHttpAcsUsers {
   }
 }
 
-type AcsUsersAddToAccessGroupBody = SetNonNullable<
+export type AcsUsersAddToAccessGroupBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/users/add_to_access_group'>>
 >
 
-type AcsUsersAddToAccessGroupResponse = SetNonNullable<
+export type AcsUsersAddToAccessGroupResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/add_to_access_group'>>
 >
 
-type AcsUsersCreateBody = SetNonNullable<
+export type AcsUsersCreateBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/users/create'>>
 >
 
-type AcsUsersCreateResponse = SetNonNullable<
+export type AcsUsersCreateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/create'>>
 >
 
-type AcsUsersDeleteBody = SetNonNullable<
+export type AcsUsersDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/users/delete'>>
 >
 
-type AcsUsersDeleteResponse = SetNonNullable<
+export type AcsUsersDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/delete'>>
 >
 
-type AcsUsersGetBody = SetNonNullable<
+export type AcsUsersGetBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/users/get'>>
 >
 
-type AcsUsersGetResponse = SetNonNullable<
+export type AcsUsersGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/get'>>
 >
 
-type AcsUsersListBody = SetNonNullable<
+export type AcsUsersListBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/users/list'>>
 >
 
-type AcsUsersListResponse = SetNonNullable<
+export type AcsUsersListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/list'>>
 >
 
-type AcsUsersRemoveFromAccessGroupBody = SetNonNullable<
+export type AcsUsersRemoveFromAccessGroupBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/users/remove_from_access_group'>>
 >
 
-type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
+export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/remove_from_access_group'>>
 >
 
-type AcsUsersUpdateBody = SetNonNullable<
+export type AcsUsersUpdateBody = SetNonNullable<
   Required<RouteRequestBody<'/acs/users/update'>>
 >
 
-type AcsUsersUpdateResponse = SetNonNullable<
+export type AcsUsersUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/update'>>
 >

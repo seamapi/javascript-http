@@ -64,16 +64,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return new SeamHttpNoiseSensorsNoiseThresholds(opts)
   }
 
-  async create(
-    body: NoiseSensorsNoiseThresholdsCreateBody,
-  ): Promise<NoiseSensorsNoiseThresholdsCreateResponse['noise_sensor']> {
-    const { data } =
-      await this.client.request<NoiseSensorsNoiseThresholdsCreateResponse>({
-        url: '/noise_sensors/noise_thresholds/create',
-        method: 'post',
-        data: body,
-      })
-    return data.noise_sensor
+  async create(body: NoiseSensorsNoiseThresholdsCreateBody): Promise<void> {
+    await this.client.request<NoiseSensorsNoiseThresholdsCreateResponse>({
+      url: '/noise_sensors/noise_thresholds/create',
+      method: 'post',
+      data: body,
+    })
   }
 
   async delete(body: NoiseSensorsNoiseThresholdsDeleteBody): Promise<void> {
@@ -86,26 +82,26 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
 
   async get(
     body: NoiseSensorsNoiseThresholdsGetBody,
-  ): Promise<NoiseSensorsNoiseThresholdsGetResponse['noise_sensor']> {
+  ): Promise<NoiseSensorsNoiseThresholdsGetResponse['noise_threshold']> {
     const { data } =
       await this.client.request<NoiseSensorsNoiseThresholdsGetResponse>({
         url: '/noise_sensors/noise_thresholds/get',
         method: 'post',
         data: body,
       })
-    return data.noise_sensor
+    return data.noise_threshold
   }
 
   async list(
     body: NoiseSensorsNoiseThresholdsListBody,
-  ): Promise<NoiseSensorsNoiseThresholdsListResponse['noise_sensors']> {
+  ): Promise<NoiseSensorsNoiseThresholdsListResponse['noise_thresholds']> {
     const { data } =
       await this.client.request<NoiseSensorsNoiseThresholdsListResponse>({
         url: '/noise_sensors/noise_thresholds/list',
         method: 'post',
         data: body,
       })
-    return data.noise_sensors
+    return data.noise_thresholds
   }
 
   async update(body: NoiseSensorsNoiseThresholdsUpdateBody): Promise<void> {
@@ -117,42 +113,42 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 }
 
-type NoiseSensorsNoiseThresholdsCreateBody = SetNonNullable<
+export type NoiseSensorsNoiseThresholdsCreateBody = SetNonNullable<
   Required<RouteRequestBody<'/noise_sensors/noise_thresholds/create'>>
 >
 
-type NoiseSensorsNoiseThresholdsCreateResponse = SetNonNullable<
+export type NoiseSensorsNoiseThresholdsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/create'>>
 >
 
-type NoiseSensorsNoiseThresholdsDeleteBody = SetNonNullable<
+export type NoiseSensorsNoiseThresholdsDeleteBody = SetNonNullable<
   Required<RouteRequestBody<'/noise_sensors/noise_thresholds/delete'>>
 >
 
-type NoiseSensorsNoiseThresholdsDeleteResponse = SetNonNullable<
+export type NoiseSensorsNoiseThresholdsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/delete'>>
 >
 
-type NoiseSensorsNoiseThresholdsGetBody = SetNonNullable<
+export type NoiseSensorsNoiseThresholdsGetBody = SetNonNullable<
   Required<RouteRequestBody<'/noise_sensors/noise_thresholds/get'>>
 >
 
-type NoiseSensorsNoiseThresholdsGetResponse = SetNonNullable<
+export type NoiseSensorsNoiseThresholdsGetResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/get'>>
 >
 
-type NoiseSensorsNoiseThresholdsListBody = SetNonNullable<
+export type NoiseSensorsNoiseThresholdsListBody = SetNonNullable<
   Required<RouteRequestBody<'/noise_sensors/noise_thresholds/list'>>
 >
 
-type NoiseSensorsNoiseThresholdsListResponse = SetNonNullable<
+export type NoiseSensorsNoiseThresholdsListResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/list'>>
 >
 
-type NoiseSensorsNoiseThresholdsUpdateBody = SetNonNullable<
+export type NoiseSensorsNoiseThresholdsUpdateBody = SetNonNullable<
   Required<RouteRequestBody<'/noise_sensors/noise_thresholds/update'>>
 >
 
-type NoiseSensorsNoiseThresholdsUpdateResponse = SetNonNullable<
+export type NoiseSensorsNoiseThresholdsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/update'>>
 >
