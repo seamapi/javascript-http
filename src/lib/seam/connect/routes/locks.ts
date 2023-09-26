@@ -82,20 +82,26 @@ export class SeamHttpLocks {
     return data.locks
   }
 
-  async lockDoor(body: LocksLockDoorBody): Promise<void> {
-    await this.client.request<LocksLockDoorResponse>({
+  async lockDoor(
+    body: LocksLockDoorBody,
+  ): Promise<LocksLockDoorResponse['action_attempt']> {
+    const { data } = await this.client.request<LocksLockDoorResponse>({
       url: '/locks/lock_door',
       method: 'post',
       data: body,
     })
+    return data.action_attempt
   }
 
-  async unlockDoor(body: LocksUnlockDoorBody): Promise<void> {
-    await this.client.request<LocksUnlockDoorResponse>({
+  async unlockDoor(
+    body: LocksUnlockDoorBody,
+  ): Promise<LocksUnlockDoorResponse['action_attempt']> {
+    const { data } = await this.client.request<LocksUnlockDoorResponse>({
       url: '/locks/unlock_door',
       method: 'post',
       data: body,
     })
+    return data.action_attempt
   }
 }
 
