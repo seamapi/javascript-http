@@ -23,8 +23,7 @@ export class SeamHttpConnectWebviews {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions) {
     const options = parseOptions(apiKeyOrOptions)
-    const client = 'client' in options ? options.client : null
-    this.client = client ?? createAxiosClient(options)
+    this.client = createAxiosClient(options)
   }
 
   static fromClient(
