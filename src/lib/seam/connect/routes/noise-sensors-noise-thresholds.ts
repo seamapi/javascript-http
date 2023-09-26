@@ -64,16 +64,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return new SeamHttpNoiseSensorsNoiseThresholds(opts)
   }
 
-  async create(
-    body: NoiseSensorsNoiseThresholdsCreateBody,
-  ): Promise<NoiseSensorsNoiseThresholdsCreateResponse['action_attempt']> {
-    const { data } =
-      await this.client.request<NoiseSensorsNoiseThresholdsCreateResponse>({
-        url: '/noise_sensors/noise_thresholds/create',
-        method: 'post',
-        data: body,
-      })
-    return data.action_attempt
+  async create(body: NoiseSensorsNoiseThresholdsCreateBody): Promise<void> {
+    await this.client.request<NoiseSensorsNoiseThresholdsCreateResponse>({
+      url: '/noise_sensors/noise_thresholds/create',
+      method: 'post',
+      data: body,
+    })
   }
 
   async delete(body: NoiseSensorsNoiseThresholdsDeleteBody): Promise<void> {
