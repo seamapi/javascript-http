@@ -10,7 +10,7 @@ export class SeamHttpLegacyWorkspaces {
   }
 
   async get(
-    params: WorkspacesGetParams = {},
+    params: WorkspacesGetParams,
   ): Promise<WorkspacesGetResponse['workspace']> {
     const { data } = await this.client.request<WorkspacesGetResponse>({
       url: '/workspaces/get',

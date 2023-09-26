@@ -4,6 +4,7 @@ import { resolve } from 'node:path'
 import { openapi } from '@seamapi/types/connect'
 import { camelCase, paramCase, pascalCase, snakeCase } from 'change-case'
 import { ESLint } from 'eslint'
+import pluralize from 'pluralize'
 import { format, resolveConfig } from 'prettier'
 
 const rootClassPath = resolve('src', 'lib', 'seam', 'connect', 'client.ts')
@@ -49,35 +50,16 @@ interface Endpoint {
   name: string
   path: string
   namespace: string
-  resource: string
-  method: 'GET' | 'POST'
+  resource: string | null
+  method: Method
   requestFormat: 'params' | 'body'
 }
+
+type Method = 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH'
 
 interface ClassMeta {
   constructors: string
 }
-
-const exampleRoute: Route = {
-  namespace: 'workspaces',
-  endpoints: [
-    {
-      name: 'get',
-      namespace: 'workspaces',
-      path: '/workspaces/get',
-      method: 'GET',
-      resource: 'workspace',
-      requestFormat: ['GET', 'DELETE'].includes('GET') ? 'params' : 'body',
-    },
-  ],
-}
-
-const isEndpointUnderRoute = (
-  endpointPath: string,
-  routePath: string,
-): boolean =>
-  endpointPath.startsWith(routePath) &&
-  endpointPath.split('/').length - 1 === routePath.split('/').length
 
 const createRoutes = (): Route[] => {
   const paths = Object.keys(openapi.paths)
@@ -102,13 +84,75 @@ const createRoutes = (): Route[] => {
 }
 
 const createRoute = (routePath: string): Route => {
+  const endpointPaths = Object.keys(openapi.paths).filter((path) =>
+    isEndpointUnderRoute(path, routePath),
+  )
+
+  const namespace = routePath.split('/').join('_').slice(1)
+
   return {
-    namespace: routePath.split('/').join('_').slice(1),
-    endpoints: [],
+    namespace,
+    endpoints: endpointPaths.map((endpointPath) =>
+      createEndpoint(namespace, routePath, endpointPath),
+    ),
   }
 }
 
-const routes = createRoutes()
+const createEndpoint = (
+  namespace: string,
+  routePath: string,
+  endpointPath: string,
+): Endpoint => {
+  if (!isOpenApiPath(endpointPath)) {
+    throw new Error(`Did not find ${endpointPath} in OpenAPI spec`)
+  }
+  const spec = openapi.paths[endpointPath]
+  const method = deriveSemanticMethod(Object.keys(spec))
+  const name = endpointPath.split(routePath)[1]?.slice(1)
+  if (name == null) {
+    throw new Error(`Could not parse name from ${endpointPath}`)
+  }
+  return {
+    name,
+    namespace,
+    path: endpointPath,
+    method,
+    resource: deriveResource(routePath, name, method),
+    requestFormat: ['GET', 'DELETE'].includes(method) ? 'params' : 'body',
+  }
+}
+
+const deriveResource = (
+  routePath: string,
+  name: string,
+  method: Method,
+): string | null => {
+  if (['DELETE', 'PATCH', 'PUT'].includes(method)) return null
+  if (['update', 'delete'].includes(name)) return null
+  const group = routePath.split('/')[1]
+  if (group == null) throw new Error(`Could not parse group from ${routePath}`)
+  if (name === 'list') return group
+  return pluralize.singular(group)
+}
+
+const deriveSemanticMethod = (methods: string[]): Method => {
+  if (methods.includes('get')) return 'GET'
+  if (methods.includes('delete')) return 'DELETE'
+  if (methods.includes('patch')) return 'PATCH'
+  if (methods.includes('put')) return 'PUT'
+  if (methods.includes('post')) return 'POST'
+  throw new Error(`Could not find valid method in ${methods.join(', ')}`)
+}
+
+const isOpenApiPath = (key: string): key is keyof typeof openapi.paths =>
+  key in openapi.paths
+
+const isEndpointUnderRoute = (
+  endpointPath: string,
+  routePath: string,
+): boolean =>
+  endpointPath.startsWith(routePath) &&
+  endpointPath.split('/').length - 1 === routePath.split('/').length
 
 const renderRoute = (route: Route, { constructors }: ClassMeta): string => `
 /*
@@ -125,7 +169,7 @@ ${renderExports(route)}
 
 const renderImports = (): string =>
   `
-import type { RouteRequestParams, RouteResponse } from '@seamapi/types/connect'
+import type { RouteRequestParams, RouteResponse, RouteRequestBody } from '@seamapi/types/connect'
 import { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
@@ -173,9 +217,15 @@ const renderClassMethod = ({
       name,
       namespace,
       requestFormat,
-    })} = {},
-  ): Promise<${renderResponseType({ name, namespace })}['${resource}']> {
-    const { data } = await this.client.request<${renderResponseType({
+    })},
+  ): Promise<${
+    resource === null
+      ? 'void'
+      : `${renderResponseType({ name, namespace })}['${resource}']`
+  }> {
+    ${
+      resource === null ? '' : 'const { data } = '
+    }await this.client.request<${renderResponseType({
       name,
       namespace,
     })}>({
@@ -184,7 +234,7 @@ const renderClassMethod = ({
         requestFormat === 'params' ? 'params,' : ''
       } ${requestFormat === 'body' ? 'data: body,' : ''}
     })
-    return data.${resource}
+    ${resource === null ? '' : `return data.${resource}`}
   }
   `
 
@@ -298,4 +348,4 @@ const writeRoute = async (route: Route): Promise<void> => {
   )
 }
 
-await Promise.all(routes.map(writeRoute))
+await Promise.all(createRoutes().map(writeRoute))
