@@ -55,6 +55,7 @@ const endpointResources: Partial<
   Record<
     keyof typeof openapi.paths,
     | 'action_attempt'
+    | 'access_codes'
     | 'device_providers'
     | 'generated_code'
     | 'backup_access_code'
@@ -63,7 +64,9 @@ const endpointResources: Partial<
   >
 > = {
   '/access_codes/generate_code': 'generated_code',
+  '/access_codes/create_multiple': 'access_codes',
   '/access_codes/pull_backup_access_code': 'backup_access_code',
+  '/access_codes/unmanaged/convert_to_managed': null,
   '/acs/access_groups/list_users': 'acs_users',
   '/acs/access_groups/remove_user': null,
   '/acs/users/add_to_access_group': null,

@@ -81,14 +81,14 @@ export class SeamHttpAccessCodes {
 
   async createMultiple(
     body: AccessCodesCreateMultipleBody,
-  ): Promise<AccessCodesCreateMultipleResponse['access_code']> {
+  ): Promise<AccessCodesCreateMultipleResponse['access_codes']> {
     const { data } =
       await this.client.request<AccessCodesCreateMultipleResponse>({
         url: '/access_codes/create_multiple',
         method: 'post',
         data: body,
       })
-    return data.access_code
+    return data.access_codes
   }
 
   async delete(body: AccessCodesDeleteBody): Promise<void> {

@@ -66,14 +66,12 @@ export class SeamHttpAccessCodesUnmanaged {
 
   async convertToManaged(
     body: AccessCodesUnmanagedConvertToManagedBody,
-  ): Promise<AccessCodesUnmanagedConvertToManagedResponse['access_code']> {
-    const { data } =
-      await this.client.request<AccessCodesUnmanagedConvertToManagedResponse>({
-        url: '/access_codes/unmanaged/convert_to_managed',
-        method: 'post',
-        data: body,
-      })
-    return data.access_code
+  ): Promise<void> {
+    await this.client.request<AccessCodesUnmanagedConvertToManagedResponse>({
+      url: '/access_codes/unmanaged/convert_to_managed',
+      method: 'post',
+      data: body,
+    })
   }
 
   async delete(body: AccessCodesUnmanagedDeleteBody): Promise<void> {
