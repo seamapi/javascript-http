@@ -24,6 +24,8 @@ import {
 } from 'lib/seam/connect/client-options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
+import { SeamHttpAccessCodesUnmanaged } from './access-codes-unmanaged.js'
+
 export class SeamHttpAccessCodes {
   client: Axios
 
@@ -66,6 +68,10 @@ export class SeamHttpAccessCodes {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
     return new SeamHttpAccessCodes(opts)
+  }
+
+  get unmanaged(): SeamHttpAccessCodesUnmanaged {
+    return SeamHttpAccessCodesUnmanaged.fromClient(this.client)
   }
 
   async create(

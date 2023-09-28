@@ -20,6 +20,8 @@ import {
 } from 'lib/seam/connect/client-options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
+import { SeamHttpThermostatsClimateSettingSchedules } from './thermostats-climate-setting-schedules.js'
+
 export class SeamHttpThermostats {
   client: Axios
 
@@ -62,6 +64,10 @@ export class SeamHttpThermostats {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
     return new SeamHttpThermostats(opts)
+  }
+
+  get climateSettingSchedules(): SeamHttpThermostatsClimateSettingSchedules {
+    return SeamHttpThermostatsClimateSettingSchedules.fromClient(this.client)
   }
 
   async cool(body: ThermostatsCoolBody): Promise<void> {

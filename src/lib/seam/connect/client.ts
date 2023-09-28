@@ -13,7 +13,21 @@ import {
 } from './client-options.js'
 import { SeamHttpLegacyWorkspaces } from './legacy/workspaces.js'
 import { parseOptions } from './parse-options.js'
-import { SeamHttpWorkspaces } from './routes/workspaces.js'
+import {
+  SeamHttpAccessCodes,
+  SeamHttpAcs,
+  SeamHttpActionAttempts,
+  SeamHttpClientSessions,
+  SeamHttpConnectedAccounts,
+  SeamHttpConnectWebviews,
+  SeamHttpDevices,
+  SeamHttpEvents,
+  SeamHttpLocks,
+  SeamHttpNoiseSensors,
+  SeamHttpThermostats,
+  SeamHttpWebhooks,
+  SeamHttpWorkspaces,
+} from './routes/index.js'
 
 export class SeamHttp {
   client: Axios
@@ -60,6 +74,54 @@ export class SeamHttp {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
     return new SeamHttp(opts)
+  }
+
+  get accessCodes(): SeamHttpAccessCodes {
+    return SeamHttpAccessCodes.fromClient(this.client)
+  }
+
+  get acs(): SeamHttpAcs {
+    return SeamHttpAcs.fromClient(this.client)
+  }
+
+  get actionAttempts(): SeamHttpActionAttempts {
+    return SeamHttpActionAttempts.fromClient(this.client)
+  }
+
+  get clientSessions(): SeamHttpClientSessions {
+    return SeamHttpClientSessions.fromClient(this.client)
+  }
+
+  get connectedAccounts(): SeamHttpConnectedAccounts {
+    return SeamHttpConnectedAccounts.fromClient(this.client)
+  }
+
+  get connectWebviews(): SeamHttpConnectWebviews {
+    return SeamHttpConnectWebviews.fromClient(this.client)
+  }
+
+  get devices(): SeamHttpDevices {
+    return SeamHttpDevices.fromClient(this.client)
+  }
+
+  get events(): SeamHttpEvents {
+    return SeamHttpEvents.fromClient(this.client)
+  }
+
+  get locks(): SeamHttpLocks {
+    return SeamHttpLocks.fromClient(this.client)
+  }
+
+  get noiseSensors(): SeamHttpNoiseSensors {
+    return SeamHttpNoiseSensors.fromClient(this.client)
+  }
+
+  get thermostats(): SeamHttpThermostats {
+    return SeamHttpThermostats.fromClient(this.client)
+  }
+
+  get webhooks(): SeamHttpWebhooks {
+    return SeamHttpWebhooks.fromClient(this.client)
   }
 
   get workspaces(): SeamHttpWorkspaces {

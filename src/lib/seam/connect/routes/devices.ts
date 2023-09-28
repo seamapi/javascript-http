@@ -20,6 +20,8 @@ import {
 } from 'lib/seam/connect/client-options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
+import { SeamHttpDevicesUnmanaged } from './devices-unmanaged.js'
+
 export class SeamHttpDevices {
   client: Axios
 
@@ -62,6 +64,10 @@ export class SeamHttpDevices {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
     return new SeamHttpDevices(opts)
+  }
+
+  get unmanaged(): SeamHttpDevicesUnmanaged {
+    return SeamHttpDevicesUnmanaged.fromClient(this.client)
   }
 
   async delete(body: DevicesDeleteBody): Promise<void> {
