@@ -110,7 +110,7 @@ export class SeamHttpAccessCodesUnmanaged {
   async update(body: AccessCodesUnmanagedUpdateBody): Promise<void> {
     await this.client.request<AccessCodesUnmanagedUpdateResponse>({
       url: '/access_codes/unmanaged/update',
-      method: 'patch',
+      method: 'post',
       data: body,
     })
   }

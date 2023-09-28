@@ -94,12 +94,16 @@ export class SeamHttpClientSessions {
     return data.client_session
   }
 
-  async grantAccess(body: ClientSessionsGrantAccessBody): Promise<void> {
-    await this.client.request<ClientSessionsGrantAccessResponse>({
-      url: '/client_sessions/grant_access',
-      method: 'patch',
-      data: body,
-    })
+  async grantAccess(
+    body: ClientSessionsGrantAccessBody,
+  ): Promise<ClientSessionsGrantAccessResponse['client_session']> {
+    const { data } =
+      await this.client.request<ClientSessionsGrantAccessResponse>({
+        url: '/client_sessions/grant_access',
+        method: 'post',
+        data: body,
+      })
+    return data.client_session
   }
 
   async list(

@@ -107,7 +107,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   async update(body: NoiseSensorsNoiseThresholdsUpdateBody): Promise<void> {
     await this.client.request<NoiseSensorsNoiseThresholdsUpdateResponse>({
       url: '/noise_sensors/noise_thresholds/update',
-      method: 'put',
+      method: 'post',
       data: body,
     })
   }

@@ -64,12 +64,15 @@ export class SeamHttpAcsAccessGroups {
     return new SeamHttpAcsAccessGroups(opts)
   }
 
-  async addUser(body: AcsAccessGroupsAddUserBody): Promise<void> {
-    await this.client.request<AcsAccessGroupsAddUserResponse>({
+  async addUser(
+    body: AcsAccessGroupsAddUserBody,
+  ): Promise<AcsAccessGroupsAddUserResponse['acs_access_group']> {
+    const { data } = await this.client.request<AcsAccessGroupsAddUserResponse>({
       url: '/acs/access_groups/add_user',
-      method: 'patch',
+      method: 'post',
       data: body,
     })
+    return data.acs_access_group
   }
 
   async create(
@@ -136,7 +139,7 @@ export class SeamHttpAcsAccessGroups {
   async update(body: AcsAccessGroupsUpdateBody): Promise<void> {
     await this.client.request<AcsAccessGroupsUpdateResponse>({
       url: '/acs/access_groups/update',
-      method: 'patch',
+      method: 'post',
       data: body,
     })
   }

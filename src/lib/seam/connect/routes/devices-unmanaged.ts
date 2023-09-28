@@ -89,7 +89,7 @@ export class SeamHttpDevicesUnmanaged {
   async update(body: DevicesUnmanagedUpdateBody): Promise<void> {
     await this.client.request<DevicesUnmanagedUpdateResponse>({
       url: '/devices/unmanaged/update',
-      method: 'patch',
+      method: 'post',
       data: body,
     })
   }

@@ -105,7 +105,7 @@ export class SeamHttpDevices {
   async update(body: DevicesUpdateBody): Promise<void> {
     await this.client.request<DevicesUpdateResponse>({
       url: '/devices/update',
-      method: 'patch',
+      method: 'post',
       data: body,
     })
   }

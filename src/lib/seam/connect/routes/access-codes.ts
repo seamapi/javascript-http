@@ -149,7 +149,7 @@ export class SeamHttpAccessCodes {
   async update(body: AccessCodesUpdateBody): Promise<void> {
     await this.client.request<AccessCodesUpdateResponse>({
       url: '/access_codes/update',
-      method: 'put',
+      method: 'post',
       data: body,
     })
   }

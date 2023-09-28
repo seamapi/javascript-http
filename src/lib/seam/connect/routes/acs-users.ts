@@ -67,7 +67,7 @@ export class SeamHttpAcsUsers {
   async addToAccessGroup(body: AcsUsersAddToAccessGroupBody): Promise<void> {
     await this.client.request<AcsUsersAddToAccessGroupResponse>({
       url: '/acs/users/add_to_access_group',
-      method: 'patch',
+      method: 'post',
       data: body,
     })
   }
@@ -124,7 +124,7 @@ export class SeamHttpAcsUsers {
   async update(body: AcsUsersUpdateBody): Promise<void> {
     await this.client.request<AcsUsersUpdateResponse>({
       url: '/acs/users/update',
-      method: 'patch',
+      method: 'post',
       data: body,
     })
   }
