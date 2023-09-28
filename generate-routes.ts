@@ -4,7 +4,6 @@ import { resolve } from 'node:path'
 import { openapi } from '@seamapi/types/connect'
 import { camelCase, paramCase, pascalCase, snakeCase } from 'change-case'
 import { ESLint } from 'eslint'
-import pluralize from 'pluralize'
 import { format, resolveConfig } from 'prettier'
 
 const rootClassPath = resolve('src', 'lib', 'seam', 'connect', 'client.ts')
@@ -53,24 +52,14 @@ const endpointResources: Partial<
     | null
   >
 > = {
-  '/access_codes/generate_code': 'generated_code',
-  '/access_codes/create_multiple': 'access_codes',
-  '/access_codes/pull_backup_access_code': 'backup_access_code',
-  '/access_codes/unmanaged/convert_to_managed': null,
-  '/acs/access_groups/list_users': 'acs_users',
-  '/acs/access_groups/remove_user': null,
-  '/acs/users/add_to_access_group': null,
-  '/acs/users/remove_from_access_group': null,
+  '/access_codes/delete': null,
+  '/access_codes/unmanaged/delete': null,
+  '/access_codes/update': null,
   '/connect_webviews/view': null,
-  '/devices/list_device_providers': 'device_providers',
-  '/locks/lock_door': 'action_attempt',
-  '/locks/unlock_door': 'action_attempt',
-  '/noise_sensors/noise_thresholds/create': null, // could return action action_attempt
-  '/thermostats/cool': null,
-  '/thermostats/heat': null,
-  '/thermostats/heat_cool': null,
-  '/thermostats/off': null,
-  '/thermostats/set_fan_mode': null,
+  '/noise_sensors/noise_thresholds/create': null,
+  '/noise_sensors/noise_thresholds/delete': null,
+  '/noise_sensors/noise_thresholds/update': null,
+  '/thermostats/climate_setting_schedules/update': null,
   '/workspaces/reset_sandbox': null,
 }
 
@@ -88,7 +77,7 @@ interface Endpoint {
   requestFormat: 'params' | 'body'
 }
 
-type Method = 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH'
+type Method = 'GET' | 'POST'
 
 interface ClassMeta {
   constructors: string
@@ -150,45 +139,47 @@ const createEndpoint = (
     namespace,
     path: endpointPath,
     method,
-    resource: deriveResource(endpointPath, routePath, name, method),
+    resource: deriveResource(endpointPath, method),
     requestFormat: ['GET', 'DELETE'].includes(method) ? 'params' : 'body',
   }
 }
 
 const deriveResource = (
   endpointPath: string,
-  routePath: string,
-  name: string,
   method: Method,
 ): string | null => {
   if (isEndpointResource(endpointPath)) {
     return endpointResources[endpointPath] ?? null
   }
-  if (['DELETE', 'PATCH', 'PUT'].includes(method)) return null
-  if (['update', 'delete'].includes(name)) return null
-  const group = deriveGroupFromRoutePath(routePath)
-  if (group == null) throw new Error(`Could not parse group from ${routePath}`)
-  if (name === 'list') return group
-  return pluralize.singular(group)
+
+  if (isOpenApiPath(endpointPath)) {
+    const spec = openapi.paths[endpointPath]
+    const methodKey = method.toLowerCase()
+
+    if (methodKey === 'post' && 'post' in spec) {
+      const response = spec.post.responses[200]
+      if (!('content' in response)) return null
+      return deriveResourceFromSchema(
+        response.content['application/json']?.schema?.properties ?? {},
+      )
+    }
+
+    if (methodKey === 'get' && 'get' in spec) {
+      const response = spec.get.responses[200]
+      if (!('content' in response)) {
+        throw new Error(`Missing resource for ${method} ${endpointPath}`)
+      }
+      return deriveResourceFromSchema(
+        response.content['application/json']?.schema?.properties ?? {},
+      )
+    }
+  }
+
+  throw new Error(`Could not derive resource for ${method} ${endpointPath}`)
 }
 
-const deriveGroupFromRoutePath = (routePath: string): string | undefined => {
-  const parts = routePath.split('/').slice(1)
-
-  if (routePath.endsWith('/unmanaged')) {
-    return parts[0]
-  }
-
-  if (routePath.startsWith('/acs')) {
-    return [parts[0], parts[1]].join('_')
-  }
-
-  if (parts.length === 2) {
-    return parts[1]
-  }
-
-  return parts[0]
-}
+const deriveResourceFromSchema = (properties: object): string | null =>
+  Object.keys(properties).filter((key) => key !== 'ok')[0] ?? null
 
 const deriveSemanticMethod = (methods: string[]): Method => {
   if (methods.includes('get')) return 'GET'

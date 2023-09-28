@@ -64,22 +64,22 @@ export class SeamHttpLocks {
     return new SeamHttpLocks(opts)
   }
 
-  async get(body: LocksGetBody): Promise<LocksGetResponse['lock']> {
+  async get(body: LocksGetBody): Promise<LocksGetResponse['device']> {
     const { data } = await this.client.request<LocksGetResponse>({
       url: '/locks/get',
       method: 'post',
       data: body,
     })
-    return data.lock
+    return data.device
   }
 
-  async list(body: LocksListBody): Promise<LocksListResponse['locks']> {
+  async list(body: LocksListBody): Promise<LocksListResponse['devices']> {
     const { data } = await this.client.request<LocksListResponse>({
       url: '/locks/list',
       method: 'post',
       data: body,
     })
-    return data.locks
+    return data.devices
   }
 
   async lockDoor(
