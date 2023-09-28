@@ -11,7 +11,6 @@ import {
   type SeamHttpOptionsWithClient,
   type SeamHttpOptionsWithClientSessionToken,
 } from './client-options.js'
-import { SeamHttpLegacyWorkspaces } from './legacy/workspaces.js'
 import { parseOptions } from './parse-options.js'
 import {
   SeamHttpAccessCodes,
@@ -32,11 +31,11 @@ import {
 export class SeamHttp {
   client: Axios
 
-  #legacy: boolean
+  // #legacy: boolean
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions) {
     const options = parseOptions(apiKeyOrOptions)
-    this.#legacy = options.enableLegacyMethodBehaivor
+    // this.#legacy = options.enableLegacyMethodBehaivor
     this.client = createAxiosClient(options)
   }
 
@@ -125,9 +124,6 @@ export class SeamHttp {
   }
 
   get workspaces(): SeamHttpWorkspaces {
-    if (this.#legacy) {
-      return SeamHttpLegacyWorkspaces.fromClient(this.client)
-    }
     return SeamHttpWorkspaces.fromClient(this.client)
   }
 }
