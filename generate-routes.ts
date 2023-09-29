@@ -45,6 +45,7 @@ const routePathSubresources: Partial<
 
 const ignoredEndpointPaths = [
   '/access_codes/simulate/create_unmanaged_access_code',
+  '/connect_webviews/view',
   '/health',
   '/health/get_health',
   '/health/get_service_health',
