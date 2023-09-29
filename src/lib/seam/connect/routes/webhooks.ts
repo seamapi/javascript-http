@@ -24,7 +24,7 @@ import {
 } from 'lib/seam/connect/client-options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
-export class SeamHttpWorkspaces {
+export class SeamHttpWebhooks {
   client: Axios
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions) {
@@ -35,23 +35,23 @@ export class SeamHttpWorkspaces {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpWebhooks {
     const opts = { ...options, client }
     if (!isSeamHttpOptionsWithClient(opts)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpWorkspaces(opts)
+    return new SeamHttpWebhooks(opts)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpWebhooks {
     const opts = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(opts)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpWorkspaces(opts)
+    return new SeamHttpWebhooks(opts)
   }
 
   static fromClientSessionToken(
@@ -60,65 +60,82 @@ export class SeamHttpWorkspaces {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpWebhooks {
     const opts = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(opts)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpWorkspaces(opts)
+    return new SeamHttpWebhooks(opts)
   }
 
-  async get(
-    params?: WorkspacesGetParams,
-  ): Promise<WorkspacesGetResponse['workspace']> {
-    const { data } = await this.client.request<WorkspacesGetResponse>({
-      url: '/workspaces/get',
-      method: 'get',
-      params,
+  async create(
+    body: WebhooksCreateBody,
+  ): Promise<WebhooksCreateResponse['webhook']> {
+    const { data } = await this.client.request<WebhooksCreateResponse>({
+      url: '/webhooks/create',
+      method: 'post',
+      data: body,
     })
-    return data.workspace
+    return data.webhook
   }
 
-  async list(
-    params?: WorkspacesListParams,
-  ): Promise<WorkspacesListResponse['workspaces']> {
-    const { data } = await this.client.request<WorkspacesListResponse>({
-      url: '/workspaces/list',
-      method: 'get',
-      params,
-    })
-    return data.workspaces
-  }
-
-  async resetSandbox(body: WorkspacesResetSandboxBody): Promise<void> {
-    await this.client.request<WorkspacesResetSandboxResponse>({
-      url: '/workspaces/reset_sandbox',
+  async delete(body: WebhooksDeleteBody): Promise<void> {
+    await this.client.request<WebhooksDeleteResponse>({
+      url: '/webhooks/delete',
       method: 'post',
       data: body,
     })
   }
+
+  async get(body: WebhooksGetBody): Promise<WebhooksGetResponse['webhook']> {
+    const { data } = await this.client.request<WebhooksGetResponse>({
+      url: '/webhooks/get',
+      method: 'post',
+      data: body,
+    })
+    return data.webhook
+  }
+
+  async list(
+    params?: WebhooksListParams,
+  ): Promise<WebhooksListResponse['webhooks']> {
+    const { data } = await this.client.request<WebhooksListResponse>({
+      url: '/webhooks/list',
+      method: 'get',
+      params,
+    })
+    return data.webhooks
+  }
 }
 
-export type WorkspacesGetParams = SetNonNullable<
-  Required<RouteRequestParams<'/workspaces/get'>>
+export type WebhooksCreateBody = SetNonNullable<
+  Required<RouteRequestBody<'/webhooks/create'>>
 >
 
-export type WorkspacesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/get'>>
+export type WebhooksCreateResponse = SetNonNullable<
+  Required<RouteResponse<'/webhooks/create'>>
 >
 
-export type WorkspacesListParams = SetNonNullable<
-  Required<RouteRequestParams<'/workspaces/list'>>
+export type WebhooksDeleteBody = SetNonNullable<
+  Required<RouteRequestBody<'/webhooks/delete'>>
 >
 
-export type WorkspacesListResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/list'>>
+export type WebhooksDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/webhooks/delete'>>
 >
 
-export type WorkspacesResetSandboxBody = SetNonNullable<
-  Required<RouteRequestBody<'/workspaces/reset_sandbox'>>
+export type WebhooksGetBody = SetNonNullable<
+  Required<RouteRequestBody<'/webhooks/get'>>
 >
 
-export type WorkspacesResetSandboxResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/reset_sandbox'>>
+export type WebhooksGetResponse = SetNonNullable<
+  Required<RouteResponse<'/webhooks/get'>>
+>
+
+export type WebhooksListParams = SetNonNullable<
+  Required<RouteRequestParams<'/webhooks/list'>>
+>
+
+export type WebhooksListResponse = SetNonNullable<
+  Required<RouteResponse<'/webhooks/list'>>
 >

@@ -1,7 +1,7 @@
 import {
-  InvalidSeamHttpOptionsError,
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClientSessionToken,
+  SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
@@ -18,7 +18,7 @@ export const getAuthHeaders = (options: SeamHttpOptions): Headers => {
     return getAuthHeadersForClientSessionToken(options)
   }
 
-  throw new InvalidSeamHttpOptionsError(
+  throw new SeamHttpInvalidOptionsError(
     'Must specify an apiKey or clientSessionToken',
   )
 }
@@ -27,19 +27,19 @@ const getAuthHeadersForApiKey = ({
   apiKey,
 }: SeamHttpOptionsWithApiKey): Headers => {
   if (isClientSessionToken(apiKey)) {
-    throw new InvalidSeamTokenError(
+    throw new SeamHttpInvalidTokenError(
       'A Client Session Token cannot be used as an apiKey',
     )
   }
 
   if (isAccessToken(apiKey)) {
-    throw new InvalidSeamTokenError(
+    throw new SeamHttpInvalidTokenError(
       'An access token cannot be used as an apiKey',
     )
   }
 
   if (isJwt(apiKey) || !isSeamToken(apiKey)) {
-    throw new InvalidSeamTokenError(
+    throw new SeamHttpInvalidTokenError(
       `Unknown or invalid apiKey format, expected token to start with ${tokenPrefix}`,
     )
   }
@@ -53,7 +53,7 @@ const getAuthHeadersForClientSessionToken = ({
   clientSessionToken,
 }: SeamHttpOptionsWithClientSessionToken): Headers => {
   if (!isClientSessionToken(clientSessionToken)) {
-    throw new InvalidSeamTokenError(
+    throw new SeamHttpInvalidTokenError(
       `Unknown or invalid clientSessionToken format, expected token to start with ${clientSessionTokenPrefix}`,
     )
   }
@@ -64,7 +64,7 @@ const getAuthHeadersForClientSessionToken = ({
   }
 }
 
-export class InvalidSeamTokenError extends Error {
+export class SeamHttpInvalidTokenError extends Error {
   constructor(message: string) {
     super(`SeamHttp received an invalid token: ${message}`)
     this.name = this.constructor.name

@@ -24,7 +24,7 @@ import {
 } from 'lib/seam/connect/client-options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
-export class SeamHttpWorkspaces {
+export class SeamHttpAcsSystems {
   client: Axios
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions) {
@@ -35,23 +35,23 @@ export class SeamHttpWorkspaces {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpAcsSystems {
     const opts = { ...options, client }
     if (!isSeamHttpOptionsWithClient(opts)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpWorkspaces(opts)
+    return new SeamHttpAcsSystems(opts)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpAcsSystems {
     const opts = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(opts)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpWorkspaces(opts)
+    return new SeamHttpAcsSystems(opts)
   }
 
   static fromClientSessionToken(
@@ -60,65 +60,49 @@ export class SeamHttpWorkspaces {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpAcsSystems {
     const opts = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(opts)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpWorkspaces(opts)
+    return new SeamHttpAcsSystems(opts)
   }
 
   async get(
-    params?: WorkspacesGetParams,
-  ): Promise<WorkspacesGetResponse['workspace']> {
-    const { data } = await this.client.request<WorkspacesGetResponse>({
-      url: '/workspaces/get',
-      method: 'get',
-      params,
-    })
-    return data.workspace
-  }
-
-  async list(
-    params?: WorkspacesListParams,
-  ): Promise<WorkspacesListResponse['workspaces']> {
-    const { data } = await this.client.request<WorkspacesListResponse>({
-      url: '/workspaces/list',
-      method: 'get',
-      params,
-    })
-    return data.workspaces
-  }
-
-  async resetSandbox(body: WorkspacesResetSandboxBody): Promise<void> {
-    await this.client.request<WorkspacesResetSandboxResponse>({
-      url: '/workspaces/reset_sandbox',
+    body: AcsSystemsGetBody,
+  ): Promise<AcsSystemsGetResponse['acs_system']> {
+    const { data } = await this.client.request<AcsSystemsGetResponse>({
+      url: '/acs/systems/get',
       method: 'post',
       data: body,
     })
+    return data.acs_system
+  }
+
+  async list(
+    params?: AcsSystemsListParams,
+  ): Promise<AcsSystemsListResponse['acs_systems']> {
+    const { data } = await this.client.request<AcsSystemsListResponse>({
+      url: '/acs/systems/list',
+      method: 'get',
+      params,
+    })
+    return data.acs_systems
   }
 }
 
-export type WorkspacesGetParams = SetNonNullable<
-  Required<RouteRequestParams<'/workspaces/get'>>
+export type AcsSystemsGetBody = SetNonNullable<
+  Required<RouteRequestBody<'/acs/systems/get'>>
 >
 
-export type WorkspacesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/get'>>
+export type AcsSystemsGetResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/systems/get'>>
 >
 
-export type WorkspacesListParams = SetNonNullable<
-  Required<RouteRequestParams<'/workspaces/list'>>
+export type AcsSystemsListParams = SetNonNullable<
+  Required<RouteRequestParams<'/acs/systems/list'>>
 >
 
-export type WorkspacesListResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/list'>>
->
-
-export type WorkspacesResetSandboxBody = SetNonNullable<
-  Required<RouteRequestBody<'/workspaces/reset_sandbox'>>
->
-
-export type WorkspacesResetSandboxResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/reset_sandbox'>>
+export type AcsSystemsListResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/systems/list'>>
 >

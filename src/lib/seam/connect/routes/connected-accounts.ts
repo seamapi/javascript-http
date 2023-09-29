@@ -24,7 +24,7 @@ import {
 } from 'lib/seam/connect/client-options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
-export class SeamHttpWorkspaces {
+export class SeamHttpConnectedAccounts {
   client: Axios
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions) {
@@ -35,23 +35,23 @@ export class SeamHttpWorkspaces {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpConnectedAccounts {
     const opts = { ...options, client }
     if (!isSeamHttpOptionsWithClient(opts)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpWorkspaces(opts)
+    return new SeamHttpConnectedAccounts(opts)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpConnectedAccounts {
     const opts = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(opts)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpWorkspaces(opts)
+    return new SeamHttpConnectedAccounts(opts)
   }
 
   static fromClientSessionToken(
@@ -60,65 +60,65 @@ export class SeamHttpWorkspaces {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpConnectedAccounts {
     const opts = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(opts)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpWorkspaces(opts)
+    return new SeamHttpConnectedAccounts(opts)
   }
 
-  async get(
-    params?: WorkspacesGetParams,
-  ): Promise<WorkspacesGetResponse['workspace']> {
-    const { data } = await this.client.request<WorkspacesGetResponse>({
-      url: '/workspaces/get',
-      method: 'get',
-      params,
-    })
-    return data.workspace
-  }
-
-  async list(
-    params?: WorkspacesListParams,
-  ): Promise<WorkspacesListResponse['workspaces']> {
-    const { data } = await this.client.request<WorkspacesListResponse>({
-      url: '/workspaces/list',
-      method: 'get',
-      params,
-    })
-    return data.workspaces
-  }
-
-  async resetSandbox(body: WorkspacesResetSandboxBody): Promise<void> {
-    await this.client.request<WorkspacesResetSandboxResponse>({
-      url: '/workspaces/reset_sandbox',
+  async delete(body: ConnectedAccountsDeleteBody): Promise<void> {
+    await this.client.request<ConnectedAccountsDeleteResponse>({
+      url: '/connected_accounts/delete',
       method: 'post',
       data: body,
     })
   }
+
+  async get(
+    body: ConnectedAccountsGetBody,
+  ): Promise<ConnectedAccountsGetResponse['connected_account']> {
+    const { data } = await this.client.request<ConnectedAccountsGetResponse>({
+      url: '/connected_accounts/get',
+      method: 'post',
+      data: body,
+    })
+    return data.connected_account
+  }
+
+  async list(
+    params?: ConnectedAccountsListParams,
+  ): Promise<ConnectedAccountsListResponse['connected_accounts']> {
+    const { data } = await this.client.request<ConnectedAccountsListResponse>({
+      url: '/connected_accounts/list',
+      method: 'get',
+      params,
+    })
+    return data.connected_accounts
+  }
 }
 
-export type WorkspacesGetParams = SetNonNullable<
-  Required<RouteRequestParams<'/workspaces/get'>>
+export type ConnectedAccountsDeleteBody = SetNonNullable<
+  Required<RouteRequestBody<'/connected_accounts/delete'>>
 >
 
-export type WorkspacesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/get'>>
+export type ConnectedAccountsDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/connected_accounts/delete'>>
 >
 
-export type WorkspacesListParams = SetNonNullable<
-  Required<RouteRequestParams<'/workspaces/list'>>
+export type ConnectedAccountsGetBody = SetNonNullable<
+  Required<RouteRequestBody<'/connected_accounts/get'>>
 >
 
-export type WorkspacesListResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/list'>>
+export type ConnectedAccountsGetResponse = SetNonNullable<
+  Required<RouteResponse<'/connected_accounts/get'>>
 >
 
-export type WorkspacesResetSandboxBody = SetNonNullable<
-  Required<RouteRequestBody<'/workspaces/reset_sandbox'>>
+export type ConnectedAccountsListParams = SetNonNullable<
+  Required<RouteRequestParams<'/connected_accounts/list'>>
 >
 
-export type WorkspacesResetSandboxResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/reset_sandbox'>>
+export type ConnectedAccountsListResponse = SetNonNullable<
+  Required<RouteResponse<'/connected_accounts/list'>>
 >
