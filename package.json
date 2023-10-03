@@ -103,6 +103,7 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
     "landlubber": "^1.0.0",
+    "node-fetch": "^3.3.2",
     "prettier": "^3.0.0",
     "tsc-alias": "^1.8.2",
     "tsup": "^7.2.0",

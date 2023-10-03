@@ -1,5 +1,6 @@
 import { createFake, type Seed } from '@seamapi/fake-seam-connect'
 import type { ExecutionContext } from 'ava'
+import fetch from 'node-fetch' // TODO: Remove node-fetch when Node v16 support is dropped.
 
 export const getTestServer = async (
   t: ExecutionContext,
