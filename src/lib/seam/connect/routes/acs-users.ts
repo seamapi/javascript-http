@@ -130,57 +130,45 @@ export class SeamHttpAcsUsers {
   }
 }
 
-export type AcsUsersAddToAccessGroupBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/users/add_to_access_group'>>
->
+export type AcsUsersAddToAccessGroupBody =
+  RouteRequestBody<'/acs/users/add_to_access_group'>
 
 export type AcsUsersAddToAccessGroupResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/add_to_access_group'>>
 >
 
-export type AcsUsersCreateBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/users/create'>>
->
+export type AcsUsersCreateBody = RouteRequestBody<'/acs/users/create'>
 
 export type AcsUsersCreateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/create'>>
 >
 
-export type AcsUsersDeleteBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/users/delete'>>
->
+export type AcsUsersDeleteBody = RouteRequestBody<'/acs/users/delete'>
 
 export type AcsUsersDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/delete'>>
 >
 
-export type AcsUsersGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/users/get'>>
->
+export type AcsUsersGetBody = RouteRequestBody<'/acs/users/get'>
 
 export type AcsUsersGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/get'>>
 >
 
-export type AcsUsersListBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/users/list'>>
->
+export type AcsUsersListBody = RouteRequestBody<'/acs/users/list'>
 
 export type AcsUsersListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/list'>>
 >
 
-export type AcsUsersRemoveFromAccessGroupBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/users/remove_from_access_group'>>
->
+export type AcsUsersRemoveFromAccessGroupBody =
+  RouteRequestBody<'/acs/users/remove_from_access_group'>
 
 export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/remove_from_access_group'>>
 >
 
-export type AcsUsersUpdateBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/users/update'>>
->
+export type AcsUsersUpdateBody = RouteRequestBody<'/acs/users/update'>
 
 export type AcsUsersUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/update'>>

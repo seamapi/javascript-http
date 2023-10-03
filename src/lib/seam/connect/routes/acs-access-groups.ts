@@ -142,65 +142,56 @@ export class SeamHttpAcsAccessGroups {
   }
 }
 
-export type AcsAccessGroupsAddUserBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/access_groups/add_user'>>
->
+export type AcsAccessGroupsAddUserBody =
+  RouteRequestBody<'/acs/access_groups/add_user'>
 
 export type AcsAccessGroupsAddUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/add_user'>>
 >
 
-export type AcsAccessGroupsCreateBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/access_groups/create'>>
->
+export type AcsAccessGroupsCreateBody =
+  RouteRequestBody<'/acs/access_groups/create'>
 
 export type AcsAccessGroupsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/create'>>
 >
 
-export type AcsAccessGroupsDeleteBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/access_groups/delete'>>
->
+export type AcsAccessGroupsDeleteBody =
+  RouteRequestBody<'/acs/access_groups/delete'>
 
 export type AcsAccessGroupsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/delete'>>
 >
 
-export type AcsAccessGroupsGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/access_groups/get'>>
->
+export type AcsAccessGroupsGetBody = RouteRequestBody<'/acs/access_groups/get'>
 
 export type AcsAccessGroupsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/get'>>
 >
 
-export type AcsAccessGroupsListBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/access_groups/list'>>
->
+export type AcsAccessGroupsListBody =
+  RouteRequestBody<'/acs/access_groups/list'>
 
 export type AcsAccessGroupsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list'>>
 >
 
-export type AcsAccessGroupsListUsersBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/access_groups/list_users'>>
->
+export type AcsAccessGroupsListUsersBody =
+  RouteRequestBody<'/acs/access_groups/list_users'>
 
 export type AcsAccessGroupsListUsersResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list_users'>>
 >
 
-export type AcsAccessGroupsRemoveUserBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/access_groups/remove_user'>>
->
+export type AcsAccessGroupsRemoveUserBody =
+  RouteRequestBody<'/acs/access_groups/remove_user'>
 
 export type AcsAccessGroupsRemoveUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/remove_user'>>
 >
 
-export type AcsAccessGroupsUpdateBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/access_groups/update'>>
->
+export type AcsAccessGroupsUpdateBody =
+  RouteRequestBody<'/acs/access_groups/update'>
 
 export type AcsAccessGroupsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/update'>>

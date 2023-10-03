@@ -345,9 +345,7 @@ export type ${renderRequestType({
   name,
   namespace,
   requestFormat,
-})} = SetNonNullable<
-  Required<RouteRequest${pascalCase(requestFormat)}<'${path}'>>
->
+})} = RouteRequest${pascalCase(requestFormat)}<'${path}'>
 
 export type ${renderResponseType({ name, namespace })}= SetNonNullable<
   Required<RouteResponse<'${path}'>>

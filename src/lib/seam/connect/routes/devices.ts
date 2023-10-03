@@ -117,41 +117,32 @@ export class SeamHttpDevices {
   }
 }
 
-export type DevicesDeleteBody = SetNonNullable<
-  Required<RouteRequestBody<'/devices/delete'>>
->
+export type DevicesDeleteBody = RouteRequestBody<'/devices/delete'>
 
 export type DevicesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/devices/delete'>>
 >
 
-export type DevicesGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/devices/get'>>
->
+export type DevicesGetBody = RouteRequestBody<'/devices/get'>
 
 export type DevicesGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/get'>>
 >
 
-export type DevicesListBody = SetNonNullable<
-  Required<RouteRequestBody<'/devices/list'>>
->
+export type DevicesListBody = RouteRequestBody<'/devices/list'>
 
 export type DevicesListResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list'>>
 >
 
-export type DevicesListDeviceProvidersBody = SetNonNullable<
-  Required<RouteRequestBody<'/devices/list_device_providers'>>
->
+export type DevicesListDeviceProvidersBody =
+  RouteRequestBody<'/devices/list_device_providers'>
 
 export type DevicesListDeviceProvidersResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list_device_providers'>>
 >
 
-export type DevicesUpdateBody = SetNonNullable<
-  Required<RouteRequestBody<'/devices/update'>>
->
+export type DevicesUpdateBody = RouteRequestBody<'/devices/update'>
 
 export type DevicesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/devices/update'>>
