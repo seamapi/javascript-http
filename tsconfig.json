@@ -26,6 +26,7 @@
     "paths": {
       "@seamapi/http": ["./src/index.ts"],
       "@seamapi/http/connect": ["./src/connect.ts"],
+      "fixtures/*": ["./test/fixtures/*"],
       "lib/*": ["./src/lib/*"]
     }
   },
