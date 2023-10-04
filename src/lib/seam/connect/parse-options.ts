@@ -27,9 +27,7 @@ export const parseOptions = (
     'https://connect.getseam.com'
 
   const apiKey =
-    'apiKey' in options
-      ? options.apiKey
-      : globalThis.process?.env?.SEAM_API_KEY
+    'apiKey' in options ? options.apiKey : globalThis.process?.env?.SEAM_API_KEY
 
   return {
     ...options,
