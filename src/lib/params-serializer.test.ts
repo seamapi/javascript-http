@@ -2,7 +2,7 @@ import test from 'ava'
 
 import {
   paramsSerializer,
-  UnserializeableParamError,
+  UnserializableParamError,
 } from './params-serializer.js'
 
 test('serializes empty object', (t) => {
@@ -54,38 +54,38 @@ test('serializes array params with many values', (t) => {
   )
 })
 
-test('cannot serialize unserializeable values', (t) => {
+test('cannot serialize unserializable values', (t) => {
   t.throws(() => paramsSerializer({ foo: {} }), {
-    instanceOf: UnserializeableParamError,
+    instanceOf: UnserializableParamError,
   })
   t.throws(() => paramsSerializer({ foo: { x: 2 } }), {
-    instanceOf: UnserializeableParamError,
+    instanceOf: UnserializableParamError,
   })
   t.throws(() => paramsSerializer({ foo: () => {} }), {
-    instanceOf: UnserializeableParamError,
+    instanceOf: UnserializableParamError,
   })
 })
 
-test('cannot serialize array params with unserializeable values', (t) => {
+test('cannot serialize array params with unserializable values', (t) => {
   t.throws(() => paramsSerializer({ bar: ['a', null] }), {
-    instanceOf: UnserializeableParamError,
+    instanceOf: UnserializableParamError,
   })
   t.throws(() => paramsSerializer({ bar: ['a', undefined] }), {
-    instanceOf: UnserializeableParamError,
+    instanceOf: UnserializableParamError,
   })
   t.throws(() => paramsSerializer({ bar: ['a', ['s']] }), {
-    instanceOf: UnserializeableParamError,
+    instanceOf: UnserializableParamError,
   })
   t.throws(() => paramsSerializer({ bar: ['a', []] }), {
-    instanceOf: UnserializeableParamError,
+    instanceOf: UnserializableParamError,
   })
   t.throws(() => paramsSerializer({ bar: ['a', {}] }), {
-    instanceOf: UnserializeableParamError,
+    instanceOf: UnserializableParamError,
   })
   t.throws(() => paramsSerializer({ bar: ['a', { x: 2 }] }), {
-    instanceOf: UnserializeableParamError,
+    instanceOf: UnserializableParamError,
   })
   t.throws(() => paramsSerializer({ bar: ['a', () => {}] }), {
-    instanceOf: UnserializeableParamError,
+    instanceOf: UnserializableParamError,
   })
 })

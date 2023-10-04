@@ -9,13 +9,13 @@ export const paramsSerializer: CustomParamsSerializer = (params) => {
     if (Array.isArray(value)) {
       if (value.length === 0) searchParams.set(name, '')
       for (const v of value) {
-        throwIfUnserializeable(name, v)
+        throwIfUnserializable(name, v)
         searchParams.append(name, v)
       }
       continue
     }
 
-    throwIfUnserializeable(name, value)
+    throwIfUnserializable(name, value)
     searchParams.set(name, value)
   }
 
@@ -23,29 +23,26 @@ export const paramsSerializer: CustomParamsSerializer = (params) => {
   return searchParams.toString()
 }
 
-const throwIfUnserializeable = (k, v): void => {
+const throwIfUnserializable = (k: string, v: unknown): void => {
   if (v == null) {
-    throw new UnserializeableParamError(
-      `Parameter ${k} is ${v} or contains ${v}`,
-    )
+    throw new UnserializableParamError(k, `is ${v} or contains ${v}`)
   }
 
   if (typeof v === 'function') {
-    throw new UnserializeableParamError(
-      `Parameter ${k} is a function or contains a function`,
+    throw new UnserializableParamError(
+      k,
+      'is a function or contains a function',
     )
   }
 
   if (typeof v === 'object') {
-    throw new UnserializeableParamError(
-      `Parameter ${k} is an object or contains an object`,
-    )
+    throw new UnserializableParamError(k, 'is an object or contains an object')
   }
 }
 
-export class UnserializeableParamError extends Error {
-  constructor(message: string) {
-    super(`Could not serialize parameter: ${message}`)
+export class UnserializableParamError extends Error {
+  constructor(name: string, message: string) {
+    super(`Could not serialize parameter: '${name}' ${message}`)
     this.name = this.constructor.name
     Error.captureStackTrace(this, this.constructor)
   }
