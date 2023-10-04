@@ -26,7 +26,7 @@ import { SeamHttpAcsUsers } from './acs-users.js'
 export class SeamHttpAcs {
   client: Axios
 
-  constructor(apiKeyOrOptions: string | SeamHttpOptions) {
+  constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
     this.client = createAxiosClient(options)
   }

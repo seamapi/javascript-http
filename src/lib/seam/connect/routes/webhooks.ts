@@ -27,7 +27,7 @@ import { parseOptions } from 'lib/seam/connect/parse-options.js'
 export class SeamHttpWebhooks {
   client: Axios
 
-  constructor(apiKeyOrOptions: string | SeamHttpOptions) {
+  constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
     this.client = createAxiosClient(options)
   }

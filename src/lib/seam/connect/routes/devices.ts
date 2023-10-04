@@ -25,7 +25,7 @@ import { SeamHttpDevicesUnmanaged } from './devices-unmanaged.js'
 export class SeamHttpDevices {
   client: Axios
 
-  constructor(apiKeyOrOptions: string | SeamHttpOptions) {
+  constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
     this.client = createAxiosClient(options)
   }

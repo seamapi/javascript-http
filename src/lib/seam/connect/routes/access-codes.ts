@@ -25,7 +25,7 @@ import { SeamHttpAccessCodesUnmanaged } from './access-codes-unmanaged.js'
 export class SeamHttpAccessCodes {
   client: Axios
 
-  constructor(apiKeyOrOptions: string | SeamHttpOptions) {
+  constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
     this.client = createAxiosClient(options)
   }
