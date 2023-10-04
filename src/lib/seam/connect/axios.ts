@@ -15,7 +15,7 @@ export const createAxiosClient = (
   return axios.create({
     baseURL: options.endpoint,
     withCredentials: isSeamHttpOptionsWithClientSessionToken(options),
-    ...(paramsSerializer != null ? { paramsSerializer } : {}),
+    paramsSerializer: (params) => new URLSearchParams(params).toString(),
     ...options.axiosOptions,
     headers: {
       ...getAuthHeaders(options),
@@ -24,5 +24,3 @@ export const createAxiosClient = (
     },
   })
 }
-
-const paramsSerializer = axios.defaults.paramsSerializer
