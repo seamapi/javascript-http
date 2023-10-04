@@ -106,33 +106,27 @@ export class SeamHttpAcsCredentials {
   }
 }
 
-export type AcsCredentialsCreateBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/credentials/create'>>
->
+export type AcsCredentialsCreateBody =
+  RouteRequestBody<'/acs/credentials/create'>
 
 export type AcsCredentialsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/create'>>
 >
 
-export type AcsCredentialsDeleteBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/credentials/delete'>>
->
+export type AcsCredentialsDeleteBody =
+  RouteRequestBody<'/acs/credentials/delete'>
 
 export type AcsCredentialsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/delete'>>
 >
 
-export type AcsCredentialsGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/credentials/get'>>
->
+export type AcsCredentialsGetBody = RouteRequestBody<'/acs/credentials/get'>
 
 export type AcsCredentialsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/get'>>
 >
 
-export type AcsCredentialsListBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/credentials/list'>>
->
+export type AcsCredentialsListBody = RouteRequestBody<'/acs/credentials/list'>
 
 export type AcsCredentialsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/list'>>

@@ -91,17 +91,13 @@ export class SeamHttpAcsSystems {
   }
 }
 
-export type AcsSystemsGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/acs/systems/get'>>
->
+export type AcsSystemsGetBody = RouteRequestBody<'/acs/systems/get'>
 
 export type AcsSystemsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/get'>>
 >
 
-export type AcsSystemsListParams = SetNonNullable<
-  Required<RouteRequestParams<'/acs/systems/list'>>
->
+export type AcsSystemsListParams = RouteRequestParams<'/acs/systems/list'>
 
 export type AcsSystemsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/list'>>

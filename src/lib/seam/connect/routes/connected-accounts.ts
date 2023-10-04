@@ -99,25 +99,22 @@ export class SeamHttpConnectedAccounts {
   }
 }
 
-export type ConnectedAccountsDeleteBody = SetNonNullable<
-  Required<RouteRequestBody<'/connected_accounts/delete'>>
->
+export type ConnectedAccountsDeleteBody =
+  RouteRequestBody<'/connected_accounts/delete'>
 
 export type ConnectedAccountsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/delete'>>
 >
 
-export type ConnectedAccountsGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/connected_accounts/get'>>
->
+export type ConnectedAccountsGetBody =
+  RouteRequestBody<'/connected_accounts/get'>
 
 export type ConnectedAccountsGetResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/get'>>
 >
 
-export type ConnectedAccountsListParams = SetNonNullable<
-  Required<RouteRequestParams<'/connected_accounts/list'>>
->
+export type ConnectedAccountsListParams =
+  RouteRequestParams<'/connected_accounts/list'>
 
 export type ConnectedAccountsListResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/list'>>

@@ -135,41 +135,36 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 }
 
-export type ThermostatsClimateSettingSchedulesCreateBody = SetNonNullable<
-  Required<RouteRequestBody<'/thermostats/climate_setting_schedules/create'>>
->
+export type ThermostatsClimateSettingSchedulesCreateBody =
+  RouteRequestBody<'/thermostats/climate_setting_schedules/create'>
 
 export type ThermostatsClimateSettingSchedulesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/climate_setting_schedules/create'>>
 >
 
-export type ThermostatsClimateSettingSchedulesDeleteBody = SetNonNullable<
-  Required<RouteRequestBody<'/thermostats/climate_setting_schedules/delete'>>
->
+export type ThermostatsClimateSettingSchedulesDeleteBody =
+  RouteRequestBody<'/thermostats/climate_setting_schedules/delete'>
 
 export type ThermostatsClimateSettingSchedulesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/climate_setting_schedules/delete'>>
 >
 
-export type ThermostatsClimateSettingSchedulesGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/thermostats/climate_setting_schedules/get'>>
->
+export type ThermostatsClimateSettingSchedulesGetBody =
+  RouteRequestBody<'/thermostats/climate_setting_schedules/get'>
 
 export type ThermostatsClimateSettingSchedulesGetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/climate_setting_schedules/get'>>
 >
 
-export type ThermostatsClimateSettingSchedulesListBody = SetNonNullable<
-  Required<RouteRequestBody<'/thermostats/climate_setting_schedules/list'>>
->
+export type ThermostatsClimateSettingSchedulesListBody =
+  RouteRequestBody<'/thermostats/climate_setting_schedules/list'>
 
 export type ThermostatsClimateSettingSchedulesListResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/climate_setting_schedules/list'>>
 >
 
-export type ThermostatsClimateSettingSchedulesUpdateBody = SetNonNullable<
-  Required<RouteRequestBody<'/thermostats/climate_setting_schedules/update'>>
->
+export type ThermostatsClimateSettingSchedulesUpdateBody =
+  RouteRequestBody<'/thermostats/climate_setting_schedules/update'>
 
 export type ThermostatsClimateSettingSchedulesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/climate_setting_schedules/update'>>

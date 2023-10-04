@@ -99,25 +99,20 @@ export class SeamHttpWorkspaces {
   }
 }
 
-export type WorkspacesGetParams = SetNonNullable<
-  Required<RouteRequestParams<'/workspaces/get'>>
->
+export type WorkspacesGetParams = RouteRequestParams<'/workspaces/get'>
 
 export type WorkspacesGetResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/get'>>
 >
 
-export type WorkspacesListParams = SetNonNullable<
-  Required<RouteRequestParams<'/workspaces/list'>>
->
+export type WorkspacesListParams = RouteRequestParams<'/workspaces/list'>
 
 export type WorkspacesListResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/list'>>
 >
 
-export type WorkspacesResetSandboxBody = SetNonNullable<
-  Required<RouteRequestBody<'/workspaces/reset_sandbox'>>
->
+export type WorkspacesResetSandboxBody =
+  RouteRequestBody<'/workspaces/reset_sandbox'>
 
 export type WorkspacesResetSandboxResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/reset_sandbox'>>

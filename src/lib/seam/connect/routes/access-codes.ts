@@ -161,65 +161,52 @@ export class SeamHttpAccessCodes {
   }
 }
 
-export type AccessCodesCreateBody = SetNonNullable<
-  Required<RouteRequestBody<'/access_codes/create'>>
->
+export type AccessCodesCreateBody = RouteRequestBody<'/access_codes/create'>
 
 export type AccessCodesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/create'>>
 >
 
-export type AccessCodesCreateMultipleBody = SetNonNullable<
-  Required<RouteRequestBody<'/access_codes/create_multiple'>>
->
+export type AccessCodesCreateMultipleBody =
+  RouteRequestBody<'/access_codes/create_multiple'>
 
 export type AccessCodesCreateMultipleResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/create_multiple'>>
 >
 
-export type AccessCodesDeleteBody = SetNonNullable<
-  Required<RouteRequestBody<'/access_codes/delete'>>
->
+export type AccessCodesDeleteBody = RouteRequestBody<'/access_codes/delete'>
 
 export type AccessCodesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/delete'>>
 >
 
-export type AccessCodesGenerateCodeParams = SetNonNullable<
-  Required<RouteRequestParams<'/access_codes/generate_code'>>
->
+export type AccessCodesGenerateCodeParams =
+  RouteRequestParams<'/access_codes/generate_code'>
 
 export type AccessCodesGenerateCodeResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/generate_code'>>
 >
 
-export type AccessCodesGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/access_codes/get'>>
->
+export type AccessCodesGetBody = RouteRequestBody<'/access_codes/get'>
 
 export type AccessCodesGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/get'>>
 >
 
-export type AccessCodesListBody = SetNonNullable<
-  Required<RouteRequestBody<'/access_codes/list'>>
->
+export type AccessCodesListBody = RouteRequestBody<'/access_codes/list'>
 
 export type AccessCodesListResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/list'>>
 >
 
-export type AccessCodesPullBackupAccessCodeBody = SetNonNullable<
-  Required<RouteRequestBody<'/access_codes/pull_backup_access_code'>>
->
+export type AccessCodesPullBackupAccessCodeBody =
+  RouteRequestBody<'/access_codes/pull_backup_access_code'>
 
 export type AccessCodesPullBackupAccessCodeResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/pull_backup_access_code'>>
 >
 
-export type AccessCodesUpdateBody = SetNonNullable<
-  Required<RouteRequestBody<'/access_codes/update'>>
->
+export type AccessCodesUpdateBody = RouteRequestBody<'/access_codes/update'>
 
 export type AccessCodesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/update'>>

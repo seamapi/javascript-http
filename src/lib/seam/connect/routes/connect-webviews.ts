@@ -118,41 +118,35 @@ export class SeamHttpConnectWebviews {
   }
 }
 
-export type ConnectWebviewsCreateBody = SetNonNullable<
-  Required<RouteRequestBody<'/connect_webviews/create'>>
->
+export type ConnectWebviewsCreateBody =
+  RouteRequestBody<'/connect_webviews/create'>
 
 export type ConnectWebviewsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/create'>>
 >
 
-export type ConnectWebviewsDeleteBody = SetNonNullable<
-  Required<RouteRequestBody<'/connect_webviews/delete'>>
->
+export type ConnectWebviewsDeleteBody =
+  RouteRequestBody<'/connect_webviews/delete'>
 
 export type ConnectWebviewsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/delete'>>
 >
 
-export type ConnectWebviewsGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/connect_webviews/get'>>
->
+export type ConnectWebviewsGetBody = RouteRequestBody<'/connect_webviews/get'>
 
 export type ConnectWebviewsGetResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/get'>>
 >
 
-export type ConnectWebviewsListParams = SetNonNullable<
-  Required<RouteRequestParams<'/connect_webviews/list'>>
->
+export type ConnectWebviewsListParams =
+  RouteRequestParams<'/connect_webviews/list'>
 
 export type ConnectWebviewsListResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/list'>>
 >
 
-export type ConnectWebviewsViewParams = SetNonNullable<
-  Required<RouteRequestParams<'/connect_webviews/view'>>
->
+export type ConnectWebviewsViewParams =
+  RouteRequestParams<'/connect_webviews/view'>
 
 export type ConnectWebviewsViewResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/view'>>

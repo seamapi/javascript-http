@@ -108,33 +108,25 @@ export class SeamHttpWebhooks {
   }
 }
 
-export type WebhooksCreateBody = SetNonNullable<
-  Required<RouteRequestBody<'/webhooks/create'>>
->
+export type WebhooksCreateBody = RouteRequestBody<'/webhooks/create'>
 
 export type WebhooksCreateResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/create'>>
 >
 
-export type WebhooksDeleteBody = SetNonNullable<
-  Required<RouteRequestBody<'/webhooks/delete'>>
->
+export type WebhooksDeleteBody = RouteRequestBody<'/webhooks/delete'>
 
 export type WebhooksDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/delete'>>
 >
 
-export type WebhooksGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/webhooks/get'>>
->
+export type WebhooksGetBody = RouteRequestBody<'/webhooks/get'>
 
 export type WebhooksGetResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/get'>>
 >
 
-export type WebhooksListParams = SetNonNullable<
-  Required<RouteRequestParams<'/webhooks/list'>>
->
+export type WebhooksListParams = RouteRequestParams<'/webhooks/list'>
 
 export type WebhooksListResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/list'>>

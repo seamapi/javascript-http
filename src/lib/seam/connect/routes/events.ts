@@ -83,17 +83,13 @@ export class SeamHttpEvents {
   }
 }
 
-export type EventsGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/events/get'>>
->
+export type EventsGetBody = RouteRequestBody<'/events/get'>
 
 export type EventsGetResponse = SetNonNullable<
   Required<RouteResponse<'/events/get'>>
 >
 
-export type EventsListBody = SetNonNullable<
-  Required<RouteRequestBody<'/events/list'>>
->
+export type EventsListBody = RouteRequestBody<'/events/list'>
 
 export type EventsListResponse = SetNonNullable<
   Required<RouteResponse<'/events/list'>>

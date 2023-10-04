@@ -105,33 +105,25 @@ export class SeamHttpLocks {
   }
 }
 
-export type LocksGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/locks/get'>>
->
+export type LocksGetBody = RouteRequestBody<'/locks/get'>
 
 export type LocksGetResponse = SetNonNullable<
   Required<RouteResponse<'/locks/get'>>
 >
 
-export type LocksListBody = SetNonNullable<
-  Required<RouteRequestBody<'/locks/list'>>
->
+export type LocksListBody = RouteRequestBody<'/locks/list'>
 
 export type LocksListResponse = SetNonNullable<
   Required<RouteResponse<'/locks/list'>>
 >
 
-export type LocksLockDoorBody = SetNonNullable<
-  Required<RouteRequestBody<'/locks/lock_door'>>
->
+export type LocksLockDoorBody = RouteRequestBody<'/locks/lock_door'>
 
 export type LocksLockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/lock_door'>>
 >
 
-export type LocksUnlockDoorBody = SetNonNullable<
-  Required<RouteRequestBody<'/locks/unlock_door'>>
->
+export type LocksUnlockDoorBody = RouteRequestBody<'/locks/unlock_door'>
 
 export type LocksUnlockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/unlock_door'>>

@@ -113,41 +113,36 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 }
 
-export type NoiseSensorsNoiseThresholdsCreateBody = SetNonNullable<
-  Required<RouteRequestBody<'/noise_sensors/noise_thresholds/create'>>
->
+export type NoiseSensorsNoiseThresholdsCreateBody =
+  RouteRequestBody<'/noise_sensors/noise_thresholds/create'>
 
 export type NoiseSensorsNoiseThresholdsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/create'>>
 >
 
-export type NoiseSensorsNoiseThresholdsDeleteBody = SetNonNullable<
-  Required<RouteRequestBody<'/noise_sensors/noise_thresholds/delete'>>
->
+export type NoiseSensorsNoiseThresholdsDeleteBody =
+  RouteRequestBody<'/noise_sensors/noise_thresholds/delete'>
 
 export type NoiseSensorsNoiseThresholdsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/delete'>>
 >
 
-export type NoiseSensorsNoiseThresholdsGetBody = SetNonNullable<
-  Required<RouteRequestBody<'/noise_sensors/noise_thresholds/get'>>
->
+export type NoiseSensorsNoiseThresholdsGetBody =
+  RouteRequestBody<'/noise_sensors/noise_thresholds/get'>
 
 export type NoiseSensorsNoiseThresholdsGetResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/get'>>
 >
 
-export type NoiseSensorsNoiseThresholdsListBody = SetNonNullable<
-  Required<RouteRequestBody<'/noise_sensors/noise_thresholds/list'>>
->
+export type NoiseSensorsNoiseThresholdsListBody =
+  RouteRequestBody<'/noise_sensors/noise_thresholds/list'>
 
 export type NoiseSensorsNoiseThresholdsListResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/list'>>
 >
 
-export type NoiseSensorsNoiseThresholdsUpdateBody = SetNonNullable<
-  Required<RouteRequestBody<'/noise_sensors/noise_thresholds/update'>>
->
+export type NoiseSensorsNoiseThresholdsUpdateBody =
+  RouteRequestBody<'/noise_sensors/noise_thresholds/update'>
 
 export type NoiseSensorsNoiseThresholdsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/update'>>
