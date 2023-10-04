@@ -22,14 +22,14 @@ export const parseOptions = (
 
   const endpoint =
     options.endpoint ??
-    globalThis.process?.env?.['SEAM_ENDPOINT'] ??
-    globalThis.process?.env?.['SEAM_API_URL'] ??
+    globalThis.process?.env?.SEAM_ENDPOINT ??
+    globalThis.process?.env?.SEAM_API_URL ??
     'https://connect.getseam.com'
 
   const apiKey =
     'apiKey' in options
       ? options.apiKey
-      : globalThis.process?.env?.['SEAM_API_KEY']
+      : globalThis.process?.env?.SEAM_API_KEY
 
   return {
     ...options,

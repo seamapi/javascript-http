@@ -1,6 +1,7 @@
 import type { Axios, AxiosRequestConfig } from 'axios'
 
 export type SeamHttpOptions =
+  | SeamHttpOptionsFromEnv
   | SeamHttpOptionsWithClient
   | SeamHttpOptionsWithApiKey
   | SeamHttpOptionsWithClientSessionToken
@@ -10,6 +11,8 @@ interface SeamHttpCommonOptions {
   axiosOptions?: AxiosRequestConfig
   enableLegacyMethodBehaivor?: boolean
 }
+
+export type SeamHttpOptionsFromEnv = SeamHttpCommonOptions
 
 export interface SeamHttpOptionsWithClient
   extends Pick<SeamHttpCommonOptions, 'enableLegacyMethodBehaivor'> {

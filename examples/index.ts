@@ -36,6 +36,6 @@ const middleware = [...defaultMiddleware, createAppContext]
 await landlubber<Context>(commands, { middleware })
   .describe('api-key', 'Seam API key')
   .string('api-key')
-  .default('api-key', env['SEAM_API_KEY'], 'SEAM_API_KEY')
+  .default('api-key', env.SEAM_API_KEY, 'SEAM_API_KEY')
   .demandOption('api-key')
   .parse()

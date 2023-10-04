@@ -32,13 +32,17 @@ const getAuthHeadersForApiKey = ({
     )
   }
 
+  if (isJwt(apiKey)) {
+    throw new SeamHttpInvalidTokenError('A JWT cannot be used as an apiKey')
+  }
+
   if (isAccessToken(apiKey)) {
     throw new SeamHttpInvalidTokenError(
-      'An access token cannot be used as an apiKey',
+      'An Access Token cannot be used as an apiKey',
     )
   }
 
-  if (isJwt(apiKey) || !isSeamToken(apiKey)) {
+  if (!isSeamToken(apiKey)) {
     throw new SeamHttpInvalidTokenError(
       `Unknown or invalid apiKey format, expected token to start with ${tokenPrefix}`,
     )

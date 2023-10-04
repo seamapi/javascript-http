@@ -33,7 +33,7 @@ export class SeamHttp {
 
   // #legacy: boolean
 
-  constructor(apiKeyOrOptions: string | SeamHttpOptions) {
+  constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
     // this.#legacy = options.enableLegacyMethodBehaivor
     this.client = createAxiosClient(options)
