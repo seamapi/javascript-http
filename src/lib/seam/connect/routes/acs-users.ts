@@ -121,6 +121,22 @@ export class SeamHttpAcsUsers {
     })
   }
 
+  async suspend(body: AcsUsersSuspendBody): Promise<void> {
+    await this.client.request<AcsUsersSuspendResponse>({
+      url: '/acs/users/suspend',
+      method: 'post',
+      data: body,
+    })
+  }
+
+  async unsuspend(body: AcsUsersUnsuspendBody): Promise<void> {
+    await this.client.request<AcsUsersUnsuspendResponse>({
+      url: '/acs/users/unsuspend',
+      method: 'post',
+      data: body,
+    })
+  }
+
   async update(body: AcsUsersUpdateBody): Promise<void> {
     await this.client.request<AcsUsersUpdateResponse>({
       url: '/acs/users/update',
@@ -166,6 +182,18 @@ export type AcsUsersRemoveFromAccessGroupBody =
 
 export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/remove_from_access_group'>>
+>
+
+export type AcsUsersSuspendBody = RouteRequestBody<'/acs/users/suspend'>
+
+export type AcsUsersSuspendResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/users/suspend'>>
+>
+
+export type AcsUsersUnsuspendBody = RouteRequestBody<'/acs/users/unsuspend'>
+
+export type AcsUsersUnsuspendResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/users/unsuspend'>>
 >
 
 export type AcsUsersUpdateBody = RouteRequestBody<'/acs/users/update'>
