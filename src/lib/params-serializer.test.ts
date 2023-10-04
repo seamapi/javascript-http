@@ -52,6 +52,21 @@ test('serializes array params with many values', (t) => {
     paramsSerializer({ foo: 1, bar: ['null', '2', 'undefined'] }),
     'bar=null&bar=2&bar=undefined&foo=1',
   )
+  t.is(paramsSerializer({ foo: 1, bar: ['', '', ''] }), 'bar=&bar=&bar=&foo=1')
+  t.is(
+    paramsSerializer({ foo: 1, bar: ['', 'a', '2'] }),
+    'bar=&bar=a&bar=2&foo=1',
+  )
+  t.is(
+    paramsSerializer({ foo: 1, bar: ['', 'a', ''] }),
+    'bar=&bar=a&bar=&foo=1',
+  )
+})
+
+test('cannot serialize single element array params with empty string', (t) => {
+  t.throws(() => paramsSerializer({ foo: [''] }), {
+    instanceOf: UnserializableParamError,
+  })
 })
 
 test('cannot serialize unserializable values', (t) => {

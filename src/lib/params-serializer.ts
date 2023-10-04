@@ -8,6 +8,12 @@ export const paramsSerializer: CustomParamsSerializer = (params) => {
 
     if (Array.isArray(value)) {
       if (value.length === 0) searchParams.set(name, '')
+      if (value.length === 1 && value[0] === '') {
+        throw new UnserializableParamError(
+          name,
+          `is a single element array containing the empty string which is unsupported because it serializes to the empty array`,
+        )
+      }
       for (const v of value) {
         throwIfUnserializable(name, v)
         searchParams.append(name, v)
