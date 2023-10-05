@@ -21,8 +21,8 @@ test.serial(
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_API_KEY = seed.seam_apikey1_token
-    const client = new SeamHttp({ endpoint })
-    const device = await client.devices.get({
+    const seam = new SeamHttp({ endpoint })
+    const device = await seam.devices.get({
       device_id: seed.august_device_1,
     })
     t.is(device.workspace_id, seed.seed_workspace_1)
@@ -35,8 +35,8 @@ test.serial(
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_API_KEY = 'some-invalid-api-key'
-    const client = new SeamHttp({ apiKey: seed.seam_apikey1_token, endpoint })
-    const device = await client.devices.get({
+    const seam = new SeamHttp({ apiKey: seed.seam_apikey1_token, endpoint })
+    const device = await seam.devices.get({
       device_id: seed.august_device_1,
     })
     t.is(device.workspace_id, seed.seed_workspace_1)
@@ -48,8 +48,8 @@ test.serial(
   'SeamHttp: apiKey option as first argument overrides environment variables',
   (t) => {
     env.SEAM_API_KEY = 'some-invalid-api-key'
-    const client = new SeamHttp('seam_apikey_token')
-    t.truthy(client)
+    const seam = new SeamHttp('seam_apikey_token')
+    t.truthy(seam)
   },
 )
 
@@ -57,8 +57,8 @@ test.serial(
   'SeamHttp: constructor uses SEAM_API_KEY environment variable when passed no argument',
   (t) => {
     env.SEAM_API_KEY = 'seam_apikey_token'
-    const client = new SeamHttp()
-    t.truthy(client)
+    const seam = new SeamHttp()
+    t.truthy(seam)
   },
 )
 
@@ -89,8 +89,8 @@ test.serial(
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_API_URL = 'https://example.com'
     env.SEAM_ENDPOINT = endpoint
-    const client = new SeamHttp({ apiKey: seed.seam_apikey1_token })
-    const device = await client.devices.get({
+    const seam = new SeamHttp({ apiKey: seed.seam_apikey1_token })
+    const device = await seam.devices.get({
       device_id: seed.august_device_1,
     })
     t.is(device.workspace_id, seed.seed_workspace_1)
@@ -103,8 +103,8 @@ test.serial(
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_API_URL = endpoint
-    const client = new SeamHttp({ apiKey: seed.seam_apikey1_token })
-    const device = await client.devices.get({
+    const seam = new SeamHttp({ apiKey: seed.seam_apikey1_token })
+    const device = await seam.devices.get({
       device_id: seed.august_device_1,
     })
     t.is(device.workspace_id, seed.seed_workspace_1)
@@ -118,8 +118,8 @@ test.serial(
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_API_URL = 'https://example.com'
     env.SEAM_ENDPOINT = 'https://example.com'
-    const client = new SeamHttp({ apiKey: seed.seam_apikey1_token, endpoint })
-    const device = await client.devices.get({
+    const seam = new SeamHttp({ apiKey: seed.seam_apikey1_token, endpoint })
+    const device = await seam.devices.get({
       device_id: seed.august_device_1,
     })
     t.is(device.workspace_id, seed.seed_workspace_1)
@@ -133,8 +133,8 @@ test.serial(
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_API_URL = 'https://example.com'
     env.SEAM_ENDPOINT = endpoint
-    const client = SeamHttp.fromApiKey(seed.seam_apikey1_token)
-    const device = await client.devices.get({
+    const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token)
+    const device = await seam.devices.get({
       device_id: seed.august_device_1,
     })
     t.is(device.workspace_id, seed.seed_workspace_1)
@@ -148,8 +148,8 @@ test.serial(
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_API_URL = 'https://example.com'
     env.SEAM_ENDPOINT = endpoint
-    const client = SeamHttp.fromClientSessionToken(seed.seam_cst1_token)
-    const device = await client.devices.get({
+    const seam = SeamHttp.fromClientSessionToken(seed.seam_cst1_token)
+    const device = await seam.devices.get({
       device_id: seed.august_device_1,
     })
     t.is(device.workspace_id, seed.seed_workspace_1)

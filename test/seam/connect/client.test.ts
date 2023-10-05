@@ -5,10 +5,10 @@ import { SeamHttp } from '@seamapi/http/connect'
 
 test('SeamHttp: fromClient returns instance that uses client', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
-  const client = SeamHttp.fromClient(
+  const seam = SeamHttp.fromClient(
     SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint }).client,
   )
-  const device = await client.devices.get({
+  const device = await seam.devices.get({
     device_id: seed.august_device_1,
   })
   t.is(device.workspace_id, seed.seed_workspace_1)
@@ -17,10 +17,10 @@ test('SeamHttp: fromClient returns instance that uses client', async (t) => {
 
 test('SeamHttp: constructor returns instance that uses client', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
-  const client = new SeamHttp({
+  const seam = new SeamHttp({
     client: SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint }).client,
   })
-  const device = await client.devices.get({
+  const device = await seam.devices.get({
     device_id: seed.august_device_1,
   })
   t.is(device.workspace_id, seed.seed_workspace_1)
