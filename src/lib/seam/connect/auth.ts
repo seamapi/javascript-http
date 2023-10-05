@@ -56,6 +56,18 @@ const getAuthHeadersForApiKey = ({
 const getAuthHeadersForClientSessionToken = ({
   clientSessionToken,
 }: SeamHttpOptionsWithClientSessionToken): Headers => {
+  if (isJwt(clientSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A JWT cannot be used as a clientSessionToken',
+    )
+  }
+
+  if (isAccessToken(clientSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'An Access Token cannot be used as a clientSessionToken',
+    )
+  }
+
   if (!isClientSessionToken(clientSessionToken)) {
     throw new SeamHttpInvalidTokenError(
       `Unknown or invalid clientSessionToken format, expected token to start with ${clientSessionTokenPrefix}`,
