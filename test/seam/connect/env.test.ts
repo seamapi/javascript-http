@@ -3,9 +3,7 @@ import { env } from 'node:process'
 import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 
-import { SeamHttp } from '@seamapi/http/connect'
-
-import { SeamHttpInvalidOptionsError } from 'lib/seam/connect/client-options.js'
+import { SeamHttp, SeamHttpInvalidOptionsError } from '@seamapi/http/connect'
 
 /*
  * Tests in this file must run serially to ensure a clean environment for each test.
