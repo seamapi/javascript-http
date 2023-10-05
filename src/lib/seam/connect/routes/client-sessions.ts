@@ -71,7 +71,7 @@ export class SeamHttpClientSessions {
     publishableKey: string,
     userIdentifierKey: string,
     options: ClientOptions = {},
-  ): Promise<SeamHttp> {
+  ): Promise<SeamHttpClientSessions> {
     const opts = parseOptions(options)
     const client = createClient({ ...opts, publishableKey })
     const clientSessions = SeamHttpClientSessions.fromClient(client)
@@ -79,7 +79,7 @@ export class SeamHttpClientSessions {
     const { token } = await clientSessions.create({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttp.fromClientSessionToken(token, options)
+    return SeamHttpClientSessions.fromClientSessionToken(token, options)
   }
 
   async create(

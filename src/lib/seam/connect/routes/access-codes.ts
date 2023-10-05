@@ -22,6 +22,7 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions.js'
 
 import { SeamHttpAccessCodesUnmanaged } from './access-codes-unmanaged.js'
 
@@ -73,7 +74,7 @@ export class SeamHttpAccessCodes {
     publishableKey: string,
     userIdentifierKey: string,
     options: ClientOptions = {},
-  ): Promise<SeamHttp> {
+  ): Promise<SeamHttpAccessCodes> {
     const opts = parseOptions(options)
     const client = createClient({ ...opts, publishableKey })
     const clientSessions = SeamHttpClientSessions.fromClient(client)
@@ -81,7 +82,7 @@ export class SeamHttpAccessCodes {
     const { token } = await clientSessions.create({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttp.fromClientSessionToken(token, options)
+    return SeamHttpAccessCodes.fromClientSessionToken(token, options)
   }
 
   get unmanaged(): SeamHttpAccessCodesUnmanaged {

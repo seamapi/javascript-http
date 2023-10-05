@@ -22,6 +22,7 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions.js'
 
 export class SeamHttpEvents {
   client: Client
@@ -71,7 +72,7 @@ export class SeamHttpEvents {
     publishableKey: string,
     userIdentifierKey: string,
     options: ClientOptions = {},
-  ): Promise<SeamHttp> {
+  ): Promise<SeamHttpEvents> {
     const opts = parseOptions(options)
     const client = createClient({ ...opts, publishableKey })
     const clientSessions = SeamHttpClientSessions.fromClient(client)
@@ -79,7 +80,7 @@ export class SeamHttpEvents {
     const { token } = await clientSessions.create({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttp.fromClientSessionToken(token, options)
+    return SeamHttpEvents.fromClientSessionToken(token, options)
   }
 
   async get(body: EventsGetBody): Promise<EventsGetResponse['event']> {

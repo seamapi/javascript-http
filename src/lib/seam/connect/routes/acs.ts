@@ -19,6 +19,7 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions.js'
 
 import { SeamHttpAcsAccessGroups } from './acs-access-groups.js'
 import { SeamHttpAcsCredentials } from './acs-credentials.js'
@@ -73,7 +74,7 @@ export class SeamHttpAcs {
     publishableKey: string,
     userIdentifierKey: string,
     options: ClientOptions = {},
-  ): Promise<SeamHttp> {
+  ): Promise<SeamHttpAcs> {
     const opts = parseOptions(options)
     const client = createClient({ ...opts, publishableKey })
     const clientSessions = SeamHttpClientSessions.fromClient(client)
@@ -81,7 +82,7 @@ export class SeamHttpAcs {
     const { token } = await clientSessions.create({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttp.fromClientSessionToken(token, options)
+    return SeamHttpAcs.fromClientSessionToken(token, options)
   }
 
   get accessGroups(): SeamHttpAcsAccessGroups {

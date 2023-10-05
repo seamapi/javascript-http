@@ -256,6 +256,11 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
+${
+  namespace === 'client_sessions'
+    ? ''
+    : "import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions.js'"
+}
 ${subresources
   .map((subresource) => renderSubresourceImport(subresource, namespace))
   .join('\n')}
@@ -279,6 +284,11 @@ export class SeamHttp${pascalCase(namespace)} {
 
   ${constructors
     .replaceAll(': SeamHttp ', `: SeamHttp${pascalCase(namespace)} `)
+    .replaceAll('<SeamHttp>', `<SeamHttp${pascalCase(namespace)}>`)
+    .replaceAll(
+      'SeamHttp.fromClientSessionToken',
+      `SeamHttp${pascalCase(namespace)}.fromClientSessionToken`,
+    )
     .replaceAll('new SeamHttp(', `new SeamHttp${pascalCase(namespace)}(`)}
 
   ${subresources
