@@ -1,4 +1,5 @@
 import axios, { type Axios } from 'axios'
+import axiosRetry, { exponentialDelay } from 'axios-retry'
 
 import { paramsSerializer } from 'lib/params-serializer.js'
 
@@ -13,8 +14,8 @@ export const createAxiosClient = (
   options: Required<SeamHttpOptions>,
 ): Axios => {
   if (isSeamHttpOptionsWithClient(options)) return options.client
-  // TODO: axiosRetry? Allow options to configure this if so
-  return axios.create({
+
+  const client = axios.create({
     baseURL: options.endpoint,
     withCredentials: isSeamHttpOptionsWithClientSessionToken(options),
     paramsSerializer,
@@ -22,7 +23,14 @@ export const createAxiosClient = (
     headers: {
       ...getAuthHeaders(options),
       ...options.axiosOptions.headers,
-      // TODO: User-Agent
     },
   })
+
+  axiosRetry(client, {
+    retries: 2,
+    retryDelay: exponentialDelay,
+    ...options.axiosRetryOptions,
+  })
+
+  return client
 }

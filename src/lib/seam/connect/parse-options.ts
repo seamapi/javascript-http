@@ -34,6 +34,7 @@ export const parseOptions = (
     ...(apiKey != null ? { apiKey } : {}),
     endpoint,
     axiosOptions: options.axiosOptions ?? {},
+    axiosRetryOptions: options.axiosRetryOptions ?? {},
     enableLegacyMethodBehaivor:
       options.enableLegacyMethodBehaivor ?? enableLegacyMethodBehaivorDefault,
   }

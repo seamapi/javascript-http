@@ -1,4 +1,5 @@
 import type { Axios, AxiosRequestConfig } from 'axios'
+import type { AxiosRetry } from 'axios-retry'
 
 export type SeamHttpOptions =
   | SeamHttpOptionsFromEnv
@@ -9,8 +10,11 @@ export type SeamHttpOptions =
 interface SeamHttpCommonOptions {
   endpoint?: string
   axiosOptions?: AxiosRequestConfig
+  axiosRetryOptions?: AxiosRetryConfig
   enableLegacyMethodBehaivor?: boolean
 }
+
+type AxiosRetryConfig = Parameters<AxiosRetry>[1]
 
 export type SeamHttpOptionsFromEnv = SeamHttpCommonOptions
 
