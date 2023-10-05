@@ -1,7 +1,4 @@
-import {
-  isSeamHttpOptionsWithClient,
-  type SeamHttpOptions,
-} from './client-options.js'
+import { isSeamHttpOptionsWithClient, type SeamHttpOptions } from './options.js'
 
 const enableLegacyMethodBehaivorDefault = true
 
@@ -22,20 +19,19 @@ export const parseOptions = (
 
   const endpoint =
     options.endpoint ??
-    globalThis.process?.env?.['SEAM_ENDPOINT'] ??
-    globalThis.process?.env?.['SEAM_API_URL'] ??
+    globalThis.process?.env?.SEAM_ENDPOINT ??
+    globalThis.process?.env?.SEAM_API_URL ??
     'https://connect.getseam.com'
 
   const apiKey =
-    'apiKey' in options
-      ? options.apiKey
-      : globalThis.process?.env?.['SEAM_API_KEY']
+    'apiKey' in options ? options.apiKey : globalThis.process?.env?.SEAM_API_KEY
 
   return {
     ...options,
     ...(apiKey != null ? { apiKey } : {}),
     endpoint,
     axiosOptions: options.axiosOptions ?? {},
+    axiosRetryOptions: options.axiosRetryOptions ?? {},
     enableLegacyMethodBehaivor:
       options.enableLegacyMethodBehaivor ?? enableLegacyMethodBehaivorDefault,
   }

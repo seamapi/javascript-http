@@ -5,7 +5,7 @@ import {
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
-} from './client-options.js'
+} from './options.js'
 
 type Headers = Record<string, string>
 
@@ -32,13 +32,17 @@ const getAuthHeadersForApiKey = ({
     )
   }
 
+  if (isJwt(apiKey)) {
+    throw new SeamHttpInvalidTokenError('A JWT cannot be used as an apiKey')
+  }
+
   if (isAccessToken(apiKey)) {
     throw new SeamHttpInvalidTokenError(
-      'An access token cannot be used as an apiKey',
+      'An Access Token cannot be used as an apiKey',
     )
   }
 
-  if (isJwt(apiKey) || !isSeamToken(apiKey)) {
+  if (!isSeamToken(apiKey)) {
     throw new SeamHttpInvalidTokenError(
       `Unknown or invalid apiKey format, expected token to start with ${tokenPrefix}`,
     )
@@ -52,6 +56,18 @@ const getAuthHeadersForApiKey = ({
 const getAuthHeadersForClientSessionToken = ({
   clientSessionToken,
 }: SeamHttpOptionsWithClientSessionToken): Headers => {
+  if (isJwt(clientSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A JWT cannot be used as a clientSessionToken',
+    )
+  }
+
+  if (isAccessToken(clientSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'An Access Token cannot be used as a clientSessionToken',
+    )
+  }
+
   if (!isClientSessionToken(clientSessionToken)) {
     throw new SeamHttpInvalidTokenError(
       `Unknown or invalid clientSessionToken format, expected token to start with ${clientSessionTokenPrefix}`,

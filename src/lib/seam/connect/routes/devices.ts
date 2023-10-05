@@ -7,7 +7,7 @@ import type { RouteRequestBody, RouteResponse } from '@seamapi/types/connect'
 import type { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
-import { createAxiosClient } from 'lib/seam/connect/axios.js'
+import { createClient } from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -17,7 +17,7 @@ import {
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClient,
   type SeamHttpOptionsWithClientSessionToken,
-} from 'lib/seam/connect/client-options.js'
+} from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
 import { SeamHttpDevicesUnmanaged } from './devices-unmanaged.js'
@@ -25,9 +25,9 @@ import { SeamHttpDevicesUnmanaged } from './devices-unmanaged.js'
 export class SeamHttpDevices {
   client: Axios
 
-  constructor(apiKeyOrOptions: string | SeamHttpOptions) {
+  constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
-    this.client = createAxiosClient(options)
+    this.client = createClient(options)
   }
 
   static fromClient(

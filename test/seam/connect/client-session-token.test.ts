@@ -5,9 +5,11 @@ import { SeamHttp } from '@seamapi/http/connect'
 
 import { SeamHttpInvalidTokenError } from 'lib/seam/connect/auth.js'
 
-test('SeamHttp: fromApiKey returns instance authorized with apiKey', async (t) => {
+test('SeamHttp: fromClientSessionToken returns instance authorized with clientSessionToken', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
-  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+  const seam = SeamHttp.fromClientSessionToken(seed.seam_cst1_token, {
+    endpoint,
+  })
   const device = await seam.devices.get({
     device_id: seed.august_device_1,
   })
@@ -15,9 +17,12 @@ test('SeamHttp: fromApiKey returns instance authorized with apiKey', async (t) =
   t.is(device.device_id, seed.august_device_1)
 })
 
-test('SeamHttp: constructor returns instance authorized with apiKey', async (t) => {
+test('SeamHttp: constructor returns instance authorized with clientSessionToken', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
-  const seam = new SeamHttp({ apiKey: seed.seam_apikey1_token, endpoint })
+  const seam = new SeamHttp({
+    clientSessionToken: seed.seam_cst1_token,
+    endpoint,
+  })
   const device = await seam.devices.get({
     device_id: seed.august_device_1,
   })
@@ -25,29 +30,20 @@ test('SeamHttp: constructor returns instance authorized with apiKey', async (t) 
   t.is(device.device_id, seed.august_device_1)
 })
 
-test('SeamHttp: constructor interprets single string argument as apiKey', (t) => {
-  const seam = new SeamHttp('seam_apikey_token')
-  t.truthy(seam)
-  t.throws(() => new SeamHttp('some-invalid-key-format'), {
-    instanceOf: SeamHttpInvalidTokenError,
-    message: /apiKey/,
-  })
-})
-
-test('SeamHttp: checks apiKey format', (t) => {
-  t.throws(() => SeamHttp.fromApiKey('some-invalid-key-format'), {
+test('SeamHttp: checks clientSessionToken format', (t) => {
+  t.throws(() => SeamHttp.fromClientSessionToken('some-invalid-key-format'), {
     instanceOf: SeamHttpInvalidTokenError,
     message: /Unknown/,
   })
-  t.throws(() => SeamHttp.fromApiKey('ey'), {
+  t.throws(() => SeamHttp.fromClientSessionToken('seam_apikey_token'), {
+    instanceOf: SeamHttpInvalidTokenError,
+    message: /Unknown/,
+  })
+  t.throws(() => SeamHttp.fromClientSessionToken('ey'), {
     instanceOf: SeamHttpInvalidTokenError,
     message: /JWT/,
   })
-  t.throws(() => SeamHttp.fromApiKey('seam_cst_token'), {
-    instanceOf: SeamHttpInvalidTokenError,
-    message: /Client Session Token/,
-  })
-  t.throws(() => SeamHttp.fromApiKey('seam_at'), {
+  t.throws(() => SeamHttp.fromClientSessionToken('seam_at'), {
     instanceOf: SeamHttpInvalidTokenError,
     message: /Access Token/,
   })

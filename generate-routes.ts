@@ -2,11 +2,11 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 import { openapi } from '@seamapi/types/connect'
-import { camelCase, paramCase, pascalCase, snakeCase } from 'change-case'
+import { camelCase, kebabCase, pascalCase, snakeCase } from 'change-case'
 import { ESLint } from 'eslint'
 import { format, resolveConfig } from 'prettier'
 
-const rootClassPath = resolve('src', 'lib', 'seam', 'connect', 'client.ts')
+const rootClassPath = resolve('src', 'lib', 'seam', 'connect', 'seam-http.ts')
 const routeOutputPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
 
 const routePaths = [
@@ -237,7 +237,7 @@ import type { RouteRequestParams, RouteResponse, RouteRequestBody } from '@seama
 import { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
-import { createAxiosClient } from 'lib/seam/connect/axios.js'
+import { createClient } from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -247,7 +247,7 @@ import {
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClient,
   type SeamHttpOptionsWithClientSessionToken,
-} from 'lib/seam/connect/client-options.js'
+} from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 ${subresources
   .map((subresource) => renderSubresourceImport(subresource, namespace))
@@ -259,7 +259,7 @@ const renderSubresourceImport = (
 ): string => `
     import {
       SeamHttp${pascalCase(namespace)}${pascalCase(subresource)}
-    } from './${paramCase(namespace)}-${paramCase(subresource)}.js'
+    } from './${kebabCase(namespace)}-${kebabCase(subresource)}.js'
 `
 
 const renderClass = (
@@ -389,13 +389,13 @@ const writeRoute = async (route: Route): Promise<void> => {
   await write(
     renderRoute(route, { constructors }),
     routeOutputPath,
-    `${paramCase(route.namespace)}.ts`,
+    `${kebabCase(route.namespace)}.ts`,
   )
 }
 
 const writeRoutesIndex = async (routes: Route[]): Promise<void> => {
   const exports = routes.map(
-    (route) => `export * from './${paramCase(route.namespace)}.js'`,
+    (route) => `export * from './${kebabCase(route.namespace)}.js'`,
   )
   await write(exports.join('\n'), routeOutputPath, `index.ts`)
 }

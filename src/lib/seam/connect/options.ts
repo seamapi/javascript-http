@@ -1,6 +1,8 @@
 import type { Axios, AxiosRequestConfig } from 'axios'
+import type { AxiosRetry } from 'axios-retry'
 
 export type SeamHttpOptions =
+  | SeamHttpOptionsFromEnv
   | SeamHttpOptionsWithClient
   | SeamHttpOptionsWithApiKey
   | SeamHttpOptionsWithClientSessionToken
@@ -8,8 +10,13 @@ export type SeamHttpOptions =
 interface SeamHttpCommonOptions {
   endpoint?: string
   axiosOptions?: AxiosRequestConfig
+  axiosRetryOptions?: AxiosRetryConfig
   enableLegacyMethodBehaivor?: boolean
 }
+
+type AxiosRetryConfig = Parameters<AxiosRetry>[1]
+
+export type SeamHttpOptionsFromEnv = SeamHttpCommonOptions
 
 export interface SeamHttpOptionsWithClient
   extends Pick<SeamHttpCommonOptions, 'enableLegacyMethodBehaivor'> {
@@ -82,9 +89,3 @@ export class SeamHttpInvalidOptionsError extends Error {
     Error.captureStackTrace(this, this.constructor)
   }
 }
-
-// TODO: withSessionToken { sessionToken } or withMultiWorkspaceApiKey { apiKey }?
-// export interface SeamHttpOptionsWithSessionToken extends SeamHttpCommonOptions {
-//   workspaceId: string
-//   apiKey: string
-// }
