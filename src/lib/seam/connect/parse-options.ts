@@ -1,7 +1,4 @@
-import {
-  isSeamHttpOptionsWithClient,
-  type SeamHttpOptions,
-} from './client-options.js'
+import { isSeamHttpOptionsWithClient, type SeamHttpOptions } from './options.js'
 
 const enableLegacyMethodBehaivorDefault = true
 

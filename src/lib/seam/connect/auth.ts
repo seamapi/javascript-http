@@ -5,7 +5,7 @@ import {
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
-} from './client-options.js'
+} from './options.js'
 
 type Headers = Record<string, string>
 

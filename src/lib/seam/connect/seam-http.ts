@@ -1,6 +1,6 @@
 import type { Axios } from 'axios'
 
-import { createAxiosClient } from './axios.js'
+import { createClient } from './client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -10,7 +10,7 @@ import {
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClient,
   type SeamHttpOptionsWithClientSessionToken,
-} from './client-options.js'
+} from './options.js'
 import { parseOptions } from './parse-options.js'
 import {
   SeamHttpAccessCodes,
@@ -36,7 +36,7 @@ export class SeamHttp {
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
     // this.#legacy = options.enableLegacyMethodBehaivor
-    this.client = createAxiosClient(options)
+    this.client = createClient(options)
   }
 
   static fromClient(

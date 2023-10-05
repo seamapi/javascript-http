@@ -237,7 +237,7 @@ import type { RouteRequestParams, RouteResponse, RouteRequestBody } from '@seama
 import { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
-import { createAxiosClient } from 'lib/seam/connect/axios.js'
+import { createClient } from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -247,7 +247,7 @@ import {
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClient,
   type SeamHttpOptionsWithClientSessionToken,
-} from 'lib/seam/connect/client-options.js'
+} from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 ${subresources
   .map((subresource) => renderSubresourceImport(subresource, namespace))

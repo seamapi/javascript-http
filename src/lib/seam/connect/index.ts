@@ -1,2 +1,2 @@
-export * from './client-options.js'
+export * from './options.js'
 export * from './seam-http.js'

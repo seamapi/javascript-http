@@ -8,11 +8,9 @@ import {
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptions,
-} from './client-options.js'
+} from './options.js'
 
-export const createAxiosClient = (
-  options: Required<SeamHttpOptions>,
-): Axios => {
+export const createClient = (options: Required<SeamHttpOptions>): Axios => {
   if (isSeamHttpOptionsWithClient(options)) return options.client
 
   const client = axios.create({
