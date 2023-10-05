@@ -1,7 +1,5 @@
 import { isSeamHttpOptionsWithClient, type SeamHttpOptions } from './options.js'
 
-const enableLegacyMethodBehaivorDefault = true
-
 export const parseOptions = (
   apiKeyOrOptions: string | SeamHttpOptions,
 ): Required<SeamHttpOptions> => {
@@ -10,12 +8,7 @@ export const parseOptions = (
       ? { apiKey: apiKeyOrOptions }
       : apiKeyOrOptions
 
-  if (isSeamHttpOptionsWithClient(options))
-    return {
-      ...options,
-      enableLegacyMethodBehaivor:
-        options.enableLegacyMethodBehaivor ?? enableLegacyMethodBehaivorDefault,
-    }
+  if (isSeamHttpOptionsWithClient(options)) return options
 
   const endpoint =
     options.endpoint ??
@@ -32,7 +25,5 @@ export const parseOptions = (
     endpoint,
     axiosOptions: options.axiosOptions ?? {},
     axiosRetryOptions: options.axiosRetryOptions ?? {},
-    enableLegacyMethodBehaivor:
-      options.enableLegacyMethodBehaivor ?? enableLegacyMethodBehaivorDefault,
   }
 }

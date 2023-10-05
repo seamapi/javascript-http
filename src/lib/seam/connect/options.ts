@@ -11,15 +11,13 @@ interface SeamHttpCommonOptions {
   endpoint?: string
   axiosOptions?: AxiosRequestConfig
   axiosRetryOptions?: AxiosRetryConfig
-  enableLegacyMethodBehaivor?: boolean
 }
 
 type AxiosRetryConfig = Parameters<AxiosRetry>[1]
 
 export type SeamHttpOptionsFromEnv = SeamHttpCommonOptions
 
-export interface SeamHttpOptionsWithClient
-  extends Pick<SeamHttpCommonOptions, 'enableLegacyMethodBehaivor'> {
+export interface SeamHttpOptionsWithClient {
   client: Axios
 }
 
@@ -29,12 +27,10 @@ export const isSeamHttpOptionsWithClient = (
   if (!('client' in options)) return false
   if (options.client == null) return false
 
-  const keys = Object.keys(options).filter(
-    (k) => !['client', 'enableLegacyMethodBehaivor'].includes(k),
-  )
+  const keys = Object.keys(options)
   if (keys.length > 0) {
     throw new SeamHttpInvalidOptionsError(
-      `The client option cannot be used with any other option except enableLegacyMethodBehaivor, but received: ${keys.join(
+      `The client option cannot be used with any other option, but received: ${keys.join(
         ', ',
       )}`,
     )
