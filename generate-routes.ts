@@ -271,7 +271,6 @@ export class SeamHttp${pascalCase(namespace)} {
   client: Axios
 
   ${constructors
-    .replace(/.*this\.#legacy.*\n/, '')
     .replaceAll(': SeamHttp ', `: SeamHttp${pascalCase(namespace)} `)
     .replaceAll('new SeamHttp(', `new SeamHttp${pascalCase(namespace)}(`)}
 
