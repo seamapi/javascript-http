@@ -6,7 +6,7 @@ import { camelCase, kebabCase, pascalCase, snakeCase } from 'change-case'
 import { ESLint } from 'eslint'
 import { format, resolveConfig } from 'prettier'
 
-const rootClassPath = resolve('src', 'lib', 'seam', 'connect', 'client.ts')
+const rootClassPath = resolve('src', 'lib', 'seam', 'connect', 'seam-http.ts')
 const routeOutputPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
 
 const routePaths = [
