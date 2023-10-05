@@ -1,3 +1,4 @@
+import { warnOnInsecureuserIdentifierKey } from './auth.js'
 import { type Client, type ClientOptions, createClient } from './client.js'
 import {
   isSeamHttpOptionsWithApiKey,
@@ -75,6 +76,7 @@ export class SeamHttp {
     userIdentifierKey: string,
     options: ClientOptions = {},
   ): Promise<SeamHttp> {
+    warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)

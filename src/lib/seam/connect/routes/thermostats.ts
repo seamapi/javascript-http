@@ -23,6 +23,7 @@ import {
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
+import { warnOnInsecureuserIdentifierKey } from './auth.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpThermostatsClimateSettingSchedules } from './thermostats-climate-setting-schedules.js'
 
@@ -75,6 +76,7 @@ export class SeamHttpThermostats {
     userIdentifierKey: string,
     options: ClientOptions = {},
   ): Promise<SeamHttpThermostats> {
+    warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)

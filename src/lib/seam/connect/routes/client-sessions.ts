@@ -23,6 +23,8 @@ import {
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
+import { warnOnInsecureuserIdentifierKey } from './auth.js'
+
 export class SeamHttpClientSessions {
   client: Client
 
@@ -72,6 +74,7 @@ export class SeamHttpClientSessions {
     userIdentifierKey: string,
     options: ClientOptions = {},
   ): Promise<SeamHttpClientSessions> {
+    warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)

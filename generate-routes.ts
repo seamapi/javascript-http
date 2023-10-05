@@ -240,6 +240,7 @@ import type {
 } from '@seamapi/types/connect'
 import type { SetNonNullable } from 'type-fest'
 
+import { warnOnInsecureuserIdentifierKey } from './auth.js'
 import {
   type Client,
   type ClientOptions,

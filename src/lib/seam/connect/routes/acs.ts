@@ -24,6 +24,7 @@ import { SeamHttpAcsAccessGroups } from './acs-access-groups.js'
 import { SeamHttpAcsCredentials } from './acs-credentials.js'
 import { SeamHttpAcsSystems } from './acs-systems.js'
 import { SeamHttpAcsUsers } from './acs-users.js'
+import { warnOnInsecureuserIdentifierKey } from './auth.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpAcs {
@@ -75,6 +76,7 @@ export class SeamHttpAcs {
     userIdentifierKey: string,
     options: ClientOptions = {},
   ): Promise<SeamHttpAcs> {
+    warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)

@@ -46,6 +46,12 @@ const getAuthHeadersForApiKey = ({
     )
   }
 
+  if (isPublishableKey(apiKey)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Publishable Key cannot be used as an apiKey',
+    )
+  }
+
   if (!isSeamToken(apiKey)) {
     throw new SeamHttpInvalidTokenError(
       `Unknown or invalid apiKey format, expected token to start with ${tokenPrefix}`,
@@ -72,6 +78,12 @@ const getAuthHeadersForClientSessionToken = ({
     )
   }
 
+  if (isPublishableKey(clientSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Publishable Key cannot be used as a clientSessionToken',
+    )
+  }
+
   if (!isClientSessionToken(clientSessionToken)) {
     throw new SeamHttpInvalidTokenError(
       `Unknown or invalid clientSessionToken format, expected token to start with ${clientSessionTokenPrefix}`,
@@ -85,6 +97,30 @@ const getAuthHeadersForClientSessionToken = ({
 }
 
 const getAuthHeadersForPublishableKey = (publishableKey: string): Headers => {
+  if (isJwt(publishableKey)) {
+    throw new SeamHttpInvalidTokenError(
+      'A JWT cannot be used as a publishableKey',
+    )
+  }
+
+  if (isAccessToken(publishableKey)) {
+    throw new SeamHttpInvalidTokenError(
+      'An Access Token cannot be used as a publishableKey',
+    )
+  }
+
+  if (isClientSessionToken(publishableKey)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Client Session Token Key cannot be used as a publishableKey',
+    )
+  }
+
+  if (!isPublishableKey(publishableKey)) {
+    throw new SeamHttpInvalidTokenError(
+      `Unknown or invalid publishableKey format, expected token to start with ${publishableKeyTokenPrefix}`,
+    )
+  }
+
   return {
     'seam-publishable-key': publishableKey,
   }
@@ -98,9 +134,28 @@ export class SeamHttpInvalidTokenError extends Error {
   }
 }
 
+export const warnOnInsecureuserIdentifierKey = (
+  userIdentifierKey: string,
+): void => {
+  if (isEmail(userIdentifierKey)) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      ...[
+        'Using an email for the userIdentifierKey is insecure and may return an error in the future!',
+        'This is insecure because an email is common knowledge or easily guessed.',
+        'Use something with sufficient entropy known only to the owner of the client session.',
+        'For help choosing a user identifier key see',
+        'https://docs.seam.co/latest/seam-components/overview/get-started-with-client-side-components#3-select-a-user-identifier-key',
+      ],
+    )
+  }
+}
+
 const tokenPrefix = 'seam_'
 
 const clientSessionTokenPrefix = 'seam_cst'
+
+const publishableKeyTokenPrefix = 'seam_pk'
 
 const isClientSessionToken = (token: string): boolean =>
   token.startsWith(clientSessionTokenPrefix)
@@ -110,3 +165,10 @@ const isAccessToken = (token: string): boolean => token.startsWith('seam_at')
 const isJwt = (token: string): boolean => token.startsWith('ey')
 
 const isSeamToken = (token: string): boolean => token.startsWith(tokenPrefix)
+
+const isPublishableKey = (token: string): boolean =>
+  token.startsWith(publishableKeyTokenPrefix)
+
+// SOURCE: https://stackoverflow.com/a/46181
+const isEmail = (value: string): boolean =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)

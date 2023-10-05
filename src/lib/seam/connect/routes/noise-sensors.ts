@@ -20,6 +20,7 @@ import {
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
+import { warnOnInsecureuserIdentifierKey } from './auth.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpNoiseSensorsNoiseThresholds } from './noise-sensors-noise-thresholds.js'
 
@@ -72,6 +73,7 @@ export class SeamHttpNoiseSensors {
     userIdentifierKey: string,
     options: ClientOptions = {},
   ): Promise<SeamHttpNoiseSensors> {
+    warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)
