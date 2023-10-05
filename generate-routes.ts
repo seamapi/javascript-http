@@ -233,10 +233,18 @@ ${renderExports(route)}
 
 const renderImports = ({ namespace, subresources }: Route): string =>
   `
-import type { RouteRequestParams, RouteResponse, RouteRequestBody } from '@seamapi/types/connect'
+import type {
+  RouteRequestBody,
+  RouteRequestParams,
+  RouteResponse,
+} from '@seamapi/types/connect'
 import type { SetNonNullable } from 'type-fest'
 
-import { type Client, createClient } from 'lib/seam/connect/client.js'
+import {
+  type Client,
+  type ClientOptions,
+  createClient,
+} from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,

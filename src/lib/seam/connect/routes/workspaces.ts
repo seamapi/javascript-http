@@ -10,7 +10,11 @@ import type {
 } from '@seamapi/types/connect'
 import type { SetNonNullable } from 'type-fest'
 
-import { type Client, createClient } from 'lib/seam/connect/client.js'
+import {
+  type Client,
+  type ClientOptions,
+  createClient,
+} from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -65,6 +69,21 @@ export class SeamHttpWorkspaces {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
     return new SeamHttpWorkspaces(opts)
+  }
+
+  static async fromPublishableKey(
+    publishableKey: string,
+    userIdentifierKey: string,
+    options: ClientOptions = {},
+  ): Promise<SeamHttp> {
+    const opts = parseOptions(options)
+    const client = createClient({ ...opts, publishableKey })
+    const clientSessions = SeamHttpClientSessions.fromClient(client)
+    // TODO: clientSessions.getOrCreate({ user_identifier_key: userIdentifierKey })
+    const { token } = await clientSessions.create({
+      user_identifier_key: userIdentifierKey,
+    })
+    return SeamHttp.fromClientSessionToken(token, options)
   }
 
   async get(
