@@ -76,7 +76,7 @@ test.serial(
   'SeamHttp: constructor throws if SEAM_API_KEY environment variable is used with clientSessionToken',
   (t) => {
     env.SEAM_API_KEY = 'seam_apikey_token'
-    t.throws(() => new SeamHttp({ clientSessionToken: 'seam_cst_token' }), {
+    t.throws(() => new SeamHttp({ clientSessionToken: 'seam_cst1_token' }), {
       instanceOf: SeamHttpInvalidOptionsError,
       message: /apiKey/,
     })
@@ -134,6 +134,21 @@ test.serial(
     env.SEAM_API_URL = 'https://example.com'
     env.SEAM_ENDPOINT = endpoint
     const client = SeamHttp.fromApiKey(seed.seam_apikey1_token)
+    const device = await client.devices.get({
+      device_id: seed.august_device_1,
+    })
+    t.is(device.workspace_id, seed.seed_workspace_1)
+    t.is(device.device_id, seed.august_device_1)
+  },
+)
+
+test.serial(
+  'SeamHttp: SEAM_ENDPOINT environment variable is used with fromClientSessionToken',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    env.SEAM_API_URL = 'https://example.com'
+    env.SEAM_ENDPOINT = endpoint
+    const client = SeamHttp.fromClientSessionToken(seed.seam_cst1_token)
     const device = await client.devices.get({
       device_id: seed.august_device_1,
     })
