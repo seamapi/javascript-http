@@ -77,8 +77,7 @@ export class SeamHttpDevices {
     const clientOptions = parseOptions({ ...options, publishableKey })
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)
-    // TODO: clientSessions.getOrCreate({ user_identifier_key: userIdentifierKey })
-    const { token } = await clientSessions.create({
+    const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
     return SeamHttpDevices.fromClientSessionToken(token, options)

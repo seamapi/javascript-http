@@ -74,8 +74,7 @@ export class SeamHttpClientSessions {
     const clientOptions = parseOptions({ ...options, publishableKey })
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)
-    // TODO: clientSessions.getOrCreate({ user_identifier_key: userIdentifierKey })
-    const { token } = await clientSessions.create({
+    const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
     return SeamHttpClientSessions.fromClientSessionToken(token, options)
@@ -108,6 +107,18 @@ export class SeamHttpClientSessions {
       method: 'post',
       data: body,
     })
+    return data.client_session
+  }
+
+  async getOrCreate(
+    body: ClientSessionsGetOrCreateBody,
+  ): Promise<ClientSessionsGetOrCreateResponse['client_session']> {
+    const { data } =
+      await this.client.request<ClientSessionsGetOrCreateResponse>({
+        url: '/client_sessions/get_or_create',
+        method: 'post',
+        data: body,
+      })
     return data.client_session
   }
 
@@ -153,6 +164,13 @@ export type ClientSessionsGetBody = RouteRequestBody<'/client_sessions/get'>
 
 export type ClientSessionsGetResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/get'>>
+>
+
+export type ClientSessionsGetOrCreateBody =
+  RouteRequestBody<'/client_sessions/get_or_create'>
+
+export type ClientSessionsGetOrCreateResponse = SetNonNullable<
+  Required<RouteResponse<'/client_sessions/get_or_create'>>
 >
 
 export type ClientSessionsGrantAccessBody =

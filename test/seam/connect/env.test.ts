@@ -165,6 +165,43 @@ test.serial(
 )
 
 test.serial(
+  'SeamHttp: SEAM_API_KEY environment variable is ignored with fromPublishableKey',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    env.SEAM_API_KEY = 'some-invalid-api-key-5'
+    const seam = await SeamHttp.fromPublishableKey(
+      seed.seam_pk1_token,
+      seed.john_user_identifier_key,
+      {
+        endpoint,
+      },
+    )
+    const device = await seam.devices.get({
+      device_id: seed.august_device_1,
+    })
+    t.is(device.workspace_id, seed.seed_workspace_1)
+    t.is(device.device_id, seed.august_device_1)
+  },
+)
+
+test.serial(
+  'SeamHttp: SEAM_ENDPOINT environment variable is used with fromPublishableKey',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    env.SEAM_ENDPOINT = endpoint
+    const seam = await SeamHttp.fromPublishableKey(
+      seed.seam_pk1_token,
+      seed.john_user_identifier_key,
+    )
+    const device = await seam.devices.get({
+      device_id: seed.august_device_1,
+    })
+    t.is(device.workspace_id, seed.seed_workspace_1)
+    t.is(device.device_id, seed.august_device_1)
+  },
+)
+
+test.serial(
   'SeamHttp: SEAM_ENDPOINT environment variable is used with fromClientSessionToken',
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
