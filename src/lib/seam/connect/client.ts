@@ -20,7 +20,11 @@ export interface ClientOptions {
 
 type AxiosRetryConfig = Parameters<AxiosRetry>[1]
 
-export const createClient = (options: Required<SeamHttpOptions>): Axios => {
+type Options =
+  | Required<SeamHttpOptions>
+  | (Required<ClientOptions> & { publishableKey: string })
+
+export const createClient = (options: Options): Axios => {
   if (isSeamHttpOptionsWithClient(options)) return options.client
 
   const client = axios.create({

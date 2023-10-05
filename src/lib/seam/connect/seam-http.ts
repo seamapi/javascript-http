@@ -1,4 +1,4 @@
-import { type Client, createClient } from './client.js'
+import { type Client, type ClientOptions, createClient } from './client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -68,6 +68,21 @@ export class SeamHttp {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
     return new SeamHttp(opts)
+  }
+
+  static async fromPublishableKey(
+    publishableKey: string,
+    userIdentifierKey: string,
+    options: ClientOptions = {},
+  ): Promise<SeamHttp> {
+    const opts = parseOptions(options)
+    const client = createClient({ ...opts, publishableKey })
+    const clientSessions = SeamHttpClientSessions.fromClient(client)
+    // TODO: clientSessions.getOrCreate({ user_identifier_key: userIdentifierKey })
+    const { token } = await clientSessions.create({
+      user_identifier_key: userIdentifierKey,
+    })
+    return SeamHttp.fromClientSessionToken(token, options)
   }
 
   get accessCodes(): SeamHttpAccessCodes {

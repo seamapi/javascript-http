@@ -9,7 +9,13 @@ import {
 
 type Headers = Record<string, string>
 
-export const getAuthHeaders = (options: SeamHttpOptions): Headers => {
+export const getAuthHeaders = (
+  options: SeamHttpOptions | { publishableKey: string },
+): Headers => {
+  if ('publishableKey' in options) {
+    return getAuthHeadersForPublishableKey(options.publishableKey)
+  }
+
   if (isSeamHttpOptionsWithApiKey(options)) {
     return getAuthHeadersForApiKey(options)
   }
@@ -19,7 +25,7 @@ export const getAuthHeaders = (options: SeamHttpOptions): Headers => {
   }
 
   throw new SeamHttpInvalidOptionsError(
-    'Must specify an apiKey or clientSessionToken',
+    'Must specify an apiKey, clientSessionToken, or publishableKey',
   )
 }
 
@@ -77,6 +83,12 @@ const getAuthHeadersForClientSessionToken = ({
   return {
     authorization: `Bearer ${clientSessionToken}`,
     'client-session-token': clientSessionToken,
+  }
+}
+
+const getAuthHeadersForPublishableKey = (publishableKey: string): Headers => {
+  return {
+    'seam-publishable-key': publishableKey,
   }
 }
 
