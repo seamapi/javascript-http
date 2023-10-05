@@ -234,10 +234,9 @@ ${renderExports(route)}
 const renderImports = ({ namespace, subresources }: Route): string =>
   `
 import type { RouteRequestParams, RouteResponse, RouteRequestBody } from '@seamapi/types/connect'
-import { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
-import { createClient } from 'lib/seam/connect/client.js'
+import { type Client, createClient } from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -268,7 +267,7 @@ const renderClass = (
 ): string =>
   `
 export class SeamHttp${pascalCase(namespace)} {
-  client: Axios
+  client: Client
 
   ${constructors
     .replaceAll(': SeamHttp ', `: SeamHttp${pascalCase(namespace)} `)

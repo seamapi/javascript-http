@@ -1,5 +1,4 @@
-import type { Axios, AxiosRequestConfig } from 'axios'
-import type { AxiosRetry } from 'axios-retry'
+import type { Client, ClientOptions } from './client.js'
 
 export type SeamHttpOptions =
   | SeamHttpOptionsFromEnv
@@ -7,18 +6,12 @@ export type SeamHttpOptions =
   | SeamHttpOptionsWithApiKey
   | SeamHttpOptionsWithClientSessionToken
 
-interface SeamHttpCommonOptions {
-  endpoint?: string
-  axiosOptions?: AxiosRequestConfig
-  axiosRetryOptions?: AxiosRetryConfig
-}
-
-type AxiosRetryConfig = Parameters<AxiosRetry>[1]
+type SeamHttpCommonOptions = ClientOptions
 
 export type SeamHttpOptionsFromEnv = SeamHttpCommonOptions
 
 export interface SeamHttpOptionsWithClient {
-  client: Axios
+  client: Client
 }
 
 export const isSeamHttpOptionsWithClient = (
@@ -27,7 +20,7 @@ export const isSeamHttpOptionsWithClient = (
   if (!('client' in options)) return false
   if (options.client == null) return false
 
-  const keys = Object.keys(options)
+  const keys = Object.keys(options).filter((k) => k !== 'client')
   if (keys.length > 0) {
     throw new SeamHttpInvalidOptionsError(
       `The client option cannot be used with any other option, but received: ${keys.join(

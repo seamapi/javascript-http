@@ -4,10 +4,9 @@
  */
 
 import type { RouteRequestBody, RouteResponse } from '@seamapi/types/connect'
-import type { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
-import { createClient } from 'lib/seam/connect/client.js'
+import { type Client, createClient } from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -23,7 +22,7 @@ import { parseOptions } from 'lib/seam/connect/parse-options.js'
 import { SeamHttpAccessCodesUnmanaged } from './access-codes-unmanaged.js'
 
 export class SeamHttpAccessCodes {
-  client: Axios
+  client: Client
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)

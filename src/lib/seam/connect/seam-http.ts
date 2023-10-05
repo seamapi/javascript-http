@@ -1,6 +1,4 @@
-import type { Axios } from 'axios'
-
-import { createClient } from './client.js'
+import { type Client, createClient } from './client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -29,7 +27,7 @@ import {
 } from './routes/index.js'
 
 export class SeamHttp {
-  client: Axios
+  client: Client
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
