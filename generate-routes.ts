@@ -240,7 +240,7 @@ import type {
 } from '@seamapi/types/connect'
 import type { SetNonNullable } from 'type-fest'
 
-import { warnOnInsecureuserIdentifierKey } from './auth.js'
+import { warnOnInsecureuserIdentifierKey } from 'lib/seam/connect/auth.js'
 import {
   type Client,
   type ClientOptions,
@@ -250,6 +250,7 @@ import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
+  type SeamHttpFromPublishableKeyOptions,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,

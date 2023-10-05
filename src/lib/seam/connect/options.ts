@@ -10,6 +10,8 @@ interface SeamHttpCommonOptions extends ClientOptions {
   endpoint?: string
 }
 
+export type SeamHttpFromPublishableKeyOptions = SeamHttpCommonOptions
+
 export type SeamHttpOptionsFromEnv = SeamHttpCommonOptions
 
 export interface SeamHttpOptionsWithClient {

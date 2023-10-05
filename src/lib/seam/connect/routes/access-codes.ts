@@ -6,15 +6,13 @@
 import type { RouteRequestBody, RouteResponse } from '@seamapi/types/connect'
 import type { SetNonNullable } from 'type-fest'
 
-import {
-  type Client,
-  type ClientOptions,
-  createClient,
-} from 'lib/seam/connect/client.js'
+import { warnOnInsecureuserIdentifierKey } from 'lib/seam/connect/auth.js'
+import { type Client, createClient } from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
+  type SeamHttpFromPublishableKeyOptions,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
@@ -24,7 +22,6 @@ import {
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
 import { SeamHttpAccessCodesUnmanaged } from './access-codes-unmanaged.js'
-import { warnOnInsecureuserIdentifierKey } from './auth.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpAccessCodes {
@@ -74,7 +71,7 @@ export class SeamHttpAccessCodes {
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
-    options: ClientOptions = {},
+    options: SeamHttpFromPublishableKeyOptions = {},
   ): Promise<SeamHttpAccessCodes> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
