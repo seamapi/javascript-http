@@ -53,8 +53,6 @@ const ignoredEndpointPaths = [
   '/noise_sensors/simulate/trigger_noise_threshold',
 ] as const
 
-// TODO: some endpoint's arguments (like list) are optional and should allow undefined
-
 const endpointResources: Partial<
   Record<
     keyof typeof openapi.paths,

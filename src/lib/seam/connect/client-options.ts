@@ -89,9 +89,3 @@ export class SeamHttpInvalidOptionsError extends Error {
     Error.captureStackTrace(this, this.constructor)
   }
 }
-
-// TODO: withSessionToken { sessionToken } or withMultiWorkspaceApiKey { apiKey }?
-// export interface SeamHttpOptionsWithSessionToken extends SeamHttpCommonOptions {
-//   workspaceId: string
-//   apiKey: string
-// }

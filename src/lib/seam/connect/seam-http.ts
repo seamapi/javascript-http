@@ -127,10 +127,3 @@ export class SeamHttp {
     return SeamHttpWorkspaces.fromClient(this.client)
   }
 }
-
-// TODO
-// static fromPublishableKey and deprecate getClientSessionToken
-
-// TODO: Should we keep makeRequest?
-// Better to implement error handling and wrapping in an error handler.
-// makeRequest
