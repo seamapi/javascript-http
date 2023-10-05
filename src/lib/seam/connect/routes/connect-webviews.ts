@@ -26,36 +26,37 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
-import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions.js'
+
+import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpConnectWebviews {
   client: Client
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const options = parseOptions(apiKeyOrOptions)
-    this.client = createClient(options)
+    const clientOptions = parseOptions(apiKeyOrOptions)
+    this.client = createClient(clientOptions)
   }
 
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
   ): SeamHttpConnectWebviews {
-    const opts = { ...options, client }
-    if (!isSeamHttpOptionsWithClient(opts)) {
+    const constructorOptions = { ...options, client }
+    if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpConnectWebviews(opts)
+    return new SeamHttpConnectWebviews(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
   ): SeamHttpConnectWebviews {
-    const opts = { ...options, apiKey }
-    if (!isSeamHttpOptionsWithApiKey(opts)) {
+    const constructorOptions = { ...options, apiKey }
+    if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpConnectWebviews(opts)
+    return new SeamHttpConnectWebviews(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -65,11 +66,11 @@ export class SeamHttpConnectWebviews {
       'clientSessionToken'
     > = {},
   ): SeamHttpConnectWebviews {
-    const opts = { ...options, clientSessionToken }
-    if (!isSeamHttpOptionsWithClientSessionToken(opts)) {
+    const constructorOptions = { ...options, clientSessionToken }
+    if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpConnectWebviews(opts)
+    return new SeamHttpConnectWebviews(constructorOptions)
   }
 
   static async fromPublishableKey(
@@ -77,8 +78,8 @@ export class SeamHttpConnectWebviews {
     userIdentifierKey: string,
     options: ClientOptions = {},
   ): Promise<SeamHttpConnectWebviews> {
-    const opts = parseOptions(options)
-    const client = createClient({ ...opts, publishableKey })
+    const clientOptions = parseOptions({ ...options, publishableKey })
+    const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)
     // TODO: clientSessions.getOrCreate({ user_identifier_key: userIdentifierKey })
     const { token } = await clientSessions.create({

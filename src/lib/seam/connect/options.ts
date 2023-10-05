@@ -6,7 +6,9 @@ export type SeamHttpOptions =
   | SeamHttpOptionsWithApiKey
   | SeamHttpOptionsWithClientSessionToken
 
-type SeamHttpCommonOptions = ClientOptions
+interface SeamHttpCommonOptions extends ClientOptions {
+  endpoint?: string
+}
 
 export type SeamHttpOptionsFromEnv = SeamHttpCommonOptions
 

@@ -1,10 +1,41 @@
-import { isSeamHttpOptionsWithClient, type SeamHttpOptions } from './options.js'
+import { getAuthHeaders } from './auth.js'
+import type { ClientOptions } from './client.js'
+import {
+  isSeamHttpOptionsWithClient,
+  isSeamHttpOptionsWithClientSessionToken,
+  type SeamHttpOptions,
+} from './options.js'
 
 const defaultEndpoint = 'https://connect.getseam.com'
 
+export type Options = SeamHttpOptions & { publishableKey?: string }
+
 export const parseOptions = (
-  apiKeyOrOptions: string | SeamHttpOptions,
-): Required<SeamHttpOptions> => {
+  apiKeyOrOptions: string | Options,
+): ClientOptions => {
+  const options = getNormalizedOptions(apiKeyOrOptions)
+
+  if (isSeamHttpOptionsWithClient(options)) return options
+
+  return {
+    axiosOptions: {
+      baseURL: options.endpoint ?? getEndpointFromEnv() ?? defaultEndpoint,
+      withCredentials: isSeamHttpOptionsWithClientSessionToken(options),
+      ...options.axiosOptions,
+      headers: {
+        ...getAuthHeaders(options),
+        ...options.axiosOptions?.headers,
+      },
+    },
+    axiosRetryOptions: {
+      ...options.axiosRetryOptions,
+    },
+  }
+}
+
+const getNormalizedOptions = (
+  apiKeyOrOptions: string | Options,
+): SeamHttpOptions => {
   const options =
     typeof apiKeyOrOptions === 'string'
       ? { apiKey: apiKeyOrOptions }
@@ -12,17 +43,12 @@ export const parseOptions = (
 
   if (isSeamHttpOptionsWithClient(options)) return options
 
-  const endpoint = options.endpoint ?? getEndpointFromEnv() ?? defaultEndpoint
-
   const apiKey =
     'apiKey' in options ? options.apiKey : getApiKeyFromEnv(options)
 
   return {
     ...options,
     ...(apiKey != null ? { apiKey } : {}),
-    endpoint,
-    axiosOptions: options.axiosOptions ?? {},
-    axiosRetryOptions: options.axiosRetryOptions ?? {},
   }
 }
 

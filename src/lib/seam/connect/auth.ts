@@ -2,16 +2,14 @@ import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClientSessionToken,
   SeamHttpInvalidOptionsError,
-  type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
 } from './options.js'
+import type { Options } from './parse-options.js'
 
 type Headers = Record<string, string>
 
-export const getAuthHeaders = (
-  options: SeamHttpOptions | { publishableKey: string },
-): Headers => {
+export const getAuthHeaders = (options: Options): Headers => {
   if ('publishableKey' in options) {
     return getAuthHeadersForPublishableKey(options.publishableKey)
   }

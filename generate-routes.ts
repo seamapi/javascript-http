@@ -256,10 +256,11 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
+
 ${
   namespace === 'client_sessions'
     ? ''
-    : "import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions.js'"
+    : "import { SeamHttpClientSessions } from './client-sessions.js'"
 }
 ${subresources
   .map((subresource) => renderSubresourceImport(subresource, namespace))
