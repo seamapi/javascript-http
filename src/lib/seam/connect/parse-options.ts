@@ -1,5 +1,7 @@
 import { isSeamHttpOptionsWithClient, type SeamHttpOptions } from './options.js'
 
+const defaultEndpoint = 'https://connect.getseam.com'
+
 export const parseOptions = (
   apiKeyOrOptions: string | SeamHttpOptions,
 ): Required<SeamHttpOptions> => {
@@ -10,14 +12,10 @@ export const parseOptions = (
 
   if (isSeamHttpOptionsWithClient(options)) return options
 
-  const endpoint =
-    options.endpoint ??
-    globalThis.process?.env?.SEAM_ENDPOINT ??
-    globalThis.process?.env?.SEAM_API_URL ??
-    'https://connect.getseam.com'
+  const endpoint = options.endpoint ?? getEndpointFromEnv() ?? defaultEndpoint
 
   const apiKey =
-    'apiKey' in options ? options.apiKey : globalThis.process?.env?.SEAM_API_KEY
+    'apiKey' in options ? options.apiKey : getApiKeyFromEnv(options)
 
   return {
     ...options,
@@ -26,4 +24,20 @@ export const parseOptions = (
     axiosOptions: options.axiosOptions ?? {},
     axiosRetryOptions: options.axiosRetryOptions ?? {},
   }
+}
+
+const getApiKeyFromEnv = (
+  options: SeamHttpOptions,
+): string | null | undefined => {
+  if ('clientSessionToken' in options && options.clientSessionToken != null) {
+    return null
+  }
+  return globalThis.process?.env?.SEAM_API_KEY
+}
+
+const getEndpointFromEnv = (): string | null | undefined => {
+  return (
+    globalThis.process?.env?.SEAM_ENDPOINT ??
+    globalThis.process?.env?.SEAM_API_URL
+  )
 }

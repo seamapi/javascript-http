@@ -44,7 +44,7 @@ export const isSeamHttpOptionsWithApiKey = (
 
   if ('clientSessionToken' in options && options.clientSessionToken != null) {
     throw new SeamHttpInvalidOptionsError(
-      'The clientSessionToken option cannot be used with the apiKey option.',
+      'The clientSessionToken option cannot be used with the apiKey option',
     )
   }
 
@@ -64,7 +64,7 @@ export const isSeamHttpOptionsWithClientSessionToken = (
 
   if ('apiKey' in options && options.apiKey != null) {
     throw new SeamHttpInvalidOptionsError(
-      'The clientSessionToken option cannot be used with the apiKey option.',
+      'The clientSessionToken option cannot be used with the apiKey option',
     )
   }
 
