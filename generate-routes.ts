@@ -233,15 +233,24 @@ ${renderExports(route)}
 
 const renderImports = ({ namespace, subresources }: Route): string =>
   `
-import type { RouteRequestParams, RouteResponse, RouteRequestBody } from '@seamapi/types/connect'
-import { Axios } from 'axios'
+import type {
+  RouteRequestBody,
+  RouteRequestParams,
+  RouteResponse,
+} from '@seamapi/types/connect'
 import type { SetNonNullable } from 'type-fest'
 
-import { createClient } from 'lib/seam/connect/client.js'
+import { warnOnInsecureuserIdentifierKey } from 'lib/seam/connect/auth.js'
+import {
+  type Client,
+  type ClientOptions,
+  createClient,
+} from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
+  type SeamHttpFromPublishableKeyOptions,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
@@ -249,6 +258,12 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
+
+${
+  namespace === 'client_sessions'
+    ? ''
+    : "import { SeamHttpClientSessions } from './client-sessions.js'"
+}
 ${subresources
   .map((subresource) => renderSubresourceImport(subresource, namespace))
   .join('\n')}
@@ -268,11 +283,15 @@ const renderClass = (
 ): string =>
   `
 export class SeamHttp${pascalCase(namespace)} {
-  client: Axios
+  client: Client
 
   ${constructors
-    .replace(/.*this\.#legacy.*\n/, '')
     .replaceAll(': SeamHttp ', `: SeamHttp${pascalCase(namespace)} `)
+    .replaceAll('<SeamHttp>', `<SeamHttp${pascalCase(namespace)}>`)
+    .replaceAll(
+      'SeamHttp.fromClientSessionToken',
+      `SeamHttp${pascalCase(namespace)}.fromClientSessionToken`,
+    )
     .replaceAll('new SeamHttp(', `new SeamHttp${pascalCase(namespace)}(`)}
 
   ${subresources

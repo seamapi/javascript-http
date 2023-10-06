@@ -1,5 +1,4 @@
-import type { Axios, AxiosRequestConfig } from 'axios'
-import type { AxiosRetry } from 'axios-retry'
+import type { Client, ClientOptions } from './client.js'
 
 export type SeamHttpOptions =
   | SeamHttpOptionsFromEnv
@@ -7,20 +6,16 @@ export type SeamHttpOptions =
   | SeamHttpOptionsWithApiKey
   | SeamHttpOptionsWithClientSessionToken
 
-interface SeamHttpCommonOptions {
+interface SeamHttpCommonOptions extends ClientOptions {
   endpoint?: string
-  axiosOptions?: AxiosRequestConfig
-  axiosRetryOptions?: AxiosRetryConfig
-  enableLegacyMethodBehaivor?: boolean
 }
 
-type AxiosRetryConfig = Parameters<AxiosRetry>[1]
+export type SeamHttpFromPublishableKeyOptions = SeamHttpCommonOptions
 
 export type SeamHttpOptionsFromEnv = SeamHttpCommonOptions
 
-export interface SeamHttpOptionsWithClient
-  extends Pick<SeamHttpCommonOptions, 'enableLegacyMethodBehaivor'> {
-  client: Axios
+export interface SeamHttpOptionsWithClient {
+  client: Client
 }
 
 export const isSeamHttpOptionsWithClient = (
@@ -29,12 +24,10 @@ export const isSeamHttpOptionsWithClient = (
   if (!('client' in options)) return false
   if (options.client == null) return false
 
-  const keys = Object.keys(options).filter(
-    (k) => !['client', 'enableLegacyMethodBehaivor'].includes(k),
-  )
+  const keys = Object.keys(options).filter((k) => k !== 'client')
   if (keys.length > 0) {
     throw new SeamHttpInvalidOptionsError(
-      `The client option cannot be used with any other option except enableLegacyMethodBehaivor, but received: ${keys.join(
+      `The client option cannot be used with any other option, but received: ${keys.join(
         ', ',
       )}`,
     )
@@ -55,7 +48,7 @@ export const isSeamHttpOptionsWithApiKey = (
 
   if ('clientSessionToken' in options && options.clientSessionToken != null) {
     throw new SeamHttpInvalidOptionsError(
-      'The clientSessionToken option cannot be used with the apiKey option.',
+      'The clientSessionToken option cannot be used with the apiKey option',
     )
   }
 
@@ -75,7 +68,7 @@ export const isSeamHttpOptionsWithClientSessionToken = (
 
   if ('apiKey' in options && options.apiKey != null) {
     throw new SeamHttpInvalidOptionsError(
-      'The clientSessionToken option cannot be used with the apiKey option.',
+      'The clientSessionToken option cannot be used with the apiKey option',
     )
   }
 

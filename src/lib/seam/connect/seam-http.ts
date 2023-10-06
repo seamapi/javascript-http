@@ -1,10 +1,10 @@
-import type { Axios } from 'axios'
-
-import { createClient } from './client.js'
+import { warnOnInsecureuserIdentifierKey } from './auth.js'
+import { type Client, createClient } from './client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
+  type SeamHttpFromPublishableKeyOptions,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
@@ -29,36 +29,33 @@ import {
 } from './routes/index.js'
 
 export class SeamHttp {
-  client: Axios
-
-  // #legacy: boolean
+  client: Client
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const options = parseOptions(apiKeyOrOptions)
-    // this.#legacy = options.enableLegacyMethodBehaivor
-    this.client = createClient(options)
+    const clientOptions = parseOptions(apiKeyOrOptions)
+    this.client = createClient(clientOptions)
   }
 
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
   ): SeamHttp {
-    const opts = { ...options, client }
-    if (!isSeamHttpOptionsWithClient(opts)) {
+    const constructorOptions = { ...options, client }
+    if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttp(opts)
+    return new SeamHttp(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
   ): SeamHttp {
-    const opts = { ...options, apiKey }
-    if (!isSeamHttpOptionsWithApiKey(opts)) {
+    const constructorOptions = { ...options, apiKey }
+    if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttp(opts)
+    return new SeamHttp(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -68,11 +65,26 @@ export class SeamHttp {
       'clientSessionToken'
     > = {},
   ): SeamHttp {
-    const opts = { ...options, clientSessionToken }
-    if (!isSeamHttpOptionsWithClientSessionToken(opts)) {
+    const constructorOptions = { ...options, clientSessionToken }
+    if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttp(opts)
+    return new SeamHttp(constructorOptions)
+  }
+
+  static async fromPublishableKey(
+    publishableKey: string,
+    userIdentifierKey: string,
+    options: SeamHttpFromPublishableKeyOptions = {},
+  ): Promise<SeamHttp> {
+    warnOnInsecureuserIdentifierKey(userIdentifierKey)
+    const clientOptions = parseOptions({ ...options, publishableKey })
+    const client = createClient(clientOptions)
+    const clientSessions = SeamHttpClientSessions.fromClient(client)
+    const { token } = await clientSessions.getOrCreate({
+      user_identifier_key: userIdentifierKey,
+    })
+    return SeamHttp.fromClientSessionToken(token, options)
   }
 
   get accessCodes(): SeamHttpAccessCodes {

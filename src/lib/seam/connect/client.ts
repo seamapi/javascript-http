@@ -1,27 +1,24 @@
-import axios, { type Axios } from 'axios'
-import axiosRetry, { exponentialDelay } from 'axios-retry'
+import axios, { type Axios, type AxiosRequestConfig } from 'axios'
+import axiosRetry, { type AxiosRetry, exponentialDelay } from 'axios-retry'
 
 import { paramsSerializer } from 'lib/params-serializer.js'
 
-import { getAuthHeaders } from './auth.js'
-import {
-  isSeamHttpOptionsWithClient,
-  isSeamHttpOptionsWithClientSessionToken,
-  type SeamHttpOptions,
-} from './options.js'
+export type Client = Axios
 
-export const createClient = (options: Required<SeamHttpOptions>): Axios => {
-  if (isSeamHttpOptionsWithClient(options)) return options.client
+export interface ClientOptions {
+  axiosOptions?: AxiosRequestConfig
+  axiosRetryOptions?: AxiosRetryConfig
+  client?: Client
+}
+
+type AxiosRetryConfig = Parameters<AxiosRetry>[1]
+
+export const createClient = (options: ClientOptions): Axios => {
+  if (options.client != null) return options.client
 
   const client = axios.create({
-    baseURL: options.endpoint,
-    withCredentials: isSeamHttpOptionsWithClientSessionToken(options),
     paramsSerializer,
     ...options.axiosOptions,
-    headers: {
-      ...getAuthHeaders(options),
-      ...options.axiosOptions.headers,
-    },
   })
 
   axiosRetry(client, {

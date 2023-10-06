@@ -4,14 +4,15 @@
  */
 
 import type { RouteRequestBody, RouteResponse } from '@seamapi/types/connect'
-import type { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
-import { createClient } from 'lib/seam/connect/client.js'
+import { warnOnInsecureuserIdentifierKey } from 'lib/seam/connect/auth.js'
+import { type Client, createClient } from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
+  type SeamHttpFromPublishableKeyOptions,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
@@ -21,33 +22,33 @@ import {
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
 export class SeamHttpClientSessions {
-  client: Axios
+  client: Client
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const options = parseOptions(apiKeyOrOptions)
-    this.client = createClient(options)
+    const clientOptions = parseOptions(apiKeyOrOptions)
+    this.client = createClient(clientOptions)
   }
 
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
   ): SeamHttpClientSessions {
-    const opts = { ...options, client }
-    if (!isSeamHttpOptionsWithClient(opts)) {
+    const constructorOptions = { ...options, client }
+    if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpClientSessions(opts)
+    return new SeamHttpClientSessions(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
   ): SeamHttpClientSessions {
-    const opts = { ...options, apiKey }
-    if (!isSeamHttpOptionsWithApiKey(opts)) {
+    const constructorOptions = { ...options, apiKey }
+    if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpClientSessions(opts)
+    return new SeamHttpClientSessions(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -57,11 +58,26 @@ export class SeamHttpClientSessions {
       'clientSessionToken'
     > = {},
   ): SeamHttpClientSessions {
-    const opts = { ...options, clientSessionToken }
-    if (!isSeamHttpOptionsWithClientSessionToken(opts)) {
+    const constructorOptions = { ...options, clientSessionToken }
+    if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpClientSessions(opts)
+    return new SeamHttpClientSessions(constructorOptions)
+  }
+
+  static async fromPublishableKey(
+    publishableKey: string,
+    userIdentifierKey: string,
+    options: SeamHttpFromPublishableKeyOptions = {},
+  ): Promise<SeamHttpClientSessions> {
+    warnOnInsecureuserIdentifierKey(userIdentifierKey)
+    const clientOptions = parseOptions({ ...options, publishableKey })
+    const client = createClient(clientOptions)
+    const clientSessions = SeamHttpClientSessions.fromClient(client)
+    const { token } = await clientSessions.getOrCreate({
+      user_identifier_key: userIdentifierKey,
+    })
+    return SeamHttpClientSessions.fromClientSessionToken(token, options)
   }
 
   async create(
@@ -91,6 +107,18 @@ export class SeamHttpClientSessions {
       method: 'post',
       data: body,
     })
+    return data.client_session
+  }
+
+  async getOrCreate(
+    body: ClientSessionsGetOrCreateBody,
+  ): Promise<ClientSessionsGetOrCreateResponse['client_session']> {
+    const { data } =
+      await this.client.request<ClientSessionsGetOrCreateResponse>({
+        url: '/client_sessions/get_or_create',
+        method: 'post',
+        data: body,
+      })
     return data.client_session
   }
 
@@ -136,6 +164,13 @@ export type ClientSessionsGetBody = RouteRequestBody<'/client_sessions/get'>
 
 export type ClientSessionsGetResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/get'>>
+>
+
+export type ClientSessionsGetOrCreateBody =
+  RouteRequestBody<'/client_sessions/get_or_create'>
+
+export type ClientSessionsGetOrCreateResponse = SetNonNullable<
+  Required<RouteResponse<'/client_sessions/get_or_create'>>
 >
 
 export type ClientSessionsGrantAccessBody =

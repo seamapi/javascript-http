@@ -88,8 +88,8 @@
     "axios-retry": "^3.8.0"
   },
   "devDependencies": {
-    "@seamapi/fake-seam-connect": "^1.18.0",
-    "@seamapi/types": "^1.14.0",
+    "@seamapi/fake-seam-connect": "^1.21.0",
+    "@seamapi/types": "^1.24.0",
     "@types/eslint": "^8.44.2",
     "@types/node": "^18.11.18",
     "ava": "^5.0.1",

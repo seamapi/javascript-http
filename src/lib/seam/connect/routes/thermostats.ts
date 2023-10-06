@@ -4,14 +4,15 @@
  */
 
 import type { RouteRequestBody, RouteResponse } from '@seamapi/types/connect'
-import type { Axios } from 'axios'
 import type { SetNonNullable } from 'type-fest'
 
-import { createClient } from 'lib/seam/connect/client.js'
+import { warnOnInsecureuserIdentifierKey } from 'lib/seam/connect/auth.js'
+import { type Client, createClient } from 'lib/seam/connect/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
+  type SeamHttpFromPublishableKeyOptions,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
@@ -20,36 +21,37 @@ import {
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
+import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpThermostatsClimateSettingSchedules } from './thermostats-climate-setting-schedules.js'
 
 export class SeamHttpThermostats {
-  client: Axios
+  client: Client
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const options = parseOptions(apiKeyOrOptions)
-    this.client = createClient(options)
+    const clientOptions = parseOptions(apiKeyOrOptions)
+    this.client = createClient(clientOptions)
   }
 
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
   ): SeamHttpThermostats {
-    const opts = { ...options, client }
-    if (!isSeamHttpOptionsWithClient(opts)) {
+    const constructorOptions = { ...options, client }
+    if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpThermostats(opts)
+    return new SeamHttpThermostats(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
   ): SeamHttpThermostats {
-    const opts = { ...options, apiKey }
-    if (!isSeamHttpOptionsWithApiKey(opts)) {
+    const constructorOptions = { ...options, apiKey }
+    if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpThermostats(opts)
+    return new SeamHttpThermostats(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -59,11 +61,26 @@ export class SeamHttpThermostats {
       'clientSessionToken'
     > = {},
   ): SeamHttpThermostats {
-    const opts = { ...options, clientSessionToken }
-    if (!isSeamHttpOptionsWithClientSessionToken(opts)) {
+    const constructorOptions = { ...options, clientSessionToken }
+    if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpThermostats(opts)
+    return new SeamHttpThermostats(constructorOptions)
+  }
+
+  static async fromPublishableKey(
+    publishableKey: string,
+    userIdentifierKey: string,
+    options: SeamHttpFromPublishableKeyOptions = {},
+  ): Promise<SeamHttpThermostats> {
+    warnOnInsecureuserIdentifierKey(userIdentifierKey)
+    const clientOptions = parseOptions({ ...options, publishableKey })
+    const client = createClient(clientOptions)
+    const clientSessions = SeamHttpClientSessions.fromClient(client)
+    const { token } = await clientSessions.getOrCreate({
+      user_identifier_key: userIdentifierKey,
+    })
+    return SeamHttpThermostats.fromClientSessionToken(token, options)
   }
 
   get climateSettingSchedules(): SeamHttpThermostatsClimateSettingSchedules {
