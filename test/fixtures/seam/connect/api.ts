@@ -1,10 +1,18 @@
-import { createFake, type Seed } from '@seamapi/fake-seam-connect'
+import {
+  createFake,
+  type Database,
+  type Seed,
+} from '@seamapi/fake-seam-connect'
 import type { ExecutionContext } from 'ava'
 import fetch from 'node-fetch' // TODO: Remove node-fetch when Node v16 support is dropped.
 
 export const getTestServer = async (
   t: ExecutionContext,
-): Promise<{ endpoint: string; seed: Seed }> => {
+): Promise<{
+  endpoint: string
+  seed: Seed
+  db: Database
+}> => {
   const fake = await createFake()
   const seed = await fake.seed()
 
@@ -21,5 +29,6 @@ export const getTestServer = async (
   return {
     endpoint,
     seed,
+    db: fake.database,
   }
 }
