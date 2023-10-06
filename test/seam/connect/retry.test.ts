@@ -6,17 +6,19 @@ import { SeamHttp } from '@seamapi/http/connect'
 
 test('SeamHttp: retries 503 status errors twice by default ', async (t) => {
   const { seed, endpoint, db } = await getTestServer(t)
+  const expectedRetryCount = 2
 
   db.simulateWorkspaceOutage(seed.seed_workspace_1, {
     routes: ['/devices/get'],
   })
 
-  t.plan(4)
+  t.plan(expectedRetryCount + 2)
+
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
     axiosRetryOptions: {
       onRetry: (retryCount) => {
-        t.true(retryCount < 3)
+        t.true(retryCount <= expectedRetryCount)
       },
     },
   })
