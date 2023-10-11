@@ -52,6 +52,7 @@
     "prebuild:ts": "del 'index.*' 'connect.*' 'lib'",
     "postbuild:ts": "tsc-alias --project tsconfig.build.json",
     "typecheck": "tsc",
+    "docs:build": "typedoc",
     "test": "c8 ava",
     "pretest": "tsx src/index.ts",
     "test:update": "ava --update-snapshots",
@@ -110,6 +111,7 @@
     "tsup": "^7.2.0",
     "tsx": "^3.12.1",
     "type-fest": "^4.3.1",
+    "typedoc": "^0.25.2",
     "typescript": "^5.1.0"
   }
 }
