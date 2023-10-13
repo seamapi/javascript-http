@@ -1,9 +1,9 @@
-import axios, { type Axios, type AxiosRequestConfig } from 'axios'
+import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
 import axiosRetry, { type AxiosRetry, exponentialDelay } from 'axios-retry'
 
 import { paramsSerializer } from 'lib/params-serializer.js'
 
-export type Client = Axios
+export type Client = AxiosInstance
 
 export interface ClientOptions {
   axiosOptions?: AxiosRequestConfig
@@ -13,7 +13,7 @@ export interface ClientOptions {
 
 type AxiosRetryConfig = Parameters<AxiosRetry>[1]
 
-export const createClient = (options: ClientOptions): Axios => {
+export const createClient = (options: ClientOptions): AxiosInstance => {
   if (options.client != null) return options.client
 
   const client = axios.create({
