@@ -36,6 +36,7 @@
     "test/**/*",
     "examples/**/*",
     "tsup.config.ts",
+    "prepack.ts",
     "generate-routes.ts"
   ]
 }

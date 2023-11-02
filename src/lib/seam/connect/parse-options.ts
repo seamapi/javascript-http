@@ -1,3 +1,5 @@
+import version from 'src/lib/version.js'
+
 import { getAuthHeaders } from './auth.js'
 import type { ClientOptions } from './client.js'
 import {
@@ -7,6 +9,11 @@ import {
 } from './options.js'
 
 const defaultEndpoint = 'https://connect.getseam.com'
+
+const sdkHeaders = {
+  'seam-sdk-name': 'seamapi/javascript-http',
+  'seam-sdk-version': version,
+}
 
 export type Options = SeamHttpOptions & { publishableKey?: string }
 
@@ -25,6 +32,7 @@ export const parseOptions = (
       headers: {
         ...getAuthHeaders(options),
         ...options.axiosOptions?.headers,
+        ...sdkHeaders,
       },
     },
     axiosRetryOptions: {
