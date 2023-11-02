@@ -96,7 +96,7 @@ export class SeamHttpThermostats {
   }
 
   async get(
-    body: ThermostatsGetBody,
+    body: ThermostatsGetParams,
   ): Promise<ThermostatsGetResponse['thermostat']> {
     const { data } = await this.client.request<ThermostatsGetResponse>({
       url: '/thermostats/get',
@@ -123,7 +123,7 @@ export class SeamHttpThermostats {
   }
 
   async list(
-    body: ThermostatsListBody,
+    body: ThermostatsListParams,
   ): Promise<ThermostatsListResponse['thermostats']> {
     const { data } = await this.client.request<ThermostatsListResponse>({
       url: '/thermostats/list',
@@ -164,7 +164,7 @@ export type ThermostatsCoolResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/cool'>>
 >
 
-export type ThermostatsGetBody = RouteRequestBody<'/thermostats/get'>
+export type ThermostatsGetParams = RouteRequestBody<'/thermostats/get'>
 
 export type ThermostatsGetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/get'>>
@@ -182,7 +182,7 @@ export type ThermostatsHeatCoolResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/heat_cool'>>
 >
 
-export type ThermostatsListBody = RouteRequestBody<'/thermostats/list'>
+export type ThermostatsListParams = RouteRequestBody<'/thermostats/list'>
 
 export type ThermostatsListResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/list'>>

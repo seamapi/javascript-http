@@ -316,7 +316,6 @@ const renderClassMethod = ({
     }: ${renderRequestType({
       name,
       namespace,
-      requestFormat,
     })},
   ): Promise<${
     resource === null
@@ -363,7 +362,6 @@ const renderEndpointExports = ({
 export type ${renderRequestType({
   name,
   namespace,
-  requestFormat,
 })} = RouteRequest${pascalCase(requestFormat)}<'${path}'>
 
 export type ${renderResponseType({ name, namespace })}= SetNonNullable<
@@ -374,9 +372,22 @@ export type ${renderResponseType({ name, namespace })}= SetNonNullable<
 const renderRequestType = ({
   name,
   namespace,
-  requestFormat,
-}: Pick<Endpoint, 'name' | 'namespace' | 'requestFormat'>): string =>
-  [pascalCase(namespace), pascalCase(name), pascalCase(requestFormat)].join('')
+}: Pick<Endpoint, 'name' | 'namespace'>): string =>
+  [
+    pascalCase(namespace),
+    pascalCase(name),
+    pascalCase(requestFormatToRequestType(name, namespace)),
+  ].join('')
+
+// UPSTREAM: Should be just requestFormat, but blocked on https://github.com/seamapi/nextlove/issues/117
+const requestFormatToRequestType = (
+  name: string,
+  _namespace: string,
+): 'params' | 'body' => {
+  if (['get', 'list', 'view'].includes(name)) return 'params'
+  if (name.startsWith('list')) return 'params'
+  return 'body'
+}
 
 const renderResponseType = ({
   name,

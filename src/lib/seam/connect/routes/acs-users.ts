@@ -109,7 +109,7 @@ export class SeamHttpAcsUsers {
     })
   }
 
-  async get(body: AcsUsersGetBody): Promise<AcsUsersGetResponse['acs_user']> {
+  async get(body: AcsUsersGetParams): Promise<AcsUsersGetResponse['acs_user']> {
     const { data } = await this.client.request<AcsUsersGetResponse>({
       url: '/acs/users/get',
       method: 'post',
@@ -119,7 +119,7 @@ export class SeamHttpAcsUsers {
   }
 
   async list(
-    body: AcsUsersListBody,
+    body: AcsUsersListParams,
   ): Promise<AcsUsersListResponse['acs_users']> {
     const { data } = await this.client.request<AcsUsersListResponse>({
       url: '/acs/users/list',
@@ -183,13 +183,13 @@ export type AcsUsersDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/delete'>>
 >
 
-export type AcsUsersGetBody = RouteRequestBody<'/acs/users/get'>
+export type AcsUsersGetParams = RouteRequestBody<'/acs/users/get'>
 
 export type AcsUsersGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/get'>>
 >
 
-export type AcsUsersListBody = RouteRequestBody<'/acs/users/list'>
+export type AcsUsersListParams = RouteRequestBody<'/acs/users/list'>
 
 export type AcsUsersListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/list'>>

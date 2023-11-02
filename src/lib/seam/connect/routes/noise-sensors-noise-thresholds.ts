@@ -102,7 +102,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   async get(
-    body: NoiseSensorsNoiseThresholdsGetBody,
+    body: NoiseSensorsNoiseThresholdsGetParams,
   ): Promise<NoiseSensorsNoiseThresholdsGetResponse['noise_threshold']> {
     const { data } =
       await this.client.request<NoiseSensorsNoiseThresholdsGetResponse>({
@@ -114,7 +114,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   async list(
-    body: NoiseSensorsNoiseThresholdsListBody,
+    body: NoiseSensorsNoiseThresholdsListParams,
   ): Promise<NoiseSensorsNoiseThresholdsListResponse['noise_thresholds']> {
     const { data } =
       await this.client.request<NoiseSensorsNoiseThresholdsListResponse>({
@@ -148,14 +148,14 @@ export type NoiseSensorsNoiseThresholdsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/delete'>>
 >
 
-export type NoiseSensorsNoiseThresholdsGetBody =
+export type NoiseSensorsNoiseThresholdsGetParams =
   RouteRequestBody<'/noise_sensors/noise_thresholds/get'>
 
 export type NoiseSensorsNoiseThresholdsGetResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/get'>>
 >
 
-export type NoiseSensorsNoiseThresholdsListBody =
+export type NoiseSensorsNoiseThresholdsListParams =
   RouteRequestBody<'/noise_sensors/noise_thresholds/list'>
 
 export type NoiseSensorsNoiseThresholdsListResponse = SetNonNullable<

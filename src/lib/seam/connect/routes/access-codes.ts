@@ -132,7 +132,7 @@ export class SeamHttpAccessCodes {
   }
 
   async get(
-    body: AccessCodesGetBody,
+    body: AccessCodesGetParams,
   ): Promise<AccessCodesGetResponse['access_code']> {
     const { data } = await this.client.request<AccessCodesGetResponse>({
       url: '/access_codes/get',
@@ -143,7 +143,7 @@ export class SeamHttpAccessCodes {
   }
 
   async list(
-    body: AccessCodesListBody,
+    body: AccessCodesListParams,
   ): Promise<AccessCodesListResponse['access_codes']> {
     const { data } = await this.client.request<AccessCodesListResponse>({
       url: '/access_codes/list',
@@ -200,13 +200,13 @@ export type AccessCodesGenerateCodeResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/generate_code'>>
 >
 
-export type AccessCodesGetBody = RouteRequestBody<'/access_codes/get'>
+export type AccessCodesGetParams = RouteRequestBody<'/access_codes/get'>
 
 export type AccessCodesGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/get'>>
 >
 
-export type AccessCodesListBody = RouteRequestBody<'/access_codes/list'>
+export type AccessCodesListParams = RouteRequestBody<'/access_codes/list'>
 
 export type AccessCodesListResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/list'>>

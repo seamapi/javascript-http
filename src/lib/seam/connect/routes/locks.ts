@@ -82,7 +82,7 @@ export class SeamHttpLocks {
     return SeamHttpLocks.fromClientSessionToken(token, options)
   }
 
-  async get(body: LocksGetBody): Promise<LocksGetResponse['device']> {
+  async get(body: LocksGetParams): Promise<LocksGetResponse['device']> {
     const { data } = await this.client.request<LocksGetResponse>({
       url: '/locks/get',
       method: 'post',
@@ -91,7 +91,7 @@ export class SeamHttpLocks {
     return data.device
   }
 
-  async list(body: LocksListBody): Promise<LocksListResponse['devices']> {
+  async list(body: LocksListParams): Promise<LocksListResponse['devices']> {
     const { data } = await this.client.request<LocksListResponse>({
       url: '/locks/list',
       method: 'post',
@@ -123,13 +123,13 @@ export class SeamHttpLocks {
   }
 }
 
-export type LocksGetBody = RouteRequestBody<'/locks/get'>
+export type LocksGetParams = RouteRequestBody<'/locks/get'>
 
 export type LocksGetResponse = SetNonNullable<
   Required<RouteResponse<'/locks/get'>>
 >
 
-export type LocksListBody = RouteRequestBody<'/locks/list'>
+export type LocksListParams = RouteRequestBody<'/locks/list'>
 
 export type LocksListResponse = SetNonNullable<
   Required<RouteResponse<'/locks/list'>>

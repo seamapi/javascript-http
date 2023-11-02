@@ -114,7 +114,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async get(
-    body: ThermostatsClimateSettingSchedulesGetBody,
+    body: ThermostatsClimateSettingSchedulesGetParams,
   ): Promise<
     ThermostatsClimateSettingSchedulesGetResponse['climate_setting_schedule']
   > {
@@ -128,7 +128,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async list(
-    body: ThermostatsClimateSettingSchedulesListBody,
+    body: ThermostatsClimateSettingSchedulesListParams,
   ): Promise<
     ThermostatsClimateSettingSchedulesListResponse['climate_setting_schedules']
   > {
@@ -170,14 +170,14 @@ export type ThermostatsClimateSettingSchedulesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/climate_setting_schedules/delete'>>
 >
 
-export type ThermostatsClimateSettingSchedulesGetBody =
+export type ThermostatsClimateSettingSchedulesGetParams =
   RouteRequestBody<'/thermostats/climate_setting_schedules/get'>
 
 export type ThermostatsClimateSettingSchedulesGetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/climate_setting_schedules/get'>>
 >
 
-export type ThermostatsClimateSettingSchedulesListBody =
+export type ThermostatsClimateSettingSchedulesListParams =
   RouteRequestBody<'/thermostats/climate_setting_schedules/list'>
 
 export type ThermostatsClimateSettingSchedulesListResponse = SetNonNullable<

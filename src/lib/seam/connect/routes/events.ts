@@ -82,7 +82,7 @@ export class SeamHttpEvents {
     return SeamHttpEvents.fromClientSessionToken(token, options)
   }
 
-  async get(body: EventsGetBody): Promise<EventsGetResponse['event']> {
+  async get(body: EventsGetParams): Promise<EventsGetResponse['event']> {
     const { data } = await this.client.request<EventsGetResponse>({
       url: '/events/get',
       method: 'post',
@@ -91,7 +91,7 @@ export class SeamHttpEvents {
     return data.event
   }
 
-  async list(body: EventsListBody): Promise<EventsListResponse['events']> {
+  async list(body: EventsListParams): Promise<EventsListResponse['events']> {
     const { data } = await this.client.request<EventsListResponse>({
       url: '/events/list',
       method: 'post',
@@ -101,13 +101,13 @@ export class SeamHttpEvents {
   }
 }
 
-export type EventsGetBody = RouteRequestBody<'/events/get'>
+export type EventsGetParams = RouteRequestBody<'/events/get'>
 
 export type EventsGetResponse = SetNonNullable<
   Required<RouteResponse<'/events/get'>>
 >
 
-export type EventsListBody = RouteRequestBody<'/events/list'>
+export type EventsListParams = RouteRequestBody<'/events/list'>
 
 export type EventsListResponse = SetNonNullable<
   Required<RouteResponse<'/events/list'>>

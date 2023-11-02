@@ -83,7 +83,7 @@ export class SeamHttpDevicesUnmanaged {
   }
 
   async get(
-    body: DevicesUnmanagedGetBody,
+    body: DevicesUnmanagedGetParams,
   ): Promise<DevicesUnmanagedGetResponse['device']> {
     const { data } = await this.client.request<DevicesUnmanagedGetResponse>({
       url: '/devices/unmanaged/get',
@@ -94,7 +94,7 @@ export class SeamHttpDevicesUnmanaged {
   }
 
   async list(
-    body: DevicesUnmanagedListBody,
+    body: DevicesUnmanagedListParams,
   ): Promise<DevicesUnmanagedListResponse['devices']> {
     const { data } = await this.client.request<DevicesUnmanagedListResponse>({
       url: '/devices/unmanaged/list',
@@ -113,13 +113,14 @@ export class SeamHttpDevicesUnmanaged {
   }
 }
 
-export type DevicesUnmanagedGetBody = RouteRequestBody<'/devices/unmanaged/get'>
+export type DevicesUnmanagedGetParams =
+  RouteRequestBody<'/devices/unmanaged/get'>
 
 export type DevicesUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/unmanaged/get'>>
 >
 
-export type DevicesUnmanagedListBody =
+export type DevicesUnmanagedListParams =
   RouteRequestBody<'/devices/unmanaged/list'>
 
 export type DevicesUnmanagedListResponse = SetNonNullable<

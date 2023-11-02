@@ -110,7 +110,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   async get(
-    body: AcsAccessGroupsGetBody,
+    body: AcsAccessGroupsGetParams,
   ): Promise<AcsAccessGroupsGetResponse['acs_access_group']> {
     const { data } = await this.client.request<AcsAccessGroupsGetResponse>({
       url: '/acs/access_groups/get',
@@ -121,7 +121,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   async list(
-    body: AcsAccessGroupsListBody,
+    body: AcsAccessGroupsListParams,
   ): Promise<AcsAccessGroupsListResponse['acs_access_groups']> {
     const { data } = await this.client.request<AcsAccessGroupsListResponse>({
       url: '/acs/access_groups/list',
@@ -132,7 +132,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   async listUsers(
-    body: AcsAccessGroupsListUsersBody,
+    body: AcsAccessGroupsListUsersParams,
   ): Promise<AcsAccessGroupsListUsersResponse['acs_users']> {
     const { data } =
       await this.client.request<AcsAccessGroupsListUsersResponse>({
@@ -181,20 +181,21 @@ export type AcsAccessGroupsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/delete'>>
 >
 
-export type AcsAccessGroupsGetBody = RouteRequestBody<'/acs/access_groups/get'>
+export type AcsAccessGroupsGetParams =
+  RouteRequestBody<'/acs/access_groups/get'>
 
 export type AcsAccessGroupsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/get'>>
 >
 
-export type AcsAccessGroupsListBody =
+export type AcsAccessGroupsListParams =
   RouteRequestBody<'/acs/access_groups/list'>
 
 export type AcsAccessGroupsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list'>>
 >
 
-export type AcsAccessGroupsListUsersBody =
+export type AcsAccessGroupsListUsersParams =
   RouteRequestBody<'/acs/access_groups/list_users'>
 
 export type AcsAccessGroupsListUsersResponse = SetNonNullable<

@@ -102,7 +102,7 @@ export class SeamHttpAcsCredentials {
   }
 
   async get(
-    body: AcsCredentialsGetBody,
+    body: AcsCredentialsGetParams,
   ): Promise<AcsCredentialsGetResponse['acs_credential']> {
     const { data } = await this.client.request<AcsCredentialsGetResponse>({
       url: '/acs/credentials/get',
@@ -113,7 +113,7 @@ export class SeamHttpAcsCredentials {
   }
 
   async list(
-    body: AcsCredentialsListBody,
+    body: AcsCredentialsListParams,
   ): Promise<AcsCredentialsListResponse['acs_credentials']> {
     const { data } = await this.client.request<AcsCredentialsListResponse>({
       url: '/acs/credentials/list',
@@ -138,13 +138,13 @@ export type AcsCredentialsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/delete'>>
 >
 
-export type AcsCredentialsGetBody = RouteRequestBody<'/acs/credentials/get'>
+export type AcsCredentialsGetParams = RouteRequestBody<'/acs/credentials/get'>
 
 export type AcsCredentialsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/get'>>
 >
 
-export type AcsCredentialsListBody = RouteRequestBody<'/acs/credentials/list'>
+export type AcsCredentialsListParams = RouteRequestBody<'/acs/credentials/list'>
 
 export type AcsCredentialsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/list'>>

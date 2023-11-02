@@ -105,7 +105,7 @@ export class SeamHttpWebhooks {
     })
   }
 
-  async get(body: WebhooksGetBody): Promise<WebhooksGetResponse['webhook']> {
+  async get(body: WebhooksGetParams): Promise<WebhooksGetResponse['webhook']> {
     const { data } = await this.client.request<WebhooksGetResponse>({
       url: '/webhooks/get',
       method: 'post',
@@ -138,7 +138,7 @@ export type WebhooksDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/delete'>>
 >
 
-export type WebhooksGetBody = RouteRequestBody<'/webhooks/get'>
+export type WebhooksGetParams = RouteRequestBody<'/webhooks/get'>
 
 export type WebhooksGetResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/get'>>
