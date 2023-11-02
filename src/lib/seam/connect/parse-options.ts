@@ -10,7 +10,7 @@ import {
 
 const defaultEndpoint = 'https://connect.getseam.com'
 
-const defaultHeaders = {
+const sdkHeaders = {
   'seam-sdk-name': 'seamapi/javascript-http',
   'seam-sdk-version': version,
 }
@@ -30,9 +30,9 @@ export const parseOptions = (
       withCredentials: isSeamHttpOptionsWithClientSessionToken(options),
       ...options.axiosOptions,
       headers: {
-        ...defaultHeaders,
         ...getAuthHeaders(options),
         ...options.axiosOptions?.headers,
+        ...sdkHeaders,
       },
     },
     axiosRetryOptions: {
