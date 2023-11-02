@@ -87,7 +87,7 @@ export class SeamHttpThermostats {
     return SeamHttpThermostatsClimateSettingSchedules.fromClient(this.client)
   }
 
-  async cool(body: ThermostatsCoolBody): Promise<void> {
+  async cool(body?: ThermostatsCoolBody): Promise<void> {
     await this.client.request<ThermostatsCoolResponse>({
       url: '/thermostats/cool',
       method: 'post',
@@ -96,7 +96,7 @@ export class SeamHttpThermostats {
   }
 
   async get(
-    body: ThermostatsGetParams,
+    body?: ThermostatsGetParams,
   ): Promise<ThermostatsGetResponse['thermostat']> {
     const { data } = await this.client.request<ThermostatsGetResponse>({
       url: '/thermostats/get',
@@ -106,7 +106,7 @@ export class SeamHttpThermostats {
     return data.thermostat
   }
 
-  async heat(body: ThermostatsHeatBody): Promise<void> {
+  async heat(body?: ThermostatsHeatBody): Promise<void> {
     await this.client.request<ThermostatsHeatResponse>({
       url: '/thermostats/heat',
       method: 'post',
@@ -114,7 +114,7 @@ export class SeamHttpThermostats {
     })
   }
 
-  async heatCool(body: ThermostatsHeatCoolBody): Promise<void> {
+  async heatCool(body?: ThermostatsHeatCoolBody): Promise<void> {
     await this.client.request<ThermostatsHeatCoolResponse>({
       url: '/thermostats/heat_cool',
       method: 'post',
@@ -123,7 +123,7 @@ export class SeamHttpThermostats {
   }
 
   async list(
-    body: ThermostatsListParams,
+    body?: ThermostatsListParams,
   ): Promise<ThermostatsListResponse['thermostats']> {
     const { data } = await this.client.request<ThermostatsListResponse>({
       url: '/thermostats/list',
@@ -133,7 +133,7 @@ export class SeamHttpThermostats {
     return data.thermostats
   }
 
-  async off(body: ThermostatsOffBody): Promise<void> {
+  async off(body?: ThermostatsOffBody): Promise<void> {
     await this.client.request<ThermostatsOffResponse>({
       url: '/thermostats/off',
       method: 'post',
@@ -141,7 +141,7 @@ export class SeamHttpThermostats {
     })
   }
 
-  async setFanMode(body: ThermostatsSetFanModeBody): Promise<void> {
+  async setFanMode(body?: ThermostatsSetFanModeBody): Promise<void> {
     await this.client.request<ThermostatsSetFanModeResponse>({
       url: '/thermostats/set_fan_mode',
       method: 'post',
@@ -149,7 +149,7 @@ export class SeamHttpThermostats {
     })
   }
 
-  async update(body: ThermostatsUpdateBody): Promise<void> {
+  async update(body?: ThermostatsUpdateBody): Promise<void> {
     await this.client.request<ThermostatsUpdateResponse>({
       url: '/thermostats/update',
       method: 'post',

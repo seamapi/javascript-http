@@ -83,7 +83,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   async convertToManaged(
-    body: AccessCodesUnmanagedConvertToManagedBody,
+    body?: AccessCodesUnmanagedConvertToManagedBody,
   ): Promise<void> {
     await this.client.request<AccessCodesUnmanagedConvertToManagedResponse>({
       url: '/access_codes/unmanaged/convert_to_managed',
@@ -92,7 +92,7 @@ export class SeamHttpAccessCodesUnmanaged {
     })
   }
 
-  async delete(body: AccessCodesUnmanagedDeleteBody): Promise<void> {
+  async delete(body?: AccessCodesUnmanagedDeleteBody): Promise<void> {
     await this.client.request<AccessCodesUnmanagedDeleteResponse>({
       url: '/access_codes/unmanaged/delete',
       method: 'post',
@@ -101,7 +101,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   async get(
-    body: AccessCodesUnmanagedGetParams,
+    body?: AccessCodesUnmanagedGetParams,
   ): Promise<AccessCodesUnmanagedGetResponse['access_code']> {
     const { data } = await this.client.request<AccessCodesUnmanagedGetResponse>(
       {
@@ -114,7 +114,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   async list(
-    body: AccessCodesUnmanagedListParams,
+    body?: AccessCodesUnmanagedListParams,
   ): Promise<AccessCodesUnmanagedListResponse['access_codes']> {
     const { data } =
       await this.client.request<AccessCodesUnmanagedListResponse>({
@@ -125,7 +125,7 @@ export class SeamHttpAccessCodesUnmanaged {
     return data.access_codes
   }
 
-  async update(body: AccessCodesUnmanagedUpdateBody): Promise<void> {
+  async update(body?: AccessCodesUnmanagedUpdateBody): Promise<void> {
     await this.client.request<AccessCodesUnmanagedUpdateResponse>({
       url: '/access_codes/unmanaged/update',
       method: 'post',

@@ -83,7 +83,7 @@ export class SeamHttpAcsCredentials {
   }
 
   async create(
-    body: AcsCredentialsCreateBody,
+    body?: AcsCredentialsCreateBody,
   ): Promise<AcsCredentialsCreateResponse['acs_credential']> {
     const { data } = await this.client.request<AcsCredentialsCreateResponse>({
       url: '/acs/credentials/create',
@@ -93,7 +93,7 @@ export class SeamHttpAcsCredentials {
     return data.acs_credential
   }
 
-  async delete(body: AcsCredentialsDeleteBody): Promise<void> {
+  async delete(body?: AcsCredentialsDeleteBody): Promise<void> {
     await this.client.request<AcsCredentialsDeleteResponse>({
       url: '/acs/credentials/delete',
       method: 'post',
@@ -102,7 +102,7 @@ export class SeamHttpAcsCredentials {
   }
 
   async get(
-    body: AcsCredentialsGetParams,
+    body?: AcsCredentialsGetParams,
   ): Promise<AcsCredentialsGetResponse['acs_credential']> {
     const { data } = await this.client.request<AcsCredentialsGetResponse>({
       url: '/acs/credentials/get',
@@ -113,7 +113,7 @@ export class SeamHttpAcsCredentials {
   }
 
   async list(
-    body: AcsCredentialsListParams,
+    body?: AcsCredentialsListParams,
   ): Promise<AcsCredentialsListResponse['acs_credentials']> {
     const { data } = await this.client.request<AcsCredentialsListResponse>({
       url: '/acs/credentials/list',

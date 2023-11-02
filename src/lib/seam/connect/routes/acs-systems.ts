@@ -83,7 +83,7 @@ export class SeamHttpAcsSystems {
   }
 
   async get(
-    body: AcsSystemsGetParams,
+    body?: AcsSystemsGetParams,
   ): Promise<AcsSystemsGetResponse['acs_system']> {
     const { data } = await this.client.request<AcsSystemsGetResponse>({
       url: '/acs/systems/get',
@@ -94,7 +94,7 @@ export class SeamHttpAcsSystems {
   }
 
   async list(
-    body: AcsSystemsListParams,
+    body?: AcsSystemsListParams,
   ): Promise<AcsSystemsListResponse['acs_systems']> {
     const { data } = await this.client.request<AcsSystemsListResponse>({
       url: '/acs/systems/list',

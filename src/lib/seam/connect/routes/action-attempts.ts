@@ -83,7 +83,7 @@ export class SeamHttpActionAttempts {
   }
 
   async get(
-    body: ActionAttemptsGetParams,
+    body?: ActionAttemptsGetParams,
   ): Promise<ActionAttemptsGetResponse['action_attempt']> {
     const { data } = await this.client.request<ActionAttemptsGetResponse>({
       url: '/action_attempts/get',
@@ -94,7 +94,7 @@ export class SeamHttpActionAttempts {
   }
 
   async list(
-    body: ActionAttemptsListParams,
+    body?: ActionAttemptsListParams,
   ): Promise<ActionAttemptsListResponse['action_attempts']> {
     const { data } = await this.client.request<ActionAttemptsListResponse>({
       url: '/action_attempts/list',

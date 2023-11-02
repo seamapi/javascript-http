@@ -81,7 +81,7 @@ export class SeamHttpClientSessions {
   }
 
   async create(
-    body: ClientSessionsCreateBody,
+    body?: ClientSessionsCreateBody,
   ): Promise<ClientSessionsCreateResponse['client_session']> {
     const { data } = await this.client.request<ClientSessionsCreateResponse>({
       url: '/client_sessions/create',
@@ -91,7 +91,7 @@ export class SeamHttpClientSessions {
     return data.client_session
   }
 
-  async delete(body: ClientSessionsDeleteBody): Promise<void> {
+  async delete(body?: ClientSessionsDeleteBody): Promise<void> {
     await this.client.request<ClientSessionsDeleteResponse>({
       url: '/client_sessions/delete',
       method: 'post',
@@ -100,7 +100,7 @@ export class SeamHttpClientSessions {
   }
 
   async get(
-    body: ClientSessionsGetParams,
+    body?: ClientSessionsGetParams,
   ): Promise<ClientSessionsGetResponse['client_session']> {
     const { data } = await this.client.request<ClientSessionsGetResponse>({
       url: '/client_sessions/get',
@@ -111,7 +111,7 @@ export class SeamHttpClientSessions {
   }
 
   async getOrCreate(
-    body: ClientSessionsGetOrCreateBody,
+    body?: ClientSessionsGetOrCreateBody,
   ): Promise<ClientSessionsGetOrCreateResponse['client_session']> {
     const { data } =
       await this.client.request<ClientSessionsGetOrCreateResponse>({
@@ -123,7 +123,7 @@ export class SeamHttpClientSessions {
   }
 
   async grantAccess(
-    body: ClientSessionsGrantAccessBody,
+    body?: ClientSessionsGrantAccessBody,
   ): Promise<ClientSessionsGrantAccessResponse['client_session']> {
     const { data } =
       await this.client.request<ClientSessionsGrantAccessResponse>({
@@ -135,7 +135,7 @@ export class SeamHttpClientSessions {
   }
 
   async list(
-    body: ClientSessionsListParams,
+    body?: ClientSessionsListParams,
   ): Promise<ClientSessionsListResponse['client_sessions']> {
     const { data } = await this.client.request<ClientSessionsListResponse>({
       url: '/client_sessions/list',

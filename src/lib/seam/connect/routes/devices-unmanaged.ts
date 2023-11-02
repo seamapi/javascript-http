@@ -83,7 +83,7 @@ export class SeamHttpDevicesUnmanaged {
   }
 
   async get(
-    body: DevicesUnmanagedGetParams,
+    body?: DevicesUnmanagedGetParams,
   ): Promise<DevicesUnmanagedGetResponse['device']> {
     const { data } = await this.client.request<DevicesUnmanagedGetResponse>({
       url: '/devices/unmanaged/get',
@@ -94,7 +94,7 @@ export class SeamHttpDevicesUnmanaged {
   }
 
   async list(
-    body: DevicesUnmanagedListParams,
+    body?: DevicesUnmanagedListParams,
   ): Promise<DevicesUnmanagedListResponse['devices']> {
     const { data } = await this.client.request<DevicesUnmanagedListResponse>({
       url: '/devices/unmanaged/list',
@@ -104,7 +104,7 @@ export class SeamHttpDevicesUnmanaged {
     return data.devices
   }
 
-  async update(body: DevicesUnmanagedUpdateBody): Promise<void> {
+  async update(body?: DevicesUnmanagedUpdateBody): Promise<void> {
     await this.client.request<DevicesUnmanagedUpdateResponse>({
       url: '/devices/unmanaged/update',
       method: 'post',

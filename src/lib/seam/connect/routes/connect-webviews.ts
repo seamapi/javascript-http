@@ -87,7 +87,7 @@ export class SeamHttpConnectWebviews {
   }
 
   async create(
-    body: ConnectWebviewsCreateBody,
+    body?: ConnectWebviewsCreateBody,
   ): Promise<ConnectWebviewsCreateResponse['connect_webview']> {
     const { data } = await this.client.request<ConnectWebviewsCreateResponse>({
       url: '/connect_webviews/create',
@@ -97,7 +97,7 @@ export class SeamHttpConnectWebviews {
     return data.connect_webview
   }
 
-  async delete(body: ConnectWebviewsDeleteBody): Promise<void> {
+  async delete(body?: ConnectWebviewsDeleteBody): Promise<void> {
     await this.client.request<ConnectWebviewsDeleteResponse>({
       url: '/connect_webviews/delete',
       method: 'post',
@@ -106,7 +106,7 @@ export class SeamHttpConnectWebviews {
   }
 
   async get(
-    body: ConnectWebviewsGetParams,
+    body?: ConnectWebviewsGetParams,
   ): Promise<ConnectWebviewsGetResponse['connect_webview']> {
     const { data } = await this.client.request<ConnectWebviewsGetResponse>({
       url: '/connect_webviews/get',
@@ -117,7 +117,7 @@ export class SeamHttpConnectWebviews {
   }
 
   async list(
-    body: ConnectWebviewsListParams,
+    body?: ConnectWebviewsListParams,
   ): Promise<ConnectWebviewsListResponse['connect_webviews']> {
     const { data } = await this.client.request<ConnectWebviewsListResponse>({
       url: '/connect_webviews/list',

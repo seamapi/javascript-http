@@ -88,7 +88,7 @@ export class SeamHttpAccessCodes {
   }
 
   async create(
-    body: AccessCodesCreateBody,
+    body?: AccessCodesCreateBody,
   ): Promise<AccessCodesCreateResponse['access_code']> {
     const { data } = await this.client.request<AccessCodesCreateResponse>({
       url: '/access_codes/create',
@@ -99,7 +99,7 @@ export class SeamHttpAccessCodes {
   }
 
   async createMultiple(
-    body: AccessCodesCreateMultipleBody,
+    body?: AccessCodesCreateMultipleBody,
   ): Promise<AccessCodesCreateMultipleResponse['access_codes']> {
     const { data } =
       await this.client.request<AccessCodesCreateMultipleResponse>({
@@ -110,7 +110,7 @@ export class SeamHttpAccessCodes {
     return data.access_codes
   }
 
-  async delete(body: AccessCodesDeleteBody): Promise<void> {
+  async delete(body?: AccessCodesDeleteBody): Promise<void> {
     await this.client.request<AccessCodesDeleteResponse>({
       url: '/access_codes/delete',
       method: 'post',
@@ -119,7 +119,7 @@ export class SeamHttpAccessCodes {
   }
 
   async generateCode(
-    body: AccessCodesGenerateCodeBody,
+    body?: AccessCodesGenerateCodeBody,
   ): Promise<AccessCodesGenerateCodeResponse['generated_code']> {
     const { data } = await this.client.request<AccessCodesGenerateCodeResponse>(
       {
@@ -132,7 +132,7 @@ export class SeamHttpAccessCodes {
   }
 
   async get(
-    body: AccessCodesGetParams,
+    body?: AccessCodesGetParams,
   ): Promise<AccessCodesGetResponse['access_code']> {
     const { data } = await this.client.request<AccessCodesGetResponse>({
       url: '/access_codes/get',
@@ -143,7 +143,7 @@ export class SeamHttpAccessCodes {
   }
 
   async list(
-    body: AccessCodesListParams,
+    body?: AccessCodesListParams,
   ): Promise<AccessCodesListResponse['access_codes']> {
     const { data } = await this.client.request<AccessCodesListResponse>({
       url: '/access_codes/list',
@@ -154,7 +154,7 @@ export class SeamHttpAccessCodes {
   }
 
   async pullBackupAccessCode(
-    body: AccessCodesPullBackupAccessCodeBody,
+    body?: AccessCodesPullBackupAccessCodeBody,
   ): Promise<AccessCodesPullBackupAccessCodeResponse['backup_access_code']> {
     const { data } =
       await this.client.request<AccessCodesPullBackupAccessCodeResponse>({
@@ -165,7 +165,7 @@ export class SeamHttpAccessCodes {
     return data.backup_access_code
   }
 
-  async update(body: AccessCodesUpdateBody): Promise<void> {
+  async update(body?: AccessCodesUpdateBody): Promise<void> {
     await this.client.request<AccessCodesUpdateResponse>({
       url: '/access_codes/update',
       method: 'post',

@@ -86,7 +86,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async create(
-    body: ThermostatsClimateSettingSchedulesCreateBody,
+    body?: ThermostatsClimateSettingSchedulesCreateBody,
   ): Promise<
     ThermostatsClimateSettingSchedulesCreateResponse['climate_setting_schedule']
   > {
@@ -102,7 +102,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async delete(
-    body: ThermostatsClimateSettingSchedulesDeleteBody,
+    body?: ThermostatsClimateSettingSchedulesDeleteBody,
   ): Promise<void> {
     await this.client.request<ThermostatsClimateSettingSchedulesDeleteResponse>(
       {
@@ -114,7 +114,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async get(
-    body: ThermostatsClimateSettingSchedulesGetParams,
+    body?: ThermostatsClimateSettingSchedulesGetParams,
   ): Promise<
     ThermostatsClimateSettingSchedulesGetResponse['climate_setting_schedule']
   > {
@@ -128,7 +128,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async list(
-    body: ThermostatsClimateSettingSchedulesListParams,
+    body?: ThermostatsClimateSettingSchedulesListParams,
   ): Promise<
     ThermostatsClimateSettingSchedulesListResponse['climate_setting_schedules']
   > {
@@ -144,7 +144,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async update(
-    body: ThermostatsClimateSettingSchedulesUpdateBody,
+    body?: ThermostatsClimateSettingSchedulesUpdateBody,
   ): Promise<void> {
     await this.client.request<ThermostatsClimateSettingSchedulesUpdateResponse>(
       {

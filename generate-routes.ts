@@ -78,6 +78,7 @@ interface Endpoint {
   resource: string | null
   method: Method
   requestFormat: 'params' | 'body'
+  isRequestParamOptional: boolean
 }
 
 type Method = 'GET' | 'POST'
@@ -147,6 +148,9 @@ const createEndpoint = (
     method,
     resource: deriveResource(endpointPath, method),
     requestFormat: ['GET', 'DELETE'].includes(method) ? 'params' : 'body',
+    // UPSTREAM: This could be derived from the OpenAPI spec, however some endpoints require at least one param,
+    // and in the spec this currently looks as if params are optional.
+    isRequestParamOptional: true,
   }
 }
 
@@ -298,11 +302,10 @@ const renderClassMethod = ({
   namespace,
   resource,
   path,
+  isRequestParamOptional,
 }: Endpoint): string => `
   async ${camelCase(name)}(
-    ${requestFormat}${
-      requestFormat === 'params' ? '?' : ''
-    }: ${renderRequestType({
+    ${requestFormat}${isRequestParamOptional ? '?' : ''}: ${renderRequestType({
       name,
       namespace,
     })},

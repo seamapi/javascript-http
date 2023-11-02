@@ -85,7 +85,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     )
   }
 
-  async create(body: NoiseSensorsNoiseThresholdsCreateBody): Promise<void> {
+  async create(body?: NoiseSensorsNoiseThresholdsCreateBody): Promise<void> {
     await this.client.request<NoiseSensorsNoiseThresholdsCreateResponse>({
       url: '/noise_sensors/noise_thresholds/create',
       method: 'post',
@@ -93,7 +93,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     })
   }
 
-  async delete(body: NoiseSensorsNoiseThresholdsDeleteBody): Promise<void> {
+  async delete(body?: NoiseSensorsNoiseThresholdsDeleteBody): Promise<void> {
     await this.client.request<NoiseSensorsNoiseThresholdsDeleteResponse>({
       url: '/noise_sensors/noise_thresholds/delete',
       method: 'post',
@@ -102,7 +102,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   async get(
-    body: NoiseSensorsNoiseThresholdsGetParams,
+    body?: NoiseSensorsNoiseThresholdsGetParams,
   ): Promise<NoiseSensorsNoiseThresholdsGetResponse['noise_threshold']> {
     const { data } =
       await this.client.request<NoiseSensorsNoiseThresholdsGetResponse>({
@@ -114,7 +114,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   async list(
-    body: NoiseSensorsNoiseThresholdsListParams,
+    body?: NoiseSensorsNoiseThresholdsListParams,
   ): Promise<NoiseSensorsNoiseThresholdsListResponse['noise_thresholds']> {
     const { data } =
       await this.client.request<NoiseSensorsNoiseThresholdsListResponse>({
@@ -125,7 +125,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return data.noise_thresholds
   }
 
-  async update(body: NoiseSensorsNoiseThresholdsUpdateBody): Promise<void> {
+  async update(body?: NoiseSensorsNoiseThresholdsUpdateBody): Promise<void> {
     await this.client.request<NoiseSensorsNoiseThresholdsUpdateResponse>({
       url: '/noise_sensors/noise_thresholds/update',
       method: 'post',
