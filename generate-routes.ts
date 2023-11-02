@@ -53,18 +53,7 @@ const ignoredEndpointPaths = [
   '/noise_sensors/simulate/trigger_noise_threshold',
 ] as const
 
-const endpointResources: Partial<
-  Record<
-    keyof typeof openapi.paths,
-    | 'action_attempt'
-    | 'access_codes'
-    | 'device_providers'
-    | 'generated_code'
-    | 'backup_access_code'
-    | 'acs_users'
-    | null
-  >
-> = {
+const endpointResources: Partial<Record<keyof typeof openapi.paths, null>> = {
   '/access_codes/delete': null,
   '/access_codes/unmanaged/delete': null,
   '/access_codes/update': null,
