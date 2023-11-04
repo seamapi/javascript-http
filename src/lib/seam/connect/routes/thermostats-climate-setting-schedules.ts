@@ -86,7 +86,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async create(
-    body: ThermostatsClimateSettingSchedulesCreateBody,
+    body?: ThermostatsClimateSettingSchedulesCreateBody,
   ): Promise<
     ThermostatsClimateSettingSchedulesCreateResponse['climate_setting_schedule']
   > {
@@ -102,7 +102,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async delete(
-    body: ThermostatsClimateSettingSchedulesDeleteBody,
+    body?: ThermostatsClimateSettingSchedulesDeleteBody,
   ): Promise<void> {
     await this.client.request<ThermostatsClimateSettingSchedulesDeleteResponse>(
       {
@@ -114,7 +114,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async get(
-    body: ThermostatsClimateSettingSchedulesGetBody,
+    body?: ThermostatsClimateSettingSchedulesGetParams,
   ): Promise<
     ThermostatsClimateSettingSchedulesGetResponse['climate_setting_schedule']
   > {
@@ -128,7 +128,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async list(
-    body: ThermostatsClimateSettingSchedulesListBody,
+    body?: ThermostatsClimateSettingSchedulesListParams,
   ): Promise<
     ThermostatsClimateSettingSchedulesListResponse['climate_setting_schedules']
   > {
@@ -144,7 +144,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   async update(
-    body: ThermostatsClimateSettingSchedulesUpdateBody,
+    body?: ThermostatsClimateSettingSchedulesUpdateBody,
   ): Promise<void> {
     await this.client.request<ThermostatsClimateSettingSchedulesUpdateResponse>(
       {
@@ -170,14 +170,14 @@ export type ThermostatsClimateSettingSchedulesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/climate_setting_schedules/delete'>>
 >
 
-export type ThermostatsClimateSettingSchedulesGetBody =
+export type ThermostatsClimateSettingSchedulesGetParams =
   RouteRequestBody<'/thermostats/climate_setting_schedules/get'>
 
 export type ThermostatsClimateSettingSchedulesGetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/climate_setting_schedules/get'>>
 >
 
-export type ThermostatsClimateSettingSchedulesListBody =
+export type ThermostatsClimateSettingSchedulesListParams =
   RouteRequestBody<'/thermostats/climate_setting_schedules/list'>
 
 export type ThermostatsClimateSettingSchedulesListResponse = SetNonNullable<

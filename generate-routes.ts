@@ -53,18 +53,7 @@ const ignoredEndpointPaths = [
   '/noise_sensors/simulate/trigger_noise_threshold',
 ] as const
 
-const endpointResources: Partial<
-  Record<
-    keyof typeof openapi.paths,
-    | 'action_attempt'
-    | 'access_codes'
-    | 'device_providers'
-    | 'generated_code'
-    | 'backup_access_code'
-    | 'acs_users'
-    | null
-  >
-> = {
+const endpointResources: Partial<Record<keyof typeof openapi.paths, null>> = {
   '/access_codes/delete': null,
   '/access_codes/unmanaged/delete': null,
   '/access_codes/update': null,
@@ -89,6 +78,7 @@ interface Endpoint {
   resource: string | null
   method: Method
   requestFormat: 'params' | 'body'
+  isRequestParamOptional: boolean
 }
 
 type Method = 'GET' | 'POST'
@@ -158,6 +148,9 @@ const createEndpoint = (
     method,
     resource: deriveResource(endpointPath, method),
     requestFormat: ['GET', 'DELETE'].includes(method) ? 'params' : 'body',
+    // UPSTREAM: This could be derived from the OpenAPI spec, however some endpoints require at least one param,
+    // and in the spec this currently looks as if params are optional.
+    isRequestParamOptional: true,
   }
 }
 
@@ -309,14 +302,12 @@ const renderClassMethod = ({
   namespace,
   resource,
   path,
+  isRequestParamOptional,
 }: Endpoint): string => `
   async ${camelCase(name)}(
-    ${requestFormat}${
-      requestFormat === 'params' ? '?' : ''
-    }: ${renderRequestType({
+    ${requestFormat}${isRequestParamOptional ? '?' : ''}: ${renderRequestType({
       name,
       namespace,
-      requestFormat,
     })},
   ): Promise<${
     resource === null
@@ -363,7 +354,6 @@ const renderEndpointExports = ({
 export type ${renderRequestType({
   name,
   namespace,
-  requestFormat,
 })} = RouteRequest${pascalCase(requestFormat)}<'${path}'>
 
 export type ${renderResponseType({ name, namespace })}= SetNonNullable<
@@ -374,9 +364,22 @@ export type ${renderResponseType({ name, namespace })}= SetNonNullable<
 const renderRequestType = ({
   name,
   namespace,
-  requestFormat,
-}: Pick<Endpoint, 'name' | 'namespace' | 'requestFormat'>): string =>
-  [pascalCase(namespace), pascalCase(name), pascalCase(requestFormat)].join('')
+}: Pick<Endpoint, 'name' | 'namespace'>): string =>
+  [
+    pascalCase(namespace),
+    pascalCase(name),
+    pascalCase(requestFormatToRequestType(name, namespace)),
+  ].join('')
+
+// UPSTREAM: Should be just requestFormat, but blocked on https://github.com/seamapi/nextlove/issues/117
+const requestFormatToRequestType = (
+  name: string,
+  _namespace: string,
+): 'params' | 'body' => {
+  if (['get', 'list', 'view'].includes(name)) return 'params'
+  if (name.startsWith('list')) return 'params'
+  return 'body'
+}
 
 const renderResponseType = ({
   name,

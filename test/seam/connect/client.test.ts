@@ -5,7 +5,7 @@ import { SeamHttp } from '@seamapi/http/connect'
 
 import type {
   DevicesGetResponse,
-  DevicesListBody,
+  DevicesListParams,
   DevicesListResponse,
 } from 'lib/seam/connect/routes/devices.js'
 
@@ -54,7 +54,7 @@ test('SeamHttp: client serializes array params', async (t) => {
   const seam = new SeamHttp({
     client: SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint }).client,
   })
-  const params: DevicesListBody = {
+  const params: DevicesListParams = {
     device_ids: [seed.august_device_1],
   }
   const {

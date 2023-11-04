@@ -108,7 +108,7 @@ export class SeamHttpWorkspaces {
     return data.workspaces
   }
 
-  async resetSandbox(body: WorkspacesResetSandboxBody): Promise<void> {
+  async resetSandbox(body?: WorkspacesResetSandboxBody): Promise<void> {
     await this.client.request<WorkspacesResetSandboxResponse>({
       url: '/workspaces/reset_sandbox',
       method: 'post',

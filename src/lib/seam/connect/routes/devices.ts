@@ -87,7 +87,7 @@ export class SeamHttpDevices {
     return SeamHttpDevicesUnmanaged.fromClient(this.client)
   }
 
-  async delete(body: DevicesDeleteBody): Promise<void> {
+  async delete(body?: DevicesDeleteBody): Promise<void> {
     await this.client.request<DevicesDeleteResponse>({
       url: '/devices/delete',
       method: 'post',
@@ -95,7 +95,7 @@ export class SeamHttpDevices {
     })
   }
 
-  async get(body: DevicesGetBody): Promise<DevicesGetResponse['device']> {
+  async get(body?: DevicesGetParams): Promise<DevicesGetResponse['device']> {
     const { data } = await this.client.request<DevicesGetResponse>({
       url: '/devices/get',
       method: 'post',
@@ -104,7 +104,9 @@ export class SeamHttpDevices {
     return data.device
   }
 
-  async list(body: DevicesListBody): Promise<DevicesListResponse['devices']> {
+  async list(
+    body?: DevicesListParams,
+  ): Promise<DevicesListResponse['devices']> {
     const { data } = await this.client.request<DevicesListResponse>({
       url: '/devices/list',
       method: 'post',
@@ -114,7 +116,7 @@ export class SeamHttpDevices {
   }
 
   async listDeviceProviders(
-    body: DevicesListDeviceProvidersBody,
+    body?: DevicesListDeviceProvidersParams,
   ): Promise<DevicesListDeviceProvidersResponse['device_providers']> {
     const { data } =
       await this.client.request<DevicesListDeviceProvidersResponse>({
@@ -125,7 +127,7 @@ export class SeamHttpDevices {
     return data.device_providers
   }
 
-  async update(body: DevicesUpdateBody): Promise<void> {
+  async update(body?: DevicesUpdateBody): Promise<void> {
     await this.client.request<DevicesUpdateResponse>({
       url: '/devices/update',
       method: 'post',
@@ -140,19 +142,19 @@ export type DevicesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/devices/delete'>>
 >
 
-export type DevicesGetBody = RouteRequestBody<'/devices/get'>
+export type DevicesGetParams = RouteRequestBody<'/devices/get'>
 
 export type DevicesGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/get'>>
 >
 
-export type DevicesListBody = RouteRequestBody<'/devices/list'>
+export type DevicesListParams = RouteRequestBody<'/devices/list'>
 
 export type DevicesListResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list'>>
 >
 
-export type DevicesListDeviceProvidersBody =
+export type DevicesListDeviceProvidersParams =
   RouteRequestBody<'/devices/list_device_providers'>
 
 export type DevicesListDeviceProvidersResponse = SetNonNullable<

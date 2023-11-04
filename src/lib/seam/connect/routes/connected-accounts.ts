@@ -86,7 +86,7 @@ export class SeamHttpConnectedAccounts {
     return SeamHttpConnectedAccounts.fromClientSessionToken(token, options)
   }
 
-  async delete(body: ConnectedAccountsDeleteBody): Promise<void> {
+  async delete(body?: ConnectedAccountsDeleteBody): Promise<void> {
     await this.client.request<ConnectedAccountsDeleteResponse>({
       url: '/connected_accounts/delete',
       method: 'post',
@@ -95,7 +95,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   async get(
-    body: ConnectedAccountsGetBody,
+    body?: ConnectedAccountsGetParams,
   ): Promise<ConnectedAccountsGetResponse['connected_account']> {
     const { data } = await this.client.request<ConnectedAccountsGetResponse>({
       url: '/connected_accounts/get',
@@ -124,7 +124,7 @@ export type ConnectedAccountsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/delete'>>
 >
 
-export type ConnectedAccountsGetBody =
+export type ConnectedAccountsGetParams =
   RouteRequestBody<'/connected_accounts/get'>
 
 export type ConnectedAccountsGetResponse = SetNonNullable<
