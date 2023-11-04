@@ -1,4 +1,4 @@
-import version from 'src/lib/version.js'
+import version from 'lib/version.js'
 
 import { getAuthHeaders } from './auth.js'
 import type { ClientOptions } from './client.js'
