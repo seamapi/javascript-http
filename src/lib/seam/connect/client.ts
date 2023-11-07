@@ -1,9 +1,14 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
+import axios, {
+  type AxiosInstance,
+  type AxiosRequestConfig,
+} from 'axios'
 // @ts-expect-error https://github.com/svsool/axios-better-stacktrace/issues/12
 import axiosBetterStacktrace from 'axios-better-stacktrace'
 import axiosRetry, { type AxiosRetry, exponentialDelay } from 'axios-retry'
+import { isAxiosError } from 'node_modules/axios/index.cjs'
 
 import { paramsSerializer } from 'lib/params-serializer.js'
+
 
 export type Client = AxiosInstance
 
@@ -32,5 +37,14 @@ export const createClient = (options: ClientOptions): AxiosInstance => {
     ...options.axiosRetryOptions,
   })
 
+  client.interceptors.response.use(undefined, errorInterceptor)
+
   return client
+}
+
+const errorInterceptor = async (error: unknown): Promise<void> => {
+  if (!isAxiosError(error)) {
+    throw error
+  }
+  throw error
 }

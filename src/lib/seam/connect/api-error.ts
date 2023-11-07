@@ -1,9 +1,4 @@
-// UPSTREAM: Should be provided by @seamapi/types.
-interface ApiError {
-  type: string
-  message: string
-  data?: unknown
-}
+import type { ApiError } from './api-error-type.js'
 
 export class SeamHttpApiError extends Error {
   code: string
