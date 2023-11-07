@@ -1,10 +1,19 @@
-export class SeamHttpRequestValidationError extends Error {
-  requestId?: string
+import { SeamHttpApiError } from './api-error.js'
 
-  constructor(requestId: string | undefined) {
-    super('TODO')
+// UPSTREAM: Should be provided by @seamapi/types.
+interface InvalidInputError {
+  type: 'invalid_input'
+  message: string
+  data?: unknown
+}
+
+export class SeamHttpInvalidInputError extends SeamHttpApiError {
+  override code: 'invalid_input'
+
+  constructor(error: InvalidInputError, statusCode: number, requestId: string) {
+    super(error, statusCode, requestId)
     this.name = this.constructor.name
     Error.captureStackTrace(this, this.constructor)
-    if (requestId != null) this.requestId = requestId
+    this.code = error.type
   }
 }
