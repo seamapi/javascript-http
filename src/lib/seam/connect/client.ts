@@ -60,18 +60,22 @@ const errorInterceptor = async (error: unknown): Promise<void> => {
     throw error
   }
 
-  const err = error as AxiosError<ApiErrorResponse>
-  const { response } = err
-  if (response == null) throw err
+  try {
+    const err = error as AxiosError<ApiErrorResponse>
+    const { response } = err
+    if (response == null) throw err
 
-  const { type } = response.data.error
+    const { type } = response.data.error
 
-  const args = [
-    response.data.error,
-    response.status,
-    response.headers['seam-request-id'] ?? '',
-  ] as const
+    const args = [
+      response.data.error,
+      response.status,
+      response.headers['seam-request-id'] ?? '',
+    ] as const
 
-  if (type === 'invalid_input') throw new SeamHttpInvalidInputError(...args)
-  throw new SeamHttpApiError(...args)
+    if (type === 'invalid_input') throw new SeamHttpInvalidInputError(...args)
+    throw new SeamHttpApiError(...args)
+  } catch {
+    throw error
+  }
 }
