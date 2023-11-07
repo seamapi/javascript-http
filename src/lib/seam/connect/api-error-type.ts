@@ -9,7 +9,3 @@ export interface ApiError {
   message: string
   data?: unknown
 }
-
-export interface ApiInvalidInputError extends ApiError {
-  type: 'invalid_input'
-}

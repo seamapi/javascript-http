@@ -1,4 +1,5 @@
 import axios, {
+  type AxiosError,
   type AxiosInstance,
   type AxiosRequestConfig,
 } from 'axios'
@@ -9,6 +10,9 @@ import { isAxiosError } from 'node_modules/axios/index.cjs'
 
 import { paramsSerializer } from 'lib/params-serializer.js'
 
+import { SeamHttpApiError } from './api-error.js'
+import type { ApiErrorResponse } from './api-error-type.js'
+import { SeamHttpInvalidInputError } from './invalid-input-error.js'
 
 export type Client = AxiosInstance
 
@@ -46,5 +50,19 @@ const errorInterceptor = async (error: unknown): Promise<void> => {
   if (!isAxiosError(error)) {
     throw error
   }
-  throw error
+  const err = error as AxiosError<ApiErrorResponse>
+
+  const { response } = err
+  if (response == null) throw err
+
+  const { type } = response.data.error
+
+  const args = [
+    response.data.error,
+    response.status,
+    response.headers['seam-request-id'] ?? '',
+  ] as const
+
+  if (type === 'invalid_input') throw new SeamHttpInvalidInputError(...args)
+  throw new SeamHttpApiError(...args)
 }
