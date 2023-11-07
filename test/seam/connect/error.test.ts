@@ -2,7 +2,11 @@ import test from 'ava'
 import { AxiosError } from 'axios'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 
-import { SeamHttp, SeamHttpApiError } from '@seamapi/http/connect'
+import {
+  SeamHttp,
+  SeamHttpApiError,
+  SeamHttpInvalidInputError,
+} from '@seamapi/http/connect'
 
 test('SeamHttp: throws AxiosError on non-json response', async (t) => {
   const { seed, endpoint, db } = await getTestServer(t)
@@ -44,7 +48,7 @@ test.only('SeamHttp: throws SeamHttpApiError on json response', async (t) => {
 
   t.is(err?.statusCode, 404)
   t.is(err?.code, 'device_not_found')
-  t.truthy(err?.requestId)
+  t.is(err?.requestId, 'request1')
 })
 
 test.only('SeamHttp: throws SeamHttpInvalidInputError on invalid input', async (t) => {
@@ -61,11 +65,11 @@ test.only('SeamHttp: throws SeamHttpInvalidInputError on invalid input', async (
     async () =>
       await seam.devices.client.post('/devices/list', { device_ids: 4242 }),
     {
-      instanceOf: SeamHttpApiError,
+      instanceOf: SeamHttpInvalidInputError,
     },
   )
 
   t.is(err?.statusCode, 400)
   t.is(err?.code, 'invalid_input')
-  t.truthy(err?.requestId)
+  t.is(err?.requestId, 'request1')
 })
