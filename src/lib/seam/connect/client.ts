@@ -46,7 +46,7 @@ export const createClient = (options: ClientOptions): AxiosInstance => {
   return client
 }
 
-export const errorInterceptor = async (error: unknown): Promise<void> => {
+const errorInterceptor = async (error: unknown): Promise<void> => {
   if (!isAxiosError(error)) {
     throw error
   }
