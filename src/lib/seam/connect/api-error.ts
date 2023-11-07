@@ -8,23 +8,17 @@ interface ApiError {
 export class SeamHttpApiError extends Error {
   code: string
   statusCode: number
-  requestId?: string
+  requestId: string
   data?: unknown
 
-  constructor(
-    error: ApiError,
-    statusCode: number,
-    requestId: string | undefined,
-  ) {
+  constructor(error: ApiError, statusCode: number, requestId: string) {
     const { type, message, data } = error
-    super(
-      `Seam API request failed with status ${statusCode} (${type}): ${message}`,
-    )
+    super(message)
     this.name = this.constructor.name
     Error.captureStackTrace(this, this.constructor)
     this.code = type
     this.statusCode = statusCode
+    this.requestId = requestId
     if (data != null) this.data = data
-    if (requestId != null) this.requestId = requestId
   }
 }
