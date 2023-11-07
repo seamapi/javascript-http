@@ -6,9 +6,8 @@ import {
   SeamHttp,
   SeamHttpApiError,
   SeamHttpInvalidInputError,
+  SeamHttpUnauthorizedError,
 } from '@seamapi/http/connect'
-
-import { SeamHttpUnauthorizedError } from 'lib/seam/connect/unauthorized-error.js'
 
 test('SeamHttp: throws AxiosError on non-json response', async (t) => {
   const { seed, endpoint, db } = await getTestServer(t)

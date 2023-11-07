@@ -10,9 +10,12 @@ import axiosRetry, { type AxiosRetry, exponentialDelay } from 'axios-retry'
 
 import { paramsSerializer } from 'lib/params-serializer.js'
 
-import { SeamHttpApiError } from './api-error.js'
 import type { ApiErrorResponse } from './api-error-type.js'
-import { SeamHttpInvalidInputError } from './invalid-input-error.js'
+import {
+  SeamHttpApiError,
+  SeamHttpInvalidInputError,
+  SeamHttpUnauthorizedError,
+} from './seam-http-error.js'
 
 export type Client = AxiosInstance
 
@@ -51,12 +54,15 @@ const errorInterceptor = async (error: unknown): Promise<void> => {
     throw error
   }
 
-  if (
-    error.response?.headers['Content-Type']
-      ?.toString()
-      ?.startsWith('application/json') ??
-    false
-  ) {
+  const headers = error.response?.headers
+  const requestId = headers?.['seam-request-id'] ?? ''
+  const contentType = headers?.['Content-Type']?.toString() ?? ''
+
+  if (error.status === 401) {
+    throw new SeamHttpUnauthorizedError(requestId)
+  }
+
+  if (contentType.startsWith('application/json')) {
     throw error
   }
 
@@ -67,11 +73,7 @@ const errorInterceptor = async (error: unknown): Promise<void> => {
 
     const { type } = response.data.error
 
-    const args = [
-      response.data.error,
-      response.status,
-      response.headers['seam-request-id'] ?? '',
-    ] as const
+    const args = [response.data.error, response.status, requestId] as const
 
     if (type === 'invalid_input') throw new SeamHttpInvalidInputError(...args)
     throw new SeamHttpApiError(...args)
