@@ -49,35 +49,54 @@ export const createClient = (options: ClientOptions): AxiosInstance => {
   return client
 }
 
-const errorInterceptor = async (error: unknown): Promise<void> => {
-  if (!isAxiosError(error)) {
-    throw error
+const errorInterceptor = async (err: unknown): Promise<void> => {
+  if (!isAxiosError(err)) {
+    throw err
   }
 
-  const headers = error.response?.headers
+  const status = err.response?.status
+  const headers = err.response?.headers
   const requestId = headers?.['seam-request-id'] ?? ''
-  const contentType = headers?.['Content-Type']?.toString() ?? ''
 
-  if (error.status === 401) {
+  if (status == null) throw err
+
+  if (status === 401) {
     throw new SeamHttpUnauthorizedError(requestId)
   }
 
-  if (contentType.startsWith('application/json')) {
-    throw error
+  if (!isApiErrorResponse(err)) throw err
+
+  const { response } = err
+  if (response == null) throw err
+
+  const { type } = response.data.error
+
+  const args = [response.data.error, status, requestId] as const
+
+  if (type === 'invalid_input') throw new SeamHttpInvalidInputError(...args)
+  throw new SeamHttpApiError(...args)
+}
+
+const isApiErrorResponse = (
+  err: AxiosError,
+): err is AxiosError<ApiErrorResponse> => {
+  const headers = err.response?.headers
+  if (headers == null) return false
+
+  const contentType = headers['content-type']
+  if (
+    typeof contentType === 'string' &&
+    !contentType.startsWith('application/json')
+  ) {
+    return false
   }
 
-  try {
-    const err = error as AxiosError<ApiErrorResponse>
-    const { response } = err
-    if (response == null) throw err
-
-    const { type } = response.data.error
-
-    const args = [response.data.error, response.status, requestId] as const
-
-    if (type === 'invalid_input') throw new SeamHttpInvalidInputError(...args)
-    throw new SeamHttpApiError(...args)
-  } catch {
-    throw error
+  const data = err.response?.data as any
+  if (typeof data === 'object') {
+    return (
+      'error' in data && typeof data.error === 'object' && 'type' in data.error
+    )
   }
+
+  return false
 }

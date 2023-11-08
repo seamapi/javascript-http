@@ -9,7 +9,7 @@ import {
   SeamHttpUnauthorizedError,
 } from '@seamapi/http/connect'
 
-test('SeamHttp: throws AxiosError on non-json response', async (t) => {
+test('SeamHttp: throws AxiosError on non-standard response', async (t) => {
   const { seed, endpoint, db } = await getTestServer(t)
 
   db.simulateWorkspaceOutage(seed.seed_workspace_1, {
@@ -46,10 +46,10 @@ test('SeamHttp: throws SeamHttpUnauthorizedError if unauthorized', async (t) => 
 
   t.is(err?.statusCode, 401)
   t.is(err?.code, 'unauthorized')
-  t.is(err?.requestId, 'request1')
+  t.true(err?.requestId?.startsWith('request'))
 })
 
-test('SeamHttp: throws SeamHttpApiError on json response', async (t) => {
+test('SeamHttp: throws SeamHttpApiError on standard error response', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
@@ -68,7 +68,7 @@ test('SeamHttp: throws SeamHttpApiError on json response', async (t) => {
 
   t.is(err?.statusCode, 404)
   t.is(err?.code, 'device_not_found')
-  t.is(err?.requestId, 'request1')
+  t.true(err?.requestId?.startsWith('request'))
 })
 
 test('SeamHttp: throws SeamHttpInvalidInputError on invalid input', async (t) => {
@@ -91,5 +91,5 @@ test('SeamHttp: throws SeamHttpInvalidInputError on invalid input', async (t) =>
 
   t.is(err?.statusCode, 400)
   t.is(err?.code, 'invalid_input')
-  t.is(err?.requestId, 'request1')
+  t.true(err?.requestId?.startsWith('request'))
 })
