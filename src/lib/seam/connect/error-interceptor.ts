@@ -10,8 +10,9 @@ import {
 export const errorInterceptor = async (err: unknown): Promise<void> => {
   if (!isAxiosError(err)) throw err
 
-  const status = err.response?.status
-  const headers = err.response?.headers
+  const { response } = err
+  const status = response?.status
+  const headers = response?.headers
   const requestId = headers?.['seam-request-id'] ?? ''
 
   if (status == null) throw err
@@ -20,10 +21,7 @@ export const errorInterceptor = async (err: unknown): Promise<void> => {
     throw new SeamHttpUnauthorizedError(requestId)
   }
 
-  if (!isApiErrorResponse(err)) throw err
-
-  const { response } = err
-  if (response == null) throw err
+  if (!isApiErrorResponse(response)) throw err
 
   const { type } = response.data.error
 
@@ -34,9 +32,11 @@ export const errorInterceptor = async (err: unknown): Promise<void> => {
 }
 
 const isApiErrorResponse = (
-  err: AxiosError,
-): err is AxiosError<ApiErrorResponse> => {
-  const headers = err.response?.headers
+  response: AxiosError['response'],
+): response is NonNullable<AxiosError<ApiErrorResponse>['response']> => {
+  if (response == null) return false
+  const { headers, data } = response
+
   if (headers == null) return false
 
   const contentType = headers['content-type']
@@ -47,7 +47,6 @@ const isApiErrorResponse = (
     return false
   }
 
-  const data = err.response?.data
   if (typeof data === 'object' && data != null) {
     return (
       'error' in data &&
