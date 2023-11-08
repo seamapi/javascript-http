@@ -1,23 +1,5 @@
 import type { ApiError } from './api-error-type.js'
 
-export const isSeamHttpApiError = (
-  error: unknown,
-): error is SeamHttpApiError => {
-  return error instanceof SeamHttpApiError
-}
-
-export const isSeamHttpInvalidInputError = (
-  error: unknown,
-): error is SeamHttpInvalidInputError => {
-  return error instanceof SeamHttpInvalidInputError
-}
-
-export const isSeamHttpUnauthorizedError = (
-  error: unknown,
-): error is SeamHttpUnauthorizedError => {
-  return error instanceof SeamHttpUnauthorizedError
-}
-
 export class SeamHttpApiError extends Error {
   code: string
   statusCode: number
@@ -36,6 +18,12 @@ export class SeamHttpApiError extends Error {
   }
 }
 
+export const isSeamHttpApiError = (
+  error: unknown,
+): error is SeamHttpApiError => {
+  return error instanceof SeamHttpApiError
+}
+
 export class SeamHttpUnauthorizedError extends SeamHttpApiError {
   override code: 'unauthorized'
   override statusCode: 401
@@ -50,6 +38,12 @@ export class SeamHttpUnauthorizedError extends SeamHttpApiError {
   }
 }
 
+export const isSeamHttpUnauthorizedError = (
+  error: unknown,
+): error is SeamHttpUnauthorizedError => {
+  return error instanceof SeamHttpUnauthorizedError
+}
+
 export class SeamHttpInvalidInputError extends SeamHttpApiError {
   override code: 'invalid_input'
 
@@ -59,4 +53,10 @@ export class SeamHttpInvalidInputError extends SeamHttpApiError {
     Error.captureStackTrace(this, this.constructor)
     this.code = 'invalid_input'
   }
+}
+
+export const isSeamHttpInvalidInputError = (
+  error: unknown,
+): error is SeamHttpInvalidInputError => {
+  return error instanceof SeamHttpInvalidInputError
 }
