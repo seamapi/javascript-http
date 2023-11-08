@@ -1,5 +1,23 @@
 import type { ApiError } from './api-error-type.js'
 
+export const isSeamHttpApiError = (
+  error: unknown,
+): error is SeamHttpApiError => {
+  return error instanceof SeamHttpApiError
+}
+
+export const isSeamHttpInvalidInputError = (
+  error: unknown,
+): error is SeamHttpInvalidInputError => {
+  return error instanceof SeamHttpInvalidInputError
+}
+
+export const isSeamHttpUnauthorizedError = (
+  error: unknown,
+): error is SeamHttpUnauthorizedError => {
+  return error instanceof SeamHttpUnauthorizedError
+}
+
 export class SeamHttpApiError extends Error {
   code: string
   statusCode: number
