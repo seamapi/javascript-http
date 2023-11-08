@@ -29,11 +29,13 @@ export class SeamHttpUnauthorizedError extends SeamHttpApiError {
   override statusCode: 401
 
   constructor(requestId: string) {
-    super({ type: 'unauthorized', message: 'Unauthorized' }, 401, requestId)
+    const type = 'unauthorized'
+    const status = 401
+    super({ type, message: 'Unauthorized' }, status, requestId)
     this.name = this.constructor.name
     Error.captureStackTrace(this, this.constructor)
-    this.code = 'unauthorized'
-    this.statusCode = 401
+    this.code = type
+    this.statusCode = status
     this.requestId = requestId
   }
 }
