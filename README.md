@@ -7,7 +7,23 @@ JavaScript HTTP client for the Seam API written in TypeScript.
 
 ## Description
 
-TODO
+[Seam] makes it easy to integrate IoT devices with your applications.
+This is an official SDK for the Seam API.
+Please refer to the official [Seam Docs] to get started.
+
+Parts of this SDK are generated from always up-to-date type information
+provided by [@seamapi/types].
+This ensures all API methods, request shapes, and response shapes are
+accurate and fully typed.
+
+The SDK contains minimal dependencies, is fully tree-shakeable,
+and optimized for use in both client and server applications.
+The underlying HTTP client is [Axios].
+
+[Seam]: https://www.seam.co/
+[Seam Docs]: https://docs.seam.co/latest/
+[@seamapi/types]: https://github.com/seamapi/types/
+[Axios]: https://axios-http.com/
 
 ## Installation
 
