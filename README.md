@@ -107,7 +107,10 @@ Obtain one from the Seam Console.
 Use the async factory method to return a client authenticated with a client session token:
 
 ```ts
-const seam = await SeamHttp.fromPublishableKey('your-publishable-key', 'some-user-identifier-key')
+const seam = await SeamHttp.fromPublishableKey(
+  'your-publishable-key',
+  'some-user-identifier-key',
+)
 ```
 
 This will get an existing client session matching the user identifier key,
@@ -132,7 +135,10 @@ const seam = new SeamHttp({
 ##### Use the factory method
 
 ```ts
-const seam = SeamHttp.fromPersonalAccessToken('some-console-session-token', 'your-workspace-id')
+const seam = SeamHttp.fromPersonalAccessToken(
+  'some-console-session-token',
+  'your-workspace-id',
+)
 ```
 
 #### Console Session Token
@@ -154,7 +160,10 @@ const seam = new SeamHttp({
 ##### Use the factory method
 
 ```ts
-const seam = SeamHttp.fromConsoleSessionToken('some-console-session-token', 'your-workspace-id')
+const seam = SeamHttp.fromConsoleSessionToken(
+  'some-console-session-token',
+  'your-workspace-id',
+)
 ```
 
 ## Development and Testing
