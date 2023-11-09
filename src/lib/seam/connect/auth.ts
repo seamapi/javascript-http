@@ -2,10 +2,12 @@ import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClientSessionToken,
   isSeamHttpOptionsWithConsoleSessionToken,
+  isSeamHttpOptionsWithPersonalAccessToken,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
+  type SeamHttpOptionsWithPersonalAccessToken,
 } from './options.js'
 import type { Options } from './parse-options.js'
 
@@ -28,13 +30,18 @@ export const getAuthHeaders = (options: Options): Headers => {
     return getAuthHeadersForConsoleSessionToken(options)
   }
 
+  if (isSeamHttpOptionsWithPersonalAccessToken(options)) {
+    return getAuthHeadersForPersonalAccessToken(options)
+  }
+
   throw new SeamHttpInvalidOptionsError(
     [
       'Must specify',
       'an apiKey,',
       'clientSessionToken,',
       'publishableKey,',
-      'or consoleSessionToken with a workspaceId',
+      'consoleSessionToken with a workspaceId',
+      'or personalAccessToken with a workspaceId',
     ].join(' '),
   )
 }
@@ -138,6 +145,40 @@ const getAuthHeadersForConsoleSessionToken = ({
 
   return {
     authorization: `Bearer ${consoleSessionToken}`,
+    'seam-workspace-id': workspaceId,
+  }
+}
+
+const getAuthHeadersForPersonalAccessToken = ({
+  personalAccessToken,
+  workspaceId,
+}: SeamHttpOptionsWithPersonalAccessToken): Headers => {
+  if (isJwt(personalAccessToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A JWT cannot be used as a personalAccessToken',
+    )
+  }
+
+  if (isClientSessionToken(personalAccessToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Client Session Token cannot be used as a personalAccessToken',
+    )
+  }
+
+  if (isPublishableKey(personalAccessToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Publishable Key cannot be used as a personalAccessToken',
+    )
+  }
+
+  if (!isAccessToken(personalAccessToken)) {
+    throw new SeamHttpInvalidTokenError(
+      `Unknown or invalid personalAccessToken format, expected token to start with ${accessTokenPrefix}`,
+    )
+  }
+
+  return {
+    authorization: `Bearer ${personalAccessToken}`,
     'seam-workspace-id': workspaceId,
   }
 }

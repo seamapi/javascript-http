@@ -5,6 +5,7 @@ import {
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
   isSeamHttpOptionsWithConsoleSessionToken,
+  isSeamHttpOptionsWithPersonalAccessToken,
   type SeamHttpFromPublishableKeyOptions,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
@@ -12,6 +13,7 @@ import {
   type SeamHttpOptionsWithClient,
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
+  type SeamHttpOptionsWithPersonalAccessToken,
 } from './options.js'
 import { parseOptions } from './parse-options.js'
 import {
@@ -101,6 +103,23 @@ export class SeamHttp {
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
+      )
+    }
+    return new SeamHttp(constructorOptions)
+  }
+
+  static fromPersonalAccessToken(
+    personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
+    workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
+    options: Omit<
+      SeamHttpOptionsWithPersonalAccessToken,
+      'personalAccessToken' | 'workspaceId'
+    > = {},
+  ): SeamHttp {
+    const constructorOptions = { ...options, personalAccessToken, workspaceId }
+    if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'Missing personalAccessToken or workspaceId',
       )
     }
     return new SeamHttp(constructorOptions)
