@@ -85,6 +85,23 @@ export class SeamHttpThermostatsClimateSettingSchedules {
     )
   }
 
+  static fromConsoleSessionToken(
+    consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
+    workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
+    options: Omit<
+      SeamHttpOptionsWithConsoleSessionToken,
+      'consoleSessionToken' | 'workspaceId'
+    > = {},
+  ): SeamHttpThermostatsClimateSettingSchedules {
+    const constructorOptions = { ...options, consoleSessionToken, workspaceId }
+    if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'Missing consoleSessionToken or workspaceId',
+      )
+    }
+    return new SeamHttpThermostatsClimateSettingSchedules(constructorOptions)
+  }
+
   async create(
     body?: ThermostatsClimateSettingSchedulesCreateBody,
   ): Promise<

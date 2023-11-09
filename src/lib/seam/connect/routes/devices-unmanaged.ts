@@ -82,6 +82,23 @@ export class SeamHttpDevicesUnmanaged {
     return SeamHttpDevicesUnmanaged.fromClientSessionToken(token, options)
   }
 
+  static fromConsoleSessionToken(
+    consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
+    workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
+    options: Omit<
+      SeamHttpOptionsWithConsoleSessionToken,
+      'consoleSessionToken' | 'workspaceId'
+    > = {},
+  ): SeamHttpDevicesUnmanaged {
+    const constructorOptions = { ...options, consoleSessionToken, workspaceId }
+    if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'Missing consoleSessionToken or workspaceId',
+      )
+    }
+    return new SeamHttpDevicesUnmanaged(constructorOptions)
+  }
+
   async get(
     body?: DevicesUnmanagedGetParams,
   ): Promise<DevicesUnmanagedGetResponse['device']> {

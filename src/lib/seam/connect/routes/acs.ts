@@ -83,6 +83,23 @@ export class SeamHttpAcs {
     return SeamHttpAcs.fromClientSessionToken(token, options)
   }
 
+  static fromConsoleSessionToken(
+    consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
+    workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
+    options: Omit<
+      SeamHttpOptionsWithConsoleSessionToken,
+      'consoleSessionToken' | 'workspaceId'
+    > = {},
+  ): SeamHttpAcs {
+    const constructorOptions = { ...options, consoleSessionToken, workspaceId }
+    if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'Missing consoleSessionToken or workspaceId',
+      )
+    }
+    return new SeamHttpAcs(constructorOptions)
+  }
+
   get accessGroups(): SeamHttpAcsAccessGroups {
     return SeamHttpAcsAccessGroups.fromClient(this.client)
   }

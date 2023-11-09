@@ -86,6 +86,23 @@ export class SeamHttpConnectWebviews {
     return SeamHttpConnectWebviews.fromClientSessionToken(token, options)
   }
 
+  static fromConsoleSessionToken(
+    consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
+    workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
+    options: Omit<
+      SeamHttpOptionsWithConsoleSessionToken,
+      'consoleSessionToken' | 'workspaceId'
+    > = {},
+  ): SeamHttpConnectWebviews {
+    const constructorOptions = { ...options, consoleSessionToken, workspaceId }
+    if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'Missing consoleSessionToken or workspaceId',
+      )
+    }
+    return new SeamHttpConnectWebviews(constructorOptions)
+  }
+
   async create(
     body?: ConnectWebviewsCreateBody,
   ): Promise<ConnectWebviewsCreateResponse['connect_webview']> {

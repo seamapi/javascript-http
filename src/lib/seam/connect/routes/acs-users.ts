@@ -82,6 +82,23 @@ export class SeamHttpAcsUsers {
     return SeamHttpAcsUsers.fromClientSessionToken(token, options)
   }
 
+  static fromConsoleSessionToken(
+    consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
+    workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
+    options: Omit<
+      SeamHttpOptionsWithConsoleSessionToken,
+      'consoleSessionToken' | 'workspaceId'
+    > = {},
+  ): SeamHttpAcsUsers {
+    const constructorOptions = { ...options, consoleSessionToken, workspaceId }
+    if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'Missing consoleSessionToken or workspaceId',
+      )
+    }
+    return new SeamHttpAcsUsers(constructorOptions)
+  }
+
   async addToAccessGroup(body?: AcsUsersAddToAccessGroupBody): Promise<void> {
     await this.client.request<AcsUsersAddToAccessGroupResponse>({
       url: '/acs/users/add_to_access_group',

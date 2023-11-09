@@ -85,6 +85,23 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     )
   }
 
+  static fromConsoleSessionToken(
+    consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
+    workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
+    options: Omit<
+      SeamHttpOptionsWithConsoleSessionToken,
+      'consoleSessionToken' | 'workspaceId'
+    > = {},
+  ): SeamHttpNoiseSensorsNoiseThresholds {
+    const constructorOptions = { ...options, consoleSessionToken, workspaceId }
+    if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'Missing consoleSessionToken or workspaceId',
+      )
+    }
+    return new SeamHttpNoiseSensorsNoiseThresholds(constructorOptions)
+  }
+
   async create(body?: NoiseSensorsNoiseThresholdsCreateBody): Promise<void> {
     await this.client.request<NoiseSensorsNoiseThresholdsCreateResponse>({
       url: '/noise_sensors/noise_thresholds/create',

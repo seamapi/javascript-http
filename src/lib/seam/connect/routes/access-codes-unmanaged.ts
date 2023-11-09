@@ -82,6 +82,23 @@ export class SeamHttpAccessCodesUnmanaged {
     return SeamHttpAccessCodesUnmanaged.fromClientSessionToken(token, options)
   }
 
+  static fromConsoleSessionToken(
+    consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
+    workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
+    options: Omit<
+      SeamHttpOptionsWithConsoleSessionToken,
+      'consoleSessionToken' | 'workspaceId'
+    > = {},
+  ): SeamHttpAccessCodesUnmanaged {
+    const constructorOptions = { ...options, consoleSessionToken, workspaceId }
+    if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'Missing consoleSessionToken or workspaceId',
+      )
+    }
+    return new SeamHttpAccessCodesUnmanaged(constructorOptions)
+  }
+
   async convertToManaged(
     body?: AccessCodesUnmanagedConvertToManagedBody,
   ): Promise<void> {
