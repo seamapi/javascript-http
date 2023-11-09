@@ -5,6 +5,7 @@ export type SeamHttpOptions =
   | SeamHttpOptionsWithClient
   | SeamHttpOptionsWithApiKey
   | SeamHttpOptionsWithClientSessionToken
+  | SeamHttpOptionsWithConsoleSessionToken
 
 interface SeamHttpCommonOptions extends ClientOptions {
   endpoint?: string
@@ -53,6 +54,12 @@ export const isSeamHttpOptionsWithApiKey = (
     )
   }
 
+  if ('consoleSessionToken' in options && options.consoleSessionToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The consoleSessionToken option cannot be used with the apiKey option',
+    )
+  }
+
   return true
 }
 
@@ -69,7 +76,40 @@ export const isSeamHttpOptionsWithClientSessionToken = (
 
   if ('apiKey' in options && options.apiKey != null) {
     throw new SeamHttpInvalidOptionsError(
-      'The clientSessionToken option cannot be used with the apiKey option',
+      'The apiKey option cannot be used with the clientSessionToken option',
+    )
+  }
+
+  if ('consoleSessionToken' in options && options.consoleSessionToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The consoleSessionToken option cannot be used with the clientSessionToken option',
+    )
+  }
+
+  return true
+}
+
+export interface SeamHttpOptionsWithConsoleSessionToken
+  extends SeamHttpCommonOptions {
+  consoleSessionToken: string
+  workspaceId: string
+}
+
+export const isSeamHttpOptionsWithConsoleSessionToken = (
+  options: SeamHttpOptions,
+): options is SeamHttpOptionsWithConsoleSessionToken => {
+  if (!('consoleSessionToken' in options)) return false
+  if (options.consoleSessionToken == null) return false
+
+  if ('apiKey' in options && options.apiKey != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The apiKey option cannot be used with the consoleSessionToken option',
+    )
+  }
+
+  if ('clientSessionToken' in options && options.clientSessionToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The clientSessionToken option cannot be used with the consoleSessionToken option',
     )
   }
 

@@ -1,9 +1,11 @@
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClientSessionToken,
+  isSeamHttpOptionsWithConsoleSessionToken,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
+  type SeamHttpOptionsWithConsoleSessionToken,
 } from './options.js'
 import type { Options } from './parse-options.js'
 
@@ -22,8 +24,18 @@ export const getAuthHeaders = (options: Options): Headers => {
     return getAuthHeadersForClientSessionToken(options)
   }
 
+  if (isSeamHttpOptionsWithConsoleSessionToken(options)) {
+    return getAuthHeadersForConsoleSessionToken(options)
+  }
+
   throw new SeamHttpInvalidOptionsError(
-    'Must specify an apiKey, clientSessionToken, or publishableKey',
+    [
+      'Must specify',
+      'an apiKey,',
+      'clientSessionToken,',
+      'publishableKey,',
+      'or consoleSessionToken with a workspaceId',
+    ].join(' '),
   )
 }
 
@@ -93,6 +105,40 @@ const getAuthHeadersForClientSessionToken = ({
   return {
     authorization: `Bearer ${clientSessionToken}`,
     'client-session-token': clientSessionToken,
+  }
+}
+
+const getAuthHeadersForConsoleSessionToken = ({
+  consoleSessionToken,
+  workspaceId,
+}: SeamHttpOptionsWithConsoleSessionToken): Headers => {
+  if (isJwt(consoleSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A JWT cannot be used as a consoleSessionToken',
+    )
+  }
+
+  if (isClientSessionToken(consoleSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Client Session Token cannot be used as a consoleSessionToken',
+    )
+  }
+
+  if (isPublishableKey(consoleSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Publishable Key cannot be used as a clientSessionToken',
+    )
+  }
+
+  if (!isAccessToken(consoleSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      `Unknown or invalid consoleSessionToken format, expected token to start with ${accessTokenPrefix}`,
+    )
+  }
+
+  return {
+    authorization: `Bearer ${consoleSessionToken}`,
+    'seam-workspace-id': workspaceId,
   }
 }
 
