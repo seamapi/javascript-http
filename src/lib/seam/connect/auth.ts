@@ -126,7 +126,7 @@ const getAuthHeadersForConsoleSessionToken = ({
 
   if (isPublishableKey(consoleSessionToken)) {
     throw new SeamHttpInvalidTokenError(
-      'A Publishable Key cannot be used as a clientSessionToken',
+      'A Publishable Key cannot be used as a consoleSessionToken',
     )
   }
 
