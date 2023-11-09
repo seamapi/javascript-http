@@ -101,6 +101,12 @@ export const isSeamHttpOptionsWithConsoleSessionToken = (
   if (!('consoleSessionToken' in options)) return false
   if (options.consoleSessionToken == null) return false
 
+  if (!('workspaceId' in options) || options.workspaceId == null) {
+    throw new SeamHttpInvalidOptionsError(
+      'Must pass a workspaceId when using a consoleSessionToken',
+    )
+  }
+
   if ('apiKey' in options && options.apiKey != null) {
     throw new SeamHttpInvalidOptionsError(
       'The apiKey option cannot be used with the consoleSessionToken option',
