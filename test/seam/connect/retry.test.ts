@@ -9,7 +9,7 @@ test('SeamHttp: retries 503 status errors twice by default ', async (t) => {
   const expectedRetryCount = 2
 
   db.simulateWorkspaceOutage(seed.seed_workspace_1, {
-    routes: ['/devices/get'],
+    routes: ['/devices/list'],
   })
 
   t.plan(expectedRetryCount + 2)
@@ -24,16 +24,11 @@ test('SeamHttp: retries 503 status errors twice by default ', async (t) => {
   })
 
   const err = await t.throwsAsync(
-    async () =>
-      // UPSTREAM: This test should use seam.devices.get({ device_id: '...' }).
-      // Only idempotent methods, e.g., GET not POST, are retried by default.
-      // The SDK should use GET over POST once that method is supported upstream.
-      // https://github.com/seamapi/nextlove/issues/117
-      await seam.client.get('/devices/get', {
-        params: {
-          device_id: seed.august_device_1,
-        },
-      }),
+    // UPSTREAM: This test should use seam.devices.list().
+    // Only idempotent methods, e.g., GET not POST, are retried by default.
+    // The SDK should use GET over POST once that method is supported upstream.
+    // https://github.com/seamapi/nextlove/issues/117
+    async () => await seam.client.get('/devices/list'),
     { instanceOf: AxiosError },
   )
 

@@ -1,4 +1,6 @@
+export * from './error-interceptor.js'
 export * from './options.js'
-export * from './routes//index.js'
+export * from './routes/index.js'
 export * from './seam-http.js'
+export * from './seam-http-error.js'
 export * from 'lib/params-serializer.js'
