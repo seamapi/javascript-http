@@ -59,35 +59,45 @@ or with the more ergonomic static factory methods.
 An API key is scoped to a single workspace and should only be used on the server.
 Obtain one from the Seam Console.
 
-- Set the `SEAM_API_KEY` environment variable:
-  ```ts
-  const seam = new SeamHttp()
-  ```
-- Pass as the first argument to the constructor:
-  ```ts
-  const seam = new SeamHttp('your-api-key')
-  ```
-- Pass as an option the constructor:
-  ```ts
-  const seam = new SeamHttp({ apiKey: 'your-api-key' })
-  ```
-- Use the factory method:
-  ```ts
-  const seam = SeamHttp.fromApiKey('your-api-key')
-  ```
+##### Set the `SEAM_API_KEY` environment variable
+
+```ts
+const seam = new SeamHttp()
+```
+
+##### Pass as the first argument to the constructor
+
+```ts
+const seam = new SeamHttp('your-api-key')
+```
+
+##### Pass as an option the constructor
+
+```ts
+const seam = new SeamHttp({ apiKey: 'your-api-key' })
+```
+
+##### Use the factory method
+
+```ts
+const seam = SeamHttp.fromApiKey('your-api-key')
+```
 
 #### Client Session Token
 
 A Client Session Token is scoped to a client session and should only be used on the client.
 
-- Pass as an option the constructor:
-  ```ts
-  const seam = new SeamHttp({ clientSessionToken: 'some-client-session-token' })
-  ```
-- Use the factory method:
-  ```ts
-  const seam = SeamHttp.fromClientSessionToken('some-client-session-token')
-  ```
+##### Pass as an option the constructor
+
+```ts
+const seam = new SeamHttp({ clientSessionToken: 'some-client-session-token' })
+```
+
+##### Use the factory method
+
+```ts
+const seam = SeamHttp.fromClientSessionToken('some-client-session-token')
+```
 
 #### Publishable Key
 
@@ -110,17 +120,20 @@ Obtain one from the Seam Console.
 A workspace id must be provided when using this method
 and all requests will be scoped to that workspace.
 
-- Pass as an option the constructor:
-  ```ts
-  const seam = new SeamHttp({
-    personalAccessToken: 'your-personal-access-token',
-    workspaceId: 'your-workspace-id',
-  })
-  ```
-- Use the factory method:
-  ```ts
-  const seam = SeamHttp.fromPersonalAccessToken('some-console-session-token', 'your-workspace-id')
-  ```
+##### Pass as an option the constructor
+
+```ts
+const seam = new SeamHttp({
+  personalAccessToken: 'your-personal-access-token',
+  workspaceId: 'your-workspace-id',
+})
+```
+
+##### Use the factory method
+
+```ts
+const seam = SeamHttp.fromPersonalAccessToken('some-console-session-token', 'your-workspace-id')
+```
 
 #### Console Session Token
 
@@ -129,17 +142,20 @@ This authentication method is only used by internal Seam applications.
 A workspace id must be provided when using this method
 and all requests will be scoped to that workspace.
 
-- Pass as an option the constructor:
-  ```ts
-  const seam = new SeamHttp({
-    consoleSessionToken: 'some-console-session-token',
-    workspaceId: 'your-workspace-id',
-  })
-  ```
-- Use the factory method:
-  ```ts
-  const seam = SeamHttp.fromConsoleSessionToken('some-console-session-token', 'your-workspace-id')
-  ```
+##### Pass as an option the constructor
+
+```ts
+const seam = new SeamHttp({
+  consoleSessionToken: 'some-console-session-token',
+  workspaceId: 'your-workspace-id',
+})
+```
+
+##### Use the factory method
+
+```ts
+const seam = SeamHttp.fromConsoleSessionToken('some-console-session-token', 'your-workspace-id')
+```
 
 ## Development and Testing
 
