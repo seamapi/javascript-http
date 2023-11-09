@@ -21,6 +21,7 @@ import {
   type SeamHttpOptionsWithClient,
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
+  type SeamHttpOptionsWithPersonalAccessToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
