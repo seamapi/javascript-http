@@ -153,6 +153,10 @@ export const warnOnInsecureuserIdentifierKey = (
 
 const tokenPrefix = 'seam_'
 
+const accessTokenPrefix = 'seam_at'
+
+const jwtPrefix = 'ey'
+
 const clientSessionTokenPrefix = 'seam_cst'
 
 const publishableKeyTokenPrefix = 'seam_pk'
@@ -160,9 +164,10 @@ const publishableKeyTokenPrefix = 'seam_pk'
 const isClientSessionToken = (token: string): boolean =>
   token.startsWith(clientSessionTokenPrefix)
 
-const isAccessToken = (token: string): boolean => token.startsWith('seam_at')
+const isAccessToken = (token: string): boolean =>
+  token.startsWith(accessTokenPrefix)
 
-const isJwt = (token: string): boolean => token.startsWith('ey')
+const isJwt = (token: string): boolean => token.startsWith(jwtPrefix)
 
 const isSeamToken = (token: string): boolean => token.startsWith(tokenPrefix)
 
