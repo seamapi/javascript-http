@@ -112,9 +112,9 @@ const getAuthHeadersForConsoleSessionToken = ({
   consoleSessionToken,
   workspaceId,
 }: SeamHttpOptionsWithConsoleSessionToken): Headers => {
-  if (isJwt(consoleSessionToken)) {
+  if (isAccessToken(consoleSessionToken)) {
     throw new SeamHttpInvalidTokenError(
-      'A JWT cannot be used as a consoleSessionToken',
+      'An Access Token cannot be used as a consoleSessionToken',
     )
   }
 
@@ -130,9 +130,9 @@ const getAuthHeadersForConsoleSessionToken = ({
     )
   }
 
-  if (!isAccessToken(consoleSessionToken)) {
+  if (!isJwt(consoleSessionToken)) {
     throw new SeamHttpInvalidTokenError(
-      `Unknown or invalid consoleSessionToken format, expected token to start with ${accessTokenPrefix}`,
+      `Unknown or invalid consoleSessionToken format, expected a JWT which starts with ${jwtPrefix}`,
     )
   }
 
