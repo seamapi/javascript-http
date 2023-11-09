@@ -16,12 +16,16 @@ import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
+  isSeamHttpOptionsWithConsoleSessionToken,
+  isSeamHttpOptionsWithPersonalAccessToken,
   type SeamHttpFromPublishableKeyOptions,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClient,
   type SeamHttpOptionsWithClientSessionToken,
+  type SeamHttpOptionsWithConsoleSessionToken,
+  type SeamHttpOptionsWithPersonalAccessToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
@@ -84,6 +88,40 @@ export class SeamHttpConnectWebviews {
       user_identifier_key: userIdentifierKey,
     })
     return SeamHttpConnectWebviews.fromClientSessionToken(token, options)
+  }
+
+  static fromConsoleSessionToken(
+    consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
+    workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
+    options: Omit<
+      SeamHttpOptionsWithConsoleSessionToken,
+      'consoleSessionToken' | 'workspaceId'
+    > = {},
+  ): SeamHttpConnectWebviews {
+    const constructorOptions = { ...options, consoleSessionToken, workspaceId }
+    if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'Missing consoleSessionToken or workspaceId',
+      )
+    }
+    return new SeamHttpConnectWebviews(constructorOptions)
+  }
+
+  static fromPersonalAccessToken(
+    personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
+    workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
+    options: Omit<
+      SeamHttpOptionsWithPersonalAccessToken,
+      'personalAccessToken' | 'workspaceId'
+    > = {},
+  ): SeamHttpConnectWebviews {
+    const constructorOptions = { ...options, personalAccessToken, workspaceId }
+    if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'Missing personalAccessToken or workspaceId',
+      )
+    }
+    return new SeamHttpConnectWebviews(constructorOptions)
   }
 
   async create(

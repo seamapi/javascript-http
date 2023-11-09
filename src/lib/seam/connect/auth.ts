@@ -1,9 +1,13 @@
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClientSessionToken,
+  isSeamHttpOptionsWithConsoleSessionToken,
+  isSeamHttpOptionsWithPersonalAccessToken,
   SeamHttpInvalidOptionsError,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
+  type SeamHttpOptionsWithConsoleSessionToken,
+  type SeamHttpOptionsWithPersonalAccessToken,
 } from './options.js'
 import type { Options } from './parse-options.js'
 
@@ -22,8 +26,23 @@ export const getAuthHeaders = (options: Options): Headers => {
     return getAuthHeadersForClientSessionToken(options)
   }
 
+  if (isSeamHttpOptionsWithConsoleSessionToken(options)) {
+    return getAuthHeadersForConsoleSessionToken(options)
+  }
+
+  if (isSeamHttpOptionsWithPersonalAccessToken(options)) {
+    return getAuthHeadersForPersonalAccessToken(options)
+  }
+
   throw new SeamHttpInvalidOptionsError(
-    'Must specify an apiKey, clientSessionToken, or publishableKey',
+    [
+      'Must specify',
+      'an apiKey,',
+      'clientSessionToken,',
+      'publishableKey,',
+      'consoleSessionToken with a workspaceId',
+      'or personalAccessToken with a workspaceId',
+    ].join(' '),
   )
 }
 
@@ -96,6 +115,74 @@ const getAuthHeadersForClientSessionToken = ({
   }
 }
 
+const getAuthHeadersForConsoleSessionToken = ({
+  consoleSessionToken,
+  workspaceId,
+}: SeamHttpOptionsWithConsoleSessionToken): Headers => {
+  if (isAccessToken(consoleSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'An Access Token cannot be used as a consoleSessionToken',
+    )
+  }
+
+  if (isClientSessionToken(consoleSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Client Session Token cannot be used as a consoleSessionToken',
+    )
+  }
+
+  if (isPublishableKey(consoleSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Publishable Key cannot be used as a consoleSessionToken',
+    )
+  }
+
+  if (!isJwt(consoleSessionToken)) {
+    throw new SeamHttpInvalidTokenError(
+      `Unknown or invalid consoleSessionToken format, expected a JWT which starts with ${jwtPrefix}`,
+    )
+  }
+
+  return {
+    authorization: `Bearer ${consoleSessionToken}`,
+    'seam-workspace-id': workspaceId,
+  }
+}
+
+const getAuthHeadersForPersonalAccessToken = ({
+  personalAccessToken,
+  workspaceId,
+}: SeamHttpOptionsWithPersonalAccessToken): Headers => {
+  if (isJwt(personalAccessToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A JWT cannot be used as a personalAccessToken',
+    )
+  }
+
+  if (isClientSessionToken(personalAccessToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Client Session Token cannot be used as a personalAccessToken',
+    )
+  }
+
+  if (isPublishableKey(personalAccessToken)) {
+    throw new SeamHttpInvalidTokenError(
+      'A Publishable Key cannot be used as a personalAccessToken',
+    )
+  }
+
+  if (!isAccessToken(personalAccessToken)) {
+    throw new SeamHttpInvalidTokenError(
+      `Unknown or invalid personalAccessToken format, expected token to start with ${accessTokenPrefix}`,
+    )
+  }
+
+  return {
+    authorization: `Bearer ${personalAccessToken}`,
+    'seam-workspace-id': workspaceId,
+  }
+}
+
 const getAuthHeadersForPublishableKey = (publishableKey: string): Headers => {
   if (isJwt(publishableKey)) {
     throw new SeamHttpInvalidTokenError(
@@ -153,6 +240,10 @@ export const warnOnInsecureuserIdentifierKey = (
 
 const tokenPrefix = 'seam_'
 
+const accessTokenPrefix = 'seam_at'
+
+const jwtPrefix = 'ey'
+
 const clientSessionTokenPrefix = 'seam_cst'
 
 const publishableKeyTokenPrefix = 'seam_pk'
@@ -160,9 +251,10 @@ const publishableKeyTokenPrefix = 'seam_pk'
 const isClientSessionToken = (token: string): boolean =>
   token.startsWith(clientSessionTokenPrefix)
 
-const isAccessToken = (token: string): boolean => token.startsWith('seam_at')
+const isAccessToken = (token: string): boolean =>
+  token.startsWith(accessTokenPrefix)
 
-const isJwt = (token: string): boolean => token.startsWith('ey')
+const isJwt = (token: string): boolean => token.startsWith(jwtPrefix)
 
 const isSeamToken = (token: string): boolean => token.startsWith(tokenPrefix)
 

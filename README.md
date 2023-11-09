@@ -7,7 +7,23 @@ JavaScript HTTP client for the Seam API written in TypeScript.
 
 ## Description
 
-TODO
+[Seam] makes it easy to integrate IoT devices with your applications.
+This is an official SDK for the Seam API.
+Please refer to the official [Seam Docs] to get started.
+
+Parts of this SDK are generated from always up-to-date type information
+provided by [@seamapi/types].
+This ensures all API methods, request shapes, and response shapes are
+accurate and fully typed.
+
+The SDK contains minimal dependencies, is fully tree-shakeable,
+and optimized for use in both client and server applications.
+The underlying HTTP client is [Axios].
+
+[Seam]: https://www.seam.co/
+[Seam Docs]: https://docs.seam.co/latest/
+[@seamapi/types]: https://github.com/seamapi/types/
+[Axios]: https://axios-http.com/
 
 ## Installation
 
@@ -18,6 +34,137 @@ $ npm install @seamapi/http
 ```
 
 [npm]: https://www.npmjs.com/
+
+## Usage
+
+```ts
+import { SeamHttp } from '@seamapi/http'
+
+const seam = new SeamHttp('your-api-key')
+const devices = await seam.devices.list()
+```
+
+### Authentication Methods
+
+The SDK supports several authentication mechanisms.
+Authentication may be configured by passing the corresponding
+options directly to the `SeamHttp` constructor,
+or with the more ergonomic static factory methods.
+
+> Publishable Key authentication is not supported by the constructor
+> and must be configured using `SeamHttp.fromPublishableKey`.
+
+#### API Key
+
+An API key is scoped to a single workspace and should only be used on the server.
+Obtain one from the Seam Console.
+
+##### Set the `SEAM_API_KEY` environment variable
+
+```ts
+const seam = new SeamHttp()
+```
+
+##### Pass as the first argument to the constructor
+
+```ts
+const seam = new SeamHttp('your-api-key')
+```
+
+##### Pass as an option the constructor
+
+```ts
+const seam = new SeamHttp({ apiKey: 'your-api-key' })
+```
+
+##### Use the factory method
+
+```ts
+const seam = SeamHttp.fromApiKey('your-api-key')
+```
+
+#### Client Session Token
+
+A Client Session Token is scoped to a client session and should only be used on the client.
+
+##### Pass as an option the constructor
+
+```ts
+const seam = new SeamHttp({ clientSessionToken: 'some-client-session-token' })
+```
+
+##### Use the factory method
+
+```ts
+const seam = SeamHttp.fromClientSessionToken('some-client-session-token')
+```
+
+#### Publishable Key
+
+A Publishable Key is used by the client to acquire Client Session Token for a workspace.
+Obtain one from the Seam Console.
+
+Use the async factory method to return a client authenticated with a client session token:
+
+```ts
+const seam = await SeamHttp.fromPublishableKey(
+  'your-publishable-key',
+  'some-user-identifier-key',
+)
+```
+
+This will get an existing client session matching the user identifier key,
+or create a new empty client session.
+
+#### Personal Access Token
+
+A Personal Access Token is scoped to a Seam Console user.
+Obtain one from the Seam Console.
+A workspace id must be provided when using this method
+and all requests will be scoped to that workspace.
+
+##### Pass as an option the constructor
+
+```ts
+const seam = new SeamHttp({
+  personalAccessToken: 'your-personal-access-token',
+  workspaceId: 'your-workspace-id',
+})
+```
+
+##### Use the factory method
+
+```ts
+const seam = SeamHttp.fromPersonalAccessToken(
+  'some-console-session-token',
+  'your-workspace-id',
+)
+```
+
+#### Console Session Token
+
+A Console Session Token is used by the Seam Console.
+This authentication method is only used by internal Seam applications.
+A workspace id must be provided when using this method
+and all requests will be scoped to that workspace.
+
+##### Pass as an option the constructor
+
+```ts
+const seam = new SeamHttp({
+  consoleSessionToken: 'some-console-session-token',
+  workspaceId: 'your-workspace-id',
+})
+```
+
+##### Use the factory method
+
+```ts
+const seam = SeamHttp.fromConsoleSessionToken(
+  'some-console-session-token',
+  'your-workspace-id',
+)
+```
 
 ## Development and Testing
 

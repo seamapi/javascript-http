@@ -5,6 +5,8 @@ export type SeamHttpOptions =
   | SeamHttpOptionsWithClient
   | SeamHttpOptionsWithApiKey
   | SeamHttpOptionsWithClientSessionToken
+  | SeamHttpOptionsWithConsoleSessionToken
+  | SeamHttpOptionsWithPersonalAccessToken
 
 interface SeamHttpCommonOptions extends ClientOptions {
   endpoint?: string
@@ -53,6 +55,18 @@ export const isSeamHttpOptionsWithApiKey = (
     )
   }
 
+  if ('consoleSessionToken' in options && options.consoleSessionToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The consoleSessionToken option cannot be used with the apiKey option',
+    )
+  }
+
+  if ('personalAccessToken' in options && options.personalAccessToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The personalAccessToken option cannot be used with the apiKey option',
+    )
+  }
+
   return true
 }
 
@@ -69,7 +83,97 @@ export const isSeamHttpOptionsWithClientSessionToken = (
 
   if ('apiKey' in options && options.apiKey != null) {
     throw new SeamHttpInvalidOptionsError(
-      'The clientSessionToken option cannot be used with the apiKey option',
+      'The apiKey option cannot be used with the clientSessionToken option',
+    )
+  }
+
+  if ('consoleSessionToken' in options && options.consoleSessionToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The consoleSessionToken option cannot be used with the clientSessionToken option',
+    )
+  }
+
+  if ('personalAccessToken' in options && options.personalAccessToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The personalAccessToken option cannot be used with the clientSessionToken option',
+    )
+  }
+
+  return true
+}
+
+export interface SeamHttpOptionsWithConsoleSessionToken
+  extends SeamHttpCommonOptions {
+  consoleSessionToken: string
+  workspaceId: string
+}
+
+export const isSeamHttpOptionsWithConsoleSessionToken = (
+  options: SeamHttpOptions,
+): options is SeamHttpOptionsWithConsoleSessionToken => {
+  if (!('consoleSessionToken' in options)) return false
+  if (options.consoleSessionToken == null) return false
+
+  if (!('workspaceId' in options) || options.workspaceId == null) {
+    throw new SeamHttpInvalidOptionsError(
+      'Must pass a workspaceId when using a consoleSessionToken',
+    )
+  }
+
+  if ('apiKey' in options && options.apiKey != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The apiKey option cannot be used with the consoleSessionToken option',
+    )
+  }
+
+  if ('clientSessionToken' in options && options.clientSessionToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The clientSessionToken option cannot be used with the consoleSessionToken option',
+    )
+  }
+
+  if ('personalAccessToken' in options && options.personalAccessToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The personalAccessToken option cannot be used with the consoleSessionToken option',
+    )
+  }
+
+  return true
+}
+
+export interface SeamHttpOptionsWithPersonalAccessToken
+  extends SeamHttpCommonOptions {
+  personalAccessToken: string
+  workspaceId: string
+}
+
+export const isSeamHttpOptionsWithPersonalAccessToken = (
+  options: SeamHttpOptions,
+): options is SeamHttpOptionsWithPersonalAccessToken => {
+  if (!('personalAccessToken' in options)) return false
+  if (options.personalAccessToken == null) return false
+
+  if (!('workspaceId' in options) || options.workspaceId == null) {
+    throw new SeamHttpInvalidOptionsError(
+      'Must pass a workspaceId when using a personalAccessToken',
+    )
+  }
+
+  if ('apiKey' in options && options.apiKey != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The apiKey option cannot be used with the personalAccessToken option',
+    )
+  }
+
+  if ('clientSessionToken' in options && options.clientSessionToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The clientSessionToken option cannot be used with the personalAccessToken option',
+    )
+  }
+
+  if ('consoleSessionToken' in options && options.consoleSessionToken != null) {
+    throw new SeamHttpInvalidOptionsError(
+      'The consoleSessionToken option cannot be used with the personalAccessToken option',
     )
   }
 
