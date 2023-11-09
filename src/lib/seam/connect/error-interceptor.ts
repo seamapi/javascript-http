@@ -53,7 +53,7 @@ const isApiErrorResponse = (
       typeof data.error === 'object' &&
       data.error != null &&
       'type' in data.error &&
-      typeof data.error === 'string'
+      typeof data.error.type === 'string'
     )
   }
 
