@@ -159,7 +159,7 @@ const getAuthHeadersForConsoleSessionToken = ({
 
   return {
     authorization: `Bearer ${consoleSessionToken}`,
-    ...(workspaceId != null ? { 'seam-workspace-id': workspaceId } : {}),
+    ...(workspaceId != null ? { 'seam-workspace': workspaceId } : {}),
   }
 }
 
@@ -197,7 +197,7 @@ const getAuthHeadersForPersonalAccessToken = ({
 
   return {
     authorization: `Bearer ${personalAccessToken}`,
-    ...(workspaceId != null ? { 'seam-workspace-id': workspaceId } : {}),
+    ...(workspaceId != null ? { 'seam-workspace': workspaceId } : {}),
   }
 }
 
