@@ -1,5 +1,4 @@
 import { type Client, createClient } from './client.js'
-import { SeamHttpWorkspaces } from './routes/index.js'
 import {
   isSeamHttpMultiWorkspaceOptionsWithClient,
   isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken,
@@ -11,6 +10,7 @@ import {
   type SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken,
 } from './options.js'
 import { parseOptions } from './parse-options.js'
+import { SeamHttpWorkspaces } from './routes/index.js'
 
 export class SeamHttpMultiWorkspace {
   client: Client
