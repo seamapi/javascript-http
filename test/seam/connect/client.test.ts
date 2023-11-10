@@ -6,6 +6,8 @@ import {
   type DevicesListParams,
   type DevicesListResponse,
   SeamHttp,
+  SeamHttpMultiWorkspace,
+  type WorkspacesListResponse,
 } from '@seamapi/http/connect'
 
 test('SeamHttp: fromClient returns instance that uses client', async (t) => {
@@ -105,3 +107,55 @@ test('SeamHttp: merges axios headers when creating client', async (t) => {
   t.is(device.workspace_id, seed.seed_workspace_1)
   t.is(device.device_id, seed.august_device_1)
 })
+
+// UPSTREAM: Fake does not support personal access token.
+// https://github.com/seamapi/fake-seam-connect/issues/126
+test.failing(
+  'SeamHttpMultiWorkspace: fromClient returns instance that uses client',
+  async (t) => {
+    const { endpoint } = await getTestServer(t)
+    const seam = SeamHttpMultiWorkspace.fromClient(
+      SeamHttpMultiWorkspace.fromPersonalAccessToken('seam_at_TODO', {
+        endpoint,
+      }).client,
+    )
+    const workspaces = await seam.workspaces.list()
+    t.true(workspaces.length > 0)
+  },
+)
+
+// UPSTREAM: Fake does not support personal access token.
+// https://github.com/seamapi/fake-seam-connect/issues/126
+test.failing(
+  'SeamHttpMultiWorkspace: constructor returns instance that uses client',
+  async (t) => {
+    const { endpoint } = await getTestServer(t)
+    const seam = new SeamHttpMultiWorkspace({
+      client: SeamHttpMultiWorkspace.fromPersonalAccessToken('seam_at_TODO', {
+        endpoint,
+      }).client,
+    })
+    const workspaces = await seam.workspaces.list()
+    t.true(workspaces.length > 0)
+  },
+)
+
+// UPSTREAM: Fake does not support personal access token.
+// https://github.com/seamapi/fake-seam-connect/issues/126
+test.failing(
+  'SeamHttpMultiWorkspace: can use client to make requests',
+  async (t) => {
+    const { endpoint } = await getTestServer(t)
+    const seam = new SeamHttpMultiWorkspace({
+      client: SeamHttpMultiWorkspace.fromPersonalAccessToken('seam_at_TODO', {
+        endpoint,
+      }).client,
+    })
+    const {
+      data: { workspaces },
+      status,
+    } = await seam.client.get<WorkspacesListResponse>('/workspaces/list')
+    t.is(status, 200)
+    t.true(workspaces.length > 0)
+  },
+)

@@ -1,5 +1,10 @@
 import type { Client, ClientOptions } from './client.js'
 
+export type SeamHttpMultiWorkspaceOptions =
+  | SeamHttpMultiWorkspaceOptionsWithClient
+  | SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken
+  | SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken
+
 export type SeamHttpOptions =
   | SeamHttpOptionsFromEnv
   | SeamHttpOptionsWithClient
@@ -16,6 +21,14 @@ export interface SeamHttpFromPublishableKeyOptions
   extends SeamHttpCommonOptions {}
 
 export interface SeamHttpOptionsFromEnv extends SeamHttpCommonOptions {}
+
+export interface SeamHttpMultiWorkspaceOptionsWithClient {
+  client: Client
+}
+
+export const isSeamHttpMultiWorkspaceOptionsWithClient = (
+  options: SeamHttpOptions,
+): options is SeamHttpOptionsWithClient => isSeamHttpOptionsWithClient(options)
 
 export interface SeamHttpOptionsWithClient {
   client: Client
@@ -102,23 +115,16 @@ export const isSeamHttpOptionsWithClientSessionToken = (
   return true
 }
 
-export interface SeamHttpOptionsWithConsoleSessionToken
+export interface SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken
   extends SeamHttpCommonOptions {
   consoleSessionToken: string
-  workspaceId: string
 }
 
-export const isSeamHttpOptionsWithConsoleSessionToken = (
+export const isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken = (
   options: SeamHttpOptions,
-): options is SeamHttpOptionsWithConsoleSessionToken => {
+): options is SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken => {
   if (!('consoleSessionToken' in options)) return false
   if (options.consoleSessionToken == null) return false
-
-  if (!('workspaceId' in options) || options.workspaceId == null) {
-    throw new SeamHttpInvalidOptionsError(
-      'Must pass a workspaceId when using a consoleSessionToken',
-    )
-  }
 
   if ('apiKey' in options && options.apiKey != null) {
     throw new SeamHttpInvalidOptionsError(
@@ -141,23 +147,37 @@ export const isSeamHttpOptionsWithConsoleSessionToken = (
   return true
 }
 
-export interface SeamHttpOptionsWithPersonalAccessToken
+export interface SeamHttpOptionsWithConsoleSessionToken
   extends SeamHttpCommonOptions {
-  personalAccessToken: string
+  consoleSessionToken: string
   workspaceId: string
 }
 
-export const isSeamHttpOptionsWithPersonalAccessToken = (
+export const isSeamHttpOptionsWithConsoleSessionToken = (
   options: SeamHttpOptions,
-): options is SeamHttpOptionsWithPersonalAccessToken => {
-  if (!('personalAccessToken' in options)) return false
-  if (options.personalAccessToken == null) return false
+): options is SeamHttpOptionsWithConsoleSessionToken => {
+  if (!isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken(options))
+    return false
 
   if (!('workspaceId' in options) || options.workspaceId == null) {
     throw new SeamHttpInvalidOptionsError(
-      'Must pass a workspaceId when using a personalAccessToken',
+      'Must pass a workspaceId when using a consoleSessionToken',
     )
   }
+
+  return true
+}
+
+export interface SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken
+  extends SeamHttpCommonOptions {
+  personalAccessToken: string
+}
+
+export const isSeamHttpMultiWorkspaceOptionsWithPersonalAccessToken = (
+  options: SeamHttpOptions,
+): options is SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken => {
+  if (!('personalAccessToken' in options)) return false
+  if (options.personalAccessToken == null) return false
 
   if ('apiKey' in options && options.apiKey != null) {
     throw new SeamHttpInvalidOptionsError(
@@ -180,6 +200,27 @@ export const isSeamHttpOptionsWithPersonalAccessToken = (
   return true
 }
 
+export interface SeamHttpOptionsWithPersonalAccessToken
+  extends SeamHttpCommonOptions {
+  personalAccessToken: string
+  workspaceId: string
+}
+
+export const isSeamHttpOptionsWithPersonalAccessToken = (
+  options: SeamHttpOptions,
+): options is SeamHttpOptionsWithPersonalAccessToken => {
+  if (!isSeamHttpMultiWorkspaceOptionsWithPersonalAccessToken(options))
+    return false
+
+  if (!('workspaceId' in options) || options.workspaceId == null) {
+    throw new SeamHttpInvalidOptionsError(
+      'Must pass a workspaceId when using a personalAccessToken',
+    )
+  }
+
+  return true
+}
+
 export class SeamHttpInvalidOptionsError extends Error {
   constructor(message: string) {
     super(`SeamHttp received invalid options: ${message}`)
@@ -187,3 +228,5 @@ export class SeamHttpInvalidOptionsError extends Error {
     Error.captureStackTrace(this, this.constructor)
   }
 }
+
+export class SeamHttpMultiWorkspaceInvalidOptionsError extends SeamHttpInvalidOptionsError {}

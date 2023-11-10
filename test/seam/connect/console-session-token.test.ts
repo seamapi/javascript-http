@@ -1,7 +1,11 @@
 import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 
-import { SeamHttp, SeamHttpInvalidTokenError } from '@seamapi/http/connect'
+import {
+  SeamHttp,
+  SeamHttpInvalidTokenError,
+  SeamHttpMultiWorkspace,
+} from '@seamapi/http/connect'
 
 // UPSTREAM: Fake does not support JWT.
 // https://github.com/seamapi/fake-seam-connect/issues/124
@@ -65,6 +69,61 @@ test('SeamHttp: checks consoleSessionToken format', (t) => {
     message: /Client Session Token/,
   })
   t.throws(() => SeamHttp.fromConsoleSessionToken('seam_at', workspaceId), {
+    instanceOf: SeamHttpInvalidTokenError,
+    message: /Access Token/,
+  })
+})
+
+// UPSTREAM: Fake does not support JWT.
+// https://github.com/seamapi/fake-seam-connect/issues/124
+test.failing(
+  'SeamHttpMultiWorkspace: fromConsoleSessionToken returns instance authorized with consoleSessionToken',
+  async (t) => {
+    const { endpoint } = await getTestServer(t)
+    const seam = SeamHttpMultiWorkspace.fromConsoleSessionToken('ey_TODO', {
+      endpoint,
+    })
+    const workspaces = await seam.workspaces.list()
+    t.true(workspaces.length > 0)
+  },
+)
+
+// UPSTREAM: Fake does not support JWT.
+// https://github.com/seamapi/fake-seam-connect/issues/124
+test.failing(
+  'SeamHttpMultiWorkspace: constructor returns instance authorized with consoleSessionToken',
+  async (t) => {
+    const { endpoint } = await getTestServer(t)
+    const seam = new SeamHttpMultiWorkspace({
+      consoleSessionToken: 'ey_TODO',
+      endpoint,
+    })
+    const workspaces = await seam.workspaces.list()
+    t.true(workspaces.length > 0)
+  },
+)
+
+test('SeamHttpMultiWorkspace: checks consoleSessionToken format', (t) => {
+  t.throws(
+    () =>
+      SeamHttpMultiWorkspace.fromConsoleSessionToken('some-invalid-key-format'),
+    {
+      instanceOf: SeamHttpInvalidTokenError,
+      message: /Unknown/,
+    },
+  )
+  t.throws(
+    () => SeamHttpMultiWorkspace.fromConsoleSessionToken('seam_apikey_token'),
+    {
+      instanceOf: SeamHttpInvalidTokenError,
+      message: /Unknown/,
+    },
+  )
+  t.throws(() => SeamHttpMultiWorkspace.fromConsoleSessionToken('seam_cst'), {
+    instanceOf: SeamHttpInvalidTokenError,
+    message: /Client Session Token/,
+  })
+  t.throws(() => SeamHttpMultiWorkspace.fromConsoleSessionToken('seam_at'), {
     instanceOf: SeamHttpInvalidTokenError,
     message: /Access Token/,
   })
