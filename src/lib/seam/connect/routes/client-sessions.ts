@@ -182,6 +182,14 @@ export class SeamHttpClientSessions {
     })
     return data.client_sessions
   }
+
+  async revoke(body?: ClientSessionsRevokeBody): Promise<void> {
+    await this.client.request<ClientSessionsRevokeResponse>({
+      url: '/client_sessions/revoke',
+      method: 'post',
+      data: body,
+    })
+  }
 }
 
 export type ClientSessionsCreateBody =
@@ -222,4 +230,11 @@ export type ClientSessionsListParams = RouteRequestBody<'/client_sessions/list'>
 
 export type ClientSessionsListResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/list'>>
+>
+
+export type ClientSessionsRevokeBody =
+  RouteRequestBody<'/client_sessions/revoke'>
+
+export type ClientSessionsRevokeResponse = SetNonNullable<
+  Required<RouteResponse<'/client_sessions/revoke'>>
 >

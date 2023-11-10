@@ -28,6 +28,7 @@ import {
   SeamHttpLocks,
   SeamHttpNoiseSensors,
   SeamHttpThermostats,
+  SeamHttpUserIdentities,
   SeamHttpWebhooks,
   SeamHttpWorkspaces,
 } from './routes/index.js'
@@ -167,6 +168,10 @@ export class SeamHttp {
 
   get thermostats(): SeamHttpThermostats {
     return SeamHttpThermostats.fromClient(this.client)
+  }
+
+  get userIdentities(): SeamHttpUserIdentities {
+    return SeamHttpUserIdentities.fromClient(this.client)
   }
 
   get webhooks(): SeamHttpWebhooks {

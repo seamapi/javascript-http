@@ -128,25 +128,6 @@ export class SeamHttpAcsAccessGroups {
     })
   }
 
-  async create(
-    body?: AcsAccessGroupsCreateBody,
-  ): Promise<AcsAccessGroupsCreateResponse['acs_access_group']> {
-    const { data } = await this.client.request<AcsAccessGroupsCreateResponse>({
-      url: '/acs/access_groups/create',
-      method: 'post',
-      data: body,
-    })
-    return data.acs_access_group
-  }
-
-  async delete(body?: AcsAccessGroupsDeleteBody): Promise<void> {
-    await this.client.request<AcsAccessGroupsDeleteResponse>({
-      url: '/acs/access_groups/delete',
-      method: 'post',
-      data: body,
-    })
-  }
-
   async get(
     body?: AcsAccessGroupsGetParams,
   ): Promise<AcsAccessGroupsGetResponse['acs_access_group']> {
@@ -188,14 +169,6 @@ export class SeamHttpAcsAccessGroups {
       data: body,
     })
   }
-
-  async update(body?: AcsAccessGroupsUpdateBody): Promise<void> {
-    await this.client.request<AcsAccessGroupsUpdateResponse>({
-      url: '/acs/access_groups/update',
-      method: 'post',
-      data: body,
-    })
-  }
 }
 
 export type AcsAccessGroupsAddUserBody =
@@ -203,20 +176,6 @@ export type AcsAccessGroupsAddUserBody =
 
 export type AcsAccessGroupsAddUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/add_user'>>
->
-
-export type AcsAccessGroupsCreateBody =
-  RouteRequestBody<'/acs/access_groups/create'>
-
-export type AcsAccessGroupsCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/access_groups/create'>>
->
-
-export type AcsAccessGroupsDeleteBody =
-  RouteRequestBody<'/acs/access_groups/delete'>
-
-export type AcsAccessGroupsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/access_groups/delete'>>
 >
 
 export type AcsAccessGroupsGetParams =
@@ -245,11 +204,4 @@ export type AcsAccessGroupsRemoveUserBody =
 
 export type AcsAccessGroupsRemoveUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/remove_user'>>
->
-
-export type AcsAccessGroupsUpdateBody =
-  RouteRequestBody<'/acs/access_groups/update'>
-
-export type AcsAccessGroupsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/access_groups/update'>>
 >
