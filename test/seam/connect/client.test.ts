@@ -1,13 +1,12 @@
 import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 
-import { SeamHttp } from '@seamapi/http/connect'
-
-import type {
-  DevicesGetResponse,
-  DevicesListParams,
-  DevicesListResponse,
-} from 'lib/seam/connect/routes/devices.js'
+import {
+  type DevicesGetResponse,
+  type DevicesListParams,
+  type DevicesListResponse,
+  SeamHttp,
+} from '@seamapi/http/connect'
 
 test('SeamHttp: fromClient returns instance that uses client', async (t) => {
   const { seed, endpoint } = await getTestServer(t)

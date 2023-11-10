@@ -1,9 +1,7 @@
 import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 
-import { SeamHttp } from '@seamapi/http/connect'
-
-import { SeamHttpInvalidTokenError } from 'lib/seam/connect/auth.js'
+import { SeamHttp, SeamHttpInvalidTokenError } from '@seamapi/http/connect'
 
 // UPSTREAM: Fake does not support JWT.
 // https://github.com/seamapi/fake-seam-connect/issues/124

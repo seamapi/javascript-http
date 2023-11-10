@@ -1,9 +1,7 @@
 import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 
-import { SeamHttp } from '@seamapi/http/connect'
-
-import { SeamHttpInvalidTokenError } from 'lib/seam/connect/auth.js'
+import { SeamHttp, SeamHttpInvalidTokenError } from '@seamapi/http/connect'
 
 test('SeamHttp: fromClientSessionToken returns instance authorized with clientSessionToken', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
