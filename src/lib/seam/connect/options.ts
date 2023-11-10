@@ -28,7 +28,8 @@ export interface SeamHttpMultiWorkspaceOptionsWithClient {
 
 export const isSeamHttpMultiWorkspaceOptionsWithClient = (
   options: SeamHttpOptions,
-): options is SeamHttpOptionsWithClient => isSeamHttpOptionsWithClient(options)
+): options is SeamHttpMultiWorkspaceOptionsWithClient =>
+  isSeamHttpOptionsWithClient(options)
 
 export interface SeamHttpOptionsWithClient {
   client: Client
@@ -156,8 +157,9 @@ export interface SeamHttpOptionsWithConsoleSessionToken
 export const isSeamHttpOptionsWithConsoleSessionToken = (
   options: SeamHttpOptions,
 ): options is SeamHttpOptionsWithConsoleSessionToken => {
-  if (!isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken(options))
+  if (!isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken(options)) {
     return false
+  }
 
   if (!('workspaceId' in options) || options.workspaceId == null) {
     throw new SeamHttpInvalidOptionsError(
@@ -209,8 +211,9 @@ export interface SeamHttpOptionsWithPersonalAccessToken
 export const isSeamHttpOptionsWithPersonalAccessToken = (
   options: SeamHttpOptions,
 ): options is SeamHttpOptionsWithPersonalAccessToken => {
-  if (!isSeamHttpMultiWorkspaceOptionsWithPersonalAccessToken(options))
+  if (!isSeamHttpMultiWorkspaceOptionsWithPersonalAccessToken(options)) {
     return false
+  }
 
   if (!('workspaceId' in options) || options.workspaceId == null) {
     throw new SeamHttpInvalidOptionsError(
