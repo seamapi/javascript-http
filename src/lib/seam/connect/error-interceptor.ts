@@ -1,6 +1,6 @@
 import { type AxiosError, isAxiosError } from 'axios'
 
-import type { ApiErrorResponse } from './api-error-type.js'
+import type { ApiErrorResponse } from './api-error-types.js'
 import {
   SeamHttpApiError,
   SeamHttpInvalidInputError,

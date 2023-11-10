@@ -1,4 +1,4 @@
-import type { ApiError } from './api-error-type.js'
+import type { ApiError } from './api-error-types.js'
 
 export class SeamHttpApiError extends Error {
   code: string
