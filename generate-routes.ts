@@ -29,6 +29,7 @@ const routePaths = [
   '/noise_sensors/noise_thresholds',
   '/thermostats/climate_setting_schedules',
   '/thermostats',
+  '/user_identities',
   '/webhooks',
   '/workspaces',
 ] as const

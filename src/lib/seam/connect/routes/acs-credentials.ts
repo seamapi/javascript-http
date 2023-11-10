@@ -120,6 +120,14 @@ export class SeamHttpAcsCredentials {
     return new SeamHttpAcsCredentials(constructorOptions)
   }
 
+  async assign(body?: AcsCredentialsAssignBody): Promise<void> {
+    await this.client.request<AcsCredentialsAssignResponse>({
+      url: '/acs/credentials/assign',
+      method: 'post',
+      data: body,
+    })
+  }
+
   async create(
     body?: AcsCredentialsCreateBody,
   ): Promise<AcsCredentialsCreateResponse['acs_credential']> {
@@ -160,7 +168,22 @@ export class SeamHttpAcsCredentials {
     })
     return data.acs_credentials
   }
+
+  async unassign(body?: AcsCredentialsUnassignBody): Promise<void> {
+    await this.client.request<AcsCredentialsUnassignResponse>({
+      url: '/acs/credentials/unassign',
+      method: 'post',
+      data: body,
+    })
+  }
 }
+
+export type AcsCredentialsAssignBody =
+  RouteRequestBody<'/acs/credentials/assign'>
+
+export type AcsCredentialsAssignResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/credentials/assign'>>
+>
 
 export type AcsCredentialsCreateBody =
   RouteRequestBody<'/acs/credentials/create'>
@@ -186,4 +209,11 @@ export type AcsCredentialsListParams = RouteRequestBody<'/acs/credentials/list'>
 
 export type AcsCredentialsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/list'>>
+>
+
+export type AcsCredentialsUnassignBody =
+  RouteRequestBody<'/acs/credentials/unassign'>
+
+export type AcsCredentialsUnassignResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/credentials/unassign'>>
 >
