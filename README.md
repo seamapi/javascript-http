@@ -194,16 +194,19 @@ const seam = SeamHttp.fromApiKey('some-api-key', {
 #### Setting the endpoint
 
 Some contexts may need to override the API endpoint,
-e.g., testing or proxy setup.
-This option corresponds to the setting Axios `baseURL`.
+e.g., testing or proxy setups.
+This option corresponds to the Axios `baseURL` setting.
 
 Either pass the `endpoint` option, or set the `SEAM_ENDPOINT` environment variable.
 
 #### Configuring the Axios Client
 
 The Axios client and retry behavior may be configured with custom initiation options
-via `axiosOptions` and `axiosRetryOptions`.
+via [`axiosOptions`] and [`axiosRetryOptions`][axiosRetryOptions].
 Options are deep merged with the default options.
+
+[axiosOptions]: https://axios-http.com/docs/config_defaults
+[axiosRetryOptions]: https://github.com/softonic/axios-retry
 
 #### Using the Axios Client
 
