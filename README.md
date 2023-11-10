@@ -166,6 +166,67 @@ const seam = SeamHttp.fromConsoleSessionToken(
 )
 ```
 
+### Advanced Usage
+
+In addition the various authentication options,
+the constructor takes some additional options that affect behavior.
+
+```ts
+const seam = new SeamHttp({
+  apiKey: 'your-api-key',
+  endpoint: 'https://example.com',
+  axiosOptions: {},
+  axiosRetryOptions: {},
+})
+```
+
+When using the static factory methods,
+these options may be passed in as the last argument.
+
+```ts
+const seam = SeamHttp.fromApiKey('some-api-key', {
+  endpoint: 'https://example.com',
+  axiosOptions: {},
+  axiosRetryOptions: {},
+})
+```
+
+#### Setting the endpoint
+
+Some contexts may need to override the API endpoint,
+e.g., testing or proxy setup.
+This option corresponds to the setting Axios `baseURL`.
+
+Either pass the `endpoint` option, or set the `SEAM_ENDPOINT` environment variable.
+
+#### Configuring the Axios Client
+
+The Axios client and retry behavior may be configured with custom initiation options
+via `axiosOptions` and `axiosRetryOptions`.
+Options are deep merged with the default options.
+
+#### Using the Axios Client
+
+The Axios client is exposed and may be used or configured directly:
+
+```ts
+import { SeamHttp, DevicesListResponse } from '@seamapi/http'
+
+const seam = new SeamHttp()
+
+seam.client.interceptors.response.use((response) => {
+  console.log(response)
+  return response
+})
+
+const devices = await seam.client.get<DevicesListResponse>('/devices/list')
+```
+
+#### Overriding the Client
+
+An Axios compatible client may be provided to create a `SeamHttp` instance.
+This API is used internally and is not directly supported.
+
 ## Development and Testing
 
 ### Quickstart
