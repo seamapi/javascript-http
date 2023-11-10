@@ -38,7 +38,7 @@ $ npm install @seamapi/http
 ## Usage
 
 ```ts
-import { SeamHttp } from '@seamapi/http'
+import { SeamHttp } from '@seamapi/http/connect'
 
 const seam = new SeamHttp('your-api-key')
 const devices = await seam.devices.list()
@@ -213,7 +213,7 @@ Options are deep merged with the default options.
 The Axios client is exposed and may be used or configured directly:
 
 ```ts
-import { SeamHttp, DevicesListResponse } from '@seamapi/http'
+import { SeamHttp, DevicesListResponse } from '@seamapi/http/connect'
 
 const seam = new SeamHttp()
 
