@@ -3,8 +3,10 @@ import version from 'lib/version.js'
 import { getAuthHeaders } from './auth.js'
 import type { ClientOptions } from './client.js'
 import {
+  isSeamHttpMultiWorkspaceOptionsWithClient,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
+  type SeamHttpMultiWorkspaceOptions,
   type SeamHttpOptions,
 } from './options.js'
 
@@ -15,7 +17,9 @@ const sdkHeaders = {
   'seam-sdk-version': version,
 }
 
-export type Options = SeamHttpOptions & { publishableKey?: string }
+export type Options =
+  | SeamHttpMultiWorkspaceOptions
+  | (SeamHttpOptions & { publishableKey?: string })
 
 export const parseOptions = (
   apiKeyOrOptions: string | Options,
@@ -23,6 +27,7 @@ export const parseOptions = (
   const options = getNormalizedOptions(apiKeyOrOptions)
 
   if (isSeamHttpOptionsWithClient(options)) return options
+  if (isSeamHttpMultiWorkspaceOptionsWithClient(options)) return options
 
   return {
     axiosOptions: {

@@ -1,9 +1,13 @@
 import {
+  isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken,
+  isSeamHttpMultiWorkspaceOptionsWithPersonalAccessToken,
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClientSessionToken,
   isSeamHttpOptionsWithConsoleSessionToken,
   isSeamHttpOptionsWithPersonalAccessToken,
   SeamHttpInvalidOptionsError,
+  type SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken,
+  type SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
@@ -26,11 +30,17 @@ export const getAuthHeaders = (options: Options): Headers => {
     return getAuthHeadersForClientSessionToken(options)
   }
 
-  if (isSeamHttpOptionsWithConsoleSessionToken(options)) {
+  if (
+    isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken(options) ||
+    isSeamHttpOptionsWithConsoleSessionToken(options)
+  ) {
     return getAuthHeadersForConsoleSessionToken(options)
   }
 
-  if (isSeamHttpOptionsWithPersonalAccessToken(options)) {
+  if (
+    isSeamHttpMultiWorkspaceOptionsWithPersonalAccessToken(options) ||
+    isSeamHttpOptionsWithPersonalAccessToken(options)
+  ) {
     return getAuthHeadersForPersonalAccessToken(options)
   }
 
@@ -40,8 +50,8 @@ export const getAuthHeaders = (options: Options): Headers => {
       'an apiKey,',
       'clientSessionToken,',
       'publishableKey,',
-      'consoleSessionToken with a workspaceId',
-      'or personalAccessToken with a workspaceId',
+      'consoleSessionToken',
+      'or personalAccessToken',
     ].join(' '),
   )
 }
@@ -117,8 +127,12 @@ const getAuthHeadersForClientSessionToken = ({
 
 const getAuthHeadersForConsoleSessionToken = ({
   consoleSessionToken,
-  workspaceId,
-}: SeamHttpOptionsWithConsoleSessionToken): Headers => {
+  ...options
+}:
+  | SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken
+  | SeamHttpOptionsWithConsoleSessionToken): Headers => {
+  const workspaceId = 'workspaceId' in options ? options.workspaceId : undefined
+
   if (isAccessToken(consoleSessionToken)) {
     throw new SeamHttpInvalidTokenError(
       'An Access Token cannot be used as a consoleSessionToken',
@@ -145,14 +159,18 @@ const getAuthHeadersForConsoleSessionToken = ({
 
   return {
     authorization: `Bearer ${consoleSessionToken}`,
-    'seam-workspace-id': workspaceId,
+    ...(workspaceId != null ? { 'seam-workspace-id': workspaceId } : {}),
   }
 }
 
 const getAuthHeadersForPersonalAccessToken = ({
   personalAccessToken,
-  workspaceId,
-}: SeamHttpOptionsWithPersonalAccessToken): Headers => {
+  ...options
+}:
+  | SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken
+  | SeamHttpOptionsWithPersonalAccessToken): Headers => {
+  const workspaceId = 'workspaceId' in options ? options.workspaceId : undefined
+
   if (isJwt(personalAccessToken)) {
     throw new SeamHttpInvalidTokenError(
       'A JWT cannot be used as a personalAccessToken',
@@ -179,7 +197,7 @@ const getAuthHeadersForPersonalAccessToken = ({
 
   return {
     authorization: `Bearer ${personalAccessToken}`,
-    'seam-workspace-id': workspaceId,
+    ...(workspaceId != null ? { 'seam-workspace-id': workspaceId } : {}),
   }
 }
 
