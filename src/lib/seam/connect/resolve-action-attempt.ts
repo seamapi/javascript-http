@@ -11,10 +11,11 @@ interface Options {
 }
 
 export const resolveActionAttempt = async <T extends ActionAttempt>(
-  actionAttempt: T,
+  actionAttemptOrPromise: T | Promise<T>,
   seam: SeamHttp,
   { timeout = 5000, pollingInterval = 500 }: Options = {},
 ): Promise<SuccessfulActionAttempt<T>> => {
+  const actionAttempt = await actionAttemptOrPromise
   let timeoutRef
   const timeoutPromise = new Promise<SuccessfulActionAttempt<T>>(
     (_resolve, reject) => {

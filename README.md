@@ -153,6 +153,15 @@ Seam tracks the progress of requested operation and updates the action attempt.
 To make working with action attempts more convenient for applications,
 this library provides the `resolveActionAttempt` function:
 
+```ts
+await resolveActionAttempt(
+  seam.locks.unlockDoor({ device_id }),
+  seam,
+)
+```
+
+Wrapping an action attempt with `resolveActionAttempt`:
+
 - Polls the action attempt up to the `timeout`
   at the `pollingInterval` (both in milliseconds).
 - Resolves with a fresh copy of the successful action attempt.
@@ -180,6 +189,7 @@ const actionAttempt = await seam.locks.unlockDoor({
 
 try {
   await resolveActionAttempt(actionAttempt, seam)
+  console.log('Door unlocked')
 } catch (err: unknown) {
   if (isSeamActionAttemptFailedError<typeof actionAttempt>(err)) {
     console.log('Could not unlock the door')

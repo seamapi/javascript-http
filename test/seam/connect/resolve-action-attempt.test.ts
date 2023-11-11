@@ -145,3 +145,20 @@ test('resolveActionAttempt: times out if waiting for polling interval', async (t
 
   t.is(err?.actionAttempt, actionAttempt)
 })
+
+test('resolveActionAttempt: wraps methods that return as action attempt', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+  })
+
+  const { status } = await resolveActionAttempt(
+    seam.locks.unlockDoor({
+      device_id: seed.august_device_1,
+    }),
+    seam,
+  )
+
+  t.is(status, 'success')
+})
