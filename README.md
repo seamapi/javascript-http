@@ -181,12 +181,12 @@ const actionAttempt = await seam.locks.unlockDoor({
 try {
   await resolveActionAttempt(actionAttempt, seam)
 } catch (err: unknown) {
-  if (isSeamActionAttemptFailedError(err)) {
+  if (isSeamActionAttemptFailedError<typeof actionAttempt>(err)) {
     console.log('Could not unlock the door')
     return
   }
 
-  if (isSeamActionAttemptTimeoutError(err)) {
+  if (isSeamActionAttemptTimeoutError<typeof actionAttempt>(err)) {
     console.log('Door took too long to unlock')
     return
   }

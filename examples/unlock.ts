@@ -35,12 +35,12 @@ export const handler: Handler<Options> = async ({ deviceId, seam, logger }) => {
     )
     logger.info({ actionAttempt: sucessfulActionAttempt }, 'unlocked')
   } catch (err: unknown) {
-    if (isSeamActionAttemptFailedError(err)) {
+    if (isSeamActionAttemptFailedError<typeof actionAttempt>(err)) {
       logger.info({ err }, 'Could not unlock the door')
       return
     }
 
-    if (isSeamActionAttemptTimeoutError(err)) {
+    if (isSeamActionAttemptTimeoutError<typeof actionAttempt>(err)) {
       logger.info({ err }, 'Door took too long to unlock')
       return
     }
