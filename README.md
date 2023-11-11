@@ -148,16 +148,17 @@ const seam = SeamHttp.fromConsoleSessionToken(
 ### Action Attempts
 
 Some asynchronous operations, e.g., unlocking a door, return an [action attempt].
-Seam tracks the progress the requested operation and updates the action attempts.
+Seam tracks the progress of requested operation and updates the action attempt.
 
 To make working with action attempts more convenient for applications,
 this library provides the `resolveActionAttempt` function:
 
-- Polls the action attempt up to the `timeout` (in milliseconds).
-- Polls at the `pollingInterval` (in milliseconds).
+- Polls the action attempt up to the `timeout`
+  at the `pollingInterval` (both in milliseconds).
 - Resolves with a fresh copy of the successful action attempt.
-- Reject with a `SeamActionAttemptFailedError` if the action attempt is unsuccessful.
-- Reject with a `isSeamActionAttemptTimeoutError` if the action attempt is still pending when the `timeout` is reached.
+- Rejects with a `SeamActionAttemptFailedError` if the action attempt is unsuccessful.
+- Rejects with a `SeamActionAttemptTimeoutError` if the action attempt is still pending when the `timeout` is reached.
+- Both errors expose an `actionAttempt` property.
 
 ```ts
 import {

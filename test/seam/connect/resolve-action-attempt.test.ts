@@ -1,13 +1,12 @@
 import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 
-import { SeamHttp } from '@seamapi/http/connect'
-
 import {
   resolveActionAttempt,
   SeamActionAttemptFailedError,
   SeamActionAttemptTimeoutError,
-} from 'lib/seam/connect/wait-for-action-attempt.js'
+  SeamHttp,
+} from '@seamapi/http/connect'
 
 test('resolveActionAttempt: waits for pending action attempt', async (t) => {
   const { seed, endpoint, db } = await getTestServer(t)
