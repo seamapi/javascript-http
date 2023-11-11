@@ -145,6 +145,57 @@ const seam = SeamHttp.fromConsoleSessionToken(
 )
 ```
 
+### Action Attempts
+
+Some asynchronous operations, e.g., unlocking a door, return an [action attempt].
+Seam tracks the progress the requested operation and updates the action attempts.
+
+To make working with action attempts more convenient for applications,
+this library provides the `resolveActionAttempt` function:
+
+- Polls the action attempt up to the `timeout` (in milliseconds).
+- Polls at the `pollingInterval` (in milliseconds).
+- Resolves with a fresh copy of the successful action attempt.
+- Reject with a `SeamActionAttemptFailedError` if the action attempt is unsuccessful.
+- Reject with a `isSeamActionAttemptTimeoutError` if the action attempt is still pending when the `timeout` is reached.
+
+```ts
+import {
+  SeamHttp,
+  resolveActionAttempt,
+  isSeamActionAttemptFailedError,
+  isSeamActionAttemptTimeoutError,
+} from '@seamapi/http/connect'
+
+const seam = new SeamHttp('your-api-key')
+
+const [lock] = await seam.locks.list()
+
+if (lock == null) throw new Error('No locks in this workspace')
+
+const actionAttempt = await seam.locks.unlockDoor({
+  device_id: lock.device_id,
+})
+
+try {
+  await resolveActionAttempt(actionAttempt, seam)
+} catch (err: unknown) {
+  if (isSeamActionAttemptFailedError(err)) {
+    console.log('Could not unlock the door')
+    return
+  }
+
+  if (isSeamActionAttemptTimeoutError(err)) {
+    console.log('Door took too long to unlock')
+    return
+  }
+
+  throw err
+}
+```
+
+[action attempt]: https://docs.seam.co/latest/core-concepts/action-attempts
+
 ### Advanced Usage
 
 In addition the various authentication options,
