@@ -59,7 +59,6 @@ or with the more ergonomic static factory methods.
 An API key is scoped to a single workspace and should only be used on the server.
 Obtain one from the Seam Console.
 
-##### 
 ```ts
 // Set the `SEAM_API_KEY` environment variable
 const seam = new SeamHttp()
@@ -77,8 +76,6 @@ const seam = SeamHttp.fromApiKey('your-api-key')
 #### Client Session Token
 
 A Client Session Token is scoped to a client session and should only be used on the client.
-
-##### 
 
 ```ts
 // Pass as an option the constructor
