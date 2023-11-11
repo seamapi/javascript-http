@@ -154,10 +154,7 @@ To make working with action attempts more convenient for applications,
 this library provides the `resolveActionAttempt` function:
 
 ```ts
-await resolveActionAttempt(
-  seam.locks.unlockDoor({ device_id }),
-  seam,
-)
+await resolveActionAttempt(seam.locks.unlockDoor({ device_id }), seam)
 ```
 
 Wrapping an action attempt with `resolveActionAttempt`:
