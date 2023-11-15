@@ -154,9 +154,12 @@ To make working with action attempts more convenient for applications,
 this library provides the `waitForActionAttempt` option:
 
 ```ts
-await seam.locks.unlockDoor({ device_id }, {
-  waitForActionAttempt: true
-})
+await seam.locks.unlockDoor(
+  { device_id },
+  {
+    waitForActionAttempt: true,
+  },
+)
 ```
 
 Using the `waitForActionAttempt` option:
