@@ -192,3 +192,20 @@ test('waitForActionAttempt: times out if waiting for polling interval', async (t
 
   t.deepEqual(err?.actionAttempt, actionAttempt)
 })
+
+test('waitForActionAttempt: waits directly on returned action attempt', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+  })
+
+  const actionAttempt = await seam.locks.unlockDoor(
+    {
+      device_id: seed.august_device_1,
+    },
+    { waitForActionAttempt: true },
+  )
+
+  t.is(actionAttempt.status, 'success')
+})
