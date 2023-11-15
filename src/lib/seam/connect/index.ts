@@ -1,7 +1,6 @@
 export { SeamHttpInvalidTokenError } from './auth.js'
 export * from './error-interceptor.js'
 export * from './options.js'
-export * from './resolve-action-attempt.js'
 export * from './routes/index.js'
 export * from './seam-http.js'
 export * from './seam-http-error.js'

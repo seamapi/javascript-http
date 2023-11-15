@@ -151,13 +151,15 @@ Some asynchronous operations, e.g., unlocking a door, return an [action attempt]
 Seam tracks the progress of requested operation and updates the action attempt.
 
 To make working with action attempts more convenient for applications,
-this library provides the `resolveActionAttempt` function:
+this library provides the `waitForActionAttempt` option:
 
 ```ts
-await resolveActionAttempt(seam.locks.unlockDoor({ device_id }), seam)
+await seam.locks.unlockDoor({ device_id }, {
+  waitForActionAttempt: true
+})
 ```
 
-Wrapping an action attempt with `resolveActionAttempt`:
+Using the `waitForActionAttempt` option:
 
 - Polls the action attempt up to the `timeout`
   at the `pollingInterval` (both in milliseconds).
@@ -169,7 +171,6 @@ Wrapping an action attempt with `resolveActionAttempt`:
 ```ts
 import {
   SeamHttp,
-  resolveActionAttempt,
   isSeamActionAttemptFailedError,
   isSeamActionAttemptTimeoutError,
 } from '@seamapi/http/connect'
@@ -180,12 +181,12 @@ const [lock] = await seam.locks.list()
 
 if (lock == null) throw new Error('No locks in this workspace')
 
-const actionAttempt = await seam.locks.unlockDoor({
-  device_id: lock.device_id,
-})
-
 try {
-  await resolveActionAttempt(actionAttempt, seam)
+  await seam.locks.unlockDoor({ device_id: lock.device_id, }, {
+    waitForActionAttempt: true
+    pollingInterval: 1000,
+    timeout: 5000,
+  })
   console.log('Door unlocked')
 } catch (err: unknown) {
   if (isSeamActionAttemptFailedError<typeof actionAttempt>(err)) {
