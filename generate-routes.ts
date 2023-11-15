@@ -256,11 +256,20 @@ import {
   type SeamHttpOptionsWithPersonalAccessToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
+import {
+  resolveActionAttempt,
+  type ResolveActionAttemptOptions,
+} from 'lib/seam/connect/resolve-action-attempt.js'
 
 ${
   namespace === 'client_sessions'
     ? ''
     : "import { SeamHttpClientSessions } from './client-sessions.js'"
+}
+${
+  namespace === 'action_attempts'
+    ? ''
+    : "import { SeamHttpActionAttempts } from './action-attempts.js'"
 }
 ${subresources
   .map((subresource) => renderSubresourceImport(subresource, namespace))
@@ -314,6 +323,7 @@ const renderClassMethod = ({
       name,
       namespace,
     })},
+    ${renderClassMethodOptions({ resource })}
   ): Promise<${
     resource === null
       ? 'void'
@@ -330,9 +340,44 @@ const renderClassMethod = ({
         requestFormat === 'params' ? 'params,' : ''
       } ${requestFormat === 'body' ? 'data: body,' : ''}
     })
+    ${
+      resource === 'action_attempt'
+        ? `if (waitForActionAttempt) { return resolveActionAttempt(data.${resource}, SeamHttpActionAttempts.fromClient(this.client), { timeout, pollingInterval }) }`
+        : ''
+    }
     ${resource === null ? '' : `return data.${resource}`}
   }
   `
+
+const renderClassMethodOptions = ({
+  resource,
+}: Pick<Endpoint, 'resource'>): string => {
+  if (resource === 'action_attempt') {
+    return `{ waitForActionAttempt = false, timeout = 5000, pollingInterval = 500 }: ${renderClassMethodOptionsTypeDef(
+      { resource },
+    )} = {},`
+  }
+  return ''
+}
+
+const renderClassMethodOptionsType = ({
+  name,
+  namespace,
+}: Pick<Endpoint, 'name' | 'namespace'>): string =>
+  [pascalCase(namespace), pascalCase(name), 'Options'].join('')
+
+const renderClassMethodOptionsTypeDef = ({
+  resource,
+}: Pick<Endpoint, 'resource'>): string => {
+  if (resource === 'action_attempt') {
+    return `
+      Partial<ResolveActionAttemptOptions> & {
+        waitForActionAttempt?: boolean
+      }
+    `
+  }
+  return 'never'
+}
 
 const renderSubresourceMethod = (
   subresource: string,
@@ -354,6 +399,7 @@ const renderEndpointExports = ({
   name,
   path,
   namespace,
+  resource,
   requestFormat,
 }: Endpoint): string => `
 export type ${renderRequestType({
@@ -364,6 +410,11 @@ export type ${renderRequestType({
 export type ${renderResponseType({ name, namespace })}= SetNonNullable<
   Required<RouteResponse<'${path}'>>
 >
+
+export type ${renderClassMethodOptionsType({
+  name,
+  namespace,
+})} = ${renderClassMethodOptionsTypeDef({ resource })}
   `
 
 const renderRequestType = ({

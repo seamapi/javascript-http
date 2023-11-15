@@ -141,6 +141,7 @@ export class SeamHttpThermostats {
       method: 'post',
       data: body,
     })
+
     return data.thermostat
   }
 
@@ -168,6 +169,7 @@ export class SeamHttpThermostats {
       method: 'post',
       data: body,
     })
+
     return data.thermostats
   }
 
@@ -202,11 +204,15 @@ export type ThermostatsCoolResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/cool'>>
 >
 
+export type ThermostatsCoolOptions = never
+
 export type ThermostatsGetParams = RouteRequestBody<'/thermostats/get'>
 
 export type ThermostatsGetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/get'>>
 >
+
+export type ThermostatsGetOptions = never
 
 export type ThermostatsHeatBody = RouteRequestBody<'/thermostats/heat'>
 
@@ -214,11 +220,15 @@ export type ThermostatsHeatResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/heat'>>
 >
 
+export type ThermostatsHeatOptions = never
+
 export type ThermostatsHeatCoolBody = RouteRequestBody<'/thermostats/heat_cool'>
 
 export type ThermostatsHeatCoolResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/heat_cool'>>
 >
+
+export type ThermostatsHeatCoolOptions = never
 
 export type ThermostatsListParams = RouteRequestBody<'/thermostats/list'>
 
@@ -226,11 +236,15 @@ export type ThermostatsListResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/list'>>
 >
 
+export type ThermostatsListOptions = never
+
 export type ThermostatsOffBody = RouteRequestBody<'/thermostats/off'>
 
 export type ThermostatsOffResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/off'>>
 >
+
+export type ThermostatsOffOptions = never
 
 export type ThermostatsSetFanModeBody =
   RouteRequestBody<'/thermostats/set_fan_mode'>
@@ -239,8 +253,12 @@ export type ThermostatsSetFanModeResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/set_fan_mode'>>
 >
 
+export type ThermostatsSetFanModeOptions = never
+
 export type ThermostatsUpdateBody = RouteRequestBody<'/thermostats/update'>
 
 export type ThermostatsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/update'>>
 >
+
+export type ThermostatsUpdateOptions = never

@@ -136,6 +136,7 @@ export class SeamHttpAcsCredentials {
       method: 'post',
       data: body,
     })
+
     return data.acs_credential
   }
 
@@ -155,6 +156,7 @@ export class SeamHttpAcsCredentials {
       method: 'post',
       data: body,
     })
+
     return data.acs_credential
   }
 
@@ -166,6 +168,7 @@ export class SeamHttpAcsCredentials {
       method: 'post',
       data: body,
     })
+
     return data.acs_credentials
   }
 
@@ -185,12 +188,16 @@ export type AcsCredentialsAssignResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/assign'>>
 >
 
+export type AcsCredentialsAssignOptions = never
+
 export type AcsCredentialsCreateBody =
   RouteRequestBody<'/acs/credentials/create'>
 
 export type AcsCredentialsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/create'>>
 >
+
+export type AcsCredentialsCreateOptions = never
 
 export type AcsCredentialsDeleteBody =
   RouteRequestBody<'/acs/credentials/delete'>
@@ -199,11 +206,15 @@ export type AcsCredentialsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/delete'>>
 >
 
+export type AcsCredentialsDeleteOptions = never
+
 export type AcsCredentialsGetParams = RouteRequestBody<'/acs/credentials/get'>
 
 export type AcsCredentialsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/get'>>
 >
+
+export type AcsCredentialsGetOptions = never
 
 export type AcsCredentialsListParams = RouteRequestBody<'/acs/credentials/list'>
 
@@ -211,9 +222,13 @@ export type AcsCredentialsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/list'>>
 >
 
+export type AcsCredentialsListOptions = never
+
 export type AcsCredentialsUnassignBody =
   RouteRequestBody<'/acs/credentials/unassign'>
 
 export type AcsCredentialsUnassignResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/unassign'>>
 >
+
+export type AcsCredentialsUnassignOptions = never

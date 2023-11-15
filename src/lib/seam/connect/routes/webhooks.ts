@@ -132,6 +132,7 @@ export class SeamHttpWebhooks {
       method: 'post',
       data: body,
     })
+
     return data.webhook
   }
 
@@ -149,6 +150,7 @@ export class SeamHttpWebhooks {
       method: 'post',
       data: body,
     })
+
     return data.webhook
   }
 
@@ -160,6 +162,7 @@ export class SeamHttpWebhooks {
       method: 'get',
       params,
     })
+
     return data.webhooks
   }
 }
@@ -170,11 +173,15 @@ export type WebhooksCreateResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/create'>>
 >
 
+export type WebhooksCreateOptions = never
+
 export type WebhooksDeleteBody = RouteRequestBody<'/webhooks/delete'>
 
 export type WebhooksDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/delete'>>
 >
+
+export type WebhooksDeleteOptions = never
 
 export type WebhooksGetParams = RouteRequestBody<'/webhooks/get'>
 
@@ -182,8 +189,12 @@ export type WebhooksGetResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/get'>>
 >
 
+export type WebhooksGetOptions = never
+
 export type WebhooksListParams = RouteRequestParams<'/webhooks/list'>
 
 export type WebhooksListResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/list'>>
 >
+
+export type WebhooksListOptions = never

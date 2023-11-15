@@ -3,19 +3,18 @@ import type {
   FailedActionAttempt,
   SuccessfulActionAttempt,
 } from './action-attempt-types.js'
-import type { SeamHttp } from './seam-http.js'
+import type { SeamHttpActionAttempts } from './routes/index.js'
 
-interface Options {
-  timeout?: number
-  pollingInterval?: number
+export interface ResolveActionAttemptOptions {
+  timeout: number
+  pollingInterval: number
 }
 
 export const resolveActionAttempt = async <T extends ActionAttempt>(
-  actionAttemptOrPromise: T | Promise<T>,
-  seam: SeamHttp,
-  { timeout = 5000, pollingInterval = 500 }: Options = {},
+  actionAttempt: T,
+  actionAttempts: SeamHttpActionAttempts,
+  { timeout, pollingInterval }: ResolveActionAttemptOptions,
 ): Promise<SuccessfulActionAttempt<T>> => {
-  const actionAttempt = await actionAttemptOrPromise
   let timeoutRef
   const timeoutPromise = new Promise<SuccessfulActionAttempt<T>>(
     (_resolve, reject) => {
@@ -27,7 +26,7 @@ export const resolveActionAttempt = async <T extends ActionAttempt>(
 
   try {
     return await Promise.race([
-      pollActionAttempt<T>(actionAttempt, seam, { pollingInterval }),
+      pollActionAttempt<T>(actionAttempt, actionAttempts, { pollingInterval }),
       timeoutPromise,
     ])
   } finally {
@@ -37,8 +36,8 @@ export const resolveActionAttempt = async <T extends ActionAttempt>(
 
 const pollActionAttempt = async <T extends ActionAttempt>(
   actionAttempt: T,
-  seam: SeamHttp,
-  options: Pick<Options, 'pollingInterval'>,
+  actionAttempts: SeamHttpActionAttempts,
+  options: Pick<ResolveActionAttemptOptions, 'pollingInterval'>,
 ): Promise<SuccessfulActionAttempt<T>> => {
   if (isSuccessfulActionAttempt(actionAttempt)) {
     return actionAttempt
@@ -50,13 +49,13 @@ const pollActionAttempt = async <T extends ActionAttempt>(
 
   await new Promise((resolve) => setTimeout(resolve, options.pollingInterval))
 
-  const nextActionAttempt = await seam.actionAttempts.get({
+  const nextActionAttempt = await actionAttempts.get({
     action_attempt_id: actionAttempt.action_attempt_id,
   })
 
   return await pollActionAttempt(
     nextActionAttempt as unknown as T,
-    seam,
+    actionAttempts,
     options,
   )
 }

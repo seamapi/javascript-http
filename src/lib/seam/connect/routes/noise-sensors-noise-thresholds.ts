@@ -148,6 +148,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
         method: 'post',
         data: body,
       })
+
     return data.noise_threshold
   }
 
@@ -160,6 +161,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
         method: 'post',
         data: body,
       })
+
     return data.noise_thresholds
   }
 
@@ -179,12 +181,16 @@ export type NoiseSensorsNoiseThresholdsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/create'>>
 >
 
+export type NoiseSensorsNoiseThresholdsCreateOptions = never
+
 export type NoiseSensorsNoiseThresholdsDeleteBody =
   RouteRequestBody<'/noise_sensors/noise_thresholds/delete'>
 
 export type NoiseSensorsNoiseThresholdsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/delete'>>
 >
+
+export type NoiseSensorsNoiseThresholdsDeleteOptions = never
 
 export type NoiseSensorsNoiseThresholdsGetParams =
   RouteRequestBody<'/noise_sensors/noise_thresholds/get'>
@@ -193,6 +199,8 @@ export type NoiseSensorsNoiseThresholdsGetResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/get'>>
 >
 
+export type NoiseSensorsNoiseThresholdsGetOptions = never
+
 export type NoiseSensorsNoiseThresholdsListParams =
   RouteRequestBody<'/noise_sensors/noise_thresholds/list'>
 
@@ -200,9 +208,13 @@ export type NoiseSensorsNoiseThresholdsListResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/list'>>
 >
 
+export type NoiseSensorsNoiseThresholdsListOptions = never
+
 export type NoiseSensorsNoiseThresholdsUpdateBody =
   RouteRequestBody<'/noise_sensors/noise_thresholds/update'>
 
 export type NoiseSensorsNoiseThresholdsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/update'>>
 >
+
+export type NoiseSensorsNoiseThresholdsUpdateOptions = never

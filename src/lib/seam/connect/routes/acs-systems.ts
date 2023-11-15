@@ -128,6 +128,7 @@ export class SeamHttpAcsSystems {
       method: 'post',
       data: body,
     })
+
     return data.acs_system
   }
 
@@ -139,6 +140,7 @@ export class SeamHttpAcsSystems {
       method: 'post',
       data: body,
     })
+
     return data.acs_systems
   }
 }
@@ -149,8 +151,12 @@ export type AcsSystemsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/get'>>
 >
 
+export type AcsSystemsGetOptions = never
+
 export type AcsSystemsListParams = RouteRequestBody<'/acs/systems/list'>
 
 export type AcsSystemsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/list'>>
 >
+
+export type AcsSystemsListOptions = never

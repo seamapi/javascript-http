@@ -140,6 +140,7 @@ export class SeamHttpConnectedAccounts {
       method: 'post',
       data: body,
     })
+
     return data.connected_account
   }
 
@@ -151,6 +152,7 @@ export class SeamHttpConnectedAccounts {
       method: 'get',
       params,
     })
+
     return data.connected_accounts
   }
 }
@@ -162,6 +164,8 @@ export type ConnectedAccountsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/delete'>>
 >
 
+export type ConnectedAccountsDeleteOptions = never
+
 export type ConnectedAccountsGetParams =
   RouteRequestBody<'/connected_accounts/get'>
 
@@ -169,9 +173,13 @@ export type ConnectedAccountsGetResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/get'>>
 >
 
+export type ConnectedAccountsGetOptions = never
+
 export type ConnectedAccountsListParams =
   RouteRequestParams<'/connected_accounts/list'>
 
 export type ConnectedAccountsListResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/list'>>
 >
+
+export type ConnectedAccountsListOptions = never

@@ -2,13 +2,12 @@ import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 
 import {
-  resolveActionAttempt,
   SeamActionAttemptFailedError,
   SeamActionAttemptTimeoutError,
   SeamHttp,
 } from '@seamapi/http/connect'
 
-test('resolveActionAttempt: waits for pending action attempt', async (t) => {
+test('waitForActionAttempt: waits for pending action attempt', async (t) => {
   const { seed, endpoint, db } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
@@ -21,6 +20,11 @@ test('resolveActionAttempt: waits for pending action attempt', async (t) => {
 
   t.is(actionAttempt.status, 'pending')
 
+  db.updateActionAttempt({
+    action_attempt_id: actionAttempt.action_attempt_id,
+    status: 'pending',
+  })
+
   setTimeout(() => {
     db.updateActionAttempt({
       action_attempt_id: actionAttempt.action_attempt_id,
@@ -28,11 +32,18 @@ test('resolveActionAttempt: waits for pending action attempt', async (t) => {
     })
   }, 1000)
 
-  const { status } = await resolveActionAttempt(actionAttempt, seam)
+  const { status } = await seam.actionAttempts.get(
+    {
+      action_attempt_id: actionAttempt.action_attempt_id,
+    },
+    {
+      waitForActionAttempt: true,
+    },
+  )
   t.is(status, 'success')
 })
 
-test('resolveActionAttempt: returns successful action attempt', async (t) => {
+test('waitForActionAttempt: returns successful action attempt', async (t) => {
   const { seed, endpoint, db } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
@@ -59,39 +70,19 @@ test('resolveActionAttempt: returns successful action attempt', async (t) => {
     return
   }
 
-  const resolvedActionAttempt = await resolveActionAttempt(
-    successfulActionAttempt,
-    seam,
+  const resolvedActionAttempt = await seam.actionAttempts.get(
+    {
+      action_attempt_id: actionAttempt.action_attempt_id,
+    },
+    {
+      waitForActionAttempt: true,
+    },
   )
 
-  t.is(resolvedActionAttempt, successfulActionAttempt)
+  t.deepEqual(resolvedActionAttempt, successfulActionAttempt)
 })
 
-test('resolveActionAttempt: times out while waiting for action attempt', async (t) => {
-  const { seed, endpoint } = await getTestServer(t)
-
-  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
-    endpoint,
-  })
-
-  const actionAttempt = await seam.locks.unlockDoor({
-    device_id: seed.august_device_1,
-  })
-
-  t.is(actionAttempt.status, 'pending')
-
-  const err = await t.throwsAsync(
-    async () =>
-      await resolveActionAttempt(actionAttempt, seam, {
-        timeout: 100,
-      }),
-    { instanceOf: SeamActionAttemptTimeoutError },
-  )
-
-  t.is(err?.actionAttempt, actionAttempt)
-})
-
-test('resolveActionAttempt: rejects when action attempt fails', async (t) => {
+test('waitForActionAttempt: times out while waiting for action attempt', async (t) => {
   const { seed, endpoint, db } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
@@ -106,25 +97,28 @@ test('resolveActionAttempt: rejects when action attempt fails', async (t) => {
 
   db.updateActionAttempt({
     action_attempt_id: actionAttempt.action_attempt_id,
-    status: 'error',
-    error: {
-      message: 'Failed',
-      type: 'foo',
-    },
+    status: 'pending',
   })
 
   const err = await t.throwsAsync(
-    async () => await resolveActionAttempt(actionAttempt, seam),
-    { instanceOf: SeamActionAttemptFailedError, message: 'Failed' },
+    async () =>
+      await seam.actionAttempts.get(
+        {
+          action_attempt_id: actionAttempt.action_attempt_id,
+        },
+        {
+          waitForActionAttempt: true,
+          timeout: 100,
+        },
+      ),
+    { instanceOf: SeamActionAttemptTimeoutError },
   )
 
-  t.is(err?.actionAttempt.action_attempt_id, actionAttempt.action_attempt_id)
-  t.is(err?.actionAttempt.status, 'error')
-  t.is(err?.code, 'foo')
+  t.deepEqual(err?.actionAttempt, actionAttempt)
 })
 
-test('resolveActionAttempt: times out if waiting for polling interval', async (t) => {
-  const { seed, endpoint } = await getTestServer(t)
+test('waitForActionAttempt: rejects when action attempt fails', async (t) => {
+  const { seed, endpoint, db } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
@@ -134,31 +128,67 @@ test('resolveActionAttempt: times out if waiting for polling interval', async (t
     device_id: seed.august_device_1,
   })
 
+  t.deepEqual(actionAttempt.status, 'pending')
+
+  db.updateActionAttempt({
+    action_attempt_id: actionAttempt.action_attempt_id,
+    status: 'error',
+    error: {
+      message: 'Failed',
+      type: 'foo',
+    },
+  })
+
   const err = await t.throwsAsync(
     async () =>
-      await resolveActionAttempt(actionAttempt, seam, {
-        timeout: 500,
-        pollingInterval: 10_000,
-      }),
-    { instanceOf: SeamActionAttemptTimeoutError },
+      await seam.actionAttempts.get(
+        {
+          action_attempt_id: actionAttempt.action_attempt_id,
+        },
+        {
+          waitForActionAttempt: true,
+        },
+      ),
+    { instanceOf: SeamActionAttemptFailedError, message: 'Failed' },
   )
 
-  t.is(err?.actionAttempt, actionAttempt)
+  t.is(err?.actionAttempt.action_attempt_id, actionAttempt.action_attempt_id)
+  t.is(err?.actionAttempt.status, 'error')
+  t.is(err?.code, 'foo')
 })
 
-test('resolveActionAttempt: wraps methods that return as action attempt', async (t) => {
-  const { seed, endpoint } = await getTestServer(t)
+test('waitForActionAttempt: times out if waiting for polling interval', async (t) => {
+  const { seed, endpoint, db } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
   })
 
-  const { status } = await resolveActionAttempt(
-    seam.locks.unlockDoor({
-      device_id: seed.august_device_1,
-    }),
-    seam,
+  const actionAttempt = await seam.locks.unlockDoor({
+    device_id: seed.august_device_1,
+  })
+
+  t.is(actionAttempt.status, 'pending')
+
+  db.updateActionAttempt({
+    action_attempt_id: actionAttempt.action_attempt_id,
+    status: 'pending',
+  })
+
+  const err = await t.throwsAsync(
+    async () =>
+      await seam.actionAttempts.get(
+        {
+          action_attempt_id: actionAttempt.action_attempt_id,
+        },
+        {
+          waitForActionAttempt: true,
+          timeout: 500,
+          pollingInterval: 10_000,
+        },
+      ),
+    { instanceOf: SeamActionAttemptTimeoutError },
   )
 
-  t.is(status, 'success')
+  t.deepEqual(err?.actionAttempt, actionAttempt)
 })

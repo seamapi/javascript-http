@@ -3,7 +3,7 @@ import type { Builder, Command, Describe } from 'landlubber'
 import {
   isSeamActionAttemptFailedError,
   isSeamActionAttemptTimeoutError,
-  resolveActionAttempt,
+  type LocksUnlockDoorResponse,
 } from '@seamapi/http/connect'
 
 import type { Handler } from './index.js'
@@ -24,23 +24,29 @@ export const builder: Builder = {
 }
 
 export const handler: Handler<Options> = async ({ deviceId, seam, logger }) => {
-  const actionAttempt = await seam.locks.unlockDoor({
-    device_id: deviceId,
-  })
-
   try {
-    const sucessfulActionAttempt = await resolveActionAttempt(
-      actionAttempt,
-      seam,
+    const actionAttempt = await seam.locks.unlockDoor(
+      {
+        device_id: deviceId,
+      },
+      { waitForActionAttempt: true },
     )
-    logger.info({ actionAttempt: sucessfulActionAttempt }, 'unlocked')
+    logger.info({ actionAttempt }, 'unlocked')
   } catch (err: unknown) {
-    if (isSeamActionAttemptFailedError<typeof actionAttempt>(err)) {
+    if (
+      isSeamActionAttemptFailedError<LocksUnlockDoorResponse['action_attempt']>(
+        err,
+      )
+    ) {
       logger.info({ err }, 'Could not unlock the door')
       return
     }
 
-    if (isSeamActionAttemptTimeoutError<typeof actionAttempt>(err)) {
+    if (
+      isSeamActionAttemptTimeoutError<
+        LocksUnlockDoorResponse['action_attempt']
+      >(err)
+    ) {
       logger.info({ err }, 'Door took too long to unlock')
       return
     }

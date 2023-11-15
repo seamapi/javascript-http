@@ -133,6 +133,7 @@ export class SeamHttpAccessCodes {
       method: 'post',
       data: body,
     })
+
     return data.access_code
   }
 
@@ -145,6 +146,7 @@ export class SeamHttpAccessCodes {
         method: 'post',
         data: body,
       })
+
     return data.access_codes
   }
 
@@ -166,6 +168,7 @@ export class SeamHttpAccessCodes {
         data: body,
       },
     )
+
     return data.generated_code
   }
 
@@ -177,6 +180,7 @@ export class SeamHttpAccessCodes {
       method: 'post',
       data: body,
     })
+
     return data.access_code
   }
 
@@ -188,6 +192,7 @@ export class SeamHttpAccessCodes {
       method: 'post',
       data: body,
     })
+
     return data.access_codes
   }
 
@@ -200,6 +205,7 @@ export class SeamHttpAccessCodes {
         method: 'post',
         data: body,
       })
+
     return data.backup_access_code
   }
 
@@ -218,6 +224,8 @@ export type AccessCodesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/create'>>
 >
 
+export type AccessCodesCreateOptions = never
+
 export type AccessCodesCreateMultipleBody =
   RouteRequestBody<'/access_codes/create_multiple'>
 
@@ -225,11 +233,15 @@ export type AccessCodesCreateMultipleResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/create_multiple'>>
 >
 
+export type AccessCodesCreateMultipleOptions = never
+
 export type AccessCodesDeleteBody = RouteRequestBody<'/access_codes/delete'>
 
 export type AccessCodesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/delete'>>
 >
+
+export type AccessCodesDeleteOptions = never
 
 export type AccessCodesGenerateCodeBody =
   RouteRequestBody<'/access_codes/generate_code'>
@@ -238,17 +250,23 @@ export type AccessCodesGenerateCodeResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/generate_code'>>
 >
 
+export type AccessCodesGenerateCodeOptions = never
+
 export type AccessCodesGetParams = RouteRequestBody<'/access_codes/get'>
 
 export type AccessCodesGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/get'>>
 >
 
+export type AccessCodesGetOptions = never
+
 export type AccessCodesListParams = RouteRequestBody<'/access_codes/list'>
 
 export type AccessCodesListResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/list'>>
 >
+
+export type AccessCodesListOptions = never
 
 export type AccessCodesPullBackupAccessCodeBody =
   RouteRequestBody<'/access_codes/pull_backup_access_code'>
@@ -257,8 +275,12 @@ export type AccessCodesPullBackupAccessCodeResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/pull_backup_access_code'>>
 >
 
+export type AccessCodesPullBackupAccessCodeOptions = never
+
 export type AccessCodesUpdateBody = RouteRequestBody<'/access_codes/update'>
 
 export type AccessCodesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/update'>>
 >
+
+export type AccessCodesUpdateOptions = never
