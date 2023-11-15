@@ -192,12 +192,12 @@ try {
   })
   console.log('Door unlocked')
 } catch (err: unknown) {
-  if (isSeamActionAttemptFailedError<typeof actionAttempt>(err)) {
+  if (isSeamActionAttemptFailedError(err)) {
     console.log('Could not unlock the door')
     return
   }
 
-  if (isSeamActionAttemptTimeoutError<typeof actionAttempt>(err)) {
+  if (isSeamActionAttemptTimeoutError(err)) {
     console.log('Door took too long to unlock')
     return
   }
