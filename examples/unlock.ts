@@ -33,20 +33,12 @@ export const handler: Handler<Options> = async ({ deviceId, seam, logger }) => {
     )
     logger.info({ actionAttempt }, 'unlocked')
   } catch (err: unknown) {
-    if (
-      isSeamActionAttemptFailedError<LocksUnlockDoorResponse['action_attempt']>(
-        err,
-      )
-    ) {
+    if (isSeamActionAttemptFailedError<UnlockDoorActionAttempt>(err)) {
       logger.info({ err }, 'Could not unlock the door')
       return
     }
 
-    if (
-      isSeamActionAttemptTimeoutError<
-        LocksUnlockDoorResponse['action_attempt']
-      >(err)
-    ) {
+    if (isSeamActionAttemptTimeoutError<UnlockDoorActionAttempt>(err)) {
       logger.info({ err }, 'Door took too long to unlock')
       return
     }
@@ -54,3 +46,5 @@ export const handler: Handler<Options> = async ({ deviceId, seam, logger }) => {
     throw err
   }
 }
+
+type UnlockDoorActionAttempt = LocksUnlockDoorResponse['action_attempt']
