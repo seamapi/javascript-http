@@ -136,6 +136,7 @@ export class SeamHttpUserIdentities {
       method: 'post',
       data: body,
     })
+
     return data.user_identity
   }
 
@@ -147,6 +148,7 @@ export class SeamHttpUserIdentities {
       method: 'post',
       data: body,
     })
+
     return data.user_identity
   }
 
@@ -171,6 +173,7 @@ export class SeamHttpUserIdentities {
         method: 'post',
         data: body,
       })
+
     return data.accessible_devices
   }
 
@@ -183,6 +186,7 @@ export class SeamHttpUserIdentities {
         method: 'post',
         data: body,
       })
+
     return data.acs_users
   }
 
@@ -212,6 +216,8 @@ export type UserIdentitiesAddAcsUserResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/add_acs_user'>>
 >
 
+export type UserIdentitiesAddAcsUserOptions = never
+
 export type UserIdentitiesCreateBody =
   RouteRequestBody<'/user_identities/create'>
 
@@ -219,11 +225,15 @@ export type UserIdentitiesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/create'>>
 >
 
+export type UserIdentitiesCreateOptions = never
+
 export type UserIdentitiesGetParams = RouteRequestBody<'/user_identities/get'>
 
 export type UserIdentitiesGetResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/get'>>
 >
+
+export type UserIdentitiesGetOptions = never
 
 export type UserIdentitiesGrantAccessToDeviceBody =
   RouteRequestBody<'/user_identities/grant_access_to_device'>
@@ -232,12 +242,16 @@ export type UserIdentitiesGrantAccessToDeviceResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/grant_access_to_device'>>
 >
 
+export type UserIdentitiesGrantAccessToDeviceOptions = never
+
 export type UserIdentitiesListAccessibleDevicesParams =
   RouteRequestBody<'/user_identities/list_accessible_devices'>
 
 export type UserIdentitiesListAccessibleDevicesResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/list_accessible_devices'>>
 >
+
+export type UserIdentitiesListAccessibleDevicesOptions = never
 
 export type UserIdentitiesListAcsUsersParams =
   RouteRequestBody<'/user_identities/list_acs_users'>
@@ -246,6 +260,8 @@ export type UserIdentitiesListAcsUsersResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/list_acs_users'>>
 >
 
+export type UserIdentitiesListAcsUsersOptions = never
+
 export type UserIdentitiesRemoveAcsUserBody =
   RouteRequestBody<'/user_identities/remove_acs_user'>
 
@@ -253,9 +269,13 @@ export type UserIdentitiesRemoveAcsUserResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/remove_acs_user'>>
 >
 
+export type UserIdentitiesRemoveAcsUserOptions = never
+
 export type UserIdentitiesRevokeAccessToDeviceBody =
   RouteRequestBody<'/user_identities/revoke_access_to_device'>
 
 export type UserIdentitiesRevokeAccessToDeviceResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/revoke_access_to_device'>>
 >
+
+export type UserIdentitiesRevokeAccessToDeviceOptions = never

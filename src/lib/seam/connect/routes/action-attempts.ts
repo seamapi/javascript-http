@@ -24,6 +24,10 @@ import {
   type SeamHttpOptionsWithPersonalAccessToken,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
+import {
+  resolveActionAttempt,
+  type ResolveActionAttemptOptions,
+} from 'lib/seam/connect/resolve-action-attempt.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -122,12 +126,24 @@ export class SeamHttpActionAttempts {
 
   async get(
     body?: ActionAttemptsGetParams,
+    {
+      waitForActionAttempt = false,
+    }: {
+      waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
+    } = {},
   ): Promise<ActionAttemptsGetResponse['action_attempt']> {
     const { data } = await this.client.request<ActionAttemptsGetResponse>({
       url: '/action_attempts/get',
       method: 'post',
       data: body,
     })
+    if (waitForActionAttempt != null && waitForActionAttempt !== false) {
+      return await resolveActionAttempt(
+        data.action_attempt,
+        SeamHttpActionAttempts.fromClient(this.client),
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
+      )
+    }
     return data.action_attempt
   }
 
@@ -139,6 +155,7 @@ export class SeamHttpActionAttempts {
       method: 'post',
       data: body,
     })
+
     return data.action_attempts
   }
 }
@@ -149,8 +166,14 @@ export type ActionAttemptsGetResponse = SetNonNullable<
   Required<RouteResponse<'/action_attempts/get'>>
 >
 
+export interface ActionAttemptsGetOptions {
+  waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
+}
+
 export type ActionAttemptsListParams = RouteRequestBody<'/action_attempts/list'>
 
 export type ActionAttemptsListResponse = SetNonNullable<
   Required<RouteResponse<'/action_attempts/list'>>
 >
+
+export type ActionAttemptsListOptions = never

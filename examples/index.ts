@@ -12,6 +12,8 @@ import landlubber, {
 
 import { SeamHttp } from '@seamapi/http/connect'
 
+import * as locks from './locks.js'
+import * as unlock from './unlock.js'
 import * as workspace from './workspace.js'
 
 export type Handler<Options = EmptyOptions> = DefaultHandler<Options, Context>
@@ -22,7 +24,7 @@ interface ClientContext {
   seam: SeamHttp
 }
 
-const commands = [workspace]
+const commands = [locks, unlock, workspace]
 
 const createAppContext: MiddlewareFunction = async (argv) => {
   const apiKey = argv['api-key']

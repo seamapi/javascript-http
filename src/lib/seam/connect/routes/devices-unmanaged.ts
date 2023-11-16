@@ -128,6 +128,7 @@ export class SeamHttpDevicesUnmanaged {
       method: 'post',
       data: body,
     })
+
     return data.device
   }
 
@@ -139,6 +140,7 @@ export class SeamHttpDevicesUnmanaged {
       method: 'post',
       data: body,
     })
+
     return data.devices
   }
 
@@ -158,6 +160,8 @@ export type DevicesUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/unmanaged/get'>>
 >
 
+export type DevicesUnmanagedGetOptions = never
+
 export type DevicesUnmanagedListParams =
   RouteRequestBody<'/devices/unmanaged/list'>
 
@@ -165,9 +169,13 @@ export type DevicesUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/devices/unmanaged/list'>>
 >
 
+export type DevicesUnmanagedListOptions = never
+
 export type DevicesUnmanagedUpdateBody =
   RouteRequestBody<'/devices/unmanaged/update'>
 
 export type DevicesUnmanagedUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/devices/unmanaged/update'>>
 >
+
+export type DevicesUnmanagedUpdateOptions = never

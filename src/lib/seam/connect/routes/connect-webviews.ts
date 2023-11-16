@@ -132,6 +132,7 @@ export class SeamHttpConnectWebviews {
       method: 'post',
       data: body,
     })
+
     return data.connect_webview
   }
 
@@ -151,6 +152,7 @@ export class SeamHttpConnectWebviews {
       method: 'post',
       data: body,
     })
+
     return data.connect_webview
   }
 
@@ -162,6 +164,7 @@ export class SeamHttpConnectWebviews {
       method: 'post',
       data: body,
     })
+
     return data.connect_webviews
   }
 
@@ -181,6 +184,8 @@ export type ConnectWebviewsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/create'>>
 >
 
+export type ConnectWebviewsCreateOptions = never
+
 export type ConnectWebviewsDeleteBody =
   RouteRequestBody<'/connect_webviews/delete'>
 
@@ -188,11 +193,15 @@ export type ConnectWebviewsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/delete'>>
 >
 
+export type ConnectWebviewsDeleteOptions = never
+
 export type ConnectWebviewsGetParams = RouteRequestBody<'/connect_webviews/get'>
 
 export type ConnectWebviewsGetResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/get'>>
 >
+
+export type ConnectWebviewsGetOptions = never
 
 export type ConnectWebviewsListParams =
   RouteRequestBody<'/connect_webviews/list'>
@@ -201,9 +210,13 @@ export type ConnectWebviewsListResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/list'>>
 >
 
+export type ConnectWebviewsListOptions = never
+
 export type ConnectWebviewsViewParams =
   RouteRequestParams<'/connect_webviews/view'>
 
 export type ConnectWebviewsViewResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/view'>>
 >
+
+export type ConnectWebviewsViewOptions = never

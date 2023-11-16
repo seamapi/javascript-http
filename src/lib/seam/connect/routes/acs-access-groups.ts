@@ -136,6 +136,7 @@ export class SeamHttpAcsAccessGroups {
       method: 'post',
       data: body,
     })
+
     return data.acs_access_group
   }
 
@@ -147,6 +148,7 @@ export class SeamHttpAcsAccessGroups {
       method: 'post',
       data: body,
     })
+
     return data.acs_access_groups
   }
 
@@ -159,6 +161,7 @@ export class SeamHttpAcsAccessGroups {
         method: 'post',
         data: body,
       })
+
     return data.acs_users
   }
 
@@ -178,12 +181,16 @@ export type AcsAccessGroupsAddUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/add_user'>>
 >
 
+export type AcsAccessGroupsAddUserOptions = never
+
 export type AcsAccessGroupsGetParams =
   RouteRequestBody<'/acs/access_groups/get'>
 
 export type AcsAccessGroupsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/get'>>
 >
+
+export type AcsAccessGroupsGetOptions = never
 
 export type AcsAccessGroupsListParams =
   RouteRequestBody<'/acs/access_groups/list'>
@@ -192,6 +199,8 @@ export type AcsAccessGroupsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list'>>
 >
 
+export type AcsAccessGroupsListOptions = never
+
 export type AcsAccessGroupsListUsersParams =
   RouteRequestBody<'/acs/access_groups/list_users'>
 
@@ -199,9 +208,13 @@ export type AcsAccessGroupsListUsersResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list_users'>>
 >
 
+export type AcsAccessGroupsListUsersOptions = never
+
 export type AcsAccessGroupsRemoveUserBody =
   RouteRequestBody<'/acs/access_groups/remove_user'>
 
 export type AcsAccessGroupsRemoveUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/remove_user'>>
 >
+
+export type AcsAccessGroupsRemoveUserOptions = never

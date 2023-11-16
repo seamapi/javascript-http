@@ -139,6 +139,7 @@ export class SeamHttpDevices {
       method: 'post',
       data: body,
     })
+
     return data.device
   }
 
@@ -150,6 +151,7 @@ export class SeamHttpDevices {
       method: 'post',
       data: body,
     })
+
     return data.devices
   }
 
@@ -162,6 +164,7 @@ export class SeamHttpDevices {
         method: 'post',
         data: body,
       })
+
     return data.device_providers
   }
 
@@ -180,17 +183,23 @@ export type DevicesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/devices/delete'>>
 >
 
+export type DevicesDeleteOptions = never
+
 export type DevicesGetParams = RouteRequestBody<'/devices/get'>
 
 export type DevicesGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/get'>>
 >
 
+export type DevicesGetOptions = never
+
 export type DevicesListParams = RouteRequestBody<'/devices/list'>
 
 export type DevicesListResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list'>>
 >
+
+export type DevicesListOptions = never
 
 export type DevicesListDeviceProvidersParams =
   RouteRequestBody<'/devices/list_device_providers'>
@@ -199,8 +208,12 @@ export type DevicesListDeviceProvidersResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list_device_providers'>>
 >
 
+export type DevicesListDeviceProvidersOptions = never
+
 export type DevicesUpdateBody = RouteRequestBody<'/devices/update'>
 
 export type DevicesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/devices/update'>>
 >
+
+export type DevicesUpdateOptions = never

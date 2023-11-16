@@ -132,6 +132,7 @@ export class SeamHttpWorkspaces {
       method: 'get',
       params,
     })
+
     return data.workspace
   }
 
@@ -143,6 +144,7 @@ export class SeamHttpWorkspaces {
       method: 'get',
       params,
     })
+
     return data.workspaces
   }
 
@@ -161,11 +163,15 @@ export type WorkspacesGetResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/get'>>
 >
 
+export type WorkspacesGetOptions = never
+
 export type WorkspacesListParams = RouteRequestParams<'/workspaces/list'>
 
 export type WorkspacesListResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/list'>>
 >
+
+export type WorkspacesListOptions = never
 
 export type WorkspacesResetSandboxBody =
   RouteRequestBody<'/workspaces/reset_sandbox'>
@@ -173,3 +179,5 @@ export type WorkspacesResetSandboxBody =
 export type WorkspacesResetSandboxResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/reset_sandbox'>>
 >
+
+export type WorkspacesResetSandboxOptions = never

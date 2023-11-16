@@ -126,6 +126,7 @@ export class SeamHttpEvents {
       method: 'post',
       data: body,
     })
+
     return data.event
   }
 
@@ -135,6 +136,7 @@ export class SeamHttpEvents {
       method: 'post',
       data: body,
     })
+
     return data.events
   }
 }
@@ -145,8 +147,12 @@ export type EventsGetResponse = SetNonNullable<
   Required<RouteResponse<'/events/get'>>
 >
 
+export type EventsGetOptions = never
+
 export type EventsListParams = RouteRequestBody<'/events/list'>
 
 export type EventsListResponse = SetNonNullable<
   Required<RouteResponse<'/events/list'>>
 >
+
+export type EventsListOptions = never

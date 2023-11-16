@@ -126,6 +126,7 @@ export class SeamHttpClientSessions {
       method: 'post',
       data: body,
     })
+
     return data.client_session
   }
 
@@ -145,6 +146,7 @@ export class SeamHttpClientSessions {
       method: 'post',
       data: body,
     })
+
     return data.client_session
   }
 
@@ -157,6 +159,7 @@ export class SeamHttpClientSessions {
         method: 'post',
         data: body,
       })
+
     return data.client_session
   }
 
@@ -169,6 +172,7 @@ export class SeamHttpClientSessions {
         method: 'post',
         data: body,
       })
+
     return data.client_session
   }
 
@@ -180,6 +184,7 @@ export class SeamHttpClientSessions {
       method: 'post',
       data: body,
     })
+
     return data.client_sessions
   }
 
@@ -199,6 +204,8 @@ export type ClientSessionsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/create'>>
 >
 
+export type ClientSessionsCreateOptions = never
+
 export type ClientSessionsDeleteBody =
   RouteRequestBody<'/client_sessions/delete'>
 
@@ -206,11 +213,15 @@ export type ClientSessionsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/delete'>>
 >
 
+export type ClientSessionsDeleteOptions = never
+
 export type ClientSessionsGetParams = RouteRequestBody<'/client_sessions/get'>
 
 export type ClientSessionsGetResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/get'>>
 >
+
+export type ClientSessionsGetOptions = never
 
 export type ClientSessionsGetOrCreateBody =
   RouteRequestBody<'/client_sessions/get_or_create'>
@@ -219,6 +230,8 @@ export type ClientSessionsGetOrCreateResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/get_or_create'>>
 >
 
+export type ClientSessionsGetOrCreateOptions = never
+
 export type ClientSessionsGrantAccessBody =
   RouteRequestBody<'/client_sessions/grant_access'>
 
@@ -226,11 +239,15 @@ export type ClientSessionsGrantAccessResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/grant_access'>>
 >
 
+export type ClientSessionsGrantAccessOptions = never
+
 export type ClientSessionsListParams = RouteRequestBody<'/client_sessions/list'>
 
 export type ClientSessionsListResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/list'>>
 >
+
+export type ClientSessionsListOptions = never
 
 export type ClientSessionsRevokeBody =
   RouteRequestBody<'/client_sessions/revoke'>
@@ -238,3 +255,5 @@ export type ClientSessionsRevokeBody =
 export type ClientSessionsRevokeResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/revoke'>>
 >
+
+export type ClientSessionsRevokeOptions = never

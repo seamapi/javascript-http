@@ -1,4 +1,4 @@
-# Seam HTTP client.
+# Seam HTTP Client
 
 [![npm](https://img.shields.io/npm/v/@seamapi/http.svg)](https://www.npmjs.com/package/@seamapi/http)
 [![GitHub Actions](https://github.com/seamapi/javascript-http/actions/workflows/check.yml/badge.svg)](https://github.com/seamapi/javascript-http/actions/workflows/check.yml)
@@ -144,6 +144,73 @@ const seam = SeamHttp.fromConsoleSessionToken(
   'your-workspace-id',
 )
 ```
+
+### Action Attempts
+
+Some asynchronous operations, e.g., unlocking a door, return an [action attempt].
+Seam tracks the progress of requested operation and updates the action attempt.
+
+To make working with action attempts more convenient for applications,
+this library provides the `waitForActionAttempt` option:
+
+```ts
+await seam.locks.unlockDoor(
+  { device_id },
+  {
+    waitForActionAttempt: true,
+  },
+)
+```
+
+Using the `waitForActionAttempt` option:
+
+- Polls the action attempt up to the `timeout`
+  at the `pollingInterval` (both in milliseconds).
+- Resolves with a fresh copy of the successful action attempt.
+- Rejects with a `SeamActionAttemptFailedError` if the action attempt is unsuccessful.
+- Rejects with a `SeamActionAttemptTimeoutError` if the action attempt is still pending when the `timeout` is reached.
+- Both errors expose an `actionAttempt` property.
+
+```ts
+import {
+  SeamHttp,
+  isSeamActionAttemptFailedError,
+  isSeamActionAttemptTimeoutError,
+} from '@seamapi/http/connect'
+
+const seam = new SeamHttp('your-api-key')
+
+const [lock] = await seam.locks.list()
+
+if (lock == null) throw new Error('No locks in this workspace')
+
+try {
+  await seam.locks.unlockDoor(
+    { device_id: lock.device_id },
+    {
+      waitForActionAttempt: {
+        pollingInterval: 1000,
+        timeout: 5000,
+      },
+    },
+  )
+  console.log('Door unlocked')
+} catch (err: unknown) {
+  if (isSeamActionAttemptFailedError(err)) {
+    console.log('Could not unlock the door')
+    return
+  }
+
+  if (isSeamActionAttemptTimeoutError(err)) {
+    console.log('Door took too long to unlock')
+    return
+  }
+
+  throw err
+}
+```
+
+[action attempt]: https://docs.seam.co/latest/core-concepts/action-attempts
 
 ### Advanced Usage
 

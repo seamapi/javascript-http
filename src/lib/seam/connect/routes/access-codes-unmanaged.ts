@@ -148,6 +148,7 @@ export class SeamHttpAccessCodesUnmanaged {
         data: body,
       },
     )
+
     return data.access_code
   }
 
@@ -160,6 +161,7 @@ export class SeamHttpAccessCodesUnmanaged {
         method: 'post',
         data: body,
       })
+
     return data.access_codes
   }
 
@@ -179,12 +181,16 @@ export type AccessCodesUnmanagedConvertToManagedResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/convert_to_managed'>>
 >
 
+export type AccessCodesUnmanagedConvertToManagedOptions = never
+
 export type AccessCodesUnmanagedDeleteBody =
   RouteRequestBody<'/access_codes/unmanaged/delete'>
 
 export type AccessCodesUnmanagedDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/delete'>>
 >
+
+export type AccessCodesUnmanagedDeleteOptions = never
 
 export type AccessCodesUnmanagedGetParams =
   RouteRequestBody<'/access_codes/unmanaged/get'>
@@ -193,6 +199,8 @@ export type AccessCodesUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/get'>>
 >
 
+export type AccessCodesUnmanagedGetOptions = never
+
 export type AccessCodesUnmanagedListParams =
   RouteRequestBody<'/access_codes/unmanaged/list'>
 
@@ -200,9 +208,13 @@ export type AccessCodesUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/list'>>
 >
 
+export type AccessCodesUnmanagedListOptions = never
+
 export type AccessCodesUnmanagedUpdateBody =
   RouteRequestBody<'/access_codes/unmanaged/update'>
 
 export type AccessCodesUnmanagedUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/update'>>
 >
+
+export type AccessCodesUnmanagedUpdateOptions = never
