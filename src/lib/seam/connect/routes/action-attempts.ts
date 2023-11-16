@@ -35,8 +35,8 @@ export class SeamHttpActionAttempts {
   client: Client
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const clientOptions = parseOptions(apiKeyOrOptions)
-    this.client = createClient(clientOptions)
+    const options = parseOptions(apiKeyOrOptions)
+    this.client = 'client' in options ? options.client : createClient(options)
   }
 
   static fromClient(

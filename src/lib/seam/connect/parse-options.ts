@@ -1,7 +1,7 @@
 import version from 'lib/version.js'
 
 import { getAuthHeaders } from './auth.js'
-import type { ClientOptions } from './client.js'
+import type { Client, ClientOptions } from './client.js'
 import {
   isSeamHttpMultiWorkspaceOptionsWithClient,
   isSeamHttpOptionsWithClient,
@@ -23,7 +23,7 @@ export type Options =
 
 export const parseOptions = (
   apiKeyOrOptions: string | Options,
-): ClientOptions => {
+): ClientOptions | { client: Client } => {
   const options = getNormalizedOptions(apiKeyOrOptions)
 
   if (isSeamHttpOptionsWithClient(options)) return options

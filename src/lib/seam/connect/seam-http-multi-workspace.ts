@@ -16,8 +16,8 @@ export class SeamHttpMultiWorkspace {
   client: Client
 
   constructor(options: SeamHttpMultiWorkspaceOptions) {
-    const clientOptions = parseOptions(options)
-    this.client = createClient(clientOptions)
+    const opts = parseOptions(options)
+    this.client = 'client' in opts ? opts.client : createClient(opts)
   }
 
   static fromClient(

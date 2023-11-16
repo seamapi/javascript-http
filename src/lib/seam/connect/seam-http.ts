@@ -37,8 +37,8 @@ export class SeamHttp {
   client: Client
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const clientOptions = parseOptions(apiKeyOrOptions)
-    this.client = createClient(clientOptions)
+    const options = parseOptions(apiKeyOrOptions)
+    this.client = 'client' in options ? options.client : createClient(options)
   }
 
   static fromClient(
@@ -84,6 +84,9 @@ export class SeamHttp {
   ): Promise<SeamHttp> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
+    if (isSeamHttpOptionsWithClient(clientOptions)) {
+      throw new Error('Cannot pass a client when using fromPublishableKey')
+    }
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)
     const { token } = await clientSessions.getOrCreate({
