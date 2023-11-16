@@ -5,10 +5,9 @@
   "type": "module",
   "main": "index.js",
   "types": "index.d.ts",
-
   "exports": {
     ".": {
-     "import": {
+      "import": {
         "default": "./index.js",
         "types": "./index.d.ts"
       },
@@ -18,7 +17,7 @@
       }
     },
     "./connect": {
-     "import": {
+      "import": {
         "default": "./connect.js",
         "types": "./connect.d.ts"
       },
