@@ -6,14 +6,14 @@ import type {
 import type { SeamHttpActionAttempts } from './routes/index.js'
 
 export interface ResolveActionAttemptOptions {
-  timeout: number
-  pollingInterval: number
+  timeout?: number
+  pollingInterval?: number
 }
 
 export const resolveActionAttempt = async <T extends ActionAttempt>(
   actionAttempt: T,
   actionAttempts: SeamHttpActionAttempts,
-  { timeout, pollingInterval }: ResolveActionAttemptOptions,
+  { timeout = 5000, pollingInterval = 500 }: ResolveActionAttemptOptions,
 ): Promise<SuccessfulActionAttempt<T>> => {
   let timeoutRef
   const timeoutPromise = new Promise<SuccessfulActionAttempt<T>>(

@@ -342,7 +342,13 @@ const renderClassMethod = ({
     })
     ${
       resource === 'action_attempt'
-        ? `if (waitForActionAttempt) { return resolveActionAttempt(data.${resource}, SeamHttpActionAttempts.fromClient(this.client), { timeout, pollingInterval }) }`
+        ? `if (waitForActionAttempt != null && waitForActionAttempt !== false) {
+            return resolveActionAttempt(
+              data.${resource},
+              SeamHttpActionAttempts.fromClient(this.client),
+              typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
+            )
+          }`
         : ''
     }
     ${resource === null ? '' : `return data.${resource}`}
@@ -353,7 +359,7 @@ const renderClassMethodOptions = ({
   resource,
 }: Pick<Endpoint, 'resource'>): string => {
   if (resource === 'action_attempt') {
-    return `{ waitForActionAttempt = false, timeout = 5000, pollingInterval = 500 }: ${renderClassMethodOptionsTypeDef(
+    return `{ waitForActionAttempt = false }: ${renderClassMethodOptionsTypeDef(
       { resource },
     )} = {},`
   }
@@ -371,8 +377,8 @@ const renderClassMethodOptionsTypeDef = ({
 }: Pick<Endpoint, 'resource'>): string => {
   if (resource === 'action_attempt') {
     return `
-      Partial<ResolveActionAttemptOptions> & {
-        waitForActionAttempt?: boolean
+      {
+        waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
       }
     `
   }

@@ -128,10 +128,8 @@ export class SeamHttpActionAttempts {
     body?: ActionAttemptsGetParams,
     {
       waitForActionAttempt = false,
-      timeout = 5000,
-      pollingInterval = 500,
-    }: Partial<ResolveActionAttemptOptions> & {
-      waitForActionAttempt?: boolean
+    }: {
+      waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
     } = {},
   ): Promise<ActionAttemptsGetResponse['action_attempt']> {
     const { data } = await this.client.request<ActionAttemptsGetResponse>({
@@ -139,11 +137,11 @@ export class SeamHttpActionAttempts {
       method: 'post',
       data: body,
     })
-    if (waitForActionAttempt) {
+    if (waitForActionAttempt != null && waitForActionAttempt !== false) {
       return await resolveActionAttempt(
         data.action_attempt,
         SeamHttpActionAttempts.fromClient(this.client),
-        { timeout, pollingInterval },
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
       )
     }
     return data.action_attempt
@@ -168,8 +166,8 @@ export type ActionAttemptsGetResponse = SetNonNullable<
   Required<RouteResponse<'/action_attempts/get'>>
 >
 
-export type ActionAttemptsGetOptions = Partial<ResolveActionAttemptOptions> & {
-  waitForActionAttempt?: boolean
+export interface ActionAttemptsGetOptions {
+  waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
 }
 
 export type ActionAttemptsListParams = RouteRequestBody<'/action_attempts/list'>

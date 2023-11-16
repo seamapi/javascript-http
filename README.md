@@ -185,11 +185,15 @@ const [lock] = await seam.locks.list()
 if (lock == null) throw new Error('No locks in this workspace')
 
 try {
-  await seam.locks.unlockDoor({ device_id: lock.device_id, }, {
-    waitForActionAttempt: true
-    pollingInterval: 1000,
-    timeout: 5000,
-  })
+  await seam.locks.unlockDoor(
+    { device_id: lock.device_id },
+    {
+      waitForActionAttempt: {
+        pollingInterval: 1000,
+        timeout: 5000,
+      },
+    },
+  )
   console.log('Door unlocked')
 } catch (err: unknown) {
   if (isSeamActionAttemptFailedError(err)) {

@@ -149,10 +149,8 @@ export class SeamHttpLocks {
     body?: LocksLockDoorBody,
     {
       waitForActionAttempt = false,
-      timeout = 5000,
-      pollingInterval = 500,
-    }: Partial<ResolveActionAttemptOptions> & {
-      waitForActionAttempt?: boolean
+    }: {
+      waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
     } = {},
   ): Promise<LocksLockDoorResponse['action_attempt']> {
     const { data } = await this.client.request<LocksLockDoorResponse>({
@@ -160,11 +158,11 @@ export class SeamHttpLocks {
       method: 'post',
       data: body,
     })
-    if (waitForActionAttempt) {
+    if (waitForActionAttempt != null && waitForActionAttempt !== false) {
       return await resolveActionAttempt(
         data.action_attempt,
         SeamHttpActionAttempts.fromClient(this.client),
-        { timeout, pollingInterval },
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
       )
     }
     return data.action_attempt
@@ -174,10 +172,8 @@ export class SeamHttpLocks {
     body?: LocksUnlockDoorBody,
     {
       waitForActionAttempt = false,
-      timeout = 5000,
-      pollingInterval = 500,
-    }: Partial<ResolveActionAttemptOptions> & {
-      waitForActionAttempt?: boolean
+    }: {
+      waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
     } = {},
   ): Promise<LocksUnlockDoorResponse['action_attempt']> {
     const { data } = await this.client.request<LocksUnlockDoorResponse>({
@@ -185,11 +181,11 @@ export class SeamHttpLocks {
       method: 'post',
       data: body,
     })
-    if (waitForActionAttempt) {
+    if (waitForActionAttempt != null && waitForActionAttempt !== false) {
       return await resolveActionAttempt(
         data.action_attempt,
         SeamHttpActionAttempts.fromClient(this.client),
-        { timeout, pollingInterval },
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
       )
     }
     return data.action_attempt
@@ -218,8 +214,8 @@ export type LocksLockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/lock_door'>>
 >
 
-export type LocksLockDoorOptions = Partial<ResolveActionAttemptOptions> & {
-  waitForActionAttempt?: boolean
+export interface LocksLockDoorOptions {
+  waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
 }
 
 export type LocksUnlockDoorBody = RouteRequestBody<'/locks/unlock_door'>
@@ -228,6 +224,6 @@ export type LocksUnlockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/unlock_door'>>
 >
 
-export type LocksUnlockDoorOptions = Partial<ResolveActionAttemptOptions> & {
-  waitForActionAttempt?: boolean
+export interface LocksUnlockDoorOptions {
+  waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
 }

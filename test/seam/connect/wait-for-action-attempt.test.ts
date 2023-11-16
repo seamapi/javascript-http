@@ -107,8 +107,9 @@ test('waitForActionAttempt: times out while waiting for action attempt', async (
           action_attempt_id: actionAttempt.action_attempt_id,
         },
         {
-          waitForActionAttempt: true,
-          timeout: 100,
+          waitForActionAttempt: {
+            timeout: 100,
+          },
         },
       ),
     { instanceOf: SeamActionAttemptTimeoutError },
@@ -182,9 +183,10 @@ test('waitForActionAttempt: times out if waiting for polling interval', async (t
           action_attempt_id: actionAttempt.action_attempt_id,
         },
         {
-          waitForActionAttempt: true,
-          timeout: 500,
-          pollingInterval: 10_000,
+          waitForActionAttempt: {
+            timeout: 500,
+            pollingInterval: 10_000,
+          },
         },
       ),
     { instanceOf: SeamActionAttemptTimeoutError },
