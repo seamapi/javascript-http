@@ -1,4 +1,4 @@
-# Seam HTTP client.
+# Seam HTTP Client
 
 [![npm](https://img.shields.io/npm/v/@seamapi/http.svg)](https://www.npmjs.com/package/@seamapi/http)
 [![GitHub Actions](https://github.com/seamapi/javascript-http/actions/workflows/check.yml/badge.svg)](https://github.com/seamapi/javascript-http/actions/workflows/check.yml)
