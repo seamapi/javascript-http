@@ -90,7 +90,9 @@ export class SeamHttp {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
-      throw new Error('Cannot pass a client when using fromPublishableKey')
+      throw new SeamHttpInvalidOptionsError(
+        'The client option cannot be used with SeamHttp.fromPublishableKey',
+      )
     }
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)
