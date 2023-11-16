@@ -105,13 +105,15 @@ export const limitToSeamHttpRequestOptions = (
     .reduce(
       (obj, key) => ({
         ...obj,
-        [key]: options[key as keyof SeamHttpRequestOptions],
+        [key]: options[key],
       }),
       {},
     ) as Required<SeamHttpRequestOptions>
 }
 
-export const isSeamHttpRequestOption = (key: string): boolean => {
+export const isSeamHttpRequestOption = (
+  key: string,
+): key is keyof SeamHttpRequestOptions => {
   const keys: Record<keyof SeamHttpRequestOptions, true> = {
     waitForActionAttempt: true,
   }
