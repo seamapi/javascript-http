@@ -16,7 +16,7 @@ import {
   type SeamHttpOptionsWithPersonalAccessToken,
   type SeamHttpRequestOptions,
 } from './options.js'
-import { parseOptions } from './parse-options.js'
+import { limitToSeamHttpRequestOptions, parseOptions } from './parse-options.js'
 import {
   SeamHttpAccessCodes,
   SeamHttpAcs,
@@ -39,11 +39,9 @@ export class SeamHttp {
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const { waitForActionAttempt, ...options } = parseOptions(apiKeyOrOptions)
+    const options = parseOptions(apiKeyOrOptions)
     this.client = 'client' in options ? options.client : createClient(options)
-    this.defaults = {
-      waitForActionAttempt,
-    }
+    this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
   static fromClient(

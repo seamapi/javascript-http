@@ -256,7 +256,10 @@ import {
   type SeamHttpOptionsWithPersonalAccessToken,
   type SeamHttpRequestOptions,
 } from 'lib/seam/connect/options.js'
-import { parseOptions } from 'lib/seam/connect/parse-options.js'
+import {
+  limitToSeamHttpRequestOptions,
+  parseOptions
+} from 'lib/seam/connect/parse-options.js'
 import {
   resolveActionAttempt,
 } from 'lib/seam/connect/resolve-action-attempt.js'

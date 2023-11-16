@@ -1,4 +1,5 @@
 import type { Client, ClientOptions } from './client.js'
+import { isSeamHttpRequestOption } from './parse-options.js'
 import type { ResolveActionAttemptOptions } from './resolve-action-attempt.js'
 
 export type SeamHttpMultiWorkspaceOptions =
@@ -20,13 +21,6 @@ interface SeamHttpCommonOptions extends ClientOptions, SeamHttpRequestOptions {
 
 export interface SeamHttpRequestOptions {
   waitForActionAttempt?: boolean | ResolveActionAttemptOptions
-}
-
-const isSeamHttpRequestOption = (key: string): boolean => {
-  const keys: Record<keyof SeamHttpRequestOptions, true> = {
-    waitForActionAttempt: true,
-  }
-  return Object.keys(keys).includes(key)
 }
 
 export interface SeamHttpFromPublishableKeyOptions

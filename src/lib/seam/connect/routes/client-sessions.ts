@@ -24,18 +24,19 @@ import {
   type SeamHttpOptionsWithPersonalAccessToken,
   type SeamHttpRequestOptions,
 } from 'lib/seam/connect/options.js'
-import { parseOptions } from 'lib/seam/connect/parse-options.js'
+import {
+  limitToSeamHttpRequestOptions,
+  parseOptions,
+} from 'lib/seam/connect/parse-options.js'
 
 export class SeamHttpClientSessions {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const { waitForActionAttempt, ...options } = parseOptions(apiKeyOrOptions)
+    const options = parseOptions(apiKeyOrOptions)
     this.client = 'client' in options ? options.client : createClient(options)
-    this.defaults = {
-      waitForActionAttempt,
-    }
+    this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
   static fromClient(
@@ -82,7 +83,9 @@ export class SeamHttpClientSessions {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
-      throw new Error('Cannot pass a client when using fromPublishableKey')
+      throw new SeamHttpInvalidOptionsError(
+        'The client option cannot be used with SeamHttp.fromPublishableKey',
+      )
     }
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)

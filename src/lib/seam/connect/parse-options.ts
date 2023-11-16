@@ -96,3 +96,24 @@ const getEndpointFromEnv = (): string | null | undefined => {
     globalThis.process?.env?.SEAM_API_URL
   )
 }
+
+export const limitToSeamHttpRequestOptions = (
+  options: Required<SeamHttpRequestOptions>,
+): Required<SeamHttpRequestOptions> => {
+  return Object.keys(options)
+    .filter(isSeamHttpRequestOption)
+    .reduce(
+      (obj, key) => ({
+        ...obj,
+        [key]: options[key as keyof SeamHttpRequestOptions],
+      }),
+      {},
+    ) as Required<SeamHttpRequestOptions>
+}
+
+export const isSeamHttpRequestOption = (key: string): boolean => {
+  const keys: Record<keyof SeamHttpRequestOptions, true> = {
+    waitForActionAttempt: true,
+  }
+  return Object.keys(keys).includes(key)
+}
