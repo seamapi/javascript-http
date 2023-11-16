@@ -151,7 +151,9 @@ Some asynchronous operations, e.g., unlocking a door, return an [action attempt]
 Seam tracks the progress of requested operation and updates the action attempt.
 
 To make working with action attempts more convenient for applications,
-this library provides the `waitForActionAttempt` option:
+this library provides the `waitForActionAttempt` option.
+
+Pass the option per-request,
 
 ```ts
 await seam.locks.unlockDoor(
@@ -160,6 +162,17 @@ await seam.locks.unlockDoor(
     waitForActionAttempt: true,
   },
 )
+```
+
+or set the default option for the client:
+
+```ts
+const seam = new SeamHttp({
+  apiKey: 'your-api-key',
+  waitForActionAttempt: true,
+})
+
+await seam.locks.unlockDoor({ device_id })
 ```
 
 Using the `waitForActionAttempt` option:

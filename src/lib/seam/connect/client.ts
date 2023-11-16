@@ -12,14 +12,11 @@ export type Client = AxiosInstance
 export interface ClientOptions {
   axiosOptions?: AxiosRequestConfig
   axiosRetryOptions?: AxiosRetryConfig
-  client?: Client
 }
 
 type AxiosRetryConfig = Parameters<AxiosRetry>[1]
 
 export const createClient = (options: ClientOptions): AxiosInstance => {
-  if (options.client != null) return options.client
-
   const client = axios.create({
     paramsSerializer,
     ...options.axiosOptions,

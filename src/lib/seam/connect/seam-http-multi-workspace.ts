@@ -8,16 +8,19 @@ import {
   type SeamHttpMultiWorkspaceOptionsWithClient,
   type SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken,
   type SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken,
+  type SeamHttpRequestOptions,
 } from './options.js'
-import { parseOptions } from './parse-options.js'
+import { limitToSeamHttpRequestOptions, parseOptions } from './parse-options.js'
 import { SeamHttpWorkspaces } from './routes/index.js'
 
 export class SeamHttpMultiWorkspace {
   client: Client
+  readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(options: SeamHttpMultiWorkspaceOptions) {
-    const clientOptions = parseOptions(options)
-    this.client = createClient(clientOptions)
+    const opts = parseOptions(options)
+    this.client = 'client' in opts ? opts.client : createClient(opts)
+    this.defaults = limitToSeamHttpRequestOptions(opts)
   }
 
   static fromClient(
@@ -72,6 +75,6 @@ export class SeamHttpMultiWorkspace {
   }
 
   get workspaces(): SeamHttpWorkspaces {
-    return SeamHttpWorkspaces.fromClient(this.client)
+    return SeamHttpWorkspaces.fromClient(this.client, this.defaults)
   }
 }

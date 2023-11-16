@@ -22,17 +22,23 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
   type SeamHttpOptionsWithPersonalAccessToken,
+  type SeamHttpRequestOptions,
 } from 'lib/seam/connect/options.js'
-import { parseOptions } from 'lib/seam/connect/parse-options.js'
+import {
+  limitToSeamHttpRequestOptions,
+  parseOptions,
+} from 'lib/seam/connect/parse-options.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpThermostatsClimateSettingSchedules {
   client: Client
+  readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const clientOptions = parseOptions(apiKeyOrOptions)
-    this.client = createClient(clientOptions)
+    const options = parseOptions(apiKeyOrOptions)
+    this.client = 'client' in options ? options.client : createClient(options)
+    this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
   static fromClient(
@@ -78,6 +84,11 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   ): Promise<SeamHttpThermostatsClimateSettingSchedules> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
+    if (isSeamHttpOptionsWithClient(clientOptions)) {
+      throw new SeamHttpInvalidOptionsError(
+        'The client option cannot be used with SeamHttp.fromPublishableKey',
+      )
+    }
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)
     const { token } = await clientSessions.getOrCreate({

@@ -1,4 +1,6 @@
 import type { Client, ClientOptions } from './client.js'
+import { isSeamHttpRequestOption } from './parse-options.js'
+import type { ResolveActionAttemptOptions } from './resolve-action-attempt.js'
 
 export type SeamHttpMultiWorkspaceOptions =
   | SeamHttpMultiWorkspaceOptionsWithClient
@@ -13,8 +15,12 @@ export type SeamHttpOptions =
   | SeamHttpOptionsWithConsoleSessionToken
   | SeamHttpOptionsWithPersonalAccessToken
 
-interface SeamHttpCommonOptions extends ClientOptions {
+interface SeamHttpCommonOptions extends ClientOptions, SeamHttpRequestOptions {
   endpoint?: string
+}
+
+export interface SeamHttpRequestOptions {
+  waitForActionAttempt?: boolean | ResolveActionAttemptOptions
 }
 
 export interface SeamHttpFromPublishableKeyOptions
@@ -22,7 +28,8 @@ export interface SeamHttpFromPublishableKeyOptions
 
 export interface SeamHttpOptionsFromEnv extends SeamHttpCommonOptions {}
 
-export interface SeamHttpMultiWorkspaceOptionsWithClient {
+export interface SeamHttpMultiWorkspaceOptionsWithClient
+  extends SeamHttpRequestOptions {
   client: Client
 }
 
@@ -31,7 +38,7 @@ export const isSeamHttpMultiWorkspaceOptionsWithClient = (
 ): options is SeamHttpMultiWorkspaceOptionsWithClient =>
   isSeamHttpOptionsWithClient(options)
 
-export interface SeamHttpOptionsWithClient {
+export interface SeamHttpOptionsWithClient extends SeamHttpRequestOptions {
   client: Client
 }
 
@@ -42,7 +49,7 @@ export const isSeamHttpOptionsWithClient = (
   if (options.client == null) return false
 
   const keys = Object.keys(options).filter((k) => k !== 'client')
-  if (keys.length > 0) {
+  if (keys.filter((k) => !isSeamHttpRequestOption(k)).length > 0) {
     throw new SeamHttpInvalidOptionsError(
       `The client option cannot be used with any other option, but received: ${keys.join(
         ', ',
