@@ -22,22 +22,24 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
   type SeamHttpOptionsWithPersonalAccessToken,
+  type SeamHttpRequestOptions,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
-import {
-  resolveActionAttempt,
-  type ResolveActionAttemptOptions,
-} from 'lib/seam/connect/resolve-action-attempt.js'
+import { resolveActionAttempt } from 'lib/seam/connect/resolve-action-attempt.js'
 
 import { SeamHttpActionAttempts } from './action-attempts.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpLocks {
   client: Client
+  readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const options = parseOptions(apiKeyOrOptions)
+    const { waitForActionAttempt, ...options } = parseOptions(apiKeyOrOptions)
     this.client = 'client' in options ? options.client : createClient(options)
+    this.defaults = {
+      waitForActionAttempt,
+    }
   }
 
   static fromClient(
@@ -83,6 +85,9 @@ export class SeamHttpLocks {
   ): Promise<SeamHttpLocks> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
+    if (isSeamHttpOptionsWithClient(clientOptions)) {
+      throw new Error('Cannot pass a client when using fromPublishableKey')
+    }
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)
     const { token } = await clientSessions.getOrCreate({
@@ -147,21 +152,22 @@ export class SeamHttpLocks {
 
   async lockDoor(
     body?: LocksLockDoorBody,
-    {
-      waitForActionAttempt = false,
-    }: {
-      waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
-    } = {},
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): Promise<LocksLockDoorResponse['action_attempt']> {
     const { data } = await this.client.request<LocksLockDoorResponse>({
       url: '/locks/lock_door',
       method: 'post',
       data: body,
     })
-    if (waitForActionAttempt != null && waitForActionAttempt !== false) {
+    const waitForActionAttempt =
+      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+    if (waitForActionAttempt !== false) {
       return await resolveActionAttempt(
         data.action_attempt,
-        SeamHttpActionAttempts.fromClient(this.client),
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
         typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
       )
     }
@@ -170,21 +176,22 @@ export class SeamHttpLocks {
 
   async unlockDoor(
     body?: LocksUnlockDoorBody,
-    {
-      waitForActionAttempt = false,
-    }: {
-      waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
-    } = {},
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): Promise<LocksUnlockDoorResponse['action_attempt']> {
     const { data } = await this.client.request<LocksUnlockDoorResponse>({
       url: '/locks/unlock_door',
       method: 'post',
       data: body,
     })
-    if (waitForActionAttempt != null && waitForActionAttempt !== false) {
+    const waitForActionAttempt =
+      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+    if (waitForActionAttempt !== false) {
       return await resolveActionAttempt(
         data.action_attempt,
-        SeamHttpActionAttempts.fromClient(this.client),
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
         typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
       )
     }
@@ -214,9 +221,10 @@ export type LocksLockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/lock_door'>>
 >
 
-export interface LocksLockDoorOptions {
-  waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
-}
+export type LocksLockDoorOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type LocksUnlockDoorBody = RouteRequestBody<'/locks/unlock_door'>
 
@@ -224,6 +232,7 @@ export type LocksUnlockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/unlock_door'>>
 >
 
-export interface LocksUnlockDoorOptions {
-  waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
-}
+export type LocksUnlockDoorOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>

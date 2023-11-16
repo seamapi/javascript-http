@@ -254,11 +254,11 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
   type SeamHttpOptionsWithPersonalAccessToken,
+  type SeamHttpRequestOptions,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 import {
   resolveActionAttempt,
-  type ResolveActionAttemptOptions,
 } from 'lib/seam/connect/resolve-action-attempt.js'
 
 ${
@@ -291,6 +291,7 @@ const renderClass = (
   `
 export class SeamHttp${pascalCase(namespace)} {
   client: Client
+  readonly defaults: Required<SeamHttpRequestOptions>
 
   ${constructors
     .replaceAll(': SeamHttp ', `: SeamHttp${pascalCase(namespace)} `)
@@ -342,10 +343,11 @@ const renderClassMethod = ({
     })
     ${
       resource === 'action_attempt'
-        ? `if (waitForActionAttempt != null && waitForActionAttempt !== false) {
+        ? `const waitForActionAttempt = options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+          if (waitForActionAttempt !== false) {
             return resolveActionAttempt(
               data.${resource},
-              SeamHttpActionAttempts.fromClient(this.client),
+              SeamHttpActionAttempts.fromClient(this.client, { ...this.defaults, waitForActionAttempt: false }),
               typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
             )
           }`
@@ -359,9 +361,9 @@ const renderClassMethodOptions = ({
   resource,
 }: Pick<Endpoint, 'resource'>): string => {
   if (resource === 'action_attempt') {
-    return `{ waitForActionAttempt = false }: ${renderClassMethodOptionsTypeDef(
-      { resource },
-    )} = {},`
+    return `options: ${renderClassMethodOptionsTypeDef({
+      resource,
+    })} = {},`
   }
   return ''
 }
@@ -376,11 +378,7 @@ const renderClassMethodOptionsTypeDef = ({
   resource,
 }: Pick<Endpoint, 'resource'>): string => {
   if (resource === 'action_attempt') {
-    return `
-      {
-        waitForActionAttempt?: boolean | Partial<ResolveActionAttemptOptions>
-      }
-    `
+    return "Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>"
   }
   return 'never'
 }
@@ -394,7 +392,7 @@ const renderSubresourceMethod = (
   )}${pascalCase(subresource)} {
     return SeamHttp${pascalCase(namespace)}${pascalCase(
       subresource,
-    )}.fromClient(this.client)
+    )}.fromClient(this.client, this.defaults)
   }
 `
 

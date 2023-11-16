@@ -1,13 +1,13 @@
 import version from 'lib/version.js'
 
 import { getAuthHeaders } from './auth.js'
-import type { Client, ClientOptions } from './client.js'
 import {
   isSeamHttpMultiWorkspaceOptionsWithClient,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
   type SeamHttpMultiWorkspaceOptions,
   type SeamHttpOptions,
+  type SeamHttpRequestOptions,
 } from './options.js'
 
 const defaultEndpoint = 'https://connect.getseam.com'
@@ -23,13 +23,14 @@ export type Options =
 
 export const parseOptions = (
   apiKeyOrOptions: string | Options,
-): ClientOptions | { client: Client } => {
+): SeamHttpOptions & Required<SeamHttpRequestOptions> => {
   const options = getNormalizedOptions(apiKeyOrOptions)
 
   if (isSeamHttpOptionsWithClient(options)) return options
   if (isSeamHttpMultiWorkspaceOptionsWithClient(options)) return options
 
   return {
+    ...options,
     axiosOptions: {
       baseURL: options.endpoint ?? getEndpointFromEnv() ?? defaultEndpoint,
       withCredentials: isSeamHttpOptionsWithClientSessionToken(options),
@@ -48,13 +49,22 @@ export const parseOptions = (
 
 const getNormalizedOptions = (
   apiKeyOrOptions: string | Options,
-): SeamHttpOptions => {
+): SeamHttpOptions & Required<SeamHttpRequestOptions> => {
   const options =
     typeof apiKeyOrOptions === 'string'
       ? { apiKey: apiKeyOrOptions }
       : apiKeyOrOptions
 
-  if (isSeamHttpOptionsWithClient(options)) return options
+  const requestOptions = {
+    waitForActionAttempt: options.waitForActionAttempt ?? false,
+  }
+
+  if (isSeamHttpOptionsWithClient(options)) {
+    return {
+      ...options,
+      ...requestOptions,
+    }
+  }
 
   const apiKey =
     'apiKey' in options ? options.apiKey : getApiKeyFromEnv(options)
@@ -62,6 +72,7 @@ const getNormalizedOptions = (
   return {
     ...options,
     ...(apiKey != null ? { apiKey } : {}),
+    ...requestOptions,
   }
 }
 

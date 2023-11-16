@@ -22,6 +22,7 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
   type SeamHttpOptionsWithPersonalAccessToken,
+  type SeamHttpRequestOptions,
 } from 'lib/seam/connect/options.js'
 import { parseOptions } from 'lib/seam/connect/parse-options.js'
 
@@ -30,10 +31,14 @@ import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpAccessCodes {
   client: Client
+  readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const options = parseOptions(apiKeyOrOptions)
+    const { waitForActionAttempt, ...options } = parseOptions(apiKeyOrOptions)
     this.client = 'client' in options ? options.client : createClient(options)
+    this.defaults = {
+      waitForActionAttempt,
+    }
   }
 
   static fromClient(
@@ -79,6 +84,9 @@ export class SeamHttpAccessCodes {
   ): Promise<SeamHttpAccessCodes> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
+    if (isSeamHttpOptionsWithClient(clientOptions)) {
+      throw new Error('Cannot pass a client when using fromPublishableKey')
+    }
     const client = createClient(clientOptions)
     const clientSessions = SeamHttpClientSessions.fromClient(client)
     const { token } = await clientSessions.getOrCreate({
@@ -122,7 +130,7 @@ export class SeamHttpAccessCodes {
   }
 
   get unmanaged(): SeamHttpAccessCodesUnmanaged {
-    return SeamHttpAccessCodesUnmanaged.fromClient(this.client)
+    return SeamHttpAccessCodesUnmanaged.fromClient(this.client, this.defaults)
   }
 
   async create(

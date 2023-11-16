@@ -14,6 +14,7 @@ import {
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
   type SeamHttpOptionsWithPersonalAccessToken,
+  type SeamHttpRequestOptions,
 } from './options.js'
 import { parseOptions } from './parse-options.js'
 import {
@@ -35,10 +36,14 @@ import {
 
 export class SeamHttp {
   client: Client
+  readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
-    const options = parseOptions(apiKeyOrOptions)
+    const { waitForActionAttempt, ...options } = parseOptions(apiKeyOrOptions)
     this.client = 'client' in options ? options.client : createClient(options)
+    this.defaults = {
+      waitForActionAttempt,
+    }
   }
 
   static fromClient(
@@ -130,58 +135,58 @@ export class SeamHttp {
   }
 
   get accessCodes(): SeamHttpAccessCodes {
-    return SeamHttpAccessCodes.fromClient(this.client)
+    return SeamHttpAccessCodes.fromClient(this.client, this.defaults)
   }
 
   get acs(): SeamHttpAcs {
-    return SeamHttpAcs.fromClient(this.client)
+    return SeamHttpAcs.fromClient(this.client, this.defaults)
   }
 
   get actionAttempts(): SeamHttpActionAttempts {
-    return SeamHttpActionAttempts.fromClient(this.client)
+    return SeamHttpActionAttempts.fromClient(this.client, this.defaults)
   }
 
   get clientSessions(): SeamHttpClientSessions {
-    return SeamHttpClientSessions.fromClient(this.client)
+    return SeamHttpClientSessions.fromClient(this.client, this.defaults)
   }
 
   get connectedAccounts(): SeamHttpConnectedAccounts {
-    return SeamHttpConnectedAccounts.fromClient(this.client)
+    return SeamHttpConnectedAccounts.fromClient(this.client, this.defaults)
   }
 
   get connectWebviews(): SeamHttpConnectWebviews {
-    return SeamHttpConnectWebviews.fromClient(this.client)
+    return SeamHttpConnectWebviews.fromClient(this.client, this.defaults)
   }
 
   get devices(): SeamHttpDevices {
-    return SeamHttpDevices.fromClient(this.client)
+    return SeamHttpDevices.fromClient(this.client, this.defaults)
   }
 
   get events(): SeamHttpEvents {
-    return SeamHttpEvents.fromClient(this.client)
+    return SeamHttpEvents.fromClient(this.client, this.defaults)
   }
 
   get locks(): SeamHttpLocks {
-    return SeamHttpLocks.fromClient(this.client)
+    return SeamHttpLocks.fromClient(this.client, this.defaults)
   }
 
   get noiseSensors(): SeamHttpNoiseSensors {
-    return SeamHttpNoiseSensors.fromClient(this.client)
+    return SeamHttpNoiseSensors.fromClient(this.client, this.defaults)
   }
 
   get thermostats(): SeamHttpThermostats {
-    return SeamHttpThermostats.fromClient(this.client)
+    return SeamHttpThermostats.fromClient(this.client, this.defaults)
   }
 
   get userIdentities(): SeamHttpUserIdentities {
-    return SeamHttpUserIdentities.fromClient(this.client)
+    return SeamHttpUserIdentities.fromClient(this.client, this.defaults)
   }
 
   get webhooks(): SeamHttpWebhooks {
-    return SeamHttpWebhooks.fromClient(this.client)
+    return SeamHttpWebhooks.fromClient(this.client, this.defaults)
   }
 
   get workspaces(): SeamHttpWorkspaces {
-    return SeamHttpWorkspaces.fromClient(this.client)
+    return SeamHttpWorkspaces.fromClient(this.client, this.defaults)
   }
 }
