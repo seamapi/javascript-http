@@ -11,11 +11,6 @@ JavaScript HTTP client for the Seam API written in TypeScript.
 This is an official SDK for the Seam API.
 Please refer to the official [Seam Docs] to get started.
 
-_This is a low-level package meant for applications and libraries with particular dependency requirements.
-Before using this package, ensure you understand the installation and updating instructions.
-This SDK is entirely contained in the [seamapi] package. Seam recommends using that package instead
-for simpler dependency management._
-
 Parts of this SDK are generated from always up-to-date type information
 provided by [@seamapi/types].
 This ensures all API methods, request shapes, and response shapes are
@@ -42,6 +37,11 @@ $ npm install @seamapi/http
 [npm]: https://www.npmjs.com/
 
 ### Optional Peer Dependencies for TypeScript
+
+_This is a low-level package meant for applications and libraries with particular dependency requirements.
+Before using this package, ensure you understand the installation and updating instructions.
+This SDK is entirely contained in the [seamapi] package. Seam recommends using that package instead
+for simpler dependency management._
 
 This package has optional peer dependencies for TypeScript users.
 Recent versions of npm will automatically install peer dependencies by default.
