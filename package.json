@@ -84,7 +84,7 @@
     "npm": ">= 8.1.0"
   },
   "peerDependencies": {
-    "@seamapi/types": "^1.0.0",
+    "@seamapi/types": "^1.58.0",
     "type-fest": "^4.0.0"
   },
   "peerDependenciesMeta": {
@@ -98,11 +98,11 @@
   "dependencies": {
     "axios": "^1.5.0",
     "axios-better-stacktrace": "^2.1.5",
-    "axios-retry": "^3.8.1",
-    "@seamapi/types": "^1.44.1"
+    "axios-retry": "^3.8.1"
   },
   "devDependencies": {
     "@seamapi/fake-seam-connect": "^1.43.0",
+    "@seamapi/types": "^1.58.0",
     "@types/eslint": "^8.44.2",
     "@types/node": "^18.11.18",
     "ava": "^5.0.1",
