@@ -135,6 +135,18 @@ export class SeamHttpWorkspaces {
     return new SeamHttpWorkspaces(constructorOptions)
   }
 
+  async create(
+    body?: WorkspacesCreateBody,
+  ): Promise<WorkspacesCreateResponse['workspace']> {
+    const { data } = await this.client.request<WorkspacesCreateResponse>({
+      url: '/workspaces/create',
+      method: 'post',
+      data: body,
+    })
+
+    return data.workspace
+  }
+
   async get(
     params?: WorkspacesGetParams,
   ): Promise<WorkspacesGetResponse['workspace']> {
@@ -167,6 +179,14 @@ export class SeamHttpWorkspaces {
     })
   }
 }
+
+export type WorkspacesCreateBody = RouteRequestBody<'/workspaces/create'>
+
+export type WorkspacesCreateResponse = SetNonNullable<
+  Required<RouteResponse<'/workspaces/create'>>
+>
+
+export type WorkspacesCreateOptions = never
 
 export type WorkspacesGetParams = RouteRequestParams<'/workspaces/get'>
 
