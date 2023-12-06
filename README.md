@@ -28,6 +28,11 @@ The underlying HTTP client is [Axios].
 
 ## Installation
 
+_This is a low-level package meant for applications and libraries with particular dependency requirements.
+Before using this package, ensure you understand the installation and updating instructions.
+This SDK is entirely contained in the [seamapi] package. Seam recommends using that package instead
+for simpler dependency management._
+
 Add this as a dependency to your project using [npm] with
 
 ```
@@ -37,11 +42,6 @@ $ npm install @seamapi/http
 [npm]: https://www.npmjs.com/
 
 ### Optional Peer Dependencies for TypeScript
-
-_This is a low-level package meant for applications and libraries with particular dependency requirements.
-Before using this package, ensure you understand the installation and updating instructions.
-This SDK is entirely contained in the [seamapi] package. Seam recommends using that package instead
-for simpler dependency management._
 
 This package has optional peer dependencies for TypeScript users.
 Recent versions of npm will automatically install peer dependencies by default.
