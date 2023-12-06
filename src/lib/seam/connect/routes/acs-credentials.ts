@@ -131,12 +131,16 @@ export class SeamHttpAcsCredentials {
     return new SeamHttpAcsCredentials(constructorOptions)
   }
 
-  async assign(body?: AcsCredentialsAssignBody): Promise<void> {
-    await this.client.request<AcsCredentialsAssignResponse>({
+  async assign(
+    body?: AcsCredentialsAssignBody,
+  ): Promise<AcsCredentialsAssignResponse['acs_credential']> {
+    const { data } = await this.client.request<AcsCredentialsAssignResponse>({
       url: '/acs/credentials/assign',
       method: 'post',
       data: body,
     })
+
+    return data.acs_credential
   }
 
   async create(
@@ -183,12 +187,28 @@ export class SeamHttpAcsCredentials {
     return data.acs_credentials
   }
 
-  async unassign(body?: AcsCredentialsUnassignBody): Promise<void> {
-    await this.client.request<AcsCredentialsUnassignResponse>({
+  async unassign(
+    body?: AcsCredentialsUnassignBody,
+  ): Promise<AcsCredentialsUnassignResponse['acs_credential']> {
+    const { data } = await this.client.request<AcsCredentialsUnassignResponse>({
       url: '/acs/credentials/unassign',
       method: 'post',
       data: body,
     })
+
+    return data.acs_credential
+  }
+
+  async update(
+    body?: AcsCredentialsUpdateBody,
+  ): Promise<AcsCredentialsUpdateResponse['acs_credential']> {
+    const { data } = await this.client.request<AcsCredentialsUpdateResponse>({
+      url: '/acs/credentials/update',
+      method: 'post',
+      data: body,
+    })
+
+    return data.acs_credential
   }
 }
 
@@ -243,3 +263,12 @@ export type AcsCredentialsUnassignResponse = SetNonNullable<
 >
 
 export type AcsCredentialsUnassignOptions = never
+
+export type AcsCredentialsUpdateBody =
+  RouteRequestBody<'/acs/credentials/update'>
+
+export type AcsCredentialsUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/credentials/update'>>
+>
+
+export type AcsCredentialsUpdateOptions = never
