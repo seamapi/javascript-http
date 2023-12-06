@@ -56,16 +56,16 @@ Refer to the next section for keeping the types updated.
 #### Keeping up with the latest types
 
 This package depends on [@seamapi/types] for the latest TypeScript types.
-New versions of this package are generally not released when new types are published.
+New versions of this SDK are generally not released when new types are published.
 Unless your project frequently runs a blanket `npm update`,
 the types will become outdated with the Seam API over time.
-Thus, users of this package should explicitly install the types
+Thus, users of this package should explicitly install the types with
 
 ```
 $ npm install -D @seamapi/types
 ```
 
-and update them when consuming new API features:
+and update them when consuming new API features with
 
 ```
 $ npm install -D @seamapi/http@latest
