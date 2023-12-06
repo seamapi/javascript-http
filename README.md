@@ -62,13 +62,13 @@ the types will become outdated with the Seam API over time.
 Thus, users of this package should explicitly install the types
 
 ```
-$ npm install @seamapi/types
+$ npm install -D @seamapi/types
 ```
 
 and update them when consuming new API features:
 
 ```
-$ npm install @seamapi/http@latest
+$ npm install -D @seamapi/http@latest
 ```
 
 ## Usage
