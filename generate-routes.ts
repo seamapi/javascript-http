@@ -15,6 +15,7 @@ const routePaths = [
   '/acs',
   '/acs/access_groups',
   '/acs/credentials',
+  '/acs/credential_pools',
   '/acs/systems',
   '/acs/users',
   '/action_attempts',
