@@ -14,8 +14,10 @@ const routePaths = [
   '/access_codes/unmanaged',
   '/acs',
   '/acs/access_groups',
-  '/acs/credentials',
   '/acs/credential_pools',
+  '/acs/credential_provisioning_automations',
+  '/acs/credentials',
+  '/acs/entrances',
   '/acs/systems',
   '/acs/users',
   '/action_attempts',
@@ -39,7 +41,15 @@ const routePathSubresources: Partial<
   Record<(typeof routePaths)[number], string[]>
 > = {
   '/access_codes': ['unmanaged'],
-  '/acs': ['access_groups', 'credentials', 'systems', 'users'],
+  '/acs': [
+    'access_groups',
+    'credential_pools',
+    'credential_provisioning_automations',
+    'credentials',
+    'entrances',
+    'systems',
+    'users',
+  ],
   '/devices': ['unmanaged'],
   '/noise_sensors': ['noise_thresholds'],
   '/thermostats': ['climate_setting_schedules'],
