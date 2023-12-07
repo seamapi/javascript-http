@@ -65,8 +65,31 @@ const ignoredEndpointPaths = [
   '/noise_sensors/simulate/trigger_noise_threshold',
 ] as const
 
-const endpointResources: Partial<Record<keyof typeof openapi.paths, null>> = {
+const endpointResources: Partial<
+  Record<keyof typeof openapi.paths, null | 'action_attempt'>
+> = {
+  // returns action attempt from current SDK, correct
+  '/locks/lock_door': 'action_attempt',
+  '/locks/unlock_door': 'action_attempt',
+
+  // returns action attempt from current SDK, deprecated
+  '/access_codes/update': 'action_attempt',
+  '/access_codes/unmanaged/convert_to_managed': 'action_attempt',
+  '/access_codes/delete': 'action_attempt',
+  '/thermostats/set_fan_mode': 'action_attempt',
+  '/thermostats/heat': 'action_attempt',
+  '/thermostats/heat_cool': 'action_attempt',
+  '/thermostats/cool': 'action_attempt',
+  '/thermostats/off': 'action_attempt',
+
+  // returns void in current SDK and correct API design
   '/connect_webviews/view': null,
+  '/access_codes/unmanaged/delete': null,
+  '/noise_sensors/noise_thresholds/create': null,
+  '/noise_sensors/noise_thresholds/delete': null,
+  '/noise_sensors/noise_thresholds/update': null,
+  '/thermostats/climate_setting_schedules/update': null,
+  '/workspaces/reset_sandbox': null,
 } as const
 
 interface Route {

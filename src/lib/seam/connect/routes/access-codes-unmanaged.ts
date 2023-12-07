@@ -28,7 +28,9 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { resolveActionAttempt } from 'lib/seam/connect/resolve-action-attempt.js'
 
+import { SeamHttpActionAttempts } from './action-attempts.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpAccessCodesUnmanaged {
@@ -133,12 +135,27 @@ export class SeamHttpAccessCodesUnmanaged {
 
   async convertToManaged(
     body?: AccessCodesUnmanagedConvertToManagedBody,
-  ): Promise<void> {
-    await this.client.request<AccessCodesUnmanagedConvertToManagedResponse>({
-      url: '/access_codes/unmanaged/convert_to_managed',
-      method: 'post',
-      data: body,
-    })
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): Promise<AccessCodesUnmanagedConvertToManagedResponse['action_attempt']> {
+    const { data } =
+      await this.client.request<AccessCodesUnmanagedConvertToManagedResponse>({
+        url: '/access_codes/unmanaged/convert_to_managed',
+        method: 'post',
+        data: body,
+      })
+    const waitForActionAttempt =
+      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+    if (waitForActionAttempt !== false) {
+      return await resolveActionAttempt(
+        data.action_attempt,
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
+      )
+    }
+    return data.action_attempt
   }
 
   async delete(body?: AccessCodesUnmanagedDeleteBody): Promise<void> {
@@ -192,7 +209,10 @@ export type AccessCodesUnmanagedConvertToManagedResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/convert_to_managed'>>
 >
 
-export type AccessCodesUnmanagedConvertToManagedOptions = never
+export type AccessCodesUnmanagedConvertToManagedOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type AccessCodesUnmanagedDeleteBody =
   RouteRequestBody<'/access_codes/unmanaged/delete'>
