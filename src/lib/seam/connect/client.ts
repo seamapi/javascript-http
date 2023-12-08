@@ -1,5 +1,4 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
-// @ts-expect-error https://github.com/svsool/axios-better-stacktrace/issues/12
 import axiosBetterStacktrace from 'axios-better-stacktrace'
 import axiosRetry, { type AxiosRetry, exponentialDelay } from 'axios-retry'
 
