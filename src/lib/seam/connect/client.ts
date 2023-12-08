@@ -23,7 +23,6 @@ export const createClient = (options: ClientOptions): AxiosInstance => {
 
   axiosBetterStacktrace(axios)
 
-  // @ts-expect-error https://github.com/softonic/axios-retry/issues/159
   axiosRetry(client, {
     retries: 2,
     retryDelay: exponentialDelay,
