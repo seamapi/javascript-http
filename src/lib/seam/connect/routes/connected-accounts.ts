@@ -166,6 +166,20 @@ export class SeamHttpConnectedAccounts {
 
     return data.connected_accounts
   }
+
+  async update(
+    body?: ConnectedAccountsUpdateBody,
+  ): Promise<ConnectedAccountsUpdateResponse['connected_account']> {
+    const { data } = await this.client.request<ConnectedAccountsUpdateResponse>(
+      {
+        url: '/connected_accounts/update',
+        method: 'post',
+        data: body,
+      },
+    )
+
+    return data.connected_account
+  }
 }
 
 export type ConnectedAccountsDeleteBody =
@@ -194,3 +208,12 @@ export type ConnectedAccountsListResponse = SetNonNullable<
 >
 
 export type ConnectedAccountsListOptions = never
+
+export type ConnectedAccountsUpdateBody =
+  RouteRequestBody<'/connected_accounts/update'>
+
+export type ConnectedAccountsUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/connected_accounts/update'>>
+>
+
+export type ConnectedAccountsUpdateOptions = never
