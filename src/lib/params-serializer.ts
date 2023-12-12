@@ -15,21 +15,19 @@ export const paramsSerializer: CustomParamsSerializer = (params) => {
         )
       }
       for (const v of value) {
-        throwIfUnserializable(name, v)
-        searchParams.append(name, v)
+        searchParams.append(name, serialize(name, v))
       }
       continue
     }
 
-    throwIfUnserializable(name, value)
-    searchParams.set(name, value)
+    searchParams.set(name, serialize(name, value))
   }
 
   searchParams.sort()
   return searchParams.toString()
 }
 
-const throwIfUnserializable = (k: string, v: unknown): void => {
+const serialize = (k: string, v: unknown): string => {
   if (v == null) {
     throw new UnserializableParamError(k, `is ${v} or contains ${v}`)
   }
@@ -44,6 +42,17 @@ const throwIfUnserializable = (k: string, v: unknown): void => {
   if (typeof v === 'object') {
     throw new UnserializableParamError(k, 'is an object or contains an object')
   }
+
+  if (typeof v === 'symbol') {
+    throw new UnserializableParamError(k, 'is a symbol')
+  }
+
+  if (typeof v === 'string') return v.toString()
+  if (typeof v === 'number') return v.toString()
+  if (typeof v === 'bigint') return v.toString()
+  if (typeof v === 'boolean') return v.toString()
+
+  throw new UnserializableParamError(k, `is a ${typeof v}`)
 }
 
 export class UnserializableParamError extends Error {
