@@ -30,7 +30,7 @@
       "lib/*": ["./src/lib/*"]
     }
   },
-  "files": ["src/index.ts"],
+  "files": ["src/index.ts", "src/connect.ts"],
   "include": [
     "src/**/*",
     "test/**/*",
