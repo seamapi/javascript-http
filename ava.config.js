@@ -6,13 +6,11 @@ export default () => {
   delete env.SEAM_API_URL
 
   return {
+    ignoredByWatcher: ['tmp/**/*'],
     files: ['**/*.test.ts', '!package/**/*'],
-    ignoreChanges: {
-      watchMode: ['tmp/**/*'],
-    },
     extensions: {
-      ts: 'commonjs',
+      ts: 'commonjs'
     },
-    nodeArguments: ['--import=tsx'],
+    nodeArguments: ['--import=tsx']
   }
 }
