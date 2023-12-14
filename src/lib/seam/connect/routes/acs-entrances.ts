@@ -143,6 +143,14 @@ export class SeamHttpAcsEntrances {
     return data.acs_entrance
   }
 
+  async grantAccess(body?: AcsEntrancesGrantAccessBody): Promise<void> {
+    await this.client.request<AcsEntrancesGrantAccessResponse>({
+      url: '/acs/entrances/grant_access',
+      method: 'post',
+      data: body,
+    })
+  }
+
   async list(
     body?: AcsEntrancesListParams,
   ): Promise<AcsEntrancesListResponse['acs_entrances']> {
@@ -163,6 +171,15 @@ export type AcsEntrancesGetResponse = SetNonNullable<
 >
 
 export type AcsEntrancesGetOptions = never
+
+export type AcsEntrancesGrantAccessBody =
+  RouteRequestBody<'/acs/entrances/grant_access'>
+
+export type AcsEntrancesGrantAccessResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/entrances/grant_access'>>
+>
+
+export type AcsEntrancesGrantAccessOptions = never
 
 export type AcsEntrancesListParams = RouteRequestBody<'/acs/entrances/list'>
 
