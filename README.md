@@ -261,10 +261,58 @@ try {
 
 [action attempt]: https://docs.seam.co/latest/core-concepts/action-attempts
 
+### Interacting with Multiple Workspaces
+
+Some Seam API endpoints interact with multiple workspaces.
+The `SeamHttpMultiWorkspace` client is not bound to a specific workspace
+and may use those endpoints with an appropriate authentication method.
+
+#### Personal Access Token
+
+A Personal Access Token is scoped to a Seam Console user.
+Obtain one from the Seam Console.
+
+```ts
+// Pass as an option the constructor
+const seam = new SeamHttpMultiWorkspace({
+  personalAccessToken: 'your-personal-access-token',
+})
+
+// Use the factory method
+const seam = SeamHttpMultiWorkspace.fromPersonalAccessToken(
+  'some-console-session-token',
+)
+
+// List workspaces authorized for this Personal Access Token
+const workspaces = await seam.workspaces.list()
+```
+
+#### Console Session Token
+
+A Console Session Token is used by the Seam Console.
+This authentication method is only used by internal Seam applications.
+
+```ts
+// Pass as an option the constructor
+const seam = new SeamHttpMultiWorkspace({
+  consoleSessionToken: 'some-console-session-token',
+})
+
+// Use the factory method
+const seam = SeamHttpMultiWorkspace.fromConsoleSessionToken(
+  'some-console-session-token',
+)
+
+// List workspaces authorized for this Seam Console user
+const workspaces = await seam.workspaces.list()
+```
+
 ### Advanced Usage
 
+#### Additional Options
+
 In addition the various authentication options,
-the constructor takes some additional options that affect behavior.
+the constructor takes some advanced options that affect behavior.
 
 ```ts
 const seam = new SeamHttp({
