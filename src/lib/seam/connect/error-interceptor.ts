@@ -12,8 +12,8 @@ export const errorInterceptor = async (err: unknown): Promise<void> => {
 
   const { response } = err
   const status = response?.status
-  const headers = response?.headers
-  const requestId = headers?.['seam-request-id'] ?? ''
+
+  const requestId = getRequestId(err)
 
   if (status == null) throw err
 
@@ -39,7 +39,7 @@ const isApiErrorResponse = (
 
   if (headers == null) return false
 
-  const contentType = headers['content-type']
+  const contentType = headers['Content-Type']
   if (
     typeof contentType === 'string' &&
     !contentType.startsWith('application/json')
@@ -58,4 +58,12 @@ const isApiErrorResponse = (
   }
 
   return false
+}
+
+const getRequestId = (err: AxiosError): string => {
+  const headers = err.response?.headers
+  if (headers == null) return ''
+  const requestId = headers['seam-request-id']
+  if (requestId == null) return ''
+  return requestId
 }
