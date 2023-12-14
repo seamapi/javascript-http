@@ -101,7 +101,7 @@
     "axios-retry": "^4.0.0"
   },
   "devDependencies": {
-    "@seamapi/fake-seam-connect": "^1.43.0",
+    "@seamapi/fake-seam-connect": "^1.44.2",
     "@seamapi/types": "^1.58.0",
     "@types/eslint": "^8.44.2",
     "@types/node": "^20.8.10",
