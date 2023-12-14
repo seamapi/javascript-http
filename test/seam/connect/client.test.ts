@@ -77,7 +77,7 @@ test('SeamHttp: merges axiosOptions when creating client', async (t) => {
     endpoint,
     axiosOptions: {
       transformResponse: [
-        (data) =>
+        (data: string) =>
           JSON.parse(
             data.replaceAll(seed.august_device_1, 'transformed-device-id'),
           ),
