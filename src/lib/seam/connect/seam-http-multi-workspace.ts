@@ -74,7 +74,7 @@ export class SeamHttpMultiWorkspace {
     return new SeamHttpMultiWorkspace(constructorOptions)
   }
 
-  get workspaces(): SeamHttpWorkspaces {
+  get workspaces(): Pick<SeamHttpWorkspaces, 'create' | 'list'> {
     return SeamHttpWorkspaces.fromClient(this.client, this.defaults)
   }
 }
