@@ -186,7 +186,7 @@ export class SeamHttp {
     return SeamHttpWebhooks.fromClient(this.client, this.defaults)
   }
 
-  get workspaces(): SeamHttpWorkspaces {
+  get workspaces(): Omit<SeamHttpWorkspaces, 'create'> {
     return SeamHttpWorkspaces.fromClient(this.client, this.defaults)
   }
 }
