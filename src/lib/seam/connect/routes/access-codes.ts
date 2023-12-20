@@ -28,8 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { resolveActionAttempt } from 'lib/seam/connect/resolve-action-attempt.js'
 
 import { SeamHttpAccessCodesUnmanaged } from './access-codes-unmanaged.js'
+import { SeamHttpActionAttempts } from './action-attempts.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpAccessCodes {
@@ -161,12 +163,28 @@ export class SeamHttpAccessCodes {
     return data.access_codes
   }
 
-  async delete(body?: AccessCodesDeleteBody): Promise<void> {
-    await this.client.request<AccessCodesDeleteResponse>({
+  async delete(
+    body?: AccessCodesDeleteBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): Promise<AccessCodesDeleteResponse['action_attempt']> {
+    const { data } = await this.client.request<AccessCodesDeleteResponse>({
       url: '/access_codes/delete',
       method: 'post',
       data: body,
     })
+    const waitForActionAttempt =
+      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+    if (waitForActionAttempt !== false) {
+      return await resolveActionAttempt(
+        data.action_attempt,
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
+      )
+    }
+    return data.action_attempt
   }
 
   async generateCode(
@@ -220,12 +238,28 @@ export class SeamHttpAccessCodes {
     return data.backup_access_code
   }
 
-  async update(body?: AccessCodesUpdateBody): Promise<void> {
-    await this.client.request<AccessCodesUpdateResponse>({
+  async update(
+    body?: AccessCodesUpdateBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): Promise<AccessCodesUpdateResponse['action_attempt']> {
+    const { data } = await this.client.request<AccessCodesUpdateResponse>({
       url: '/access_codes/update',
       method: 'post',
       data: body,
     })
+    const waitForActionAttempt =
+      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+    if (waitForActionAttempt !== false) {
+      return await resolveActionAttempt(
+        data.action_attempt,
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
+      )
+    }
+    return data.action_attempt
   }
 }
 
@@ -252,7 +286,10 @@ export type AccessCodesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/delete'>>
 >
 
-export type AccessCodesDeleteOptions = never
+export type AccessCodesDeleteOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type AccessCodesGenerateCodeBody =
   RouteRequestBody<'/access_codes/generate_code'>
@@ -294,4 +331,7 @@ export type AccessCodesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/update'>>
 >
 
-export type AccessCodesUpdateOptions = never
+export type AccessCodesUpdateOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
