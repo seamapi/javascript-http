@@ -1,5 +1,6 @@
 export { SeamHttpInvalidTokenError } from './auth.js'
 export * from './error-interceptor.js'
+export * from './openapi.js'
 export * from './options.js'
 export {
   isSeamActionAttemptError,

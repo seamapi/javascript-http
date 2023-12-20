@@ -11,9 +11,9 @@ import {
   type SeamHttpRequestOptions,
 } from './options.js'
 
-const defaultEndpoint = 'https://connect.getseam.com'
+export const defaultEndpoint = 'https://connect.getseam.com'
 
-const sdkHeaders = {
+export const sdkHeaders = {
   'seam-sdk-name': 'seamapi/javascript-http',
   'seam-sdk-version': version,
 }
