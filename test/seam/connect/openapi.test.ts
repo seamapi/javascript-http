@@ -1,9 +1,9 @@
-import { getOpenapiSchema } from '@seamapi/http/connect'
 import { openapi } from '@seamapi/types/connect'
 import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 import nock from 'nock'
 
+import { getOpenapiSchema } from '@seamapi/http/connect'
 
 test('SeamHttp: getOpenapiSchema returns data', async (t) => {
   const { endpoint } = await getTestServer(t)
