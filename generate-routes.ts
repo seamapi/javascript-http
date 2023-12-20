@@ -144,7 +144,7 @@ const createEndpoint = (
   routePath: string,
   endpointPath: string,
 ): Endpoint => {
-  if (!isOpenApiPath(endpointPath)) {
+  if (!isOpenapiPath(endpointPath)) {
     throw new Error(`Did not find ${endpointPath} in OpenAPI spec`)
   }
   const spec = openapi.paths[endpointPath]
@@ -174,7 +174,7 @@ const deriveResource = (
     return endpointResources[endpointPath] ?? null
   }
 
-  if (isOpenApiPath(endpointPath)) {
+  if (isOpenapiPath(endpointPath)) {
     const spec = openapi.paths[endpointPath]
     const methodKey = method.toLowerCase()
 
@@ -213,7 +213,7 @@ const isEndpointResource = (
   key: string,
 ): key is keyof typeof endpointResources => key in endpointResources
 
-const isOpenApiPath = (key: string): key is keyof typeof openapi.paths =>
+const isOpenapiPath = (key: string): key is keyof typeof openapi.paths =>
   key in openapi.paths
 
 const isEndpointUnderRoute = (
