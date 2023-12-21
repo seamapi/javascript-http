@@ -214,11 +214,13 @@ await seam.locks.unlockDoor({ device_id })
 If you have already have an action attempt id
 and want to wait for it to resolve, simply use
 
-
 ```ts
-await seam.actionAttempts.get({ action_attempt_id, }, {
-  waitForActionAttempt: true
-})
+await seam.actionAttempts.get(
+  { action_attempt_id },
+  {
+    waitForActionAttempt: true,
+  },
+)
 ```
 
 Using the `waitForActionAttempt` option:
