@@ -152,7 +152,7 @@ test.serial(
   'SeamHttp: SEAM_API_KEY environment variable is ignored with fromClientSessionToken',
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
-    env.SEAM_API_KEY = 'some-invalid-api-key-4'
+    env.SEAM_API_KEY = seed.seam_apikey1_token
     const seam = SeamHttp.fromClientSessionToken(seed.seam_cst1_token, {
       endpoint,
     })
@@ -168,10 +168,54 @@ test.serial(
   'SeamHttp: SEAM_API_KEY environment variable is ignored with fromPublishableKey',
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
-    env.SEAM_API_KEY = 'some-invalid-api-key-5'
+    env.SEAM_API_KEY = seed.seam_apikey1_token
     const seam = await SeamHttp.fromPublishableKey(
       seed.seam_pk1_token,
       seed.john_user_identifier_key,
+      {
+        endpoint,
+      },
+    )
+    const device = await seam.devices.get({
+      device_id: seed.august_device_1,
+    })
+    t.is(device.workspace_id, seed.seed_workspace_1)
+    t.is(device.device_id, seed.august_device_1)
+  },
+)
+
+// UPSTREAM: Fake does not support JWT.
+// https://github.com/seamapi/fake-seam-connect/issues/124
+test.serial.failing(
+  'SeamHttp: SEAM_API_KEY environment variable is ignored with fromConsoleSessionToken',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    env.SEAM_API_KEY = seed.seam_apikey1_token
+    const seam = SeamHttp.fromConsoleSessionToken(
+      'ey_TODO',
+      seed.seed_workspace_1,
+      {
+        endpoint,
+      },
+    )
+    const device = await seam.devices.get({
+      device_id: seed.august_device_1,
+    })
+    t.is(device.workspace_id, seed.seed_workspace_1)
+    t.is(device.device_id, seed.august_device_1)
+  },
+)
+
+// UPSTREAM: Fake does not support personal access token.
+// https://github.com/seamapi/fake-seam-connect/issues/126
+test.serial.failing(
+  'SeamHttp: SEAM_API_KEY environment variable is ignored with personalAccessToken',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    env.SEAM_API_KEY = seed.seam_apikey1_token
+    const seam = SeamHttp.fromPersonalAccessToken(
+      'seam_at_TODO',
+      seed.seed_workspace_1,
       {
         endpoint,
       },

@@ -87,6 +87,12 @@ const getApiKeyFromEnv = (
   if ('clientSessionToken' in options && options.clientSessionToken != null) {
     return null
   }
+  if ('consoleSessionToken' in options && options.consoleSessionToken != null) {
+    return null
+  }
+  if ('personalAccessToken' in options && options.personalAccessToken != null) {
+    return null
+  }
   return globalThis.process?.env?.SEAM_API_KEY
 }
 
