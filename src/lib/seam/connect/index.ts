@@ -14,4 +14,11 @@ export * from './routes/index.js'
 export * from './seam-http.js'
 export * from './seam-http-error.js'
 export * from './seam-http-multi-workspace.js'
+export {
+  isApiKey,
+  isClientSessionToken,
+  isConsoleSessionToken,
+  isPersonalAccessToken,
+  isPublishableKey,
+} from './token.js'
 export * from 'lib/params-serializer.js'
