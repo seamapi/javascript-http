@@ -63,7 +63,8 @@ export const getAuthHeaders = (options: Options): Headers => {
       'clientSessionToken,',
       'publishableKey,',
       'consoleSessionToken',
-      'or personalAccessToken',
+      'or personalAccessToken.',
+      'Attempted reading configuration from the environment, but the environment variable SEAM_API_KEY is not set.',
     ].join(' '),
   )
 }
