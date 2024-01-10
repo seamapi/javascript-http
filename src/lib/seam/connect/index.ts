@@ -21,4 +21,3 @@ export {
   isPersonalAccessToken,
   isPublishableKey,
 } from './token.js'
-export * from 'lib/params-serializer.js'
