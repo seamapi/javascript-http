@@ -30,9 +30,11 @@ const routePaths = [
   '/locks',
   '/noise_sensors',
   '/noise_sensors/noise_thresholds',
-  '/thermostats/climate_setting_schedules',
+  '/phones',
   '/thermostats',
+  '/thermostats/climate_setting_schedules',
   '/user_identities',
+  '/user_identities/enrollment_automations',
   '/webhooks',
   '/workspaces',
 ] as const
@@ -53,6 +55,7 @@ const routePathSubresources: Partial<
   '/devices': ['unmanaged'],
   '/noise_sensors': ['noise_thresholds'],
   '/thermostats': ['climate_setting_schedules'],
+  '/user_identities': ['enrollment_automations'],
 }
 
 const ignoredEndpointPaths = [
@@ -63,6 +66,7 @@ const ignoredEndpointPaths = [
   '/health/get_service_health',
   '/health/service/[service_name]',
   '/noise_sensors/simulate/trigger_noise_threshold',
+  '/phones/simulate/create_sandbox_phone',
 ] as const
 
 const endpointResources: Partial<Record<keyof typeof openapi.paths, null>> = {
