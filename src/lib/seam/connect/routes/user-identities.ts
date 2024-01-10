@@ -204,6 +204,19 @@ export class SeamHttpUserIdentities {
     return data.accessible_devices
   }
 
+  async listAcsSystems(
+    body?: UserIdentitiesListAcsSystemsParams,
+  ): Promise<UserIdentitiesListAcsSystemsResponse['acs_systems']> {
+    const { data } =
+      await this.client.request<UserIdentitiesListAcsSystemsResponse>({
+        url: '/user_identities/list_acs_systems',
+        method: 'post',
+        data: body,
+      })
+
+    return data.acs_systems
+  }
+
   async listAcsUsers(
     body?: UserIdentitiesListAcsUsersParams,
   ): Promise<UserIdentitiesListAcsUsersResponse['acs_users']> {
@@ -288,6 +301,15 @@ export type UserIdentitiesListAccessibleDevicesResponse = SetNonNullable<
 >
 
 export type UserIdentitiesListAccessibleDevicesOptions = never
+
+export type UserIdentitiesListAcsSystemsParams =
+  RouteRequestBody<'/user_identities/list_acs_systems'>
+
+export type UserIdentitiesListAcsSystemsResponse = SetNonNullable<
+  Required<RouteResponse<'/user_identities/list_acs_systems'>>
+>
+
+export type UserIdentitiesListAcsSystemsOptions = never
 
 export type UserIdentitiesListAcsUsersParams =
   RouteRequestBody<'/user_identities/list_acs_users'>
