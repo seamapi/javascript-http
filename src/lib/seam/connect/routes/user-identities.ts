@@ -34,6 +34,7 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
+import { SeamHttpUserIdentitiesEnrollmentAutomations } from './user-identities-enrollment-automations.js'
 
 export class SeamHttpUserIdentities {
   client: Client
@@ -133,6 +134,13 @@ export class SeamHttpUserIdentities {
       )
     }
     return new SeamHttpUserIdentities(constructorOptions)
+  }
+
+  get enrollmentAutomations(): SeamHttpUserIdentitiesEnrollmentAutomations {
+    return SeamHttpUserIdentitiesEnrollmentAutomations.fromClient(
+      this.client,
+      this.defaults,
+    )
   }
 
   async addAcsUser(body?: UserIdentitiesAddAcsUserBody): Promise<void> {
