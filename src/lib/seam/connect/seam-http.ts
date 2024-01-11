@@ -18,6 +18,7 @@ import {
 } from './options.js'
 import { limitToSeamHttpRequestOptions, parseOptions } from './parse-options.js'
 import {
+  SeamHttpNetworks,
   SeamHttpAccessCodes,
   SeamHttpAcs,
   SeamHttpActionAttempts,
@@ -169,6 +170,10 @@ export class SeamHttp {
 
   get locks(): SeamHttpLocks {
     return SeamHttpLocks.fromClient(this.client, this.defaults)
+  }
+
+  get networks(): SeamHttpNetworks {
+    return SeamHttpNetworks.fromClient(this.client, this.defaults)
   }
 
   get noiseSensors(): SeamHttpNoiseSensors {

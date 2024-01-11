@@ -28,6 +28,7 @@ const routePaths = [
   '/devices/unmanaged',
   '/events',
   '/locks',
+  '/networks',
   '/noise_sensors',
   '/noise_sensors/noise_thresholds',
   '/phones',

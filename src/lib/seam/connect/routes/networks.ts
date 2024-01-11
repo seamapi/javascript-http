@@ -31,7 +31,7 @@ import {
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
-export class SeamHttpNetwork {
+export class SeamHttpNetworks {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
@@ -44,23 +44,23 @@ export class SeamHttpNetwork {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpNetwork {
+  ): SeamHttpNetworks {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpNetwork(constructorOptions)
+    return new SeamHttpNetworks(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpNetwork {
+  ): SeamHttpNetworks {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpNetwork(constructorOptions)
+    return new SeamHttpNetworks(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -69,19 +69,19 @@ export class SeamHttpNetwork {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpNetwork {
+  ): SeamHttpNetworks {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpNetwork(constructorOptions)
+    return new SeamHttpNetworks(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpNetwork> {
+  ): Promise<SeamHttpNetworks> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
@@ -94,7 +94,7 @@ export class SeamHttpNetwork {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpNetwork.fromClientSessionToken(token, options)
+    return SeamHttpNetworks.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -104,14 +104,14 @@ export class SeamHttpNetwork {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpNetwork {
+  ): SeamHttpNetworks {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpNetwork(constructorOptions)
+    return new SeamHttpNetworks(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -121,18 +121,18 @@ export class SeamHttpNetwork {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpNetwork {
+  ): SeamHttpNetworks {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpNetwork(constructorOptions)
+    return new SeamHttpNetworks(constructorOptions)
   }
 
-  async get(body?: NetworkGetBody): Promise<NetworkGetResponse['network']> {
-    const { data } = await this.client.request<NetworkGetResponse>({
+  async get(body?: NetworksGetParams): Promise<NetworksGetResponse['network']> {
+    const { data } = await this.client.request<NetworksGetResponse>({
       url: '/networks/get',
       method: 'post',
       data: body,
@@ -141,8 +141,10 @@ export class SeamHttpNetwork {
     return data.network
   }
 
-  async list(body?: NetworkListBody): Promise<NetworkListResponse['networks']> {
-    const { data } = await this.client.request<NetworkListResponse>({
+  async list(
+    body?: NetworksListParams,
+  ): Promise<NetworksListResponse['networks']> {
+    const { data } = await this.client.request<NetworksListResponse>({
       url: '/networks/list',
       method: 'post',
       data: body,
@@ -152,18 +154,18 @@ export class SeamHttpNetwork {
   }
 }
 
-export type NetworkGetBody = RouteRequestBody<'/networks/get'>
+export type NetworksGetParams = RouteRequestBody<'/networks/get'>
 
-export type NetworkGetResponse = SetNonNullable<
+export type NetworksGetResponse = SetNonNullable<
   Required<RouteResponse<'/networks/get'>>
 >
 
-export type NetworkGetOptions = never
+export type NetworksGetOptions = never
 
-export type NetworkListBody = RouteRequestBody<'/networks/list'>
+export type NetworksListParams = RouteRequestBody<'/networks/list'>
 
-export type NetworkListResponse = SetNonNullable<
+export type NetworksListResponse = SetNonNullable<
   Required<RouteResponse<'/networks/list'>>
 >
 
-export type NetworkListOptions = never
+export type NetworksListOptions = never
