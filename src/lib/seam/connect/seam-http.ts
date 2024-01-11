@@ -18,7 +18,6 @@ import {
 } from './options.js'
 import { limitToSeamHttpRequestOptions, parseOptions } from './parse-options.js'
 import {
-  SeamHttpNetworks,
   SeamHttpAccessCodes,
   SeamHttpAcs,
   SeamHttpActionAttempts,
@@ -28,6 +27,7 @@ import {
   SeamHttpDevices,
   SeamHttpEvents,
   SeamHttpLocks,
+  SeamHttpNetworks,
   SeamHttpNoiseSensors,
   SeamHttpPhones,
   SeamHttpThermostats,
