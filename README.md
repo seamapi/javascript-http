@@ -22,7 +22,6 @@ The underlying HTTP client is [Axios].
 
 [Seam]: https://www.seam.co/
 [Seam Docs]: https://docs.seam.co/latest/
-[seamapi]: https://www.npmjs.com/package/seamapi
 [@seamapi/types]: https://github.com/seamapi/types/
 [Axios]: https://axios-http.com/
 
@@ -40,6 +39,7 @@ $ npm install @seamapi/http
 ```
 
 [npm]: https://www.npmjs.com/
+[seamapi]: https://www.npmjs.com/package/seamapi
 
 ### Optional Peer Dependencies for TypeScript
 
