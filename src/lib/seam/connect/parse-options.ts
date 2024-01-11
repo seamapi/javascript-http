@@ -97,6 +97,23 @@ const getApiKeyFromEnv = (
 }
 
 const getEndpointFromEnv = (): string | null | undefined => {
+  if (globalThis.process?.env?.SEAM_API_URL != null) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      'Using the SEAM_API_URL environment variable is deprecated. Support will be remove in a later major version. Use SEAM_ENDPOINT instead.',
+    )
+  }
+
+  if (
+    globalThis.process?.env?.SEAM_API_URL != null &&
+    globalThis.process?.env?.SEAM_ENDPOINT != null
+  ) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      'Detected both the SEAM_API_URL and SEAM_ENDPOINT environment variables. Using SEAM_ENDPOINT.',
+    )
+  }
+
   return (
     globalThis.process?.env?.SEAM_ENDPOINT ??
     globalThis.process?.env?.SEAM_API_URL
