@@ -68,18 +68,26 @@ const ignoredEndpointPaths = [
   '/health/service/[service_name]',
   '/noise_sensors/simulate/trigger_noise_threshold',
   '/phones/simulate/create_sandbox_phone',
+  '/workspaces/reset_sandbox',
 ] as const
 
-const endpointResources: Partial<Record<keyof typeof openapi.paths, null>> = {
+const endpointResources: Partial<
+  Record<
+    keyof typeof openapi.paths,
+    null | 'action_attempt' | 'noise_threshold'
+  >
+> = {
+  // Set all ignored endpoints null to simplify code generation.
+  ...ignoredEndpointPaths.reduce((acc, cur) => ({ ...acc, [cur]: null }), {}),
+
+  // These endpoints return a deprecated action attempt or resource.
   '/access_codes/delete': null,
   '/access_codes/unmanaged/delete': null,
   '/access_codes/update': null,
-  '/connect_webviews/view': null,
-  '/noise_sensors/noise_thresholds/create': null,
+  '/noise_sensors/noise_thresholds/create': 'noise_threshold',
   '/noise_sensors/noise_thresholds/delete': null,
   '/noise_sensors/noise_thresholds/update': null,
   '/thermostats/climate_setting_schedules/update': null,
-  '/workspaces/reset_sandbox': null,
 } as const
 
 interface Route {
