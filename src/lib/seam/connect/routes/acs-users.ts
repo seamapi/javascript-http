@@ -183,6 +183,19 @@ export class SeamHttpAcsUsers {
     return data.acs_users
   }
 
+  async listAccessibleEntrances(
+    body?: AcsUsersListAccessibleEntrancesParams,
+  ): Promise<AcsUsersListAccessibleEntrancesResponse['acs_entrances']> {
+    const { data } =
+      await this.client.request<AcsUsersListAccessibleEntrancesResponse>({
+        url: '/acs/users/list_accessible_entrances',
+        method: 'post',
+        data: body,
+      })
+
+    return data.acs_entrances
+  }
+
   async removeFromAccessGroup(
     body?: AcsUsersRemoveFromAccessGroupBody,
   ): Promise<void> {
@@ -258,6 +271,15 @@ export type AcsUsersListResponse = SetNonNullable<
 >
 
 export type AcsUsersListOptions = never
+
+export type AcsUsersListAccessibleEntrancesParams =
+  RouteRequestBody<'/acs/users/list_accessible_entrances'>
+
+export type AcsUsersListAccessibleEntrancesResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/users/list_accessible_entrances'>>
+>
+
+export type AcsUsersListAccessibleEntrancesOptions = never
 
 export type AcsUsersRemoveFromAccessGroupBody =
   RouteRequestBody<'/acs/users/remove_from_access_group'>
