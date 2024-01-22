@@ -217,8 +217,11 @@ const deriveResourceFromSchema = (properties: object): string | null =>
   Object.keys(properties).filter((key) => key !== 'ok')[0] ?? null
 
 const deriveSemanticMethod = (methods: string[]): Method => {
-  if (methods.includes('get')) return 'GET'
+  // UPSTREAM: This should return GET before POST.
+  // Blocked on https://github.com/seamapi/nextlove/issues/117
+  // and https://github.com/seamapi/javascript-http/issues/43
   if (methods.includes('post')) return 'POST'
+  if (methods.includes('get')) return 'GET'
   throw new Error(`Could not find valid method in ${methods.join(', ')}`)
 }
 
@@ -458,7 +461,9 @@ const renderRequestType = ({
     pascalCase(requestFormatToRequestType(name, namespace)),
   ].join('')
 
-// UPSTREAM: Should be just requestFormat, but blocked on https://github.com/seamapi/nextlove/issues/117
+// UPSTREAM: This function is a workaround, as the request type should always match the request format.
+// Blocked on https://github.com/seamapi/nextlove/issues/117
+// and https://github.com/seamapi/javascript-http/issues/43
 const requestFormatToRequestType = (
   name: string,
   _namespace: string,
