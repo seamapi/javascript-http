@@ -235,7 +235,6 @@ export class SeamHttpInvalidOptionsError extends Error {
   constructor(message: string) {
     super(`SeamHttp received invalid options: ${message}`)
     this.name = this.constructor.name
-    Error.captureStackTrace(this, this.constructor)
   }
 }
 

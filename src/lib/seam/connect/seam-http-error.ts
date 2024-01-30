@@ -10,7 +10,6 @@ export class SeamHttpApiError extends Error {
     const { type, message, data } = error
     super(message)
     this.name = this.constructor.name
-    Error.captureStackTrace(this, this.constructor)
     this.code = type
     this.statusCode = statusCode
     this.requestId = requestId
@@ -33,7 +32,6 @@ export class SeamHttpUnauthorizedError extends SeamHttpApiError {
     const status = 401
     super({ type, message: 'Unauthorized' }, status, requestId)
     this.name = this.constructor.name
-    Error.captureStackTrace(this, this.constructor)
     this.code = type
     this.statusCode = status
     this.requestId = requestId
@@ -52,7 +50,6 @@ export class SeamHttpInvalidInputError extends SeamHttpApiError {
   constructor(error: ApiError, statusCode: number, requestId: string) {
     super(error, statusCode, requestId)
     this.name = this.constructor.name
-    Error.captureStackTrace(this, this.constructor)
     this.code = 'invalid_input'
   }
 }

@@ -248,7 +248,6 @@ export class SeamHttpInvalidTokenError extends Error {
   constructor(message: string) {
     super(`SeamHttp received an invalid token: ${message}`)
     this.name = this.constructor.name
-    Error.captureStackTrace(this, this.constructor)
   }
 }
 

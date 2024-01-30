@@ -73,7 +73,6 @@ export class SeamActionAttemptError<T extends ActionAttempt> extends Error {
     super(message)
     this.name = this.constructor.name
     this.actionAttempt = actionAttempt
-    Error.captureStackTrace(this, this.constructor)
   }
 }
 
@@ -92,7 +91,6 @@ export class SeamActionAttemptFailedError<
     super(actionAttempt.error.message, actionAttempt)
     this.name = this.constructor.name
     this.code = actionAttempt.error.type
-    Error.captureStackTrace(this, this.constructor)
   }
 }
 
@@ -111,7 +109,6 @@ export class SeamActionAttemptTimeoutError<
       actionAttempt,
     )
     this.name = this.constructor.name
-    Error.captureStackTrace(this, this.constructor)
   }
 }
 
