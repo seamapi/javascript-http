@@ -159,6 +159,14 @@ export class SeamHttpUserIdentities {
     return data.user_identity
   }
 
+  async delete(body?: UserIdentitiesDeleteBody): Promise<void> {
+    await this.client.request<UserIdentitiesDeleteResponse>({
+      url: '/user_identities/delete',
+      method: 'post',
+      data: body,
+    })
+  }
+
   async get(
     body?: UserIdentitiesGetParams,
   ): Promise<UserIdentitiesGetResponse['user_identity']> {
@@ -270,6 +278,15 @@ export type UserIdentitiesCreateResponse = SetNonNullable<
 >
 
 export type UserIdentitiesCreateOptions = never
+
+export type UserIdentitiesDeleteBody =
+  RouteRequestBody<'/user_identities/delete'>
+
+export type UserIdentitiesDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/user_identities/delete'>>
+>
+
+export type UserIdentitiesDeleteOptions = never
 
 export type UserIdentitiesGetParams = RouteRequestBody<'/user_identities/get'>
 
