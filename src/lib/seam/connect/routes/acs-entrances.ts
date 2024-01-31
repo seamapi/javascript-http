@@ -162,6 +162,19 @@ export class SeamHttpAcsEntrances {
 
     return data.acs_entrances
   }
+
+  async listCredentialsWithAccess(
+    body?: AcsEntrancesListCredentialsWithAccessParams,
+  ): Promise<AcsEntrancesListCredentialsWithAccessResponse['acs_credentials']> {
+    const { data } =
+      await this.client.request<AcsEntrancesListCredentialsWithAccessResponse>({
+        url: '/acs/entrances/list_credentials_with_access',
+        method: 'post',
+        data: body,
+      })
+
+    return data.acs_credentials
+  }
 }
 
 export type AcsEntrancesGetParams = RouteRequestBody<'/acs/entrances/get'>
@@ -188,3 +201,12 @@ export type AcsEntrancesListResponse = SetNonNullable<
 >
 
 export type AcsEntrancesListOptions = never
+
+export type AcsEntrancesListCredentialsWithAccessParams =
+  RouteRequestBody<'/acs/entrances/list_credentials_with_access'>
+
+export type AcsEntrancesListCredentialsWithAccessResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/entrances/list_credentials_with_access'>>
+>
+
+export type AcsEntrancesListCredentialsWithAccessOptions = never
