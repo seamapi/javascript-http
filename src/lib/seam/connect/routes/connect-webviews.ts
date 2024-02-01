@@ -96,12 +96,26 @@ export class SeamHttpConnectWebviews {
         'The client option cannot be used with SeamHttp.fromPublishableKey',
       )
     }
-    const client = createClient(clientOptions)
-    const clientSessions = SeamHttpClientSessions.fromClient(client)
-    const { token } = await clientSessions.getOrCreate({
-      user_identifier_key: userIdentifierKey,
-    })
-    return SeamHttpConnectWebviews.fromClientSessionToken(token, options)
+
+    const getClientSessionToken = async (): Promise<string> => {
+      const client = createClient(clientOptions)
+      const clientSessions = SeamHttpClientSessions.fromClient(client)
+      const clientSession = await clientSessions.getOrCreate({
+        user_identifier_key: userIdentifierKey,
+      })
+      return clientSession.token
+    }
+
+    const token = await getClientSessionToken()
+
+    const seam = SeamHttpConnectWebviews.fromClientSessionToken(token, options)
+
+    seam.refreshClientSessionToken = async (): Promise<void> => {
+      const newToken = await getClientSessionToken()
+      await seam.updateClientSessionToken(newToken)
+    }
+
+    return seam
   }
 
   static fromConsoleSessionToken(
