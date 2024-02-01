@@ -43,6 +43,12 @@ export class SeamHttp {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
+  refreshClientSessionToken: () => Promise<void> = async () => {
+    throw new Error(
+      'Cannot refresh a clientSessionToken unless the client is created with fromPublishableKey',
+    )
+  }
+
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
     this.client = 'client' in options ? options.client : createClient(options)
@@ -97,12 +103,26 @@ export class SeamHttp {
         'The client option cannot be used with SeamHttp.fromPublishableKey',
       )
     }
-    const client = createClient(clientOptions)
-    const clientSessions = SeamHttpClientSessions.fromClient(client)
-    const { token } = await clientSessions.getOrCreate({
-      user_identifier_key: userIdentifierKey,
-    })
-    return SeamHttp.fromClientSessionToken(token, options)
+
+    const getClientSessionToken = async (): Promise<string> => {
+      const client = createClient(clientOptions)
+      const clientSessions = SeamHttpClientSessions.fromClient(client)
+      const clientSession = await clientSessions.getOrCreate({
+        user_identifier_key: userIdentifierKey,
+      })
+      return clientSession.token
+    }
+
+    const token = await getClientSessionToken()
+
+    const seam = SeamHttp.fromClientSessionToken(token, options)
+
+    seam.refreshClientSessionToken = async (): Promise<void> => {
+      const newToken = await getClientSessionToken()
+      await seam.updateClientSessionToken(newToken)
+    }
+
+    return seam
   }
 
   static fromConsoleSessionToken(
