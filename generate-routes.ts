@@ -261,7 +261,10 @@ import type {
 } from '@seamapi/types/connect'
 import type { SetNonNullable } from 'type-fest'
 
-import { warnOnInsecureuserIdentifierKey } from 'lib/seam/connect/auth.js'
+import {
+  getAuthHeadersForClientSessionToken,
+  warnOnInsecureuserIdentifierKey,
+} from 'lib/seam/connect/auth.js'
 import {
   type Client,
   type ClientOptions,

@@ -121,6 +121,14 @@ const seam = new SeamHttp({ clientSessionToken: 'some-client-session-token' })
 const seam = SeamHttp.fromClientSessionToken('some-client-session-token')
 ```
 
+The client session token may be updated using
+
+```
+const seam = SeamHttp.fromClientSessionToken('some-client-session-token')
+
+await seam.updateClientSessionToken('some-new-client-session-token')
+```
+
 #### Publishable Key
 
 A Publishable Key is used by the client to acquire Client Session Token for a workspace.

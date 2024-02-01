@@ -105,7 +105,7 @@ const getAuthHeadersForApiKey = ({
   }
 }
 
-const getAuthHeadersForClientSessionToken = ({
+export const getAuthHeadersForClientSessionToken = ({
   clientSessionToken,
 }: SeamHttpOptionsWithClientSessionToken): Headers => {
   if (isJwt(clientSessionToken)) {
