@@ -1,4 +1,7 @@
-import { warnOnInsecureuserIdentifierKey } from './auth.js'
+import {
+  getAuthHeadersForClientSessionToken,
+  warnOnInsecureuserIdentifierKey,
+} from './auth.js'
 import { type Client, createClient } from './client.js'
 import {
   isSeamHttpOptionsWithApiKey,
@@ -134,6 +137,25 @@ export class SeamHttp {
       )
     }
     return new SeamHttp(constructorOptions)
+  }
+
+  async updateClientSessionToken(
+    clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
+  ): Promise<void> {
+    const { headers } = this.client.defaults
+    const authHeaders = getAuthHeadersForClientSessionToken({
+      clientSessionToken,
+    })
+    for (const key of Object.keys(authHeaders)) {
+      if (headers[key] == null) {
+        throw new Error(
+          'Cannot update a clientSessionToken on a client created without a clientSessionToken',
+        )
+      }
+    }
+    this.client.defaults.headers = { ...headers, ...authHeaders }
+    const clientSessions = SeamHttpClientSessions.fromClient(this.client)
+    await clientSessions.get()
   }
 
   get accessCodes(): SeamHttpAccessCodes {
