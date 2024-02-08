@@ -228,6 +228,16 @@ export class SeamHttpAcsUsers {
     })
   }
 
+  async revokeAccessToAllEntrances(
+    body?: AcsUsersRevokeAccessToAllEntrancesBody,
+  ): Promise<void> {
+    await this.client.request<AcsUsersRevokeAccessToAllEntrancesResponse>({
+      url: '/acs/users/revoke_access_to_all_entrances',
+      method: 'post',
+      data: body,
+    })
+  }
+
   async suspend(body?: AcsUsersSuspendBody): Promise<void> {
     await this.client.request<AcsUsersSuspendResponse>({
       url: '/acs/users/suspend',
@@ -311,6 +321,15 @@ export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
 >
 
 export type AcsUsersRemoveFromAccessGroupOptions = never
+
+export type AcsUsersRevokeAccessToAllEntrancesBody =
+  RouteRequestBody<'/acs/users/revoke_access_to_all_entrances'>
+
+export type AcsUsersRevokeAccessToAllEntrancesResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/users/revoke_access_to_all_entrances'>>
+>
+
+export type AcsUsersRevokeAccessToAllEntrancesOptions = never
 
 export type AcsUsersSuspendBody = RouteRequestBody<'/acs/users/suspend'>
 
