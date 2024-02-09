@@ -35,7 +35,7 @@ export const handler: Handler<Options> = async ({
       // More generally, an application just needs to wait for the resource to be deleted before continuing,
       // or the next operation may error.
       // If, on error, this entire deletion function is called again repeatedly,
-      // deletion will either success or be stuck due to some resource that fails to delete.
+      // deletion will either eventually succeed, or be stuck due to some resource that fails to delete.
       logger.info({ eventType, idKey, resource }, 'Got event')
     }
 
