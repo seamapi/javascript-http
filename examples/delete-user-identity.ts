@@ -29,6 +29,8 @@ export const handler: Handler<Options> = async ({
     async (resource: any): Promise<void> => {
       // Application architecture specific logic that waits for an event matching
       // event.event_type === eventType && event[idKey] === resource[idKey]
+      // In this example, the event may arrive before this function is called,
+      // so any implementation must handle that case.
       logger.info({ eventType, idKey, resource }, 'Got event')
     }
 
@@ -100,6 +102,11 @@ export const handler: Handler<Options> = async ({
 
     deletedCredentials.concat(credentials)
   }
+
+  // event not implemented
+  await Promise.all(
+    deletedCredentials.map(waitForEvent('acs_user.deleted', 'acs_user_id')),
+  )
 
   // event not implemented
   await Promise.all(
