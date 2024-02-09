@@ -12,6 +12,7 @@ import landlubber, {
 
 import { SeamHttp } from '@seamapi/http/connect'
 
+import * as deleteUserIdentity from './delete-user-identity.js'
 import * as locks from './locks.js'
 import * as unlock from './unlock.js'
 import * as workspace from './workspace.js'
@@ -24,7 +25,7 @@ interface ClientContext {
   seam: SeamHttp
 }
 
-const commands = [locks, unlock, workspace]
+const commands = [deleteUserIdentity, locks, unlock, workspace]
 
 const createAppContext: MiddlewareFunction = async (argv) => {
   const apiKey = argv['api-key']
