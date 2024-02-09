@@ -31,6 +31,11 @@ export const handler: Handler<Options> = async ({
       // event.event_type === eventType && event[idKey] === resource[idKey]
       // In this example, the event may arrive before this function is called,
       // so any implementation must handle that case.
+      //
+      // More generally, an application just needs to wait for the resource to be deleted before continuing,
+      // or the next operation may error.
+      // If, on error, this entire deletion function is called again repeatedly,
+      // deletion will either success or be stuck due to some resource that fails to delete.
       logger.info({ eventType, idKey, resource }, 'Got event')
     }
 
