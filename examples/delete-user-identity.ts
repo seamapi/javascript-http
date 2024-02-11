@@ -1,6 +1,13 @@
 import type { Builder, Command, Describe } from 'landlubber'
 
-import type { AcsCredentialsListResponse } from '@seamapi/http/connect'
+import type {
+  AcsCredentialsGetResponse,
+  AcsUsersGetResponse,
+  EventsListParams,
+  EventsListResponse,
+  PhonesListResponse,
+  UserIdentitiesEnrollmentAutomationsGetResponse,
+} from '@seamapi/http/connect'
 
 import type { Handler } from './index.js'
 
@@ -24,23 +31,59 @@ export const handler: Handler<Options> = async ({
   seam,
   logger,
 }) => {
-  const waitForEvent =
-    (eventType: string, idKey: string) =>
-    async (resource: any): Promise<void> => {
-      // Application architecture specific logic that waits for an event matching
-      // event.event_type === eventType && event[idKey] === resource[idKey]
-      // In this example, the event may arrive before this function is called,
-      // so any implementation must handle that case.
-      //
-      // More generally, an application just needs to wait for the resource to be deleted before continuing,
-      // or the next operation may error.
-      // If, on error, this entire deletion function is called again repeatedly,
-      // deletion will either eventually succeed, or be stuck due to some resource that fails to delete.
-      logger.info({ eventType, idKey, resource }, 'Got event')
-    }
+  const waitForEvent = async (
+    eventType: SeamEventType,
+    eventFilter: (event: SeamEvent) => boolean,
+  ): Promise<void> => {
+    let events: SeamEvent[] = []
+    do {
+      events = await seam.events.list({ event_type: eventType })
+    } while (!events.some(eventFilter))
+  }
+
+  const waitForAcsUserDeleted = async (acsUser: AcsUser): Promise<void> => {
+    await waitForEvent(
+      'acs_user.deleted',
+      (event) =>
+        'acs_user_id' in event && event.acs_user_id === acsUser.acs_user_id,
+    )
+  }
+
+  const waitForAcsCredentialDeleted = async (
+    acsCredential: AcsCredential,
+  ): Promise<void> => {
+    await waitForEvent(
+      'acs_credential.deleted',
+      (event) =>
+        'acs_credential_id' in event &&
+        event.acs_credential_id === acsCredential.acs_credential_id,
+    )
+  }
+
+  const waitForPhoneDeactivated = async (phone: Phone): Promise<void> => {
+    await waitForEvent(
+      'phone.deactivated',
+      (event) => 'device_id' in event && event.device_id === phone.device_id,
+    )
+  }
+
+  const waitForEnrollmentAutomationDeleted = async (
+    enrollmentAutomation: EnrollmentAutomation,
+  ): Promise<void> => {
+    await waitForEvent(
+      'enrollment_automation.deleted',
+      (event) =>
+        'enrollment_automation_id' in event &&
+        event.enrollment_automation_id ===
+          enrollmentAutomation.enrollment_automation_id,
+    )
+  }
+
+  const userIdentity = await seam.userIdentities.get({
+    user_identity_id: userIdentityId,
+  })
 
   const clientSessions = await seam.clientSessions.list({
-    // param not implemented
     user_identity_id: userIdentityId,
   })
 
@@ -56,17 +99,13 @@ export const handler: Handler<Options> = async ({
     })
 
   for (const enrollmentAutomation of enrollmentAutomations) {
-    // endpoint not implemented
     await seam.userIdentities.enrollmentAutomations.delete({
       enrollment_automation_id: enrollmentAutomation.enrollment_automation_id,
     })
   }
 
   await Promise.all(
-    enrollmentAutomations.map(
-      // event not implemented
-      waitForEvent('enrollment_automation.deleted', 'enrollment_automation_id'),
-    ),
+    enrollmentAutomations.map(waitForEnrollmentAutomationDeleted),
   )
 
   const phones = await seam.phones.list({
@@ -79,8 +118,7 @@ export const handler: Handler<Options> = async ({
     })
   }
 
-  // event not implemented
-  await Promise.all(phones.map(waitForEvent('phone.deactivated', 'device_id')))
+  await Promise.all(phones.map(waitForPhoneDeactivated))
 
   for (const phone of phones) {
     await seam.devices.delete({
@@ -91,8 +129,6 @@ export const handler: Handler<Options> = async ({
   const acsUsers = await seam.acs.users.list({
     user_identity_id: userIdentityId,
   })
-
-  const deletedCredentials: AcsCredentialsListResponse['acs_credentials'] = []
 
   for (const acsUser of acsUsers) {
     const credentials = await seam.acs.credentials.list({
@@ -105,22 +141,22 @@ export const handler: Handler<Options> = async ({
       })
     }
 
-    deletedCredentials.concat(credentials)
+    await Promise.all(credentials.map(waitForAcsCredentialDeleted))
   }
 
-  // event not implemented
-  await Promise.all(
-    deletedCredentials.map(waitForEvent('acs_user.deleted', 'acs_user_id')),
-  )
-
-  // event not implemented
-  await Promise.all(
-    deletedCredentials.map(
-      waitForEvent('acs_credential.deleted', 'acs_credential_id'),
-    ),
-  )
+  await Promise.all(acsUsers.map(waitForAcsUserDeleted))
 
   await seam.userIdentities.delete({
     user_identity_id: userIdentityId,
   })
+
+  logger.info({ userIdentity }, 'Deleted user identity')
 }
+
+type AcsUser = AcsUsersGetResponse['acs_user']
+type AcsCredential = AcsCredentialsGetResponse['acs_credential']
+type EnrollmentAutomation =
+  UserIdentitiesEnrollmentAutomationsGetResponse['enrollment_automation']
+type Phone = PhonesListResponse['phones'][number]
+type SeamEvent = EventsListResponse['events'][number]
+type SeamEventType = EventsListParams['event_type']
