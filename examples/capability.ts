@@ -45,7 +45,7 @@ export const handler: Handler<Options> = async ({ seam, logger }) => {
     }
   }
 
-  const devicesWithNonFunctioningCapabilities = [
+  const devicesWithUnavailableCapabilities = [
     ...devices,
     ...unmanagedDevices,
   ].filter(
