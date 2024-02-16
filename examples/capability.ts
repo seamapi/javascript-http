@@ -34,7 +34,7 @@ export const handler: Handler<Options> = async ({ seam, logger }) => {
     }
   }
 
-  const unmanagedDevices = await seam.devices.list()
+  const unmanagedDevices = await seam.devices.unmanaged.list()
 
   for (const device of unmanagedDevices) {
     if (device.can_program_online_access_codes) {
