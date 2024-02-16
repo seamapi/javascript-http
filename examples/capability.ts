@@ -20,7 +20,7 @@ export const handler: Handler<Options> = async ({ seam, logger }) => {
       'can_program_online_access_codes' in device &&
       !device.can_program_online_access_codes
     ) {
-      const accessCodes = device.accessCodes.list({
+      const accessCodes = seam.accessCodes.list({
         device_id: device.device_id,
       })
       if (accessCodes.length > 0) continue
