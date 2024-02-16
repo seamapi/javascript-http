@@ -120,12 +120,6 @@ export const handler: Handler<Options> = async ({
 
   await Promise.all(phones.map(waitForPhoneDeactivated))
 
-  for (const phone of phones) {
-    await seam.devices.delete({
-      device_id: phone.device_id,
-    })
-  }
-
   const acsUsers = await seam.acs.users.list({
     user_identity_id: userIdentityId,
   })
