@@ -16,6 +16,11 @@ export const handler: Handler<Options> = async ({ seam, logger }) => {
   const devices = await seam.devices.list()
 
   for (const device of devices) {
+    if ('can_program_online_access_codes' in device && !device.can_program_online_access_codes) {    
+      const accessCodes = device.accessCodes.list({ device_id: device.device_id })
+      if (accessCodes.length > 0) continue
+    }
+    
     if (!device.can_program_online_access_codes) {
       await seam.devices.update({
         device_id: device.device_id,
@@ -26,7 +31,7 @@ export const handler: Handler<Options> = async ({ seam, logger }) => {
 
   const unmanagedDevices = await seam.devices.list()
 
-  for (const device of unmanagedDevices) {
+  for (const device of unmanagedDevices) {  
     if (device.can_program_online_access_codes) {
       await seam.devices.unmanaged.update({
         device_id: device.device_id,
