@@ -27,8 +27,8 @@
       "@seamapi/http": ["./src/index.ts"],
       "@seamapi/http/connect": ["./src/connect.ts"],
       "fixtures/*": ["./test/fixtures/*"],
-      "lib/*": ["./src/lib/*"],
-    },
+      "lib/*": ["./src/lib/*"]
+    }
   },
   "files": ["src/index.ts", "src/connect.ts"],
   "include": [
@@ -37,6 +37,6 @@
     "examples/**/*",
     "tsup.config.ts",
     "prepack.ts",
-    "generate-routes.ts",
-  ],
+    "generate-routes.ts"
+  ]
 }
