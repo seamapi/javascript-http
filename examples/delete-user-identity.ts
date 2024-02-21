@@ -99,6 +99,19 @@ export const handler: Handler<Options> = async ({
     })
 
   for (const enrollmentAutomation of enrollmentAutomations) {
+    const credentials = await seam.acs.credentials.list({
+      enrollment_automation_id: enrollmentAutomation.enrollment_automation_id,
+      is_multi_phone_sync_credential: true,
+    })
+
+    for (const credential of credentials) {
+      await seam.acs.credentials.delete({
+        acs_credential_id: credential.acs_credential_id,
+      })
+    }
+
+    await Promise.all(credentials.map(waitForAcsCredentialDeleted))
+
     await seam.userIdentities.enrollmentAutomations.delete({
       enrollment_automation_id: enrollmentAutomation.enrollment_automation_id,
     })
@@ -136,6 +149,8 @@ export const handler: Handler<Options> = async ({
     }
 
     await Promise.all(credentials.map(waitForAcsCredentialDeleted))
+
+    await seam.acs.users.delete({ acs_user_id: acsUser.acs_user_id })
   }
 
   await Promise.all(acsUsers.map(waitForAcsUserDeleted))
