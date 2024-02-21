@@ -93,14 +93,13 @@ export const handler: Handler<Options> = async ({
     })
   }
 
-  const enrollmentAutomations =
-    await seam.userIdentities.enrollmentAutomations.list({
-      user_identity_id: userIdentityId,
-    })
+  const acsUsers = await seam.acs.users.list({
+    user_identity_id: userIdentityId,
+  })
 
-  for (const enrollmentAutomation of enrollmentAutomations) {
+  for (const acsUser of acsUsers) {
     const credentials = await seam.acs.credentials.list({
-      enrollment_automation_id: enrollmentAutomation.enrollment_automation_id,
+      acs_user_id: acsUser.acs_user_id,
       is_multi_phone_sync_credential: true,
     })
 
@@ -112,6 +111,15 @@ export const handler: Handler<Options> = async ({
 
     await Promise.all(credentials.map(waitForAcsCredentialDeleted))
 
+    await seam.acs.users.delete({ acs_user_id: acsUser.acs_user_id })
+  }
+
+  const enrollmentAutomations =
+    await seam.userIdentities.enrollmentAutomations.list({
+      user_identity_id: userIdentityId,
+    })
+
+  for (const enrollmentAutomation of enrollmentAutomations) {
     await seam.userIdentities.enrollmentAutomations.delete({
       enrollment_automation_id: enrollmentAutomation.enrollment_automation_id,
     })
@@ -132,10 +140,6 @@ export const handler: Handler<Options> = async ({
   }
 
   await Promise.all(phones.map(waitForPhoneDeactivated))
-
-  const acsUsers = await seam.acs.users.list({
-    user_identity_id: userIdentityId,
-  })
 
   for (const acsUser of acsUsers) {
     const credentials = await seam.acs.credentials.list({
