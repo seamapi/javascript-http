@@ -34,7 +34,7 @@ jobs:
       - name: Sync @seamapi/types version in peerDependencies
         run: |
           sudo apt-get install -y jq moreutils
-          jq '.peerDependencies."@seamapi/types" = .devDependencies."@seamapi/types"' package.json | sponge package.json
+          jq '.peerDependencies."@seamapi/types" = "^" + .devDependencies."@seamapi/types"' package.json | sponge package.json
       - name: Normalize package-lock.json
         run: npm install
       - name: Generate code
