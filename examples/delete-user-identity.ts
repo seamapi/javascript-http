@@ -84,7 +84,7 @@ export const handler: Handler<Options> = async ({
   })
 
   const clientSessions = await seam.clientSessions.list({
-    user_identity_ids: [userIdentityId],
+    user_identity_id: userIdentityId,
   })
 
   for (const clientSession of clientSessions) {
