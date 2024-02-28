@@ -156,6 +156,18 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     await clientSessions.get()
   }
 
+  async delete(
+    body?: UserIdentitiesEnrollmentAutomationsDeleteBody,
+  ): Promise<void> {
+    await this.client.request<UserIdentitiesEnrollmentAutomationsDeleteResponse>(
+      {
+        url: '/user_identities/enrollment_automations/delete',
+        method: 'post',
+        data: body,
+      },
+    )
+  }
+
   async get(
     body?: UserIdentitiesEnrollmentAutomationsGetParams,
   ): Promise<
@@ -207,6 +219,15 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     return data.enrollment_automations
   }
 }
+
+export type UserIdentitiesEnrollmentAutomationsDeleteBody =
+  RouteRequestBody<'/user_identities/enrollment_automations/delete'>
+
+export type UserIdentitiesEnrollmentAutomationsDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/user_identities/enrollment_automations/delete'>>
+>
+
+export type UserIdentitiesEnrollmentAutomationsDeleteOptions = never
 
 export type UserIdentitiesEnrollmentAutomationsGetParams =
   RouteRequestBody<'/user_identities/enrollment_automations/get'>

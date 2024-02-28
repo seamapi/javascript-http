@@ -1,13 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "composite": true,
     "noEmit": true,
     "strict": true,
     "module": "nodenext",
     "esModuleInterop": true,
     "target": "es2021",
     "jsx": "react-jsx",
-    "declaration": true,
     "sourceMap": true,
     "newLine": "lf",
     "verbatimModuleSyntax": true,
@@ -27,8 +27,8 @@
       "@seamapi/http": ["./src/index.ts"],
       "@seamapi/http/connect": ["./src/connect.ts"],
       "fixtures/*": ["./test/fixtures/*"],
-      "lib/*": ["./src/lib/*"],
-    },
+      "lib/*": ["./src/lib/*"]
+    }
   },
   "files": ["src/index.ts", "src/connect.ts"],
   "include": [
@@ -37,6 +37,6 @@
     "examples/**/*",
     "tsup.config.ts",
     "prepack.ts",
-    "generate-routes.ts",
-  ],
+    "generate-routes.ts"
+  ]
 }

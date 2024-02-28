@@ -281,6 +281,14 @@ export class SeamHttpUserIdentities {
       data: body,
     })
   }
+
+  async update(body?: UserIdentitiesUpdateBody): Promise<void> {
+    await this.client.request<UserIdentitiesUpdateResponse>({
+      url: '/user_identities/update',
+      method: 'post',
+      data: body,
+    })
+  }
 }
 
 export type UserIdentitiesAddAcsUserBody =
@@ -379,3 +387,12 @@ export type UserIdentitiesRevokeAccessToDeviceResponse = SetNonNullable<
 >
 
 export type UserIdentitiesRevokeAccessToDeviceOptions = never
+
+export type UserIdentitiesUpdateBody =
+  RouteRequestBody<'/user_identities/update'>
+
+export type UserIdentitiesUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/user_identities/update'>>
+>
+
+export type UserIdentitiesUpdateOptions = never
