@@ -153,6 +153,14 @@ export class SeamHttpPhones {
     await clientSessions.get()
   }
 
+  async deactivate(body?: PhonesDeactivateBody): Promise<void> {
+    await this.client.request<PhonesDeactivateResponse>({
+      url: '/phones/deactivate',
+      method: 'post',
+      data: body,
+    })
+  }
+
   async list(body?: PhonesListParams): Promise<PhonesListResponse['phones']> {
     const { data } = await this.client.request<PhonesListResponse>({
       url: '/phones/list',
@@ -163,6 +171,14 @@ export class SeamHttpPhones {
     return data.phones
   }
 }
+
+export type PhonesDeactivateBody = RouteRequestBody<'/phones/deactivate'>
+
+export type PhonesDeactivateResponse = SetNonNullable<
+  Required<RouteResponse<'/phones/deactivate'>>
+>
+
+export type PhonesDeactivateOptions = never
 
 export type PhonesListParams = RouteRequestBody<'/phones/list'>
 

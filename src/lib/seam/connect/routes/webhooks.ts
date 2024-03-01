@@ -194,6 +194,14 @@ export class SeamHttpWebhooks {
 
     return data.webhooks
   }
+
+  async update(body?: WebhooksUpdateBody): Promise<void> {
+    await this.client.request<WebhooksUpdateResponse>({
+      url: '/webhooks/update',
+      method: 'post',
+      data: body,
+    })
+  }
 }
 
 export type WebhooksCreateBody = RouteRequestBody<'/webhooks/create'>
@@ -227,3 +235,11 @@ export type WebhooksListResponse = SetNonNullable<
 >
 
 export type WebhooksListOptions = never
+
+export type WebhooksUpdateBody = RouteRequestBody<'/webhooks/update'>
+
+export type WebhooksUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/webhooks/update'>>
+>
+
+export type WebhooksUpdateOptions = never
