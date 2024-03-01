@@ -29,7 +29,7 @@ const injectVersion = async (path: string): Promise<string> => {
   const data = buff
     .toString()
     .replace(
-      'const seamapiJavascriptHttpVersion = null',
+      "const seamapiJavascriptHttpVersion = '0.0.0'",
       `const seamapiJavascriptHttpVersion = '${version}'`,
     )
 
