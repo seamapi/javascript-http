@@ -1,6 +1,7 @@
 # Seam HTTP Client
 
 [![npm](https://img.shields.io/npm/v/@seamapi/http.svg)](https://www.npmjs.com/package/@seamapi/http)
+[![Seam LTS Version](https://img.shields.io/badge/Seam_LTS-1.0.0-blue)](https://docs.seam.co/lts)
 [![GitHub Actions](https://github.com/seamapi/javascript-http/actions/workflows/check.yml/badge.svg)](https://github.com/seamapi/javascript-http/actions/workflows/check.yml)
 
 JavaScript HTTP client for the Seam API written in TypeScript.
