@@ -69,7 +69,7 @@ $ npm install -D @seamapi/types
 and update them when consuming new API features with
 
 ```
-$ npm install -D @seamapi/types
+$ npm install -D @seamapi/types@latest
 ```
 
 ## Usage
