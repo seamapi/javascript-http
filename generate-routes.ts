@@ -67,7 +67,6 @@ const ignoredEndpointPaths = [
   '/health/get_service_health',
   '/health/service/[service_name]',
   '/noise_sensors/simulate/trigger_noise_threshold',
-  '/phones/simulate/create_sandbox_phone',
   '/workspaces/reset_sandbox',
 ] as const
 
