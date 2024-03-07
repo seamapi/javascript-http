@@ -32,6 +32,7 @@ const routePaths = [
   '/noise_sensors',
   '/noise_sensors/noise_thresholds',
   '/phones',
+  '/phones/simulate',
   '/thermostats',
   '/thermostats/climate_setting_schedules',
   '/user_identities',
@@ -53,6 +54,7 @@ const routePathSubresources: Partial<
     'systems',
     'users',
   ],
+  '/phones': ['simulate'],
   '/devices': ['unmanaged'],
   '/noise_sensors': ['noise_thresholds'],
   '/thermostats': ['climate_setting_schedules'],
@@ -67,7 +69,6 @@ const ignoredEndpointPaths = [
   '/health/get_service_health',
   '/health/service/[service_name]',
   '/noise_sensors/simulate/trigger_noise_threshold',
-  '/phones/simulate/create_sandbox_phone',
   '/workspaces/reset_sandbox',
 ] as const
 
