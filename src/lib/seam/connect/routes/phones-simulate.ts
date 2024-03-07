@@ -33,9 +33,8 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
-import { SeamHttpPhonesSimulate } from './phones-simulate.js'
 
-export class SeamHttpPhones {
+export class SeamHttpPhonesSimulate {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
@@ -48,23 +47,23 @@ export class SeamHttpPhones {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpPhones {
+  ): SeamHttpPhonesSimulate {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpPhones(constructorOptions)
+    return new SeamHttpPhonesSimulate(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpPhones {
+  ): SeamHttpPhonesSimulate {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpPhones(constructorOptions)
+    return new SeamHttpPhonesSimulate(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -73,19 +72,19 @@ export class SeamHttpPhones {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpPhones {
+  ): SeamHttpPhonesSimulate {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpPhones(constructorOptions)
+    return new SeamHttpPhonesSimulate(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpPhones> {
+  ): Promise<SeamHttpPhonesSimulate> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
@@ -98,7 +97,7 @@ export class SeamHttpPhones {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpPhones.fromClientSessionToken(token, options)
+    return SeamHttpPhonesSimulate.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -108,14 +107,14 @@ export class SeamHttpPhones {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpPhones {
+  ): SeamHttpPhonesSimulate {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpPhones(constructorOptions)
+    return new SeamHttpPhonesSimulate(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -125,14 +124,14 @@ export class SeamHttpPhones {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpPhones {
+  ): SeamHttpPhonesSimulate {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpPhones(constructorOptions)
+    return new SeamHttpPhonesSimulate(constructorOptions)
   }
 
   async updateClientSessionToken(
@@ -154,41 +153,25 @@ export class SeamHttpPhones {
     await clientSessions.get()
   }
 
-  get simulate(): SeamHttpPhonesSimulate {
-    return SeamHttpPhonesSimulate.fromClient(this.client, this.defaults)
-  }
+  async createSandboxPhone(
+    body?: PhonesSimulateCreateSandboxPhoneBody,
+  ): Promise<PhonesSimulateCreateSandboxPhoneResponse['phone']> {
+    const { data } =
+      await this.client.request<PhonesSimulateCreateSandboxPhoneResponse>({
+        url: '/phones/simulate/create_sandbox_phone',
+        method: 'post',
+        data: body,
+      })
 
-  async deactivate(body?: PhonesDeactivateBody): Promise<void> {
-    await this.client.request<PhonesDeactivateResponse>({
-      url: '/phones/deactivate',
-      method: 'post',
-      data: body,
-    })
-  }
-
-  async list(body?: PhonesListParams): Promise<PhonesListResponse['phones']> {
-    const { data } = await this.client.request<PhonesListResponse>({
-      url: '/phones/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.phones
+    return data.phone
   }
 }
 
-export type PhonesDeactivateBody = RouteRequestBody<'/phones/deactivate'>
+export type PhonesSimulateCreateSandboxPhoneBody =
+  RouteRequestBody<'/phones/simulate/create_sandbox_phone'>
 
-export type PhonesDeactivateResponse = SetNonNullable<
-  Required<RouteResponse<'/phones/deactivate'>>
+export type PhonesSimulateCreateSandboxPhoneResponse = SetNonNullable<
+  Required<RouteResponse<'/phones/simulate/create_sandbox_phone'>>
 >
 
-export type PhonesDeactivateOptions = never
-
-export type PhonesListParams = RouteRequestBody<'/phones/list'>
-
-export type PhonesListResponse = SetNonNullable<
-  Required<RouteResponse<'/phones/list'>>
->
-
-export type PhonesListOptions = never
+export type PhonesSimulateCreateSandboxPhoneOptions = never
