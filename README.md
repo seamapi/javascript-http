@@ -366,7 +366,7 @@ Either pass the `endpoint` option, or set the `SEAM_ENDPOINT` environment variab
 #### Configuring the Axios Client
 
 The Axios client and retry behavior may be configured with custom initiation options
-via [`axiosOptions`] and [`axiosRetryOptions`][axiosRetryOptions].
+via [`axiosOptions`][axiosOptions] and [`axiosRetryOptions`][axiosRetryOptions].
 Options are deep merged with the default options.
 
 [axiosOptions]: https://axios-http.com/docs/config_defaults
