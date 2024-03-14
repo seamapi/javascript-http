@@ -33,10 +33,8 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
-import { SeamHttpDevicesSimulate } from './devices-simulate.js'
-import { SeamHttpDevicesUnmanaged } from './devices-unmanaged.js'
 
-export class SeamHttpDevices {
+export class SeamHttpDevicesSimulate {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
@@ -49,23 +47,23 @@ export class SeamHttpDevices {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpDevices {
+  ): SeamHttpDevicesSimulate {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpDevices(constructorOptions)
+    return new SeamHttpDevicesSimulate(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpDevices {
+  ): SeamHttpDevicesSimulate {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpDevices(constructorOptions)
+    return new SeamHttpDevicesSimulate(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -74,19 +72,19 @@ export class SeamHttpDevices {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpDevices {
+  ): SeamHttpDevicesSimulate {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpDevices(constructorOptions)
+    return new SeamHttpDevicesSimulate(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpDevices> {
+  ): Promise<SeamHttpDevicesSimulate> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
@@ -99,7 +97,7 @@ export class SeamHttpDevices {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpDevices.fromClientSessionToken(token, options)
+    return SeamHttpDevicesSimulate.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -109,14 +107,14 @@ export class SeamHttpDevices {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpDevices {
+  ): SeamHttpDevicesSimulate {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpDevices(constructorOptions)
+    return new SeamHttpDevicesSimulate(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -126,14 +124,14 @@ export class SeamHttpDevices {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpDevices {
+  ): SeamHttpDevicesSimulate {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpDevices(constructorOptions)
+    return new SeamHttpDevicesSimulate(constructorOptions)
   }
 
   async updateClientSessionToken(
@@ -155,103 +153,20 @@ export class SeamHttpDevices {
     await clientSessions.get()
   }
 
-  get unmanaged(): SeamHttpDevicesUnmanaged {
-    return SeamHttpDevicesUnmanaged.fromClient(this.client, this.defaults)
-  }
-
-  get simulate(): SeamHttpDevicesSimulate {
-    return SeamHttpDevicesSimulate.fromClient(this.client, this.defaults)
-  }
-
-  async delete(body?: DevicesDeleteBody): Promise<void> {
-    await this.client.request<DevicesDeleteResponse>({
-      url: '/devices/delete',
-      method: 'post',
-      data: body,
-    })
-  }
-
-  async get(body?: DevicesGetParams): Promise<DevicesGetResponse['device']> {
-    const { data } = await this.client.request<DevicesGetResponse>({
-      url: '/devices/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.device
-  }
-
-  async list(
-    body?: DevicesListParams,
-  ): Promise<DevicesListResponse['devices']> {
-    const { data } = await this.client.request<DevicesListResponse>({
-      url: '/devices/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.devices
-  }
-
-  async listDeviceProviders(
-    body?: DevicesListDeviceProvidersParams,
-  ): Promise<DevicesListDeviceProvidersResponse['device_providers']> {
-    const { data } =
-      await this.client.request<DevicesListDeviceProvidersResponse>({
-        url: '/devices/list_device_providers',
-        method: 'post',
-        data: body,
-      })
-
-    return data.device_providers
-  }
-
-  async update(body?: DevicesUpdateBody): Promise<void> {
-    await this.client.request<DevicesUpdateResponse>({
-      url: '/devices/update',
+  async remove(body?: DevicesSimulateRemoveBody): Promise<void> {
+    await this.client.request<DevicesSimulateRemoveResponse>({
+      url: '/devices/simulate/remove',
       method: 'post',
       data: body,
     })
   }
 }
 
-export type DevicesDeleteBody = RouteRequestBody<'/devices/delete'>
+export type DevicesSimulateRemoveBody =
+  RouteRequestBody<'/devices/simulate/remove'>
 
-export type DevicesDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/delete'>>
+export type DevicesSimulateRemoveResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/simulate/remove'>>
 >
 
-export type DevicesDeleteOptions = never
-
-export type DevicesGetParams = RouteRequestBody<'/devices/get'>
-
-export type DevicesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/get'>>
->
-
-export type DevicesGetOptions = never
-
-export type DevicesListParams = RouteRequestBody<'/devices/list'>
-
-export type DevicesListResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/list'>>
->
-
-export type DevicesListOptions = never
-
-export type DevicesListDeviceProvidersParams =
-  RouteRequestBody<'/devices/list_device_providers'>
-
-export type DevicesListDeviceProvidersResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/list_device_providers'>>
->
-
-export type DevicesListDeviceProvidersOptions = never
-
-export type DevicesUpdateBody = RouteRequestBody<'/devices/update'>
-
-export type DevicesUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/update'>>
->
-
-export type DevicesUpdateOptions = never
+export type DevicesSimulateRemoveOptions = never
