@@ -31,7 +31,9 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { resolveActionAttempt } from 'lib/seam/connect/resolve-action-attempt.js'
 
+import { SeamHttpActionAttempts } from './action-attempts.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpThermostatsClimateSettingSchedules } from './thermostats-climate-setting-schedules.js'
 
@@ -161,12 +163,28 @@ export class SeamHttpThermostats {
     )
   }
 
-  async cool(body?: ThermostatsCoolBody): Promise<void> {
-    await this.client.request<ThermostatsCoolResponse>({
+  async cool(
+    body?: ThermostatsCoolBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): Promise<ThermostatsCoolResponse['action_attempt']> {
+    const { data } = await this.client.request<ThermostatsCoolResponse>({
       url: '/thermostats/cool',
       method: 'post',
       data: body,
     })
+    const waitForActionAttempt =
+      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+    if (waitForActionAttempt !== false) {
+      return await resolveActionAttempt(
+        data.action_attempt,
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
+      )
+    }
+    return data.action_attempt
   }
 
   async get(
@@ -181,20 +199,52 @@ export class SeamHttpThermostats {
     return data.thermostat
   }
 
-  async heat(body?: ThermostatsHeatBody): Promise<void> {
-    await this.client.request<ThermostatsHeatResponse>({
+  async heat(
+    body?: ThermostatsHeatBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): Promise<ThermostatsHeatResponse['action_attempt']> {
+    const { data } = await this.client.request<ThermostatsHeatResponse>({
       url: '/thermostats/heat',
       method: 'post',
       data: body,
     })
+    const waitForActionAttempt =
+      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+    if (waitForActionAttempt !== false) {
+      return await resolveActionAttempt(
+        data.action_attempt,
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
+      )
+    }
+    return data.action_attempt
   }
 
-  async heatCool(body?: ThermostatsHeatCoolBody): Promise<void> {
-    await this.client.request<ThermostatsHeatCoolResponse>({
+  async heatCool(
+    body?: ThermostatsHeatCoolBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): Promise<ThermostatsHeatCoolResponse['action_attempt']> {
+    const { data } = await this.client.request<ThermostatsHeatCoolResponse>({
       url: '/thermostats/heat_cool',
       method: 'post',
       data: body,
     })
+    const waitForActionAttempt =
+      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+    if (waitForActionAttempt !== false) {
+      return await resolveActionAttempt(
+        data.action_attempt,
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
+      )
+    }
+    return data.action_attempt
   }
 
   async list(
@@ -209,20 +259,52 @@ export class SeamHttpThermostats {
     return data.thermostats
   }
 
-  async off(body?: ThermostatsOffBody): Promise<void> {
-    await this.client.request<ThermostatsOffResponse>({
+  async off(
+    body?: ThermostatsOffBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): Promise<ThermostatsOffResponse['action_attempt']> {
+    const { data } = await this.client.request<ThermostatsOffResponse>({
       url: '/thermostats/off',
       method: 'post',
       data: body,
     })
+    const waitForActionAttempt =
+      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+    if (waitForActionAttempt !== false) {
+      return await resolveActionAttempt(
+        data.action_attempt,
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
+      )
+    }
+    return data.action_attempt
   }
 
-  async setFanMode(body?: ThermostatsSetFanModeBody): Promise<void> {
-    await this.client.request<ThermostatsSetFanModeResponse>({
+  async setFanMode(
+    body?: ThermostatsSetFanModeBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): Promise<ThermostatsSetFanModeResponse['action_attempt']> {
+    const { data } = await this.client.request<ThermostatsSetFanModeResponse>({
       url: '/thermostats/set_fan_mode',
       method: 'post',
       data: body,
     })
+    const waitForActionAttempt =
+      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
+    if (waitForActionAttempt !== false) {
+      return await resolveActionAttempt(
+        data.action_attempt,
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
+        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
+      )
+    }
+    return data.action_attempt
   }
 
   async update(body?: ThermostatsUpdateBody): Promise<void> {
@@ -240,7 +322,10 @@ export type ThermostatsCoolResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/cool'>>
 >
 
-export type ThermostatsCoolOptions = never
+export type ThermostatsCoolOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type ThermostatsGetParams = RouteRequestBody<'/thermostats/get'>
 
@@ -256,7 +341,10 @@ export type ThermostatsHeatResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/heat'>>
 >
 
-export type ThermostatsHeatOptions = never
+export type ThermostatsHeatOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type ThermostatsHeatCoolBody = RouteRequestBody<'/thermostats/heat_cool'>
 
@@ -264,7 +352,10 @@ export type ThermostatsHeatCoolResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/heat_cool'>>
 >
 
-export type ThermostatsHeatCoolOptions = never
+export type ThermostatsHeatCoolOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type ThermostatsListParams = RouteRequestBody<'/thermostats/list'>
 
@@ -280,7 +371,10 @@ export type ThermostatsOffResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/off'>>
 >
 
-export type ThermostatsOffOptions = never
+export type ThermostatsOffOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type ThermostatsSetFanModeBody =
   RouteRequestBody<'/thermostats/set_fan_mode'>
@@ -289,7 +383,10 @@ export type ThermostatsSetFanModeResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/set_fan_mode'>>
 >
 
-export type ThermostatsSetFanModeOptions = never
+export type ThermostatsSetFanModeOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type ThermostatsUpdateBody = RouteRequestBody<'/thermostats/update'>
 
