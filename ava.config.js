@@ -8,7 +8,7 @@ export default () => {
   return {
     files: ['**/*.test.ts', '!package/**/*'],
     ignoreChanges: {
-      watchMode: ['tmp/**/*']
+      watchMode: ['tmp/**/*'],
     },
     extensions: {
       ts: 'commonjs',
