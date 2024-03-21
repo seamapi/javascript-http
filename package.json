@@ -118,7 +118,7 @@
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
     "execa": "^8.0.1",
-    "landlubber": "^1.0.0",
+    "landlubber": "^2.0.0",
     "nock": "^13.4.0",
     "node-fetch": "^3.3.2",
     "prettier": "^3.0.0",
