@@ -9,9 +9,10 @@ import {
   SeamHttpMultiWorkspace,
   type WorkspacesListResponse,
 } from '@seamapi/http/connect'
+
 import {
-  SeamApiRequest,
   type ResponseFromSeamApiRequest,
+  SeamApiRequest,
 } from 'lib/seam/connect/seam-api-request.js'
 
 test('SeamHttp: fromClient returns instance that uses client', async (t) => {

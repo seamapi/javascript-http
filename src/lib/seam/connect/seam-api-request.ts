@@ -1,8 +1,9 @@
 import type { AxiosRequestConfig } from 'axios'
+
 import type { Client } from './client.js'
+import { SeamHttpActionAttempts } from './index.js'
 import type { SeamHttpRequestOptions } from './options.js'
 import { resolveActionAttempt } from './resolve-action-attempt.js'
-import { SeamHttpActionAttempts } from './index.js'
 
 export interface SeamApiRequestParent {
   readonly client: Client
@@ -58,7 +59,7 @@ export class SeamApiRequest<
         this.options.waitForActionAttempt ??
         this.parent.defaults.waitForActionAttempt
       if (waitForActionAttempt !== false) {
-        return resolveActionAttempt(
+        return await resolveActionAttempt(
           data,
           SeamHttpActionAttempts.fromClient(client, {
             ...this.parent.defaults,
