@@ -9,9 +9,10 @@ import {
   SeamHttpMultiWorkspace,
   type WorkspacesListResponse,
 } from '@seamapi/http/connect'
+
 import {
-  SeamApiRequest,
   type ResponseFromSeamApiRequest,
+  SeamApiRequest,
 } from 'lib/seam/connect/seam-api-request.js'
 
 test('SeamHttp: fromClient returns instance that uses client', async (t) => {
@@ -185,10 +186,10 @@ test('SeamHttp: request methods return a SeamApiRequest object', async (t) => {
   // Ensure that the type of the response is correct.
   type Expected = ResponseFromSeamApiRequest<typeof deviceRequest>
 
-  const valid_device_type: Expected['device_type'] = 'august_lock'
-  t.truthy(valid_device_type)
+  const validDeviceType: Expected['device_type'] = 'august_lock'
+  t.truthy(validDeviceType)
 
   // @ts-expect-error because it's an invalid device type.
-  const invalid_device_type: Expected['device_type'] = 'invalid_device_type'
-  t.truthy(invalid_device_type)
+  const invalidDeviceType: Expected['device_type'] = 'invalid_device_type'
+  t.truthy(invalidDeviceType)
 })
