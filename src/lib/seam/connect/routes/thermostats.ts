@@ -31,9 +31,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { resolveActionAttempt } from 'lib/seam/connect/resolve-action-attempt.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
-import { SeamHttpActionAttempts } from './action-attempts.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpThermostatsClimateSettingSchedules } from './thermostats-climate-setting-schedules.js'
 
@@ -163,156 +162,154 @@ export class SeamHttpThermostats {
     )
   }
 
-  async cool(
+  cool(
     body?: ThermostatsCoolBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): Promise<ThermostatsCoolResponse['action_attempt']> {
-    const { data } = await this.client.request<ThermostatsCoolResponse>({
-      url: '/thermostats/cool',
-      method: 'post',
-      data: body,
-    })
-    const waitForActionAttempt =
-      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
-    if (waitForActionAttempt !== false) {
-      return await resolveActionAttempt(
-        data.action_attempt,
-        SeamHttpActionAttempts.fromClient(this.client, {
-          ...this.defaults,
-          waitForActionAttempt: false,
-        }),
-        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
-      )
-    }
-    return data.action_attempt
+  ): SeamApiRequest<
+    undefined | ThermostatsCoolBody,
+    ThermostatsCoolResponse,
+    'action_attempt'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/thermostats/cool',
+        method: 'post',
+        data: body,
+      },
+      'action_attempt',
+      options,
+    )
   }
 
-  async get(
+  get(
     body?: ThermostatsGetParams,
-  ): Promise<ThermostatsGetResponse['thermostat']> {
-    const { data } = await this.client.request<ThermostatsGetResponse>({
-      url: '/thermostats/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.thermostat
+  ): SeamApiRequest<
+    undefined | ThermostatsGetParams,
+    ThermostatsGetResponse,
+    'thermostat'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/thermostats/get',
+        method: 'post',
+        data: body,
+      },
+      'thermostat',
+    )
   }
 
-  async heat(
+  heat(
     body?: ThermostatsHeatBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): Promise<ThermostatsHeatResponse['action_attempt']> {
-    const { data } = await this.client.request<ThermostatsHeatResponse>({
-      url: '/thermostats/heat',
-      method: 'post',
-      data: body,
-    })
-    const waitForActionAttempt =
-      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
-    if (waitForActionAttempt !== false) {
-      return await resolveActionAttempt(
-        data.action_attempt,
-        SeamHttpActionAttempts.fromClient(this.client, {
-          ...this.defaults,
-          waitForActionAttempt: false,
-        }),
-        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
-      )
-    }
-    return data.action_attempt
+  ): SeamApiRequest<
+    undefined | ThermostatsHeatBody,
+    ThermostatsHeatResponse,
+    'action_attempt'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/thermostats/heat',
+        method: 'post',
+        data: body,
+      },
+      'action_attempt',
+      options,
+    )
   }
 
-  async heatCool(
+  heatCool(
     body?: ThermostatsHeatCoolBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): Promise<ThermostatsHeatCoolResponse['action_attempt']> {
-    const { data } = await this.client.request<ThermostatsHeatCoolResponse>({
-      url: '/thermostats/heat_cool',
-      method: 'post',
-      data: body,
-    })
-    const waitForActionAttempt =
-      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
-    if (waitForActionAttempt !== false) {
-      return await resolveActionAttempt(
-        data.action_attempt,
-        SeamHttpActionAttempts.fromClient(this.client, {
-          ...this.defaults,
-          waitForActionAttempt: false,
-        }),
-        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
-      )
-    }
-    return data.action_attempt
+  ): SeamApiRequest<
+    undefined | ThermostatsHeatCoolBody,
+    ThermostatsHeatCoolResponse,
+    'action_attempt'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/thermostats/heat_cool',
+        method: 'post',
+        data: body,
+      },
+      'action_attempt',
+      options,
+    )
   }
 
-  async list(
+  list(
     body?: ThermostatsListParams,
-  ): Promise<ThermostatsListResponse['thermostats']> {
-    const { data } = await this.client.request<ThermostatsListResponse>({
-      url: '/thermostats/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.thermostats
+  ): SeamApiRequest<
+    undefined | ThermostatsListParams,
+    ThermostatsListResponse,
+    'thermostats'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/thermostats/list',
+        method: 'post',
+        data: body,
+      },
+      'thermostats',
+    )
   }
 
-  async off(
+  off(
     body?: ThermostatsOffBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): Promise<ThermostatsOffResponse['action_attempt']> {
-    const { data } = await this.client.request<ThermostatsOffResponse>({
-      url: '/thermostats/off',
-      method: 'post',
-      data: body,
-    })
-    const waitForActionAttempt =
-      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
-    if (waitForActionAttempt !== false) {
-      return await resolveActionAttempt(
-        data.action_attempt,
-        SeamHttpActionAttempts.fromClient(this.client, {
-          ...this.defaults,
-          waitForActionAttempt: false,
-        }),
-        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
-      )
-    }
-    return data.action_attempt
+  ): SeamApiRequest<
+    undefined | ThermostatsOffBody,
+    ThermostatsOffResponse,
+    'action_attempt'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/thermostats/off',
+        method: 'post',
+        data: body,
+      },
+      'action_attempt',
+      options,
+    )
   }
 
-  async setFanMode(
+  setFanMode(
     body?: ThermostatsSetFanModeBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): Promise<ThermostatsSetFanModeResponse['action_attempt']> {
-    const { data } = await this.client.request<ThermostatsSetFanModeResponse>({
-      url: '/thermostats/set_fan_mode',
-      method: 'post',
-      data: body,
-    })
-    const waitForActionAttempt =
-      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
-    if (waitForActionAttempt !== false) {
-      return await resolveActionAttempt(
-        data.action_attempt,
-        SeamHttpActionAttempts.fromClient(this.client, {
-          ...this.defaults,
-          waitForActionAttempt: false,
-        }),
-        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
-      )
-    }
-    return data.action_attempt
+  ): SeamApiRequest<
+    undefined | ThermostatsSetFanModeBody,
+    ThermostatsSetFanModeResponse,
+    'action_attempt'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/thermostats/set_fan_mode',
+        method: 'post',
+        data: body,
+      },
+      'action_attempt',
+      options,
+    )
   }
 
-  async update(body?: ThermostatsUpdateBody): Promise<void> {
-    await this.client.request<ThermostatsUpdateResponse>({
-      url: '/thermostats/update',
-      method: 'post',
-      data: body,
-    })
+  update(
+    body?: ThermostatsUpdateBody,
+  ): SeamApiRequest<undefined | ThermostatsUpdateBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/thermostats/update',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 }
 

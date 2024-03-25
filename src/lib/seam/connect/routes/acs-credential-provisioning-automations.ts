@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,21 +157,22 @@ export class SeamHttpAcsCredentialProvisioningAutomations {
     await clientSessions.get()
   }
 
-  async launch(
+  launch(
     body?: AcsCredentialProvisioningAutomationsLaunchBody,
-  ): Promise<
-    AcsCredentialProvisioningAutomationsLaunchResponse['acs_credential_provisioning_automation']
+  ): SeamApiRequest<
+    undefined | AcsCredentialProvisioningAutomationsLaunchBody,
+    AcsCredentialProvisioningAutomationsLaunchResponse,
+    'acs_credential_provisioning_automation'
   > {
-    const { data } =
-      await this.client.request<AcsCredentialProvisioningAutomationsLaunchResponse>(
-        {
-          url: '/acs/credential_provisioning_automations/launch',
-          method: 'post',
-          data: body,
-        },
-      )
-
-    return data.acs_credential_provisioning_automation
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/credential_provisioning_automations/launch',
+        method: 'post',
+        data: body,
+      },
+      'acs_credential_provisioning_automation',
+    )
   }
 }
 

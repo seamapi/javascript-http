@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,50 +154,72 @@ export class SeamHttpConnectedAccounts {
     await clientSessions.get()
   }
 
-  async delete(body?: ConnectedAccountsDeleteBody): Promise<void> {
-    await this.client.request<ConnectedAccountsDeleteResponse>({
-      url: '/connected_accounts/delete',
-      method: 'post',
-      data: body,
-    })
+  delete(
+    body?: ConnectedAccountsDeleteBody,
+  ): SeamApiRequest<undefined | ConnectedAccountsDeleteBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/connected_accounts/delete',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async get(
+  get(
     body?: ConnectedAccountsGetParams,
-  ): Promise<ConnectedAccountsGetResponse['connected_account']> {
-    const { data } = await this.client.request<ConnectedAccountsGetResponse>({
-      url: '/connected_accounts/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.connected_account
+  ): SeamApiRequest<
+    undefined | ConnectedAccountsGetParams,
+    ConnectedAccountsGetResponse,
+    'connected_account'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/connected_accounts/get',
+        method: 'post',
+        data: body,
+      },
+      'connected_account',
+    )
   }
 
-  async list(
+  list(
     body?: ConnectedAccountsListParams,
-  ): Promise<ConnectedAccountsListResponse['connected_accounts']> {
-    const { data } = await this.client.request<ConnectedAccountsListResponse>({
-      url: '/connected_accounts/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.connected_accounts
+  ): SeamApiRequest<
+    undefined | ConnectedAccountsListParams,
+    ConnectedAccountsListResponse,
+    'connected_accounts'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/connected_accounts/list',
+        method: 'post',
+        data: body,
+      },
+      'connected_accounts',
+    )
   }
 
-  async update(
+  update(
     body?: ConnectedAccountsUpdateBody,
-  ): Promise<ConnectedAccountsUpdateResponse['connected_account']> {
-    const { data } = await this.client.request<ConnectedAccountsUpdateResponse>(
+  ): SeamApiRequest<
+    undefined | ConnectedAccountsUpdateBody,
+    ConnectedAccountsUpdateResponse,
+    'connected_account'
+  > {
+    return new SeamApiRequest(
+      this,
       {
         url: '/connected_accounts/update',
         method: 'post',
         data: body,
       },
+      'connected_account',
     )
-
-    return data.connected_account
   }
 }
 

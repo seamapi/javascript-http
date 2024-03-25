@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,16 +154,22 @@ export class SeamHttpAcsCredentialPools {
     await clientSessions.get()
   }
 
-  async list(
+  list(
     body?: AcsCredentialPoolsListParams,
-  ): Promise<AcsCredentialPoolsListResponse['acs_credential_pools']> {
-    const { data } = await this.client.request<AcsCredentialPoolsListResponse>({
-      url: '/acs/credential_pools/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.acs_credential_pools
+  ): SeamApiRequest<
+    undefined | AcsCredentialPoolsListParams,
+    AcsCredentialPoolsListResponse,
+    'acs_credential_pools'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/credential_pools/list',
+        method: 'post',
+        data: body,
+      },
+      'acs_credential_pools',
+    )
   }
 }
 

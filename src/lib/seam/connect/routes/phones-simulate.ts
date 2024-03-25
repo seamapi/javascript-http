@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,17 +154,22 @@ export class SeamHttpPhonesSimulate {
     await clientSessions.get()
   }
 
-  async createSandboxPhone(
+  createSandboxPhone(
     body?: PhonesSimulateCreateSandboxPhoneBody,
-  ): Promise<PhonesSimulateCreateSandboxPhoneResponse['phone']> {
-    const { data } =
-      await this.client.request<PhonesSimulateCreateSandboxPhoneResponse>({
+  ): SeamApiRequest<
+    undefined | PhonesSimulateCreateSandboxPhoneBody,
+    PhonesSimulateCreateSandboxPhoneResponse,
+    'phone'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/phones/simulate/create_sandbox_phone',
         method: 'post',
         data: body,
-      })
-
-    return data.phone
+      },
+      'phone',
+    )
   }
 }
 

@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpDevicesSimulate } from './devices-simulate.js'
@@ -163,55 +164,86 @@ export class SeamHttpDevices {
     return SeamHttpDevicesSimulate.fromClient(this.client, this.defaults)
   }
 
-  async delete(body?: DevicesDeleteBody): Promise<void> {
-    await this.client.request<DevicesDeleteResponse>({
-      url: '/devices/delete',
-      method: 'post',
-      data: body,
-    })
+  delete(
+    body?: DevicesDeleteBody,
+  ): SeamApiRequest<undefined | DevicesDeleteBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/devices/delete',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async get(body?: DevicesGetParams): Promise<DevicesGetResponse['device']> {
-    const { data } = await this.client.request<DevicesGetResponse>({
-      url: '/devices/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.device
+  get(
+    body?: DevicesGetParams,
+  ): SeamApiRequest<
+    undefined | DevicesGetParams,
+    DevicesGetResponse,
+    'device'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/devices/get',
+        method: 'post',
+        data: body,
+      },
+      'device',
+    )
   }
 
-  async list(
+  list(
     body?: DevicesListParams,
-  ): Promise<DevicesListResponse['devices']> {
-    const { data } = await this.client.request<DevicesListResponse>({
-      url: '/devices/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.devices
+  ): SeamApiRequest<
+    undefined | DevicesListParams,
+    DevicesListResponse,
+    'devices'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/devices/list',
+        method: 'post',
+        data: body,
+      },
+      'devices',
+    )
   }
 
-  async listDeviceProviders(
+  listDeviceProviders(
     body?: DevicesListDeviceProvidersParams,
-  ): Promise<DevicesListDeviceProvidersResponse['device_providers']> {
-    const { data } =
-      await this.client.request<DevicesListDeviceProvidersResponse>({
+  ): SeamApiRequest<
+    undefined | DevicesListDeviceProvidersParams,
+    DevicesListDeviceProvidersResponse,
+    'device_providers'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/devices/list_device_providers',
         method: 'post',
         data: body,
-      })
-
-    return data.device_providers
+      },
+      'device_providers',
+    )
   }
 
-  async update(body?: DevicesUpdateBody): Promise<void> {
-    await this.client.request<DevicesUpdateResponse>({
-      url: '/devices/update',
-      method: 'post',
-      data: body,
-    })
+  update(
+    body?: DevicesUpdateBody,
+  ): SeamApiRequest<undefined | DevicesUpdateBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/devices/update',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 }
 

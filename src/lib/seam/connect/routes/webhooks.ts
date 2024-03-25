@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,54 +154,86 @@ export class SeamHttpWebhooks {
     await clientSessions.get()
   }
 
-  async create(
+  create(
     body?: WebhooksCreateBody,
-  ): Promise<WebhooksCreateResponse['webhook']> {
-    const { data } = await this.client.request<WebhooksCreateResponse>({
-      url: '/webhooks/create',
-      method: 'post',
-      data: body,
-    })
-
-    return data.webhook
+  ): SeamApiRequest<
+    undefined | WebhooksCreateBody,
+    WebhooksCreateResponse,
+    'webhook'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/webhooks/create',
+        method: 'post',
+        data: body,
+      },
+      'webhook',
+    )
   }
 
-  async delete(body?: WebhooksDeleteBody): Promise<void> {
-    await this.client.request<WebhooksDeleteResponse>({
-      url: '/webhooks/delete',
-      method: 'post',
-      data: body,
-    })
+  delete(
+    body?: WebhooksDeleteBody,
+  ): SeamApiRequest<undefined | WebhooksDeleteBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/webhooks/delete',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async get(body?: WebhooksGetParams): Promise<WebhooksGetResponse['webhook']> {
-    const { data } = await this.client.request<WebhooksGetResponse>({
-      url: '/webhooks/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.webhook
+  get(
+    body?: WebhooksGetParams,
+  ): SeamApiRequest<
+    undefined | WebhooksGetParams,
+    WebhooksGetResponse,
+    'webhook'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/webhooks/get',
+        method: 'post',
+        data: body,
+      },
+      'webhook',
+    )
   }
 
-  async list(
+  list(
     body?: WebhooksListParams,
-  ): Promise<WebhooksListResponse['webhooks']> {
-    const { data } = await this.client.request<WebhooksListResponse>({
-      url: '/webhooks/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.webhooks
+  ): SeamApiRequest<
+    undefined | WebhooksListParams,
+    WebhooksListResponse,
+    'webhooks'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/webhooks/list',
+        method: 'post',
+        data: body,
+      },
+      'webhooks',
+    )
   }
 
-  async update(body?: WebhooksUpdateBody): Promise<void> {
-    await this.client.request<WebhooksUpdateResponse>({
-      url: '/webhooks/update',
-      method: 'post',
-      data: body,
-    })
+  update(
+    body?: WebhooksUpdateBody,
+  ): SeamApiRequest<undefined | WebhooksUpdateBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/webhooks/update',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 }
 

@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,36 +154,54 @@ export class SeamHttpDevicesUnmanaged {
     await clientSessions.get()
   }
 
-  async get(
+  get(
     body?: DevicesUnmanagedGetParams,
-  ): Promise<DevicesUnmanagedGetResponse['device']> {
-    const { data } = await this.client.request<DevicesUnmanagedGetResponse>({
-      url: '/devices/unmanaged/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.device
+  ): SeamApiRequest<
+    undefined | DevicesUnmanagedGetParams,
+    DevicesUnmanagedGetResponse,
+    'device'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/devices/unmanaged/get',
+        method: 'post',
+        data: body,
+      },
+      'device',
+    )
   }
 
-  async list(
+  list(
     body?: DevicesUnmanagedListParams,
-  ): Promise<DevicesUnmanagedListResponse['devices']> {
-    const { data } = await this.client.request<DevicesUnmanagedListResponse>({
-      url: '/devices/unmanaged/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.devices
+  ): SeamApiRequest<
+    undefined | DevicesUnmanagedListParams,
+    DevicesUnmanagedListResponse,
+    'devices'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/devices/unmanaged/list',
+        method: 'post',
+        data: body,
+      },
+      'devices',
+    )
   }
 
-  async update(body?: DevicesUnmanagedUpdateBody): Promise<void> {
-    await this.client.request<DevicesUnmanagedUpdateResponse>({
-      url: '/devices/unmanaged/update',
-      method: 'post',
-      data: body,
-    })
+  update(
+    body?: DevicesUnmanagedUpdateBody,
+  ): SeamApiRequest<undefined | DevicesUnmanagedUpdateBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/devices/unmanaged/update',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 }
 

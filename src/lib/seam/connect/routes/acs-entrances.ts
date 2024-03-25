@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,49 +154,72 @@ export class SeamHttpAcsEntrances {
     await clientSessions.get()
   }
 
-  async get(
+  get(
     body?: AcsEntrancesGetParams,
-  ): Promise<AcsEntrancesGetResponse['acs_entrance']> {
-    const { data } = await this.client.request<AcsEntrancesGetResponse>({
-      url: '/acs/entrances/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.acs_entrance
+  ): SeamApiRequest<
+    undefined | AcsEntrancesGetParams,
+    AcsEntrancesGetResponse,
+    'acs_entrance'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/entrances/get',
+        method: 'post',
+        data: body,
+      },
+      'acs_entrance',
+    )
   }
 
-  async grantAccess(body?: AcsEntrancesGrantAccessBody): Promise<void> {
-    await this.client.request<AcsEntrancesGrantAccessResponse>({
-      url: '/acs/entrances/grant_access',
-      method: 'post',
-      data: body,
-    })
+  grantAccess(
+    body?: AcsEntrancesGrantAccessBody,
+  ): SeamApiRequest<undefined | AcsEntrancesGrantAccessBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/entrances/grant_access',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async list(
+  list(
     body?: AcsEntrancesListParams,
-  ): Promise<AcsEntrancesListResponse['acs_entrances']> {
-    const { data } = await this.client.request<AcsEntrancesListResponse>({
-      url: '/acs/entrances/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.acs_entrances
+  ): SeamApiRequest<
+    undefined | AcsEntrancesListParams,
+    AcsEntrancesListResponse,
+    'acs_entrances'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/entrances/list',
+        method: 'post',
+        data: body,
+      },
+      'acs_entrances',
+    )
   }
 
-  async listCredentialsWithAccess(
+  listCredentialsWithAccess(
     body?: AcsEntrancesListCredentialsWithAccessParams,
-  ): Promise<AcsEntrancesListCredentialsWithAccessResponse['acs_credentials']> {
-    const { data } =
-      await this.client.request<AcsEntrancesListCredentialsWithAccessResponse>({
+  ): SeamApiRequest<
+    undefined | AcsEntrancesListCredentialsWithAccessParams,
+    AcsEntrancesListCredentialsWithAccessResponse,
+    'acs_credentials'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/acs/entrances/list_credentials_with_access',
         method: 'post',
         data: body,
-      })
-
-    return data.acs_credentials
+      },
+      'acs_credentials',
+    )
   }
 }
 

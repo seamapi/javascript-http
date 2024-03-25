@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 export class SeamHttpClientSessions {
   client: Client
@@ -151,82 +152,122 @@ export class SeamHttpClientSessions {
     await clientSessions.get()
   }
 
-  async create(
+  create(
     body?: ClientSessionsCreateBody,
-  ): Promise<ClientSessionsCreateResponse['client_session']> {
-    const { data } = await this.client.request<ClientSessionsCreateResponse>({
-      url: '/client_sessions/create',
-      method: 'post',
-      data: body,
-    })
-
-    return data.client_session
+  ): SeamApiRequest<
+    undefined | ClientSessionsCreateBody,
+    ClientSessionsCreateResponse,
+    'client_session'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/client_sessions/create',
+        method: 'post',
+        data: body,
+      },
+      'client_session',
+    )
   }
 
-  async delete(body?: ClientSessionsDeleteBody): Promise<void> {
-    await this.client.request<ClientSessionsDeleteResponse>({
-      url: '/client_sessions/delete',
-      method: 'post',
-      data: body,
-    })
+  delete(
+    body?: ClientSessionsDeleteBody,
+  ): SeamApiRequest<undefined | ClientSessionsDeleteBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/client_sessions/delete',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async get(
+  get(
     body?: ClientSessionsGetParams,
-  ): Promise<ClientSessionsGetResponse['client_session']> {
-    const { data } = await this.client.request<ClientSessionsGetResponse>({
-      url: '/client_sessions/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.client_session
+  ): SeamApiRequest<
+    undefined | ClientSessionsGetParams,
+    ClientSessionsGetResponse,
+    'client_session'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/client_sessions/get',
+        method: 'post',
+        data: body,
+      },
+      'client_session',
+    )
   }
 
-  async getOrCreate(
+  getOrCreate(
     body?: ClientSessionsGetOrCreateBody,
-  ): Promise<ClientSessionsGetOrCreateResponse['client_session']> {
-    const { data } =
-      await this.client.request<ClientSessionsGetOrCreateResponse>({
+  ): SeamApiRequest<
+    undefined | ClientSessionsGetOrCreateBody,
+    ClientSessionsGetOrCreateResponse,
+    'client_session'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/client_sessions/get_or_create',
         method: 'post',
         data: body,
-      })
-
-    return data.client_session
+      },
+      'client_session',
+    )
   }
 
-  async grantAccess(
+  grantAccess(
     body?: ClientSessionsGrantAccessBody,
-  ): Promise<ClientSessionsGrantAccessResponse['client_session']> {
-    const { data } =
-      await this.client.request<ClientSessionsGrantAccessResponse>({
+  ): SeamApiRequest<
+    undefined | ClientSessionsGrantAccessBody,
+    ClientSessionsGrantAccessResponse,
+    'client_session'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/client_sessions/grant_access',
         method: 'post',
         data: body,
-      })
-
-    return data.client_session
+      },
+      'client_session',
+    )
   }
 
-  async list(
+  list(
     body?: ClientSessionsListParams,
-  ): Promise<ClientSessionsListResponse['client_sessions']> {
-    const { data } = await this.client.request<ClientSessionsListResponse>({
-      url: '/client_sessions/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.client_sessions
+  ): SeamApiRequest<
+    undefined | ClientSessionsListParams,
+    ClientSessionsListResponse,
+    'client_sessions'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/client_sessions/list',
+        method: 'post',
+        data: body,
+      },
+      'client_sessions',
+    )
   }
 
-  async revoke(body?: ClientSessionsRevokeBody): Promise<void> {
-    await this.client.request<ClientSessionsRevokeResponse>({
-      url: '/client_sessions/revoke',
-      method: 'post',
-      data: body,
-    })
+  revoke(
+    body?: ClientSessionsRevokeBody,
+  ): SeamApiRequest<undefined | ClientSessionsRevokeBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/client_sessions/revoke',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 }
 

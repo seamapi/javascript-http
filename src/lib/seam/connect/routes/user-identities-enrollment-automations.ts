@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,67 +157,76 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     await clientSessions.get()
   }
 
-  async delete(
+  delete(
     body?: UserIdentitiesEnrollmentAutomationsDeleteBody,
-  ): Promise<void> {
-    await this.client.request<UserIdentitiesEnrollmentAutomationsDeleteResponse>(
+  ): SeamApiRequest<
+    undefined | UserIdentitiesEnrollmentAutomationsDeleteBody,
+    void,
+    undefined
+  > {
+    return new SeamApiRequest(
+      this,
       {
         url: '/user_identities/enrollment_automations/delete',
         method: 'post',
         data: body,
       },
+      undefined,
     )
   }
 
-  async get(
+  get(
     body?: UserIdentitiesEnrollmentAutomationsGetParams,
-  ): Promise<
-    UserIdentitiesEnrollmentAutomationsGetResponse['enrollment_automation']
+  ): SeamApiRequest<
+    undefined | UserIdentitiesEnrollmentAutomationsGetParams,
+    UserIdentitiesEnrollmentAutomationsGetResponse,
+    'enrollment_automation'
   > {
-    const { data } =
-      await this.client.request<UserIdentitiesEnrollmentAutomationsGetResponse>(
-        {
-          url: '/user_identities/enrollment_automations/get',
-          method: 'post',
-          data: body,
-        },
-      )
-
-    return data.enrollment_automation
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/enrollment_automations/get',
+        method: 'post',
+        data: body,
+      },
+      'enrollment_automation',
+    )
   }
 
-  async launch(
+  launch(
     body?: UserIdentitiesEnrollmentAutomationsLaunchBody,
-  ): Promise<
-    UserIdentitiesEnrollmentAutomationsLaunchResponse['enrollment_automation']
+  ): SeamApiRequest<
+    undefined | UserIdentitiesEnrollmentAutomationsLaunchBody,
+    UserIdentitiesEnrollmentAutomationsLaunchResponse,
+    'enrollment_automation'
   > {
-    const { data } =
-      await this.client.request<UserIdentitiesEnrollmentAutomationsLaunchResponse>(
-        {
-          url: '/user_identities/enrollment_automations/launch',
-          method: 'post',
-          data: body,
-        },
-      )
-
-    return data.enrollment_automation
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/enrollment_automations/launch',
+        method: 'post',
+        data: body,
+      },
+      'enrollment_automation',
+    )
   }
 
-  async list(
+  list(
     body?: UserIdentitiesEnrollmentAutomationsListParams,
-  ): Promise<
-    UserIdentitiesEnrollmentAutomationsListResponse['enrollment_automations']
+  ): SeamApiRequest<
+    undefined | UserIdentitiesEnrollmentAutomationsListParams,
+    UserIdentitiesEnrollmentAutomationsListResponse,
+    'enrollment_automations'
   > {
-    const { data } =
-      await this.client.request<UserIdentitiesEnrollmentAutomationsListResponse>(
-        {
-          url: '/user_identities/enrollment_automations/list',
-          method: 'post',
-          data: body,
-        },
-      )
-
-    return data.enrollment_automations
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/enrollment_automations/list',
+        method: 'post',
+        data: body,
+      },
+      'enrollment_automations',
+    )
   }
 }
 

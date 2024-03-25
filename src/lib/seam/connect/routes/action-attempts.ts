@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { resolveActionAttempt } from 'lib/seam/connect/resolve-action-attempt.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -154,40 +154,42 @@ export class SeamHttpActionAttempts {
     await clientSessions.get()
   }
 
-  async get(
+  get(
     body?: ActionAttemptsGetParams,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): Promise<ActionAttemptsGetResponse['action_attempt']> {
-    const { data } = await this.client.request<ActionAttemptsGetResponse>({
-      url: '/action_attempts/get',
-      method: 'post',
-      data: body,
-    })
-    const waitForActionAttempt =
-      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
-    if (waitForActionAttempt !== false) {
-      return await resolveActionAttempt(
-        data.action_attempt,
-        SeamHttpActionAttempts.fromClient(this.client, {
-          ...this.defaults,
-          waitForActionAttempt: false,
-        }),
-        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
-      )
-    }
-    return data.action_attempt
+  ): SeamApiRequest<
+    undefined | ActionAttemptsGetParams,
+    ActionAttemptsGetResponse,
+    'action_attempt'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/action_attempts/get',
+        method: 'post',
+        data: body,
+      },
+      'action_attempt',
+      options,
+    )
   }
 
-  async list(
+  list(
     body?: ActionAttemptsListParams,
-  ): Promise<ActionAttemptsListResponse['action_attempts']> {
-    const { data } = await this.client.request<ActionAttemptsListResponse>({
-      url: '/action_attempts/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.action_attempts
+  ): SeamApiRequest<
+    undefined | ActionAttemptsListParams,
+    ActionAttemptsListResponse,
+    'action_attempts'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/action_attempts/list',
+        method: 'post',
+        data: body,
+      },
+      'action_attempts',
+    )
   }
 }
 

@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,48 +154,72 @@ export class SeamHttpWorkspaces {
     await clientSessions.get()
   }
 
-  async create(
+  create(
     body?: WorkspacesCreateBody,
-  ): Promise<WorkspacesCreateResponse['workspace']> {
-    const { data } = await this.client.request<WorkspacesCreateResponse>({
-      url: '/workspaces/create',
-      method: 'post',
-      data: body,
-    })
-
-    return data.workspace
+  ): SeamApiRequest<
+    undefined | WorkspacesCreateBody,
+    WorkspacesCreateResponse,
+    'workspace'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/workspaces/create',
+        method: 'post',
+        data: body,
+      },
+      'workspace',
+    )
   }
 
-  async get(
+  get(
     body?: WorkspacesGetParams,
-  ): Promise<WorkspacesGetResponse['workspace']> {
-    const { data } = await this.client.request<WorkspacesGetResponse>({
-      url: '/workspaces/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.workspace
+  ): SeamApiRequest<
+    undefined | WorkspacesGetParams,
+    WorkspacesGetResponse,
+    'workspace'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/workspaces/get',
+        method: 'post',
+        data: body,
+      },
+      'workspace',
+    )
   }
 
-  async list(
+  list(
     body?: WorkspacesListParams,
-  ): Promise<WorkspacesListResponse['workspaces']> {
-    const { data } = await this.client.request<WorkspacesListResponse>({
-      url: '/workspaces/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.workspaces
+  ): SeamApiRequest<
+    undefined | WorkspacesListParams,
+    WorkspacesListResponse,
+    'workspaces'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/workspaces/list',
+        method: 'post',
+        data: body,
+      },
+      'workspaces',
+    )
   }
 
-  async resetSandbox(body?: WorkspacesResetSandboxBody): Promise<void> {
-    await this.client.request<WorkspacesResetSandboxResponse>({
-      url: '/workspaces/reset_sandbox',
-      method: 'post',
-      data: body,
-    })
+  resetSandbox(
+    body?: WorkspacesResetSandboxBody,
+  ): SeamApiRequest<undefined | WorkspacesResetSandboxBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/workspaces/reset_sandbox',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 }
 

@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,26 +154,40 @@ export class SeamHttpNetworks {
     await clientSessions.get()
   }
 
-  async get(body?: NetworksGetParams): Promise<NetworksGetResponse['network']> {
-    const { data } = await this.client.request<NetworksGetResponse>({
-      url: '/networks/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.network
+  get(
+    body?: NetworksGetParams,
+  ): SeamApiRequest<
+    undefined | NetworksGetParams,
+    NetworksGetResponse,
+    'network'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/networks/get',
+        method: 'post',
+        data: body,
+      },
+      'network',
+    )
   }
 
-  async list(
+  list(
     body?: NetworksListParams,
-  ): Promise<NetworksListResponse['networks']> {
-    const { data } = await this.client.request<NetworksListResponse>({
-      url: '/networks/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.networks
+  ): SeamApiRequest<
+    undefined | NetworksListParams,
+    NetworksListResponse,
+    'networks'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/networks/list',
+        method: 'post',
+        data: body,
+      },
+      'networks',
+    )
   }
 }
 

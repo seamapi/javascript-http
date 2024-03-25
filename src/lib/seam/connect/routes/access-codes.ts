@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpAccessCodesUnmanaged } from './access-codes-unmanaged.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
@@ -158,96 +159,140 @@ export class SeamHttpAccessCodes {
     return SeamHttpAccessCodesUnmanaged.fromClient(this.client, this.defaults)
   }
 
-  async create(
+  create(
     body?: AccessCodesCreateBody,
-  ): Promise<AccessCodesCreateResponse['access_code']> {
-    const { data } = await this.client.request<AccessCodesCreateResponse>({
-      url: '/access_codes/create',
-      method: 'post',
-      data: body,
-    })
-
-    return data.access_code
+  ): SeamApiRequest<
+    undefined | AccessCodesCreateBody,
+    AccessCodesCreateResponse,
+    'access_code'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/access_codes/create',
+        method: 'post',
+        data: body,
+      },
+      'access_code',
+    )
   }
 
-  async createMultiple(
+  createMultiple(
     body?: AccessCodesCreateMultipleBody,
-  ): Promise<AccessCodesCreateMultipleResponse['access_codes']> {
-    const { data } =
-      await this.client.request<AccessCodesCreateMultipleResponse>({
+  ): SeamApiRequest<
+    undefined | AccessCodesCreateMultipleBody,
+    AccessCodesCreateMultipleResponse,
+    'access_codes'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/access_codes/create_multiple',
         method: 'post',
         data: body,
-      })
-
-    return data.access_codes
+      },
+      'access_codes',
+    )
   }
 
-  async delete(body?: AccessCodesDeleteBody): Promise<void> {
-    await this.client.request<AccessCodesDeleteResponse>({
-      url: '/access_codes/delete',
-      method: 'post',
-      data: body,
-    })
+  delete(
+    body?: AccessCodesDeleteBody,
+  ): SeamApiRequest<undefined | AccessCodesDeleteBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/access_codes/delete',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async generateCode(
+  generateCode(
     body?: AccessCodesGenerateCodeBody,
-  ): Promise<AccessCodesGenerateCodeResponse['generated_code']> {
-    const { data } = await this.client.request<AccessCodesGenerateCodeResponse>(
+  ): SeamApiRequest<
+    undefined | AccessCodesGenerateCodeBody,
+    AccessCodesGenerateCodeResponse,
+    'generated_code'
+  > {
+    return new SeamApiRequest(
+      this,
       {
         url: '/access_codes/generate_code',
         method: 'post',
         data: body,
       },
+      'generated_code',
     )
-
-    return data.generated_code
   }
 
-  async get(
+  get(
     body?: AccessCodesGetParams,
-  ): Promise<AccessCodesGetResponse['access_code']> {
-    const { data } = await this.client.request<AccessCodesGetResponse>({
-      url: '/access_codes/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.access_code
+  ): SeamApiRequest<
+    undefined | AccessCodesGetParams,
+    AccessCodesGetResponse,
+    'access_code'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/access_codes/get',
+        method: 'post',
+        data: body,
+      },
+      'access_code',
+    )
   }
 
-  async list(
+  list(
     body?: AccessCodesListParams,
-  ): Promise<AccessCodesListResponse['access_codes']> {
-    const { data } = await this.client.request<AccessCodesListResponse>({
-      url: '/access_codes/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.access_codes
+  ): SeamApiRequest<
+    undefined | AccessCodesListParams,
+    AccessCodesListResponse,
+    'access_codes'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/access_codes/list',
+        method: 'post',
+        data: body,
+      },
+      'access_codes',
+    )
   }
 
-  async pullBackupAccessCode(
+  pullBackupAccessCode(
     body?: AccessCodesPullBackupAccessCodeBody,
-  ): Promise<AccessCodesPullBackupAccessCodeResponse['backup_access_code']> {
-    const { data } =
-      await this.client.request<AccessCodesPullBackupAccessCodeResponse>({
+  ): SeamApiRequest<
+    undefined | AccessCodesPullBackupAccessCodeBody,
+    AccessCodesPullBackupAccessCodeResponse,
+    'backup_access_code'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/access_codes/pull_backup_access_code',
         method: 'post',
         data: body,
-      })
-
-    return data.backup_access_code
+      },
+      'backup_access_code',
+    )
   }
 
-  async update(body?: AccessCodesUpdateBody): Promise<void> {
-    await this.client.request<AccessCodesUpdateResponse>({
-      url: '/access_codes/update',
-      method: 'post',
-      data: body,
-    })
+  update(
+    body?: AccessCodesUpdateBody,
+  ): SeamApiRequest<undefined | AccessCodesUpdateBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/access_codes/update',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 }
 

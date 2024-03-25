@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,28 +154,40 @@ export class SeamHttpAcsSystems {
     await clientSessions.get()
   }
 
-  async get(
+  get(
     body?: AcsSystemsGetParams,
-  ): Promise<AcsSystemsGetResponse['acs_system']> {
-    const { data } = await this.client.request<AcsSystemsGetResponse>({
-      url: '/acs/systems/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.acs_system
+  ): SeamApiRequest<
+    undefined | AcsSystemsGetParams,
+    AcsSystemsGetResponse,
+    'acs_system'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/systems/get',
+        method: 'post',
+        data: body,
+      },
+      'acs_system',
+    )
   }
 
-  async list(
+  list(
     body?: AcsSystemsListParams,
-  ): Promise<AcsSystemsListResponse['acs_systems']> {
-    const { data } = await this.client.request<AcsSystemsListResponse>({
-      url: '/acs/systems/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.acs_systems
+  ): SeamApiRequest<
+    undefined | AcsSystemsListParams,
+    AcsSystemsListResponse,
+    'acs_systems'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/systems/list',
+        method: 'post',
+        data: body,
+      },
+      'acs_systems',
+    )
   }
 }
 

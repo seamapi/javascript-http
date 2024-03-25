@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpUserIdentitiesEnrollmentAutomations } from './user-identities-enrollment-automations.js'
@@ -161,133 +162,208 @@ export class SeamHttpUserIdentities {
     )
   }
 
-  async addAcsUser(body?: UserIdentitiesAddAcsUserBody): Promise<void> {
-    await this.client.request<UserIdentitiesAddAcsUserResponse>({
-      url: '/user_identities/add_acs_user',
-      method: 'post',
-      data: body,
-    })
+  addAcsUser(
+    body?: UserIdentitiesAddAcsUserBody,
+  ): SeamApiRequest<undefined | UserIdentitiesAddAcsUserBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/add_acs_user',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async create(
+  create(
     body?: UserIdentitiesCreateBody,
-  ): Promise<UserIdentitiesCreateResponse['user_identity']> {
-    const { data } = await this.client.request<UserIdentitiesCreateResponse>({
-      url: '/user_identities/create',
-      method: 'post',
-      data: body,
-    })
-
-    return data.user_identity
-  }
-
-  async delete(body?: UserIdentitiesDeleteBody): Promise<void> {
-    await this.client.request<UserIdentitiesDeleteResponse>({
-      url: '/user_identities/delete',
-      method: 'post',
-      data: body,
-    })
-  }
-
-  async get(
-    body?: UserIdentitiesGetParams,
-  ): Promise<UserIdentitiesGetResponse['user_identity']> {
-    const { data } = await this.client.request<UserIdentitiesGetResponse>({
-      url: '/user_identities/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.user_identity
-  }
-
-  async grantAccessToDevice(
-    body?: UserIdentitiesGrantAccessToDeviceBody,
-  ): Promise<void> {
-    await this.client.request<UserIdentitiesGrantAccessToDeviceResponse>({
-      url: '/user_identities/grant_access_to_device',
-      method: 'post',
-      data: body,
-    })
-  }
-
-  async list(
-    body?: UserIdentitiesListParams,
-  ): Promise<UserIdentitiesListResponse['user_identities']> {
-    const { data } = await this.client.request<UserIdentitiesListResponse>({
-      url: '/user_identities/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.user_identities
-  }
-
-  async listAccessibleDevices(
-    body?: UserIdentitiesListAccessibleDevicesParams,
-  ): Promise<
-    UserIdentitiesListAccessibleDevicesResponse['accessible_devices']
+  ): SeamApiRequest<
+    undefined | UserIdentitiesCreateBody,
+    UserIdentitiesCreateResponse,
+    'user_identity'
   > {
-    const { data } =
-      await this.client.request<UserIdentitiesListAccessibleDevicesResponse>({
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/create',
+        method: 'post',
+        data: body,
+      },
+      'user_identity',
+    )
+  }
+
+  delete(
+    body?: UserIdentitiesDeleteBody,
+  ): SeamApiRequest<undefined | UserIdentitiesDeleteBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/delete',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
+  }
+
+  get(
+    body?: UserIdentitiesGetParams,
+  ): SeamApiRequest<
+    undefined | UserIdentitiesGetParams,
+    UserIdentitiesGetResponse,
+    'user_identity'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/get',
+        method: 'post',
+        data: body,
+      },
+      'user_identity',
+    )
+  }
+
+  grantAccessToDevice(
+    body?: UserIdentitiesGrantAccessToDeviceBody,
+  ): SeamApiRequest<
+    undefined | UserIdentitiesGrantAccessToDeviceBody,
+    void,
+    undefined
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/grant_access_to_device',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
+  }
+
+  list(
+    body?: UserIdentitiesListParams,
+  ): SeamApiRequest<
+    undefined | UserIdentitiesListParams,
+    UserIdentitiesListResponse,
+    'user_identities'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/list',
+        method: 'post',
+        data: body,
+      },
+      'user_identities',
+    )
+  }
+
+  listAccessibleDevices(
+    body?: UserIdentitiesListAccessibleDevicesParams,
+  ): SeamApiRequest<
+    undefined | UserIdentitiesListAccessibleDevicesParams,
+    UserIdentitiesListAccessibleDevicesResponse,
+    'accessible_devices'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/user_identities/list_accessible_devices',
         method: 'post',
         data: body,
-      })
-
-    return data.accessible_devices
+      },
+      'accessible_devices',
+    )
   }
 
-  async listAcsSystems(
+  listAcsSystems(
     body?: UserIdentitiesListAcsSystemsParams,
-  ): Promise<UserIdentitiesListAcsSystemsResponse['acs_systems']> {
-    const { data } =
-      await this.client.request<UserIdentitiesListAcsSystemsResponse>({
+  ): SeamApiRequest<
+    undefined | UserIdentitiesListAcsSystemsParams,
+    UserIdentitiesListAcsSystemsResponse,
+    'acs_systems'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/user_identities/list_acs_systems',
         method: 'post',
         data: body,
-      })
-
-    return data.acs_systems
+      },
+      'acs_systems',
+    )
   }
 
-  async listAcsUsers(
+  listAcsUsers(
     body?: UserIdentitiesListAcsUsersParams,
-  ): Promise<UserIdentitiesListAcsUsersResponse['acs_users']> {
-    const { data } =
-      await this.client.request<UserIdentitiesListAcsUsersResponse>({
+  ): SeamApiRequest<
+    undefined | UserIdentitiesListAcsUsersParams,
+    UserIdentitiesListAcsUsersResponse,
+    'acs_users'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/user_identities/list_acs_users',
         method: 'post',
         data: body,
-      })
-
-    return data.acs_users
+      },
+      'acs_users',
+    )
   }
 
-  async removeAcsUser(body?: UserIdentitiesRemoveAcsUserBody): Promise<void> {
-    await this.client.request<UserIdentitiesRemoveAcsUserResponse>({
-      url: '/user_identities/remove_acs_user',
-      method: 'post',
-      data: body,
-    })
+  removeAcsUser(
+    body?: UserIdentitiesRemoveAcsUserBody,
+  ): SeamApiRequest<
+    undefined | UserIdentitiesRemoveAcsUserBody,
+    void,
+    undefined
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/remove_acs_user',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async revokeAccessToDevice(
+  revokeAccessToDevice(
     body?: UserIdentitiesRevokeAccessToDeviceBody,
-  ): Promise<void> {
-    await this.client.request<UserIdentitiesRevokeAccessToDeviceResponse>({
-      url: '/user_identities/revoke_access_to_device',
-      method: 'post',
-      data: body,
-    })
+  ): SeamApiRequest<
+    undefined | UserIdentitiesRevokeAccessToDeviceBody,
+    void,
+    undefined
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/revoke_access_to_device',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async update(body?: UserIdentitiesUpdateBody): Promise<void> {
-    await this.client.request<UserIdentitiesUpdateResponse>({
-      url: '/user_identities/update',
-      method: 'post',
-      data: body,
-    })
+  update(
+    body?: UserIdentitiesUpdateBody,
+  ): SeamApiRequest<undefined | UserIdentitiesUpdateBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/user_identities/update',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 }
 

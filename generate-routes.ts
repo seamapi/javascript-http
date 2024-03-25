@@ -295,6 +295,7 @@ import {
 import {
   resolveActionAttempt,
 } from 'lib/seam/connect/resolve-action-attempt.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 ${
   namespace === 'client_sessions'
@@ -354,41 +355,28 @@ const renderClassMethod = ({
   path,
   isRequestParamOptional,
 }: Endpoint): string => `
-  async ${camelCase(name)}(
+  ${camelCase(name)}(
     ${requestFormat}${isRequestParamOptional ? '?' : ''}: ${renderRequestType({
       name,
       namespace,
     })},
     ${renderClassMethodOptions({ resource })}
-  ): Promise<${
-    resource === null
-      ? 'void'
-      : `${renderResponseType({ name, namespace })}['${resource}']`
-  }> {
-    ${
-      resource === null ? '' : 'const { data } = '
-    }await this.client.request<${renderResponseType({
+  ): SeamApiRequest<${isRequestParamOptional ? 'undefined | ' : ''}${renderRequestType(
+    {
       name,
       namespace,
-    })}>({
+    },
+  )}, ${
+    resource === null
+      ? 'void, undefined'
+      : `${renderResponseType({ name, namespace })}, '${resource}'`
+  }> {
+    return new SeamApiRequest(this, {
       url: '${path}',
       method: '${snakeCase(method)}', ${
         requestFormat === 'params' ? 'params,' : ''
       } ${requestFormat === 'body' ? 'data: body,' : ''}
-    })
-    ${
-      resource === 'action_attempt'
-        ? `const waitForActionAttempt = options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
-          if (waitForActionAttempt !== false) {
-            return resolveActionAttempt(
-              data.${resource},
-              SeamHttpActionAttempts.fromClient(this.client, { ...this.defaults, waitForActionAttempt: false }),
-              typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
-            )
-          }`
-        : ''
-    }
-    ${resource === null ? '' : `return data.${resource}`}
+    }, ${resource === null ? 'undefined' : `'${resource}'`}${resource === 'action_attempt' ? ', options' : ''})
   }
   `
 

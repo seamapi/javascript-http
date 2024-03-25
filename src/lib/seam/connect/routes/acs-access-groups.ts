@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,57 +154,90 @@ export class SeamHttpAcsAccessGroups {
     await clientSessions.get()
   }
 
-  async addUser(body?: AcsAccessGroupsAddUserBody): Promise<void> {
-    await this.client.request<AcsAccessGroupsAddUserResponse>({
-      url: '/acs/access_groups/add_user',
-      method: 'post',
-      data: body,
-    })
+  addUser(
+    body?: AcsAccessGroupsAddUserBody,
+  ): SeamApiRequest<undefined | AcsAccessGroupsAddUserBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/access_groups/add_user',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async get(
+  get(
     body?: AcsAccessGroupsGetParams,
-  ): Promise<AcsAccessGroupsGetResponse['acs_access_group']> {
-    const { data } = await this.client.request<AcsAccessGroupsGetResponse>({
-      url: '/acs/access_groups/get',
-      method: 'post',
-      data: body,
-    })
-
-    return data.acs_access_group
+  ): SeamApiRequest<
+    undefined | AcsAccessGroupsGetParams,
+    AcsAccessGroupsGetResponse,
+    'acs_access_group'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/access_groups/get',
+        method: 'post',
+        data: body,
+      },
+      'acs_access_group',
+    )
   }
 
-  async list(
+  list(
     body?: AcsAccessGroupsListParams,
-  ): Promise<AcsAccessGroupsListResponse['acs_access_groups']> {
-    const { data } = await this.client.request<AcsAccessGroupsListResponse>({
-      url: '/acs/access_groups/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.acs_access_groups
+  ): SeamApiRequest<
+    undefined | AcsAccessGroupsListParams,
+    AcsAccessGroupsListResponse,
+    'acs_access_groups'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/access_groups/list',
+        method: 'post',
+        data: body,
+      },
+      'acs_access_groups',
+    )
   }
 
-  async listUsers(
+  listUsers(
     body?: AcsAccessGroupsListUsersParams,
-  ): Promise<AcsAccessGroupsListUsersResponse['acs_users']> {
-    const { data } =
-      await this.client.request<AcsAccessGroupsListUsersResponse>({
+  ): SeamApiRequest<
+    undefined | AcsAccessGroupsListUsersParams,
+    AcsAccessGroupsListUsersResponse,
+    'acs_users'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
         url: '/acs/access_groups/list_users',
         method: 'post',
         data: body,
-      })
-
-    return data.acs_users
+      },
+      'acs_users',
+    )
   }
 
-  async removeUser(body?: AcsAccessGroupsRemoveUserBody): Promise<void> {
-    await this.client.request<AcsAccessGroupsRemoveUserResponse>({
-      url: '/acs/access_groups/remove_user',
-      method: 'post',
-      data: body,
-    })
+  removeUser(
+    body?: AcsAccessGroupsRemoveUserBody,
+  ): SeamApiRequest<
+    undefined | AcsAccessGroupsRemoveUserBody,
+    void,
+    undefined
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/acs/access_groups/remove_user',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 }
 

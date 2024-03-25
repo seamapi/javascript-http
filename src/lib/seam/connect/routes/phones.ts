@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpPhonesSimulate } from './phones-simulate.js'
@@ -158,22 +159,36 @@ export class SeamHttpPhones {
     return SeamHttpPhonesSimulate.fromClient(this.client, this.defaults)
   }
 
-  async deactivate(body?: PhonesDeactivateBody): Promise<void> {
-    await this.client.request<PhonesDeactivateResponse>({
-      url: '/phones/deactivate',
-      method: 'post',
-      data: body,
-    })
+  deactivate(
+    body?: PhonesDeactivateBody,
+  ): SeamApiRequest<undefined | PhonesDeactivateBody, void, undefined> {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/phones/deactivate',
+        method: 'post',
+        data: body,
+      },
+      undefined,
+    )
   }
 
-  async list(body?: PhonesListParams): Promise<PhonesListResponse['phones']> {
-    const { data } = await this.client.request<PhonesListResponse>({
-      url: '/phones/list',
-      method: 'post',
-      data: body,
-    })
-
-    return data.phones
+  list(
+    body?: PhonesListParams,
+  ): SeamApiRequest<
+    undefined | PhonesListParams,
+    PhonesListResponse,
+    'phones'
+  > {
+    return new SeamApiRequest(
+      this,
+      {
+        url: '/phones/list',
+        method: 'post',
+        data: body,
+      },
+      'phones',
+    )
   }
 }
 
