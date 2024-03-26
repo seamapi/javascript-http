@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig } from 'axios'
+import type { Method } from 'axios'
 
 import type { Client } from './client.js'
 import { SeamHttpActionAttempts } from './index.js'
@@ -8,6 +8,13 @@ import { resolveActionAttempt } from './resolve-action-attempt.js'
 export interface SeamHttpRequestParent {
   readonly client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
+}
+
+export interface SeamHttpRequestConfig<TBody> {
+  url?: string
+  method?: Method
+  params?: any
+  data?: TBody
 }
 
 export type ResponseFromSeamHttpRequest<T> =
@@ -27,27 +34,39 @@ export class SeamHttpRequest<
     >
 {
   readonly parent: SeamHttpRequestParent
-  readonly requestConfig: AxiosRequestConfig<TBody>
+  readonly config: SeamHttpRequestConfig<TBody>
   readonly resourceKey: TResourceKey
   readonly options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 
   constructor(
     parent: SeamHttpRequestParent,
-    requestConfig: AxiosRequestConfig<TBody>,
+    config: SeamHttpRequestConfig<TBody>,
     resourceKey: TResourceKey,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ) {
     this.parent = parent
-    this.requestConfig = requestConfig
+    this.config = config
     this.resourceKey = resourceKey
     this.options = options
+  }
+
+  public get url(): string {
+    return this.config.url ?? ''
+  }
+
+  public get method(): Method {
+    return this.config.method ?? 'get'
+  }
+
+  public get data(): TBody {
+    return this.config.data as TBody
   }
 
   async execute(): Promise<
     TResourceKey extends keyof TResponse ? TResponse[TResourceKey] : undefined
   > {
     const { client } = this.parent
-    const response = await client.request(this.requestConfig)
+    const response = await client.request(this.config)
     if (this.resourceKey === undefined) {
       return undefined as TResourceKey extends keyof TResponse
         ? TResponse[TResourceKey]

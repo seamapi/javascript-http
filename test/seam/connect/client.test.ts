@@ -11,8 +11,8 @@ import {
 } from '@seamapi/http/connect'
 
 import {
-  type ResponseFromSeamApiRequest,
-  SeamApiRequest,
+  type ResponseFromSeamHttpRequest,
+  SeamHttpRequest,
 } from 'lib/seam/connect/seam-http-request.js'
 
 test('SeamHttp: fromClient returns instance that uses client', async (t) => {
@@ -165,7 +165,7 @@ test.failing(
   },
 )
 
-test('SeamHttp: request methods return a SeamApiRequest object', async (t) => {
+test('SeamHttp: request methods return a SeamHttpRequest object', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = new SeamHttp({
     client: SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint }).client,
@@ -173,9 +173,9 @@ test('SeamHttp: request methods return a SeamApiRequest object', async (t) => {
 
   const deviceRequest = seam.devices.get({ device_id: seed.august_device_1 })
 
-  t.true(deviceRequest instanceof SeamApiRequest)
-  t.is(deviceRequest.requestConfig.url, '/devices/get')
-  t.deepEqual(deviceRequest.requestConfig.data, {
+  t.true(deviceRequest instanceof SeamHttpRequest)
+  t.is(deviceRequest.url, '/devices/get')
+  t.deepEqual(deviceRequest.data, {
     device_id: seed.august_device_1,
   })
   t.is(deviceRequest.resourceKey, 'device')
@@ -184,7 +184,7 @@ test('SeamHttp: request methods return a SeamApiRequest object', async (t) => {
   t.is(device.device_id, seed.august_device_1)
 
   // Ensure that the type of the response is correct.
-  type Expected = ResponseFromSeamApiRequest<typeof deviceRequest>
+  type Expected = ResponseFromSeamHttpRequest<typeof deviceRequest>
 
   const validDeviceType: Expected['device_type'] = 'august_lock'
   t.truthy(validDeviceType)
