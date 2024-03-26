@@ -394,16 +394,34 @@ const devices = await seam.client.get<DevicesListResponse>('/devices/list')
 An Axios compatible client may be provided to create a `SeamHttp` instance.
 This API is used internally and is not directly supported.
 
+#### Inspecting the Request
+
+It is possible to inspect a request before it is sent. All of the client methods return an instance of `SeamHttpRequest` which has `url`, `method` and `data` properties. The request is only sent to the server when the `SeamHttpRequest` is awaited.
+
+```ts
+const seam = new SeamHttp('your-api-key')
+
+const request = seam.devices.list()
+
+console.log('Sending request', request.url, request.method, request.data)
+
+const devices = await request // or `await request.execute()` if you prefer
+
+console.log(devices)
+```
+
 ## Development and Testing
 
 ### Quickstart
 
 ```
+
 $ git clone https://github.com/seamapi/javascript-http.git
 $ cd javascript-http
 $ nvm install
 $ npm install
 $ npm run test:watch
+
 ```
 
 Primary development tasks are defined under `scripts` in `package.json`
@@ -411,7 +429,9 @@ and available via `npm run`.
 View them with
 
 ```
+
 $ npm run
+
 ```
 
 ### Source code
@@ -420,7 +440,9 @@ The [source code] is hosted on GitHub.
 Clone the project with
 
 ```
+
 $ git clone git@github.com:seamapi/javascript-http.git
+
 ```
 
 [source code]: https://github.com/seamapi/javascript-http
@@ -433,19 +455,25 @@ Be sure that all commands run under the correct Node version, e.g.,
 if using [nvm], install the correct version with
 
 ```
+
 $ nvm install
+
 ```
 
 Set the active version for each shell session with
 
 ```
+
 $ nvm use
+
 ```
 
 Install the development dependencies with
 
 ```
+
 $ npm install
+
 ```
 
 [Node.js]: https://nodejs.org/
@@ -471,7 +499,9 @@ The `version` input will be passed as the first argument to [npm-version].
 This may be done on the web or using the [GitHub CLI] with
 
 ```
+
 $ gh workflow run version.yml --raw-field version=<version>
+
 ```
 
 [GitHub CLI]: https://cli.github.com/
@@ -528,3 +558,7 @@ loss of use, data, or profits; or business interruption) however caused and on
 any theory of liability, whether in contract, strict liability, or tort
 (including negligence or otherwise) arising in any way out of the use of this
 software, even if advised of the possibility of such damage.
+
+```
+
+```
