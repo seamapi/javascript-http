@@ -164,15 +164,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     NoiseSensorsNoiseThresholdsCreateResponse,
     'noise_threshold'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/noise_sensors/noise_thresholds/create',
-        method: 'post',
-        data: body,
-      },
-      'noise_threshold',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/noise_sensors/noise_thresholds/create',
+      method: 'post',
+      body,
+      responseKey: 'noise_threshold',
+    })
   }
 
   delete(
@@ -182,15 +179,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/noise_sensors/noise_thresholds/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/noise_sensors/noise_thresholds/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -200,15 +194,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     NoiseSensorsNoiseThresholdsGetResponse,
     'noise_threshold'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/noise_sensors/noise_thresholds/get',
-        method: 'post',
-        data: body,
-      },
-      'noise_threshold',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/noise_sensors/noise_thresholds/get',
+      method: 'post',
+      body,
+      responseKey: 'noise_threshold',
+    })
   }
 
   list(
@@ -218,15 +209,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     NoiseSensorsNoiseThresholdsListResponse,
     'noise_thresholds'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/noise_sensors/noise_thresholds/list',
-        method: 'post',
-        data: body,
-      },
-      'noise_thresholds',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/noise_sensors/noise_thresholds/list',
+      method: 'post',
+      body,
+      responseKey: 'noise_thresholds',
+    })
   }
 
   update(
@@ -236,15 +224,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/noise_sensors/noise_thresholds/update',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/noise_sensors/noise_thresholds/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

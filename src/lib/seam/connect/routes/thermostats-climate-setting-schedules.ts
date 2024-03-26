@@ -164,15 +164,12 @@ export class SeamHttpThermostatsClimateSettingSchedules {
     ThermostatsClimateSettingSchedulesCreateResponse,
     'climate_setting_schedule'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/climate_setting_schedules/create',
-        method: 'post',
-        data: body,
-      },
-      'climate_setting_schedule',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/climate_setting_schedules/create',
+      method: 'post',
+      body,
+      responseKey: 'climate_setting_schedule',
+    })
   }
 
   delete(
@@ -182,15 +179,12 @@ export class SeamHttpThermostatsClimateSettingSchedules {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/climate_setting_schedules/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/climate_setting_schedules/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -200,15 +194,12 @@ export class SeamHttpThermostatsClimateSettingSchedules {
     ThermostatsClimateSettingSchedulesGetResponse,
     'climate_setting_schedule'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/climate_setting_schedules/get',
-        method: 'post',
-        data: body,
-      },
-      'climate_setting_schedule',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/climate_setting_schedules/get',
+      method: 'post',
+      body,
+      responseKey: 'climate_setting_schedule',
+    })
   }
 
   list(
@@ -218,15 +209,12 @@ export class SeamHttpThermostatsClimateSettingSchedules {
     ThermostatsClimateSettingSchedulesListResponse,
     'climate_setting_schedules'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/climate_setting_schedules/list',
-        method: 'post',
-        data: body,
-      },
-      'climate_setting_schedules',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/climate_setting_schedules/list',
+      method: 'post',
+      body,
+      responseKey: 'climate_setting_schedules',
+    })
   }
 
   update(
@@ -236,15 +224,12 @@ export class SeamHttpThermostatsClimateSettingSchedules {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/climate_setting_schedules/update',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/climate_setting_schedules/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

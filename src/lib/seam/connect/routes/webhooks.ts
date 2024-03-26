@@ -161,29 +161,23 @@ export class SeamHttpWebhooks {
     WebhooksCreateResponse,
     'webhook'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/webhooks/create',
-        method: 'post',
-        data: body,
-      },
-      'webhook',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/webhooks/create',
+      method: 'post',
+      body,
+      responseKey: 'webhook',
+    })
   }
 
   delete(
     body?: WebhooksDeleteBody,
   ): SeamHttpRequest<undefined | WebhooksDeleteBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/webhooks/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/webhooks/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -193,15 +187,12 @@ export class SeamHttpWebhooks {
     WebhooksGetResponse,
     'webhook'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/webhooks/get',
-        method: 'post',
-        data: body,
-      },
-      'webhook',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/webhooks/get',
+      method: 'post',
+      body,
+      responseKey: 'webhook',
+    })
   }
 
   list(
@@ -211,29 +202,23 @@ export class SeamHttpWebhooks {
     WebhooksListResponse,
     'webhooks'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/webhooks/list',
-        method: 'post',
-        data: body,
-      },
-      'webhooks',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/webhooks/list',
+      method: 'post',
+      body,
+      responseKey: 'webhooks',
+    })
   }
 
   update(
     body?: WebhooksUpdateBody,
   ): SeamHttpRequest<undefined | WebhooksUpdateBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/webhooks/update',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/webhooks/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

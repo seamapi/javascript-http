@@ -164,15 +164,12 @@ export class SeamHttpAcsCredentialProvisioningAutomations {
     AcsCredentialProvisioningAutomationsLaunchResponse,
     'acs_credential_provisioning_automation'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/credential_provisioning_automations/launch',
-        method: 'post',
-        data: body,
-      },
-      'acs_credential_provisioning_automation',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/credential_provisioning_automations/launch',
+      method: 'post',
+      body,
+      responseKey: 'acs_credential_provisioning_automation',
+    })
   }
 }
 

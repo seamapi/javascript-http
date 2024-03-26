@@ -167,15 +167,12 @@ export class SeamHttpDevices {
   delete(
     body?: DevicesDeleteBody,
   ): SeamHttpRequest<undefined | DevicesDeleteBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/devices/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/devices/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -185,15 +182,12 @@ export class SeamHttpDevices {
     DevicesGetResponse,
     'device'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/devices/get',
-        method: 'post',
-        data: body,
-      },
-      'device',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/devices/get',
+      method: 'post',
+      body,
+      responseKey: 'device',
+    })
   }
 
   list(
@@ -203,15 +197,12 @@ export class SeamHttpDevices {
     DevicesListResponse,
     'devices'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/devices/list',
-        method: 'post',
-        data: body,
-      },
-      'devices',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/devices/list',
+      method: 'post',
+      body,
+      responseKey: 'devices',
+    })
   }
 
   listDeviceProviders(
@@ -221,29 +212,23 @@ export class SeamHttpDevices {
     DevicesListDeviceProvidersResponse,
     'device_providers'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/devices/list_device_providers',
-        method: 'post',
-        data: body,
-      },
-      'device_providers',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/devices/list_device_providers',
+      method: 'post',
+      body,
+      responseKey: 'device_providers',
+    })
   }
 
   update(
     body?: DevicesUpdateBody,
   ): SeamHttpRequest<undefined | DevicesUpdateBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/devices/update',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/devices/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

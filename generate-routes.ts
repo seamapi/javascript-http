@@ -372,10 +372,10 @@ const renderClassMethod = ({
       : `${renderResponseType({ name, namespace })}, '${resource}'`
   }> {
     return new SeamHttpRequest(this, {
-      url: '${path}',
+      path: '${path}',
       method: '${snakeCase(method)}', ${
-        requestFormat === 'params' ? 'params,' : ''
-      } ${requestFormat === 'body' ? 'data: body,' : ''},
+        requestFormat === 'params' ? 'query: params,' : ''
+      } ${requestFormat === 'body' ? 'body: body,' : ''}
       responseKey: ${resource === null ? 'undefined' : `'${resource}'`},
       ${resource === 'action_attempt' ? 'options' : ''}
     })

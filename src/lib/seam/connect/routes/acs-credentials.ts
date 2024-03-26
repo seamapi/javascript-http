@@ -161,15 +161,12 @@ export class SeamHttpAcsCredentials {
     AcsCredentialsAssignResponse,
     'acs_credential'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/credentials/assign',
-        method: 'post',
-        data: body,
-      },
-      'acs_credential',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/assign',
+      method: 'post',
+      body,
+      responseKey: 'acs_credential',
+    })
   }
 
   create(
@@ -179,29 +176,23 @@ export class SeamHttpAcsCredentials {
     AcsCredentialsCreateResponse,
     'acs_credential'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/credentials/create',
-        method: 'post',
-        data: body,
-      },
-      'acs_credential',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/create',
+      method: 'post',
+      body,
+      responseKey: 'acs_credential',
+    })
   }
 
   delete(
     body?: AcsCredentialsDeleteBody,
   ): SeamHttpRequest<undefined | AcsCredentialsDeleteBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/credentials/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -211,15 +202,12 @@ export class SeamHttpAcsCredentials {
     AcsCredentialsGetResponse,
     'acs_credential'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/credentials/get',
-        method: 'post',
-        data: body,
-      },
-      'acs_credential',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/get',
+      method: 'post',
+      body,
+      responseKey: 'acs_credential',
+    })
   }
 
   list(
@@ -229,15 +217,12 @@ export class SeamHttpAcsCredentials {
     AcsCredentialsListResponse,
     'acs_credentials'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/credentials/list',
-        method: 'post',
-        data: body,
-      },
-      'acs_credentials',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/list',
+      method: 'post',
+      body,
+      responseKey: 'acs_credentials',
+    })
   }
 
   unassign(
@@ -247,15 +232,12 @@ export class SeamHttpAcsCredentials {
     AcsCredentialsUnassignResponse,
     'acs_credential'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/credentials/unassign',
-        method: 'post',
-        data: body,
-      },
-      'acs_credential',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/unassign',
+      method: 'post',
+      body,
+      responseKey: 'acs_credential',
+    })
   }
 
   update(
@@ -265,15 +247,12 @@ export class SeamHttpAcsCredentials {
     AcsCredentialsUpdateResponse,
     'acs_credential'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/credentials/update',
-        method: 'post',
-        data: body,
-      },
-      'acs_credential',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/update',
+      method: 'post',
+      body,
+      responseKey: 'acs_credential',
+    })
   }
 }
 

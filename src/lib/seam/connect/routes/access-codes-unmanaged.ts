@@ -161,15 +161,12 @@ export class SeamHttpAccessCodesUnmanaged {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/access_codes/unmanaged/convert_to_managed',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/unmanaged/convert_to_managed',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   delete(
@@ -179,15 +176,12 @@ export class SeamHttpAccessCodesUnmanaged {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/access_codes/unmanaged/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/unmanaged/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -197,15 +191,12 @@ export class SeamHttpAccessCodesUnmanaged {
     AccessCodesUnmanagedGetResponse,
     'access_code'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/access_codes/unmanaged/get',
-        method: 'post',
-        data: body,
-      },
-      'access_code',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/unmanaged/get',
+      method: 'post',
+      body,
+      responseKey: 'access_code',
+    })
   }
 
   list(
@@ -215,15 +206,12 @@ export class SeamHttpAccessCodesUnmanaged {
     AccessCodesUnmanagedListResponse,
     'access_codes'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/access_codes/unmanaged/list',
-        method: 'post',
-        data: body,
-      },
-      'access_codes',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/unmanaged/list',
+      method: 'post',
+      body,
+      responseKey: 'access_codes',
+    })
   }
 
   update(
@@ -233,15 +221,12 @@ export class SeamHttpAccessCodesUnmanaged {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/access_codes/unmanaged/update',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/unmanaged/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

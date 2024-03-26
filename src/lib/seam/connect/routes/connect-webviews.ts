@@ -165,29 +165,23 @@ export class SeamHttpConnectWebviews {
     ConnectWebviewsCreateResponse,
     'connect_webview'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/connect_webviews/create',
-        method: 'post',
-        data: body,
-      },
-      'connect_webview',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/connect_webviews/create',
+      method: 'post',
+      body,
+      responseKey: 'connect_webview',
+    })
   }
 
   delete(
     body?: ConnectWebviewsDeleteBody,
   ): SeamHttpRequest<undefined | ConnectWebviewsDeleteBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/connect_webviews/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/connect_webviews/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -197,15 +191,12 @@ export class SeamHttpConnectWebviews {
     ConnectWebviewsGetResponse,
     'connect_webview'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/connect_webviews/get',
-        method: 'post',
-        data: body,
-      },
-      'connect_webview',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/connect_webviews/get',
+      method: 'post',
+      body,
+      responseKey: 'connect_webview',
+    })
   }
 
   list(
@@ -215,29 +206,23 @@ export class SeamHttpConnectWebviews {
     ConnectWebviewsListResponse,
     'connect_webviews'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/connect_webviews/list',
-        method: 'post',
-        data: body,
-      },
-      'connect_webviews',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/connect_webviews/list',
+      method: 'post',
+      body,
+      responseKey: 'connect_webviews',
+    })
   }
 
   view(
     params?: ConnectWebviewsViewParams,
   ): SeamHttpRequest<undefined | ConnectWebviewsViewParams, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/connect_webviews/view',
-        method: 'get',
-        params,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/connect_webviews/view',
+      method: 'get',
+      query: params,
+      responseKey: undefined,
+    })
   }
 }
 

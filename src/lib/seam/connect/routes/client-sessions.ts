@@ -159,29 +159,23 @@ export class SeamHttpClientSessions {
     ClientSessionsCreateResponse,
     'client_session'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/client_sessions/create',
-        method: 'post',
-        data: body,
-      },
-      'client_session',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/create',
+      method: 'post',
+      body,
+      responseKey: 'client_session',
+    })
   }
 
   delete(
     body?: ClientSessionsDeleteBody,
   ): SeamHttpRequest<undefined | ClientSessionsDeleteBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/client_sessions/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -191,15 +185,12 @@ export class SeamHttpClientSessions {
     ClientSessionsGetResponse,
     'client_session'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/client_sessions/get',
-        method: 'post',
-        data: body,
-      },
-      'client_session',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/get',
+      method: 'post',
+      body,
+      responseKey: 'client_session',
+    })
   }
 
   getOrCreate(
@@ -209,15 +200,12 @@ export class SeamHttpClientSessions {
     ClientSessionsGetOrCreateResponse,
     'client_session'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/client_sessions/get_or_create',
-        method: 'post',
-        data: body,
-      },
-      'client_session',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/get_or_create',
+      method: 'post',
+      body,
+      responseKey: 'client_session',
+    })
   }
 
   grantAccess(
@@ -227,15 +215,12 @@ export class SeamHttpClientSessions {
     ClientSessionsGrantAccessResponse,
     'client_session'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/client_sessions/grant_access',
-        method: 'post',
-        data: body,
-      },
-      'client_session',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/grant_access',
+      method: 'post',
+      body,
+      responseKey: 'client_session',
+    })
   }
 
   list(
@@ -245,29 +230,23 @@ export class SeamHttpClientSessions {
     ClientSessionsListResponse,
     'client_sessions'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/client_sessions/list',
-        method: 'post',
-        data: body,
-      },
-      'client_sessions',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/list',
+      method: 'post',
+      body,
+      responseKey: 'client_sessions',
+    })
   }
 
   revoke(
     body?: ClientSessionsRevokeBody,
   ): SeamHttpRequest<undefined | ClientSessionsRevokeBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/client_sessions/revoke',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/revoke',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

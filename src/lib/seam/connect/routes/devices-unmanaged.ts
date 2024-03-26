@@ -161,15 +161,12 @@ export class SeamHttpDevicesUnmanaged {
     DevicesUnmanagedGetResponse,
     'device'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/devices/unmanaged/get',
-        method: 'post',
-        data: body,
-      },
-      'device',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/devices/unmanaged/get',
+      method: 'post',
+      body,
+      responseKey: 'device',
+    })
   }
 
   list(
@@ -179,29 +176,23 @@ export class SeamHttpDevicesUnmanaged {
     DevicesUnmanagedListResponse,
     'devices'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/devices/unmanaged/list',
-        method: 'post',
-        data: body,
-      },
-      'devices',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/devices/unmanaged/list',
+      method: 'post',
+      body,
+      responseKey: 'devices',
+    })
   }
 
   update(
     body?: DevicesUnmanagedUpdateBody,
   ): SeamHttpRequest<undefined | DevicesUnmanagedUpdateBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/devices/unmanaged/update',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/devices/unmanaged/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

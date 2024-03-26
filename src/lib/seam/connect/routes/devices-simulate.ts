@@ -157,15 +157,12 @@ export class SeamHttpDevicesSimulate {
   remove(
     body?: DevicesSimulateRemoveBody,
   ): SeamHttpRequest<undefined | DevicesSimulateRemoveBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/devices/simulate/remove',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/devices/simulate/remove',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

@@ -162,16 +162,13 @@ export class SeamHttpActionAttempts {
     ActionAttemptsGetResponse,
     'action_attempt'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/action_attempts/get',
-        method: 'post',
-        data: body,
-      },
-      'action_attempt',
+    return new SeamHttpRequest(this, {
+      path: '/action_attempts/get',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
       options,
-    )
+    })
   }
 
   list(
@@ -181,15 +178,12 @@ export class SeamHttpActionAttempts {
     ActionAttemptsListResponse,
     'action_attempts'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/action_attempts/list',
-        method: 'post',
-        data: body,
-      },
-      'action_attempts',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/action_attempts/list',
+      method: 'post',
+      body,
+      responseKey: 'action_attempts',
+    })
   }
 }
 

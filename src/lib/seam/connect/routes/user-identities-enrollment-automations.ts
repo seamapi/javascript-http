@@ -164,15 +164,12 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/enrollment_automations/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/enrollment_automations/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -182,15 +179,12 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     UserIdentitiesEnrollmentAutomationsGetResponse,
     'enrollment_automation'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/enrollment_automations/get',
-        method: 'post',
-        data: body,
-      },
-      'enrollment_automation',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/enrollment_automations/get',
+      method: 'post',
+      body,
+      responseKey: 'enrollment_automation',
+    })
   }
 
   launch(
@@ -200,15 +194,12 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     UserIdentitiesEnrollmentAutomationsLaunchResponse,
     'enrollment_automation'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/enrollment_automations/launch',
-        method: 'post',
-        data: body,
-      },
-      'enrollment_automation',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/enrollment_automations/launch',
+      method: 'post',
+      body,
+      responseKey: 'enrollment_automation',
+    })
   }
 
   list(
@@ -218,15 +209,12 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     UserIdentitiesEnrollmentAutomationsListResponse,
     'enrollment_automations'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/enrollment_automations/list',
-        method: 'post',
-        data: body,
-      },
-      'enrollment_automations',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/enrollment_automations/list',
+      method: 'post',
+      body,
+      responseKey: 'enrollment_automations',
+    })
   }
 }
 

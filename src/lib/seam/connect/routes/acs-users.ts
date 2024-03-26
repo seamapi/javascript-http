@@ -161,15 +161,12 @@ export class SeamHttpAcsUsers {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/add_to_access_group',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/add_to_access_group',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   create(
@@ -179,29 +176,23 @@ export class SeamHttpAcsUsers {
     AcsUsersCreateResponse,
     'acs_user'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/create',
-        method: 'post',
-        data: body,
-      },
-      'acs_user',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/create',
+      method: 'post',
+      body,
+      responseKey: 'acs_user',
+    })
   }
 
   delete(
     body?: AcsUsersDeleteBody,
   ): SeamHttpRequest<undefined | AcsUsersDeleteBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -211,15 +202,12 @@ export class SeamHttpAcsUsers {
     AcsUsersGetResponse,
     'acs_user'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/get',
-        method: 'post',
-        data: body,
-      },
-      'acs_user',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/get',
+      method: 'post',
+      body,
+      responseKey: 'acs_user',
+    })
   }
 
   list(
@@ -229,15 +217,12 @@ export class SeamHttpAcsUsers {
     AcsUsersListResponse,
     'acs_users'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/list',
-        method: 'post',
-        data: body,
-      },
-      'acs_users',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/list',
+      method: 'post',
+      body,
+      responseKey: 'acs_users',
+    })
   }
 
   listAccessibleEntrances(
@@ -247,15 +232,12 @@ export class SeamHttpAcsUsers {
     AcsUsersListAccessibleEntrancesResponse,
     'acs_entrances'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/list_accessible_entrances',
-        method: 'post',
-        data: body,
-      },
-      'acs_entrances',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/list_accessible_entrances',
+      method: 'post',
+      body,
+      responseKey: 'acs_entrances',
+    })
   }
 
   removeFromAccessGroup(
@@ -265,15 +247,12 @@ export class SeamHttpAcsUsers {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/remove_from_access_group',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/remove_from_access_group',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   revokeAccessToAllEntrances(
@@ -283,57 +262,45 @@ export class SeamHttpAcsUsers {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/revoke_access_to_all_entrances',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/revoke_access_to_all_entrances',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   suspend(
     body?: AcsUsersSuspendBody,
   ): SeamHttpRequest<undefined | AcsUsersSuspendBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/suspend',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/suspend',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   unsuspend(
     body?: AcsUsersUnsuspendBody,
   ): SeamHttpRequest<undefined | AcsUsersUnsuspendBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/unsuspend',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/unsuspend',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   update(
     body?: AcsUsersUpdateBody,
   ): SeamHttpRequest<undefined | AcsUsersUpdateBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/users/update',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

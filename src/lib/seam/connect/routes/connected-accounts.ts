@@ -157,15 +157,12 @@ export class SeamHttpConnectedAccounts {
   delete(
     body?: ConnectedAccountsDeleteBody,
   ): SeamHttpRequest<undefined | ConnectedAccountsDeleteBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/connected_accounts/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/connected_accounts/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -175,15 +172,12 @@ export class SeamHttpConnectedAccounts {
     ConnectedAccountsGetResponse,
     'connected_account'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/connected_accounts/get',
-        method: 'post',
-        data: body,
-      },
-      'connected_account',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/connected_accounts/get',
+      method: 'post',
+      body,
+      responseKey: 'connected_account',
+    })
   }
 
   list(
@@ -193,15 +187,12 @@ export class SeamHttpConnectedAccounts {
     ConnectedAccountsListResponse,
     'connected_accounts'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/connected_accounts/list',
-        method: 'post',
-        data: body,
-      },
-      'connected_accounts',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/connected_accounts/list',
+      method: 'post',
+      body,
+      responseKey: 'connected_accounts',
+    })
   }
 
   update(
@@ -211,15 +202,12 @@ export class SeamHttpConnectedAccounts {
     ConnectedAccountsUpdateResponse,
     'connected_account'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/connected_accounts/update',
-        method: 'post',
-        data: body,
-      },
-      'connected_account',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/connected_accounts/update',
+      method: 'post',
+      body,
+      responseKey: 'connected_account',
+    })
   }
 }
 

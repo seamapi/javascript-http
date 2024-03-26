@@ -12,8 +12,8 @@ test('returns a SeamHttpRequest', async (t) => {
   const deviceRequest = seam.devices.get({ device_id: seed.august_device_1 })
 
   t.true(deviceRequest instanceof SeamHttpRequest)
-  t.is(deviceRequest.path, '/devices/get')
-  t.deepEqual(deviceRequest.data, {
+  t.is(deviceRequest.url.pathname, '/devices/get')
+  t.deepEqual(deviceRequest.body, {
     device_id: seed.august_device_1,
   })
   t.is(deviceRequest.responseKey, 'device')
@@ -30,6 +30,28 @@ test('returns a SeamHttpRequest', async (t) => {
   // @ts-expect-error because it's an invalid device type.
   const invalidDeviceType: Expected['device_type'] = 'invalid_device_type'
   t.truthy(invalidDeviceType)
+})
+
+test("populates SeamHttpRequest's url property", async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  const deviceRequest = seam.devices.get({ device_id: 'abc123' })
+
+  t.is(deviceRequest.url.pathname, '/devices/get')
+  t.is(deviceRequest.url.search, '')
+
+  const connectWebviewsViewRequest = seam.connectWebviews.view({
+    connect_webview_id: 'abc123',
+    auth_token: 'invalid',
+  })
+
+  t.is(connectWebviewsViewRequest.url.pathname, '/connect_webviews/view')
+  t.is(connectWebviewsViewRequest.url.searchParams.get('auth_token'), 'invalid')
+  t.is(
+    connectWebviewsViewRequest.url.searchParams.get('connect_webview_id'),
+    'abc123',
+  )
 })
 
 type ResponseFromSeamHttpRequest<T> =

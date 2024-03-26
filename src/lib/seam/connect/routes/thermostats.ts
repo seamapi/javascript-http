@@ -170,16 +170,13 @@ export class SeamHttpThermostats {
     ThermostatsCoolResponse,
     'action_attempt'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/cool',
-        method: 'post',
-        data: body,
-      },
-      'action_attempt',
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/cool',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
       options,
-    )
+    })
   }
 
   get(
@@ -189,15 +186,12 @@ export class SeamHttpThermostats {
     ThermostatsGetResponse,
     'thermostat'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/get',
-        method: 'post',
-        data: body,
-      },
-      'thermostat',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/get',
+      method: 'post',
+      body,
+      responseKey: 'thermostat',
+    })
   }
 
   heat(
@@ -208,16 +202,13 @@ export class SeamHttpThermostats {
     ThermostatsHeatResponse,
     'action_attempt'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/heat',
-        method: 'post',
-        data: body,
-      },
-      'action_attempt',
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/heat',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
       options,
-    )
+    })
   }
 
   heatCool(
@@ -228,16 +219,13 @@ export class SeamHttpThermostats {
     ThermostatsHeatCoolResponse,
     'action_attempt'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/heat_cool',
-        method: 'post',
-        data: body,
-      },
-      'action_attempt',
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/heat_cool',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
       options,
-    )
+    })
   }
 
   list(
@@ -247,15 +235,12 @@ export class SeamHttpThermostats {
     ThermostatsListResponse,
     'thermostats'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/list',
-        method: 'post',
-        data: body,
-      },
-      'thermostats',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/list',
+      method: 'post',
+      body,
+      responseKey: 'thermostats',
+    })
   }
 
   off(
@@ -266,16 +251,13 @@ export class SeamHttpThermostats {
     ThermostatsOffResponse,
     'action_attempt'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/off',
-        method: 'post',
-        data: body,
-      },
-      'action_attempt',
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/off',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
       options,
-    )
+    })
   }
 
   setFanMode(
@@ -286,30 +268,24 @@ export class SeamHttpThermostats {
     ThermostatsSetFanModeResponse,
     'action_attempt'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/set_fan_mode',
-        method: 'post',
-        data: body,
-      },
-      'action_attempt',
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/set_fan_mode',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
       options,
-    )
+    })
   }
 
   update(
     body?: ThermostatsUpdateBody,
   ): SeamHttpRequest<undefined | ThermostatsUpdateBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/thermostats/update',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

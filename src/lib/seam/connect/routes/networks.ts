@@ -161,15 +161,12 @@ export class SeamHttpNetworks {
     NetworksGetResponse,
     'network'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/networks/get',
-        method: 'post',
-        data: body,
-      },
-      'network',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/networks/get',
+      method: 'post',
+      body,
+      responseKey: 'network',
+    })
   }
 
   list(
@@ -179,15 +176,12 @@ export class SeamHttpNetworks {
     NetworksListResponse,
     'networks'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/networks/list',
-        method: 'post',
-        data: body,
-      },
-      'networks',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/networks/list',
+      method: 'post',
+      body,
+      responseKey: 'networks',
+    })
   }
 }
 

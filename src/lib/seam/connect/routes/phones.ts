@@ -162,15 +162,12 @@ export class SeamHttpPhones {
   deactivate(
     body?: PhonesDeactivateBody,
   ): SeamHttpRequest<undefined | PhonesDeactivateBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/phones/deactivate',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/phones/deactivate',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   list(
@@ -180,15 +177,12 @@ export class SeamHttpPhones {
     PhonesListResponse,
     'phones'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/phones/list',
-        method: 'post',
-        data: body,
-      },
-      'phones',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/phones/list',
+      method: 'post',
+      body,
+      responseKey: 'phones',
+    })
   }
 }
 

@@ -169,15 +169,12 @@ export class SeamHttpUserIdentities {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/add_acs_user',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/add_acs_user',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   create(
@@ -187,29 +184,23 @@ export class SeamHttpUserIdentities {
     UserIdentitiesCreateResponse,
     'user_identity'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/create',
-        method: 'post',
-        data: body,
-      },
-      'user_identity',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/create',
+      method: 'post',
+      body,
+      responseKey: 'user_identity',
+    })
   }
 
   delete(
     body?: UserIdentitiesDeleteBody,
   ): SeamHttpRequest<undefined | UserIdentitiesDeleteBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/delete',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -219,15 +210,12 @@ export class SeamHttpUserIdentities {
     UserIdentitiesGetResponse,
     'user_identity'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/get',
-        method: 'post',
-        data: body,
-      },
-      'user_identity',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/get',
+      method: 'post',
+      body,
+      responseKey: 'user_identity',
+    })
   }
 
   grantAccessToDevice(
@@ -237,15 +225,12 @@ export class SeamHttpUserIdentities {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/grant_access_to_device',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/grant_access_to_device',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   list(
@@ -255,15 +240,12 @@ export class SeamHttpUserIdentities {
     UserIdentitiesListResponse,
     'user_identities'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/list',
-        method: 'post',
-        data: body,
-      },
-      'user_identities',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/list',
+      method: 'post',
+      body,
+      responseKey: 'user_identities',
+    })
   }
 
   listAccessibleDevices(
@@ -273,15 +255,12 @@ export class SeamHttpUserIdentities {
     UserIdentitiesListAccessibleDevicesResponse,
     'accessible_devices'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/list_accessible_devices',
-        method: 'post',
-        data: body,
-      },
-      'accessible_devices',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/list_accessible_devices',
+      method: 'post',
+      body,
+      responseKey: 'accessible_devices',
+    })
   }
 
   listAcsSystems(
@@ -291,15 +270,12 @@ export class SeamHttpUserIdentities {
     UserIdentitiesListAcsSystemsResponse,
     'acs_systems'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/list_acs_systems',
-        method: 'post',
-        data: body,
-      },
-      'acs_systems',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/list_acs_systems',
+      method: 'post',
+      body,
+      responseKey: 'acs_systems',
+    })
   }
 
   listAcsUsers(
@@ -309,15 +285,12 @@ export class SeamHttpUserIdentities {
     UserIdentitiesListAcsUsersResponse,
     'acs_users'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/list_acs_users',
-        method: 'post',
-        data: body,
-      },
-      'acs_users',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/list_acs_users',
+      method: 'post',
+      body,
+      responseKey: 'acs_users',
+    })
   }
 
   removeAcsUser(
@@ -327,15 +300,12 @@ export class SeamHttpUserIdentities {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/remove_acs_user',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/remove_acs_user',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   revokeAccessToDevice(
@@ -345,29 +315,23 @@ export class SeamHttpUserIdentities {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/revoke_access_to_device',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/revoke_access_to_device',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   update(
     body?: UserIdentitiesUpdateBody,
   ): SeamHttpRequest<undefined | UserIdentitiesUpdateBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/user_identities/update',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

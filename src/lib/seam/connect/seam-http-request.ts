@@ -1,9 +1,10 @@
+import { serializeUrlSearchParams } from '@seamapi/url-search-params-serializer'
 import type { Method } from 'axios'
 
 import type { Client } from './client.js'
-import { SeamHttpActionAttempts } from './index.js'
 import type { SeamHttpRequestOptions } from './options.js'
 import { resolveActionAttempt } from './resolve-action-attempt.js'
+import { SeamHttpActionAttempts } from './routes/index.js'
 
 interface SeamHttpRequestParent {
   readonly client: Client
@@ -11,9 +12,10 @@ interface SeamHttpRequestParent {
 }
 
 export interface SeamHttpRequestConfig<TBody, TResponseKey> {
-  readonly path?: string
-  readonly method?: Method
-  readonly data?: TBody
+  readonly path: string
+  readonly method: Method
+  readonly body?: TBody
+  readonly query?: undefined | Record<string, unknown>
   readonly responseKey: TResponseKey
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 }
@@ -42,16 +44,29 @@ export class SeamHttpRequest<
     return this.#config.responseKey
   }
 
-  public get path(): string {
-    return this.#config.path ?? ''
+  public get url(): URL {
+    const { client } = this.#parent
+    const baseUrl = client.defaults.baseURL
+    if (baseUrl === undefined) {
+      throw new Error('baseUrl is required')
+    }
+
+    const query = this.#config.query
+    if (query === undefined) {
+      return new URL(this.#config.path, baseUrl)
+    }
+    return new URL(
+      `${this.#config.path}?${serializeUrlSearchParams(query)}`,
+      baseUrl,
+    )
   }
 
   public get method(): Method {
     return this.#config.method ?? 'get'
   }
 
-  public get data(): TBody {
-    return this.#config.data as TBody
+  public get body(): TBody {
+    return this.#config.body as TBody
   }
 
   async execute(): Promise<
@@ -59,9 +74,10 @@ export class SeamHttpRequest<
   > {
     const { client } = this.#parent
     const response = await client.request({
-      url: this.path,
-      method: this.method,
-      data: this.data,
+      url: this.#config.path,
+      method: this.#config.method,
+      data: this.#config.body as TBody,
+      params: this.#config.query,
     })
     if (this.responseKey === undefined) {
       return undefined as TResponseKey extends keyof TResponse

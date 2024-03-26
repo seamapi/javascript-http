@@ -157,15 +157,12 @@ export class SeamHttpAcsAccessGroups {
   addUser(
     body?: AcsAccessGroupsAddUserBody,
   ): SeamHttpRequest<undefined | AcsAccessGroupsAddUserBody, void, undefined> {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/access_groups/add_user',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/access_groups/add_user',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
   get(
@@ -175,15 +172,12 @@ export class SeamHttpAcsAccessGroups {
     AcsAccessGroupsGetResponse,
     'acs_access_group'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/access_groups/get',
-        method: 'post',
-        data: body,
-      },
-      'acs_access_group',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/access_groups/get',
+      method: 'post',
+      body,
+      responseKey: 'acs_access_group',
+    })
   }
 
   list(
@@ -193,15 +187,12 @@ export class SeamHttpAcsAccessGroups {
     AcsAccessGroupsListResponse,
     'acs_access_groups'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/access_groups/list',
-        method: 'post',
-        data: body,
-      },
-      'acs_access_groups',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/access_groups/list',
+      method: 'post',
+      body,
+      responseKey: 'acs_access_groups',
+    })
   }
 
   listUsers(
@@ -211,15 +202,12 @@ export class SeamHttpAcsAccessGroups {
     AcsAccessGroupsListUsersResponse,
     'acs_users'
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/access_groups/list_users',
-        method: 'post',
-        data: body,
-      },
-      'acs_users',
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/access_groups/list_users',
+      method: 'post',
+      body,
+      responseKey: 'acs_users',
+    })
   }
 
   removeUser(
@@ -229,15 +217,12 @@ export class SeamHttpAcsAccessGroups {
     void,
     undefined
   > {
-    return new SeamHttpRequest(
-      this,
-      {
-        url: '/acs/access_groups/remove_user',
-        method: 'post',
-        data: body,
-      },
-      undefined,
-    )
+    return new SeamHttpRequest(this, {
+      path: '/acs/access_groups/remove_user',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 
