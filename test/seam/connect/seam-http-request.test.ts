@@ -19,7 +19,7 @@ test('serializes array params when undefined', async (t) => {
   t.deepEqual(deviceRequest.data, {
     device_id: seed.august_device_1,
   })
-  t.is(deviceRequest.resourceKey, 'device')
+  t.is(deviceRequest.responseKey, 'device')
   const device = await deviceRequest
   t.is(device.workspace_id, seed.seed_workspace_1)
   t.is(device.device_id, seed.august_device_1)

@@ -5,83 +5,92 @@ import { SeamHttpActionAttempts } from './index.js'
 import type { SeamHttpRequestOptions } from './options.js'
 import { resolveActionAttempt } from './resolve-action-attempt.js'
 
-export interface SeamHttpRequestParent {
+interface SeamHttpRequestParent {
   readonly client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 }
 
-export interface SeamHttpRequestConfig<TBody> {
-  url?: string
-  method?: Method
-  params?: any
-  data?: TBody
+export interface SeamHttpRequestConfig<TBody, TResponseKey> {
+  readonly url?: string
+  readonly method?: Method
+  readonly params?: any
+  readonly data?: TBody
+  readonly responseKey: TResponseKey
+  readonly options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 }
 
 export type ResponseFromSeamHttpRequest<T> =
-  T extends SeamHttpRequest<any, infer TResponse, infer TResourceKey>
-    ? TResourceKey extends keyof TResponse
-      ? TResponse[TResourceKey]
+  T extends SeamHttpRequest<any, infer TResponse, infer TResponseKey>
+    ? TResponseKey extends keyof TResponse
+      ? TResponse[TResponseKey]
       : undefined
     : never
 
 export class SeamHttpRequest<
   const TBody,
   const TResponse,
-  const TResourceKey extends keyof TResponse | undefined,
+  const TResponseKey extends keyof TResponse | undefined,
 > implements
     PromiseLike<
-      TResourceKey extends keyof TResponse ? TResponse[TResourceKey] : undefined
+      TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
     >
 {
-  readonly parent: SeamHttpRequestParent
-  readonly config: SeamHttpRequestConfig<TBody>
-  readonly resourceKey: TResourceKey
-  readonly options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
+  readonly #parent: SeamHttpRequestParent
+  readonly #config: SeamHttpRequestConfig<TBody, TResponseKey>
 
   constructor(
     parent: SeamHttpRequestParent,
-    config: SeamHttpRequestConfig<TBody>,
-    resourceKey: TResourceKey,
-    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+    config: SeamHttpRequestConfig<TBody, TResponseKey>,
   ) {
-    this.parent = parent
-    this.config = config
-    this.resourceKey = resourceKey
-    this.options = options
+    this.#parent = parent
+    this.#config = config
+  }
+
+  public get responseKey(): TResponseKey {
+    return this.#config.responseKey
   }
 
   public get url(): string {
-    return this.config.url ?? ''
+    return this.#config.url ?? ''
   }
 
   public get method(): Method {
-    return this.config.method ?? 'get'
+    return this.#config.method ?? 'get'
+  }
+
+  public get params() {
+    return this.#config.params
   }
 
   public get data(): TBody {
-    return this.config.data as TBody
+    return this.#config.data as TBody
   }
 
   async execute(): Promise<
-    TResourceKey extends keyof TResponse ? TResponse[TResourceKey] : undefined
+    TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
   > {
-    const { client } = this.parent
-    const response = await client.request(this.config)
-    if (this.resourceKey === undefined) {
-      return undefined as TResourceKey extends keyof TResponse
-        ? TResponse[TResourceKey]
+    const { client } = this.#parent
+    const response = await client.request({
+      url: this.url,
+      method: this.method,
+      params: this.params,
+      data: this.data,
+    })
+    if (this.responseKey === undefined) {
+      return undefined as TResponseKey extends keyof TResponse
+        ? TResponse[TResponseKey]
         : undefined
     }
-    const data = response.data[this.resourceKey]
-    if (this.resourceKey === 'action_attempt') {
+    const data = response.data[this.responseKey]
+    if (this.responseKey === 'action_attempt') {
       const waitForActionAttempt =
-        this.options.waitForActionAttempt ??
-        this.parent.defaults.waitForActionAttempt
+        this.#config.options.waitForActionAttempt ??
+        this.#parent.defaults.waitForActionAttempt
       if (waitForActionAttempt !== false) {
         return await resolveActionAttempt(
           data,
           SeamHttpActionAttempts.fromClient(client, {
-            ...this.parent.defaults,
+            ...this.#parent.defaults,
             waitForActionAttempt: false,
           }),
           typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
@@ -92,15 +101,15 @@ export class SeamHttpRequest<
   }
 
   then<
-    TResult1 = TResourceKey extends keyof TResponse
-      ? TResponse[TResourceKey]
+    TResult1 = TResponseKey extends keyof TResponse
+      ? TResponse[TResponseKey]
       : undefined,
     TResult2 = never,
   >(
     onfulfilled?:
       | ((
-          value: TResourceKey extends keyof TResponse
-            ? TResponse[TResourceKey]
+          value: TResponseKey extends keyof TResponse
+            ? TResponse[TResponseKey]
             : undefined,
         ) => TResult1 | PromiseLike<TResult1>)
       | null

@@ -375,8 +375,10 @@ const renderClassMethod = ({
       url: '${path}',
       method: '${snakeCase(method)}', ${
         requestFormat === 'params' ? 'params,' : ''
-      } ${requestFormat === 'body' ? 'data: body,' : ''}
-    }, ${resource === null ? 'undefined' : `'${resource}'`}${resource === 'action_attempt' ? ', options' : ''})
+      } ${requestFormat === 'body' ? 'data: body,' : ''},
+      responseKey: ${resource === null ? 'undefined' : `'${resource}'`},
+      ${resource === 'action_attempt' ? 'options' : ''}
+    })
   }
   `
 
