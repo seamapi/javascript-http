@@ -12,7 +12,7 @@ test('returns a SeamHttpRequest', async (t) => {
   const deviceRequest = seam.devices.get({ device_id: seed.august_device_1 })
 
   t.true(deviceRequest instanceof SeamHttpRequest)
-  t.is(deviceRequest.url, '/devices/get')
+  t.is(deviceRequest.path, '/devices/get')
   t.deepEqual(deviceRequest.data, {
     device_id: seed.august_device_1,
   })

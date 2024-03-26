@@ -11,9 +11,8 @@ interface SeamHttpRequestParent {
 }
 
 export interface SeamHttpRequestConfig<TBody, TResponseKey> {
-  readonly url?: string
+  readonly path?: string
   readonly method?: Method
-  readonly params?: any
   readonly data?: TBody
   readonly responseKey: TResponseKey
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
@@ -43,16 +42,12 @@ export class SeamHttpRequest<
     return this.#config.responseKey
   }
 
-  public get url(): string {
-    return this.#config.url ?? ''
+  public get path(): string {
+    return this.#config.path ?? ''
   }
 
   public get method(): Method {
     return this.#config.method ?? 'get'
-  }
-
-  public get params(): any {
-    return this.#config.params
   }
 
   public get data(): TBody {
@@ -64,9 +59,8 @@ export class SeamHttpRequest<
   > {
     const { client } = this.#parent
     const response = await client.request({
-      url: this.url,
+      url: this.path,
       method: this.method,
-      params: this.params,
       data: this.data,
     })
     if (this.responseKey === undefined) {
