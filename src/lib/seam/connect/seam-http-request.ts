@@ -16,15 +16,8 @@ export interface SeamHttpRequestConfig<TBody, TResponseKey> {
   readonly params?: any
   readonly data?: TBody
   readonly responseKey: TResponseKey
-  readonly options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
+  readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 }
-
-export type ResponseFromSeamHttpRequest<T> =
-  T extends SeamHttpRequest<any, infer TResponse, infer TResponseKey>
-    ? TResponseKey extends keyof TResponse
-      ? TResponse[TResponseKey]
-      : undefined
-    : never
 
 export class SeamHttpRequest<
   const TBody,
@@ -58,7 +51,7 @@ export class SeamHttpRequest<
     return this.#config.method ?? 'get'
   }
 
-  public get params() {
+  public get params(): any {
     return this.#config.params
   }
 
@@ -84,7 +77,7 @@ export class SeamHttpRequest<
     const data = response.data[this.responseKey]
     if (this.responseKey === 'action_attempt') {
       const waitForActionAttempt =
-        this.#config.options.waitForActionAttempt ??
+        this.#config.options?.waitForActionAttempt ??
         this.#parent.defaults.waitForActionAttempt
       if (waitForActionAttempt !== false) {
         return await resolveActionAttempt(

@@ -3,12 +3,9 @@ import { getTestServer } from 'fixtures/seam/connect/api.js'
 
 import { SeamHttp } from '@seamapi/http/connect'
 
-import {
-  type ResponseFromSeamHttpRequest,
-  SeamHttpRequest,
-} from 'lib/seam/connect/seam-http-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
-test('serializes array params when undefined', async (t) => {
+test('returns a SeamHttpRequest', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
 
@@ -34,3 +31,10 @@ test('serializes array params when undefined', async (t) => {
   const invalidDeviceType: Expected['device_type'] = 'invalid_device_type'
   t.truthy(invalidDeviceType)
 })
+
+type ResponseFromSeamHttpRequest<T> =
+  T extends SeamHttpRequest<any, infer TResponse, infer TResponseKey>
+    ? TResponseKey extends keyof TResponse
+      ? TResponse[TResponseKey]
+      : undefined
+    : never
