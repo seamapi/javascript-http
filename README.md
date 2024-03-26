@@ -396,18 +396,17 @@ This API is used internally and is not directly supported.
 
 #### Inspecting the Request
 
-It is possible to inspect a request before it is sent. All of the client methods return an instance of `SeamHttpRequest` which has `url`, `method` and `body` properties. The request is only sent to the server when the `SeamHttpRequest` is awaited.
+All client methods return an instance of `SeamHttpRequest`.
+Inspect the request before it is sent to the server by intentionally not awaiting the `SeamHttpRequest`;
 
 ```ts
 const seam = new SeamHttp('your-api-key')
 
 const request = seam.devices.list()
 
-console.log('Sending request', request.url, request.method, request.body)
+console.log(`${request.method} ${request.url}`, JSON.stringify(request.body))
 
-const devices = await request // or `await request.execute()` if you prefer
-
-console.log(devices)
+const devices = await request.execute()
 ```
 
 ## Development and Testing
