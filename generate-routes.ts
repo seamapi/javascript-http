@@ -374,8 +374,8 @@ const renderClassMethod = ({
     return new SeamHttpRequest(this, {
       path: '${path}',
       method: '${snakeCase(method)}', ${
-        requestFormat === 'params' ? 'query: params,' : ''
-      } ${requestFormat === 'body' ? 'body: body,' : ''}
+        requestFormat === 'params' ? 'params,' : ''
+      } ${requestFormat === 'body' ? 'body,' : ''}
       responseKey: ${resource === null ? 'undefined' : `'${resource}'`},
       ${resource === 'action_attempt' ? 'options' : ''}
     })

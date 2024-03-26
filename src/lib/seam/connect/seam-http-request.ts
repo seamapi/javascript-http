@@ -15,7 +15,7 @@ export interface SeamHttpRequestConfig<TBody, TResponseKey> {
   readonly path: string
   readonly method: Method
   readonly body?: TBody
-  readonly query?: undefined | Record<string, unknown>
+  readonly params?: undefined | Record<string, unknown>
   readonly responseKey: TResponseKey
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 }
@@ -51,12 +51,12 @@ export class SeamHttpRequest<
       throw new Error('baseUrl is required')
     }
 
-    const query = this.#config.query
-    if (query === undefined) {
+    const params = this.#config.params
+    if (params === undefined) {
       return new URL(this.#config.path, baseUrl)
     }
     return new URL(
-      `${this.#config.path}?${serializeUrlSearchParams(query)}`,
+      `${this.#config.path}?${serializeUrlSearchParams(params)}`,
       baseUrl,
     )
   }
@@ -77,7 +77,7 @@ export class SeamHttpRequest<
       url: this.#config.path,
       method: this.#config.method,
       data: this.#config.body as TBody,
-      params: this.#config.query,
+      params: this.#config.params,
     })
     if (this.responseKey === undefined) {
       return undefined as TResponseKey extends keyof TResponse

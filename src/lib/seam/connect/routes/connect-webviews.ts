@@ -220,7 +220,7 @@ export class SeamHttpConnectWebviews {
     return new SeamHttpRequest(this, {
       path: '/connect_webviews/view',
       method: 'get',
-      query: params,
+      params,
       responseKey: undefined,
     })
   }
