@@ -5,19 +5,19 @@ import { SeamHttpActionAttempts } from './index.js'
 import type { SeamHttpRequestOptions } from './options.js'
 import { resolveActionAttempt } from './resolve-action-attempt.js'
 
-export interface SeamApiRequestParent {
+export interface SeamHttpRequestParent {
   readonly client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 }
 
-export type ResponseFromSeamApiRequest<T> =
-  T extends SeamApiRequest<any, infer TResponse, infer TResourceKey>
+export type ResponseFromSeamHttpRequest<T> =
+  T extends SeamHttpRequest<any, infer TResponse, infer TResourceKey>
     ? TResourceKey extends keyof TResponse
       ? TResponse[TResourceKey]
       : undefined
     : never
 
-export class SeamApiRequest<
+export class SeamHttpRequest<
   const TBody,
   const TResponse,
   const TResourceKey extends keyof TResponse | undefined,
@@ -26,13 +26,13 @@ export class SeamApiRequest<
       TResourceKey extends keyof TResponse ? TResponse[TResourceKey] : undefined
     >
 {
-  readonly parent: SeamApiRequestParent
+  readonly parent: SeamHttpRequestParent
   readonly requestConfig: AxiosRequestConfig<TBody>
   readonly resourceKey: TResourceKey
   readonly options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 
   constructor(
-    parent: SeamApiRequestParent,
+    parent: SeamHttpRequestParent,
     requestConfig: AxiosRequestConfig<TBody>,
     resourceKey: TResourceKey,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},

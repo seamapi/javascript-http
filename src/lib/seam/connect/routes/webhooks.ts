@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,12 +156,12 @@ export class SeamHttpWebhooks {
 
   create(
     body?: WebhooksCreateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | WebhooksCreateBody,
     WebhooksCreateResponse,
     'webhook'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/webhooks/create',
@@ -174,8 +174,8 @@ export class SeamHttpWebhooks {
 
   delete(
     body?: WebhooksDeleteBody,
-  ): SeamApiRequest<undefined | WebhooksDeleteBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | WebhooksDeleteBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/webhooks/delete',
@@ -188,12 +188,12 @@ export class SeamHttpWebhooks {
 
   get(
     body?: WebhooksGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | WebhooksGetParams,
     WebhooksGetResponse,
     'webhook'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/webhooks/get',
@@ -206,12 +206,12 @@ export class SeamHttpWebhooks {
 
   list(
     body?: WebhooksListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | WebhooksListParams,
     WebhooksListResponse,
     'webhooks'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/webhooks/list',
@@ -224,8 +224,8 @@ export class SeamHttpWebhooks {
 
   update(
     body?: WebhooksUpdateBody,
-  ): SeamApiRequest<undefined | WebhooksUpdateBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | WebhooksUpdateBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/webhooks/update',

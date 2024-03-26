@@ -13,7 +13,7 @@ import {
 import {
   type ResponseFromSeamApiRequest,
   SeamApiRequest,
-} from 'lib/seam/connect/seam-api-request.js'
+} from 'lib/seam/connect/seam-http-request.js'
 
 test('SeamHttp: fromClient returns instance that uses client', async (t) => {
   const { seed, endpoint } = await getTestServer(t)

@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -159,12 +159,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
 
   create(
     body?: NoiseSensorsNoiseThresholdsCreateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | NoiseSensorsNoiseThresholdsCreateBody,
     NoiseSensorsNoiseThresholdsCreateResponse,
     'noise_threshold'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/noise_sensors/noise_thresholds/create',
@@ -177,12 +177,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
 
   delete(
     body?: NoiseSensorsNoiseThresholdsDeleteBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | NoiseSensorsNoiseThresholdsDeleteBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/noise_sensors/noise_thresholds/delete',
@@ -195,12 +195,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
 
   get(
     body?: NoiseSensorsNoiseThresholdsGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | NoiseSensorsNoiseThresholdsGetParams,
     NoiseSensorsNoiseThresholdsGetResponse,
     'noise_threshold'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/noise_sensors/noise_thresholds/get',
@@ -213,12 +213,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
 
   list(
     body?: NoiseSensorsNoiseThresholdsListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | NoiseSensorsNoiseThresholdsListParams,
     NoiseSensorsNoiseThresholdsListResponse,
     'noise_thresholds'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/noise_sensors/noise_thresholds/list',
@@ -231,12 +231,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
 
   update(
     body?: NoiseSensorsNoiseThresholdsUpdateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | NoiseSensorsNoiseThresholdsUpdateBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/noise_sensors/noise_thresholds/update',

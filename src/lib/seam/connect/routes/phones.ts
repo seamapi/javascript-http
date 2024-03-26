@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpPhonesSimulate } from './phones-simulate.js'
@@ -161,8 +161,8 @@ export class SeamHttpPhones {
 
   deactivate(
     body?: PhonesDeactivateBody,
-  ): SeamApiRequest<undefined | PhonesDeactivateBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | PhonesDeactivateBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/phones/deactivate',
@@ -175,12 +175,12 @@ export class SeamHttpPhones {
 
   list(
     body?: PhonesListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | PhonesListParams,
     PhonesListResponse,
     'phones'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/phones/list',

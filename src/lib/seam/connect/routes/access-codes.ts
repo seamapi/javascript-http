@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpAccessCodesUnmanaged } from './access-codes-unmanaged.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
@@ -161,12 +161,12 @@ export class SeamHttpAccessCodes {
 
   create(
     body?: AccessCodesCreateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesCreateBody,
     AccessCodesCreateResponse,
     'access_code'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/create',
@@ -179,12 +179,12 @@ export class SeamHttpAccessCodes {
 
   createMultiple(
     body?: AccessCodesCreateMultipleBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesCreateMultipleBody,
     AccessCodesCreateMultipleResponse,
     'access_codes'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/create_multiple',
@@ -197,8 +197,8 @@ export class SeamHttpAccessCodes {
 
   delete(
     body?: AccessCodesDeleteBody,
-  ): SeamApiRequest<undefined | AccessCodesDeleteBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | AccessCodesDeleteBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/delete',
@@ -211,12 +211,12 @@ export class SeamHttpAccessCodes {
 
   generateCode(
     body?: AccessCodesGenerateCodeBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesGenerateCodeBody,
     AccessCodesGenerateCodeResponse,
     'generated_code'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/generate_code',
@@ -229,12 +229,12 @@ export class SeamHttpAccessCodes {
 
   get(
     body?: AccessCodesGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesGetParams,
     AccessCodesGetResponse,
     'access_code'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/get',
@@ -247,12 +247,12 @@ export class SeamHttpAccessCodes {
 
   list(
     body?: AccessCodesListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesListParams,
     AccessCodesListResponse,
     'access_codes'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/list',
@@ -265,12 +265,12 @@ export class SeamHttpAccessCodes {
 
   pullBackupAccessCode(
     body?: AccessCodesPullBackupAccessCodeBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesPullBackupAccessCodeBody,
     AccessCodesPullBackupAccessCodeResponse,
     'backup_access_code'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/pull_backup_access_code',
@@ -283,8 +283,8 @@ export class SeamHttpAccessCodes {
 
   update(
     body?: AccessCodesUpdateBody,
-  ): SeamApiRequest<undefined | AccessCodesUpdateBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | AccessCodesUpdateBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/update',

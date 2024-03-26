@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -157,12 +157,12 @@ export class SeamHttpActionAttempts {
   get(
     body?: ActionAttemptsGetParams,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ActionAttemptsGetParams,
     ActionAttemptsGetResponse,
     'action_attempt'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/action_attempts/get',
@@ -176,12 +176,12 @@ export class SeamHttpActionAttempts {
 
   list(
     body?: ActionAttemptsListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ActionAttemptsListParams,
     ActionAttemptsListResponse,
     'action_attempts'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/action_attempts/list',

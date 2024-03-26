@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,12 +156,12 @@ export class SeamHttpDevicesUnmanaged {
 
   get(
     body?: DevicesUnmanagedGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | DevicesUnmanagedGetParams,
     DevicesUnmanagedGetResponse,
     'device'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/devices/unmanaged/get',
@@ -174,12 +174,12 @@ export class SeamHttpDevicesUnmanaged {
 
   list(
     body?: DevicesUnmanagedListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | DevicesUnmanagedListParams,
     DevicesUnmanagedListResponse,
     'devices'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/devices/unmanaged/list',
@@ -192,8 +192,8 @@ export class SeamHttpDevicesUnmanaged {
 
   update(
     body?: DevicesUnmanagedUpdateBody,
-  ): SeamApiRequest<undefined | DevicesUnmanagedUpdateBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | DevicesUnmanagedUpdateBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/devices/unmanaged/update',

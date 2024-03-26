@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpUserIdentitiesEnrollmentAutomations } from './user-identities-enrollment-automations.js'
@@ -164,8 +164,12 @@ export class SeamHttpUserIdentities {
 
   addAcsUser(
     body?: UserIdentitiesAddAcsUserBody,
-  ): SeamApiRequest<undefined | UserIdentitiesAddAcsUserBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<
+    undefined | UserIdentitiesAddAcsUserBody,
+    void,
+    undefined
+  > {
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/add_acs_user',
@@ -178,12 +182,12 @@ export class SeamHttpUserIdentities {
 
   create(
     body?: UserIdentitiesCreateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesCreateBody,
     UserIdentitiesCreateResponse,
     'user_identity'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/create',
@@ -196,8 +200,8 @@ export class SeamHttpUserIdentities {
 
   delete(
     body?: UserIdentitiesDeleteBody,
-  ): SeamApiRequest<undefined | UserIdentitiesDeleteBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | UserIdentitiesDeleteBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/delete',
@@ -210,12 +214,12 @@ export class SeamHttpUserIdentities {
 
   get(
     body?: UserIdentitiesGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesGetParams,
     UserIdentitiesGetResponse,
     'user_identity'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/get',
@@ -228,12 +232,12 @@ export class SeamHttpUserIdentities {
 
   grantAccessToDevice(
     body?: UserIdentitiesGrantAccessToDeviceBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesGrantAccessToDeviceBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/grant_access_to_device',
@@ -246,12 +250,12 @@ export class SeamHttpUserIdentities {
 
   list(
     body?: UserIdentitiesListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesListParams,
     UserIdentitiesListResponse,
     'user_identities'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/list',
@@ -264,12 +268,12 @@ export class SeamHttpUserIdentities {
 
   listAccessibleDevices(
     body?: UserIdentitiesListAccessibleDevicesParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesListAccessibleDevicesParams,
     UserIdentitiesListAccessibleDevicesResponse,
     'accessible_devices'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/list_accessible_devices',
@@ -282,12 +286,12 @@ export class SeamHttpUserIdentities {
 
   listAcsSystems(
     body?: UserIdentitiesListAcsSystemsParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesListAcsSystemsParams,
     UserIdentitiesListAcsSystemsResponse,
     'acs_systems'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/list_acs_systems',
@@ -300,12 +304,12 @@ export class SeamHttpUserIdentities {
 
   listAcsUsers(
     body?: UserIdentitiesListAcsUsersParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesListAcsUsersParams,
     UserIdentitiesListAcsUsersResponse,
     'acs_users'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/list_acs_users',
@@ -318,12 +322,12 @@ export class SeamHttpUserIdentities {
 
   removeAcsUser(
     body?: UserIdentitiesRemoveAcsUserBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesRemoveAcsUserBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/remove_acs_user',
@@ -336,12 +340,12 @@ export class SeamHttpUserIdentities {
 
   revokeAccessToDevice(
     body?: UserIdentitiesRevokeAccessToDeviceBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesRevokeAccessToDeviceBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/revoke_access_to_device',
@@ -354,8 +358,8 @@ export class SeamHttpUserIdentities {
 
   update(
     body?: UserIdentitiesUpdateBody,
-  ): SeamApiRequest<undefined | UserIdentitiesUpdateBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | UserIdentitiesUpdateBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/update',

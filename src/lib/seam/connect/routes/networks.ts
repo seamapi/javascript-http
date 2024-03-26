@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,12 +156,12 @@ export class SeamHttpNetworks {
 
   get(
     body?: NetworksGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | NetworksGetParams,
     NetworksGetResponse,
     'network'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/networks/get',
@@ -174,12 +174,12 @@ export class SeamHttpNetworks {
 
   list(
     body?: NetworksListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | NetworksListParams,
     NetworksListResponse,
     'networks'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/networks/list',

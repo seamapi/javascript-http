@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,8 +156,8 @@ export class SeamHttpEvents {
 
   get(
     body?: EventsGetParams,
-  ): SeamApiRequest<undefined | EventsGetParams, EventsGetResponse, 'event'> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | EventsGetParams, EventsGetResponse, 'event'> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/events/get',
@@ -170,12 +170,12 @@ export class SeamHttpEvents {
 
   list(
     body?: EventsListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | EventsListParams,
     EventsListResponse,
     'events'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/events/list',

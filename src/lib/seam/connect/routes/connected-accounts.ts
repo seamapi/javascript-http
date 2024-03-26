@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,8 +156,8 @@ export class SeamHttpConnectedAccounts {
 
   delete(
     body?: ConnectedAccountsDeleteBody,
-  ): SeamApiRequest<undefined | ConnectedAccountsDeleteBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | ConnectedAccountsDeleteBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/connected_accounts/delete',
@@ -170,12 +170,12 @@ export class SeamHttpConnectedAccounts {
 
   get(
     body?: ConnectedAccountsGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ConnectedAccountsGetParams,
     ConnectedAccountsGetResponse,
     'connected_account'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/connected_accounts/get',
@@ -188,12 +188,12 @@ export class SeamHttpConnectedAccounts {
 
   list(
     body?: ConnectedAccountsListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ConnectedAccountsListParams,
     ConnectedAccountsListResponse,
     'connected_accounts'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/connected_accounts/list',
@@ -206,12 +206,12 @@ export class SeamHttpConnectedAccounts {
 
   update(
     body?: ConnectedAccountsUpdateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ConnectedAccountsUpdateBody,
     ConnectedAccountsUpdateResponse,
     'connected_account'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/connected_accounts/update',

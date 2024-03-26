@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,8 +156,8 @@ export class SeamHttpAcsAccessGroups {
 
   addUser(
     body?: AcsAccessGroupsAddUserBody,
-  ): SeamApiRequest<undefined | AcsAccessGroupsAddUserBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | AcsAccessGroupsAddUserBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/access_groups/add_user',
@@ -170,12 +170,12 @@ export class SeamHttpAcsAccessGroups {
 
   get(
     body?: AcsAccessGroupsGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsAccessGroupsGetParams,
     AcsAccessGroupsGetResponse,
     'acs_access_group'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/access_groups/get',
@@ -188,12 +188,12 @@ export class SeamHttpAcsAccessGroups {
 
   list(
     body?: AcsAccessGroupsListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsAccessGroupsListParams,
     AcsAccessGroupsListResponse,
     'acs_access_groups'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/access_groups/list',
@@ -206,12 +206,12 @@ export class SeamHttpAcsAccessGroups {
 
   listUsers(
     body?: AcsAccessGroupsListUsersParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsAccessGroupsListUsersParams,
     AcsAccessGroupsListUsersResponse,
     'acs_users'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/access_groups/list_users',
@@ -224,12 +224,12 @@ export class SeamHttpAcsAccessGroups {
 
   removeUser(
     body?: AcsAccessGroupsRemoveUserBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsAccessGroupsRemoveUserBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/access_groups/remove_user',

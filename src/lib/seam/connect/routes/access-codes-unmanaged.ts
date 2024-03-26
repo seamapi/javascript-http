@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,12 +156,12 @@ export class SeamHttpAccessCodesUnmanaged {
 
   convertToManaged(
     body?: AccessCodesUnmanagedConvertToManagedBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesUnmanagedConvertToManagedBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/unmanaged/convert_to_managed',
@@ -174,12 +174,12 @@ export class SeamHttpAccessCodesUnmanaged {
 
   delete(
     body?: AccessCodesUnmanagedDeleteBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesUnmanagedDeleteBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/unmanaged/delete',
@@ -192,12 +192,12 @@ export class SeamHttpAccessCodesUnmanaged {
 
   get(
     body?: AccessCodesUnmanagedGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesUnmanagedGetParams,
     AccessCodesUnmanagedGetResponse,
     'access_code'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/unmanaged/get',
@@ -210,12 +210,12 @@ export class SeamHttpAccessCodesUnmanaged {
 
   list(
     body?: AccessCodesUnmanagedListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesUnmanagedListParams,
     AccessCodesUnmanagedListResponse,
     'access_codes'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/unmanaged/list',
@@ -228,12 +228,12 @@ export class SeamHttpAccessCodesUnmanaged {
 
   update(
     body?: AccessCodesUnmanagedUpdateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AccessCodesUnmanagedUpdateBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/access_codes/unmanaged/update',

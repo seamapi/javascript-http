@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -159,12 +159,12 @@ export class SeamHttpThermostatsClimateSettingSchedules {
 
   create(
     body?: ThermostatsClimateSettingSchedulesCreateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ThermostatsClimateSettingSchedulesCreateBody,
     ThermostatsClimateSettingSchedulesCreateResponse,
     'climate_setting_schedule'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/thermostats/climate_setting_schedules/create',
@@ -177,12 +177,12 @@ export class SeamHttpThermostatsClimateSettingSchedules {
 
   delete(
     body?: ThermostatsClimateSettingSchedulesDeleteBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ThermostatsClimateSettingSchedulesDeleteBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/thermostats/climate_setting_schedules/delete',
@@ -195,12 +195,12 @@ export class SeamHttpThermostatsClimateSettingSchedules {
 
   get(
     body?: ThermostatsClimateSettingSchedulesGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ThermostatsClimateSettingSchedulesGetParams,
     ThermostatsClimateSettingSchedulesGetResponse,
     'climate_setting_schedule'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/thermostats/climate_setting_schedules/get',
@@ -213,12 +213,12 @@ export class SeamHttpThermostatsClimateSettingSchedules {
 
   list(
     body?: ThermostatsClimateSettingSchedulesListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ThermostatsClimateSettingSchedulesListParams,
     ThermostatsClimateSettingSchedulesListResponse,
     'climate_setting_schedules'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/thermostats/climate_setting_schedules/list',
@@ -231,12 +231,12 @@ export class SeamHttpThermostatsClimateSettingSchedules {
 
   update(
     body?: ThermostatsClimateSettingSchedulesUpdateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ThermostatsClimateSettingSchedulesUpdateBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/thermostats/climate_setting_schedules/update',

@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,12 +156,12 @@ export class SeamHttpAcsCredentials {
 
   assign(
     body?: AcsCredentialsAssignBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsCredentialsAssignBody,
     AcsCredentialsAssignResponse,
     'acs_credential'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/credentials/assign',
@@ -174,12 +174,12 @@ export class SeamHttpAcsCredentials {
 
   create(
     body?: AcsCredentialsCreateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsCredentialsCreateBody,
     AcsCredentialsCreateResponse,
     'acs_credential'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/credentials/create',
@@ -192,8 +192,8 @@ export class SeamHttpAcsCredentials {
 
   delete(
     body?: AcsCredentialsDeleteBody,
-  ): SeamApiRequest<undefined | AcsCredentialsDeleteBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | AcsCredentialsDeleteBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/credentials/delete',
@@ -206,12 +206,12 @@ export class SeamHttpAcsCredentials {
 
   get(
     body?: AcsCredentialsGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsCredentialsGetParams,
     AcsCredentialsGetResponse,
     'acs_credential'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/credentials/get',
@@ -224,12 +224,12 @@ export class SeamHttpAcsCredentials {
 
   list(
     body?: AcsCredentialsListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsCredentialsListParams,
     AcsCredentialsListResponse,
     'acs_credentials'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/credentials/list',
@@ -242,12 +242,12 @@ export class SeamHttpAcsCredentials {
 
   unassign(
     body?: AcsCredentialsUnassignBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsCredentialsUnassignBody,
     AcsCredentialsUnassignResponse,
     'acs_credential'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/credentials/unassign',
@@ -260,12 +260,12 @@ export class SeamHttpAcsCredentials {
 
   update(
     body?: AcsCredentialsUpdateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsCredentialsUpdateBody,
     AcsCredentialsUpdateResponse,
     'acs_credential'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/credentials/update',

@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,12 +156,12 @@ export class SeamHttpAcsEntrances {
 
   get(
     body?: AcsEntrancesGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsEntrancesGetParams,
     AcsEntrancesGetResponse,
     'acs_entrance'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/entrances/get',
@@ -174,8 +174,8 @@ export class SeamHttpAcsEntrances {
 
   grantAccess(
     body?: AcsEntrancesGrantAccessBody,
-  ): SeamApiRequest<undefined | AcsEntrancesGrantAccessBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | AcsEntrancesGrantAccessBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/entrances/grant_access',
@@ -188,12 +188,12 @@ export class SeamHttpAcsEntrances {
 
   list(
     body?: AcsEntrancesListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsEntrancesListParams,
     AcsEntrancesListResponse,
     'acs_entrances'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/entrances/list',
@@ -206,12 +206,12 @@ export class SeamHttpAcsEntrances {
 
   listCredentialsWithAccess(
     body?: AcsEntrancesListCredentialsWithAccessParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | AcsEntrancesListCredentialsWithAccessParams,
     AcsEntrancesListCredentialsWithAccessResponse,
     'acs_credentials'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/acs/entrances/list_credentials_with_access',

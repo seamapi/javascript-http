@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,12 +156,12 @@ export class SeamHttpWorkspaces {
 
   create(
     body?: WorkspacesCreateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | WorkspacesCreateBody,
     WorkspacesCreateResponse,
     'workspace'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/workspaces/create',
@@ -174,12 +174,12 @@ export class SeamHttpWorkspaces {
 
   get(
     body?: WorkspacesGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | WorkspacesGetParams,
     WorkspacesGetResponse,
     'workspace'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/workspaces/get',
@@ -192,12 +192,12 @@ export class SeamHttpWorkspaces {
 
   list(
     body?: WorkspacesListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | WorkspacesListParams,
     WorkspacesListResponse,
     'workspaces'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/workspaces/list',
@@ -210,8 +210,8 @@ export class SeamHttpWorkspaces {
 
   resetSandbox(
     body?: WorkspacesResetSandboxBody,
-  ): SeamApiRequest<undefined | WorkspacesResetSandboxBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | WorkspacesResetSandboxBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/workspaces/reset_sandbox',

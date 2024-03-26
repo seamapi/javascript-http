@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpDevicesSimulate } from './devices-simulate.js'
@@ -166,8 +166,8 @@ export class SeamHttpDevices {
 
   delete(
     body?: DevicesDeleteBody,
-  ): SeamApiRequest<undefined | DevicesDeleteBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | DevicesDeleteBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/devices/delete',
@@ -180,12 +180,12 @@ export class SeamHttpDevices {
 
   get(
     body?: DevicesGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | DevicesGetParams,
     DevicesGetResponse,
     'device'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/devices/get',
@@ -198,12 +198,12 @@ export class SeamHttpDevices {
 
   list(
     body?: DevicesListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | DevicesListParams,
     DevicesListResponse,
     'devices'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/devices/list',
@@ -216,12 +216,12 @@ export class SeamHttpDevices {
 
   listDeviceProviders(
     body?: DevicesListDeviceProvidersParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | DevicesListDeviceProvidersParams,
     DevicesListDeviceProvidersResponse,
     'device_providers'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/devices/list_device_providers',
@@ -234,8 +234,8 @@ export class SeamHttpDevices {
 
   update(
     body?: DevicesUpdateBody,
-  ): SeamApiRequest<undefined | DevicesUpdateBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | DevicesUpdateBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/devices/update',

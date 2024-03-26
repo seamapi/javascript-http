@@ -35,7 +35,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -160,12 +160,12 @@ export class SeamHttpConnectWebviews {
 
   create(
     body?: ConnectWebviewsCreateBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ConnectWebviewsCreateBody,
     ConnectWebviewsCreateResponse,
     'connect_webview'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/connect_webviews/create',
@@ -178,8 +178,8 @@ export class SeamHttpConnectWebviews {
 
   delete(
     body?: ConnectWebviewsDeleteBody,
-  ): SeamApiRequest<undefined | ConnectWebviewsDeleteBody, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | ConnectWebviewsDeleteBody, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/connect_webviews/delete',
@@ -192,12 +192,12 @@ export class SeamHttpConnectWebviews {
 
   get(
     body?: ConnectWebviewsGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ConnectWebviewsGetParams,
     ConnectWebviewsGetResponse,
     'connect_webview'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/connect_webviews/get',
@@ -210,12 +210,12 @@ export class SeamHttpConnectWebviews {
 
   list(
     body?: ConnectWebviewsListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | ConnectWebviewsListParams,
     ConnectWebviewsListResponse,
     'connect_webviews'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/connect_webviews/list',
@@ -228,8 +228,8 @@ export class SeamHttpConnectWebviews {
 
   view(
     params?: ConnectWebviewsViewParams,
-  ): SeamApiRequest<undefined | ConnectWebviewsViewParams, void, undefined> {
-    return new SeamApiRequest(
+  ): SeamHttpRequest<undefined | ConnectWebviewsViewParams, void, undefined> {
+    return new SeamHttpRequest(
       this,
       {
         url: '/connect_webviews/view',

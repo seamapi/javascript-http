@@ -31,7 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -159,12 +159,12 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
 
   delete(
     body?: UserIdentitiesEnrollmentAutomationsDeleteBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesEnrollmentAutomationsDeleteBody,
     void,
     undefined
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/enrollment_automations/delete',
@@ -177,12 +177,12 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
 
   get(
     body?: UserIdentitiesEnrollmentAutomationsGetParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesEnrollmentAutomationsGetParams,
     UserIdentitiesEnrollmentAutomationsGetResponse,
     'enrollment_automation'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/enrollment_automations/get',
@@ -195,12 +195,12 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
 
   launch(
     body?: UserIdentitiesEnrollmentAutomationsLaunchBody,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesEnrollmentAutomationsLaunchBody,
     UserIdentitiesEnrollmentAutomationsLaunchResponse,
     'enrollment_automation'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/enrollment_automations/launch',
@@ -213,12 +213,12 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
 
   list(
     body?: UserIdentitiesEnrollmentAutomationsListParams,
-  ): SeamApiRequest<
+  ): SeamHttpRequest<
     undefined | UserIdentitiesEnrollmentAutomationsListParams,
     UserIdentitiesEnrollmentAutomationsListResponse,
     'enrollment_automations'
   > {
-    return new SeamApiRequest(
+    return new SeamHttpRequest(
       this,
       {
         url: '/user_identities/enrollment_automations/list',
