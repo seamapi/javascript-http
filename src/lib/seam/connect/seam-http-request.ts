@@ -62,7 +62,7 @@ export class SeamHttpRequest<
   }
 
   public get method(): Method {
-    return this.#config.method ?? 'get'
+    return this.#config.method
   }
 
   public get body(): TBody {
