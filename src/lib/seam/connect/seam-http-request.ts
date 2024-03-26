@@ -11,7 +11,7 @@ interface SeamHttpRequestParent {
   readonly defaults: Required<SeamHttpRequestOptions>
 }
 
-export interface SeamHttpRequestConfig<TBody, TResponseKey> {
+interface SeamHttpRequestConfig<TBody, TResponseKey> {
   readonly path: string
   readonly method: Method
   readonly body?: TBody
