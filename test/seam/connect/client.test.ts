@@ -10,10 +10,8 @@ import {
   type WorkspacesListResponse,
 } from '@seamapi/http/connect'
 
-import {
-  type ResponseFromSeamHttpRequest,
-  SeamHttpRequest,
-} from 'lib/seam/connect/seam-http-request.js'
+
+
 
 test('SeamHttp: fromClient returns instance that uses client', async (t) => {
   const { seed, endpoint } = await getTestServer(t)

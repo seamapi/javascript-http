@@ -2,9 +2,10 @@ import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 
 import { SeamHttp } from '@seamapi/http/connect'
+
 import {
-  SeamHttpRequest,
   type ResponseFromSeamHttpRequest,
+  SeamHttpRequest,
 } from 'lib/seam/connect/seam-http-request.js'
 
 test('serializes array params when undefined', async (t) => {
