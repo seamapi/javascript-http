@@ -295,7 +295,7 @@ import {
 import {
   resolveActionAttempt,
 } from 'lib/seam/connect/resolve-action-attempt.js'
-import { SeamApiRequest } from 'lib/seam/connect/seam-api-request.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 ${
   namespace === 'client_sessions'
@@ -361,7 +361,7 @@ const renderClassMethod = ({
       namespace,
     })},
     ${renderClassMethodOptions({ resource })}
-  ): SeamApiRequest<${isRequestParamOptional ? 'undefined | ' : ''}${renderRequestType(
+  ): SeamHttpRequest<${isRequestParamOptional ? 'undefined | ' : ''}${renderRequestType(
     {
       name,
       namespace,
@@ -371,7 +371,7 @@ const renderClassMethod = ({
       ? 'void, undefined'
       : `${renderResponseType({ name, namespace })}, '${resource}'`
   }> {
-    return new SeamApiRequest(this, {
+    return new SeamHttpRequest(this, {
       url: '${path}',
       method: '${snakeCase(method)}', ${
         requestFormat === 'params' ? 'params,' : ''
