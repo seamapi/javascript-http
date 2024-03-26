@@ -55,10 +55,13 @@ export class SeamHttpRequest<
     if (params === undefined) {
       return new URL(this.#config.path, baseUrl)
     }
-    return new URL(
-      `${this.#config.path}?${serializeUrlSearchParams(params)}`,
-      baseUrl,
-    )
+
+    const serializer =
+      typeof client.defaults.paramsSerializer === 'function'
+        ? client.defaults.paramsSerializer
+        : serializeUrlSearchParams
+
+    return new URL(`${this.#config.path}?${serializer(params)}`, baseUrl)
   }
 
   public get method(): Method {
