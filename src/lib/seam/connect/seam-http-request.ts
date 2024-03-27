@@ -60,9 +60,9 @@ export class SeamHttpRequest<
       : `/${this.#config.path}`
 
     const path =
-      params == null ? pathname : [pathname, serializer(params)].join('?')
+      params == null ? pathname : `${pathname}?${serializer(params)}`
 
-    return new URL([origin, path].join(''))
+    return new URL(`${origin}${path}`)
   }
 
   public get method(): Method {
@@ -138,7 +138,7 @@ const getUrlPrefix = (input: string): string => {
   } catch (err: unknown) {
     if (globalThis.location != null) {
       const pathname = input.startsWith('/') ? input : `/${input}`
-      return new URL([globalThis.location.origin, pathname].join('')).toString()
+      return new URL(`${globalThis.location.origin}${pathname}`).toString()
     }
     throw err
   }
