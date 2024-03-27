@@ -46,22 +46,22 @@ export class SeamHttpRequest<
 
   public get url(): URL {
     const { client } = this.#parent
-    const baseUrl = client.defaults.baseURL
-    if (baseUrl === undefined) {
-      throw new Error('baseUrl is required')
-    }
-
-    const params = this.#config.params
-    if (params === undefined) {
-      return new URL(this.#config.path, baseUrl)
-    }
+    const { params } = this.#config
 
     const serializer =
       typeof client.defaults.paramsSerializer === 'function'
         ? client.defaults.paramsSerializer
         : serializeUrlSearchParams
 
-    return new URL(`${this.#config.path}?${serializer(params)}`, baseUrl)
+    const origin = getUrlPrefix(client.defaults.baseURL ?? '')
+
+    const pathname = this.#config.path.startsWith('/')
+      ? this.#config.path
+      : `/${this.#config.path}`
+
+    const path = params == null ? pathname : `${pathname}?${serializer(params)}`
+
+    return new URL(`${origin}${path}`)
   }
 
   public get method(): Method {
@@ -127,4 +127,19 @@ export class SeamHttpRequest<
   ): PromiseLike<TResult1 | TResult2> {
     return this.execute().then(onfulfilled, onrejected)
   }
+}
+
+const getUrlPrefix = (input: string): string => {
+  if (URL.canParse(input)) {
+    const url = new URL(input).toString()
+    if (url.endsWith('/')) return url.slice(0, -1)
+    return url
+  }
+  if (globalThis.location != null) {
+    const pathname = input.startsWith('/') ? input : `/${input}`
+    return new URL(`${globalThis.location.origin}${pathname}`).toString()
+  }
+  throw new Error(
+    `Cannot resolve origin from ${input} in a non-browser environment`,
+  )
 }
