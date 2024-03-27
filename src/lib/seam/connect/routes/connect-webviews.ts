@@ -35,6 +35,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -157,55 +158,54 @@ export class SeamHttpConnectWebviews {
     await clientSessions.get()
   }
 
-  async create(
+  create(
     body?: ConnectWebviewsCreateBody,
-  ): Promise<ConnectWebviewsCreateResponse['connect_webview']> {
-    const { data } = await this.client.request<ConnectWebviewsCreateResponse>({
-      url: '/connect_webviews/create',
+  ): SeamHttpRequest<ConnectWebviewsCreateResponse, 'connect_webview'> {
+    return new SeamHttpRequest(this, {
+      path: '/connect_webviews/create',
       method: 'post',
-      data: body,
-    })
-
-    return data.connect_webview
-  }
-
-  async delete(body?: ConnectWebviewsDeleteBody): Promise<void> {
-    await this.client.request<ConnectWebviewsDeleteResponse>({
-      url: '/connect_webviews/delete',
-      method: 'post',
-      data: body,
+      body,
+      responseKey: 'connect_webview',
     })
   }
 
-  async get(
+  delete(body?: ConnectWebviewsDeleteBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/connect_webviews/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  get(
     body?: ConnectWebviewsGetParams,
-  ): Promise<ConnectWebviewsGetResponse['connect_webview']> {
-    const { data } = await this.client.request<ConnectWebviewsGetResponse>({
-      url: '/connect_webviews/get',
+  ): SeamHttpRequest<ConnectWebviewsGetResponse, 'connect_webview'> {
+    return new SeamHttpRequest(this, {
+      path: '/connect_webviews/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'connect_webview',
     })
-
-    return data.connect_webview
   }
 
-  async list(
+  list(
     body?: ConnectWebviewsListParams,
-  ): Promise<ConnectWebviewsListResponse['connect_webviews']> {
-    const { data } = await this.client.request<ConnectWebviewsListResponse>({
-      url: '/connect_webviews/list',
+  ): SeamHttpRequest<ConnectWebviewsListResponse, 'connect_webviews'> {
+    return new SeamHttpRequest(this, {
+      path: '/connect_webviews/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'connect_webviews',
     })
-
-    return data.connect_webviews
   }
 
-  async view(params?: ConnectWebviewsViewParams): Promise<void> {
-    await this.client.request<ConnectWebviewsViewResponse>({
-      url: '/connect_webviews/view',
+  view(params?: ConnectWebviewsViewParams): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/connect_webviews/view',
       method: 'get',
       params,
+      responseKey: undefined,
     })
   }
 }

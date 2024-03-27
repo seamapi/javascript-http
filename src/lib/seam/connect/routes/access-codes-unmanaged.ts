@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,56 +154,58 @@ export class SeamHttpAccessCodesUnmanaged {
     await clientSessions.get()
   }
 
-  async convertToManaged(
+  convertToManaged(
     body?: AccessCodesUnmanagedConvertToManagedBody,
-  ): Promise<void> {
-    await this.client.request<AccessCodesUnmanagedConvertToManagedResponse>({
-      url: '/access_codes/unmanaged/convert_to_managed',
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/unmanaged/convert_to_managed',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async delete(body?: AccessCodesUnmanagedDeleteBody): Promise<void> {
-    await this.client.request<AccessCodesUnmanagedDeleteResponse>({
-      url: '/access_codes/unmanaged/delete',
+  delete(
+    body?: AccessCodesUnmanagedDeleteBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/unmanaged/delete',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async get(
+  get(
     body?: AccessCodesUnmanagedGetParams,
-  ): Promise<AccessCodesUnmanagedGetResponse['access_code']> {
-    const { data } = await this.client.request<AccessCodesUnmanagedGetResponse>(
-      {
-        url: '/access_codes/unmanaged/get',
-        method: 'post',
-        data: body,
-      },
-    )
-
-    return data.access_code
-  }
-
-  async list(
-    body?: AccessCodesUnmanagedListParams,
-  ): Promise<AccessCodesUnmanagedListResponse['access_codes']> {
-    const { data } =
-      await this.client.request<AccessCodesUnmanagedListResponse>({
-        url: '/access_codes/unmanaged/list',
-        method: 'post',
-        data: body,
-      })
-
-    return data.access_codes
-  }
-
-  async update(body?: AccessCodesUnmanagedUpdateBody): Promise<void> {
-    await this.client.request<AccessCodesUnmanagedUpdateResponse>({
-      url: '/access_codes/unmanaged/update',
+  ): SeamHttpRequest<AccessCodesUnmanagedGetResponse, 'access_code'> {
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/unmanaged/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'access_code',
+    })
+  }
+
+  list(
+    body?: AccessCodesUnmanagedListParams,
+  ): SeamHttpRequest<AccessCodesUnmanagedListResponse, 'access_codes'> {
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/unmanaged/list',
+      method: 'post',
+      body,
+      responseKey: 'access_codes',
+    })
+  }
+
+  update(
+    body?: AccessCodesUnmanagedUpdateBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/unmanaged/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
     })
   }
 }

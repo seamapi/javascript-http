@@ -394,6 +394,21 @@ const devices = await seam.client.get<DevicesListResponse>('/devices/list')
 An Axios compatible client may be provided to create a `SeamHttp` instance.
 This API is used internally and is not directly supported.
 
+#### Inspecting the Request
+
+All client methods return an instance of `SeamHttpRequest`.
+Inspect the request before it is sent to the server by intentionally not awaiting the `SeamHttpRequest`:
+
+```ts
+const seam = new SeamHttp('your-api-key')
+
+const request = seam.devices.list()
+
+console.log(`${request.method} ${request.url}`, JSON.stringify(request.body))
+
+const devices = await request.execute()
+```
+
 ## Development and Testing
 
 ### Quickstart

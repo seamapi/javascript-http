@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,112 +154,116 @@ export class SeamHttpAcsUsers {
     await clientSessions.get()
   }
 
-  async addToAccessGroup(body?: AcsUsersAddToAccessGroupBody): Promise<void> {
-    await this.client.request<AcsUsersAddToAccessGroupResponse>({
-      url: '/acs/users/add_to_access_group',
+  addToAccessGroup(
+    body?: AcsUsersAddToAccessGroupBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/add_to_access_group',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async create(
+  create(
     body?: AcsUsersCreateBody,
-  ): Promise<AcsUsersCreateResponse['acs_user']> {
-    const { data } = await this.client.request<AcsUsersCreateResponse>({
-      url: '/acs/users/create',
+  ): SeamHttpRequest<AcsUsersCreateResponse, 'acs_user'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/create',
       method: 'post',
-      data: body,
-    })
-
-    return data.acs_user
-  }
-
-  async delete(body?: AcsUsersDeleteBody): Promise<void> {
-    await this.client.request<AcsUsersDeleteResponse>({
-      url: '/acs/users/delete',
-      method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_user',
     })
   }
 
-  async get(
+  delete(body?: AcsUsersDeleteBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  get(
     body?: AcsUsersGetParams,
-  ): Promise<AcsUsersGetResponse['acs_user']> {
-    const { data } = await this.client.request<AcsUsersGetResponse>({
-      url: '/acs/users/get',
+  ): SeamHttpRequest<AcsUsersGetResponse, 'acs_user'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_user',
     })
-
-    return data.acs_user
   }
 
-  async list(
+  list(
     body?: AcsUsersListParams,
-  ): Promise<AcsUsersListResponse['acs_users']> {
-    const { data } = await this.client.request<AcsUsersListResponse>({
-      url: '/acs/users/list',
+  ): SeamHttpRequest<AcsUsersListResponse, 'acs_users'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_users',
     })
-
-    return data.acs_users
   }
 
-  async listAccessibleEntrances(
+  listAccessibleEntrances(
     body?: AcsUsersListAccessibleEntrancesParams,
-  ): Promise<AcsUsersListAccessibleEntrancesResponse['acs_entrances']> {
-    const { data } =
-      await this.client.request<AcsUsersListAccessibleEntrancesResponse>({
-        url: '/acs/users/list_accessible_entrances',
-        method: 'post',
-        data: body,
-      })
-
-    return data.acs_entrances
+  ): SeamHttpRequest<AcsUsersListAccessibleEntrancesResponse, 'acs_entrances'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/list_accessible_entrances',
+      method: 'post',
+      body,
+      responseKey: 'acs_entrances',
+    })
   }
 
-  async removeFromAccessGroup(
+  removeFromAccessGroup(
     body?: AcsUsersRemoveFromAccessGroupBody,
-  ): Promise<void> {
-    await this.client.request<AcsUsersRemoveFromAccessGroupResponse>({
-      url: '/acs/users/remove_from_access_group',
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/remove_from_access_group',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async revokeAccessToAllEntrances(
+  revokeAccessToAllEntrances(
     body?: AcsUsersRevokeAccessToAllEntrancesBody,
-  ): Promise<void> {
-    await this.client.request<AcsUsersRevokeAccessToAllEntrancesResponse>({
-      url: '/acs/users/revoke_access_to_all_entrances',
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/revoke_access_to_all_entrances',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async suspend(body?: AcsUsersSuspendBody): Promise<void> {
-    await this.client.request<AcsUsersSuspendResponse>({
-      url: '/acs/users/suspend',
+  suspend(body?: AcsUsersSuspendBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/suspend',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async unsuspend(body?: AcsUsersUnsuspendBody): Promise<void> {
-    await this.client.request<AcsUsersUnsuspendResponse>({
-      url: '/acs/users/unsuspend',
+  unsuspend(body?: AcsUsersUnsuspendBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/unsuspend',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async update(body?: AcsUsersUpdateBody): Promise<void> {
-    await this.client.request<AcsUsersUpdateResponse>({
-      url: '/acs/users/update',
+  update(body?: AcsUsersUpdateBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/users/update',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 }

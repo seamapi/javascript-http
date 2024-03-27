@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,53 +154,54 @@ export class SeamHttpWebhooks {
     await clientSessions.get()
   }
 
-  async create(
+  create(
     body?: WebhooksCreateBody,
-  ): Promise<WebhooksCreateResponse['webhook']> {
-    const { data } = await this.client.request<WebhooksCreateResponse>({
-      url: '/webhooks/create',
+  ): SeamHttpRequest<WebhooksCreateResponse, 'webhook'> {
+    return new SeamHttpRequest(this, {
+      path: '/webhooks/create',
       method: 'post',
-      data: body,
-    })
-
-    return data.webhook
-  }
-
-  async delete(body?: WebhooksDeleteBody): Promise<void> {
-    await this.client.request<WebhooksDeleteResponse>({
-      url: '/webhooks/delete',
-      method: 'post',
-      data: body,
+      body,
+      responseKey: 'webhook',
     })
   }
 
-  async get(body?: WebhooksGetParams): Promise<WebhooksGetResponse['webhook']> {
-    const { data } = await this.client.request<WebhooksGetResponse>({
-      url: '/webhooks/get',
+  delete(body?: WebhooksDeleteBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/webhooks/delete',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
-
-    return data.webhook
   }
 
-  async list(
+  get(
+    body?: WebhooksGetParams,
+  ): SeamHttpRequest<WebhooksGetResponse, 'webhook'> {
+    return new SeamHttpRequest(this, {
+      path: '/webhooks/get',
+      method: 'post',
+      body,
+      responseKey: 'webhook',
+    })
+  }
+
+  list(
     body?: WebhooksListParams,
-  ): Promise<WebhooksListResponse['webhooks']> {
-    const { data } = await this.client.request<WebhooksListResponse>({
-      url: '/webhooks/list',
+  ): SeamHttpRequest<WebhooksListResponse, 'webhooks'> {
+    return new SeamHttpRequest(this, {
+      path: '/webhooks/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'webhooks',
     })
-
-    return data.webhooks
   }
 
-  async update(body?: WebhooksUpdateBody): Promise<void> {
-    await this.client.request<WebhooksUpdateResponse>({
-      url: '/webhooks/update',
+  update(body?: WebhooksUpdateBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/webhooks/update',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 }

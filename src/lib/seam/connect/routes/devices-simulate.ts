@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,11 +154,12 @@ export class SeamHttpDevicesSimulate {
     await clientSessions.get()
   }
 
-  async remove(body?: DevicesSimulateRemoveBody): Promise<void> {
-    await this.client.request<DevicesSimulateRemoveResponse>({
-      url: '/devices/simulate/remove',
+  remove(body?: DevicesSimulateRemoveBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/devices/simulate/remove',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 }

@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 export class SeamHttpClientSessions {
   client: Client
@@ -151,81 +152,76 @@ export class SeamHttpClientSessions {
     await clientSessions.get()
   }
 
-  async create(
+  create(
     body?: ClientSessionsCreateBody,
-  ): Promise<ClientSessionsCreateResponse['client_session']> {
-    const { data } = await this.client.request<ClientSessionsCreateResponse>({
-      url: '/client_sessions/create',
+  ): SeamHttpRequest<ClientSessionsCreateResponse, 'client_session'> {
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/create',
       method: 'post',
-      data: body,
-    })
-
-    return data.client_session
-  }
-
-  async delete(body?: ClientSessionsDeleteBody): Promise<void> {
-    await this.client.request<ClientSessionsDeleteResponse>({
-      url: '/client_sessions/delete',
-      method: 'post',
-      data: body,
+      body,
+      responseKey: 'client_session',
     })
   }
 
-  async get(
+  delete(body?: ClientSessionsDeleteBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  get(
     body?: ClientSessionsGetParams,
-  ): Promise<ClientSessionsGetResponse['client_session']> {
-    const { data } = await this.client.request<ClientSessionsGetResponse>({
-      url: '/client_sessions/get',
+  ): SeamHttpRequest<ClientSessionsGetResponse, 'client_session'> {
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'client_session',
     })
-
-    return data.client_session
   }
 
-  async getOrCreate(
+  getOrCreate(
     body?: ClientSessionsGetOrCreateBody,
-  ): Promise<ClientSessionsGetOrCreateResponse['client_session']> {
-    const { data } =
-      await this.client.request<ClientSessionsGetOrCreateResponse>({
-        url: '/client_sessions/get_or_create',
-        method: 'post',
-        data: body,
-      })
-
-    return data.client_session
-  }
-
-  async grantAccess(
-    body?: ClientSessionsGrantAccessBody,
-  ): Promise<ClientSessionsGrantAccessResponse['client_session']> {
-    const { data } =
-      await this.client.request<ClientSessionsGrantAccessResponse>({
-        url: '/client_sessions/grant_access',
-        method: 'post',
-        data: body,
-      })
-
-    return data.client_session
-  }
-
-  async list(
-    body?: ClientSessionsListParams,
-  ): Promise<ClientSessionsListResponse['client_sessions']> {
-    const { data } = await this.client.request<ClientSessionsListResponse>({
-      url: '/client_sessions/list',
+  ): SeamHttpRequest<ClientSessionsGetOrCreateResponse, 'client_session'> {
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/get_or_create',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'client_session',
     })
-
-    return data.client_sessions
   }
 
-  async revoke(body?: ClientSessionsRevokeBody): Promise<void> {
-    await this.client.request<ClientSessionsRevokeResponse>({
-      url: '/client_sessions/revoke',
+  grantAccess(
+    body?: ClientSessionsGrantAccessBody,
+  ): SeamHttpRequest<ClientSessionsGrantAccessResponse, 'client_session'> {
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/grant_access',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'client_session',
+    })
+  }
+
+  list(
+    body?: ClientSessionsListParams,
+  ): SeamHttpRequest<ClientSessionsListResponse, 'client_sessions'> {
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/list',
+      method: 'post',
+      body,
+      responseKey: 'client_sessions',
+    })
+  }
+
+  revoke(body?: ClientSessionsRevokeBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/client_sessions/revoke',
+      method: 'post',
+      body,
+      responseKey: undefined,
     })
   }
 }

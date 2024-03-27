@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,49 +154,51 @@ export class SeamHttpAcsEntrances {
     await clientSessions.get()
   }
 
-  async get(
+  get(
     body?: AcsEntrancesGetParams,
-  ): Promise<AcsEntrancesGetResponse['acs_entrance']> {
-    const { data } = await this.client.request<AcsEntrancesGetResponse>({
-      url: '/acs/entrances/get',
+  ): SeamHttpRequest<AcsEntrancesGetResponse, 'acs_entrance'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/entrances/get',
       method: 'post',
-      data: body,
-    })
-
-    return data.acs_entrance
-  }
-
-  async grantAccess(body?: AcsEntrancesGrantAccessBody): Promise<void> {
-    await this.client.request<AcsEntrancesGrantAccessResponse>({
-      url: '/acs/entrances/grant_access',
-      method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_entrance',
     })
   }
 
-  async list(
+  grantAccess(
+    body?: AcsEntrancesGrantAccessBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/entrances/grant_access',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  list(
     body?: AcsEntrancesListParams,
-  ): Promise<AcsEntrancesListResponse['acs_entrances']> {
-    const { data } = await this.client.request<AcsEntrancesListResponse>({
-      url: '/acs/entrances/list',
+  ): SeamHttpRequest<AcsEntrancesListResponse, 'acs_entrances'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/entrances/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_entrances',
     })
-
-    return data.acs_entrances
   }
 
-  async listCredentialsWithAccess(
+  listCredentialsWithAccess(
     body?: AcsEntrancesListCredentialsWithAccessParams,
-  ): Promise<AcsEntrancesListCredentialsWithAccessResponse['acs_credentials']> {
-    const { data } =
-      await this.client.request<AcsEntrancesListCredentialsWithAccessResponse>({
-        url: '/acs/entrances/list_credentials_with_access',
-        method: 'post',
-        data: body,
-      })
-
-    return data.acs_credentials
+  ): SeamHttpRequest<
+    AcsEntrancesListCredentialsWithAccessResponse,
+    'acs_credentials'
+  > {
+    return new SeamHttpRequest(this, {
+      path: '/acs/entrances/list_credentials_with_access',
+      method: 'post',
+      body,
+      responseKey: 'acs_credentials',
+    })
   }
 }
 

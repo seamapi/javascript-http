@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpUserIdentitiesEnrollmentAutomations } from './user-identities-enrollment-automations.js'
@@ -161,132 +162,134 @@ export class SeamHttpUserIdentities {
     )
   }
 
-  async addAcsUser(body?: UserIdentitiesAddAcsUserBody): Promise<void> {
-    await this.client.request<UserIdentitiesAddAcsUserResponse>({
-      url: '/user_identities/add_acs_user',
+  addAcsUser(
+    body?: UserIdentitiesAddAcsUserBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/add_acs_user',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async create(
+  create(
     body?: UserIdentitiesCreateBody,
-  ): Promise<UserIdentitiesCreateResponse['user_identity']> {
-    const { data } = await this.client.request<UserIdentitiesCreateResponse>({
-      url: '/user_identities/create',
+  ): SeamHttpRequest<UserIdentitiesCreateResponse, 'user_identity'> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/create',
       method: 'post',
-      data: body,
-    })
-
-    return data.user_identity
-  }
-
-  async delete(body?: UserIdentitiesDeleteBody): Promise<void> {
-    await this.client.request<UserIdentitiesDeleteResponse>({
-      url: '/user_identities/delete',
-      method: 'post',
-      data: body,
+      body,
+      responseKey: 'user_identity',
     })
   }
 
-  async get(
+  delete(body?: UserIdentitiesDeleteBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  get(
     body?: UserIdentitiesGetParams,
-  ): Promise<UserIdentitiesGetResponse['user_identity']> {
-    const { data } = await this.client.request<UserIdentitiesGetResponse>({
-      url: '/user_identities/get',
+  ): SeamHttpRequest<UserIdentitiesGetResponse, 'user_identity'> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'user_identity',
     })
-
-    return data.user_identity
   }
 
-  async grantAccessToDevice(
+  grantAccessToDevice(
     body?: UserIdentitiesGrantAccessToDeviceBody,
-  ): Promise<void> {
-    await this.client.request<UserIdentitiesGrantAccessToDeviceResponse>({
-      url: '/user_identities/grant_access_to_device',
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/grant_access_to_device',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async list(
+  list(
     body?: UserIdentitiesListParams,
-  ): Promise<UserIdentitiesListResponse['user_identities']> {
-    const { data } = await this.client.request<UserIdentitiesListResponse>({
-      url: '/user_identities/list',
+  ): SeamHttpRequest<UserIdentitiesListResponse, 'user_identities'> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'user_identities',
     })
-
-    return data.user_identities
   }
 
-  async listAccessibleDevices(
+  listAccessibleDevices(
     body?: UserIdentitiesListAccessibleDevicesParams,
-  ): Promise<
-    UserIdentitiesListAccessibleDevicesResponse['accessible_devices']
+  ): SeamHttpRequest<
+    UserIdentitiesListAccessibleDevicesResponse,
+    'accessible_devices'
   > {
-    const { data } =
-      await this.client.request<UserIdentitiesListAccessibleDevicesResponse>({
-        url: '/user_identities/list_accessible_devices',
-        method: 'post',
-        data: body,
-      })
-
-    return data.accessible_devices
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/list_accessible_devices',
+      method: 'post',
+      body,
+      responseKey: 'accessible_devices',
+    })
   }
 
-  async listAcsSystems(
+  listAcsSystems(
     body?: UserIdentitiesListAcsSystemsParams,
-  ): Promise<UserIdentitiesListAcsSystemsResponse['acs_systems']> {
-    const { data } =
-      await this.client.request<UserIdentitiesListAcsSystemsResponse>({
-        url: '/user_identities/list_acs_systems',
-        method: 'post',
-        data: body,
-      })
-
-    return data.acs_systems
+  ): SeamHttpRequest<UserIdentitiesListAcsSystemsResponse, 'acs_systems'> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/list_acs_systems',
+      method: 'post',
+      body,
+      responseKey: 'acs_systems',
+    })
   }
 
-  async listAcsUsers(
+  listAcsUsers(
     body?: UserIdentitiesListAcsUsersParams,
-  ): Promise<UserIdentitiesListAcsUsersResponse['acs_users']> {
-    const { data } =
-      await this.client.request<UserIdentitiesListAcsUsersResponse>({
-        url: '/user_identities/list_acs_users',
-        method: 'post',
-        data: body,
-      })
-
-    return data.acs_users
-  }
-
-  async removeAcsUser(body?: UserIdentitiesRemoveAcsUserBody): Promise<void> {
-    await this.client.request<UserIdentitiesRemoveAcsUserResponse>({
-      url: '/user_identities/remove_acs_user',
+  ): SeamHttpRequest<UserIdentitiesListAcsUsersResponse, 'acs_users'> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/list_acs_users',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_users',
     })
   }
 
-  async revokeAccessToDevice(
+  removeAcsUser(
+    body?: UserIdentitiesRemoveAcsUserBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/remove_acs_user',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  revokeAccessToDevice(
     body?: UserIdentitiesRevokeAccessToDeviceBody,
-  ): Promise<void> {
-    await this.client.request<UserIdentitiesRevokeAccessToDeviceResponse>({
-      url: '/user_identities/revoke_access_to_device',
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/revoke_access_to_device',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async update(body?: UserIdentitiesUpdateBody): Promise<void> {
-    await this.client.request<UserIdentitiesUpdateResponse>({
-      url: '/user_identities/update',
+  update(body?: UserIdentitiesUpdateBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/update',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 }

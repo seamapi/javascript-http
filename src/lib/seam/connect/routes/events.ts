@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,24 +154,22 @@ export class SeamHttpEvents {
     await clientSessions.get()
   }
 
-  async get(body?: EventsGetParams): Promise<EventsGetResponse['event']> {
-    const { data } = await this.client.request<EventsGetResponse>({
-      url: '/events/get',
+  get(body?: EventsGetParams): SeamHttpRequest<EventsGetResponse, 'event'> {
+    return new SeamHttpRequest(this, {
+      path: '/events/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'event',
     })
-
-    return data.event
   }
 
-  async list(body?: EventsListParams): Promise<EventsListResponse['events']> {
-    const { data } = await this.client.request<EventsListResponse>({
-      url: '/events/list',
+  list(body?: EventsListParams): SeamHttpRequest<EventsListResponse, 'events'> {
+    return new SeamHttpRequest(this, {
+      path: '/events/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'events',
     })
-
-    return data.events
   }
 }
 

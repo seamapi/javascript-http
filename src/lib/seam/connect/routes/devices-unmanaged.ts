@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,35 +154,34 @@ export class SeamHttpDevicesUnmanaged {
     await clientSessions.get()
   }
 
-  async get(
+  get(
     body?: DevicesUnmanagedGetParams,
-  ): Promise<DevicesUnmanagedGetResponse['device']> {
-    const { data } = await this.client.request<DevicesUnmanagedGetResponse>({
-      url: '/devices/unmanaged/get',
+  ): SeamHttpRequest<DevicesUnmanagedGetResponse, 'device'> {
+    return new SeamHttpRequest(this, {
+      path: '/devices/unmanaged/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'device',
     })
-
-    return data.device
   }
 
-  async list(
+  list(
     body?: DevicesUnmanagedListParams,
-  ): Promise<DevicesUnmanagedListResponse['devices']> {
-    const { data } = await this.client.request<DevicesUnmanagedListResponse>({
-      url: '/devices/unmanaged/list',
+  ): SeamHttpRequest<DevicesUnmanagedListResponse, 'devices'> {
+    return new SeamHttpRequest(this, {
+      path: '/devices/unmanaged/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'devices',
     })
-
-    return data.devices
   }
 
-  async update(body?: DevicesUnmanagedUpdateBody): Promise<void> {
-    await this.client.request<DevicesUnmanagedUpdateResponse>({
-      url: '/devices/unmanaged/update',
+  update(body?: DevicesUnmanagedUpdateBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/devices/unmanaged/update',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 }

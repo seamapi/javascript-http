@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,28 +154,26 @@ export class SeamHttpAcsSystems {
     await clientSessions.get()
   }
 
-  async get(
+  get(
     body?: AcsSystemsGetParams,
-  ): Promise<AcsSystemsGetResponse['acs_system']> {
-    const { data } = await this.client.request<AcsSystemsGetResponse>({
-      url: '/acs/systems/get',
+  ): SeamHttpRequest<AcsSystemsGetResponse, 'acs_system'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/systems/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_system',
     })
-
-    return data.acs_system
   }
 
-  async list(
+  list(
     body?: AcsSystemsListParams,
-  ): Promise<AcsSystemsListResponse['acs_systems']> {
-    const { data } = await this.client.request<AcsSystemsListResponse>({
-      url: '/acs/systems/list',
+  ): SeamHttpRequest<AcsSystemsListResponse, 'acs_systems'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/systems/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_systems',
     })
-
-    return data.acs_systems
   }
 }
 

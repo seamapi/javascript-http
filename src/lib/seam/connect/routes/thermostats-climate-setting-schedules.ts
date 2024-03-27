@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,77 +157,68 @@ export class SeamHttpThermostatsClimateSettingSchedules {
     await clientSessions.get()
   }
 
-  async create(
+  create(
     body?: ThermostatsClimateSettingSchedulesCreateBody,
-  ): Promise<
-    ThermostatsClimateSettingSchedulesCreateResponse['climate_setting_schedule']
+  ): SeamHttpRequest<
+    ThermostatsClimateSettingSchedulesCreateResponse,
+    'climate_setting_schedule'
   > {
-    const { data } =
-      await this.client.request<ThermostatsClimateSettingSchedulesCreateResponse>(
-        {
-          url: '/thermostats/climate_setting_schedules/create',
-          method: 'post',
-          data: body,
-        },
-      )
-
-    return data.climate_setting_schedule
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/climate_setting_schedules/create',
+      method: 'post',
+      body,
+      responseKey: 'climate_setting_schedule',
+    })
   }
 
-  async delete(
+  delete(
     body?: ThermostatsClimateSettingSchedulesDeleteBody,
-  ): Promise<void> {
-    await this.client.request<ThermostatsClimateSettingSchedulesDeleteResponse>(
-      {
-        url: '/thermostats/climate_setting_schedules/delete',
-        method: 'post',
-        data: body,
-      },
-    )
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/climate_setting_schedules/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
-  async get(
+  get(
     body?: ThermostatsClimateSettingSchedulesGetParams,
-  ): Promise<
-    ThermostatsClimateSettingSchedulesGetResponse['climate_setting_schedule']
+  ): SeamHttpRequest<
+    ThermostatsClimateSettingSchedulesGetResponse,
+    'climate_setting_schedule'
   > {
-    const { data } =
-      await this.client.request<ThermostatsClimateSettingSchedulesGetResponse>({
-        url: '/thermostats/climate_setting_schedules/get',
-        method: 'post',
-        data: body,
-      })
-
-    return data.climate_setting_schedule
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/climate_setting_schedules/get',
+      method: 'post',
+      body,
+      responseKey: 'climate_setting_schedule',
+    })
   }
 
-  async list(
+  list(
     body?: ThermostatsClimateSettingSchedulesListParams,
-  ): Promise<
-    ThermostatsClimateSettingSchedulesListResponse['climate_setting_schedules']
+  ): SeamHttpRequest<
+    ThermostatsClimateSettingSchedulesListResponse,
+    'climate_setting_schedules'
   > {
-    const { data } =
-      await this.client.request<ThermostatsClimateSettingSchedulesListResponse>(
-        {
-          url: '/thermostats/climate_setting_schedules/list',
-          method: 'post',
-          data: body,
-        },
-      )
-
-    return data.climate_setting_schedules
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/climate_setting_schedules/list',
+      method: 'post',
+      body,
+      responseKey: 'climate_setting_schedules',
+    })
   }
 
-  async update(
+  update(
     body?: ThermostatsClimateSettingSchedulesUpdateBody,
-  ): Promise<void> {
-    await this.client.request<ThermostatsClimateSettingSchedulesUpdateResponse>(
-      {
-        url: '/thermostats/climate_setting_schedules/update',
-        method: 'post',
-        data: body,
-      },
-    )
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/climate_setting_schedules/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 }
 

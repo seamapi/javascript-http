@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,58 +157,67 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     await clientSessions.get()
   }
 
-  async create(
+  create(
     body?: NoiseSensorsNoiseThresholdsCreateBody,
-  ): Promise<NoiseSensorsNoiseThresholdsCreateResponse['noise_threshold']> {
-    const { data } =
-      await this.client.request<NoiseSensorsNoiseThresholdsCreateResponse>({
-        url: '/noise_sensors/noise_thresholds/create',
-        method: 'post',
-        data: body,
-      })
-
-    return data.noise_threshold
-  }
-
-  async delete(body?: NoiseSensorsNoiseThresholdsDeleteBody): Promise<void> {
-    await this.client.request<NoiseSensorsNoiseThresholdsDeleteResponse>({
-      url: '/noise_sensors/noise_thresholds/delete',
+  ): SeamHttpRequest<
+    NoiseSensorsNoiseThresholdsCreateResponse,
+    'noise_threshold'
+  > {
+    return new SeamHttpRequest(this, {
+      path: '/noise_sensors/noise_thresholds/create',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'noise_threshold',
     })
   }
 
-  async get(
-    body?: NoiseSensorsNoiseThresholdsGetParams,
-  ): Promise<NoiseSensorsNoiseThresholdsGetResponse['noise_threshold']> {
-    const { data } =
-      await this.client.request<NoiseSensorsNoiseThresholdsGetResponse>({
-        url: '/noise_sensors/noise_thresholds/get',
-        method: 'post',
-        data: body,
-      })
-
-    return data.noise_threshold
-  }
-
-  async list(
-    body?: NoiseSensorsNoiseThresholdsListParams,
-  ): Promise<NoiseSensorsNoiseThresholdsListResponse['noise_thresholds']> {
-    const { data } =
-      await this.client.request<NoiseSensorsNoiseThresholdsListResponse>({
-        url: '/noise_sensors/noise_thresholds/list',
-        method: 'post',
-        data: body,
-      })
-
-    return data.noise_thresholds
-  }
-
-  async update(body?: NoiseSensorsNoiseThresholdsUpdateBody): Promise<void> {
-    await this.client.request<NoiseSensorsNoiseThresholdsUpdateResponse>({
-      url: '/noise_sensors/noise_thresholds/update',
+  delete(
+    body?: NoiseSensorsNoiseThresholdsDeleteBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/noise_sensors/noise_thresholds/delete',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  get(
+    body?: NoiseSensorsNoiseThresholdsGetParams,
+  ): SeamHttpRequest<
+    NoiseSensorsNoiseThresholdsGetResponse,
+    'noise_threshold'
+  > {
+    return new SeamHttpRequest(this, {
+      path: '/noise_sensors/noise_thresholds/get',
+      method: 'post',
+      body,
+      responseKey: 'noise_threshold',
+    })
+  }
+
+  list(
+    body?: NoiseSensorsNoiseThresholdsListParams,
+  ): SeamHttpRequest<
+    NoiseSensorsNoiseThresholdsListResponse,
+    'noise_thresholds'
+  > {
+    return new SeamHttpRequest(this, {
+      path: '/noise_sensors/noise_thresholds/list',
+      method: 'post',
+      body,
+      responseKey: 'noise_thresholds',
+    })
+  }
+
+  update(
+    body?: NoiseSensorsNoiseThresholdsUpdateBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/noise_sensors/noise_thresholds/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
     })
   }
 }

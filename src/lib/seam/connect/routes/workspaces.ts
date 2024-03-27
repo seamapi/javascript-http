@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,47 +154,47 @@ export class SeamHttpWorkspaces {
     await clientSessions.get()
   }
 
-  async create(
+  create(
     body?: WorkspacesCreateBody,
-  ): Promise<WorkspacesCreateResponse['workspace']> {
-    const { data } = await this.client.request<WorkspacesCreateResponse>({
-      url: '/workspaces/create',
+  ): SeamHttpRequest<WorkspacesCreateResponse, 'workspace'> {
+    return new SeamHttpRequest(this, {
+      path: '/workspaces/create',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'workspace',
     })
-
-    return data.workspace
   }
 
-  async get(
+  get(
     body?: WorkspacesGetParams,
-  ): Promise<WorkspacesGetResponse['workspace']> {
-    const { data } = await this.client.request<WorkspacesGetResponse>({
-      url: '/workspaces/get',
+  ): SeamHttpRequest<WorkspacesGetResponse, 'workspace'> {
+    return new SeamHttpRequest(this, {
+      path: '/workspaces/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'workspace',
     })
-
-    return data.workspace
   }
 
-  async list(
+  list(
     body?: WorkspacesListParams,
-  ): Promise<WorkspacesListResponse['workspaces']> {
-    const { data } = await this.client.request<WorkspacesListResponse>({
-      url: '/workspaces/list',
+  ): SeamHttpRequest<WorkspacesListResponse, 'workspaces'> {
+    return new SeamHttpRequest(this, {
+      path: '/workspaces/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'workspaces',
     })
-
-    return data.workspaces
   }
 
-  async resetSandbox(body?: WorkspacesResetSandboxBody): Promise<void> {
-    await this.client.request<WorkspacesResetSandboxResponse>({
-      url: '/workspaces/reset_sandbox',
+  resetSandbox(
+    body?: WorkspacesResetSandboxBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/workspaces/reset_sandbox',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 }

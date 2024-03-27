@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -153,84 +154,79 @@ export class SeamHttpAcsCredentials {
     await clientSessions.get()
   }
 
-  async assign(
+  assign(
     body?: AcsCredentialsAssignBody,
-  ): Promise<AcsCredentialsAssignResponse['acs_credential']> {
-    const { data } = await this.client.request<AcsCredentialsAssignResponse>({
-      url: '/acs/credentials/assign',
+  ): SeamHttpRequest<AcsCredentialsAssignResponse, 'acs_credential'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/assign',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_credential',
     })
-
-    return data.acs_credential
   }
 
-  async create(
+  create(
     body?: AcsCredentialsCreateBody,
-  ): Promise<AcsCredentialsCreateResponse['acs_credential']> {
-    const { data } = await this.client.request<AcsCredentialsCreateResponse>({
-      url: '/acs/credentials/create',
+  ): SeamHttpRequest<AcsCredentialsCreateResponse, 'acs_credential'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/create',
       method: 'post',
-      data: body,
-    })
-
-    return data.acs_credential
-  }
-
-  async delete(body?: AcsCredentialsDeleteBody): Promise<void> {
-    await this.client.request<AcsCredentialsDeleteResponse>({
-      url: '/acs/credentials/delete',
-      method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_credential',
     })
   }
 
-  async get(
+  delete(body?: AcsCredentialsDeleteBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  get(
     body?: AcsCredentialsGetParams,
-  ): Promise<AcsCredentialsGetResponse['acs_credential']> {
-    const { data } = await this.client.request<AcsCredentialsGetResponse>({
-      url: '/acs/credentials/get',
+  ): SeamHttpRequest<AcsCredentialsGetResponse, 'acs_credential'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_credential',
     })
-
-    return data.acs_credential
   }
 
-  async list(
+  list(
     body?: AcsCredentialsListParams,
-  ): Promise<AcsCredentialsListResponse['acs_credentials']> {
-    const { data } = await this.client.request<AcsCredentialsListResponse>({
-      url: '/acs/credentials/list',
+  ): SeamHttpRequest<AcsCredentialsListResponse, 'acs_credentials'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_credentials',
     })
-
-    return data.acs_credentials
   }
 
-  async unassign(
+  unassign(
     body?: AcsCredentialsUnassignBody,
-  ): Promise<AcsCredentialsUnassignResponse['acs_credential']> {
-    const { data } = await this.client.request<AcsCredentialsUnassignResponse>({
-      url: '/acs/credentials/unassign',
+  ): SeamHttpRequest<AcsCredentialsUnassignResponse, 'acs_credential'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/unassign',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_credential',
     })
-
-    return data.acs_credential
   }
 
-  async update(
+  update(
     body?: AcsCredentialsUpdateBody,
-  ): Promise<AcsCredentialsUpdateResponse['acs_credential']> {
-    const { data } = await this.client.request<AcsCredentialsUpdateResponse>({
-      url: '/acs/credentials/update',
+  ): SeamHttpRequest<AcsCredentialsUpdateResponse, 'acs_credential'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/update',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'acs_credential',
     })
-
-    return data.acs_credential
   }
 }
 

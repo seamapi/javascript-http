@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpPhonesSimulate } from './phones-simulate.js'
@@ -158,22 +159,22 @@ export class SeamHttpPhones {
     return SeamHttpPhonesSimulate.fromClient(this.client, this.defaults)
   }
 
-  async deactivate(body?: PhonesDeactivateBody): Promise<void> {
-    await this.client.request<PhonesDeactivateResponse>({
-      url: '/phones/deactivate',
+  deactivate(body?: PhonesDeactivateBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/phones/deactivate',
       method: 'post',
-      data: body,
+      body,
+      responseKey: undefined,
     })
   }
 
-  async list(body?: PhonesListParams): Promise<PhonesListResponse['phones']> {
-    const { data } = await this.client.request<PhonesListResponse>({
-      url: '/phones/list',
+  list(body?: PhonesListParams): SeamHttpRequest<PhonesListResponse, 'phones'> {
+    return new SeamHttpRequest(this, {
+      path: '/phones/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'phones',
     })
-
-    return data.phones
   }
 }
 

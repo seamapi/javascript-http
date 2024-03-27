@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -156,67 +157,57 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     await clientSessions.get()
   }
 
-  async delete(
+  delete(
     body?: UserIdentitiesEnrollmentAutomationsDeleteBody,
-  ): Promise<void> {
-    await this.client.request<UserIdentitiesEnrollmentAutomationsDeleteResponse>(
-      {
-        url: '/user_identities/enrollment_automations/delete',
-        method: 'post',
-        data: body,
-      },
-    )
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/enrollment_automations/delete',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
   }
 
-  async get(
+  get(
     body?: UserIdentitiesEnrollmentAutomationsGetParams,
-  ): Promise<
-    UserIdentitiesEnrollmentAutomationsGetResponse['enrollment_automation']
+  ): SeamHttpRequest<
+    UserIdentitiesEnrollmentAutomationsGetResponse,
+    'enrollment_automation'
   > {
-    const { data } =
-      await this.client.request<UserIdentitiesEnrollmentAutomationsGetResponse>(
-        {
-          url: '/user_identities/enrollment_automations/get',
-          method: 'post',
-          data: body,
-        },
-      )
-
-    return data.enrollment_automation
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/enrollment_automations/get',
+      method: 'post',
+      body,
+      responseKey: 'enrollment_automation',
+    })
   }
 
-  async launch(
+  launch(
     body?: UserIdentitiesEnrollmentAutomationsLaunchBody,
-  ): Promise<
-    UserIdentitiesEnrollmentAutomationsLaunchResponse['enrollment_automation']
+  ): SeamHttpRequest<
+    UserIdentitiesEnrollmentAutomationsLaunchResponse,
+    'enrollment_automation'
   > {
-    const { data } =
-      await this.client.request<UserIdentitiesEnrollmentAutomationsLaunchResponse>(
-        {
-          url: '/user_identities/enrollment_automations/launch',
-          method: 'post',
-          data: body,
-        },
-      )
-
-    return data.enrollment_automation
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/enrollment_automations/launch',
+      method: 'post',
+      body,
+      responseKey: 'enrollment_automation',
+    })
   }
 
-  async list(
+  list(
     body?: UserIdentitiesEnrollmentAutomationsListParams,
-  ): Promise<
-    UserIdentitiesEnrollmentAutomationsListResponse['enrollment_automations']
+  ): SeamHttpRequest<
+    UserIdentitiesEnrollmentAutomationsListResponse,
+    'enrollment_automations'
   > {
-    const { data } =
-      await this.client.request<UserIdentitiesEnrollmentAutomationsListResponse>(
-        {
-          url: '/user_identities/enrollment_automations/list',
-          method: 'post',
-          data: body,
-        },
-      )
-
-    return data.enrollment_automations
+    return new SeamHttpRequest(this, {
+      path: '/user_identities/enrollment_automations/list',
+      method: 'post',
+      body,
+      responseKey: 'enrollment_automations',
+    })
   }
 }
 

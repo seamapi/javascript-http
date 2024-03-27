@@ -31,9 +31,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import { resolveActionAttempt } from 'lib/seam/connect/resolve-action-attempt.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
-import { SeamHttpActionAttempts } from './action-attempts.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpLocks {
@@ -155,72 +154,48 @@ export class SeamHttpLocks {
     await clientSessions.get()
   }
 
-  async get(body?: LocksGetParams): Promise<LocksGetResponse['device']> {
-    const { data } = await this.client.request<LocksGetResponse>({
-      url: '/locks/get',
+  get(body?: LocksGetParams): SeamHttpRequest<LocksGetResponse, 'device'> {
+    return new SeamHttpRequest(this, {
+      path: '/locks/get',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'device',
     })
-
-    return data.device
   }
 
-  async list(body?: LocksListParams): Promise<LocksListResponse['devices']> {
-    const { data } = await this.client.request<LocksListResponse>({
-      url: '/locks/list',
+  list(body?: LocksListParams): SeamHttpRequest<LocksListResponse, 'devices'> {
+    return new SeamHttpRequest(this, {
+      path: '/locks/list',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'devices',
     })
-
-    return data.devices
   }
 
-  async lockDoor(
+  lockDoor(
     body?: LocksLockDoorBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): Promise<LocksLockDoorResponse['action_attempt']> {
-    const { data } = await this.client.request<LocksLockDoorResponse>({
-      url: '/locks/lock_door',
+  ): SeamHttpRequest<LocksLockDoorResponse, 'action_attempt'> {
+    return new SeamHttpRequest(this, {
+      path: '/locks/lock_door',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'action_attempt',
+      options,
     })
-    const waitForActionAttempt =
-      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
-    if (waitForActionAttempt !== false) {
-      return await resolveActionAttempt(
-        data.action_attempt,
-        SeamHttpActionAttempts.fromClient(this.client, {
-          ...this.defaults,
-          waitForActionAttempt: false,
-        }),
-        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
-      )
-    }
-    return data.action_attempt
   }
 
-  async unlockDoor(
+  unlockDoor(
     body?: LocksUnlockDoorBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): Promise<LocksUnlockDoorResponse['action_attempt']> {
-    const { data } = await this.client.request<LocksUnlockDoorResponse>({
-      url: '/locks/unlock_door',
+  ): SeamHttpRequest<LocksUnlockDoorResponse, 'action_attempt'> {
+    return new SeamHttpRequest(this, {
+      path: '/locks/unlock_door',
       method: 'post',
-      data: body,
+      body,
+      responseKey: 'action_attempt',
+      options,
     })
-    const waitForActionAttempt =
-      options.waitForActionAttempt ?? this.defaults.waitForActionAttempt
-    if (waitForActionAttempt !== false) {
-      return await resolveActionAttempt(
-        data.action_attempt,
-        SeamHttpActionAttempts.fromClient(this.client, {
-          ...this.defaults,
-          waitForActionAttempt: false,
-        }),
-        typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
-      )
-    }
-    return data.action_attempt
   }
 }
 
