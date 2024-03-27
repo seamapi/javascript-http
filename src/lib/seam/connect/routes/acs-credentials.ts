@@ -156,11 +156,7 @@ export class SeamHttpAcsCredentials {
 
   assign(
     body?: AcsCredentialsAssignBody,
-  ): SeamHttpRequest<
-    undefined | AcsCredentialsAssignBody,
-    AcsCredentialsAssignResponse,
-    'acs_credential'
-  > {
+  ): SeamHttpRequest<AcsCredentialsAssignResponse, 'acs_credential'> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/assign',
       method: 'post',
@@ -171,11 +167,7 @@ export class SeamHttpAcsCredentials {
 
   create(
     body?: AcsCredentialsCreateBody,
-  ): SeamHttpRequest<
-    undefined | AcsCredentialsCreateBody,
-    AcsCredentialsCreateResponse,
-    'acs_credential'
-  > {
+  ): SeamHttpRequest<AcsCredentialsCreateResponse, 'acs_credential'> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/create',
       method: 'post',
@@ -184,9 +176,7 @@ export class SeamHttpAcsCredentials {
     })
   }
 
-  delete(
-    body?: AcsCredentialsDeleteBody,
-  ): SeamHttpRequest<undefined | AcsCredentialsDeleteBody, void, undefined> {
+  delete(body?: AcsCredentialsDeleteBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/delete',
       method: 'post',
@@ -197,11 +187,7 @@ export class SeamHttpAcsCredentials {
 
   get(
     body?: AcsCredentialsGetParams,
-  ): SeamHttpRequest<
-    undefined | AcsCredentialsGetParams,
-    AcsCredentialsGetResponse,
-    'acs_credential'
-  > {
+  ): SeamHttpRequest<AcsCredentialsGetResponse, 'acs_credential'> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/get',
       method: 'post',
@@ -212,11 +198,7 @@ export class SeamHttpAcsCredentials {
 
   list(
     body?: AcsCredentialsListParams,
-  ): SeamHttpRequest<
-    undefined | AcsCredentialsListParams,
-    AcsCredentialsListResponse,
-    'acs_credentials'
-  > {
+  ): SeamHttpRequest<AcsCredentialsListResponse, 'acs_credentials'> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/list',
       method: 'post',
@@ -227,11 +209,7 @@ export class SeamHttpAcsCredentials {
 
   unassign(
     body?: AcsCredentialsUnassignBody,
-  ): SeamHttpRequest<
-    undefined | AcsCredentialsUnassignBody,
-    AcsCredentialsUnassignResponse,
-    'acs_credential'
-  > {
+  ): SeamHttpRequest<AcsCredentialsUnassignResponse, 'acs_credential'> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/unassign',
       method: 'post',
@@ -242,11 +220,7 @@ export class SeamHttpAcsCredentials {
 
   update(
     body?: AcsCredentialsUpdateBody,
-  ): SeamHttpRequest<
-    undefined | AcsCredentialsUpdateBody,
-    AcsCredentialsUpdateResponse,
-    'acs_credential'
-  > {
+  ): SeamHttpRequest<AcsCredentialsUpdateResponse, 'acs_credential'> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/update',
       method: 'post',

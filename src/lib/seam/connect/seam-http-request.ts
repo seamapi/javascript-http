@@ -11,17 +11,16 @@ interface SeamHttpRequestParent {
   readonly defaults: Required<SeamHttpRequestOptions>
 }
 
-interface SeamHttpRequestConfig<TBody, TResponseKey> {
+interface SeamHttpRequestConfig<TResponseKey> {
   readonly path: string
   readonly method: Method
-  readonly body?: TBody
+  readonly body?: unknown
   readonly params?: undefined | Record<string, unknown>
   readonly responseKey: TResponseKey
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 }
 
 export class SeamHttpRequest<
-  const TBody,
   const TResponse,
   const TResponseKey extends keyof TResponse | undefined,
 > implements
@@ -30,11 +29,11 @@ export class SeamHttpRequest<
     >
 {
   readonly #parent: SeamHttpRequestParent
-  readonly #config: SeamHttpRequestConfig<TBody, TResponseKey>
+  readonly #config: SeamHttpRequestConfig<TResponseKey>
 
   constructor(
     parent: SeamHttpRequestParent,
-    config: SeamHttpRequestConfig<TBody, TResponseKey>,
+    config: SeamHttpRequestConfig<TResponseKey>,
   ) {
     this.#parent = parent
     this.#config = config
@@ -68,8 +67,8 @@ export class SeamHttpRequest<
     return this.#config.method
   }
 
-  public get body(): TBody {
-    return this.#config.body as TBody
+  public get body(): unknown {
+    return this.#config.body
   }
 
   async execute(): Promise<
@@ -79,7 +78,7 @@ export class SeamHttpRequest<
     const response = await client.request({
       url: this.#config.path,
       method: this.#config.method,
-      data: this.#config.body as TBody,
+      data: this.#config.body,
       params: this.#config.params,
     })
     if (this.responseKey === undefined) {

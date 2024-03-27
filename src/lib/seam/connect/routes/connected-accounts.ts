@@ -154,9 +154,7 @@ export class SeamHttpConnectedAccounts {
     await clientSessions.get()
   }
 
-  delete(
-    body?: ConnectedAccountsDeleteBody,
-  ): SeamHttpRequest<undefined | ConnectedAccountsDeleteBody, void, undefined> {
+  delete(body?: ConnectedAccountsDeleteBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/connected_accounts/delete',
       method: 'post',
@@ -167,11 +165,7 @@ export class SeamHttpConnectedAccounts {
 
   get(
     body?: ConnectedAccountsGetParams,
-  ): SeamHttpRequest<
-    undefined | ConnectedAccountsGetParams,
-    ConnectedAccountsGetResponse,
-    'connected_account'
-  > {
+  ): SeamHttpRequest<ConnectedAccountsGetResponse, 'connected_account'> {
     return new SeamHttpRequest(this, {
       path: '/connected_accounts/get',
       method: 'post',
@@ -182,11 +176,7 @@ export class SeamHttpConnectedAccounts {
 
   list(
     body?: ConnectedAccountsListParams,
-  ): SeamHttpRequest<
-    undefined | ConnectedAccountsListParams,
-    ConnectedAccountsListResponse,
-    'connected_accounts'
-  > {
+  ): SeamHttpRequest<ConnectedAccountsListResponse, 'connected_accounts'> {
     return new SeamHttpRequest(this, {
       path: '/connected_accounts/list',
       method: 'post',
@@ -197,11 +187,7 @@ export class SeamHttpConnectedAccounts {
 
   update(
     body?: ConnectedAccountsUpdateBody,
-  ): SeamHttpRequest<
-    undefined | ConnectedAccountsUpdateBody,
-    ConnectedAccountsUpdateResponse,
-    'connected_account'
-  > {
+  ): SeamHttpRequest<ConnectedAccountsUpdateResponse, 'connected_account'> {
     return new SeamHttpRequest(this, {
       path: '/connected_accounts/update',
       method: 'post',

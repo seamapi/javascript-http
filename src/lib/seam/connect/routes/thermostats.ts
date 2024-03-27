@@ -165,11 +165,7 @@ export class SeamHttpThermostats {
   cool(
     body?: ThermostatsCoolBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<
-    undefined | ThermostatsCoolBody,
-    ThermostatsCoolResponse,
-    'action_attempt'
-  > {
+  ): SeamHttpRequest<ThermostatsCoolResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/cool',
       method: 'post',
@@ -181,11 +177,7 @@ export class SeamHttpThermostats {
 
   get(
     body?: ThermostatsGetParams,
-  ): SeamHttpRequest<
-    undefined | ThermostatsGetParams,
-    ThermostatsGetResponse,
-    'thermostat'
-  > {
+  ): SeamHttpRequest<ThermostatsGetResponse, 'thermostat'> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/get',
       method: 'post',
@@ -197,11 +189,7 @@ export class SeamHttpThermostats {
   heat(
     body?: ThermostatsHeatBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<
-    undefined | ThermostatsHeatBody,
-    ThermostatsHeatResponse,
-    'action_attempt'
-  > {
+  ): SeamHttpRequest<ThermostatsHeatResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/heat',
       method: 'post',
@@ -214,11 +202,7 @@ export class SeamHttpThermostats {
   heatCool(
     body?: ThermostatsHeatCoolBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<
-    undefined | ThermostatsHeatCoolBody,
-    ThermostatsHeatCoolResponse,
-    'action_attempt'
-  > {
+  ): SeamHttpRequest<ThermostatsHeatCoolResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/heat_cool',
       method: 'post',
@@ -230,11 +214,7 @@ export class SeamHttpThermostats {
 
   list(
     body?: ThermostatsListParams,
-  ): SeamHttpRequest<
-    undefined | ThermostatsListParams,
-    ThermostatsListResponse,
-    'thermostats'
-  > {
+  ): SeamHttpRequest<ThermostatsListResponse, 'thermostats'> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/list',
       method: 'post',
@@ -246,11 +226,7 @@ export class SeamHttpThermostats {
   off(
     body?: ThermostatsOffBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<
-    undefined | ThermostatsOffBody,
-    ThermostatsOffResponse,
-    'action_attempt'
-  > {
+  ): SeamHttpRequest<ThermostatsOffResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/off',
       method: 'post',
@@ -263,11 +239,7 @@ export class SeamHttpThermostats {
   setFanMode(
     body?: ThermostatsSetFanModeBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<
-    undefined | ThermostatsSetFanModeBody,
-    ThermostatsSetFanModeResponse,
-    'action_attempt'
-  > {
+  ): SeamHttpRequest<ThermostatsSetFanModeResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/set_fan_mode',
       method: 'post',
@@ -277,9 +249,7 @@ export class SeamHttpThermostats {
     })
   }
 
-  update(
-    body?: ThermostatsUpdateBody,
-  ): SeamHttpRequest<undefined | ThermostatsUpdateBody, void, undefined> {
+  update(body?: ThermostatsUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/update',
       method: 'post',

@@ -154,9 +154,7 @@ export class SeamHttpDevicesSimulate {
     await clientSessions.get()
   }
 
-  remove(
-    body?: DevicesSimulateRemoveBody,
-  ): SeamHttpRequest<undefined | DevicesSimulateRemoveBody, void, undefined> {
+  remove(body?: DevicesSimulateRemoveBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/devices/simulate/remove',
       method: 'post',

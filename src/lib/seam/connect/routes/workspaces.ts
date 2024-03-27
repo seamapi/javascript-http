@@ -156,11 +156,7 @@ export class SeamHttpWorkspaces {
 
   create(
     body?: WorkspacesCreateBody,
-  ): SeamHttpRequest<
-    undefined | WorkspacesCreateBody,
-    WorkspacesCreateResponse,
-    'workspace'
-  > {
+  ): SeamHttpRequest<WorkspacesCreateResponse, 'workspace'> {
     return new SeamHttpRequest(this, {
       path: '/workspaces/create',
       method: 'post',
@@ -171,11 +167,7 @@ export class SeamHttpWorkspaces {
 
   get(
     body?: WorkspacesGetParams,
-  ): SeamHttpRequest<
-    undefined | WorkspacesGetParams,
-    WorkspacesGetResponse,
-    'workspace'
-  > {
+  ): SeamHttpRequest<WorkspacesGetResponse, 'workspace'> {
     return new SeamHttpRequest(this, {
       path: '/workspaces/get',
       method: 'post',
@@ -186,11 +178,7 @@ export class SeamHttpWorkspaces {
 
   list(
     body?: WorkspacesListParams,
-  ): SeamHttpRequest<
-    undefined | WorkspacesListParams,
-    WorkspacesListResponse,
-    'workspaces'
-  > {
+  ): SeamHttpRequest<WorkspacesListResponse, 'workspaces'> {
     return new SeamHttpRequest(this, {
       path: '/workspaces/list',
       method: 'post',
@@ -201,7 +189,7 @@ export class SeamHttpWorkspaces {
 
   resetSandbox(
     body?: WorkspacesResetSandboxBody,
-  ): SeamHttpRequest<undefined | WorkspacesResetSandboxBody, void, undefined> {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/workspaces/reset_sandbox',
       method: 'post',

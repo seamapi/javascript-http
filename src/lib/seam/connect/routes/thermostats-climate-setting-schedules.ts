@@ -160,7 +160,6 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   create(
     body?: ThermostatsClimateSettingSchedulesCreateBody,
   ): SeamHttpRequest<
-    undefined | ThermostatsClimateSettingSchedulesCreateBody,
     ThermostatsClimateSettingSchedulesCreateResponse,
     'climate_setting_schedule'
   > {
@@ -174,11 +173,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
 
   delete(
     body?: ThermostatsClimateSettingSchedulesDeleteBody,
-  ): SeamHttpRequest<
-    undefined | ThermostatsClimateSettingSchedulesDeleteBody,
-    void,
-    undefined
-  > {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/climate_setting_schedules/delete',
       method: 'post',
@@ -190,7 +185,6 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   get(
     body?: ThermostatsClimateSettingSchedulesGetParams,
   ): SeamHttpRequest<
-    undefined | ThermostatsClimateSettingSchedulesGetParams,
     ThermostatsClimateSettingSchedulesGetResponse,
     'climate_setting_schedule'
   > {
@@ -205,7 +199,6 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   list(
     body?: ThermostatsClimateSettingSchedulesListParams,
   ): SeamHttpRequest<
-    undefined | ThermostatsClimateSettingSchedulesListParams,
     ThermostatsClimateSettingSchedulesListResponse,
     'climate_setting_schedules'
   > {
@@ -219,11 +212,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
 
   update(
     body?: ThermostatsClimateSettingSchedulesUpdateBody,
-  ): SeamHttpRequest<
-    undefined | ThermostatsClimateSettingSchedulesUpdateBody,
-    void,
-    undefined
-  > {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/climate_setting_schedules/update',
       method: 'post',

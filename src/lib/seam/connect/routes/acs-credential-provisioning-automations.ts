@@ -160,7 +160,6 @@ export class SeamHttpAcsCredentialProvisioningAutomations {
   launch(
     body?: AcsCredentialProvisioningAutomationsLaunchBody,
   ): SeamHttpRequest<
-    undefined | AcsCredentialProvisioningAutomationsLaunchBody,
     AcsCredentialProvisioningAutomationsLaunchResponse,
     'acs_credential_provisioning_automation'
   > {

@@ -164,11 +164,7 @@ export class SeamHttpUserIdentities {
 
   addAcsUser(
     body?: UserIdentitiesAddAcsUserBody,
-  ): SeamHttpRequest<
-    undefined | UserIdentitiesAddAcsUserBody,
-    void,
-    undefined
-  > {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/add_acs_user',
       method: 'post',
@@ -179,11 +175,7 @@ export class SeamHttpUserIdentities {
 
   create(
     body?: UserIdentitiesCreateBody,
-  ): SeamHttpRequest<
-    undefined | UserIdentitiesCreateBody,
-    UserIdentitiesCreateResponse,
-    'user_identity'
-  > {
+  ): SeamHttpRequest<UserIdentitiesCreateResponse, 'user_identity'> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/create',
       method: 'post',
@@ -192,9 +184,7 @@ export class SeamHttpUserIdentities {
     })
   }
 
-  delete(
-    body?: UserIdentitiesDeleteBody,
-  ): SeamHttpRequest<undefined | UserIdentitiesDeleteBody, void, undefined> {
+  delete(body?: UserIdentitiesDeleteBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/delete',
       method: 'post',
@@ -205,11 +195,7 @@ export class SeamHttpUserIdentities {
 
   get(
     body?: UserIdentitiesGetParams,
-  ): SeamHttpRequest<
-    undefined | UserIdentitiesGetParams,
-    UserIdentitiesGetResponse,
-    'user_identity'
-  > {
+  ): SeamHttpRequest<UserIdentitiesGetResponse, 'user_identity'> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/get',
       method: 'post',
@@ -220,11 +206,7 @@ export class SeamHttpUserIdentities {
 
   grantAccessToDevice(
     body?: UserIdentitiesGrantAccessToDeviceBody,
-  ): SeamHttpRequest<
-    undefined | UserIdentitiesGrantAccessToDeviceBody,
-    void,
-    undefined
-  > {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/grant_access_to_device',
       method: 'post',
@@ -235,11 +217,7 @@ export class SeamHttpUserIdentities {
 
   list(
     body?: UserIdentitiesListParams,
-  ): SeamHttpRequest<
-    undefined | UserIdentitiesListParams,
-    UserIdentitiesListResponse,
-    'user_identities'
-  > {
+  ): SeamHttpRequest<UserIdentitiesListResponse, 'user_identities'> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/list',
       method: 'post',
@@ -251,7 +229,6 @@ export class SeamHttpUserIdentities {
   listAccessibleDevices(
     body?: UserIdentitiesListAccessibleDevicesParams,
   ): SeamHttpRequest<
-    undefined | UserIdentitiesListAccessibleDevicesParams,
     UserIdentitiesListAccessibleDevicesResponse,
     'accessible_devices'
   > {
@@ -265,11 +242,7 @@ export class SeamHttpUserIdentities {
 
   listAcsSystems(
     body?: UserIdentitiesListAcsSystemsParams,
-  ): SeamHttpRequest<
-    undefined | UserIdentitiesListAcsSystemsParams,
-    UserIdentitiesListAcsSystemsResponse,
-    'acs_systems'
-  > {
+  ): SeamHttpRequest<UserIdentitiesListAcsSystemsResponse, 'acs_systems'> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/list_acs_systems',
       method: 'post',
@@ -280,11 +253,7 @@ export class SeamHttpUserIdentities {
 
   listAcsUsers(
     body?: UserIdentitiesListAcsUsersParams,
-  ): SeamHttpRequest<
-    undefined | UserIdentitiesListAcsUsersParams,
-    UserIdentitiesListAcsUsersResponse,
-    'acs_users'
-  > {
+  ): SeamHttpRequest<UserIdentitiesListAcsUsersResponse, 'acs_users'> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/list_acs_users',
       method: 'post',
@@ -295,11 +264,7 @@ export class SeamHttpUserIdentities {
 
   removeAcsUser(
     body?: UserIdentitiesRemoveAcsUserBody,
-  ): SeamHttpRequest<
-    undefined | UserIdentitiesRemoveAcsUserBody,
-    void,
-    undefined
-  > {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/remove_acs_user',
       method: 'post',
@@ -310,11 +275,7 @@ export class SeamHttpUserIdentities {
 
   revokeAccessToDevice(
     body?: UserIdentitiesRevokeAccessToDeviceBody,
-  ): SeamHttpRequest<
-    undefined | UserIdentitiesRevokeAccessToDeviceBody,
-    void,
-    undefined
-  > {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/revoke_access_to_device',
       method: 'post',
@@ -323,9 +284,7 @@ export class SeamHttpUserIdentities {
     })
   }
 
-  update(
-    body?: UserIdentitiesUpdateBody,
-  ): SeamHttpRequest<undefined | UserIdentitiesUpdateBody, void, undefined> {
+  update(body?: UserIdentitiesUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/update',
       method: 'post',

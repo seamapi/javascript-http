@@ -157,11 +157,7 @@ export class SeamHttpActionAttempts {
   get(
     body?: ActionAttemptsGetParams,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<
-    undefined | ActionAttemptsGetParams,
-    ActionAttemptsGetResponse,
-    'action_attempt'
-  > {
+  ): SeamHttpRequest<ActionAttemptsGetResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       path: '/action_attempts/get',
       method: 'post',
@@ -173,11 +169,7 @@ export class SeamHttpActionAttempts {
 
   list(
     body?: ActionAttemptsListParams,
-  ): SeamHttpRequest<
-    undefined | ActionAttemptsListParams,
-    ActionAttemptsListResponse,
-    'action_attempts'
-  > {
+  ): SeamHttpRequest<ActionAttemptsListResponse, 'action_attempts'> {
     return new SeamHttpRequest(this, {
       path: '/action_attempts/list',
       method: 'post',

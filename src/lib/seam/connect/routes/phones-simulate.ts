@@ -156,11 +156,7 @@ export class SeamHttpPhonesSimulate {
 
   createSandboxPhone(
     body?: PhonesSimulateCreateSandboxPhoneBody,
-  ): SeamHttpRequest<
-    undefined | PhonesSimulateCreateSandboxPhoneBody,
-    PhonesSimulateCreateSandboxPhoneResponse,
-    'phone'
-  > {
+  ): SeamHttpRequest<PhonesSimulateCreateSandboxPhoneResponse, 'phone'> {
     return new SeamHttpRequest(this, {
       path: '/phones/simulate/create_sandbox_phone',
       method: 'post',

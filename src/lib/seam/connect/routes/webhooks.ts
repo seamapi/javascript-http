@@ -156,11 +156,7 @@ export class SeamHttpWebhooks {
 
   create(
     body?: WebhooksCreateBody,
-  ): SeamHttpRequest<
-    undefined | WebhooksCreateBody,
-    WebhooksCreateResponse,
-    'webhook'
-  > {
+  ): SeamHttpRequest<WebhooksCreateResponse, 'webhook'> {
     return new SeamHttpRequest(this, {
       path: '/webhooks/create',
       method: 'post',
@@ -169,9 +165,7 @@ export class SeamHttpWebhooks {
     })
   }
 
-  delete(
-    body?: WebhooksDeleteBody,
-  ): SeamHttpRequest<undefined | WebhooksDeleteBody, void, undefined> {
+  delete(body?: WebhooksDeleteBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/webhooks/delete',
       method: 'post',
@@ -182,11 +176,7 @@ export class SeamHttpWebhooks {
 
   get(
     body?: WebhooksGetParams,
-  ): SeamHttpRequest<
-    undefined | WebhooksGetParams,
-    WebhooksGetResponse,
-    'webhook'
-  > {
+  ): SeamHttpRequest<WebhooksGetResponse, 'webhook'> {
     return new SeamHttpRequest(this, {
       path: '/webhooks/get',
       method: 'post',
@@ -197,11 +187,7 @@ export class SeamHttpWebhooks {
 
   list(
     body?: WebhooksListParams,
-  ): SeamHttpRequest<
-    undefined | WebhooksListParams,
-    WebhooksListResponse,
-    'webhooks'
-  > {
+  ): SeamHttpRequest<WebhooksListResponse, 'webhooks'> {
     return new SeamHttpRequest(this, {
       path: '/webhooks/list',
       method: 'post',
@@ -210,9 +196,7 @@ export class SeamHttpWebhooks {
     })
   }
 
-  update(
-    body?: WebhooksUpdateBody,
-  ): SeamHttpRequest<undefined | WebhooksUpdateBody, void, undefined> {
+  update(body?: WebhooksUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/webhooks/update',
       method: 'post',

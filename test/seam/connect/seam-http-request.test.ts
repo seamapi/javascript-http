@@ -163,7 +163,7 @@ const toPlainUrlObject = (url: URL): Omit<URL, 'searchParams' | 'toJSON'> => {
 }
 
 type ResponseFromSeamHttpRequest<T> =
-  T extends SeamHttpRequest<any, infer TResponse, infer TResponseKey>
+  T extends SeamHttpRequest<infer TResponse, infer TResponseKey>
     ? TResponseKey extends keyof TResponse
       ? TResponse[TResponseKey]
       : undefined

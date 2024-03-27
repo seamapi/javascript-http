@@ -156,11 +156,7 @@ export class SeamHttpAcsCredentialPools {
 
   list(
     body?: AcsCredentialPoolsListParams,
-  ): SeamHttpRequest<
-    undefined | AcsCredentialPoolsListParams,
-    AcsCredentialPoolsListResponse,
-    'acs_credential_pools'
-  > {
+  ): SeamHttpRequest<AcsCredentialPoolsListResponse, 'acs_credential_pools'> {
     return new SeamHttpRequest(this, {
       path: '/acs/credential_pools/list',
       method: 'post',

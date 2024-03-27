@@ -154,9 +154,7 @@ export class SeamHttpEvents {
     await clientSessions.get()
   }
 
-  get(
-    body?: EventsGetParams,
-  ): SeamHttpRequest<undefined | EventsGetParams, EventsGetResponse, 'event'> {
+  get(body?: EventsGetParams): SeamHttpRequest<EventsGetResponse, 'event'> {
     return new SeamHttpRequest(this, {
       path: '/events/get',
       method: 'post',
@@ -165,13 +163,7 @@ export class SeamHttpEvents {
     })
   }
 
-  list(
-    body?: EventsListParams,
-  ): SeamHttpRequest<
-    undefined | EventsListParams,
-    EventsListResponse,
-    'events'
-  > {
+  list(body?: EventsListParams): SeamHttpRequest<EventsListResponse, 'events'> {
     return new SeamHttpRequest(this, {
       path: '/events/list',
       method: 'post',

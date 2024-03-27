@@ -156,11 +156,7 @@ export class SeamHttpAcsSystems {
 
   get(
     body?: AcsSystemsGetParams,
-  ): SeamHttpRequest<
-    undefined | AcsSystemsGetParams,
-    AcsSystemsGetResponse,
-    'acs_system'
-  > {
+  ): SeamHttpRequest<AcsSystemsGetResponse, 'acs_system'> {
     return new SeamHttpRequest(this, {
       path: '/acs/systems/get',
       method: 'post',
@@ -171,11 +167,7 @@ export class SeamHttpAcsSystems {
 
   list(
     body?: AcsSystemsListParams,
-  ): SeamHttpRequest<
-    undefined | AcsSystemsListParams,
-    AcsSystemsListResponse,
-    'acs_systems'
-  > {
+  ): SeamHttpRequest<AcsSystemsListResponse, 'acs_systems'> {
     return new SeamHttpRequest(this, {
       path: '/acs/systems/list',
       method: 'post',

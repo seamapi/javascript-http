@@ -159,11 +159,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
 
   delete(
     body?: UserIdentitiesEnrollmentAutomationsDeleteBody,
-  ): SeamHttpRequest<
-    undefined | UserIdentitiesEnrollmentAutomationsDeleteBody,
-    void,
-    undefined
-  > {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/enrollment_automations/delete',
       method: 'post',
@@ -175,7 +171,6 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
   get(
     body?: UserIdentitiesEnrollmentAutomationsGetParams,
   ): SeamHttpRequest<
-    undefined | UserIdentitiesEnrollmentAutomationsGetParams,
     UserIdentitiesEnrollmentAutomationsGetResponse,
     'enrollment_automation'
   > {
@@ -190,7 +185,6 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
   launch(
     body?: UserIdentitiesEnrollmentAutomationsLaunchBody,
   ): SeamHttpRequest<
-    undefined | UserIdentitiesEnrollmentAutomationsLaunchBody,
     UserIdentitiesEnrollmentAutomationsLaunchResponse,
     'enrollment_automation'
   > {
@@ -205,7 +199,6 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
   list(
     body?: UserIdentitiesEnrollmentAutomationsListParams,
   ): SeamHttpRequest<
-    undefined | UserIdentitiesEnrollmentAutomationsListParams,
     UserIdentitiesEnrollmentAutomationsListResponse,
     'enrollment_automations'
   > {

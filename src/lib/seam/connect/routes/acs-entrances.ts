@@ -156,11 +156,7 @@ export class SeamHttpAcsEntrances {
 
   get(
     body?: AcsEntrancesGetParams,
-  ): SeamHttpRequest<
-    undefined | AcsEntrancesGetParams,
-    AcsEntrancesGetResponse,
-    'acs_entrance'
-  > {
+  ): SeamHttpRequest<AcsEntrancesGetResponse, 'acs_entrance'> {
     return new SeamHttpRequest(this, {
       path: '/acs/entrances/get',
       method: 'post',
@@ -171,7 +167,7 @@ export class SeamHttpAcsEntrances {
 
   grantAccess(
     body?: AcsEntrancesGrantAccessBody,
-  ): SeamHttpRequest<undefined | AcsEntrancesGrantAccessBody, void, undefined> {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/entrances/grant_access',
       method: 'post',
@@ -182,11 +178,7 @@ export class SeamHttpAcsEntrances {
 
   list(
     body?: AcsEntrancesListParams,
-  ): SeamHttpRequest<
-    undefined | AcsEntrancesListParams,
-    AcsEntrancesListResponse,
-    'acs_entrances'
-  > {
+  ): SeamHttpRequest<AcsEntrancesListResponse, 'acs_entrances'> {
     return new SeamHttpRequest(this, {
       path: '/acs/entrances/list',
       method: 'post',
@@ -198,7 +190,6 @@ export class SeamHttpAcsEntrances {
   listCredentialsWithAccess(
     body?: AcsEntrancesListCredentialsWithAccessParams,
   ): SeamHttpRequest<
-    undefined | AcsEntrancesListCredentialsWithAccessParams,
     AcsEntrancesListCredentialsWithAccessResponse,
     'acs_credentials'
   > {

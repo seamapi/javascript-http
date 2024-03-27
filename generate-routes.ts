@@ -361,12 +361,7 @@ const renderClassMethod = ({
       namespace,
     })},
     ${renderClassMethodOptions({ resource })}
-  ): SeamHttpRequest<${isRequestParamOptional ? 'undefined | ' : ''}${renderRequestType(
-    {
-      name,
-      namespace,
-    },
-  )}, ${
+  ): SeamHttpRequest<${
     resource === null
       ? 'void, undefined'
       : `${renderResponseType({ name, namespace })}, '${resource}'`

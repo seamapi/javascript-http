@@ -159,9 +159,7 @@ export class SeamHttpPhones {
     return SeamHttpPhonesSimulate.fromClient(this.client, this.defaults)
   }
 
-  deactivate(
-    body?: PhonesDeactivateBody,
-  ): SeamHttpRequest<undefined | PhonesDeactivateBody, void, undefined> {
+  deactivate(body?: PhonesDeactivateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/phones/deactivate',
       method: 'post',
@@ -170,13 +168,7 @@ export class SeamHttpPhones {
     })
   }
 
-  list(
-    body?: PhonesListParams,
-  ): SeamHttpRequest<
-    undefined | PhonesListParams,
-    PhonesListResponse,
-    'phones'
-  > {
+  list(body?: PhonesListParams): SeamHttpRequest<PhonesListResponse, 'phones'> {
     return new SeamHttpRequest(this, {
       path: '/phones/list',
       method: 'post',

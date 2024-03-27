@@ -154,9 +154,7 @@ export class SeamHttpAcsAccessGroups {
     await clientSessions.get()
   }
 
-  addUser(
-    body?: AcsAccessGroupsAddUserBody,
-  ): SeamHttpRequest<undefined | AcsAccessGroupsAddUserBody, void, undefined> {
+  addUser(body?: AcsAccessGroupsAddUserBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/access_groups/add_user',
       method: 'post',
@@ -167,11 +165,7 @@ export class SeamHttpAcsAccessGroups {
 
   get(
     body?: AcsAccessGroupsGetParams,
-  ): SeamHttpRequest<
-    undefined | AcsAccessGroupsGetParams,
-    AcsAccessGroupsGetResponse,
-    'acs_access_group'
-  > {
+  ): SeamHttpRequest<AcsAccessGroupsGetResponse, 'acs_access_group'> {
     return new SeamHttpRequest(this, {
       path: '/acs/access_groups/get',
       method: 'post',
@@ -182,11 +176,7 @@ export class SeamHttpAcsAccessGroups {
 
   list(
     body?: AcsAccessGroupsListParams,
-  ): SeamHttpRequest<
-    undefined | AcsAccessGroupsListParams,
-    AcsAccessGroupsListResponse,
-    'acs_access_groups'
-  > {
+  ): SeamHttpRequest<AcsAccessGroupsListResponse, 'acs_access_groups'> {
     return new SeamHttpRequest(this, {
       path: '/acs/access_groups/list',
       method: 'post',
@@ -197,11 +187,7 @@ export class SeamHttpAcsAccessGroups {
 
   listUsers(
     body?: AcsAccessGroupsListUsersParams,
-  ): SeamHttpRequest<
-    undefined | AcsAccessGroupsListUsersParams,
-    AcsAccessGroupsListUsersResponse,
-    'acs_users'
-  > {
+  ): SeamHttpRequest<AcsAccessGroupsListUsersResponse, 'acs_users'> {
     return new SeamHttpRequest(this, {
       path: '/acs/access_groups/list_users',
       method: 'post',
@@ -212,11 +198,7 @@ export class SeamHttpAcsAccessGroups {
 
   removeUser(
     body?: AcsAccessGroupsRemoveUserBody,
-  ): SeamHttpRequest<
-    undefined | AcsAccessGroupsRemoveUserBody,
-    void,
-    undefined
-  > {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/access_groups/remove_user',
       method: 'post',
