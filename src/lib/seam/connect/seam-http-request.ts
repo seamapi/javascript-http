@@ -59,8 +59,7 @@ export class SeamHttpRequest<
       ? this.#config.path
       : `/${this.#config.path}`
 
-    const path =
-      params == null ? pathname : `${pathname}?${serializer(params)}`
+    const path = params == null ? pathname : `${pathname}?${serializer(params)}`
 
     return new URL(`${origin}${path}`)
   }
