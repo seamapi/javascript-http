@@ -143,7 +143,7 @@ test('SeamHttpRequest: url throws if unable to resolve origin', async (t) => {
 
   const request = seam.devices.get({ device_id: 'abc123' })
 
-  t.throws(() => request.url, { code: 'ERR_INVALID_URL' })
+  t.throws(() => request.url, { message: /Cannot resolve origin/ })
 })
 
 const toPlainUrlObject = (url: URL): Omit<URL, 'searchParams' | 'toJSON'> => {

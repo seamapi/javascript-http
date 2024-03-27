@@ -130,15 +130,16 @@ export class SeamHttpRequest<
 }
 
 const getUrlPrefix = (input: string): string => {
-  try {
+  if (URL.canParse(input)) {
     const url = new URL(input).toString()
     if (url.endsWith('/')) return url.slice(0, -1)
     return url
-  } catch (err: unknown) {
-    if (globalThis.location != null) {
-      const pathname = input.startsWith('/') ? input : `/${input}`
-      return new URL(`${globalThis.location.origin}${pathname}`).toString()
-    }
-    throw err
   }
+  if (globalThis.location != null) {
+    const pathname = input.startsWith('/') ? input : `/${input}`
+    return new URL(`${globalThis.location.origin}${pathname}`).toString()
+  }
+  throw new Error(
+    `Cannot resolve origin from ${input} in a non-browser environment`,
+  )
 }
