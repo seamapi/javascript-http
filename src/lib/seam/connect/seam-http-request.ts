@@ -24,10 +24,12 @@ export class SeamHttpRequest<
   const TResponse,
   const TResponseKey extends keyof TResponse | undefined,
 > implements
-    PromiseLike<
+    Promise<
       TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
     >
 {
+  readonly [Symbol.toStringTag]: string = 'SeamHttpRequest'
+
   readonly #parent: SeamHttpRequestParent
   readonly #config: SeamHttpRequestConfig<TResponseKey>
 
@@ -105,7 +107,7 @@ export class SeamHttpRequest<
     return data
   }
 
-  then<
+  async then<
     TResult1 = TResponseKey extends keyof TResponse
       ? TResponse[TResponseKey]
       : undefined,
@@ -123,8 +125,30 @@ export class SeamHttpRequest<
       | ((reason: any) => TResult2 | PromiseLike<TResult2>)
       | null
       | undefined,
-  ): PromiseLike<TResult1 | TResult2> {
-    return this.execute().then(onfulfilled, onrejected)
+  ): Promise<TResult1 | TResult2> {
+    return await this.execute().then(onfulfilled, onrejected)
+  }
+
+  async catch<TResult = never>(
+    onrejected?:
+      | ((reason: any) => TResult | PromiseLike<TResult>)
+      | null
+      | undefined,
+  ): Promise<
+    | (TResponseKey extends keyof TResponse
+        ? TResponse[TResponseKey]
+        : undefined)
+    | TResult
+  > {
+    return await this.execute().catch(onrejected)
+  }
+
+  async finally(
+    onfinally?: (() => void) | null | undefined,
+  ): Promise<
+    TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
+  > {
+    return await this.execute().finally(onfinally)
   }
 }
 

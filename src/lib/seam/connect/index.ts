@@ -14,6 +14,7 @@ export * from './routes/index.js'
 export * from './seam-http.js'
 export * from './seam-http-error.js'
 export * from './seam-http-multi-workspace.js'
+export * from './seam-http-request.js'
 export {
   isApiKey,
   isClientSessionToken,
