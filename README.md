@@ -74,11 +74,27 @@ $ npm install -D @seamapi/types@latest
 
 ## Usage
 
+### Examples
+
+_These examples assume `SEAM_API_KEY` is set in your environment._
+
+#### List devices
+
 ```ts
 import { SeamHttp } from '@seamapi/http/connect'
 
-const seam = new SeamHttp('your-api-key')
+const seam = new SeamHttp()
 const devices = await seam.devices.list()
+```
+
+#### Unlock a door
+
+```ts
+import { SeamHttp } from '@seamapi/http/connect'
+
+const seam = new SeamHttp()
+const lock = await seam.locks.get({ name: 'Front Door' })
+await seam.locks.unlockDoor({ device_id: lock.device_id })
 ```
 
 ### Authentication Methods
