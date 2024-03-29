@@ -107,7 +107,7 @@ export class SeamHttpRequest<
     return data
   }
 
-  then<
+  async then<
     TResult1 = TResponseKey extends keyof TResponse
       ? TResponse[TResponseKey]
       : undefined,
@@ -126,10 +126,10 @@ export class SeamHttpRequest<
       | null
       | undefined,
   ): Promise<TResult1 | TResult2> {
-    return this.execute().then(onfulfilled, onrejected)
+    return await this.execute().then(onfulfilled, onrejected)
   }
 
-  catch<TResult = never>(
+  async catch<TResult = never>(
     onrejected?:
       | ((reason: any) => TResult | PromiseLike<TResult>)
       | null
@@ -140,15 +140,15 @@ export class SeamHttpRequest<
         : undefined)
     | TResult
   > {
-    return this.execute().catch(onrejected)
+    return await this.execute().catch(onrejected)
   }
 
-  finally(
+  async finally(
     onfinally?: (() => void) | null | undefined,
   ): Promise<
     TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
   > {
-    return this.execute().finally(onfinally)
+    return await this.execute().finally(onfinally)
   }
 }
 
