@@ -140,7 +140,7 @@ const seam = SeamHttp.fromClientSessionToken('some-client-session-token')
 
 The client session token may be updated using
 
-```
+```ts
 const seam = SeamHttp.fromClientSessionToken('some-client-session-token')
 
 await seam.updateClientSessionToken('some-new-client-session-token')
