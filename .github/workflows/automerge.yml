@@ -8,7 +8,7 @@ on:
 
 jobs:
   changes:
-    name: Get changes for #${{ github.event.number }}
+    name: Get changes
     runs-on: ubuntu-latest
     timeout-minutes: 30
     # if: github.actor == 'dependabot[bot]'
@@ -32,7 +32,7 @@ jobs:
           dir_names_include_files: |
             src/lib/seam/connect/routes/**
   merge:
-    name: Merge #${{ github.event.number }}
+    name: Merge
     runs-on: ubuntu-latest
     timeout-minutes: 30
     needs: changes
@@ -57,7 +57,7 @@ jobs:
       #     PR_URL: ${{ github.event.pull_request.html_url }}
       #     GH_TOKEN: ${{ secrets.GH_TOKEN }}
   close:
-    name: Close #${{ github.event.number }}
+    name: Close
     runs-on: ubuntu-latest
     timeout-minutes: 30
     needs: changes
