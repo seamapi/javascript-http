@@ -21,7 +21,7 @@ jobs:
         uses: fountainhead/action-wait-for-check@v1.2.0
         id: checks
         with:
-          checkName: Generate
+          checkName: Generate code
           ref: ${{ github.event.pull_request.head.sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Get changed generated files
