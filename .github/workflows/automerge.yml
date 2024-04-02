@@ -15,7 +15,8 @@ jobs:
     permissions:
       checks: read
     outputs:
-      has_changes: ${{ steps.changed.outputs.any_changed == 'true' && steps.checks.outputs.conclusion == 'success'}}
+      has_changes: ${{ steps.changed.outputs.any_changed == 'true' }}
+      is_generation_successful: ${{ steps.checks.outputs.conclusion == 'success' }}
     steps:
       - name: Wait for checks
         uses: fountainhead/action-wait-for-check@v1.2.0
@@ -60,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     needs: changes
-    if: needs.changes.outputs.has_changes == 'false'
+    if: needs.changes.outputs.has_changes == 'false' && needs.changes.outputs.is_generation_successful
     steps:
       - name: Close pull request
         # run: gh pr close "$PR_URL"
