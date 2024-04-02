@@ -1,0 +1,70 @@
+---
+name: Automerge
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  changes:
+    name: Get changes for #${{ number }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: github.actor == 'dependabot[bot]'
+    permissions:
+      checks: read
+    outputs:
+      has_changes: ${{ steps.changed.outputs.any_changed == 'true' && steps.checks.outputs.conclusion == 'success'}}
+    steps:
+      - name: Wait for checks
+        uses: fountainhead/action-wait-for-check@v1.2.0
+        id: checks
+        with:
+          checkName: generate
+          ref: ${{ github.event.pull_request.head.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get changed generated files
+        id: changed
+        uses: tj-actions/changed-files@v44
+        with:
+          dir_names: true
+          dir_names_include_files: |
+            src/lib/seam/connect/routes/**
+  merge:
+    name: Merge #${{ number }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: changes
+    if: needs.changes.outputs.has_changes == 'true'
+    steps:
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files_separator: ' '
+          dir_names: true
+          dir_names_include_files: |
+            src/lib/seam/connect/routes/**
+      - name: Approve pull request
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Merge pull request
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  close:
+    name: Close #${{ number }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: changes
+    if: needs.changes.outputs.has_changes == 'false'
+    steps:
+      - name: Close pull request
+        run: gh pr close "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
