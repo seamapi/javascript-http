@@ -18,7 +18,7 @@ updates:
       seam:
         dependency-type: development
         patterns:
-          - "@seamapi/types"
+          - '@seamapi/types'
         update-types:
           - patch
           - minor
