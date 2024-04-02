@@ -11,7 +11,7 @@ jobs:
     name: Get changes for #${{ number }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    if: github.actor == 'dependabot[bot]'
+    # if: github.actor == 'dependabot[bot]'
     permissions:
       checks: read
     outputs:
@@ -51,11 +51,11 @@ jobs:
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - name: Merge pull request
-        run: gh pr merge --auto --merge "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      # - name: Merge pull request
+      #   run: gh pr merge --auto --merge "$PR_URL"
+      #   env:
+      #     PR_URL: ${{ github.event.pull_request.html_url }}
+      #     GH_TOKEN: ${{ secrets.GH_TOKEN }}
   close:
     name: Close #${{ number }}
     runs-on: ubuntu-latest
@@ -64,7 +64,8 @@ jobs:
     if: needs.changes.outputs.has_changes == 'false'
     steps:
       - name: Close pull request
-        run: gh pr close "$PR_URL"
+        # run: gh pr close "$PR_URL"
+        run: true
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
