@@ -28,8 +28,7 @@ jobs:
         id: changed
         uses: tj-actions/changed-files@v44
         with:
-          dir_names: true
-          dir_names_include_files: |
+          files: |
             src/lib/seam/connect/routes/**
   merge:
     name: Merge
