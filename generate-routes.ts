@@ -127,11 +127,10 @@ const createRoutes = (): Route[] => {
     )
 
   if (unmatchedEndpointPaths.length > 0) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      `The following endpoints will not be generated (add them to routePaths in generate-routes.ts):\n${unmatchedEndpointPaths.join(
+    throw new Error(
+      `The following endpoints will not be generated (add them to routePaths in generate-routes.ts):\n\n${unmatchedEndpointPaths.join(
         '\n',
-      )}`,
+      )}\n`,
     )
   }
 
