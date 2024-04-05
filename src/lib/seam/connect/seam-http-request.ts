@@ -153,7 +153,7 @@ export class SeamHttpRequest<
 }
 
 const getUrlPrefix = (input: string): string => {
-  if (URL.canParse(input)) {
+  if (canParseUrl(input)) {
     const url = new URL(input).toString()
     if (url.endsWith('/')) return url.slice(0, -1)
     return url
@@ -165,4 +165,14 @@ const getUrlPrefix = (input: string): string => {
   throw new Error(
     `Cannot resolve origin from ${input} in a non-browser environment`,
   )
+}
+
+// UPSTREAM: Prefer URL.canParse when it has wider support.
+// https://caniuse.com/mdn-api_url_canparse_static
+const canParseUrl = (input: string): boolean => {
+  try {
+    return new URL(input) != null
+  } catch {
+    return false
+  }
 }
