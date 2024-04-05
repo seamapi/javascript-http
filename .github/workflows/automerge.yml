@@ -38,14 +38,6 @@ jobs:
     needs: changes
     if: needs.changes.outputs.has_changes == 'true'
     steps:
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v44
-        with:
-          files_separator: ' '
-          dir_names: true
-          dir_names_include_files: |
-            src/lib/seam/connect/routes/**
       - name: Approve pull request
         run: gh pr review --approve "$PR_URL"
         env:
