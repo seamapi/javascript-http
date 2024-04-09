@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 import { openapi } from '@seamapi/types/connect'
 import { camelCase, kebabCase, pascalCase, snakeCase } from 'change-case'
+import { deleteAsync } from 'del'
 import { ESLint } from 'eslint'
 import { format, resolveConfig } from 'prettier'
 
@@ -19,8 +20,13 @@ const routeOutputPath = resolve(rootPath, 'routes')
 
 async function main(): Promise<void> {
   const routes = createRoutes()
-  await Promise.all(routes.map(writeRoute))
-  await writeRoutesIndex(routes)
+  const routeNames = await Promise.all(routes.map(writeRoute))
+  const routeIndexName = await writeRoutesIndex(routes)
+  await deleteAsync([
+    `${routeOutputPath}/**`,
+    `!${routeOutputPath}/${routeIndexName}`,
+    ...routeNames.map((name) => `!${routeOutputPath}/${name}`),
+  ])
 }
 
 const routePaths = [
@@ -500,21 +506,21 @@ const getClassConstructors = (data: string): string => {
   return lines.slice(startIdx, endIdx).join('\n')
 }
 
-const writeRoute = async (route: Route): Promise<void> => {
+const writeRoute = async (route: Route): Promise<string> => {
   const rootClass = await readFile(rootClassPath)
   const constructors = getClassConstructors(rootClass.toString())
-  await write(
-    renderRoute(route, { constructors }),
-    routeOutputPath,
-    `${kebabCase(route.namespace)}.ts`,
-  )
+  const name = `${kebabCase(route.namespace)}.ts`
+  await write(renderRoute(route, { constructors }), routeOutputPath, name)
+  return name
 }
 
-const writeRoutesIndex = async (routes: Route[]): Promise<void> => {
+const writeRoutesIndex = async (routes: Route[]): Promise<string> => {
   const exports = routes.map(
     (route) => `export * from './${kebabCase(route.namespace)}.js'`,
   )
-  await write(exports.join('\n'), routeOutputPath, `index.ts`)
+  const name = 'index.ts'
+  await write(exports.join('\n'), routeOutputPath, name)
+  return name
 }
 
 const write = async (data: string, ...path: string[]): Promise<void> => {
