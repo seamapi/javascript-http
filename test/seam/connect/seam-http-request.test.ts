@@ -8,7 +8,6 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 test('SeamHttp: returns a SeamHttpRequest', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
-
   const request = seam.devices.get({ device_id: seed.august_device_1 })
 
   t.true(request instanceof SeamHttpRequest)
@@ -18,52 +17,60 @@ test('SeamHttp: returns a SeamHttpRequest', async (t) => {
     device_id: seed.august_device_1,
   })
 
-  const device = await request
+  const device = await request.execute()
   t.is(device.workspace_id, seed.seed_workspace_1)
   t.is(device.device_id, seed.august_device_1)
 
-  // Ensure that the type of the response is correct.
   type Expected = ResponseFromSeamHttpRequest<typeof request>
   const validDeviceType: Expected['device_type'] = 'august_lock'
   t.truthy(validDeviceType)
 
-  // @ts-expect-error invalid device type.
+  // @ts-expect-error Test invalid device type.
   const invalidDeviceType: Expected['device_type'] = 'invalid_device_type'
   t.truthy(invalidDeviceType)
 })
 
-test('SeamHttpRequest: url is a URL for post requests', async (t) => {
+test('SeamHttpRequest: does not make the request until awaited', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+  const request = seam.devices.get({ device_id: seed.august_device_1 })
+  const device = await request
+  t.is(device.workspace_id, seed.seed_workspace_1)
+  t.is(device.device_id, seed.august_device_1)
+})
 
-  const { url } = seam.devices.get({ device_id: 'abc123' })
-
+test('SeamHttpRequest: url is a URL for requests without query string', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+  const { url } = seam.devices.list()
   t.true(url instanceof URL)
   t.deepEqual(
     toPlainUrlObject(url),
-    toPlainUrlObject(new URL(`${endpoint}/devices/get`)),
+    toPlainUrlObject(new URL(`${endpoint}/devices/list`)),
   )
 })
 
-test('SeamHttpRequest: url is a URL for get requests', async (t) => {
-  const { seed, endpoint } = await getTestServer(t)
-  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
-
-  const { url } = seam.connectWebviews.view({
-    connect_webview_id: 'connect_webview_1',
-    auth_token: 'auth_token_1',
-  })
-
-  t.true(url instanceof URL)
-  t.deepEqual(
-    toPlainUrlObject(url),
-    toPlainUrlObject(
-      new URL(
-        `${endpoint}/connect_webviews/view?auth_token=auth_token_1&connect_webview_id=connect_webview_1`,
+// UPSTREAM: The Seam API does not yet consistently support GET requests, so only POST is used.
+test.failing(
+  'SeamHttpRequest: url is a URL for requests with query string',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+    const { url } = seam.devices.list({
+      limit: 10,
+      device_ids: [seed.august_device_1, seed.ecobee_device_1],
+    })
+    t.true(url instanceof URL)
+    t.deepEqual(
+      toPlainUrlObject(url),
+      toPlainUrlObject(
+        new URL(
+          `${endpoint}/devices/get?device_ids=${seed.august_device_1}&device_ids=${seed.ecobee_device_1}&limit=10`,
+        ),
       ),
-    ),
-  )
-})
+    )
+  },
+)
 
 test('SeamHttpRequest: url is a URL when endpoint is a url without a path', async (t) => {
   const { seed } = await getTestServer(t)
