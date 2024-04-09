@@ -1,13 +1,27 @@
 import { readFile, writeFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import { openapi } from '@seamapi/types/connect'
 import { camelCase, kebabCase, pascalCase, snakeCase } from 'change-case'
 import { ESLint } from 'eslint'
 import { format, resolveConfig } from 'prettier'
 
-const rootClassPath = resolve('src', 'lib', 'seam', 'connect', 'seam-http.ts')
-const routeOutputPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
+const rootPath = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  'src',
+  'lib',
+  'seam',
+  'connect',
+)
+const rootClassPath = resolve(rootPath, 'seam-http.ts')
+const routeOutputPath = resolve(rootPath, 'routes')
+
+async function main(): Promise<void> {
+  const routes = createRoutes()
+  await Promise.all(routes.map(writeRoute))
+  await writeRoutesIndex(routes)
+}
 
 const routePaths = [
   '/access_codes',
@@ -550,6 +564,4 @@ const eslintFixOutput = async (
   return linted.output ?? linted.source ?? data
 }
 
-const routes = createRoutes()
-await Promise.all(routes.map(writeRoute))
-await writeRoutesIndex(routes)
+await main()
