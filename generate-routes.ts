@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises'
-import { dirname, resolve } from 'node:path'
+import { dirname, posix, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { openapi } from '@seamapi/types/connect'
@@ -8,24 +8,26 @@ import { deleteAsync } from 'del'
 import { ESLint } from 'eslint'
 import { format, resolveConfig } from 'prettier'
 
+const rootPathParts = ['src', 'lib', 'seam', 'connect']
+
+const routeOutputPathParts = ['routes']
+
 const rootPath = resolve(
   dirname(fileURLToPath(import.meta.url)),
-  'src',
-  'lib',
-  'seam',
-  'connect',
+  ...rootPathParts,
 )
 const rootClassPath = resolve(rootPath, 'seam-http.ts')
-const routeOutputPath = resolve(rootPath, 'routes')
+const routeOutputPath = resolve(rootPath, ...routeOutputPathParts)
 
 async function main(): Promise<void> {
   const routes = createRoutes()
   const routeNames = await Promise.all(routes.map(writeRoute))
   const routeIndexName = await writeRoutesIndex(routes)
+  const outputPathParts = [...rootPathParts, ...routeOutputPathParts]
   await deleteAsync([
-    `${routeOutputPath}/**`,
-    `!${routeOutputPath}/${routeIndexName}`,
-    ...routeNames.map((name) => `!${routeOutputPath}/${name}`),
+    posix.join(...outputPathParts, '*'),
+    `!${posix.join(...outputPathParts, routeIndexName)}`,
+    ...routeNames.map((name) => `!${posix.join(...outputPathParts, name)}`),
   ])
 }
 
