@@ -84,14 +84,10 @@
     "npm": ">= 9.0.0"
   },
   "peerDependencies": {
-    "@seamapi/types": "^1.154.1",
-    "type-fest": "^4.0.0"
+    "@seamapi/types": "^1.154.1"
   },
   "peerDependenciesMeta": {
     "@seamapi/types": {
-      "optional": true
-    },
-    "type-fest": {
       "optional": true
     }
   },
@@ -126,7 +122,6 @@
     "tsc-alias": "^1.8.2",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
-    "type-fest": "^4.3.1",
     "typedoc": "^0.25.2",
     "typescript": "~5.3.0"
   }

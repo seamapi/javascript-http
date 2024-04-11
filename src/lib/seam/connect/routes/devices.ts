@@ -4,7 +4,7 @@
  */
 
 import type { RouteRequestBody, RouteResponse } from '@seamapi/types/connect'
-import type { SetNonNullable } from 'type-fest'
+import type { SetNonNullable } from 'lib/types.js'
 
 import {
   getAuthHeadersForClientSessionToken,
