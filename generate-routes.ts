@@ -11,6 +11,7 @@ const routeOutputPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
 
 const routePaths = [
   '/access_codes',
+  '/access_codes/simulate',
   '/access_codes/unmanaged',
   '/acs',
   '/acs/access_groups',
@@ -32,6 +33,7 @@ const routePaths = [
   '/networks',
   '/noise_sensors',
   '/noise_sensors/noise_thresholds',
+  '/noise_sensors/simulate',
   '/phones',
   '/phones/simulate',
   '/thermostats',
@@ -62,36 +64,6 @@ const routePathSubresources: Partial<
   '/user_identities': ['enrollment_automations'],
 }
 
-const ignoredEndpointPaths = [
-  '/access_codes/simulate/create_unmanaged_access_code',
-  '/connect_webviews/view',
-  '/health',
-  '/health/get_health',
-  '/health/get_service_health',
-  '/health/service/[service_name]',
-  '/noise_sensors/simulate/trigger_noise_threshold',
-  '/workspaces/reset_sandbox',
-] as const
-
-const endpointResources: Partial<
-  Record<
-    keyof typeof openapi.paths,
-    null | 'action_attempt' | 'noise_threshold'
-  >
-> = {
-  // Set all ignored endpoints null to simplify code generation.
-  ...ignoredEndpointPaths.reduce((acc, cur) => ({ ...acc, [cur]: null }), {}),
-
-  // These endpoints return a deprecated action attempt or resource.
-  '/access_codes/delete': null,
-  '/access_codes/unmanaged/delete': null,
-  '/access_codes/update': null,
-  '/noise_sensors/noise_thresholds/create': 'noise_threshold',
-  '/noise_sensors/noise_thresholds/delete': null,
-  '/noise_sensors/noise_thresholds/update': null,
-  '/thermostats/climate_setting_schedules/update': null,
-} as const
-
 interface Route {
   namespace: string
   endpoints: Endpoint[]
@@ -117,14 +89,10 @@ interface ClassMeta {
 const createRoutes = (): Route[] => {
   const paths = Object.keys(openapi.paths)
 
-  const unmatchedEndpointPaths = paths
-    .filter(
-      (path) =>
-        !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
-    )
-    .filter(
-      (path) => !(ignoredEndpointPaths as unknown as string[]).includes(path),
-    )
+  const unmatchedEndpointPaths = paths.filter(
+    (path) =>
+      !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
+  )
 
   if (unmatchedEndpointPaths.length > 0) {
     throw new Error(
@@ -184,27 +152,28 @@ const deriveResource = (
   endpointPath: string,
   method: Method,
 ): string | null => {
-  if (isEndpointResource(endpointPath)) {
-    return endpointResources[endpointPath] ?? null
-  }
-
   if (isOpenapiPath(endpointPath)) {
     const spec = openapi.paths[endpointPath]
     const methodKey = method.toLowerCase()
 
     if (methodKey === 'post' && 'post' in spec) {
-      const response = spec.post.responses[200]
-      if (!('content' in response)) return null
-      return deriveResourceFromSchema(
-        response.content['application/json']?.schema?.properties ?? {},
-      )
+      const postSpec = spec.post
+      const openapiResponseKeyProp = 'x-fern-sdk-return-value'
+      const openapiEndpointResource =
+        openapiResponseKeyProp in postSpec
+          ? (postSpec[openapiResponseKeyProp] as string)
+          : null
+
+      return openapiEndpointResource
     }
 
     if (methodKey === 'get' && 'get' in spec) {
       const response = spec.get.responses[200]
+
       if (!('content' in response)) {
         throw new Error(`Missing resource for ${method} ${endpointPath}`)
       }
+
       return deriveResourceFromSchema(
         response.content['application/json']?.schema?.properties ?? {},
       )
@@ -225,10 +194,6 @@ const deriveSemanticMethod = (methods: string[]): Method => {
   if (methods.includes('get')) return 'GET'
   throw new Error(`Could not find valid method in ${methods.join(', ')}`)
 }
-
-const isEndpointResource = (
-  key: string,
-): key is keyof typeof endpointResources => key in endpointResources
 
 const isOpenapiPath = (key: string): key is keyof typeof openapi.paths =>
   key in openapi.paths
