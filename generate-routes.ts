@@ -161,7 +161,7 @@ const deriveResource = (
       const openapiResponseKeyProp = 'x-fern-sdk-return-value'
       const openapiEndpointResource =
         openapiResponseKeyProp in postSpec
-          ? (postSpec[openapiResponseKeyProp] as string)
+          ? (postSpec[openapiResponseKeyProp])
           : null
 
       return openapiEndpointResource
