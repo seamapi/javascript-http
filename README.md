@@ -78,7 +78,7 @@ $ npm install -D @seamapi/types@latest
 ### Examples
 
 > [!NOTE]
-> These examples assume `SEAM_API_KEY` is set in your environment.\_
+> These examples assume `SEAM_API_KEY` is set in your environment.
 
 #### List devices
 
