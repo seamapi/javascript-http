@@ -9,6 +9,8 @@ import { format, resolveConfig } from 'prettier'
 const rootClassPath = resolve('src', 'lib', 'seam', 'connect', 'seam-http.ts')
 const routeOutputPath = resolve('src', 'lib', 'seam', 'connect', 'routes')
 
+const openapiResponseKeyProp = 'x-fern-sdk-return-value'
+
 const routePaths = [
   '/access_codes',
   '/access_codes/simulate',
@@ -158,7 +160,6 @@ const deriveResource = (
 
     if (methodKey === 'post' && 'post' in spec) {
       const postSpec = spec.post
-      const openapiResponseKeyProp = 'x-fern-sdk-return-value'
       const openapiEndpointResource =
         openapiResponseKeyProp in postSpec
           ? postSpec[openapiResponseKeyProp]
