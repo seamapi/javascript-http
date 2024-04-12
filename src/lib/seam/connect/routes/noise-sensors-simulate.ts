@@ -33,7 +33,9 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
-export class SeamHttpClientSessions {
+import { SeamHttpClientSessions } from './client-sessions.js'
+
+export class SeamHttpNoiseSensorsSimulate {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
@@ -46,23 +48,23 @@ export class SeamHttpClientSessions {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpClientSessions {
+  ): SeamHttpNoiseSensorsSimulate {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpClientSessions(constructorOptions)
+    return new SeamHttpNoiseSensorsSimulate(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpClientSessions {
+  ): SeamHttpNoiseSensorsSimulate {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpClientSessions(constructorOptions)
+    return new SeamHttpNoiseSensorsSimulate(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -71,19 +73,19 @@ export class SeamHttpClientSessions {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpClientSessions {
+  ): SeamHttpNoiseSensorsSimulate {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpClientSessions(constructorOptions)
+    return new SeamHttpNoiseSensorsSimulate(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpClientSessions> {
+  ): Promise<SeamHttpNoiseSensorsSimulate> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
@@ -96,7 +98,7 @@ export class SeamHttpClientSessions {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpClientSessions.fromClientSessionToken(token, options)
+    return SeamHttpNoiseSensorsSimulate.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -106,14 +108,14 @@ export class SeamHttpClientSessions {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpClientSessions {
+  ): SeamHttpNoiseSensorsSimulate {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpClientSessions(constructorOptions)
+    return new SeamHttpNoiseSensorsSimulate(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -123,14 +125,14 @@ export class SeamHttpClientSessions {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpClientSessions {
+  ): SeamHttpNoiseSensorsSimulate {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpClientSessions(constructorOptions)
+    return new SeamHttpNoiseSensorsSimulate(constructorOptions)
   }
 
   async updateClientSessionToken(
@@ -152,73 +154,11 @@ export class SeamHttpClientSessions {
     await clientSessions.get()
   }
 
-  create(
-    body?: ClientSessionsCreateBody,
-  ): SeamHttpRequest<ClientSessionsCreateResponse, 'client_session'> {
-    return new SeamHttpRequest(this, {
-      path: '/client_sessions/create',
-      method: 'post',
-      body,
-      responseKey: 'client_session',
-    })
-  }
-
-  delete(body?: ClientSessionsDeleteBody): SeamHttpRequest<void, undefined> {
-    return new SeamHttpRequest(this, {
-      path: '/client_sessions/delete',
-      method: 'post',
-      body,
-      responseKey: undefined,
-    })
-  }
-
-  get(
-    body?: ClientSessionsGetParams,
-  ): SeamHttpRequest<ClientSessionsGetResponse, 'client_session'> {
-    return new SeamHttpRequest(this, {
-      path: '/client_sessions/get',
-      method: 'post',
-      body,
-      responseKey: 'client_session',
-    })
-  }
-
-  getOrCreate(
-    body?: ClientSessionsGetOrCreateBody,
-  ): SeamHttpRequest<ClientSessionsGetOrCreateResponse, 'client_session'> {
-    return new SeamHttpRequest(this, {
-      path: '/client_sessions/get_or_create',
-      method: 'post',
-      body,
-      responseKey: 'client_session',
-    })
-  }
-
-  grantAccess(
-    body?: ClientSessionsGrantAccessBody,
+  triggerNoiseThreshold(
+    body?: NoiseSensorsSimulateTriggerNoiseThresholdBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/client_sessions/grant_access',
-      method: 'post',
-      body,
-      responseKey: undefined,
-    })
-  }
-
-  list(
-    body?: ClientSessionsListParams,
-  ): SeamHttpRequest<ClientSessionsListResponse, 'client_sessions'> {
-    return new SeamHttpRequest(this, {
-      path: '/client_sessions/list',
-      method: 'post',
-      body,
-      responseKey: 'client_sessions',
-    })
-  }
-
-  revoke(body?: ClientSessionsRevokeBody): SeamHttpRequest<void, undefined> {
-    return new SeamHttpRequest(this, {
-      path: '/client_sessions/revoke',
+      path: '/noise_sensors/simulate/trigger_noise_threshold',
       method: 'post',
       body,
       responseKey: undefined,
@@ -226,63 +166,11 @@ export class SeamHttpClientSessions {
   }
 }
 
-export type ClientSessionsCreateBody =
-  RouteRequestBody<'/client_sessions/create'>
+export type NoiseSensorsSimulateTriggerNoiseThresholdBody =
+  RouteRequestBody<'/noise_sensors/simulate/trigger_noise_threshold'>
 
-export type ClientSessionsCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/create'>>
+export type NoiseSensorsSimulateTriggerNoiseThresholdResponse = SetNonNullable<
+  Required<RouteResponse<'/noise_sensors/simulate/trigger_noise_threshold'>>
 >
 
-export type ClientSessionsCreateOptions = never
-
-export type ClientSessionsDeleteBody =
-  RouteRequestBody<'/client_sessions/delete'>
-
-export type ClientSessionsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/delete'>>
->
-
-export type ClientSessionsDeleteOptions = never
-
-export type ClientSessionsGetParams = RouteRequestBody<'/client_sessions/get'>
-
-export type ClientSessionsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/get'>>
->
-
-export type ClientSessionsGetOptions = never
-
-export type ClientSessionsGetOrCreateBody =
-  RouteRequestBody<'/client_sessions/get_or_create'>
-
-export type ClientSessionsGetOrCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/get_or_create'>>
->
-
-export type ClientSessionsGetOrCreateOptions = never
-
-export type ClientSessionsGrantAccessBody =
-  RouteRequestBody<'/client_sessions/grant_access'>
-
-export type ClientSessionsGrantAccessResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/grant_access'>>
->
-
-export type ClientSessionsGrantAccessOptions = never
-
-export type ClientSessionsListParams = RouteRequestBody<'/client_sessions/list'>
-
-export type ClientSessionsListResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/list'>>
->
-
-export type ClientSessionsListOptions = never
-
-export type ClientSessionsRevokeBody =
-  RouteRequestBody<'/client_sessions/revoke'>
-
-export type ClientSessionsRevokeResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/revoke'>>
->
-
-export type ClientSessionsRevokeOptions = never
+export type NoiseSensorsSimulateTriggerNoiseThresholdOptions = never

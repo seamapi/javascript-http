@@ -228,15 +228,12 @@ export class SeamHttpUserIdentities {
 
   listAccessibleDevices(
     body?: UserIdentitiesListAccessibleDevicesParams,
-  ): SeamHttpRequest<
-    UserIdentitiesListAccessibleDevicesResponse,
-    'accessible_devices'
-  > {
+  ): SeamHttpRequest<UserIdentitiesListAccessibleDevicesResponse, 'devices'> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/list_accessible_devices',
       method: 'post',
       body,
-      responseKey: 'accessible_devices',
+      responseKey: 'devices',
     })
   }
 

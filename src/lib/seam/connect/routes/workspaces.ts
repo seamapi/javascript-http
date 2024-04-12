@@ -189,12 +189,14 @@ export class SeamHttpWorkspaces {
 
   resetSandbox(
     body?: WorkspacesResetSandboxBody,
-  ): SeamHttpRequest<void, undefined> {
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): SeamHttpRequest<WorkspacesResetSandboxResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       path: '/workspaces/reset_sandbox',
       method: 'post',
       body,
-      responseKey: undefined,
+      responseKey: 'action_attempt',
+      options,
     })
   }
 }
@@ -230,4 +232,7 @@ export type WorkspacesResetSandboxResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/reset_sandbox'>>
 >
 
-export type WorkspacesResetSandboxOptions = never
+export type WorkspacesResetSandboxOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
