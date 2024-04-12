@@ -28,10 +28,11 @@ The underlying HTTP client is [Axios].
 
 ## Installation
 
-_This is a low-level package meant for applications and libraries with particular dependency requirements.
-Before using this package, ensure you understand the installation and updating instructions.
-This SDK is entirely contained in the [seam package]. Seam recommends using that package instead
-for simpler dependency management._
+> [!IMPORTANT]
+> This is a low-level package meant for applications and libraries with particular dependency requirements.
+> Before using this package, ensure you understand the installation and updating instructions.
+> This SDK is entirely contained in the [seam package].
+> Seam recommends using that package instead for simpler dependency management.
 
 Add this as a dependency to your project using [npm] with
 
@@ -76,7 +77,8 @@ $ npm install -D @seamapi/types@latest
 
 ### Examples
 
-_These examples assume `SEAM_API_KEY` is set in your environment._
+> [!NOTE]
+> These examples assume `SEAM_API_KEY` is set in your environment.
 
 #### List devices
 
@@ -104,6 +106,7 @@ Authentication may be configured by passing the corresponding
 options directly to the `SeamHttp` constructor,
 or with the more ergonomic static factory methods.
 
+> [!NOTE]
 > Publishable Key authentication is not supported by the constructor
 > and must be configured using `SeamHttp.fromPublishableKey`.
 
