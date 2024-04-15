@@ -33,6 +33,7 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 
+import { SeamHttpAccessCodesSimulate } from './access-codes-simulate.js'
 import { SeamHttpAccessCodesUnmanaged } from './access-codes-unmanaged.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
@@ -157,6 +158,10 @@ export class SeamHttpAccessCodes {
 
   get unmanaged(): SeamHttpAccessCodesUnmanaged {
     return SeamHttpAccessCodesUnmanaged.fromClient(this.client, this.defaults)
+  }
+
+  get simulate(): SeamHttpAccessCodesSimulate {
+    return SeamHttpAccessCodesSimulate.fromClient(this.client, this.defaults)
   }
 
   create(
