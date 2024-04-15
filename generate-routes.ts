@@ -71,7 +71,7 @@ const routePaths = [
 const routePathSubresources: Partial<
   Record<(typeof routePaths)[number], string[]>
 > = {
-  '/access_codes': ['unmanaged'],
+  '/access_codes': ['unmanaged', 'simulate'],
   '/acs': [
     'access_groups',
     'credential_pools',
@@ -83,7 +83,7 @@ const routePathSubresources: Partial<
   ],
   '/phones': ['simulate'],
   '/devices': ['unmanaged', 'simulate'],
-  '/noise_sensors': ['noise_thresholds'],
+  '/noise_sensors': ['noise_thresholds', 'simulate'],
   '/thermostats': ['climate_setting_schedules'],
   '/user_identities': ['enrollment_automations'],
 }
