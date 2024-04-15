@@ -4,7 +4,6 @@
  */
 
 import type { RouteRequestBody, RouteResponse } from '@seamapi/types/connect'
-import type { SetNonNullable } from 'type-fest'
 
 import {
   getAuthHeadersForClientSessionToken,
@@ -32,6 +31,7 @@ import {
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
+import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpAccessCodesSimulate } from './access-codes-simulate.js'
 import { SeamHttpAccessCodesUnmanaged } from './access-codes-unmanaged.js'
