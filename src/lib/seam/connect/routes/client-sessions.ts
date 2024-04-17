@@ -196,12 +196,12 @@ export class SeamHttpClientSessions {
 
   grantAccess(
     body?: ClientSessionsGrantAccessBody,
-  ): SeamHttpRequest<ClientSessionsGrantAccessResponse, 'client_session'> {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/client_sessions/grant_access',
       method: 'post',
       body,
-      responseKey: 'client_session',
+      responseKey: undefined,
     })
   }
 

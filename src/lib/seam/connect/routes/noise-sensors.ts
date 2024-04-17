@@ -31,6 +31,7 @@ import {
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpNoiseSensorsNoiseThresholds } from './noise-sensors-noise-thresholds.js'
+import { SeamHttpNoiseSensorsSimulate } from './noise-sensors-simulate.js'
 
 export class SeamHttpNoiseSensors {
   client: Client
@@ -156,5 +157,9 @@ export class SeamHttpNoiseSensors {
       this.client,
       this.defaults,
     )
+  }
+
+  get simulate(): SeamHttpNoiseSensorsSimulate {
+    return SeamHttpNoiseSensorsSimulate.fromClient(this.client, this.defaults)
   }
 }

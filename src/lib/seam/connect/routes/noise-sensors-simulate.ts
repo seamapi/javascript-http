@@ -35,7 +35,7 @@ import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
-export class SeamHttpWorkspaces {
+export class SeamHttpNoiseSensorsSimulate {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
@@ -48,23 +48,23 @@ export class SeamHttpWorkspaces {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpNoiseSensorsSimulate {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpWorkspaces(constructorOptions)
+    return new SeamHttpNoiseSensorsSimulate(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpNoiseSensorsSimulate {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpWorkspaces(constructorOptions)
+    return new SeamHttpNoiseSensorsSimulate(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -73,19 +73,19 @@ export class SeamHttpWorkspaces {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpNoiseSensorsSimulate {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpWorkspaces(constructorOptions)
+    return new SeamHttpNoiseSensorsSimulate(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpWorkspaces> {
+  ): Promise<SeamHttpNoiseSensorsSimulate> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
@@ -98,7 +98,7 @@ export class SeamHttpWorkspaces {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpWorkspaces.fromClientSessionToken(token, options)
+    return SeamHttpNoiseSensorsSimulate.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -108,14 +108,14 @@ export class SeamHttpWorkspaces {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpNoiseSensorsSimulate {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpWorkspaces(constructorOptions)
+    return new SeamHttpNoiseSensorsSimulate(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -125,14 +125,14 @@ export class SeamHttpWorkspaces {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpNoiseSensorsSimulate {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpWorkspaces(constructorOptions)
+    return new SeamHttpNoiseSensorsSimulate(constructorOptions)
   }
 
   async updateClientSessionToken(
@@ -154,85 +154,23 @@ export class SeamHttpWorkspaces {
     await clientSessions.get()
   }
 
-  create(
-    body?: WorkspacesCreateBody,
-  ): SeamHttpRequest<WorkspacesCreateResponse, 'workspace'> {
+  triggerNoiseThreshold(
+    body?: NoiseSensorsSimulateTriggerNoiseThresholdBody,
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/workspaces/create',
+      path: '/noise_sensors/simulate/trigger_noise_threshold',
       method: 'post',
       body,
-      responseKey: 'workspace',
-    })
-  }
-
-  get(
-    body?: WorkspacesGetParams,
-  ): SeamHttpRequest<WorkspacesGetResponse, 'workspace'> {
-    return new SeamHttpRequest(this, {
-      path: '/workspaces/get',
-      method: 'post',
-      body,
-      responseKey: 'workspace',
-    })
-  }
-
-  list(
-    body?: WorkspacesListParams,
-  ): SeamHttpRequest<WorkspacesListResponse, 'workspaces'> {
-    return new SeamHttpRequest(this, {
-      path: '/workspaces/list',
-      method: 'post',
-      body,
-      responseKey: 'workspaces',
-    })
-  }
-
-  resetSandbox(
-    body?: WorkspacesResetSandboxBody,
-    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<WorkspacesResetSandboxResponse, 'action_attempt'> {
-    return new SeamHttpRequest(this, {
-      path: '/workspaces/reset_sandbox',
-      method: 'post',
-      body,
-      responseKey: 'action_attempt',
-      options,
+      responseKey: undefined,
     })
   }
 }
 
-export type WorkspacesCreateBody = RouteRequestBody<'/workspaces/create'>
+export type NoiseSensorsSimulateTriggerNoiseThresholdBody =
+  RouteRequestBody<'/noise_sensors/simulate/trigger_noise_threshold'>
 
-export type WorkspacesCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/create'>>
+export type NoiseSensorsSimulateTriggerNoiseThresholdResponse = SetNonNullable<
+  Required<RouteResponse<'/noise_sensors/simulate/trigger_noise_threshold'>>
 >
 
-export type WorkspacesCreateOptions = never
-
-export type WorkspacesGetParams = RouteRequestBody<'/workspaces/get'>
-
-export type WorkspacesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/get'>>
->
-
-export type WorkspacesGetOptions = never
-
-export type WorkspacesListParams = RouteRequestBody<'/workspaces/list'>
-
-export type WorkspacesListResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/list'>>
->
-
-export type WorkspacesListOptions = never
-
-export type WorkspacesResetSandboxBody =
-  RouteRequestBody<'/workspaces/reset_sandbox'>
-
-export type WorkspacesResetSandboxResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/reset_sandbox'>>
->
-
-export type WorkspacesResetSandboxOptions = Pick<
-  SeamHttpRequestOptions,
-  'waitForActionAttempt'
->
+export type NoiseSensorsSimulateTriggerNoiseThresholdOptions = never

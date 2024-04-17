@@ -154,14 +154,12 @@ export class SeamHttpAcsCredentials {
     await clientSessions.get()
   }
 
-  assign(
-    body?: AcsCredentialsAssignBody,
-  ): SeamHttpRequest<AcsCredentialsAssignResponse, 'acs_credential'> {
+  assign(body?: AcsCredentialsAssignBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/assign',
       method: 'post',
       body,
-      responseKey: 'acs_credential',
+      responseKey: undefined,
     })
   }
 
@@ -209,23 +207,21 @@ export class SeamHttpAcsCredentials {
 
   unassign(
     body?: AcsCredentialsUnassignBody,
-  ): SeamHttpRequest<AcsCredentialsUnassignResponse, 'acs_credential'> {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/unassign',
       method: 'post',
       body,
-      responseKey: 'acs_credential',
+      responseKey: undefined,
     })
   }
 
-  update(
-    body?: AcsCredentialsUpdateBody,
-  ): SeamHttpRequest<AcsCredentialsUpdateResponse, 'acs_credential'> {
+  update(body?: AcsCredentialsUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/update',
       method: 'post',
       body,
-      responseKey: 'acs_credential',
+      responseKey: undefined,
     })
   }
 }
