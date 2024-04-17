@@ -197,18 +197,19 @@ const deriveResource = (
         throw new Error(`Missing resource for ${method} ${endpointPath}`)
       }
 
-      const responseSchemaProperties =
-        response.content['application/json']?.schema?.properties ?? {}
-      const endpointResource = Object.keys(responseSchemaProperties).find(
-        (key) => key !== 'ok',
+      return deriveResourceFromSchemaForGetRequest(
+        response.content['application/json']?.schema?.properties ?? {},
       )
-
-      return endpointResource ?? null
     }
   }
 
   throw new Error(`Could not derive resource for ${method} ${endpointPath}`)
 }
+
+const deriveResourceFromSchemaForGetRequest = (
+  properties: object,
+): string | null =>
+  Object.keys(properties).filter((key) => key !== 'ok')[0] ?? null
 
 const deriveSemanticMethod = (methods: string[]): Method => {
   // UPSTREAM: This should return GET before POST.
