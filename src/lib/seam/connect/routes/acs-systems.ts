@@ -175,6 +175,20 @@ export class SeamHttpAcsSystems {
       responseKey: 'acs_systems',
     })
   }
+
+  listCompatibleCredentialManagerAcsSystems(
+    body?: AcsSystemsListCompatibleCredentialManagerAcsSystemsParams,
+  ): SeamHttpRequest<
+    AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse,
+    'acs_systems'
+  > {
+    return new SeamHttpRequest(this, {
+      path: '/acs/systems/list_compatible_credential_manager_acs_systems',
+      method: 'post',
+      body,
+      responseKey: 'acs_systems',
+    })
+  }
 }
 
 export type AcsSystemsGetParams = RouteRequestBody<'/acs/systems/get'>
@@ -192,3 +206,15 @@ export type AcsSystemsListResponse = SetNonNullable<
 >
 
 export type AcsSystemsListOptions = never
+
+export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParams =
+  RouteRequestBody<'/acs/systems/list_compatible_credential_manager_acs_systems'>
+
+export type AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse =
+  SetNonNullable<
+    Required<
+      RouteResponse<'/acs/systems/list_compatible_credential_manager_acs_systems'>
+    >
+  >
+
+export type AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = never
