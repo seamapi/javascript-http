@@ -205,6 +205,20 @@ export class SeamHttpAcsCredentials {
     })
   }
 
+  listAccessibleEntrances(
+    body?: AcsCredentialsListAccessibleEntrancesParams,
+  ): SeamHttpRequest<
+    AcsCredentialsListAccessibleEntrancesResponse,
+    'acs_entrances'
+  > {
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/list_accessible_entrances',
+      method: 'post',
+      body,
+      responseKey: 'acs_entrances',
+    })
+  }
+
   unassign(
     body?: AcsCredentialsUnassignBody,
   ): SeamHttpRequest<void, undefined> {
@@ -268,6 +282,15 @@ export type AcsCredentialsListResponse = SetNonNullable<
 >
 
 export type AcsCredentialsListOptions = never
+
+export type AcsCredentialsListAccessibleEntrancesParams =
+  RouteRequestBody<'/acs/credentials/list_accessible_entrances'>
+
+export type AcsCredentialsListAccessibleEntrancesResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/credentials/list_accessible_entrances'>>
+>
+
+export type AcsCredentialsListAccessibleEntrancesOptions = never
 
 export type AcsCredentialsUnassignBody =
   RouteRequestBody<'/acs/credentials/unassign'>
