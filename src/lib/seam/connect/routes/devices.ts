@@ -37,40 +37,39 @@ import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpDevicesSimulate } from './devices-simulate.js'
 import { SeamHttpDevicesUnmanaged } from './devices-unmanaged.js'
 
-
 /**
  * Handles post requests to /devices/delete.
  *
  * @param {BodyType} request - The request body.
- * @returns {Promise<DevicesDeleteResponse>} 
+ * @returns {Promise<DevicesDeleteResponse>}
  */
 
 /**
  * Handles post requests to /devices/get.
  *
  * @param {BodyType} request - The request body.
- * @returns {Promise<DevicesGetResponse>} 
+ * @returns {Promise<DevicesGetResponse>}
  */
 
 /**
  * Handles post requests to /devices/list.
  *
  * @param {BodyType} request - The request body.
- * @returns {Promise<DevicesListResponse>} 
+ * @returns {Promise<DevicesListResponse>}
  */
 
 /**
  * Handles post requests to /devices/list_device_providers.
  *
  * @param {BodyType} request - The request body.
- * @returns {Promise<DevicesListDeviceProvidersResponse>} 
+ * @returns {Promise<DevicesListDeviceProvidersResponse>}
  */
 
 /**
  * Handles post requests to /devices/update.
  *
  * @param {BodyType} request - The request body.
- * @returns {Promise<void>} 
+ * @returns {Promise<void>}
  */
 
 export class SeamHttpDevices {
