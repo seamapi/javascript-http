@@ -94,7 +94,7 @@ interface Route {
   subresources: string[]
 }
 
-interface Endpoint {
+export interface Endpoint {
   name: string
   path: string
   namespace: string
