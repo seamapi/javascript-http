@@ -164,7 +164,7 @@ export class SeamHttpDevices {
     return SeamHttpDevicesSimulate.fromClient(this.client, this.defaults)
   }
 
-  delete(body?: DevicesDeleteBody): SeamHttpRequest<void, undefined> {
+  delete(body?: DevicesDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/devices/delete',
       method: 'post',
@@ -214,7 +214,7 @@ export class SeamHttpDevices {
   }
 }
 
-export type DevicesDeleteBody = RouteRequestBody<'/devices/delete'>
+export type DevicesDeleteParams = RouteRequestBody<'/devices/delete'>
 
 export type DevicesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/devices/delete'>>

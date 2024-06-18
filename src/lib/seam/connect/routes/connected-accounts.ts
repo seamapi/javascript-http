@@ -154,7 +154,9 @@ export class SeamHttpConnectedAccounts {
     await clientSessions.get()
   }
 
-  delete(body?: ConnectedAccountsDeleteBody): SeamHttpRequest<void, undefined> {
+  delete(
+    body?: ConnectedAccountsDeleteParams,
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/connected_accounts/delete',
       method: 'post',
@@ -197,7 +199,7 @@ export class SeamHttpConnectedAccounts {
   }
 }
 
-export type ConnectedAccountsDeleteBody =
+export type ConnectedAccountsDeleteParams =
   RouteRequestBody<'/connected_accounts/delete'>
 
 export type ConnectedAccountsDeleteResponse = SetNonNullable<

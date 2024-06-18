@@ -176,7 +176,7 @@ export class SeamHttpAcsUsers {
     })
   }
 
-  delete(body?: AcsUsersDeleteBody): SeamHttpRequest<void, undefined> {
+  delete(body?: AcsUsersDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/users/delete',
       method: 'post',
@@ -219,7 +219,7 @@ export class SeamHttpAcsUsers {
   }
 
   removeFromAccessGroup(
-    body?: AcsUsersRemoveFromAccessGroupBody,
+    body?: AcsUsersRemoveFromAccessGroupParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/users/remove_from_access_group',
@@ -230,7 +230,7 @@ export class SeamHttpAcsUsers {
   }
 
   revokeAccessToAllEntrances(
-    body?: AcsUsersRevokeAccessToAllEntrancesBody,
+    body?: AcsUsersRevokeAccessToAllEntrancesParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/users/revoke_access_to_all_entrances',
@@ -285,7 +285,7 @@ export type AcsUsersCreateResponse = SetNonNullable<
 
 export type AcsUsersCreateOptions = never
 
-export type AcsUsersDeleteBody = RouteRequestBody<'/acs/users/delete'>
+export type AcsUsersDeleteParams = RouteRequestBody<'/acs/users/delete'>
 
 export type AcsUsersDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/delete'>>
@@ -318,7 +318,7 @@ export type AcsUsersListAccessibleEntrancesResponse = SetNonNullable<
 
 export type AcsUsersListAccessibleEntrancesOptions = never
 
-export type AcsUsersRemoveFromAccessGroupBody =
+export type AcsUsersRemoveFromAccessGroupParams =
   RouteRequestBody<'/acs/users/remove_from_access_group'>
 
 export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
@@ -327,7 +327,7 @@ export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
 
 export type AcsUsersRemoveFromAccessGroupOptions = never
 
-export type AcsUsersRevokeAccessToAllEntrancesBody =
+export type AcsUsersRevokeAccessToAllEntrancesParams =
   RouteRequestBody<'/acs/users/revoke_access_to_all_entrances'>
 
 export type AcsUsersRevokeAccessToAllEntrancesResponse = SetNonNullable<

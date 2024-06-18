@@ -166,7 +166,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   delete(
-    body?: AccessCodesUnmanagedDeleteBody,
+    body?: AccessCodesUnmanagedDeleteParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/access_codes/unmanaged/delete',
@@ -219,7 +219,7 @@ export type AccessCodesUnmanagedConvertToManagedResponse = SetNonNullable<
 
 export type AccessCodesUnmanagedConvertToManagedOptions = never
 
-export type AccessCodesUnmanagedDeleteBody =
+export type AccessCodesUnmanagedDeleteParams =
   RouteRequestBody<'/access_codes/unmanaged/delete'>
 
 export type AccessCodesUnmanagedDeleteResponse = SetNonNullable<

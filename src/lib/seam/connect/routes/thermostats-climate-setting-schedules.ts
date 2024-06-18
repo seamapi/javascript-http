@@ -172,7 +172,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   delete(
-    body?: ThermostatsClimateSettingSchedulesDeleteBody,
+    body?: ThermostatsClimateSettingSchedulesDeleteParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/climate_setting_schedules/delete',
@@ -231,7 +231,7 @@ export type ThermostatsClimateSettingSchedulesCreateResponse = SetNonNullable<
 
 export type ThermostatsClimateSettingSchedulesCreateOptions = never
 
-export type ThermostatsClimateSettingSchedulesDeleteBody =
+export type ThermostatsClimateSettingSchedulesDeleteParams =
   RouteRequestBody<'/thermostats/climate_setting_schedules/delete'>
 
 export type ThermostatsClimateSettingSchedulesDeleteResponse = SetNonNullable<
