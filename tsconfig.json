@@ -37,7 +37,6 @@
     "examples/**/*",
     "tsup.config.ts",
     "prepack.ts",
-    "generate-routes.ts",
-    "generate-docstrings.ts"
+    "generate-routes.ts"
   ]
 }
