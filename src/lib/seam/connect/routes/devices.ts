@@ -37,42 +37,6 @@ import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpDevicesSimulate } from './devices-simulate.js'
 import { SeamHttpDevicesUnmanaged } from './devices-unmanaged.js'
 
-
-/**
- * Handles post requests to /devices/delete.
- *
- * @param {BodyType} request - The request body.
- * @returns {Promise<DevicesDeleteResponse>} 
- */
-
-/**
- * Handles post requests to /devices/get.
- *
- * @param {BodyType} request - The request body.
- * @returns {Promise<DevicesGetResponse>} 
- */
-
-/**
- * Handles post requests to /devices/list.
- *
- * @param {BodyType} request - The request body.
- * @returns {Promise<DevicesListResponse>} 
- */
-
-/**
- * Handles post requests to /devices/list_device_providers.
- *
- * @param {BodyType} request - The request body.
- * @returns {Promise<DevicesListDeviceProvidersResponse>} 
- */
-
-/**
- * Handles post requests to /devices/update.
- *
- * @param {BodyType} request - The request body.
- * @returns {Promise<void>} 
- */
-
 export class SeamHttpDevices {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
@@ -217,6 +181,23 @@ export class SeamHttpDevices {
       responseKey: 'device',
     })
   }
+
+  /**
+   * Sends a POST request to list devices with optional filtering parameters.
+   * This method constructs a request to the API endpoint to retrieve a list of devices,
+   * optionally filtered by the provided parameters.
+   *
+   * @since 1.0.0
+   * @category Device Management
+   * @param {DevicesListParams} [body] Optional parameters for filtering the list of devices.
+   * @returns {SeamHttpRequest<DevicesListResponse, 'devices'>} An instance of SeamHttpRequest
+   *         configured for the devices list operation. The response is keyed by 'devices'.
+   * @example
+   *
+   * list({ locationId: 'loc_123456' })
+   *  Sends a POST request to /devices/list with the body { locationId: 'loc_123456' }
+   *  and returns a SeamHttpRequest. 
+   */
 
   list(
     body?: DevicesListParams,
