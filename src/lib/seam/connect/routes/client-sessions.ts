@@ -163,7 +163,7 @@ export class SeamHttpClientSessions {
     })
   }
 
-  delete(body?: ClientSessionsDeleteBody): SeamHttpRequest<void, undefined> {
+  delete(body?: ClientSessionsDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/client_sessions/delete',
       method: 'post',
@@ -216,7 +216,7 @@ export class SeamHttpClientSessions {
     })
   }
 
-  revoke(body?: ClientSessionsRevokeBody): SeamHttpRequest<void, undefined> {
+  revoke(body?: ClientSessionsRevokeParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/client_sessions/revoke',
       method: 'post',
@@ -235,7 +235,7 @@ export type ClientSessionsCreateResponse = SetNonNullable<
 
 export type ClientSessionsCreateOptions = never
 
-export type ClientSessionsDeleteBody =
+export type ClientSessionsDeleteParams =
   RouteRequestBody<'/client_sessions/delete'>
 
 export type ClientSessionsDeleteResponse = SetNonNullable<
@@ -278,7 +278,7 @@ export type ClientSessionsListResponse = SetNonNullable<
 
 export type ClientSessionsListOptions = never
 
-export type ClientSessionsRevokeBody =
+export type ClientSessionsRevokeParams =
   RouteRequestBody<'/client_sessions/revoke'>
 
 export type ClientSessionsRevokeResponse = SetNonNullable<

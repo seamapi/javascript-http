@@ -172,7 +172,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   delete(
-    body?: NoiseSensorsNoiseThresholdsDeleteBody,
+    body?: NoiseSensorsNoiseThresholdsDeleteParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/noise_sensors/noise_thresholds/delete',
@@ -231,7 +231,7 @@ export type NoiseSensorsNoiseThresholdsCreateResponse = SetNonNullable<
 
 export type NoiseSensorsNoiseThresholdsCreateOptions = never
 
-export type NoiseSensorsNoiseThresholdsDeleteBody =
+export type NoiseSensorsNoiseThresholdsDeleteParams =
   RouteRequestBody<'/noise_sensors/noise_thresholds/delete'>
 
 export type NoiseSensorsNoiseThresholdsDeleteResponse = SetNonNullable<

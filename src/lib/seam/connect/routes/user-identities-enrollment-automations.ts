@@ -158,7 +158,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
   }
 
   delete(
-    body?: UserIdentitiesEnrollmentAutomationsDeleteBody,
+    body?: UserIdentitiesEnrollmentAutomationsDeleteParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/enrollment_automations/delete',
@@ -211,7 +211,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
   }
 }
 
-export type UserIdentitiesEnrollmentAutomationsDeleteBody =
+export type UserIdentitiesEnrollmentAutomationsDeleteParams =
   RouteRequestBody<'/user_identities/enrollment_automations/delete'>
 
 export type UserIdentitiesEnrollmentAutomationsDeleteResponse = SetNonNullable<

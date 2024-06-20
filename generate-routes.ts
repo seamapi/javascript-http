@@ -448,6 +448,10 @@ const requestFormatToRequestType = (
   _namespace: string,
 ): 'params' | 'body' => {
   if (['get', 'list', 'view'].includes(name)) return 'params'
+  if (['delete'].includes(name)) return 'params'
+  if (name.includes('revoke')) return 'params'
+  if (name.includes('remove')) return 'params'
+  if (name.includes('deactivate')) return 'params'
   if (name.startsWith('list')) return 'params'
   return 'body'
 }

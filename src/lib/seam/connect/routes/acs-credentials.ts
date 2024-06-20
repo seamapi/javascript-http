@@ -174,7 +174,7 @@ export class SeamHttpAcsCredentials {
     })
   }
 
-  delete(body?: AcsCredentialsDeleteBody): SeamHttpRequest<void, undefined> {
+  delete(body?: AcsCredentialsDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/delete',
       method: 'post',
@@ -258,7 +258,7 @@ export type AcsCredentialsCreateResponse = SetNonNullable<
 
 export type AcsCredentialsCreateOptions = never
 
-export type AcsCredentialsDeleteBody =
+export type AcsCredentialsDeleteParams =
   RouteRequestBody<'/acs/credentials/delete'>
 
 export type AcsCredentialsDeleteResponse = SetNonNullable<

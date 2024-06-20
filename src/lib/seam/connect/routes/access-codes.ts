@@ -186,7 +186,7 @@ export class SeamHttpAccessCodes {
     })
   }
 
-  delete(body?: AccessCodesDeleteBody): SeamHttpRequest<void, undefined> {
+  delete(body?: AccessCodesDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/access_codes/delete',
       method: 'post',
@@ -269,7 +269,7 @@ export type AccessCodesCreateMultipleResponse = SetNonNullable<
 
 export type AccessCodesCreateMultipleOptions = never
 
-export type AccessCodesDeleteBody = RouteRequestBody<'/access_codes/delete'>
+export type AccessCodesDeleteParams = RouteRequestBody<'/access_codes/delete'>
 
 export type AccessCodesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/delete'>>

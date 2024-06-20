@@ -165,7 +165,7 @@ export class SeamHttpWebhooks {
     })
   }
 
-  delete(body?: WebhooksDeleteBody): SeamHttpRequest<void, undefined> {
+  delete(body?: WebhooksDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/webhooks/delete',
       method: 'post',
@@ -214,7 +214,7 @@ export type WebhooksCreateResponse = SetNonNullable<
 
 export type WebhooksCreateOptions = never
 
-export type WebhooksDeleteBody = RouteRequestBody<'/webhooks/delete'>
+export type WebhooksDeleteParams = RouteRequestBody<'/webhooks/delete'>
 
 export type WebhooksDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/delete'>>

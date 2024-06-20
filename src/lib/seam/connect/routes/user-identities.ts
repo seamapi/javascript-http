@@ -184,7 +184,7 @@ export class SeamHttpUserIdentities {
     })
   }
 
-  delete(body?: UserIdentitiesDeleteBody): SeamHttpRequest<void, undefined> {
+  delete(body?: UserIdentitiesDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/delete',
       method: 'post',
@@ -260,7 +260,7 @@ export class SeamHttpUserIdentities {
   }
 
   removeAcsUser(
-    body?: UserIdentitiesRemoveAcsUserBody,
+    body?: UserIdentitiesRemoveAcsUserParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/remove_acs_user',
@@ -271,7 +271,7 @@ export class SeamHttpUserIdentities {
   }
 
   revokeAccessToDevice(
-    body?: UserIdentitiesRevokeAccessToDeviceBody,
+    body?: UserIdentitiesRevokeAccessToDeviceParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/revoke_access_to_device',
@@ -309,7 +309,7 @@ export type UserIdentitiesCreateResponse = SetNonNullable<
 
 export type UserIdentitiesCreateOptions = never
 
-export type UserIdentitiesDeleteBody =
+export type UserIdentitiesDeleteParams =
   RouteRequestBody<'/user_identities/delete'>
 
 export type UserIdentitiesDeleteResponse = SetNonNullable<
@@ -370,7 +370,7 @@ export type UserIdentitiesListAcsUsersResponse = SetNonNullable<
 
 export type UserIdentitiesListAcsUsersOptions = never
 
-export type UserIdentitiesRemoveAcsUserBody =
+export type UserIdentitiesRemoveAcsUserParams =
   RouteRequestBody<'/user_identities/remove_acs_user'>
 
 export type UserIdentitiesRemoveAcsUserResponse = SetNonNullable<
@@ -379,7 +379,7 @@ export type UserIdentitiesRemoveAcsUserResponse = SetNonNullable<
 
 export type UserIdentitiesRemoveAcsUserOptions = never
 
-export type UserIdentitiesRevokeAccessToDeviceBody =
+export type UserIdentitiesRevokeAccessToDeviceParams =
   RouteRequestBody<'/user_identities/revoke_access_to_device'>
 
 export type UserIdentitiesRevokeAccessToDeviceResponse = SetNonNullable<

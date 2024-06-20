@@ -165,7 +165,7 @@ export class SeamHttpConnectWebviews {
     })
   }
 
-  delete(body?: ConnectWebviewsDeleteBody): SeamHttpRequest<void, undefined> {
+  delete(body?: ConnectWebviewsDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/connect_webviews/delete',
       method: 'post',
@@ -206,7 +206,7 @@ export type ConnectWebviewsCreateResponse = SetNonNullable<
 
 export type ConnectWebviewsCreateOptions = never
 
-export type ConnectWebviewsDeleteBody =
+export type ConnectWebviewsDeleteParams =
   RouteRequestBody<'/connect_webviews/delete'>
 
 export type ConnectWebviewsDeleteResponse = SetNonNullable<
