@@ -12,6 +12,7 @@ test('waitForActionAttempt: waits for pending action attempt', async (t) => {
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
+    waitForActionAttempt: false,
   })
 
   const actionAttempt = await seam.locks.unlockDoor({
@@ -48,6 +49,7 @@ test('waitForActionAttempt: returns successful action attempt', async (t) => {
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
+    waitForActionAttempt: false,
   })
 
   const actionAttempt = await seam.locks.unlockDoor({
@@ -87,6 +89,7 @@ test('waitForActionAttempt: times out while waiting for action attempt', async (
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
+    waitForActionAttempt: false,
   })
 
   const actionAttempt = await seam.locks.unlockDoor({
@@ -123,6 +126,7 @@ test('waitForActionAttempt: rejects when action attempt fails', async (t) => {
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
+    waitForActionAttempt: false,
   })
 
   const actionAttempt = await seam.locks.unlockDoor({
@@ -163,6 +167,7 @@ test('waitForActionAttempt: times out if waiting for polling interval', async (t
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
+    waitForActionAttempt: false,
   })
 
   const actionAttempt = await seam.locks.unlockDoor({
@@ -200,6 +205,7 @@ test('waitForActionAttempt: waits directly on returned action attempt', async (t
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
+    waitForActionAttempt: false,
   })
 
   const actionAttempt = await seam.locks.unlockDoor(
