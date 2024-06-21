@@ -212,26 +212,11 @@ test('waitForActionAttempt: waits directly on returned action attempt', async (t
   t.is(actionAttempt.status, 'success')
 })
 
-test('waitForActionAttempt: does not wait by default', async (t) => {
+test('waitForActionAttempt: waits by default', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
-  })
-
-  const actionAttempt = await seam.locks.unlockDoor({
-    device_id: seed.august_device_1,
-  })
-
-  t.is(actionAttempt.status, 'pending')
-})
-
-test('waitForActionAttempt: can set class default', async (t) => {
-  const { seed, endpoint } = await getTestServer(t)
-
-  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
-    endpoint,
-    waitForActionAttempt: true,
   })
 
   const actionAttempt = await seam.locks.unlockDoor({
@@ -239,6 +224,21 @@ test('waitForActionAttempt: can set class default', async (t) => {
   })
 
   t.is(actionAttempt.status, 'success')
+})
+
+test('waitForActionAttempt: can set class default', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+    waitForActionAttempt: false,
+  })
+
+  const actionAttempt = await seam.locks.unlockDoor({
+    device_id: seed.august_device_1,
+  })
+
+  t.is(actionAttempt.status, 'pending')
 })
 
 test('waitForActionAttempt: can set class default with object', async (t) => {
