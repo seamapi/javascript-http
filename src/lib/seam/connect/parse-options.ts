@@ -63,7 +63,7 @@ const getNormalizedOptions = (
       : apiKeyOrOptions
 
   const requestOptions = {
-    waitForActionAttempt: options.waitForActionAttempt ?? false,
+    waitForActionAttempt: options.waitForActionAttempt ?? true,
   }
 
   if (isSeamHttpOptionsWithClient(options)) {
