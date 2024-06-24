@@ -1,8 +1,5 @@
-import type {
-  ActionAttempt,
-  FailedActionAttempt,
-  SuccessfulActionAttempt,
-} from './action-attempt-types.js'
+import type { ActionAttempt } from '@seamapi/types/connect'
+
 import type { SeamHttpActionAttempts } from './routes/index.js'
 
 export interface ResolveActionAttemptOptions {
@@ -14,9 +11,9 @@ export const resolveActionAttempt = async <T extends ActionAttempt>(
   actionAttempt: T,
   actionAttempts: SeamHttpActionAttempts,
   { timeout = 5000, pollingInterval = 500 }: ResolveActionAttemptOptions,
-): Promise<SuccessfulActionAttempt<T>> => {
+): Promise<SucceededActionAttempt<T>> => {
   let timeoutRef
-  const timeoutPromise = new Promise<SuccessfulActionAttempt<T>>(
+  const timeoutPromise = new Promise<SucceededActionAttempt<T>>(
     (_resolve, reject) => {
       timeoutRef = globalThis.setTimeout(() => {
         reject(new SeamActionAttemptTimeoutError<T>(actionAttempt, timeout))
@@ -38,7 +35,7 @@ const pollActionAttempt = async <T extends ActionAttempt>(
   actionAttempt: T,
   actionAttempts: SeamHttpActionAttempts,
   options: Pick<ResolveActionAttemptOptions, 'pollingInterval'>,
-): Promise<SuccessfulActionAttempt<T>> => {
+): Promise<SucceededActionAttempt<T>> => {
   if (isSuccessfulActionAttempt(actionAttempt)) {
     return actionAttempt
   }
@@ -114,9 +111,19 @@ export class SeamActionAttemptTimeoutError<
 
 const isSuccessfulActionAttempt = <T extends ActionAttempt>(
   actionAttempt: T,
-): actionAttempt is SuccessfulActionAttempt<T> =>
+): actionAttempt is SucceededActionAttempt<T> =>
   actionAttempt.status === 'success'
 
 const isFailedActionAttempt = <T extends ActionAttempt>(
   actionAttempt: T,
 ): actionAttempt is FailedActionAttempt<T> => actionAttempt.status === 'error'
+
+export type SucceededActionAttempt<T extends ActionAttempt> = Extract<
+  T,
+  { status: 'success' }
+>
+
+export type FailedActionAttempt<T extends ActionAttempt> = Extract<
+  T,
+  { status: 'error' }
+>
