@@ -25,12 +25,7 @@ export const builder: Builder = {
 
 export const handler: Handler<Options> = async ({ deviceId, seam, logger }) => {
   try {
-    const actionAttempt = await seam.locks.unlockDoor(
-      {
-        device_id: deviceId,
-      },
-      { waitForActionAttempt: true },
-    )
+    const actionAttempt = await seam.locks.unlockDoor({ device_id: deviceId })
     logger.info({ actionAttempt }, 'unlocked')
   } catch (err: unknown) {
     if (isSeamActionAttemptFailedError<UnlockDoorActionAttempt>(err)) {
