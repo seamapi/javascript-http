@@ -182,23 +182,6 @@ export class SeamHttpDevices {
     })
   }
 
-  /**
-   * Sends a POST request to list devices with optional filtering parameters.
-   * This method constructs a request to the API endpoint to retrieve a list of devices,
-   * optionally filtered by the provided parameters.
-   *
-   * @since 1.0.0
-   * @category Device Management
-   * @param {DevicesListParams} [body] Optional parameters for filtering the list of devices.
-   * @returns {SeamHttpRequest<DevicesListResponse, 'devices'>} An instance of SeamHttpRequest
-   *         configured for the devices list operation. The response is keyed by 'devices'.
-   * @example
-   *
-   * list({ locationId: 'loc_123456' })
-   *  Sends a POST request to /devices/list with the body { locationId: 'loc_123456' }
-   *  and returns a SeamHttpRequest. 
-   */
-
   list(
     body?: DevicesListParams,
   ): SeamHttpRequest<DevicesListResponse, 'devices'> {
