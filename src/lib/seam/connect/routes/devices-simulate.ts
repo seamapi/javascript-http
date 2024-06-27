@@ -154,6 +154,26 @@ export class SeamHttpDevicesSimulate {
     await clientSessions.get()
   }
 
+  connect(body?: DevicesSimulateConnectBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/devices/simulate/connect',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  disconnect(
+    body?: DevicesSimulateDisconnectBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/devices/simulate/disconnect',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
   remove(body?: DevicesSimulateRemoveParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/devices/simulate/remove',
@@ -163,6 +183,24 @@ export class SeamHttpDevicesSimulate {
     })
   }
 }
+
+export type DevicesSimulateConnectBody =
+  RouteRequestBody<'/devices/simulate/connect'>
+
+export type DevicesSimulateConnectResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/simulate/connect'>>
+>
+
+export type DevicesSimulateConnectOptions = never
+
+export type DevicesSimulateDisconnectBody =
+  RouteRequestBody<'/devices/simulate/disconnect'>
+
+export type DevicesSimulateDisconnectResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/simulate/disconnect'>>
+>
+
+export type DevicesSimulateDisconnectOptions = never
 
 export type DevicesSimulateRemoveParams =
   RouteRequestBody<'/devices/simulate/remove'>
