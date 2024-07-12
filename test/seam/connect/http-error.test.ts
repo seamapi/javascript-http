@@ -92,4 +92,5 @@ test('SeamHttp: throws SeamHttpInvalidInputError on invalid input', async (t) =>
   t.is(err?.statusCode, 400)
   t.is(err?.code, 'invalid_input')
   t.true(err?.requestId?.startsWith('request'))
+  t.deepEqual(err?.getInputErrorMessages('device_ids'), ['Expected array, received number'])
 })

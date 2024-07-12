@@ -46,11 +46,17 @@ export const isSeamHttpUnauthorizedError = (
 
 export class SeamHttpInvalidInputError extends SeamHttpApiError {
   override code: 'invalid_input'
+  readonly #validationErrors: NonNullable<ApiError['validation_errors']>
 
   constructor(error: ApiError, statusCode: number, requestId: string) {
     super(error, statusCode, requestId)
     this.name = this.constructor.name
     this.code = 'invalid_input'
+    this.#validationErrors = error.validation_errors ?? {}
+  }
+
+  getInputErrorMessages(paramName: string): string[] {
+    return this.#validationErrors[paramName]?._errors ?? []
   }
 }
 
