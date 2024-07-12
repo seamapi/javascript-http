@@ -55,7 +55,7 @@ export class SeamHttpInvalidInputError extends SeamHttpApiError {
     this.#validationErrors = error.validation_errors ?? {}
   }
 
-  getInputErrorMessages(paramName: string): string[] {
+  getValidationErrorMessages(paramName: string): string[] {
     return this.#validationErrors[paramName]?._errors ?? []
   }
 }
