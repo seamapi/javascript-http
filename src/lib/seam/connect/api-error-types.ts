@@ -8,4 +8,5 @@ export interface ApiError {
   type: string
   message: string
   data?: unknown
+  validation_errors?: Record<string, { _errors: string[] }>
 }
