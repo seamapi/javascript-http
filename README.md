@@ -122,7 +122,7 @@ const seam = new SeamHttp()
 // Pass as the first argument to the constructor
 const seam = new SeamHttp('your-api-key')
 
-// Pass as an option the constructor
+// Pass as an option to the constructor
 const seam = new SeamHttp({ apiKey: 'your-api-key' })
 
 // Use the factory method
@@ -134,7 +134,7 @@ const seam = SeamHttp.fromApiKey('your-api-key')
 A Client Session Token is scoped to a client session and should only be used on the client.
 
 ```ts
-// Pass as an option the constructor
+// Pass as an option to the constructor
 const seam = new SeamHttp({ clientSessionToken: 'some-client-session-token' })
 
 // Use the factory method
@@ -174,7 +174,7 @@ A workspace ID must be provided when using this method
 and all requests will be scoped to that workspace.
 
 ```ts
-// Pass as an option the constructor
+// Pass as an option to the constructor
 
 const seam = new SeamHttp({
   personalAccessToken: 'your-personal-access-token',
@@ -196,7 +196,7 @@ A workspace ID must be provided when using this method
 and all requests will be scoped to that workspace.
 
 ```ts
-// Pass as an option the constructor
+// Pass as an option to the constructor
 const seam = new SeamHttp({
   consoleSessionToken: 'some-console-session-token',
   workspaceId: 'your-workspace-id',
@@ -234,7 +234,7 @@ and want to wait for it to resolve, simply use
 await seam.actionAttempts.get({ action_attempt_id })
 ```
 
-Or, to get the current state of an action attempt by ID without waiting,
+Or, to get the current state of an action attempt by ID without waiting:
 
 ```ts
 await seam.actionAttempts.get(
@@ -245,7 +245,7 @@ await seam.actionAttempts.get(
 )
 ```
 
-To disable this behavior, set the default option for the client,
+To disable this behavior, set the default option for the client:
 
 ```ts
 const seam = new SeamHttp({
@@ -256,7 +256,7 @@ const seam = new SeamHttp({
 await seam.locks.unlockDoor({ device_id })
 ```
 
-or the behavior may be configured per-request,
+or the behavior may be configured per-request:
 
 ```ts
 await seam.locks.unlockDoor(
@@ -267,7 +267,8 @@ await seam.locks.unlockDoor(
 )
 ```
 
-The `pollingInterval` and `timeout` may be configured for the client or per-request, for example
+The `pollingInterval` and `timeout` may be configured for the client or per-request.
+For example:
 
 ```ts
 import {
@@ -319,7 +320,7 @@ A Personal Access Token is scoped to a Seam Console user.
 Obtain one from the Seam Console.
 
 ```ts
-// Pass as an option the constructor
+// Pass as an option to the constructor
 const seam = new SeamHttpMultiWorkspace({
   personalAccessToken: 'your-personal-access-token',
 })
@@ -339,7 +340,7 @@ A Console Session Token is used by the Seam Console.
 This authentication method is only used by internal Seam applications.
 
 ```ts
-// Pass as an option the constructor
+// Pass as an option to the constructor
 const seam = new SeamHttpMultiWorkspace({
   consoleSessionToken: 'some-console-session-token',
 })
