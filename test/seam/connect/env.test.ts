@@ -31,6 +31,16 @@ test.serial(
 )
 
 test.serial(
+  'SeamHttp: constructor checks for SEAM_API_KEY environment variable',
+  (t) => {
+    t.throws(() => new SeamHttp(), {
+      instanceOf: SeamHttpInvalidOptionsError,
+      message: /SEAM_API_KEY/,
+    })
+  },
+)
+
+test.serial(
   'SeamHttp: apiKey option overrides environment variables',
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)

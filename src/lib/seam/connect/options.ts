@@ -238,4 +238,9 @@ export class SeamHttpInvalidOptionsError extends Error {
   }
 }
 
-export class SeamHttpMultiWorkspaceInvalidOptionsError extends SeamHttpInvalidOptionsError {}
+export class SeamHttpMultiWorkspaceInvalidOptionsError extends Error {
+  constructor(message: string) {
+    super(`SeamHttpMultiWorkspace received invalid options: ${message}`)
+    this.name = this.constructor.name
+  }
+}
