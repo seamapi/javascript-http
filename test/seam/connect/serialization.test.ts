@@ -43,9 +43,9 @@ test('serializes array params when undefined and explicitly using get', async (t
     },
   })
   const devices = data?.devices
-  const { data: fakeDbDevices } = await seam.client.get('/_fake/database')
+  const { data: db } = await seam.client.get('/_fake/database')
 
-  t.is(devices.length, fakeDbDevices.devices.length)
+  t.is(devices.length, db.devices.length)
 })
 
 test('serializes array params when empty and explicitly using get', async (t) => {
