@@ -4,7 +4,7 @@ import { getTestServer } from 'fixtures/seam/connect/api.js'
 import { type DevicesListResponse, SeamHttp } from '@seamapi/http/connect'
 
 test('serializes array params when undefined', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
+  const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
   const devices = await seam.devices.list({
     device_ids: undefined,

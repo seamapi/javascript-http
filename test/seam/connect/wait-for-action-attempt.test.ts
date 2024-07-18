@@ -26,8 +26,8 @@ test('waitForActionAttempt: waits for pending action attempt', async (t) => {
     status: 'pending',
   })
 
-  setTimeout(async () => {
-    await seam.client.post('/_fake/update_action_attempt', {
+  setTimeout(() => {
+    void seam.client.post('/_fake/update_action_attempt', {
       action_attempt_id: actionAttempt.action_attempt_id,
       status: 'success',
     })
