@@ -4,11 +4,13 @@ import { getTestServer } from 'fixtures/seam/connect/api.js'
 import { type DevicesListResponse, SeamHttp } from '@seamapi/http/connect'
 
 test('serializes array params when undefined', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
+  const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
   const devices = await seam.devices.list({
     device_ids: undefined,
   })
+  const { data: db } = await seam.client.get('/_fake/database')
+
   t.is(devices.length, db.devices.length)
 })
 
@@ -33,7 +35,7 @@ test('serializes array params when non-empty', async (t) => {
 })
 
 test('serializes array params when undefined and explicitly using get', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
+  const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
   const { data } = await seam.client.get<DevicesListResponse>('/devices/list', {
     params: {
@@ -41,6 +43,8 @@ test('serializes array params when undefined and explicitly using get', async (t
     },
   })
   const devices = data?.devices
+  const { data: db } = await seam.client.get('/_fake/database')
+
   t.is(devices.length, db.devices.length)
 })
 

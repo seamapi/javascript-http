@@ -10,17 +10,18 @@ import {
 } from '@seamapi/http/connect'
 
 test('SeamHttp: throws AxiosError on non-standard response', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
-
-  db.simulateWorkspaceOutage(seed.seed_workspace_1, {
-    routes: ['/devices/list'],
-  })
+  const { seed, endpoint } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
     axiosRetryOptions: {
       retries: 0,
     },
+  })
+
+  await seam.client.post('/_fake/simulate_workspace_outage', {
+    workspace_id: seed.seed_workspace_1,
+    routes: ['/devices/list'],
   })
 
   const err = await t.throwsAsync(async () => await seam.devices.list(), {

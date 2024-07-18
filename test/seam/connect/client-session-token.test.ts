@@ -52,14 +52,14 @@ test('SeamHttp: checks clientSessionToken format', (t) => {
 })
 
 test('SeamHttp: updateClientSessionToken returns instance authorized with a new clientSessionToken', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
+  const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromClientSessionToken(seed.seam_cst1_token, {
     endpoint,
   })
-  const { token } = db.addClientSession({
-    workspace_id: seed.seed_workspace_1,
+  const { token } = await seam.clientSessions.create({
     user_identifier_key: 'some-new-user-identifier-key',
   })
+
   await seam.updateClientSessionToken(token)
   const devices = await seam.devices.list()
   t.is(devices.length, 0)
