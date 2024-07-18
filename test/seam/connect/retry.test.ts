@@ -5,12 +5,8 @@ import { getTestServer } from 'fixtures/seam/connect/api.js'
 import { SeamHttp } from '@seamapi/http/connect'
 
 test('SeamHttp: retries 503 status errors twice by default ', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
+  const { seed, endpoint } = await getTestServer(t)
   const expectedRetryCount = 2
-
-  db.simulateWorkspaceOutage(seed.seed_workspace_1, {
-    routes: ['/devices/list'],
-  })
 
   t.plan(expectedRetryCount + 2)
 
@@ -21,6 +17,11 @@ test('SeamHttp: retries 503 status errors twice by default ', async (t) => {
         t.true(retryCount <= expectedRetryCount)
       },
     },
+  })
+
+  await seam.client.post('/_fake/simulate_workspace_outage', {
+    workspace_id: seed.seed_workspace_1,
+    routes: ['/devices/list'],
   })
 
   const err = await t.throwsAsync(
