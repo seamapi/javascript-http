@@ -9,9 +9,9 @@ test('serializes array params when undefined', async (t) => {
   const devices = await seam.devices.list({
     device_ids: undefined,
   })
-  const { data: fakeDbDevices } = await seam.client.get('/_fake/database')
+  const { data: db } = await seam.client.get('/_fake/database')
 
-  t.is(devices.length, fakeDbDevices.devices.length)
+  t.is(devices.length, db.devices.length)
 })
 
 test('serializes array params when empty', async (t) => {
