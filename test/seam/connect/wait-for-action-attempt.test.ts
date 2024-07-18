@@ -8,7 +8,7 @@ import {
 } from '@seamapi/http/connect'
 
 test('waitForActionAttempt: waits for pending action attempt', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
+  const { seed, endpoint } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
@@ -21,13 +21,13 @@ test('waitForActionAttempt: waits for pending action attempt', async (t) => {
 
   t.is(actionAttempt.status, 'pending')
 
-  db.updateActionAttempt({
+  await seam.client.post('/_fake/update_action_attempt', {
     action_attempt_id: actionAttempt.action_attempt_id,
     status: 'pending',
   })
 
-  setTimeout(() => {
-    db.updateActionAttempt({
+  setTimeout(async () => {
+    await seam.client.post('/_fake/update_action_attempt', {
       action_attempt_id: actionAttempt.action_attempt_id,
       status: 'success',
     })
@@ -45,7 +45,7 @@ test('waitForActionAttempt: waits for pending action attempt', async (t) => {
 })
 
 test('waitForActionAttempt: returns successful action attempt', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
+  const { seed, endpoint } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
@@ -58,7 +58,7 @@ test('waitForActionAttempt: returns successful action attempt', async (t) => {
 
   t.is(actionAttempt.status, 'pending')
 
-  db.updateActionAttempt({
+  await seam.client.post('/_fake/update_action_attempt', {
     action_attempt_id: actionAttempt.action_attempt_id,
     status: 'success',
   })
@@ -85,7 +85,7 @@ test('waitForActionAttempt: returns successful action attempt', async (t) => {
 })
 
 test('waitForActionAttempt: times out while waiting for action attempt', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
+  const { seed, endpoint } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
@@ -98,7 +98,7 @@ test('waitForActionAttempt: times out while waiting for action attempt', async (
 
   t.is(actionAttempt.status, 'pending')
 
-  db.updateActionAttempt({
+  await seam.client.post('/_fake/update_action_attempt', {
     action_attempt_id: actionAttempt.action_attempt_id,
     status: 'pending',
   })
@@ -122,7 +122,7 @@ test('waitForActionAttempt: times out while waiting for action attempt', async (
 })
 
 test('waitForActionAttempt: rejects when action attempt fails', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
+  const { seed, endpoint } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
@@ -135,7 +135,7 @@ test('waitForActionAttempt: rejects when action attempt fails', async (t) => {
 
   t.deepEqual(actionAttempt.status, 'pending')
 
-  db.updateActionAttempt({
+  await seam.client.post('/_fake/update_action_attempt', {
     action_attempt_id: actionAttempt.action_attempt_id,
     status: 'error',
     error: {
@@ -163,7 +163,7 @@ test('waitForActionAttempt: rejects when action attempt fails', async (t) => {
 })
 
 test('waitForActionAttempt: times out if waiting for polling interval', async (t) => {
-  const { seed, endpoint, db } = await getTestServer(t)
+  const { seed, endpoint } = await getTestServer(t)
 
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
     endpoint,
@@ -176,7 +176,7 @@ test('waitForActionAttempt: times out if waiting for polling interval', async (t
 
   t.is(actionAttempt.status, 'pending')
 
-  db.updateActionAttempt({
+  await seam.client.post('/_fake/update_action_attempt', {
     action_attempt_id: actionAttempt.action_attempt_id,
     status: 'pending',
   })
