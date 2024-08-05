@@ -227,15 +227,8 @@ test.serial(
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_API_KEY = seed.seam_apikey1_token
-    const consoleSessionToken = jwt.sign(
-      {
-        user_id: seed.john_user_id,
-        key: seed.john_user_key,
-      },
-      'secret',
-    )
     const seam = SeamHttp.fromPersonalAccessToken(
-      consoleSessionToken,
+      seed.seam_at1_token,
       seed.seed_workspace_1,
       {
         endpoint,
