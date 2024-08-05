@@ -2,6 +2,7 @@ import { env } from 'node:process'
 
 import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
+import jwt from 'jsonwebtoken'
 
 import { SeamHttp, SeamHttpInvalidOptionsError } from '@seamapi/http/connect'
 
@@ -194,15 +195,20 @@ test.serial(
   },
 )
 
-// UPSTREAM: Fake does not support JWT.
-// https://github.com/seamapi/fake-seam-connect/issues/124
-test.serial.failing(
+test.serial(
   'SeamHttp: SEAM_API_KEY environment variable is ignored with fromConsoleSessionToken',
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_API_KEY = seed.seam_apikey1_token
+    const consoleSessionToken = jwt.sign(
+      {
+        user_id: seed.john_user_id,
+        key: seed.john_user_key,
+      },
+      'secret',
+    )
     const seam = SeamHttp.fromConsoleSessionToken(
-      'ey_TODO',
+      consoleSessionToken,
       seed.seed_workspace_1,
       {
         endpoint,
@@ -216,15 +222,20 @@ test.serial.failing(
   },
 )
 
-// UPSTREAM: Fake does not support personal access token.
-// https://github.com/seamapi/fake-seam-connect/issues/126
-test.serial.failing(
+test.serial(
   'SeamHttp: SEAM_API_KEY environment variable is ignored with personalAccessToken',
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_API_KEY = seed.seam_apikey1_token
+    const consoleSessionToken = jwt.sign(
+      {
+        user_id: seed.john_user_id,
+        key: seed.john_user_key,
+      },
+      'secret',
+    )
     const seam = SeamHttp.fromPersonalAccessToken(
-      'seam_at_TODO',
+      consoleSessionToken,
       seed.seed_workspace_1,
       {
         endpoint,
