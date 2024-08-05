@@ -76,20 +76,15 @@ test('SeamHttpMultiWorkspace: fromPersonalAccessToken returns instance authorize
   t.true(workspaces.length > 0)
 })
 
-// UPSTREAM: Fake does not support personal access token.
-// https://github.com/seamapi/fake-seam-connect/issues/126
-test.failing(
-  'SeamHttpMultiWorkspace: constructor returns instance authorized with personalAccessToken',
-  async (t) => {
-    const { endpoint } = await getTestServer(t)
-    const seam = new SeamHttpMultiWorkspace({
-      personalAccessToken: 'seam_at_TODO',
-      endpoint,
-    })
-    const workspaces = await seam.workspaces.list()
-    t.true(workspaces.length > 0)
-  },
-)
+test('SeamHttpMultiWorkspace: constructor returns instance authorized with personalAccessToken', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = new SeamHttpMultiWorkspace({
+    personalAccessToken: seed.seam_at1_token,
+    endpoint,
+  })
+  const workspaces = await seam.workspaces.list()
+  t.true(workspaces.length > 0)
+})
 
 test('SeamHttpMultiWorkspace: checks personalAccessToken format', (t) => {
   t.throws(
