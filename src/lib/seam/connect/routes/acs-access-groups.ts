@@ -185,6 +185,20 @@ export class SeamHttpAcsAccessGroups {
     })
   }
 
+  listAccessibleEntrances(
+    body?: AcsAccessGroupsListAccessibleEntrancesParams,
+  ): SeamHttpRequest<
+    AcsAccessGroupsListAccessibleEntrancesResponse,
+    'acs_entrances'
+  > {
+    return new SeamHttpRequest(this, {
+      path: '/acs/access_groups/list_accessible_entrances',
+      method: 'post',
+      body,
+      responseKey: 'acs_entrances',
+    })
+  }
+
   listUsers(
     body?: AcsAccessGroupsListUsersParams,
   ): SeamHttpRequest<AcsAccessGroupsListUsersResponse, 'acs_users'> {
@@ -234,6 +248,15 @@ export type AcsAccessGroupsListResponse = SetNonNullable<
 >
 
 export type AcsAccessGroupsListOptions = never
+
+export type AcsAccessGroupsListAccessibleEntrancesParams =
+  RouteRequestBody<'/acs/access_groups/list_accessible_entrances'>
+
+export type AcsAccessGroupsListAccessibleEntrancesResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/access_groups/list_accessible_entrances'>>
+>
+
+export type AcsAccessGroupsListAccessibleEntrancesOptions = never
 
 export type AcsAccessGroupsListUsersParams =
   RouteRequestBody<'/acs/access_groups/list_users'>
