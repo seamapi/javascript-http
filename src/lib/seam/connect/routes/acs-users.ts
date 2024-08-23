@@ -33,6 +33,7 @@ import {
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import type { SetNonNullable } from 'lib/types.js'
 
+import { SeamHttpAcsUsersUnmanaged } from './acs-users-unmanaged.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpAcsUsers {
@@ -152,6 +153,10 @@ export class SeamHttpAcsUsers {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
+  }
+
+  get unmanaged(): SeamHttpAcsUsersUnmanaged {
+    return SeamHttpAcsUsersUnmanaged.fromClient(this.client, this.defaults)
   }
 
   addToAccessGroup(
