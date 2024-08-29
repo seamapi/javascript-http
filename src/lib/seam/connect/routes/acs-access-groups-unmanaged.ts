@@ -33,10 +33,9 @@ import {
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-import { SeamHttpAcsCredentialsUnmanaged } from './acs-credentials-unmanaged.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
-export class SeamHttpAcsCredentials {
+export class SeamHttpAcsAccessGroupsUnmanaged {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
@@ -49,23 +48,23 @@ export class SeamHttpAcsCredentials {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpAcsCredentials {
+  ): SeamHttpAcsAccessGroupsUnmanaged {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpAcsCredentials(constructorOptions)
+    return new SeamHttpAcsAccessGroupsUnmanaged(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpAcsCredentials {
+  ): SeamHttpAcsAccessGroupsUnmanaged {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpAcsCredentials(constructorOptions)
+    return new SeamHttpAcsAccessGroupsUnmanaged(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -74,19 +73,19 @@ export class SeamHttpAcsCredentials {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpAcsCredentials {
+  ): SeamHttpAcsAccessGroupsUnmanaged {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpAcsCredentials(constructorOptions)
+    return new SeamHttpAcsAccessGroupsUnmanaged(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpAcsCredentials> {
+  ): Promise<SeamHttpAcsAccessGroupsUnmanaged> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
@@ -99,7 +98,10 @@ export class SeamHttpAcsCredentials {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpAcsCredentials.fromClientSessionToken(token, options)
+    return SeamHttpAcsAccessGroupsUnmanaged.fromClientSessionToken(
+      token,
+      options,
+    )
   }
 
   static fromConsoleSessionToken(
@@ -109,14 +111,14 @@ export class SeamHttpAcsCredentials {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpAcsCredentials {
+  ): SeamHttpAcsAccessGroupsUnmanaged {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpAcsCredentials(constructorOptions)
+    return new SeamHttpAcsAccessGroupsUnmanaged(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -126,14 +128,14 @@ export class SeamHttpAcsCredentials {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpAcsCredentials {
+  ): SeamHttpAcsAccessGroupsUnmanaged {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpAcsCredentials(constructorOptions)
+    return new SeamHttpAcsAccessGroupsUnmanaged(constructorOptions)
   }
 
   async updateClientSessionToken(
@@ -155,165 +157,46 @@ export class SeamHttpAcsCredentials {
     await clientSessions.get()
   }
 
-  get unmanaged(): SeamHttpAcsCredentialsUnmanaged {
-    return SeamHttpAcsCredentialsUnmanaged.fromClient(
-      this.client,
-      this.defaults,
-    )
-  }
-
-  assign(body?: AcsCredentialsAssignBody): SeamHttpRequest<void, undefined> {
-    return new SeamHttpRequest(this, {
-      path: '/acs/credentials/assign',
-      method: 'post',
-      body,
-      responseKey: undefined,
-    })
-  }
-
-  create(
-    body?: AcsCredentialsCreateBody,
-  ): SeamHttpRequest<AcsCredentialsCreateResponse, 'acs_credential'> {
-    return new SeamHttpRequest(this, {
-      path: '/acs/credentials/create',
-      method: 'post',
-      body,
-      responseKey: 'acs_credential',
-    })
-  }
-
-  delete(body?: AcsCredentialsDeleteParams): SeamHttpRequest<void, undefined> {
-    return new SeamHttpRequest(this, {
-      path: '/acs/credentials/delete',
-      method: 'post',
-      body,
-      responseKey: undefined,
-    })
-  }
-
   get(
-    body?: AcsCredentialsGetParams,
-  ): SeamHttpRequest<AcsCredentialsGetResponse, 'acs_credential'> {
+    body?: AcsAccessGroupsUnmanagedGetParams,
+  ): SeamHttpRequest<AcsAccessGroupsUnmanagedGetResponse, 'acs_access_group'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/credentials/get',
+      path: '/acs/access_groups/unmanaged/get',
       method: 'post',
       body,
-      responseKey: 'acs_credential',
+      responseKey: 'acs_access_group',
     })
   }
 
   list(
-    body?: AcsCredentialsListParams,
-  ): SeamHttpRequest<AcsCredentialsListResponse, 'acs_credentials'> {
-    return new SeamHttpRequest(this, {
-      path: '/acs/credentials/list',
-      method: 'post',
-      body,
-      responseKey: 'acs_credentials',
-    })
-  }
-
-  listAccessibleEntrances(
-    body?: AcsCredentialsListAccessibleEntrancesParams,
+    body?: AcsAccessGroupsUnmanagedListParams,
   ): SeamHttpRequest<
-    AcsCredentialsListAccessibleEntrancesResponse,
-    'acs_entrances'
+    AcsAccessGroupsUnmanagedListResponse,
+    'acs_access_groups'
   > {
     return new SeamHttpRequest(this, {
-      path: '/acs/credentials/list_accessible_entrances',
+      path: '/acs/access_groups/unmanaged/list',
       method: 'post',
       body,
-      responseKey: 'acs_entrances',
-    })
-  }
-
-  unassign(
-    body?: AcsCredentialsUnassignBody,
-  ): SeamHttpRequest<void, undefined> {
-    return new SeamHttpRequest(this, {
-      path: '/acs/credentials/unassign',
-      method: 'post',
-      body,
-      responseKey: undefined,
-    })
-  }
-
-  update(body?: AcsCredentialsUpdateBody): SeamHttpRequest<void, undefined> {
-    return new SeamHttpRequest(this, {
-      path: '/acs/credentials/update',
-      method: 'post',
-      body,
-      responseKey: undefined,
+      responseKey: 'acs_access_groups',
     })
   }
 }
 
-export type AcsCredentialsAssignBody =
-  RouteRequestBody<'/acs/credentials/assign'>
+export type AcsAccessGroupsUnmanagedGetParams =
+  RouteRequestBody<'/acs/access_groups/unmanaged/get'>
 
-export type AcsCredentialsAssignResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credentials/assign'>>
+export type AcsAccessGroupsUnmanagedGetResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/access_groups/unmanaged/get'>>
 >
 
-export type AcsCredentialsAssignOptions = never
+export type AcsAccessGroupsUnmanagedGetOptions = never
 
-export type AcsCredentialsCreateBody =
-  RouteRequestBody<'/acs/credentials/create'>
+export type AcsAccessGroupsUnmanagedListParams =
+  RouteRequestBody<'/acs/access_groups/unmanaged/list'>
 
-export type AcsCredentialsCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credentials/create'>>
+export type AcsAccessGroupsUnmanagedListResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/access_groups/unmanaged/list'>>
 >
 
-export type AcsCredentialsCreateOptions = never
-
-export type AcsCredentialsDeleteParams =
-  RouteRequestBody<'/acs/credentials/delete'>
-
-export type AcsCredentialsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credentials/delete'>>
->
-
-export type AcsCredentialsDeleteOptions = never
-
-export type AcsCredentialsGetParams = RouteRequestBody<'/acs/credentials/get'>
-
-export type AcsCredentialsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credentials/get'>>
->
-
-export type AcsCredentialsGetOptions = never
-
-export type AcsCredentialsListParams = RouteRequestBody<'/acs/credentials/list'>
-
-export type AcsCredentialsListResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credentials/list'>>
->
-
-export type AcsCredentialsListOptions = never
-
-export type AcsCredentialsListAccessibleEntrancesParams =
-  RouteRequestBody<'/acs/credentials/list_accessible_entrances'>
-
-export type AcsCredentialsListAccessibleEntrancesResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credentials/list_accessible_entrances'>>
->
-
-export type AcsCredentialsListAccessibleEntrancesOptions = never
-
-export type AcsCredentialsUnassignBody =
-  RouteRequestBody<'/acs/credentials/unassign'>
-
-export type AcsCredentialsUnassignResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credentials/unassign'>>
->
-
-export type AcsCredentialsUnassignOptions = never
-
-export type AcsCredentialsUpdateBody =
-  RouteRequestBody<'/acs/credentials/update'>
-
-export type AcsCredentialsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credentials/update'>>
->
-
-export type AcsCredentialsUpdateOptions = never
+export type AcsAccessGroupsUnmanagedListOptions = never
