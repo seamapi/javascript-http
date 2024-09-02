@@ -99,7 +99,7 @@
   },
   "devDependencies": {
     "@seamapi/fake-seam-connect": "^1.71.0",
-    "@seamapi/types": "1.235.1",
+    "@seamapi/types": "1.236.0",
     "@types/eslint": "^8.44.2",
     "@types/node": "^20.8.10",
     "ava": "^5.0.1",
