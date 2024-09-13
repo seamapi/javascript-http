@@ -35,7 +35,7 @@ import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
-export class SeamHttpThermostatsClimateSettingSchedules {
+export class SeamHttpThermostatsSchedules {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
@@ -48,23 +48,23 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpThermostatsClimateSettingSchedules {
+  ): SeamHttpThermostatsSchedules {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpThermostatsClimateSettingSchedules(constructorOptions)
+    return new SeamHttpThermostatsSchedules(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpThermostatsClimateSettingSchedules {
+  ): SeamHttpThermostatsSchedules {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpThermostatsClimateSettingSchedules(constructorOptions)
+    return new SeamHttpThermostatsSchedules(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -73,19 +73,19 @@ export class SeamHttpThermostatsClimateSettingSchedules {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpThermostatsClimateSettingSchedules {
+  ): SeamHttpThermostatsSchedules {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpThermostatsClimateSettingSchedules(constructorOptions)
+    return new SeamHttpThermostatsSchedules(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpThermostatsClimateSettingSchedules> {
+  ): Promise<SeamHttpThermostatsSchedules> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
@@ -98,10 +98,7 @@ export class SeamHttpThermostatsClimateSettingSchedules {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpThermostatsClimateSettingSchedules.fromClientSessionToken(
-      token,
-      options,
-    )
+    return SeamHttpThermostatsSchedules.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -111,14 +108,14 @@ export class SeamHttpThermostatsClimateSettingSchedules {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpThermostatsClimateSettingSchedules {
+  ): SeamHttpThermostatsSchedules {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpThermostatsClimateSettingSchedules(constructorOptions)
+    return new SeamHttpThermostatsSchedules(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -128,14 +125,14 @@ export class SeamHttpThermostatsClimateSettingSchedules {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpThermostatsClimateSettingSchedules {
+  ): SeamHttpThermostatsSchedules {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpThermostatsClimateSettingSchedules(constructorOptions)
+    return new SeamHttpThermostatsSchedules(constructorOptions)
   }
 
   async updateClientSessionToken(
@@ -158,24 +155,24 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   create(
-    body?: ThermostatsClimateSettingSchedulesCreateBody,
+    body?: ThermostatsSchedulesCreateBody,
   ): SeamHttpRequest<
-    ThermostatsClimateSettingSchedulesCreateResponse,
-    'climate_setting_schedule'
+    ThermostatsSchedulesCreateResponse,
+    'thermostat_schedule'
   > {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/climate_setting_schedules/create',
+      path: '/thermostats/schedules/create',
       method: 'post',
       body,
-      responseKey: 'climate_setting_schedule',
+      responseKey: 'thermostat_schedule',
     })
   }
 
   delete(
-    body?: ThermostatsClimateSettingSchedulesDeleteParams,
+    body?: ThermostatsSchedulesDeleteParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/climate_setting_schedules/delete',
+      path: '/thermostats/schedules/delete',
       method: 'post',
       body,
       responseKey: undefined,
@@ -183,38 +180,32 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 
   get(
-    body?: ThermostatsClimateSettingSchedulesGetParams,
-  ): SeamHttpRequest<
-    ThermostatsClimateSettingSchedulesGetResponse,
-    'climate_setting_schedule'
-  > {
+    body?: ThermostatsSchedulesGetParams,
+  ): SeamHttpRequest<ThermostatsSchedulesGetResponse, 'thermostat_schedule'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/climate_setting_schedules/get',
+      path: '/thermostats/schedules/get',
       method: 'post',
       body,
-      responseKey: 'climate_setting_schedule',
+      responseKey: 'thermostat_schedule',
     })
   }
 
   list(
-    body?: ThermostatsClimateSettingSchedulesListParams,
-  ): SeamHttpRequest<
-    ThermostatsClimateSettingSchedulesListResponse,
-    'climate_setting_schedules'
-  > {
+    body?: ThermostatsSchedulesListParams,
+  ): SeamHttpRequest<ThermostatsSchedulesListResponse, 'thermostat_schedules'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/climate_setting_schedules/list',
+      path: '/thermostats/schedules/list',
       method: 'post',
       body,
-      responseKey: 'climate_setting_schedules',
+      responseKey: 'thermostat_schedules',
     })
   }
 
   update(
-    body?: ThermostatsClimateSettingSchedulesUpdateBody,
+    body?: ThermostatsSchedulesUpdateBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/climate_setting_schedules/update',
+      path: '/thermostats/schedules/update',
       method: 'post',
       body,
       responseKey: undefined,
@@ -222,47 +213,47 @@ export class SeamHttpThermostatsClimateSettingSchedules {
   }
 }
 
-export type ThermostatsClimateSettingSchedulesCreateBody =
-  RouteRequestBody<'/thermostats/climate_setting_schedules/create'>
+export type ThermostatsSchedulesCreateBody =
+  RouteRequestBody<'/thermostats/schedules/create'>
 
-export type ThermostatsClimateSettingSchedulesCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/thermostats/climate_setting_schedules/create'>>
+export type ThermostatsSchedulesCreateResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/schedules/create'>>
 >
 
-export type ThermostatsClimateSettingSchedulesCreateOptions = never
+export type ThermostatsSchedulesCreateOptions = never
 
-export type ThermostatsClimateSettingSchedulesDeleteParams =
-  RouteRequestBody<'/thermostats/climate_setting_schedules/delete'>
+export type ThermostatsSchedulesDeleteParams =
+  RouteRequestBody<'/thermostats/schedules/delete'>
 
-export type ThermostatsClimateSettingSchedulesDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/thermostats/climate_setting_schedules/delete'>>
+export type ThermostatsSchedulesDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/schedules/delete'>>
 >
 
-export type ThermostatsClimateSettingSchedulesDeleteOptions = never
+export type ThermostatsSchedulesDeleteOptions = never
 
-export type ThermostatsClimateSettingSchedulesGetParams =
-  RouteRequestBody<'/thermostats/climate_setting_schedules/get'>
+export type ThermostatsSchedulesGetParams =
+  RouteRequestBody<'/thermostats/schedules/get'>
 
-export type ThermostatsClimateSettingSchedulesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/thermostats/climate_setting_schedules/get'>>
+export type ThermostatsSchedulesGetResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/schedules/get'>>
 >
 
-export type ThermostatsClimateSettingSchedulesGetOptions = never
+export type ThermostatsSchedulesGetOptions = never
 
-export type ThermostatsClimateSettingSchedulesListParams =
-  RouteRequestBody<'/thermostats/climate_setting_schedules/list'>
+export type ThermostatsSchedulesListParams =
+  RouteRequestBody<'/thermostats/schedules/list'>
 
-export type ThermostatsClimateSettingSchedulesListResponse = SetNonNullable<
-  Required<RouteResponse<'/thermostats/climate_setting_schedules/list'>>
+export type ThermostatsSchedulesListResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/schedules/list'>>
 >
 
-export type ThermostatsClimateSettingSchedulesListOptions = never
+export type ThermostatsSchedulesListOptions = never
 
-export type ThermostatsClimateSettingSchedulesUpdateBody =
-  RouteRequestBody<'/thermostats/climate_setting_schedules/update'>
+export type ThermostatsSchedulesUpdateBody =
+  RouteRequestBody<'/thermostats/schedules/update'>
 
-export type ThermostatsClimateSettingSchedulesUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/thermostats/climate_setting_schedules/update'>>
+export type ThermostatsSchedulesUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/schedules/update'>>
 >
 
-export type ThermostatsClimateSettingSchedulesUpdateOptions = never
+export type ThermostatsSchedulesUpdateOptions = never

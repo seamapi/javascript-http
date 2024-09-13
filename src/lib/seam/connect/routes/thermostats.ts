@@ -34,7 +34,7 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
-import { SeamHttpThermostatsClimateSettingSchedules } from './thermostats-climate-setting-schedules.js'
+import { SeamHttpThermostatsSchedules } from './thermostats-schedules.js'
 
 export class SeamHttpThermostats {
   client: Client
@@ -155,11 +155,24 @@ export class SeamHttpThermostats {
     await clientSessions.get()
   }
 
-  get climateSettingSchedules(): SeamHttpThermostatsClimateSettingSchedules {
-    return SeamHttpThermostatsClimateSettingSchedules.fromClient(
-      this.client,
-      this.defaults,
-    )
+  get schedules(): SeamHttpThermostatsSchedules {
+    return SeamHttpThermostatsSchedules.fromClient(this.client, this.defaults)
+  }
+
+  activateClimatePreset(
+    body?: ThermostatsActivateClimatePresetBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): SeamHttpRequest<
+    ThermostatsActivateClimatePresetResponse,
+    'action_attempt'
+  > {
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/activate_climate_preset',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
+      options,
+    })
   }
 
   cool(
@@ -172,6 +185,28 @@ export class SeamHttpThermostats {
       body,
       responseKey: 'action_attempt',
       options,
+    })
+  }
+
+  createClimatePreset(
+    body?: ThermostatsCreateClimatePresetBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/create_climate_preset',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  deleteClimatePreset(
+    body?: ThermostatsDeleteClimatePresetBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/delete_climate_preset',
+      method: 'post',
+      body,
+      responseKey: undefined,
     })
   }
 
@@ -236,6 +271,17 @@ export class SeamHttpThermostats {
     })
   }
 
+  setFallbackClimatePreset(
+    body?: ThermostatsSetFallbackClimatePresetBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/set_fallback_climate_preset',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
   setFanMode(
     body?: ThermostatsSetFanModeBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
@@ -249,15 +295,29 @@ export class SeamHttpThermostats {
     })
   }
 
-  update(body?: ThermostatsUpdateBody): SeamHttpRequest<void, undefined> {
+  updateClimatePreset(
+    body?: ThermostatsUpdateClimatePresetBody,
+  ): SeamHttpRequest<ThermostatsUpdateClimatePresetResponse, 'climate_preset'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/update',
+      path: '/thermostats/update_climate_preset',
       method: 'post',
       body,
-      responseKey: undefined,
+      responseKey: 'climate_preset',
     })
   }
 }
+
+export type ThermostatsActivateClimatePresetBody =
+  RouteRequestBody<'/thermostats/activate_climate_preset'>
+
+export type ThermostatsActivateClimatePresetResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/activate_climate_preset'>>
+>
+
+export type ThermostatsActivateClimatePresetOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type ThermostatsCoolBody = RouteRequestBody<'/thermostats/cool'>
 
@@ -269,6 +329,24 @@ export type ThermostatsCoolOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
+
+export type ThermostatsCreateClimatePresetBody =
+  RouteRequestBody<'/thermostats/create_climate_preset'>
+
+export type ThermostatsCreateClimatePresetResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/create_climate_preset'>>
+>
+
+export type ThermostatsCreateClimatePresetOptions = never
+
+export type ThermostatsDeleteClimatePresetBody =
+  RouteRequestBody<'/thermostats/delete_climate_preset'>
+
+export type ThermostatsDeleteClimatePresetResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/delete_climate_preset'>>
+>
+
+export type ThermostatsDeleteClimatePresetOptions = never
 
 export type ThermostatsGetParams = RouteRequestBody<'/thermostats/get'>
 
@@ -319,6 +397,15 @@ export type ThermostatsOffOptions = Pick<
   'waitForActionAttempt'
 >
 
+export type ThermostatsSetFallbackClimatePresetBody =
+  RouteRequestBody<'/thermostats/set_fallback_climate_preset'>
+
+export type ThermostatsSetFallbackClimatePresetResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/set_fallback_climate_preset'>>
+>
+
+export type ThermostatsSetFallbackClimatePresetOptions = never
+
 export type ThermostatsSetFanModeBody =
   RouteRequestBody<'/thermostats/set_fan_mode'>
 
@@ -331,10 +418,11 @@ export type ThermostatsSetFanModeOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type ThermostatsUpdateBody = RouteRequestBody<'/thermostats/update'>
+export type ThermostatsUpdateClimatePresetBody =
+  RouteRequestBody<'/thermostats/update_climate_preset'>
 
-export type ThermostatsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/thermostats/update'>>
+export type ThermostatsUpdateClimatePresetResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/update_climate_preset'>>
 >
 
-export type ThermostatsUpdateOptions = never
+export type ThermostatsUpdateClimatePresetOptions = never
