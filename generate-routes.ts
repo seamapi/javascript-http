@@ -64,7 +64,7 @@ const routePaths = [
   '/phones',
   '/phones/simulate',
   '/thermostats',
-  '/thermostats/climate_setting_schedules',
+  '/thermostats/schedules',
   '/user_identities',
   '/user_identities/enrollment_automations',
   '/webhooks',
@@ -90,7 +90,7 @@ const routePathSubresources: Partial<
   '/phones': ['simulate'],
   '/devices': ['unmanaged', 'simulate'],
   '/noise_sensors': ['noise_thresholds', 'simulate'],
-  '/thermostats': ['climate_setting_schedules'],
+  '/thermostats': ['schedules'],
   '/user_identities': ['enrollment_automations'],
 }
 
