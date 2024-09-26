@@ -190,12 +190,12 @@ export class SeamHttpThermostats {
 
   createClimatePreset(
     body?: ThermostatsCreateClimatePresetBody,
-  ): SeamHttpRequest<void, undefined> {
+  ): SeamHttpRequest<ThermostatsCreateClimatePresetResponse, 'climate_preset'> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/create_climate_preset',
       method: 'post',
       body,
-      responseKey: undefined,
+      responseKey: 'climate_preset',
     })
   }
 
@@ -297,12 +297,12 @@ export class SeamHttpThermostats {
 
   updateClimatePreset(
     body?: ThermostatsUpdateClimatePresetBody,
-  ): SeamHttpRequest<ThermostatsUpdateClimatePresetResponse, 'climate_preset'> {
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/update_climate_preset',
       method: 'post',
       body,
-      responseKey: 'climate_preset',
+      responseKey: undefined,
     })
   }
 }
