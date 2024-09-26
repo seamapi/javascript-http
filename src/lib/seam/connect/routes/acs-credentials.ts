@@ -227,6 +227,19 @@ export class SeamHttpAcsCredentials {
     })
   }
 
+  readCard(
+    body?: AcsCredentialsReadCardBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): SeamHttpRequest<AcsCredentialsReadCardResponse, 'action_attempt'> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/read_card',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
+      options,
+    })
+  }
+
   unassign(
     body?: AcsCredentialsUnassignBody,
   ): SeamHttpRequest<void, undefined> {
@@ -299,6 +312,18 @@ export type AcsCredentialsListAccessibleEntrancesResponse = SetNonNullable<
 >
 
 export type AcsCredentialsListAccessibleEntrancesOptions = never
+
+export type AcsCredentialsReadCardBody =
+  RouteRequestBody<'/acs/credentials/read_card'>
+
+export type AcsCredentialsReadCardResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/credentials/read_card'>>
+>
+
+export type AcsCredentialsReadCardOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type AcsCredentialsUnassignBody =
   RouteRequestBody<'/acs/credentials/unassign'>
