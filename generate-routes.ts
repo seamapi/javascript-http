@@ -48,6 +48,7 @@ const routePaths = [
   '/acs/users/unmanaged',
   '/acs/access_groups/unmanaged',
   '/acs/credentials/unmanaged',
+  '/acs/encoders',
   '/action_attempts',
   '/client_sessions',
   '/connect_webviews',
