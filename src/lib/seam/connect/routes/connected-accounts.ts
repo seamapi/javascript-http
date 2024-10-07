@@ -187,14 +187,12 @@ export class SeamHttpConnectedAccounts {
     })
   }
 
-  update(
-    body?: ConnectedAccountsUpdateBody,
-  ): SeamHttpRequest<ConnectedAccountsUpdateResponse, 'connected_account'> {
+  update(body?: ConnectedAccountsUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/connected_accounts/update',
       method: 'post',
       body,
-      responseKey: 'connected_account',
+      responseKey: undefined,
     })
   }
 }
