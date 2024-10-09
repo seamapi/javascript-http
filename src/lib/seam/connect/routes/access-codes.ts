@@ -250,6 +250,17 @@ export class SeamHttpAccessCodes {
       responseKey: undefined,
     })
   }
+
+  updateMultiple(
+    body?: AccessCodesUpdateMultipleBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/access_codes/update_multiple',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
 }
 
 export type AccessCodesCreateBody = RouteRequestBody<'/access_codes/create'>
@@ -318,3 +329,12 @@ export type AccessCodesUpdateResponse = SetNonNullable<
 >
 
 export type AccessCodesUpdateOptions = never
+
+export type AccessCodesUpdateMultipleBody =
+  RouteRequestBody<'/access_codes/update_multiple'>
+
+export type AccessCodesUpdateMultipleResponse = SetNonNullable<
+  Required<RouteResponse<'/access_codes/update_multiple'>>
+>
+
+export type AccessCodesUpdateMultipleOptions = never
