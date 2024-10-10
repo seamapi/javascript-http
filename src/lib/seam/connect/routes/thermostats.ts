@@ -249,12 +249,12 @@ export class SeamHttpThermostats {
 
   list(
     body?: ThermostatsListParams,
-  ): SeamHttpRequest<ThermostatsListResponse, 'thermostats'> {
+  ): SeamHttpRequest<ThermostatsListResponse, 'devices'> {
     return new SeamHttpRequest(this, {
       path: '/thermostats/list',
       method: 'post',
       body,
-      responseKey: 'thermostats',
+      responseKey: 'devices',
     })
   }
 
