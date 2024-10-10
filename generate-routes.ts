@@ -456,9 +456,9 @@ const requestFormatToRequestType = (
 ): 'params' | 'body' => {
   if (['get', 'list', 'view'].includes(name)) return 'params'
   if (['delete'].includes(name)) return 'params'
-  if (name.includes('revoke')) return 'params'
-  if (name.includes('remove')) return 'params'
-  if (name.includes('deactivate')) return 'params'
+  if (name.includes('revoke')) return 'body'
+  if (name.includes('remove')) return 'body'
+  if (name.includes('deactivate')) return 'body'
   if (name.startsWith('list')) return 'params'
   return 'body'
 }
