@@ -159,7 +159,7 @@ export class SeamHttpPhones {
     return SeamHttpPhonesSimulate.fromClient(this.client, this.defaults)
   }
 
-  deactivate(body?: PhonesDeactivateParams): SeamHttpRequest<void, undefined> {
+  deactivate(body?: PhonesDeactivateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/phones/deactivate',
       method: 'post',
@@ -178,7 +178,7 @@ export class SeamHttpPhones {
   }
 }
 
-export type PhonesDeactivateParams = RouteRequestBody<'/phones/deactivate'>
+export type PhonesDeactivateBody = RouteRequestBody<'/phones/deactivate'>
 
 export type PhonesDeactivateResponse = SetNonNullable<
   Required<RouteResponse<'/phones/deactivate'>>

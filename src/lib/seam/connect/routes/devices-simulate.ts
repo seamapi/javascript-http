@@ -174,7 +174,7 @@ export class SeamHttpDevicesSimulate {
     })
   }
 
-  remove(body?: DevicesSimulateRemoveParams): SeamHttpRequest<void, undefined> {
+  remove(body?: DevicesSimulateRemoveBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/devices/simulate/remove',
       method: 'post',
@@ -202,7 +202,7 @@ export type DevicesSimulateDisconnectResponse = SetNonNullable<
 
 export type DevicesSimulateDisconnectOptions = never
 
-export type DevicesSimulateRemoveParams =
+export type DevicesSimulateRemoveBody =
   RouteRequestBody<'/devices/simulate/remove'>
 
 export type DevicesSimulateRemoveResponse = SetNonNullable<

@@ -260,7 +260,7 @@ export class SeamHttpUserIdentities {
   }
 
   removeAcsUser(
-    body?: UserIdentitiesRemoveAcsUserParams,
+    body?: UserIdentitiesRemoveAcsUserBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/remove_acs_user',
@@ -271,7 +271,7 @@ export class SeamHttpUserIdentities {
   }
 
   revokeAccessToDevice(
-    body?: UserIdentitiesRevokeAccessToDeviceParams,
+    body?: UserIdentitiesRevokeAccessToDeviceBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/user_identities/revoke_access_to_device',
@@ -370,7 +370,7 @@ export type UserIdentitiesListAcsUsersResponse = SetNonNullable<
 
 export type UserIdentitiesListAcsUsersOptions = never
 
-export type UserIdentitiesRemoveAcsUserParams =
+export type UserIdentitiesRemoveAcsUserBody =
   RouteRequestBody<'/user_identities/remove_acs_user'>
 
 export type UserIdentitiesRemoveAcsUserResponse = SetNonNullable<
@@ -379,7 +379,7 @@ export type UserIdentitiesRemoveAcsUserResponse = SetNonNullable<
 
 export type UserIdentitiesRemoveAcsUserOptions = never
 
-export type UserIdentitiesRevokeAccessToDeviceParams =
+export type UserIdentitiesRevokeAccessToDeviceBody =
   RouteRequestBody<'/user_identities/revoke_access_to_device'>
 
 export type UserIdentitiesRevokeAccessToDeviceResponse = SetNonNullable<

@@ -224,7 +224,7 @@ export class SeamHttpAcsUsers {
   }
 
   removeFromAccessGroup(
-    body?: AcsUsersRemoveFromAccessGroupParams,
+    body?: AcsUsersRemoveFromAccessGroupBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/users/remove_from_access_group',
@@ -235,7 +235,7 @@ export class SeamHttpAcsUsers {
   }
 
   revokeAccessToAllEntrances(
-    body?: AcsUsersRevokeAccessToAllEntrancesParams,
+    body?: AcsUsersRevokeAccessToAllEntrancesBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/users/revoke_access_to_all_entrances',
@@ -323,7 +323,7 @@ export type AcsUsersListAccessibleEntrancesResponse = SetNonNullable<
 
 export type AcsUsersListAccessibleEntrancesOptions = never
 
-export type AcsUsersRemoveFromAccessGroupParams =
+export type AcsUsersRemoveFromAccessGroupBody =
   RouteRequestBody<'/acs/users/remove_from_access_group'>
 
 export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
@@ -332,7 +332,7 @@ export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
 
 export type AcsUsersRemoveFromAccessGroupOptions = never
 
-export type AcsUsersRevokeAccessToAllEntrancesParams =
+export type AcsUsersRevokeAccessToAllEntrancesBody =
   RouteRequestBody<'/acs/users/revoke_access_to_all_entrances'>
 
 export type AcsUsersRevokeAccessToAllEntrancesResponse = SetNonNullable<

@@ -219,7 +219,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   removeUser(
-    body?: AcsAccessGroupsRemoveUserParams,
+    body?: AcsAccessGroupsRemoveUserBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/access_groups/remove_user',
@@ -275,7 +275,7 @@ export type AcsAccessGroupsListUsersResponse = SetNonNullable<
 
 export type AcsAccessGroupsListUsersOptions = never
 
-export type AcsAccessGroupsRemoveUserParams =
+export type AcsAccessGroupsRemoveUserBody =
   RouteRequestBody<'/acs/access_groups/remove_user'>
 
 export type AcsAccessGroupsRemoveUserResponse = SetNonNullable<
