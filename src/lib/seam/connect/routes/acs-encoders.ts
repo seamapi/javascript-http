@@ -178,12 +178,12 @@ export class SeamHttpAcsEncoders {
     })
   }
 
-  readCard(
-    body?: AcsEncodersReadCardBody,
+  scanCard(
+    body?: AcsEncodersScanCardBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<AcsEncodersReadCardResponse, 'action_attempt'> {
+  ): SeamHttpRequest<AcsEncodersScanCardResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/read_card',
+      path: '/acs/encoders/scan_card',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -212,14 +212,14 @@ export type AcsEncodersListResponse = SetNonNullable<
 
 export type AcsEncodersListOptions = never
 
-export type AcsEncodersReadCardBody =
-  RouteRequestBody<'/acs/encoders/read_card'>
+export type AcsEncodersScanCardBody =
+  RouteRequestBody<'/acs/encoders/scan_card'>
 
-export type AcsEncodersReadCardResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/read_card'>>
+export type AcsEncodersScanCardResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/encoders/scan_card'>>
 >
 
-export type AcsEncodersReadCardOptions = Pick<
+export type AcsEncodersScanCardOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
