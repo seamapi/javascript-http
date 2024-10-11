@@ -216,7 +216,7 @@ export class SeamHttpClientSessions {
     })
   }
 
-  revoke(body?: ClientSessionsRevokeBody): SeamHttpRequest<void, undefined> {
+  revoke(body?: ClientSessionsRevokeParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/client_sessions/revoke',
       method: 'post',
@@ -278,7 +278,7 @@ export type ClientSessionsListResponse = SetNonNullable<
 
 export type ClientSessionsListOptions = never
 
-export type ClientSessionsRevokeBody =
+export type ClientSessionsRevokeParams =
   RouteRequestBody<'/client_sessions/revoke'>
 
 export type ClientSessionsRevokeResponse = SetNonNullable<
