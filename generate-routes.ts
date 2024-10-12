@@ -452,8 +452,9 @@ const renderRequestType = ({
 // and https://github.com/seamapi/javascript-http/issues/43
 const requestFormatToRequestType = (
   name: string,
-  _namespace: string,
+  namespace: string,
 ): 'params' | 'body' => {
+  if (namespace.includes('simulate')) return 'body'
   if (['get', 'list', 'view'].includes(name)) return 'params'
   if (['delete'].includes(name)) return 'params'
   if (name.includes('revoke')) return 'params'
