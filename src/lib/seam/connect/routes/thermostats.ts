@@ -295,6 +295,17 @@ export class SeamHttpThermostats {
     })
   }
 
+  setTemperatureThreshold(
+    body?: ThermostatsSetTemperatureThresholdBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/set_temperature_threshold',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
   updateClimatePreset(
     body?: ThermostatsUpdateClimatePresetBody,
   ): SeamHttpRequest<void, undefined> {
@@ -417,6 +428,15 @@ export type ThermostatsSetFanModeOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
+
+export type ThermostatsSetTemperatureThresholdBody =
+  RouteRequestBody<'/thermostats/set_temperature_threshold'>
+
+export type ThermostatsSetTemperatureThresholdResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/set_temperature_threshold'>>
+>
+
+export type ThermostatsSetTemperatureThresholdOptions = never
 
 export type ThermostatsUpdateClimatePresetBody =
   RouteRequestBody<'/thermostats/update_climate_preset'>
