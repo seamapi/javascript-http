@@ -154,12 +154,12 @@ export class SeamHttpAcsEncoders {
     await clientSessions.get()
   }
 
-  encodeCard(
-    body?: AcsEncodersEncodeCardBody,
+  encodeCredential(
+    body?: AcsEncodersEncodeCredentialBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<AcsEncodersEncodeCardResponse, 'action_attempt'> {
+  ): SeamHttpRequest<AcsEncodersEncodeCredentialResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/encode_card',
+      path: '/acs/encoders/encode_credential',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -178,12 +178,12 @@ export class SeamHttpAcsEncoders {
     })
   }
 
-  scanCard(
-    body?: AcsEncodersScanCardBody,
+  scanCredential(
+    body?: AcsEncodersScanCredentialBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<AcsEncodersScanCardResponse, 'action_attempt'> {
+  ): SeamHttpRequest<AcsEncodersScanCredentialResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/scan_card',
+      path: '/acs/encoders/scan_credential',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -192,14 +192,14 @@ export class SeamHttpAcsEncoders {
   }
 }
 
-export type AcsEncodersEncodeCardBody =
-  RouteRequestBody<'/acs/encoders/encode_card'>
+export type AcsEncodersEncodeCredentialBody =
+  RouteRequestBody<'/acs/encoders/encode_credential'>
 
-export type AcsEncodersEncodeCardResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/encode_card'>>
+export type AcsEncodersEncodeCredentialResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/encoders/encode_credential'>>
 >
 
-export type AcsEncodersEncodeCardOptions = Pick<
+export type AcsEncodersEncodeCredentialOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
@@ -212,14 +212,14 @@ export type AcsEncodersListResponse = SetNonNullable<
 
 export type AcsEncodersListOptions = never
 
-export type AcsEncodersScanCardBody =
-  RouteRequestBody<'/acs/encoders/scan_card'>
+export type AcsEncodersScanCredentialBody =
+  RouteRequestBody<'/acs/encoders/scan_credential'>
 
-export type AcsEncodersScanCardResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/scan_card'>>
+export type AcsEncodersScanCredentialResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/encoders/scan_credential'>>
 >
 
-export type AcsEncodersScanCardOptions = Pick<
+export type AcsEncodersScanCredentialOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
