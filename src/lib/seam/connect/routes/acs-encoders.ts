@@ -169,12 +169,12 @@ export class SeamHttpAcsEncoders {
 
   list(
     body?: AcsEncodersListParams,
-  ): SeamHttpRequest<AcsEncodersListResponse, 'devices'> {
+  ): SeamHttpRequest<AcsEncodersListResponse, 'acs_encoders'> {
     return new SeamHttpRequest(this, {
       path: '/acs/encoders/list',
       method: 'post',
       body,
-      responseKey: 'devices',
+      responseKey: 'acs_encoders',
     })
   }
 
