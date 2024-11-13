@@ -95,6 +95,8 @@ const routePathSubresources: Partial<
   '/user_identities': ['enrollment_automations'],
 }
 
+const undocumentedPaths = ['/devices/delete']
+
 interface Route {
   namespace: string
   endpoints: Endpoint[]
@@ -137,9 +139,9 @@ const createRoutes = (): Route[] => {
 }
 
 const createRoute = (routePath: (typeof routePaths)[number]): Route => {
-  const endpointPaths = Object.keys(openapi.paths).filter((path) =>
-    isEndpointUnderRoute(path, routePath),
-  )
+  const endpointPaths = Object.keys(openapi.paths)
+    .filter((path) => isEndpointUnderRoute(path, routePath))
+    .filter((path) => !undocumentedPaths.includes(path))
 
   const namespace = routePath.split('/').join('_').slice(1)
 
