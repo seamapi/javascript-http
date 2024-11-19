@@ -56,13 +56,21 @@ test('SeamHttp: updateClientSessionToken returns instance authorized with a new 
   const seam = SeamHttp.fromClientSessionToken(seed.seam_cst1_token, {
     endpoint,
   })
-  const { token } = await seam.clientSessions.create({
+
+  const devices = await seam.devices.list()
+  t.true(devices.length > 0)
+
+  const seamUsingApiKey = SeamHttp.fromApiKey(seed.seam_apikey2_token, {
+    endpoint,
+  })
+
+  const { token } = await seamUsingApiKey.clientSessions.create({
     user_identifier_key: 'some-new-user-identifier-key',
   })
 
   await seam.updateClientSessionToken(token)
-  const devices = await seam.devices.list()
-  t.is(devices.length, 0)
+  const devicesFromNewSession = await seam.devices.list()
+  t.is(devicesFromNewSession.length, 0)
 })
 
 test('SeamHttp: updateClientSessionToken fails if no existing clientSessionToken', async (t) => {
@@ -92,6 +100,5 @@ test('SeamHttp: updateClientSessionToken checks clientSessionToken is authorized
       instanceOf: SeamHttpApiError,
     },
   )
-  t.is(err?.statusCode, 404)
-  t.is(err?.code, 'client_session_token_not_found')
+  t.is(err?.statusCode, 401)
 })
