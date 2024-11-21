@@ -295,6 +295,19 @@ export class SeamHttpThermostats {
     })
   }
 
+  setHvacMode(
+    body?: ThermostatsSetHvacModeBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): SeamHttpRequest<ThermostatsSetHvacModeResponse, 'action_attempt'> {
+    return new SeamHttpRequest(this, {
+      path: '/thermostats/set_hvac_mode',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
+      options,
+    })
+  }
+
   setTemperatureThreshold(
     body?: ThermostatsSetTemperatureThresholdBody,
   ): SeamHttpRequest<void, undefined> {
@@ -425,6 +438,18 @@ export type ThermostatsSetFanModeResponse = SetNonNullable<
 >
 
 export type ThermostatsSetFanModeOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
+
+export type ThermostatsSetHvacModeBody =
+  RouteRequestBody<'/thermostats/set_hvac_mode'>
+
+export type ThermostatsSetHvacModeResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/set_hvac_mode'>>
+>
+
+export type ThermostatsSetHvacModeOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
