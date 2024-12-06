@@ -92,6 +92,6 @@ test('SeamHttp: updateClientSessionToken checks clientSessionToken is authorized
       instanceOf: SeamHttpApiError,
     },
   )
-  t.is(err?.statusCode, 404)
-  t.is(err?.code, 'client_session_token_not_found')
+  t.is(err?.statusCode, 401)
+  t.is(err?.code, 'unauthorized')
 })
