@@ -182,6 +182,20 @@ export class SeamHttpAcsCredentials {
     })
   }
 
+  createOfflineCode(
+    body?: AcsCredentialsCreateOfflineCodeBody,
+  ): SeamHttpRequest<
+    AcsCredentialsCreateOfflineCodeResponse,
+    'acs_credential'
+  > {
+    return new SeamHttpRequest(this, {
+      path: '/acs/credentials/create_offline_code',
+      method: 'post',
+      body,
+      responseKey: 'acs_credential',
+    })
+  }
+
   delete(body?: AcsCredentialsDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       path: '/acs/credentials/delete',
@@ -265,6 +279,15 @@ export type AcsCredentialsCreateResponse = SetNonNullable<
 >
 
 export type AcsCredentialsCreateOptions = never
+
+export type AcsCredentialsCreateOfflineCodeBody =
+  RouteRequestBody<'/acs/credentials/create_offline_code'>
+
+export type AcsCredentialsCreateOfflineCodeResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/credentials/create_offline_code'>>
+>
+
+export type AcsCredentialsCreateOfflineCodeOptions = never
 
 export type AcsCredentialsDeleteParams =
   RouteRequestBody<'/acs/credentials/delete'>
