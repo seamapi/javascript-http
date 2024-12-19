@@ -269,5 +269,8 @@ export const warnOnInsecureuserIdentifierKey = (
 }
 
 // SOURCE: https://stackoverflow.com/a/46181
-const isEmail = (value: string): boolean =>
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+const isEmail = (value: string): boolean => {
+  if (value.includes('!')) return false
+  // The regex may run slow on strings starting with '!@!.' and with many repetitions of '!.'.
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+}
