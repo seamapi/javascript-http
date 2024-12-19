@@ -33,10 +33,9 @@ import {
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-import { SeamHttpAcsEncodersSimulate } from './acs-encoders-simulate.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
-export class SeamHttpAcsEncoders {
+export class SeamHttpAcsEncodersSimulate {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
@@ -49,23 +48,23 @@ export class SeamHttpAcsEncoders {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpAcsEncoders {
+  ): SeamHttpAcsEncodersSimulate {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpAcsEncoders(constructorOptions)
+    return new SeamHttpAcsEncodersSimulate(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpAcsEncoders {
+  ): SeamHttpAcsEncodersSimulate {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpAcsEncoders(constructorOptions)
+    return new SeamHttpAcsEncodersSimulate(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -74,19 +73,19 @@ export class SeamHttpAcsEncoders {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpAcsEncoders {
+  ): SeamHttpAcsEncodersSimulate {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpAcsEncoders(constructorOptions)
+    return new SeamHttpAcsEncodersSimulate(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpAcsEncoders> {
+  ): Promise<SeamHttpAcsEncodersSimulate> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
@@ -99,7 +98,7 @@ export class SeamHttpAcsEncoders {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpAcsEncoders.fromClientSessionToken(token, options)
+    return SeamHttpAcsEncodersSimulate.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -109,14 +108,14 @@ export class SeamHttpAcsEncoders {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpAcsEncoders {
+  ): SeamHttpAcsEncodersSimulate {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpAcsEncoders(constructorOptions)
+    return new SeamHttpAcsEncodersSimulate(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -126,14 +125,14 @@ export class SeamHttpAcsEncoders {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpAcsEncoders {
+  ): SeamHttpAcsEncodersSimulate {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpAcsEncoders(constructorOptions)
+    return new SeamHttpAcsEncodersSimulate(constructorOptions)
   }
 
   async updateClientSessionToken(
@@ -155,76 +154,95 @@ export class SeamHttpAcsEncoders {
     await clientSessions.get()
   }
 
-  get simulate(): SeamHttpAcsEncodersSimulate {
-    return SeamHttpAcsEncodersSimulate.fromClient(this.client, this.defaults)
-  }
-
-  encodeCredential(
-    body?: AcsEncodersEncodeCredentialBody,
-    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<AcsEncodersEncodeCredentialResponse, 'action_attempt'> {
+  nextCredentialEncodeWillFail(
+    body?: AcsEncodersSimulateNextCredentialEncodeWillFailBody,
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/encode_credential',
+      path: '/acs/encoders/simulate/next_credential_encode_will_fail',
       method: 'post',
       body,
-      responseKey: 'action_attempt',
-      options,
+      responseKey: undefined,
     })
   }
 
-  list(
-    body?: AcsEncodersListParams,
-  ): SeamHttpRequest<AcsEncodersListResponse, 'acs_encoders'> {
+  nextCredentialEncodeWillSucceed(
+    body?: AcsEncodersSimulateNextCredentialEncodeWillSucceedBody,
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/list',
+      path: '/acs/encoders/simulate/next_credential_encode_will_succeed',
       method: 'post',
       body,
-      responseKey: 'acs_encoders',
+      responseKey: undefined,
     })
   }
 
-  scanCredential(
-    body?: AcsEncodersScanCredentialBody,
-    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
-  ): SeamHttpRequest<AcsEncodersScanCredentialResponse, 'action_attempt'> {
+  nextCredentialScanWillFail(
+    body?: AcsEncodersSimulateNextCredentialScanWillFailBody,
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/scan_credential',
+      path: '/acs/encoders/simulate/next_credential_scan_will_fail',
       method: 'post',
       body,
-      responseKey: 'action_attempt',
-      options,
+      responseKey: undefined,
+    })
+  }
+
+  nextCredentialScanWillSucceed(
+    body?: AcsEncodersSimulateNextCredentialScanWillSucceedBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      path: '/acs/encoders/simulate/next_credential_scan_will_succeed',
+      method: 'post',
+      body,
+      responseKey: undefined,
     })
   }
 }
 
-export type AcsEncodersEncodeCredentialBody =
-  RouteRequestBody<'/acs/encoders/encode_credential'>
+export type AcsEncodersSimulateNextCredentialEncodeWillFailBody =
+  RouteRequestBody<'/acs/encoders/simulate/next_credential_encode_will_fail'>
 
-export type AcsEncodersEncodeCredentialResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/encode_credential'>>
->
+export type AcsEncodersSimulateNextCredentialEncodeWillFailResponse =
+  SetNonNullable<
+    Required<
+      RouteResponse<'/acs/encoders/simulate/next_credential_encode_will_fail'>
+    >
+  >
 
-export type AcsEncodersEncodeCredentialOptions = Pick<
-  SeamHttpRequestOptions,
-  'waitForActionAttempt'
->
+export type AcsEncodersSimulateNextCredentialEncodeWillFailOptions = never
 
-export type AcsEncodersListParams = RouteRequestBody<'/acs/encoders/list'>
+export type AcsEncodersSimulateNextCredentialEncodeWillSucceedBody =
+  RouteRequestBody<'/acs/encoders/simulate/next_credential_encode_will_succeed'>
 
-export type AcsEncodersListResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/list'>>
->
+export type AcsEncodersSimulateNextCredentialEncodeWillSucceedResponse =
+  SetNonNullable<
+    Required<
+      RouteResponse<'/acs/encoders/simulate/next_credential_encode_will_succeed'>
+    >
+  >
 
-export type AcsEncodersListOptions = never
+export type AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = never
 
-export type AcsEncodersScanCredentialBody =
-  RouteRequestBody<'/acs/encoders/scan_credential'>
+export type AcsEncodersSimulateNextCredentialScanWillFailBody =
+  RouteRequestBody<'/acs/encoders/simulate/next_credential_scan_will_fail'>
 
-export type AcsEncodersScanCredentialResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/scan_credential'>>
->
+export type AcsEncodersSimulateNextCredentialScanWillFailResponse =
+  SetNonNullable<
+    Required<
+      RouteResponse<'/acs/encoders/simulate/next_credential_scan_will_fail'>
+    >
+  >
 
-export type AcsEncodersScanCredentialOptions = Pick<
-  SeamHttpRequestOptions,
-  'waitForActionAttempt'
->
+export type AcsEncodersSimulateNextCredentialScanWillFailOptions = never
+
+export type AcsEncodersSimulateNextCredentialScanWillSucceedBody =
+  RouteRequestBody<'/acs/encoders/simulate/next_credential_scan_will_succeed'>
+
+export type AcsEncodersSimulateNextCredentialScanWillSucceedResponse =
+  SetNonNullable<
+    Required<
+      RouteResponse<'/acs/encoders/simulate/next_credential_scan_will_succeed'>
+    >
+  >
+
+export type AcsEncodersSimulateNextCredentialScanWillSucceedOptions = never
