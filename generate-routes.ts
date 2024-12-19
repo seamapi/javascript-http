@@ -89,7 +89,7 @@ const routePathSubresources: Partial<
   '/acs/users': ['unmanaged'],
   '/acs/access_groups': ['unmanaged'],
   '/acs/credentials': ['unmanaged'],
-  '/acs/encoders': ['simulate'].
+  '/acs/encoders': ['simulate'],
   '/phones': ['simulate'],
   '/devices': ['unmanaged', 'simulate'],
   '/noise_sensors': ['noise_thresholds', 'simulate'],
