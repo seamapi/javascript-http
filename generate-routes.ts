@@ -83,6 +83,7 @@ const routePathSubresources: Partial<
     'credential_provisioning_automations',
     'credentials',
     'entrances',
+    'encoders',
     'systems',
     'users',
   ],
