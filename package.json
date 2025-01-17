@@ -1,6 +1,6 @@
 {
   "name": "@seamapi/http",
-  "version": "1.14.0",
+  "version": "1.19.0",
   "description": "JavaScript HTTP client for the Seam API written in TypeScript.",
   "type": "module",
   "main": "index.js",
@@ -84,7 +84,7 @@
     "npm": ">= 9.0.0"
   },
   "peerDependencies": {
-    "@seamapi/types": "^1.292.2"
+    "@seamapi/types": "^1.339.0"
   },
   "peerDependenciesMeta": {
     "@seamapi/types": {
@@ -98,9 +98,10 @@
     "axios-retry": "^4.4.2"
   },
   "devDependencies": {
-    "@seamapi/fake-seam-connect": "1.71.0",
-    "@seamapi/types": "1.292.2",
+    "@seamapi/fake-seam-connect": "1.74.0",
+    "@seamapi/types": "1.339.0",
     "@types/eslint": "^8.44.2",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.8.10",
     "ava": "^5.0.1",
     "c8": "^10.1.2",
@@ -115,6 +116,7 @@
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
     "execa": "^9.2.0",
+    "jsonwebtoken": "^9.0.2",
     "landlubber": "^2.0.0",
     "nock": "^13.4.0",
     "node-fetch": "^3.3.2",

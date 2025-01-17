@@ -33,6 +33,7 @@ import {
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import type { SetNonNullable } from 'lib/types.js'
 
+import { SeamHttpAcsEncodersSimulate } from './acs-encoders-simulate.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpAcsEncoders {
@@ -152,6 +153,10 @@ export class SeamHttpAcsEncoders {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
+  }
+
+  get simulate(): SeamHttpAcsEncodersSimulate {
+    return SeamHttpAcsEncodersSimulate.fromClient(this.client, this.defaults)
   }
 
   encodeCredential(

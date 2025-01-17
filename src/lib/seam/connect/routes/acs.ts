@@ -33,6 +33,7 @@ import { SeamHttpAcsAccessGroups } from './acs-access-groups.js'
 import { SeamHttpAcsCredentialPools } from './acs-credential-pools.js'
 import { SeamHttpAcsCredentialProvisioningAutomations } from './acs-credential-provisioning-automations.js'
 import { SeamHttpAcsCredentials } from './acs-credentials.js'
+import { SeamHttpAcsEncoders } from './acs-encoders.js'
 import { SeamHttpAcsEntrances } from './acs-entrances.js'
 import { SeamHttpAcsSystems } from './acs-systems.js'
 import { SeamHttpAcsUsers } from './acs-users.js'
@@ -178,6 +179,10 @@ export class SeamHttpAcs {
 
   get entrances(): SeamHttpAcsEntrances {
     return SeamHttpAcsEntrances.fromClient(this.client, this.defaults)
+  }
+
+  get encoders(): SeamHttpAcsEncoders {
+    return SeamHttpAcsEncoders.fromClient(this.client, this.defaults)
   }
 
   get systems(): SeamHttpAcsSystems {

@@ -230,15 +230,12 @@ export class SeamHttpAccessCodes {
 
   pullBackupAccessCode(
     body?: AccessCodesPullBackupAccessCodeBody,
-  ): SeamHttpRequest<
-    AccessCodesPullBackupAccessCodeResponse,
-    'backup_access_code'
-  > {
+  ): SeamHttpRequest<AccessCodesPullBackupAccessCodeResponse, 'access_code'> {
     return new SeamHttpRequest(this, {
       path: '/access_codes/pull_backup_access_code',
       method: 'post',
       body,
-      responseKey: 'backup_access_code',
+      responseKey: 'access_code',
     })
   }
 
