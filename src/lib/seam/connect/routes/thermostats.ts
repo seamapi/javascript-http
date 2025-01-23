@@ -35,6 +35,7 @@ import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 import { SeamHttpThermostatsSchedules } from './thermostats-schedules.js'
+import { SeamHttpThermostatsSimulate } from './thermostats-simulate.js'
 
 export class SeamHttpThermostats {
   client: Client
@@ -157,6 +158,10 @@ export class SeamHttpThermostats {
 
   get schedules(): SeamHttpThermostatsSchedules {
     return SeamHttpThermostatsSchedules.fromClient(this.client, this.defaults)
+  }
+
+  get simulate(): SeamHttpThermostatsSimulate {
+    return SeamHttpThermostatsSimulate.fromClient(this.client, this.defaults)
   }
 
   activateClimatePreset(
