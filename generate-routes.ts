@@ -57,6 +57,7 @@ const routePaths = [
   '/devices',
   '/devices/unmanaged',
   '/devices/simulate',
+  '/bridges',
   '/events',
   '/locks',
   '/networks',
