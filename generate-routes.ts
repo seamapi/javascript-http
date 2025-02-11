@@ -125,11 +125,13 @@ interface ClassMeta {
 const createRoutes = (): Route[] => {
   const paths = Object.keys(openapi.paths)
 
-  const unmatchedEndpointPaths = paths.filter(
-    (path) =>
-      !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
-  ).filter((path) => !path.startsWith('/seam'))
-  
+  const unmatchedEndpointPaths = paths
+    .filter(
+      (path) =>
+        !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
+    )
+    .filter((path) => !path.startsWith('/seam'))
+
   if (unmatchedEndpointPaths.length > 0) {
     throw new Error(
       `The following endpoints will not be generated (add them to routePaths in generate-routes.ts):\n\n${unmatchedEndpointPaths.join(
