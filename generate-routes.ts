@@ -125,10 +125,12 @@ interface ClassMeta {
 const createRoutes = (): Route[] => {
   const paths = Object.keys(openapi.paths)
 
-  const unmatchedEndpointPaths = paths.filter(
-    (path) =>
-      !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
-  )
+  const unmatchedEndpointPaths = paths
+    .filter(
+      (path) =>
+        !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
+    )
+    .filter((path) => !path.startsWith('/seam'))
 
   if (unmatchedEndpointPaths.length > 0) {
     throw new Error(
