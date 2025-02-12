@@ -162,6 +162,17 @@ export class SeamHttpBridges {
       responseKey: 'bridge',
     })
   }
+
+  list(
+    body?: BridgesListParams,
+  ): SeamHttpRequest<BridgesListResponse, 'bridges'> {
+    return new SeamHttpRequest(this, {
+      path: '/bridges/list',
+      method: 'post',
+      body,
+      responseKey: 'bridges',
+    })
+  }
 }
 
 export type BridgesGetParams = RouteRequestBody<'/bridges/get'>
@@ -171,3 +182,11 @@ export type BridgesGetResponse = SetNonNullable<
 >
 
 export type BridgesGetOptions = never
+
+export type BridgesListParams = RouteRequestBody<'/bridges/list'>
+
+export type BridgesListResponse = SetNonNullable<
+  Required<RouteResponse<'/bridges/list'>>
+>
+
+export type BridgesListOptions = never
