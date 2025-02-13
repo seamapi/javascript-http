@@ -168,6 +168,15 @@ export class SeamHttpPhones {
     })
   }
 
+  get(body?: PhonesGetParams): SeamHttpRequest<PhonesGetResponse, 'phone'> {
+    return new SeamHttpRequest(this, {
+      path: '/phones/get',
+      method: 'post',
+      body,
+      responseKey: 'phone',
+    })
+  }
+
   list(body?: PhonesListParams): SeamHttpRequest<PhonesListResponse, 'phones'> {
     return new SeamHttpRequest(this, {
       path: '/phones/list',
@@ -185,6 +194,14 @@ export type PhonesDeactivateResponse = SetNonNullable<
 >
 
 export type PhonesDeactivateOptions = never
+
+export type PhonesGetParams = RouteRequestBody<'/phones/get'>
+
+export type PhonesGetResponse = SetNonNullable<
+  Required<RouteResponse<'/phones/get'>>
+>
+
+export type PhonesGetOptions = never
 
 export type PhonesListParams = RouteRequestBody<'/phones/list'>
 
