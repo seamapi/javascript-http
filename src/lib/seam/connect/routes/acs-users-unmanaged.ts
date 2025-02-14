@@ -158,7 +158,7 @@ export class SeamHttpAcsUsersUnmanaged {
     body?: AcsUsersUnmanagedGetParams,
   ): SeamHttpRequest<AcsUsersUnmanagedGetResponse, 'acs_user'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/users/unmanaged/get',
+      pathname: '/acs/users/unmanaged/get',
       method: 'post',
       body,
       responseKey: 'acs_user',
@@ -169,7 +169,7 @@ export class SeamHttpAcsUsersUnmanaged {
     body?: AcsUsersUnmanagedListParams,
   ): SeamHttpRequest<AcsUsersUnmanagedListResponse, 'acs_users'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/users/unmanaged/list',
+      pathname: '/acs/users/unmanaged/list',
       method: 'post',
       body,
       responseKey: 'acs_users',

@@ -161,7 +161,7 @@ export class SeamHttpAcsCredentialsUnmanaged {
     body?: AcsCredentialsUnmanagedGetParams,
   ): SeamHttpRequest<AcsCredentialsUnmanagedGetResponse, 'acs_credential'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/credentials/unmanaged/get',
+      pathname: '/acs/credentials/unmanaged/get',
       method: 'post',
       body,
       responseKey: 'acs_credential',
@@ -172,7 +172,7 @@ export class SeamHttpAcsCredentialsUnmanaged {
     body?: AcsCredentialsUnmanagedListParams,
   ): SeamHttpRequest<AcsCredentialsUnmanagedListResponse, 'acs_credentials'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/credentials/unmanaged/list',
+      pathname: '/acs/credentials/unmanaged/list',
       method: 'post',
       body,
       responseKey: 'acs_credentials',

@@ -156,7 +156,7 @@ export class SeamHttpEvents {
 
   get(body?: EventsGetParams): SeamHttpRequest<EventsGetResponse, 'event'> {
     return new SeamHttpRequest(this, {
-      path: '/events/get',
+      pathname: '/events/get',
       method: 'post',
       body,
       responseKey: 'event',
@@ -165,7 +165,7 @@ export class SeamHttpEvents {
 
   list(body?: EventsListParams): SeamHttpRequest<EventsListResponse, 'events'> {
     return new SeamHttpRequest(this, {
-      path: '/events/list',
+      pathname: '/events/list',
       method: 'post',
       body,
       responseKey: 'events',
