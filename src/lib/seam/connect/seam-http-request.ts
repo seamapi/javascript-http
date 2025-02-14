@@ -20,6 +20,11 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 }
 
+interface Pagination {
+  readonly hasNextPage: boolean
+  readonly nextPageCursor: string | null
+}
+
 export class SeamHttpRequest<
   const TResponse,
   const TResponseKey extends keyof TResponse | undefined,
@@ -32,6 +37,8 @@ export class SeamHttpRequest<
 
   readonly #parent: SeamHttpRequestParent
   readonly #config: SeamHttpRequestConfig<TResponseKey>
+
+  #pagination: Pagination | null = null
 
   constructor(
     parent: SeamHttpRequestParent,
@@ -56,13 +63,16 @@ export class SeamHttpRequest<
 
     const origin = getUrlPrefix(client.defaults.baseURL ?? '')
 
-    const pathname = this.#config.path.startsWith('/')
-      ? this.#config.path
-      : `/${this.#config.path}`
-
-    const path = params == null ? pathname : `${pathname}?${serializer(params)}`
+    const path =
+      params == null ? this.pathname : `${this.pathname}?${serializer(params)}`
 
     return new URL(`${origin}${path}`)
+  }
+
+  public get pathname(): string {
+    return this.#config.path.startsWith('/')
+      ? this.#config.path
+      : `/${this.#config.path}`
   }
 
   public get method(): Method {
@@ -71,6 +81,10 @@ export class SeamHttpRequest<
 
   public get body(): unknown {
     return this.#config.body
+  }
+
+  public get pagination(): Pagination | null {
+    return this.#pagination
   }
 
   async execute(): Promise<
@@ -88,6 +102,7 @@ export class SeamHttpRequest<
         ? TResponse[TResponseKey]
         : undefined
     }
+    if ('pagination' in response.data) this.#pagination = this.pagination
     const data = response.data[this.responseKey]
     if (this.responseKey === 'action_attempt') {
       const waitForActionAttempt =
