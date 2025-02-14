@@ -43,7 +43,7 @@ export class SeamPaginator implements AsyncIterable<any> {
     await request
   }
 
-  async flatten(): Promise<any> {
+  async toArray(): Promise<any> {
     if (this.#items != null) return this.#items
 
     if (this.#page != null) {
@@ -61,11 +61,17 @@ export class SeamPaginator implements AsyncIterable<any> {
     return this.#items
   }
 
-  async *[Symbol.asyncIterator](): any {
+  async *flatten(): any {
     while (this.hasNextPage) {
       for (const item of await this.nextPage()) {
         yield item
       }
+    }
+  }
+
+  async *[Symbol.asyncIterator](): any {
+    while (this.hasNextPage) {
+      yield this.nextPage()
     }
   }
 }
