@@ -138,6 +138,10 @@ export class SeamHttpAcsCredentialProvisioningAutomations {
     return new SeamHttpAcsCredentialProvisioningAutomations(constructorOptions)
   }
 
+  createPaginator(page: SeamHttpRequest<any, any>): SeamPaginator {
+    return new SeamPaginator(this, page)
+  }
+
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
