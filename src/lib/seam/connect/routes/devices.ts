@@ -137,6 +137,10 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
+  createPaginator(page: SeamHttpRequest<any, any>): SeamPaginator {
+    return new SeamPaginator(this, page)
+  }
+
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
