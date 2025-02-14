@@ -158,7 +158,7 @@ export class SeamHttpNoiseSensorsSimulate {
     body?: NoiseSensorsSimulateTriggerNoiseThresholdBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/noise_sensors/simulate/trigger_noise_threshold',
+      pathname: '/noise_sensors/simulate/trigger_noise_threshold',
       method: 'post',
       body,
       responseKey: undefined,

@@ -158,7 +158,7 @@ export class SeamHttpAccessCodesUnmanaged {
     body?: AccessCodesUnmanagedConvertToManagedBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/unmanaged/convert_to_managed',
+      pathname: '/access_codes/unmanaged/convert_to_managed',
       method: 'post',
       body,
       responseKey: undefined,
@@ -169,7 +169,7 @@ export class SeamHttpAccessCodesUnmanaged {
     body?: AccessCodesUnmanagedDeleteParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/unmanaged/delete',
+      pathname: '/access_codes/unmanaged/delete',
       method: 'post',
       body,
       responseKey: undefined,
@@ -180,7 +180,7 @@ export class SeamHttpAccessCodesUnmanaged {
     body?: AccessCodesUnmanagedGetParams,
   ): SeamHttpRequest<AccessCodesUnmanagedGetResponse, 'access_code'> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/unmanaged/get',
+      pathname: '/access_codes/unmanaged/get',
       method: 'post',
       body,
       responseKey: 'access_code',
@@ -191,7 +191,7 @@ export class SeamHttpAccessCodesUnmanaged {
     body?: AccessCodesUnmanagedListParams,
   ): SeamHttpRequest<AccessCodesUnmanagedListResponse, 'access_codes'> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/unmanaged/list',
+      pathname: '/access_codes/unmanaged/list',
       method: 'post',
       body,
       responseKey: 'access_codes',
@@ -202,7 +202,7 @@ export class SeamHttpAccessCodesUnmanaged {
     body?: AccessCodesUnmanagedUpdateBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/unmanaged/update',
+      pathname: '/access_codes/unmanaged/update',
       method: 'post',
       body,
       responseKey: undefined,

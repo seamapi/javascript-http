@@ -156,7 +156,7 @@ export class SeamHttpLocks {
 
   get(body?: LocksGetParams): SeamHttpRequest<LocksGetResponse, 'device'> {
     return new SeamHttpRequest(this, {
-      path: '/locks/get',
+      pathname: '/locks/get',
       method: 'post',
       body,
       responseKey: 'device',
@@ -165,7 +165,7 @@ export class SeamHttpLocks {
 
   list(body?: LocksListParams): SeamHttpRequest<LocksListResponse, 'devices'> {
     return new SeamHttpRequest(this, {
-      path: '/locks/list',
+      pathname: '/locks/list',
       method: 'post',
       body,
       responseKey: 'devices',
@@ -177,7 +177,7 @@ export class SeamHttpLocks {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<LocksLockDoorResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/locks/lock_door',
+      pathname: '/locks/lock_door',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -190,7 +190,7 @@ export class SeamHttpLocks {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<LocksUnlockDoorResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/locks/unlock_door',
+      pathname: '/locks/unlock_door',
       method: 'post',
       body,
       responseKey: 'action_attempt',

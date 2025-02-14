@@ -166,7 +166,7 @@ export class SeamHttpDevices {
 
   delete(body?: DevicesDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/devices/delete',
+      pathname: '/devices/delete',
       method: 'post',
       body,
       responseKey: undefined,
@@ -175,7 +175,7 @@ export class SeamHttpDevices {
 
   get(body?: DevicesGetParams): SeamHttpRequest<DevicesGetResponse, 'device'> {
     return new SeamHttpRequest(this, {
-      path: '/devices/get',
+      pathname: '/devices/get',
       method: 'post',
       body,
       responseKey: 'device',
@@ -186,7 +186,7 @@ export class SeamHttpDevices {
     body?: DevicesListParams,
   ): SeamHttpRequest<DevicesListResponse, 'devices'> {
     return new SeamHttpRequest(this, {
-      path: '/devices/list',
+      pathname: '/devices/list',
       method: 'post',
       body,
       responseKey: 'devices',
@@ -197,7 +197,7 @@ export class SeamHttpDevices {
     body?: DevicesListDeviceProvidersParams,
   ): SeamHttpRequest<DevicesListDeviceProvidersResponse, 'device_providers'> {
     return new SeamHttpRequest(this, {
-      path: '/devices/list_device_providers',
+      pathname: '/devices/list_device_providers',
       method: 'post',
       body,
       responseKey: 'device_providers',
@@ -206,7 +206,7 @@ export class SeamHttpDevices {
 
   update(body?: DevicesUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/devices/update',
+      pathname: '/devices/update',
       method: 'post',
       body,
       responseKey: undefined,

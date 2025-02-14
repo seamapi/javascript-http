@@ -158,7 +158,7 @@ export class SeamHttpAcsSystems {
     body?: AcsSystemsGetParams,
   ): SeamHttpRequest<AcsSystemsGetResponse, 'acs_system'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/systems/get',
+      pathname: '/acs/systems/get',
       method: 'post',
       body,
       responseKey: 'acs_system',
@@ -169,7 +169,7 @@ export class SeamHttpAcsSystems {
     body?: AcsSystemsListParams,
   ): SeamHttpRequest<AcsSystemsListResponse, 'acs_systems'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/systems/list',
+      pathname: '/acs/systems/list',
       method: 'post',
       body,
       responseKey: 'acs_systems',
@@ -183,7 +183,7 @@ export class SeamHttpAcsSystems {
     'acs_systems'
   > {
     return new SeamHttpRequest(this, {
-      path: '/acs/systems/list_compatible_credential_manager_acs_systems',
+      pathname: '/acs/systems/list_compatible_credential_manager_acs_systems',
       method: 'post',
       body,
       responseKey: 'acs_systems',

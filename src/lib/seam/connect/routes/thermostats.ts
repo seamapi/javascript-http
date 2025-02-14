@@ -172,7 +172,7 @@ export class SeamHttpThermostats {
     'action_attempt'
   > {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/activate_climate_preset',
+      pathname: '/thermostats/activate_climate_preset',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -185,7 +185,7 @@ export class SeamHttpThermostats {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<ThermostatsCoolResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/cool',
+      pathname: '/thermostats/cool',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -197,7 +197,7 @@ export class SeamHttpThermostats {
     body?: ThermostatsCreateClimatePresetBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/create_climate_preset',
+      pathname: '/thermostats/create_climate_preset',
       method: 'post',
       body,
       responseKey: undefined,
@@ -208,7 +208,7 @@ export class SeamHttpThermostats {
     body?: ThermostatsDeleteClimatePresetBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/delete_climate_preset',
+      pathname: '/thermostats/delete_climate_preset',
       method: 'post',
       body,
       responseKey: undefined,
@@ -219,7 +219,7 @@ export class SeamHttpThermostats {
     body?: ThermostatsGetParams,
   ): SeamHttpRequest<ThermostatsGetResponse, 'thermostat'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/get',
+      pathname: '/thermostats/get',
       method: 'post',
       body,
       responseKey: 'thermostat',
@@ -231,7 +231,7 @@ export class SeamHttpThermostats {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<ThermostatsHeatResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/heat',
+      pathname: '/thermostats/heat',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -244,7 +244,7 @@ export class SeamHttpThermostats {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<ThermostatsHeatCoolResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/heat_cool',
+      pathname: '/thermostats/heat_cool',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -256,7 +256,7 @@ export class SeamHttpThermostats {
     body?: ThermostatsListParams,
   ): SeamHttpRequest<ThermostatsListResponse, 'devices'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/list',
+      pathname: '/thermostats/list',
       method: 'post',
       body,
       responseKey: 'devices',
@@ -268,7 +268,7 @@ export class SeamHttpThermostats {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<ThermostatsOffResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/off',
+      pathname: '/thermostats/off',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -280,7 +280,7 @@ export class SeamHttpThermostats {
     body?: ThermostatsSetFallbackClimatePresetBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/set_fallback_climate_preset',
+      pathname: '/thermostats/set_fallback_climate_preset',
       method: 'post',
       body,
       responseKey: undefined,
@@ -292,7 +292,7 @@ export class SeamHttpThermostats {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<ThermostatsSetFanModeResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/set_fan_mode',
+      pathname: '/thermostats/set_fan_mode',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -305,7 +305,7 @@ export class SeamHttpThermostats {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<ThermostatsSetHvacModeResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/set_hvac_mode',
+      pathname: '/thermostats/set_hvac_mode',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -317,7 +317,7 @@ export class SeamHttpThermostats {
     body?: ThermostatsSetTemperatureThresholdBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/set_temperature_threshold',
+      pathname: '/thermostats/set_temperature_threshold',
       method: 'post',
       body,
       responseKey: undefined,
@@ -328,7 +328,7 @@ export class SeamHttpThermostats {
     body?: ThermostatsUpdateClimatePresetBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/update_climate_preset',
+      pathname: '/thermostats/update_climate_preset',
       method: 'post',
       body,
       responseKey: undefined,
