@@ -29,6 +29,10 @@ export class SeamPaginator implements AsyncIterable<any> {
     return this.#page.hasNextPage
   }
 
+  get nextPageCursor(): string | null {
+    return this.#page?.nextPageCursor ?? null
+  }
+
   async nextPage(): Promise<SeamHttpRequest<any, any>> {
     if (!this.hasNextPage) throw new Error('No next page')
 
