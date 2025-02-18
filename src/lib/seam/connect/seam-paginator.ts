@@ -83,10 +83,14 @@ export class SeamPaginator<
     EnsureReadonlyArray<TResponse[TResponseKey]>
   > {
     let [current, pagination] = await this.first()
-    yield* current
+    for (const item of current) {
+      yield item
+    }
     while (pagination.hasNextPage) {
       ;[current, pagination] = await this.fetch(pagination.nextPageCursor)
-      yield* current
+      for (const item of current) {
+        yield item
+      }
     }
   }
 
