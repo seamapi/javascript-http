@@ -1,3 +1,3 @@
-const seamapiJavascriptHttpVersion = '0.0.0'
+const seamapiJavascriptHttpVersion = '0.25.0'
 
 export default seamapiJavascriptHttpVersion

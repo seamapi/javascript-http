@@ -145,8 +145,10 @@ export class SeamHttp {
     return new SeamHttp(constructorOptions)
   }
 
-  createPaginator(page: SeamHttpRequest<any, any>): SeamPaginator {
-    return new SeamPaginator(this, page)
+  createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
+    page: SeamHttpRequest<TResponse, TResponseKey>,
+  ): SeamPaginator<TResponse, TResponseKey> {
+    return new SeamPaginator<TResponse, TResponseKey>(this, page)
   }
 
   async updateClientSessionToken(

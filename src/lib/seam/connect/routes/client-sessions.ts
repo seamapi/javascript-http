@@ -31,6 +31,7 @@ import {
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
+import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpClientSessions {
@@ -133,8 +134,10 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
-  createPaginator(page: SeamHttpRequest<any, any>): SeamPaginator {
-    return new SeamPaginator(this, page)
+  createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
+    page: SeamHttpRequest<TResponse, TResponseKey>,
+  ): SeamPaginator<TResponse, TResponseKey> {
+    return new SeamPaginator<TResponse, TResponseKey>(this, page)
   }
 
   async updateClientSessionToken(
