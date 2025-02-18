@@ -20,11 +20,6 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 }
 
-interface Pagination {
-  readonly hasNextPage: boolean
-  readonly nextPageCursor: string | null
-}
-
 export class SeamHttpRequest<
   const TResponse,
   const TResponseKey extends keyof TResponse | undefined,
