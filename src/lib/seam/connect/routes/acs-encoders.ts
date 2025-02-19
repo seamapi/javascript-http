@@ -171,7 +171,7 @@ export class SeamHttpAcsEncoders {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<AcsEncodersEncodeCredentialResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/encode_credential',
+      pathname: '/acs/encoders/encode_credential',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -183,7 +183,7 @@ export class SeamHttpAcsEncoders {
     body?: AcsEncodersListParams,
   ): SeamHttpRequest<AcsEncodersListResponse, 'acs_encoders'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/list',
+      pathname: '/acs/encoders/list',
       method: 'post',
       body,
       responseKey: 'acs_encoders',
@@ -195,7 +195,7 @@ export class SeamHttpAcsEncoders {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<AcsEncodersScanCredentialResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/scan_credential',
+      pathname: '/acs/encoders/scan_credential',
       method: 'post',
       body,
       responseKey: 'action_attempt',

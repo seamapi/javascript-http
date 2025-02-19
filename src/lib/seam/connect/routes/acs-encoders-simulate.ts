@@ -165,7 +165,7 @@ export class SeamHttpAcsEncodersSimulate {
     body?: AcsEncodersSimulateNextCredentialEncodeWillFailBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/simulate/next_credential_encode_will_fail',
+      pathname: '/acs/encoders/simulate/next_credential_encode_will_fail',
       method: 'post',
       body,
       responseKey: undefined,
@@ -176,7 +176,7 @@ export class SeamHttpAcsEncodersSimulate {
     body?: AcsEncodersSimulateNextCredentialEncodeWillSucceedBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/simulate/next_credential_encode_will_succeed',
+      pathname: '/acs/encoders/simulate/next_credential_encode_will_succeed',
       method: 'post',
       body,
       responseKey: undefined,
@@ -187,7 +187,7 @@ export class SeamHttpAcsEncodersSimulate {
     body?: AcsEncodersSimulateNextCredentialScanWillFailBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/simulate/next_credential_scan_will_fail',
+      pathname: '/acs/encoders/simulate/next_credential_scan_will_fail',
       method: 'post',
       body,
       responseKey: undefined,
@@ -198,7 +198,7 @@ export class SeamHttpAcsEncodersSimulate {
     body?: AcsEncodersSimulateNextCredentialScanWillSucceedBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/acs/encoders/simulate/next_credential_scan_will_succeed',
+      pathname: '/acs/encoders/simulate/next_credential_scan_will_succeed',
       method: 'post',
       body,
       responseKey: undefined,

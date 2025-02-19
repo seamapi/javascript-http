@@ -168,7 +168,7 @@ export class SeamHttpAccessCodesSimulate {
     'access_code'
   > {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/simulate/create_unmanaged_access_code',
+      pathname: '/access_codes/simulate/create_unmanaged_access_code',
       method: 'post',
       body,
       responseKey: 'access_code',

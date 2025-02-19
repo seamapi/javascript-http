@@ -163,7 +163,7 @@ export class SeamHttpBridges {
 
   get(body?: BridgesGetParams): SeamHttpRequest<BridgesGetResponse, 'bridge'> {
     return new SeamHttpRequest(this, {
-      path: '/bridges/get',
+      pathname: '/bridges/get',
       method: 'post',
       body,
       responseKey: 'bridge',
@@ -174,7 +174,7 @@ export class SeamHttpBridges {
     body?: BridgesListParams,
   ): SeamHttpRequest<BridgesListResponse, 'bridges'> {
     return new SeamHttpRequest(this, {
-      path: '/bridges/list',
+      pathname: '/bridges/list',
       method: 'post',
       body,
       responseKey: 'bridges',

@@ -173,7 +173,7 @@ export class SeamHttpUserIdentities {
     body?: UserIdentitiesAddAcsUserBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/add_acs_user',
+      pathname: '/user_identities/add_acs_user',
       method: 'post',
       body,
       responseKey: undefined,
@@ -184,7 +184,7 @@ export class SeamHttpUserIdentities {
     body?: UserIdentitiesCreateBody,
   ): SeamHttpRequest<UserIdentitiesCreateResponse, 'user_identity'> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/create',
+      pathname: '/user_identities/create',
       method: 'post',
       body,
       responseKey: 'user_identity',
@@ -193,7 +193,7 @@ export class SeamHttpUserIdentities {
 
   delete(body?: UserIdentitiesDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/delete',
+      pathname: '/user_identities/delete',
       method: 'post',
       body,
       responseKey: undefined,
@@ -204,7 +204,7 @@ export class SeamHttpUserIdentities {
     body?: UserIdentitiesGetParams,
   ): SeamHttpRequest<UserIdentitiesGetResponse, 'user_identity'> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/get',
+      pathname: '/user_identities/get',
       method: 'post',
       body,
       responseKey: 'user_identity',
@@ -215,7 +215,7 @@ export class SeamHttpUserIdentities {
     body?: UserIdentitiesGrantAccessToDeviceBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/grant_access_to_device',
+      pathname: '/user_identities/grant_access_to_device',
       method: 'post',
       body,
       responseKey: undefined,
@@ -226,7 +226,7 @@ export class SeamHttpUserIdentities {
     body?: UserIdentitiesListParams,
   ): SeamHttpRequest<UserIdentitiesListResponse, 'user_identities'> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/list',
+      pathname: '/user_identities/list',
       method: 'post',
       body,
       responseKey: 'user_identities',
@@ -237,7 +237,7 @@ export class SeamHttpUserIdentities {
     body?: UserIdentitiesListAccessibleDevicesParams,
   ): SeamHttpRequest<UserIdentitiesListAccessibleDevicesResponse, 'devices'> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/list_accessible_devices',
+      pathname: '/user_identities/list_accessible_devices',
       method: 'post',
       body,
       responseKey: 'devices',
@@ -248,7 +248,7 @@ export class SeamHttpUserIdentities {
     body?: UserIdentitiesListAcsSystemsParams,
   ): SeamHttpRequest<UserIdentitiesListAcsSystemsResponse, 'acs_systems'> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/list_acs_systems',
+      pathname: '/user_identities/list_acs_systems',
       method: 'post',
       body,
       responseKey: 'acs_systems',
@@ -259,7 +259,7 @@ export class SeamHttpUserIdentities {
     body?: UserIdentitiesListAcsUsersParams,
   ): SeamHttpRequest<UserIdentitiesListAcsUsersResponse, 'acs_users'> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/list_acs_users',
+      pathname: '/user_identities/list_acs_users',
       method: 'post',
       body,
       responseKey: 'acs_users',
@@ -270,7 +270,7 @@ export class SeamHttpUserIdentities {
     body?: UserIdentitiesRemoveAcsUserParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/remove_acs_user',
+      pathname: '/user_identities/remove_acs_user',
       method: 'post',
       body,
       responseKey: undefined,
@@ -281,7 +281,7 @@ export class SeamHttpUserIdentities {
     body?: UserIdentitiesRevokeAccessToDeviceParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/revoke_access_to_device',
+      pathname: '/user_identities/revoke_access_to_device',
       method: 'post',
       body,
       responseKey: undefined,
@@ -290,7 +290,7 @@ export class SeamHttpUserIdentities {
 
   update(body?: UserIdentitiesUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/update',
+      pathname: '/user_identities/update',
       method: 'post',
       body,
       responseKey: undefined,

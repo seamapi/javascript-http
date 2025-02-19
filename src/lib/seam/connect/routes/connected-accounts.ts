@@ -165,7 +165,7 @@ export class SeamHttpConnectedAccounts {
     body?: ConnectedAccountsDeleteParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/connected_accounts/delete',
+      pathname: '/connected_accounts/delete',
       method: 'post',
       body,
       responseKey: undefined,
@@ -176,7 +176,7 @@ export class SeamHttpConnectedAccounts {
     body?: ConnectedAccountsGetParams,
   ): SeamHttpRequest<ConnectedAccountsGetResponse, 'connected_account'> {
     return new SeamHttpRequest(this, {
-      path: '/connected_accounts/get',
+      pathname: '/connected_accounts/get',
       method: 'post',
       body,
       responseKey: 'connected_account',
@@ -187,7 +187,7 @@ export class SeamHttpConnectedAccounts {
     body?: ConnectedAccountsListParams,
   ): SeamHttpRequest<ConnectedAccountsListResponse, 'connected_accounts'> {
     return new SeamHttpRequest(this, {
-      path: '/connected_accounts/list',
+      pathname: '/connected_accounts/list',
       method: 'post',
       body,
       responseKey: 'connected_accounts',
@@ -196,7 +196,7 @@ export class SeamHttpConnectedAccounts {
 
   update(body?: ConnectedAccountsUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/connected_accounts/update',
+      pathname: '/connected_accounts/update',
       method: 'post',
       body,
       responseKey: undefined,

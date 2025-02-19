@@ -163,7 +163,7 @@ export class SeamHttpDevicesSimulate {
 
   connect(body?: DevicesSimulateConnectBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/devices/simulate/connect',
+      pathname: '/devices/simulate/connect',
       method: 'post',
       body,
       responseKey: undefined,
@@ -174,7 +174,7 @@ export class SeamHttpDevicesSimulate {
     body?: DevicesSimulateDisconnectBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/devices/simulate/disconnect',
+      pathname: '/devices/simulate/disconnect',
       method: 'post',
       body,
       responseKey: undefined,
@@ -183,7 +183,7 @@ export class SeamHttpDevicesSimulate {
 
   remove(body?: DevicesSimulateRemoveBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/devices/simulate/remove',
+      pathname: '/devices/simulate/remove',
       method: 'post',
       body,
       responseKey: undefined,

@@ -165,7 +165,7 @@ export class SeamHttpNetworks {
     body?: NetworksGetParams,
   ): SeamHttpRequest<NetworksGetResponse, 'network'> {
     return new SeamHttpRequest(this, {
-      path: '/networks/get',
+      pathname: '/networks/get',
       method: 'post',
       body,
       responseKey: 'network',
@@ -176,7 +176,7 @@ export class SeamHttpNetworks {
     body?: NetworksListParams,
   ): SeamHttpRequest<NetworksListResponse, 'networks'> {
     return new SeamHttpRequest(this, {
-      path: '/networks/list',
+      pathname: '/networks/list',
       method: 'post',
       body,
       responseKey: 'networks',

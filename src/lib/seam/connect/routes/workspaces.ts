@@ -165,7 +165,7 @@ export class SeamHttpWorkspaces {
     body?: WorkspacesCreateBody,
   ): SeamHttpRequest<WorkspacesCreateResponse, 'workspace'> {
     return new SeamHttpRequest(this, {
-      path: '/workspaces/create',
+      pathname: '/workspaces/create',
       method: 'post',
       body,
       responseKey: 'workspace',
@@ -176,7 +176,7 @@ export class SeamHttpWorkspaces {
     body?: WorkspacesGetParams,
   ): SeamHttpRequest<WorkspacesGetResponse, 'workspace'> {
     return new SeamHttpRequest(this, {
-      path: '/workspaces/get',
+      pathname: '/workspaces/get',
       method: 'post',
       body,
       responseKey: 'workspace',
@@ -187,7 +187,7 @@ export class SeamHttpWorkspaces {
     body?: WorkspacesListParams,
   ): SeamHttpRequest<WorkspacesListResponse, 'workspaces'> {
     return new SeamHttpRequest(this, {
-      path: '/workspaces/list',
+      pathname: '/workspaces/list',
       method: 'post',
       body,
       responseKey: 'workspaces',
@@ -199,7 +199,7 @@ export class SeamHttpWorkspaces {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<WorkspacesResetSandboxResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/workspaces/reset_sandbox',
+      pathname: '/workspaces/reset_sandbox',
       method: 'post',
       body,
       responseKey: 'action_attempt',

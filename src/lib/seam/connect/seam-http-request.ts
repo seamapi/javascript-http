@@ -12,7 +12,7 @@ interface SeamHttpRequestParent {
 }
 
 interface SeamHttpRequestConfig<TResponseKey> {
-  readonly path: string
+  readonly pathname: string
   readonly method: Method
   readonly body?: unknown
   readonly params?: undefined | Record<string, unknown>
@@ -63,9 +63,9 @@ export class SeamHttpRequest<
   }
 
   public get pathname(): string {
-    return this.#config.path.startsWith('/')
-      ? this.#config.path
-      : `/${this.#config.path}`
+    return this.#config.pathname.startsWith('/')
+      ? this.#config.pathname
+      : `/${this.#config.pathname}`
   }
 
   public get method(): Method {
@@ -111,7 +111,7 @@ export class SeamHttpRequest<
   async fetchResponseData(): Promise<TResponse> {
     const { client } = this.#parent
     const response = await client.request({
-      url: this.#config.path,
+      url: this.#config.pathname,
       method: this.#config.method,
       data: this.#config.body,
       params: this.#config.params,

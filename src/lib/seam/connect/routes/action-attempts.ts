@@ -166,7 +166,7 @@ export class SeamHttpActionAttempts {
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
   ): SeamHttpRequest<ActionAttemptsGetResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
-      path: '/action_attempts/get',
+      pathname: '/action_attempts/get',
       method: 'post',
       body,
       responseKey: 'action_attempt',
@@ -178,7 +178,7 @@ export class SeamHttpActionAttempts {
     body?: ActionAttemptsListParams,
   ): SeamHttpRequest<ActionAttemptsListResponse, 'action_attempts'> {
     return new SeamHttpRequest(this, {
-      path: '/action_attempts/list',
+      pathname: '/action_attempts/list',
       method: 'post',
       body,
       responseKey: 'action_attempts',

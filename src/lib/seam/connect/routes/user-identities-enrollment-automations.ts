@@ -168,7 +168,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     body?: UserIdentitiesEnrollmentAutomationsDeleteParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/enrollment_automations/delete',
+      pathname: '/user_identities/enrollment_automations/delete',
       method: 'post',
       body,
       responseKey: undefined,
@@ -182,7 +182,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     'enrollment_automation'
   > {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/enrollment_automations/get',
+      pathname: '/user_identities/enrollment_automations/get',
       method: 'post',
       body,
       responseKey: 'enrollment_automation',
@@ -196,7 +196,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     'enrollment_automation'
   > {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/enrollment_automations/launch',
+      pathname: '/user_identities/enrollment_automations/launch',
       method: 'post',
       body,
       responseKey: 'enrollment_automation',
@@ -210,7 +210,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     'enrollment_automations'
   > {
     return new SeamHttpRequest(this, {
-      path: '/user_identities/enrollment_automations/list',
+      pathname: '/user_identities/enrollment_automations/list',
       method: 'post',
       body,
       responseKey: 'enrollment_automations',

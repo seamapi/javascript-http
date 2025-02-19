@@ -165,7 +165,7 @@ export class SeamHttpWebhooks {
     body?: WebhooksCreateBody,
   ): SeamHttpRequest<WebhooksCreateResponse, 'webhook'> {
     return new SeamHttpRequest(this, {
-      path: '/webhooks/create',
+      pathname: '/webhooks/create',
       method: 'post',
       body,
       responseKey: 'webhook',
@@ -174,7 +174,7 @@ export class SeamHttpWebhooks {
 
   delete(body?: WebhooksDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/webhooks/delete',
+      pathname: '/webhooks/delete',
       method: 'post',
       body,
       responseKey: undefined,
@@ -185,7 +185,7 @@ export class SeamHttpWebhooks {
     body?: WebhooksGetParams,
   ): SeamHttpRequest<WebhooksGetResponse, 'webhook'> {
     return new SeamHttpRequest(this, {
-      path: '/webhooks/get',
+      pathname: '/webhooks/get',
       method: 'post',
       body,
       responseKey: 'webhook',
@@ -196,7 +196,7 @@ export class SeamHttpWebhooks {
     body?: WebhooksListParams,
   ): SeamHttpRequest<WebhooksListResponse, 'webhooks'> {
     return new SeamHttpRequest(this, {
-      path: '/webhooks/list',
+      pathname: '/webhooks/list',
       method: 'post',
       body,
       responseKey: 'webhooks',
@@ -205,7 +205,7 @@ export class SeamHttpWebhooks {
 
   update(body?: WebhooksUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/webhooks/update',
+      pathname: '/webhooks/update',
       method: 'post',
       body,
       responseKey: undefined,

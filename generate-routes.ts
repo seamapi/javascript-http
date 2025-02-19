@@ -371,7 +371,7 @@ const renderClassMethod = ({
       : `${renderResponseType({ name, namespace })}, '${resource}'`
   }> {
     return new SeamHttpRequest(this, {
-      path: '${path}',
+      pathname: '${path}',
       method: '${snakeCase(method)}', ${
         requestFormat === 'params' ? 'params,' : ''
       } ${requestFormat === 'body' ? 'body,' : ''}

@@ -175,7 +175,7 @@ export class SeamHttpAccessCodes {
     body?: AccessCodesCreateBody,
   ): SeamHttpRequest<AccessCodesCreateResponse, 'access_code'> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/create',
+      pathname: '/access_codes/create',
       method: 'post',
       body,
       responseKey: 'access_code',
@@ -186,7 +186,7 @@ export class SeamHttpAccessCodes {
     body?: AccessCodesCreateMultipleBody,
   ): SeamHttpRequest<AccessCodesCreateMultipleResponse, 'access_codes'> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/create_multiple',
+      pathname: '/access_codes/create_multiple',
       method: 'post',
       body,
       responseKey: 'access_codes',
@@ -195,7 +195,7 @@ export class SeamHttpAccessCodes {
 
   delete(body?: AccessCodesDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/delete',
+      pathname: '/access_codes/delete',
       method: 'post',
       body,
       responseKey: undefined,
@@ -206,7 +206,7 @@ export class SeamHttpAccessCodes {
     body?: AccessCodesGenerateCodeBody,
   ): SeamHttpRequest<AccessCodesGenerateCodeResponse, 'generated_code'> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/generate_code',
+      pathname: '/access_codes/generate_code',
       method: 'post',
       body,
       responseKey: 'generated_code',
@@ -217,7 +217,7 @@ export class SeamHttpAccessCodes {
     body?: AccessCodesGetParams,
   ): SeamHttpRequest<AccessCodesGetResponse, 'access_code'> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/get',
+      pathname: '/access_codes/get',
       method: 'post',
       body,
       responseKey: 'access_code',
@@ -228,7 +228,7 @@ export class SeamHttpAccessCodes {
     body?: AccessCodesListParams,
   ): SeamHttpRequest<AccessCodesListResponse, 'access_codes'> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/list',
+      pathname: '/access_codes/list',
       method: 'post',
       body,
       responseKey: 'access_codes',
@@ -239,7 +239,7 @@ export class SeamHttpAccessCodes {
     body?: AccessCodesPullBackupAccessCodeBody,
   ): SeamHttpRequest<AccessCodesPullBackupAccessCodeResponse, 'access_code'> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/pull_backup_access_code',
+      pathname: '/access_codes/pull_backup_access_code',
       method: 'post',
       body,
       responseKey: 'access_code',
@@ -248,7 +248,7 @@ export class SeamHttpAccessCodes {
 
   update(body?: AccessCodesUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/update',
+      pathname: '/access_codes/update',
       method: 'post',
       body,
       responseKey: undefined,
@@ -259,7 +259,7 @@ export class SeamHttpAccessCodes {
     body?: AccessCodesUpdateMultipleBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/access_codes/update_multiple',
+      pathname: '/access_codes/update_multiple',
       method: 'post',
       body,
       responseKey: undefined,

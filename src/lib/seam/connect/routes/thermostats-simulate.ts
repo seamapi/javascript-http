@@ -165,7 +165,7 @@ export class SeamHttpThermostatsSimulate {
     body?: ThermostatsSimulateHvacModeAdjustedBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/simulate/hvac_mode_adjusted',
+      pathname: '/thermostats/simulate/hvac_mode_adjusted',
       method: 'post',
       body,
       responseKey: undefined,
@@ -176,7 +176,7 @@ export class SeamHttpThermostatsSimulate {
     body?: ThermostatsSimulateTemperatureReachedBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/simulate/temperature_reached',
+      pathname: '/thermostats/simulate/temperature_reached',
       method: 'post',
       body,
       responseKey: undefined,

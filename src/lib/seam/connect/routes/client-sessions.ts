@@ -163,7 +163,7 @@ export class SeamHttpClientSessions {
     body?: ClientSessionsCreateBody,
   ): SeamHttpRequest<ClientSessionsCreateResponse, 'client_session'> {
     return new SeamHttpRequest(this, {
-      path: '/client_sessions/create',
+      pathname: '/client_sessions/create',
       method: 'post',
       body,
       responseKey: 'client_session',
@@ -172,7 +172,7 @@ export class SeamHttpClientSessions {
 
   delete(body?: ClientSessionsDeleteParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/client_sessions/delete',
+      pathname: '/client_sessions/delete',
       method: 'post',
       body,
       responseKey: undefined,
@@ -183,7 +183,7 @@ export class SeamHttpClientSessions {
     body?: ClientSessionsGetParams,
   ): SeamHttpRequest<ClientSessionsGetResponse, 'client_session'> {
     return new SeamHttpRequest(this, {
-      path: '/client_sessions/get',
+      pathname: '/client_sessions/get',
       method: 'post',
       body,
       responseKey: 'client_session',
@@ -194,7 +194,7 @@ export class SeamHttpClientSessions {
     body?: ClientSessionsGetOrCreateBody,
   ): SeamHttpRequest<ClientSessionsGetOrCreateResponse, 'client_session'> {
     return new SeamHttpRequest(this, {
-      path: '/client_sessions/get_or_create',
+      pathname: '/client_sessions/get_or_create',
       method: 'post',
       body,
       responseKey: 'client_session',
@@ -205,7 +205,7 @@ export class SeamHttpClientSessions {
     body?: ClientSessionsGrantAccessBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/client_sessions/grant_access',
+      pathname: '/client_sessions/grant_access',
       method: 'post',
       body,
       responseKey: undefined,
@@ -216,7 +216,7 @@ export class SeamHttpClientSessions {
     body?: ClientSessionsListParams,
   ): SeamHttpRequest<ClientSessionsListResponse, 'client_sessions'> {
     return new SeamHttpRequest(this, {
-      path: '/client_sessions/list',
+      pathname: '/client_sessions/list',
       method: 'post',
       body,
       responseKey: 'client_sessions',
@@ -225,7 +225,7 @@ export class SeamHttpClientSessions {
 
   revoke(body?: ClientSessionsRevokeParams): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/client_sessions/revoke',
+      pathname: '/client_sessions/revoke',
       method: 'post',
       body,
       responseKey: undefined,

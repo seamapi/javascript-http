@@ -43,7 +43,7 @@ export class SeamPaginator<
     }
 
     const request = new SeamHttpRequest<TResponse, TResponseKey>(this.#parent, {
-      path: this.#request.pathname,
+      pathname: this.#request.pathname,
       method: 'get',
       responseKey,
       params: { ...this.#request.params, next_page_cursor: nextPageCursor },

@@ -168,7 +168,7 @@ export class SeamHttpThermostatsSchedules {
     'thermostat_schedule'
   > {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/schedules/create',
+      pathname: '/thermostats/schedules/create',
       method: 'post',
       body,
       responseKey: 'thermostat_schedule',
@@ -179,7 +179,7 @@ export class SeamHttpThermostatsSchedules {
     body?: ThermostatsSchedulesDeleteParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/schedules/delete',
+      pathname: '/thermostats/schedules/delete',
       method: 'post',
       body,
       responseKey: undefined,
@@ -190,7 +190,7 @@ export class SeamHttpThermostatsSchedules {
     body?: ThermostatsSchedulesGetParams,
   ): SeamHttpRequest<ThermostatsSchedulesGetResponse, 'thermostat_schedule'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/schedules/get',
+      pathname: '/thermostats/schedules/get',
       method: 'post',
       body,
       responseKey: 'thermostat_schedule',
@@ -201,7 +201,7 @@ export class SeamHttpThermostatsSchedules {
     body?: ThermostatsSchedulesListParams,
   ): SeamHttpRequest<ThermostatsSchedulesListResponse, 'thermostat_schedules'> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/schedules/list',
+      pathname: '/thermostats/schedules/list',
       method: 'post',
       body,
       responseKey: 'thermostat_schedules',
@@ -212,7 +212,7 @@ export class SeamHttpThermostatsSchedules {
     body?: ThermostatsSchedulesUpdateBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/thermostats/schedules/update',
+      pathname: '/thermostats/schedules/update',
       method: 'post',
       body,
       responseKey: undefined,
