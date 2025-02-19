@@ -161,7 +161,7 @@ export class SeamHttpAcsAccessGroupsUnmanaged {
     body?: AcsAccessGroupsUnmanagedGetParams,
   ): SeamHttpRequest<AcsAccessGroupsUnmanagedGetResponse, 'acs_access_group'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/access_groups/unmanaged/get',
+      pathname: '/acs/access_groups/unmanaged/get',
       method: 'post',
       body,
       responseKey: 'acs_access_group',
@@ -175,7 +175,7 @@ export class SeamHttpAcsAccessGroupsUnmanaged {
     'acs_access_groups'
   > {
     return new SeamHttpRequest(this, {
-      path: '/acs/access_groups/unmanaged/list',
+      pathname: '/acs/access_groups/unmanaged/list',
       method: 'post',
       body,
       responseKey: 'acs_access_groups',

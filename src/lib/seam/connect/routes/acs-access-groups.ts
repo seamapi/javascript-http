@@ -164,7 +164,7 @@ export class SeamHttpAcsAccessGroups {
 
   addUser(body?: AcsAccessGroupsAddUserBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/acs/access_groups/add_user',
+      pathname: '/acs/access_groups/add_user',
       method: 'post',
       body,
       responseKey: undefined,
@@ -175,7 +175,7 @@ export class SeamHttpAcsAccessGroups {
     body?: AcsAccessGroupsGetParams,
   ): SeamHttpRequest<AcsAccessGroupsGetResponse, 'acs_access_group'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/access_groups/get',
+      pathname: '/acs/access_groups/get',
       method: 'post',
       body,
       responseKey: 'acs_access_group',
@@ -186,7 +186,7 @@ export class SeamHttpAcsAccessGroups {
     body?: AcsAccessGroupsListParams,
   ): SeamHttpRequest<AcsAccessGroupsListResponse, 'acs_access_groups'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/access_groups/list',
+      pathname: '/acs/access_groups/list',
       method: 'post',
       body,
       responseKey: 'acs_access_groups',
@@ -200,7 +200,7 @@ export class SeamHttpAcsAccessGroups {
     'acs_entrances'
   > {
     return new SeamHttpRequest(this, {
-      path: '/acs/access_groups/list_accessible_entrances',
+      pathname: '/acs/access_groups/list_accessible_entrances',
       method: 'post',
       body,
       responseKey: 'acs_entrances',
@@ -211,7 +211,7 @@ export class SeamHttpAcsAccessGroups {
     body?: AcsAccessGroupsListUsersParams,
   ): SeamHttpRequest<AcsAccessGroupsListUsersResponse, 'acs_users'> {
     return new SeamHttpRequest(this, {
-      path: '/acs/access_groups/list_users',
+      pathname: '/acs/access_groups/list_users',
       method: 'post',
       body,
       responseKey: 'acs_users',
@@ -222,7 +222,7 @@ export class SeamHttpAcsAccessGroups {
     body?: AcsAccessGroupsRemoveUserParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      path: '/acs/access_groups/remove_user',
+      pathname: '/acs/access_groups/remove_user',
       method: 'post',
       body,
       responseKey: undefined,
