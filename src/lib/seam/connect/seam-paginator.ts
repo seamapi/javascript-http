@@ -10,6 +10,7 @@ interface SeamPaginatorParent {
 interface Pagination {
   readonly hasNextPage: boolean
   readonly nextPageCursor: string | null
+  readonly nextPageUrl: string | null
 }
 
 export class SeamPaginator<
@@ -24,21 +25,37 @@ export class SeamPaginator<
     parent: SeamPaginatorParent,
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ) {
+    if (request.responseKey == null) {
+      throw new Error(
+        `The ${request.pathname} endpoint does not support pagination`,
+      )
+    }
     this.#parent = parent
     this.#request = request
   }
 
-  async first(): Promise<
+  async firstPage(): Promise<
     [EnsureReadonlyArray<TResponse[TResponseKey]>, Pagination]
   > {
-    return await this.fetch()
+    return await this.#fetch()
   }
 
-  async fetch(
-    nextPageCursor?: Pagination['nextPageCursor'],
+  async nextPage(
+    nextPageCursor: Pagination['nextPageCursor'],
   ): Promise<[EnsureReadonlyArray<TResponse[TResponseKey]>, Pagination]> {
+    if (nextPageCursor == null) {
+      throw new Error('Cannot get the next page with a null nextPageCursor')
+    }
+
+    return await this.#fetch(nextPageCursor)
+  }
+
+  readonly #fetch = async (
+    nextPageCursor?: Pagination['nextPageCursor'],
+  ): Promise<[EnsureReadonlyArray<TResponse[TResponseKey]>, Pagination]> => {
     const responseKey = this.#request.responseKey
-    if (typeof responseKey !== 'string') {
+
+    if (responseKey == null) {
       throw new Error('Cannot paginate a response without a responseKey')
     }
 
@@ -58,6 +75,7 @@ export class SeamPaginator<
         : {
             hasNextPage: false,
             nextPageCursor: null,
+            nextPageUrl: null,
           }
     if (!Array.isArray(data)) {
       throw new Error('Expected an array response')
@@ -70,10 +88,10 @@ export class SeamPaginator<
 
   async toArray(): Promise<EnsureReadonlyArray<TResponse[TResponseKey]>> {
     const items = [] as EnsureMutableArray<TResponse[TResponseKey]>
-    let [current, pagination] = await this.first()
+    let [current, pagination] = await this.firstPage()
     items.push(...current)
     while (pagination.hasNextPage) {
-      ;[current, pagination] = await this.fetch(pagination.nextPageCursor)
+      ;[current, pagination] = await this.nextPage(pagination.nextPageCursor)
       items.push(...current)
     }
     return items as EnsureReadonlyArray<TResponse[TResponseKey]>
@@ -82,12 +100,12 @@ export class SeamPaginator<
   async *flatten(): AsyncGenerator<
     EnsureReadonlyArray<TResponse[TResponseKey]>
   > {
-    let [current, pagination] = await this.first()
+    let [current, pagination] = await this.firstPage()
     for (const item of current) {
       yield item
     }
     while (pagination.hasNextPage) {
-      ;[current, pagination] = await this.fetch(pagination.nextPageCursor)
+      ;[current, pagination] = await this.#fetch(pagination.nextPageCursor)
       for (const item of current) {
         yield item
       }
@@ -97,10 +115,10 @@ export class SeamPaginator<
   async *[Symbol.asyncIterator](): AsyncGenerator<
     EnsureReadonlyArray<TResponse[TResponseKey]>
   > {
-    let [current, pagination] = await this.first()
+    let [current, pagination] = await this.firstPage()
     yield current
     while (pagination.hasNextPage) {
-      ;[current, pagination] = await this.fetch(pagination.nextPageCursor)
+      ;[current, pagination] = await this.nextPage(pagination.nextPageCursor)
       yield current
     }
   }
