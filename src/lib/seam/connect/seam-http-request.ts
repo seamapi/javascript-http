@@ -20,11 +20,6 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 }
 
-interface Pagination {
-  readonly hasNextPage: boolean
-  readonly nextPageCursor: string | null
-}
-
 export class SeamHttpRequest<
   const TResponse,
   const TResponseKey extends keyof TResponse | undefined,
@@ -37,8 +32,6 @@ export class SeamHttpRequest<
 
   readonly #parent: SeamHttpRequestParent
   readonly #config: SeamHttpRequestConfig<TResponseKey>
-
-  #pagination: Pagination | null = null
 
   constructor(
     parent: SeamHttpRequestParent,
@@ -79,31 +72,24 @@ export class SeamHttpRequest<
     return this.#config.method
   }
 
-  public get body(): unknown {
-    return this.#config.body
+  public get params(): undefined | Record<string, unknown> {
+    return this.#config.params
   }
 
-  public get pagination(): Pagination | null {
-    return this.#pagination
+  public get body(): unknown {
+    return this.#config.body
   }
 
   async execute(): Promise<
     TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
   > {
-    const { client } = this.#parent
-    const response = await client.request({
-      url: this.#config.path,
-      method: this.#config.method,
-      data: this.#config.body,
-      params: this.#config.params,
-    })
+    const response = await this.fetchResponseData()
     if (this.responseKey === undefined) {
       return undefined as TResponseKey extends keyof TResponse
         ? TResponse[TResponseKey]
         : undefined
     }
-    if ('pagination' in response.data) this.#pagination = this.pagination
-    const data = response.data[this.responseKey]
+    const data = response[this.responseKey] as any
     if (this.responseKey === 'action_attempt') {
       const waitForActionAttempt =
         this.#config.options?.waitForActionAttempt ??
@@ -111,7 +97,7 @@ export class SeamHttpRequest<
       if (waitForActionAttempt !== false) {
         return await resolveActionAttempt(
           data,
-          SeamHttpActionAttempts.fromClient(client, {
+          SeamHttpActionAttempts.fromClient(this.#parent.client, {
             ...this.#parent.defaults,
             waitForActionAttempt: false,
           }),
@@ -120,6 +106,17 @@ export class SeamHttpRequest<
       }
     }
     return data
+  }
+
+  async fetchResponseData(): Promise<TResponse> {
+    const { client } = this.#parent
+    const response = await client.request({
+      url: this.#config.path,
+      method: this.#config.method,
+      data: this.#config.body,
+      params: this.#config.params,
+    })
+    return response.data
   }
 
   async then<

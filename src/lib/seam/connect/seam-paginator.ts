@@ -19,8 +19,6 @@ export class SeamPaginator<
 {
   readonly #request: SeamHttpRequest<TResponse, TResponseKey>
   readonly #parent: SeamPaginatorParent
-  #page: Pagination | null
-  #items: EnsureReadonlyArray<TResponse[TResponseKey]> | null = null
 
   constructor(
     parent: SeamPaginatorParent,
@@ -28,21 +26,17 @@ export class SeamPaginator<
   ) {
     this.#parent = parent
     this.#request = request
-    this.#page = request.pagination
   }
 
-  get hasNextPage(): boolean {
-    if (this.#page == null) return true
-    return this.#page.hasNextPage
+  async first(): Promise<
+    [EnsureReadonlyArray<TResponse[TResponseKey]>, Pagination]
+  > {
+    return await this.fetch()
   }
 
-  get nextPageCursor(): string | null {
-    return this.#page?.nextPageCursor ?? null
-  }
-
-  async nextPage(): Promise<EnsureReadonlyArray<TResponse[TResponseKey]>> {
-    if (!this.hasNextPage) throw new Error('No next page')
-
+  async fetch(
+    nextPageCursor?: Pagination['nextPageCursor'],
+  ): Promise<[EnsureReadonlyArray<TResponse[TResponseKey]>, Pagination]> {
     const responseKey = this.#request.responseKey
     if (typeof responseKey !== 'string') {
       throw new Error('Cannot paginate a response without a responseKey')
@@ -52,43 +46,49 @@ export class SeamPaginator<
       path: this.#request.pathname,
       method: 'get',
       responseKey,
-      params: { page_cursor: this.#page?.nextPageCursor },
+      params: { ...this.#request.params, next_page_cursor: nextPageCursor },
     })
-    const result = await request.execute()
-    this.#page = request.pagination ?? {
-      hasNextPage: false,
-      nextPageCursor: null,
-    }
-    if (!Array.isArray(result)) {
+    const response = await request.fetchResponseData()
+    const data = response[responseKey]
+    const pagination: Pagination =
+      response != null &&
+      typeof response === 'object' &&
+      'pagination' in response
+        ? (response.pagination as Pagination)
+        : {
+            hasNextPage: false,
+            nextPageCursor: null,
+          }
+    if (!Array.isArray(data)) {
       throw new Error('Expected an array response')
     }
-    return result as EnsureReadonlyArray<TResponse[TResponseKey]>
+    return [
+      data as EnsureReadonlyArray<TResponse[TResponseKey]>,
+      pagination,
+    ] as const
   }
 
   async toArray(): Promise<EnsureReadonlyArray<TResponse[TResponseKey]>> {
-    if (this.#items != null) return this.#items
-
-    if (this.#page != null) {
-      throw new Error(
-        `${SeamPaginator.constructor.name}.toArray() may not be called after using other methods of iteration`,
-      )
-    }
-
     const items = [] as EnsureMutableArray<TResponse[TResponseKey]>
-    while (this.hasNextPage) {
-      for (const item of await this.nextPage()) {
-        items.push(item)
-      }
+    let [current, pagination] = await this.first()
+    items.push(...current)
+    while (pagination.hasNextPage) {
+      ;[current, pagination] = await this.fetch(pagination.nextPageCursor)
+      items.push(...current)
     }
-    this.#items = items as EnsureReadonlyArray<TResponse[TResponseKey]>
     return items as EnsureReadonlyArray<TResponse[TResponseKey]>
   }
 
   async *flatten(): AsyncGenerator<
     EnsureReadonlyArray<TResponse[TResponseKey]>
   > {
-    while (this.hasNextPage) {
-      for (const item of await this.nextPage()) {
+    let [current, pagination] = await this.first()
+    for (const item of current) {
+      yield item
+    }
+    while (pagination.hasNextPage) {
+      ;[current, pagination] = await this.fetch(pagination.nextPageCursor)
+      for (const item of current) {
         yield item
       }
     }
@@ -97,8 +97,11 @@ export class SeamPaginator<
   async *[Symbol.asyncIterator](): AsyncGenerator<
     EnsureReadonlyArray<TResponse[TResponseKey]>
   > {
-    while (this.hasNextPage) {
-      yield this.nextPage()
+    let [current, pagination] = await this.first()
+    yield current
+    while (pagination.hasNextPage) {
+      ;[current, pagination] = await this.fetch(pagination.nextPageCursor)
+      yield current
     }
   }
 }
