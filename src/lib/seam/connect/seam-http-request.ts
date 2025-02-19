@@ -1,3 +1,4 @@
+import type { ActionAttempt } from '@seamapi/types/connect'
 import { serializeUrlSearchParams } from '@seamapi/url-search-params-serializer'
 import type { Method } from 'axios'
 
@@ -85,13 +86,15 @@ export class SeamHttpRequest<
   > {
     const response = await this.fetchResponse()
 
+    type Response = TResponseKey extends keyof TResponse
+      ? TResponse[TResponseKey]
+      : undefined
+
     if (this.responseKey === undefined) {
-      return undefined as TResponseKey extends keyof TResponse
-        ? TResponse[TResponseKey]
-        : undefined
+      return undefined as Response
     }
 
-    const data = response[this.responseKey] as any
+    const data = response[this.responseKey] as unknown as Response
 
     if (this.responseKey === 'action_attempt') {
       const waitForActionAttempt =
@@ -99,14 +102,15 @@ export class SeamHttpRequest<
         this.#parent.defaults.waitForActionAttempt
 
       if (waitForActionAttempt !== false) {
-        return await resolveActionAttempt(
-          data,
+        const actionAttempt = await resolveActionAttempt(
+          data as unknown as ActionAttempt,
           SeamHttpActionAttempts.fromClient(this.#parent.client, {
             ...this.#parent.defaults,
             waitForActionAttempt: false,
           }),
           typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
         )
+        return actionAttempt as Response
       }
     }
 
