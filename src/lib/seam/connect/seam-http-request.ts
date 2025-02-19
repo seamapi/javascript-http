@@ -56,17 +56,24 @@ export class SeamHttpRequest<
 
     const origin = getUrlPrefix(client.defaults.baseURL ?? '')
 
-    const pathname = this.#config.path.startsWith('/')
-      ? this.#config.path
-      : `/${this.#config.path}`
-
-    const path = params == null ? pathname : `${pathname}?${serializer(params)}`
+    const path =
+      params == null ? this.pathname : `${this.pathname}?${serializer(params)}`
 
     return new URL(`${origin}${path}`)
   }
 
+  public get pathname(): string {
+    return this.#config.path.startsWith('/')
+      ? this.#config.path
+      : `/${this.#config.path}`
+  }
+
   public get method(): Method {
     return this.#config.method
+  }
+
+  public get params(): undefined | Record<string, unknown> {
+    return this.#config.params
   }
 
   public get body(): unknown {
@@ -76,19 +83,13 @@ export class SeamHttpRequest<
   async execute(): Promise<
     TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
   > {
-    const { client } = this.#parent
-    const response = await client.request({
-      url: this.#config.path,
-      method: this.#config.method,
-      data: this.#config.body,
-      params: this.#config.params,
-    })
+    const response = await this.fetchResponseData()
     if (this.responseKey === undefined) {
       return undefined as TResponseKey extends keyof TResponse
         ? TResponse[TResponseKey]
         : undefined
     }
-    const data = response.data[this.responseKey]
+    const data = response[this.responseKey] as any
     if (this.responseKey === 'action_attempt') {
       const waitForActionAttempt =
         this.#config.options?.waitForActionAttempt ??
@@ -96,7 +97,7 @@ export class SeamHttpRequest<
       if (waitForActionAttempt !== false) {
         return await resolveActionAttempt(
           data,
-          SeamHttpActionAttempts.fromClient(client, {
+          SeamHttpActionAttempts.fromClient(this.#parent.client, {
             ...this.#parent.defaults,
             waitForActionAttempt: false,
           }),
@@ -105,6 +106,17 @@ export class SeamHttpRequest<
       }
     }
     return data
+  }
+
+  async fetchResponseData(): Promise<TResponse> {
+    const { client } = this.#parent
+    const response = await client.request({
+      url: this.#config.path,
+      method: this.#config.method,
+      data: this.#config.body,
+      params: this.#config.params,
+    })
+    return response.data
   }
 
   async then<

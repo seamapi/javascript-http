@@ -299,6 +299,7 @@ import {
   resolveActionAttempt,
 } from 'lib/seam/connect/resolve-action-attempt.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
+import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
 ${
   namespace === 'client_sessions'
