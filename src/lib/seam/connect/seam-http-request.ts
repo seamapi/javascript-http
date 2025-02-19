@@ -83,17 +83,21 @@ export class SeamHttpRequest<
   async execute(): Promise<
     TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
   > {
-    const response = await this.fetchResponseData()
+    const response = await this.fetchResponse()
+
     if (this.responseKey === undefined) {
       return undefined as TResponseKey extends keyof TResponse
         ? TResponse[TResponseKey]
         : undefined
     }
+
     const data = response[this.responseKey] as any
+
     if (this.responseKey === 'action_attempt') {
       const waitForActionAttempt =
         this.#config.options?.waitForActionAttempt ??
         this.#parent.defaults.waitForActionAttempt
+
       if (waitForActionAttempt !== false) {
         return await resolveActionAttempt(
           data,
@@ -105,10 +109,11 @@ export class SeamHttpRequest<
         )
       }
     }
+
     return data
   }
 
-  async fetchResponseData(): Promise<TResponse> {
+  async fetchResponse(): Promise<TResponse> {
     const { client } = this.#parent
     const response = await client.request({
       url: this.#config.pathname,
@@ -116,7 +121,7 @@ export class SeamHttpRequest<
       data: this.#config.body,
       params: this.#config.params,
     })
-    return response.data
+    return response.data as unknown as TResponse
   }
 
   async then<
@@ -134,7 +139,7 @@ export class SeamHttpRequest<
       | null
       | undefined,
     onrejected?:
-      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+      | ((reason: unknown) => TResult2 | PromiseLike<TResult2>)
       | null
       | undefined,
   ): Promise<TResult1 | TResult2> {
@@ -143,7 +148,7 @@ export class SeamHttpRequest<
 
   async catch<TResult = never>(
     onrejected?:
-      | ((reason: any) => TResult | PromiseLike<TResult>)
+      | ((reason: unknown) => TResult | PromiseLike<TResult>)
       | null
       | undefined,
   ): Promise<

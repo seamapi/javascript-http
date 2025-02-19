@@ -48,7 +48,7 @@ export class SeamPaginator<
       responseKey,
       params: { ...this.#request.params, next_page_cursor: nextPageCursor },
     })
-    const response = await request.fetchResponseData()
+    const response = await request.fetchResponse()
     const data = response[responseKey]
     const pagination: Pagination =
       response != null &&
