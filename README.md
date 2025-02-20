@@ -318,8 +318,8 @@ Use the `SeamPaginator` class to fetch and process resources across multiple pag
 ```ts
 const pages = seam.createPaginator(
   seam.devices.list({
-    limit: 20
-  })
+    limit: 20,
+  }),
 )
 
 const [devices, { hasNextPage, nextPageCursor }] = await pages.firstPage()
@@ -334,8 +334,8 @@ if (hasNextPage) {
 ```ts
 const pages = seam.createPaginator(
   seam.devices.list({
-    limit: 20
-  })
+    limit: 20,
+  }),
 )
 
 for await (const devices of pages) {
@@ -348,8 +348,8 @@ for await (const devices of pages) {
 ```ts
 const pages = seam.createPaginator(
   seam.devices.list({
-    limit: 20
-  })
+    limit: 20,
+  }),
 )
 
 for await (const device of pages.flatten()) {
@@ -362,8 +362,8 @@ for await (const device of pages.flatten()) {
 ```ts
 const pages = seam.createPaginator(
   seam.devices.list({
-    limit: 20
-  })
+    limit: 20,
+  }),
 )
 
 const devices = await pages.toArray()
