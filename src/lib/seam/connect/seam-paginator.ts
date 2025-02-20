@@ -105,7 +105,7 @@ export class SeamPaginator<
     ] as const
   }
 
-  async toArray(): Promise<EnsureReadonlyArray<TResponse[TResponseKey]>> {
+  async flattenToArray(): Promise<EnsureReadonlyArray<TResponse[TResponseKey]>> {
     const items = [] as EnsureMutableArray<TResponse[TResponseKey]>
     let [current, pagination] = await this.firstPage()
     items.push(...current)

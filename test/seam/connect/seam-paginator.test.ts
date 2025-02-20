@@ -64,12 +64,12 @@ test('SeamPaginator: nextPage requires the nextPageCursor', async (t) => {
   })
 })
 
-test('SeamPaginator: toArray returns an array of devices', async (t) => {
+test('SeamPaginator: flattenToArray returns an array of devices', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
   const allDevices = await seam.devices.list()
   const pages = seam.createPaginator(seam.devices.list({ limit: 1 }))
-  const devices = await pages.toArray()
+  const devices = await pages.flattenToArray()
   t.true(devices.length > 1)
   t.is(devices.length, allDevices.length)
 })
