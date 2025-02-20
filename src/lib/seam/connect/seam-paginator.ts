@@ -7,7 +7,7 @@ interface SeamPaginatorParent {
   readonly defaults: Required<SeamHttpRequestOptions>
 }
 
-interface Pagination {
+export interface Pagination {
   readonly hasNextPage: boolean
   readonly nextPageCursor: string | null
   readonly nextPageUrl: string | null

@@ -16,6 +16,7 @@ export * from './seam-http-error.js'
 export * from './seam-http-multi-workspace.js'
 export * from './seam-http-request.js'
 export * from './seam-paginator.js'
+export * from './seam-paginator.js'
 export {
   isApiKey,
   isClientSessionToken,
