@@ -308,6 +308,67 @@ try {
 
 [action attempt]: https://docs.seam.co/latest/core-concepts/action-attempts
 
+### Pagination
+
+Some Seam API endpoints that return lists of resources support pagination.
+Use the `SeamPaginator` class to fetch and process resources across multiple pages.
+
+#### Manually fetch pages with the nextPageCursor
+
+```ts
+const pages = seam.createPaginator(
+  seam.devices.list({
+    limit: 20,
+  }),
+)
+
+const [devices, { hasNextPage, nextPageCursor }] = await pages.firstPage()
+
+if (hasNextPage) {
+  const [moreDevices] = await pages.nextPage(nextPageCursor)
+}
+```
+
+#### Iterate over all pages
+
+```ts
+const pages = seam.createPaginator(
+  seam.devices.list({
+    limit: 20,
+  }),
+)
+
+for await (const devices of pages) {
+  console.log(`There are ${devices.length} devices on this page.`)
+}
+```
+
+#### Iterate over all resources
+
+```ts
+const pages = seam.createPaginator(
+  seam.devices.list({
+    limit: 20,
+  }),
+)
+
+for await (const device of pages.flatten()) {
+  console.log(devices.name)
+}
+```
+
+#### Return all resources across all pages as an array
+
+```ts
+const pages = seam.createPaginator(
+  seam.devices.list({
+    limit: 20,
+  }),
+)
+
+const devices = await pages.toArray()
+```
+
 ### Interacting with Multiple Workspaces
 
 Some Seam API endpoints interact with multiple workspaces.

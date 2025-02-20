@@ -1,3 +1,4 @@
+import type { ActionAttempt } from '@seamapi/types/connect'
 import { serializeUrlSearchParams } from '@seamapi/url-search-params-serializer'
 import type { Method } from 'axios'
 
@@ -47,7 +48,6 @@ export class SeamHttpRequest<
 
   public get url(): URL {
     const { client } = this.#parent
-    const { params } = this.#config
 
     const serializer =
       typeof client.defaults.paramsSerializer === 'function'
@@ -56,17 +56,26 @@ export class SeamHttpRequest<
 
     const origin = getUrlPrefix(client.defaults.baseURL ?? '')
 
-    const pathname = this.#config.pathname.startsWith('/')
-      ? this.#config.pathname
-      : `/${this.#config.pathname}`
-
-    const path = params == null ? pathname : `${pathname}?${serializer(params)}`
+    const path =
+      this.params == null
+        ? this.pathname
+        : `${this.pathname}?${serializer(this.params)}`
 
     return new URL(`${origin}${path}`)
   }
 
+  public get pathname(): string {
+    return this.#config.pathname.startsWith('/')
+      ? this.#config.pathname
+      : `/${this.#config.pathname}`
+  }
+
   public get method(): Method {
     return this.#config.method
+  }
+
+  public get params(): undefined | Record<string, unknown> {
+    return this.#config.params
   }
 
   public get body(): unknown {
@@ -76,35 +85,48 @@ export class SeamHttpRequest<
   async execute(): Promise<
     TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
   > {
-    const { client } = this.#parent
-    const response = await client.request({
-      url: this.#config.pathname,
-      method: this.#config.method,
-      data: this.#config.body,
-      params: this.#config.params,
-    })
+    const response = await this.fetchResponse()
+
+    type Response = TResponseKey extends keyof TResponse
+      ? TResponse[TResponseKey]
+      : undefined
+
     if (this.responseKey === undefined) {
-      return undefined as TResponseKey extends keyof TResponse
-        ? TResponse[TResponseKey]
-        : undefined
+      return undefined as Response
     }
-    const data = response.data[this.responseKey]
+
+    const data = response[this.responseKey] as unknown as Response
+
     if (this.responseKey === 'action_attempt') {
       const waitForActionAttempt =
         this.#config.options?.waitForActionAttempt ??
         this.#parent.defaults.waitForActionAttempt
+
       if (waitForActionAttempt !== false) {
-        return await resolveActionAttempt(
-          data,
-          SeamHttpActionAttempts.fromClient(client, {
+        const actionAttempt = await resolveActionAttempt(
+          data as unknown as ActionAttempt,
+          SeamHttpActionAttempts.fromClient(this.#parent.client, {
             ...this.#parent.defaults,
             waitForActionAttempt: false,
           }),
           typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
         )
+        return actionAttempt as Response
       }
     }
+
     return data
+  }
+
+  async fetchResponse(): Promise<TResponse> {
+    const { client } = this.#parent
+    const response = await client.request({
+      url: this.pathname,
+      method: this.method,
+      data: this.body,
+      params: this.params,
+    })
+    return response.data as unknown as TResponse
   }
 
   async then<
@@ -122,7 +144,7 @@ export class SeamHttpRequest<
       | null
       | undefined,
     onrejected?:
-      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+      | ((reason: unknown) => TResult2 | PromiseLike<TResult2>)
       | null
       | undefined,
   ): Promise<TResult1 | TResult2> {
@@ -131,7 +153,7 @@ export class SeamHttpRequest<
 
   async catch<TResult = never>(
     onrejected?:
-      | ((reason: any) => TResult | PromiseLike<TResult>)
+      | ((reason: unknown) => TResult | PromiseLike<TResult>)
       | null
       | undefined,
   ): Promise<

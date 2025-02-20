@@ -28,6 +28,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import type { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
+import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
 import { SeamHttpAcsAccessGroups } from './acs-access-groups.js'
 import { SeamHttpAcsCredentialPools } from './acs-credential-pools.js'
@@ -137,6 +139,12 @@ export class SeamHttpAcs {
       )
     }
     return new SeamHttpAcs(constructorOptions)
+  }
+
+  createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
+    request: SeamHttpRequest<TResponse, TResponseKey>,
+  ): SeamPaginator<TResponse, TResponseKey> {
+    return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
   async updateClientSessionToken(

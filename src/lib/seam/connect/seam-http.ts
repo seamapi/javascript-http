@@ -40,6 +40,8 @@ import {
   SeamHttpWebhooks,
   SeamHttpWorkspaces,
 } from './routes/index.js'
+import type { SeamHttpRequest } from './seam-http-request.js'
+import { SeamPaginator } from './seam-paginator.js'
 
 export class SeamHttp {
   client: Client
@@ -141,6 +143,12 @@ export class SeamHttp {
       )
     }
     return new SeamHttp(constructorOptions)
+  }
+
+  createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
+    request: SeamHttpRequest<TResponse, TResponseKey>,
+  ): SeamPaginator<TResponse, TResponseKey> {
+    return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
   async updateClientSessionToken(
