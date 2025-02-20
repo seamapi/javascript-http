@@ -63,23 +63,38 @@ export class SeamPaginator<
       pathname: this.#request.pathname,
       method: 'get',
       responseKey,
-      params: { ...this.#request.params, next_page_cursor: nextPageCursor },
+      params:
+        this.#request.params != null
+          ? { ...this.#request.params, next_page_cursor: nextPageCursor }
+          : undefined,
+      body:
+        this.#request.body != null
+          ? { ...this.#request.body, next_page_cursor: nextPageCursor }
+          : undefined,
     })
+
     const response = await request.fetchResponse()
     const data = response[responseKey]
-    const pagination: Pagination =
+
+    const paginationData =
       response != null &&
       typeof response === 'object' &&
       'pagination' in response
-        ? (response.pagination as Pagination)
-        : {
-            hasNextPage: false,
-            nextPageCursor: null,
-            nextPageUrl: null,
-          }
-    if (!Array.isArray(data)) {
-      throw new Error('Expected an array response')
+        ? (response.pagination as PaginationData)
+        : null
+
+    const pagination: Pagination = {
+      hasNextPage: paginationData?.has_next_page ?? false,
+      nextPageCursor: paginationData?.next_page_cursor ?? null,
+      nextPageUrl: paginationData?.next_page_url ?? null,
     }
+
+    if (!Array.isArray(data)) {
+      throw new Error(
+        `Expected an array response for ${String(responseKey)} but got ${String(typeof data)}`,
+      )
+    }
+
     return [
       data as EnsureReadonlyArray<TResponse[TResponseKey]>,
       pagination,
@@ -126,3 +141,9 @@ export class SeamPaginator<
 
 type EnsureReadonlyArray<T> = T extends readonly any[] ? T : never
 type EnsureMutableArray<T> = T extends any[] ? T : never
+
+interface PaginationData {
+  has_next_page: boolean
+  next_page_cursor: string | null
+  next_page_url: string | null
+}

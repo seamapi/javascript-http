@@ -48,7 +48,6 @@ export class SeamHttpRequest<
 
   public get url(): URL {
     const { client } = this.#parent
-    const { params } = this.#config
 
     const serializer =
       typeof client.defaults.paramsSerializer === 'function'
@@ -58,7 +57,9 @@ export class SeamHttpRequest<
     const origin = getUrlPrefix(client.defaults.baseURL ?? '')
 
     const path =
-      params == null ? this.pathname : `${this.pathname}?${serializer(params)}`
+      this.params == null
+        ? this.pathname
+        : `${this.pathname}?${serializer(this.params)}`
 
     return new URL(`${origin}${path}`)
   }
@@ -120,10 +121,10 @@ export class SeamHttpRequest<
   async fetchResponse(): Promise<TResponse> {
     const { client } = this.#parent
     const response = await client.request({
-      url: this.#config.pathname,
-      method: this.#config.method,
-      data: this.#config.body,
-      params: this.#config.params,
+      url: this.pathname,
+      method: this.method,
+      data: this.body,
+      params: this.params,
     })
     return response.data as unknown as TResponse
   }
