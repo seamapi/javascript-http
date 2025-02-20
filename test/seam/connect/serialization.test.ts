@@ -49,17 +49,23 @@ test('serializes array params when undefined and explicitly using get', async (t
 })
 
 // UPSTREAM: nextlove parses device_ids= to [''] but should parse this to []
-test.failing('serializes array params when empty and explicitly using get', async (t) => {
-  const { seed, endpoint } = await getTestServer(t)
-  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
-  const { data } = await seam.client.get<DevicesListResponse>('/devices/list', {
-    params: {
-      device_ids: [],
-    },
-  })
-  const devices = data?.devices
-  t.is(devices.length, 0)
-})
+test.failing(
+  'serializes array params when empty and explicitly using get',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+    const { data } = await seam.client.get<DevicesListResponse>(
+      '/devices/list',
+      {
+        params: {
+          device_ids: [],
+        },
+      },
+    )
+    const devices = data?.devices
+    t.is(devices.length, 0)
+  },
+)
 
 test('serializes array params when non-empty and explicitly using get', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
