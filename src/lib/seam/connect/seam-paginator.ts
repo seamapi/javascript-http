@@ -65,15 +65,15 @@ export class SeamPaginator<
 
     const request = new SeamHttpRequest<TResponse, TResponseKey>(this.#parent, {
       pathname: this.#request.pathname,
-      method: 'get',
+      method: this.#request.method,
       responseKey,
       params:
         this.#request.params != null
-          ? { ...this.#request.params, next_page_cursor: nextPageCursor }
+          ? { ...this.#request.params, page_cursor: nextPageCursor }
           : undefined,
       body:
         this.#request.body != null
-          ? { ...this.#request.body, next_page_cursor: nextPageCursor }
+          ? { ...this.#request.body, page_cursor: nextPageCursor }
           : undefined,
     })
 
@@ -124,7 +124,7 @@ export class SeamPaginator<
       yield item
     }
     while (pagination.hasNextPage) {
-      ;[current, pagination] = await this.#fetch(pagination.nextPageCursor)
+      ;[current, pagination] = await this.nextPage(pagination.nextPageCursor)
       for (const item of current) {
         yield item
       }
