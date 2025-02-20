@@ -139,9 +139,9 @@ export class SeamHttpNoiseSensors {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    page: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
-    return new SeamPaginator<TResponse, TResponseKey>(this, page)
+    return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
   async updateClientSessionToken(
