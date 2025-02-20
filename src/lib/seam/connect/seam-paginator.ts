@@ -54,7 +54,7 @@ export class SeamPaginator<
     return await this.#fetch(nextPageCursor)
   }
 
-  async #fetch (
+  async #fetch(
     nextPageCursor?: Pagination['nextPageCursor'],
   ): Promise<[EnsureReadonlyArray<TResponse[TResponseKey]>, Pagination]> {
     const responseKey = this.#request.responseKey
