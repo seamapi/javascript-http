@@ -366,7 +366,7 @@ const pages = seam.createPaginator(
   }),
 )
 
-const devices = await pages.toArray()
+const devices = await pages.flattenToArray()
 ```
 
 ### Interacting with Multiple Workspaces
