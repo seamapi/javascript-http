@@ -92,7 +92,7 @@
     }
   },
   "dependencies": {
-    "@seamapi/url-search-params-serializer": "^1.1.0",
+    "@seamapi/url-search-params-serializer": "^1.2.0",
     "axios": "^1.5.0",
     "axios-better-stacktrace": "^2.1.7",
     "axios-retry": "^4.4.2"
