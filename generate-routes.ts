@@ -69,6 +69,7 @@ const routePaths = [
   '/thermostats',
   '/thermostats/schedules',
   '/thermostats/simulate',
+  '/unstable_locations',
   '/user_identities',
   '/user_identities/enrollment_automations',
   '/webhooks',
