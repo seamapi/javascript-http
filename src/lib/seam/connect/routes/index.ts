@@ -1,6 +1,7 @@
 export * from './access-codes.js'
 export * from './access-codes-simulate.js'
 export * from './access-codes-unmanaged.js'
+export * from './acs.js'
 export * from './acs-access-groups.js'
 export * from './acs-credentials.js'
 export * from './acs-encoders.js'
