@@ -31,7 +31,7 @@ async function main(): Promise<void> {
   ])
 }
 
-const openapiResponseKeyProp = 'x-fern-sdk-return-value'
+const openapiResponseKeyProp = 'x-response-key'
 
 const routePaths = [
   '/access_codes',
