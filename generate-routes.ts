@@ -141,34 +141,14 @@ const createRoutes = (): Route[] => {
     )
   }
 
-  const documentedRoutePaths = routePaths.filter(
-    hasAtLeastOneDocumentedEndpoint,
+  const routesToGenerate = routePaths.filter(
+    (routePath) =>
+      hasAtLeastOneDocumentedEndpoint(routePath) || isNamespaceRoute(routePath),
   )
 
-  return documentedRoutePaths.map((routePath) =>
-    createRoute(routePath, documentedRoutePaths),
+  return routesToGenerate.map((routePath) =>
+    createRoute(routePath, routesToGenerate),
   )
-}
-
-const hasAtLeastOneDocumentedEndpoint = (
-  routePath: (typeof routePaths)[number],
-): boolean => {
-  const endpointsUnderRoute = Object.keys(openapi.paths).filter((path) =>
-    isEndpointUnderRoute(path, routePath),
-  )
-
-  if (endpointsUnderRoute.length === 0) {
-    return false
-  }
-
-  return endpointsUnderRoute.some((path) => {
-    if (!isOpenapiPath(path)) return false
-
-    const pathSchema = openapi.paths[path]
-    if (!('post' in pathSchema)) return false
-
-    return !('x-undocumented' in pathSchema.post)
-  })
 }
 
 const createRoute = (
@@ -190,7 +170,6 @@ const createRoute = (
   const subresources = (routePathSubresources[routePath] ?? []).filter(
     (subresource) => {
       const subresourcePath = `${routePath}/${subresource}`
-
       return documentedRoutePaths.some((path) => path === subresourcePath)
     },
   )
@@ -288,6 +267,46 @@ const isEndpointUnderRoute = (
 ): boolean =>
   endpointPath.startsWith(routePath) &&
   endpointPath.split('/').length - 1 === routePath.split('/').length
+
+const hasAtLeastOneDocumentedEndpoint = (
+  routePath: (typeof routePaths)[number],
+): boolean => {
+  const endpointsUnderRoute = Object.keys(openapi.paths).filter((path) =>
+    isEndpointUnderRoute(path, routePath),
+  )
+
+  if (endpointsUnderRoute.length === 0) {
+    return false
+  }
+
+  return endpointsUnderRoute.some((path) => {
+    if (!isOpenapiPath(path)) return false
+
+    const pathSchema = openapi.paths[path]
+    if (!('post' in pathSchema)) return false
+
+    return !('x-undocumented' in pathSchema.post)
+  })
+}
+
+/**
+ * Determines if a route is a namespace route by checking if it has defined subresources
+ * and if any of those subresources have corresponding route paths.
+ * (e.g., "/acs" which contains "/acs/users", "/acs/systems", etc.)
+ * These routes should be generated even if they don't have direct endpoints themselves.
+ */
+function isNamespaceRoute(routePath: (typeof routePaths)[number]): boolean {
+  const subresources = routePathSubresources[routePath] ?? []
+  if (subresources.length === 0) {
+    return false
+  }
+
+  return subresources.some((subresource) => {
+    const subresourcePath =
+      `${routePath}/${subresource}` as (typeof routePaths)[number]
+    return routePaths.includes(subresourcePath)
+  })
+}
 
 const renderRoute = (route: Route, { constructors }: ClassMeta): string => `
 /*
