@@ -124,9 +124,9 @@ interface ClassMeta {
 }
 
 const createRoutes = (): Route[] => {
-  const paths = Object.keys(openapi.paths)
+  const allOpenapiPaths = Object.keys(openapi.paths)
 
-  const unmatchedEndpointPaths = paths
+  const unmatchedEndpointPaths = allOpenapiPaths
     .filter(
       (path) =>
         !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
@@ -141,19 +141,63 @@ const createRoutes = (): Route[] => {
     )
   }
 
-  return routePaths.map(createRoute)
+  const documentedRoutePaths = routePaths.filter(
+    hasAtLeastOneDocumentedEndpoint,
+  )
+
+  return documentedRoutePaths.map((routePath) =>
+    createRoute(routePath, documentedRoutePaths),
+  )
 }
 
-const createRoute = (routePath: (typeof routePaths)[number]): Route => {
-  const endpointPaths = Object.keys(openapi.paths).filter((path) =>
+const hasAtLeastOneDocumentedEndpoint = (
+  routePath: (typeof routePaths)[number],
+): boolean => {
+  const endpointsUnderRoute = Object.keys(openapi.paths).filter((path) =>
     isEndpointUnderRoute(path, routePath),
   )
 
+  if (endpointsUnderRoute.length === 0) {
+    return false
+  }
+
+  return endpointsUnderRoute.some((path) => {
+    if (!isOpenapiPath(path)) return false
+
+    const pathSchema = openapi.paths[path]
+    if (!('post' in pathSchema)) return false
+
+    return !('x-undocumented' in pathSchema.post)
+  })
+}
+
+const createRoute = (
+  routePath: (typeof routePaths)[number],
+  documentedRoutePaths: ReadonlyArray<(typeof routePaths)[number]>,
+): Route => {
+  const endpointPaths = Object.entries(openapi.paths)
+    .filter(([path, pathSchema]) => {
+      if (!isEndpointUnderRoute(path, routePath)) {
+        return false
+      }
+
+      return 'post' in pathSchema && !('x-undocumented' in pathSchema.post)
+    })
+    .map(([path]) => path)
+
   const namespace = routePath.split('/').join('_').slice(1)
+
+  const subresources = (routePathSubresources[routePath] ?? []).filter(
+    (subresource) => {
+      const subresourcePath = `${routePath}/${subresource}`
+
+      return documentedRoutePaths.some((path) => path === subresourcePath)
+    },
+  )
 
   return {
     namespace,
-    subresources: routePathSubresources[routePath] ?? [],
+    subresources,
     endpoints: endpointPaths.map((endpointPath) =>
       createEndpoint(namespace, routePath, endpointPath),
     ),
@@ -386,9 +430,7 @@ const renderClassMethodOptions = ({
   resource,
 }: Pick<Endpoint, 'resource'>): string => {
   if (resource === 'action_attempt') {
-    return `options: ${renderClassMethodOptionsTypeDef({
-      resource,
-    })} = {},`
+    return `options: ${renderClassMethodOptionsTypeDef({ resource })} = {},`
   }
   return ''
 }
