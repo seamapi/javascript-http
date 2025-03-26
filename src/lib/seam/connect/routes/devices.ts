@@ -171,15 +171,6 @@ export class SeamHttpDevices {
     return SeamHttpDevicesSimulate.fromClient(this.client, this.defaults)
   }
 
-  delete(body?: DevicesDeleteParams): SeamHttpRequest<void, undefined> {
-    return new SeamHttpRequest(this, {
-      pathname: '/devices/delete',
-      method: 'post',
-      body,
-      responseKey: undefined,
-    })
-  }
-
   get(body?: DevicesGetParams): SeamHttpRequest<DevicesGetResponse, 'device'> {
     return new SeamHttpRequest(this, {
       pathname: '/devices/get',
@@ -220,14 +211,6 @@ export class SeamHttpDevices {
     })
   }
 }
-
-export type DevicesDeleteParams = RouteRequestBody<'/devices/delete'>
-
-export type DevicesDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/delete'>>
->
-
-export type DevicesDeleteOptions = never
 
 export type DevicesGetParams = RouteRequestBody<'/devices/get'>
 

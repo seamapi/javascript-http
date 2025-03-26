@@ -34,7 +34,6 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-import { SeamHttpAcsCredentialsUnmanaged } from './acs-credentials-unmanaged.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpAcsCredentials {
@@ -162,13 +161,6 @@ export class SeamHttpAcsCredentials {
     await clientSessions.get()
   }
 
-  get unmanaged(): SeamHttpAcsCredentialsUnmanaged {
-    return SeamHttpAcsCredentialsUnmanaged.fromClient(
-      this.client,
-      this.defaults,
-    )
-  }
-
   assign(body?: AcsCredentialsAssignBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/assign',
@@ -183,20 +175,6 @@ export class SeamHttpAcsCredentials {
   ): SeamHttpRequest<AcsCredentialsCreateResponse, 'acs_credential'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/create',
-      method: 'post',
-      body,
-      responseKey: 'acs_credential',
-    })
-  }
-
-  createOfflineCode(
-    body?: AcsCredentialsCreateOfflineCodeBody,
-  ): SeamHttpRequest<
-    AcsCredentialsCreateOfflineCodeResponse,
-    'acs_credential'
-  > {
-    return new SeamHttpRequest(this, {
-      pathname: '/acs/credentials/create_offline_code',
       method: 'post',
       body,
       responseKey: 'acs_credential',
@@ -286,15 +264,6 @@ export type AcsCredentialsCreateResponse = SetNonNullable<
 >
 
 export type AcsCredentialsCreateOptions = never
-
-export type AcsCredentialsCreateOfflineCodeBody =
-  RouteRequestBody<'/acs/credentials/create_offline_code'>
-
-export type AcsCredentialsCreateOfflineCodeResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credentials/create_offline_code'>>
->
-
-export type AcsCredentialsCreateOfflineCodeOptions = never
 
 export type AcsCredentialsDeleteParams =
   RouteRequestBody<'/acs/credentials/delete'>

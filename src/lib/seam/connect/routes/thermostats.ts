@@ -222,17 +222,6 @@ export class SeamHttpThermostats {
     })
   }
 
-  get(
-    body?: ThermostatsGetParams,
-  ): SeamHttpRequest<ThermostatsGetResponse, 'thermostat'> {
-    return new SeamHttpRequest(this, {
-      pathname: '/thermostats/get',
-      method: 'post',
-      body,
-      responseKey: 'thermostat',
-    })
-  }
-
   heat(
     body?: ThermostatsHeatBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
@@ -383,14 +372,6 @@ export type ThermostatsDeleteClimatePresetResponse = SetNonNullable<
 >
 
 export type ThermostatsDeleteClimatePresetOptions = never
-
-export type ThermostatsGetParams = RouteRequestBody<'/thermostats/get'>
-
-export type ThermostatsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/thermostats/get'>>
->
-
-export type ThermostatsGetOptions = never
 
 export type ThermostatsHeatBody = RouteRequestBody<'/thermostats/heat'>
 
