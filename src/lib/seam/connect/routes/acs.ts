@@ -32,8 +32,6 @@ import type { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
 import { SeamHttpAcsAccessGroups } from './acs-access-groups.js'
-import { SeamHttpAcsCredentialPools } from './acs-credential-pools.js'
-import { SeamHttpAcsCredentialProvisioningAutomations } from './acs-credential-provisioning-automations.js'
 import { SeamHttpAcsCredentials } from './acs-credentials.js'
 import { SeamHttpAcsEncoders } from './acs-encoders.js'
 import { SeamHttpAcsEntrances } from './acs-entrances.js'
@@ -168,17 +166,6 @@ export class SeamHttpAcs {
 
   get accessGroups(): SeamHttpAcsAccessGroups {
     return SeamHttpAcsAccessGroups.fromClient(this.client, this.defaults)
-  }
-
-  get credentialPools(): SeamHttpAcsCredentialPools {
-    return SeamHttpAcsCredentialPools.fromClient(this.client, this.defaults)
-  }
-
-  get credentialProvisioningAutomations(): SeamHttpAcsCredentialProvisioningAutomations {
-    return SeamHttpAcsCredentialProvisioningAutomations.fromClient(
-      this.client,
-      this.defaults,
-    )
   }
 
   get credentials(): SeamHttpAcsCredentials {

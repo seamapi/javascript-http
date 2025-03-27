@@ -31,7 +31,7 @@ async function main(): Promise<void> {
   ])
 }
 
-const openapiResponseKeyProp = 'x-fern-sdk-return-value'
+const openapiResponseKeyProp = 'x-response-key'
 
 const routePaths = [
   '/access_codes',
@@ -124,9 +124,9 @@ interface ClassMeta {
 }
 
 const createRoutes = (): Route[] => {
-  const paths = Object.keys(openapi.paths)
+  const allOpenapiPaths = Object.keys(openapi.paths)
 
-  const unmatchedEndpointPaths = paths
+  const unmatchedEndpointPaths = allOpenapiPaths
     .filter(
       (path) =>
         !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
@@ -141,19 +141,42 @@ const createRoutes = (): Route[] => {
     )
   }
 
-  return routePaths.map(createRoute)
+  const routesToGenerate = routePaths.filter(
+    (routePath) =>
+      hasAtLeastOneDocumentedEndpoint(routePath) || isNamespaceRoute(routePath),
+  )
+
+  return routesToGenerate.map((routePath) =>
+    createRoute(routePath, routesToGenerate),
+  )
 }
 
-const createRoute = (routePath: (typeof routePaths)[number]): Route => {
-  const endpointPaths = Object.keys(openapi.paths).filter((path) =>
-    isEndpointUnderRoute(path, routePath),
-  )
+const createRoute = (
+  routePath: (typeof routePaths)[number],
+  documentedRoutePaths: ReadonlyArray<(typeof routePaths)[number]>,
+): Route => {
+  const endpointPaths = Object.entries(openapi.paths)
+    .filter(([path, pathSchema]) => {
+      if (!isEndpointUnderRoute(path, routePath)) {
+        return false
+      }
+
+      return 'post' in pathSchema && !('x-undocumented' in pathSchema.post)
+    })
+    .map(([path]) => path)
 
   const namespace = routePath.split('/').join('_').slice(1)
 
+  const subresources = (routePathSubresources[routePath] ?? []).filter(
+    (subresource) => {
+      const subresourcePath = `${routePath}/${subresource}`
+      return documentedRoutePaths.some((path) => path === subresourcePath)
+    },
+  )
+
   return {
     namespace,
-    subresources: routePathSubresources[routePath] ?? [],
+    subresources,
     endpoints: endpointPaths.map((endpointPath) =>
       createEndpoint(namespace, routePath, endpointPath),
     ),
@@ -244,6 +267,46 @@ const isEndpointUnderRoute = (
 ): boolean =>
   endpointPath.startsWith(routePath) &&
   endpointPath.split('/').length - 1 === routePath.split('/').length
+
+const hasAtLeastOneDocumentedEndpoint = (
+  routePath: (typeof routePaths)[number],
+): boolean => {
+  const endpointsUnderRoute = Object.keys(openapi.paths).filter((path) =>
+    isEndpointUnderRoute(path, routePath),
+  )
+
+  if (endpointsUnderRoute.length === 0) {
+    return false
+  }
+
+  return endpointsUnderRoute.some((path) => {
+    if (!isOpenapiPath(path)) return false
+
+    const pathSchema = openapi.paths[path]
+    if (!('post' in pathSchema)) return false
+
+    return !('x-undocumented' in pathSchema.post)
+  })
+}
+
+/**
+ * Determines if a route is a namespace route by checking if it has defined subresources
+ * and if any of those subresources have corresponding route paths.
+ * (e.g., "/acs" which contains "/acs/users", "/acs/systems", etc.)
+ * These routes should be generated even if they don't have direct endpoints themselves.
+ */
+function isNamespaceRoute(routePath: (typeof routePaths)[number]): boolean {
+  const subresources = routePathSubresources[routePath] ?? []
+  if (subresources.length === 0) {
+    return false
+  }
+
+  return subresources.some((subresource) => {
+    const subresourcePath =
+      `${routePath}/${subresource}` as (typeof routePaths)[number]
+    return routePaths.includes(subresourcePath)
+  })
+}
 
 const renderRoute = (route: Route, { constructors }: ClassMeta): string => `
 /*
@@ -386,9 +449,7 @@ const renderClassMethodOptions = ({
   resource,
 }: Pick<Endpoint, 'resource'>): string => {
   if (resource === 'action_attempt') {
-    return `options: ${renderClassMethodOptionsTypeDef({
-      resource,
-    })} = {},`
+    return `options: ${renderClassMethodOptionsTypeDef({ resource })} = {},`
   }
   return ''
 }

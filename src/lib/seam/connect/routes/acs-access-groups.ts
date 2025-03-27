@@ -34,7 +34,6 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-import { SeamHttpAcsAccessGroupsUnmanaged } from './acs-access-groups-unmanaged.js'
 import { SeamHttpClientSessions } from './client-sessions.js'
 
 export class SeamHttpAcsAccessGroups {
@@ -160,13 +159,6 @@ export class SeamHttpAcsAccessGroups {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
-  }
-
-  get unmanaged(): SeamHttpAcsAccessGroupsUnmanaged {
-    return SeamHttpAcsAccessGroupsUnmanaged.fromClient(
-      this.client,
-      this.defaults,
-    )
   }
 
   addUser(body?: AcsAccessGroupsAddUserBody): SeamHttpRequest<void, undefined> {
