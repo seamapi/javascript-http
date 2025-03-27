@@ -161,6 +161,28 @@ export class SeamHttpDevicesSimulate {
     await clientSessions.get()
   }
 
+  accessCodeLock(
+    body?: DevicesSimulateAccessCodeLockBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      pathname: '/devices/simulate/access_code_lock',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
+  accessCodeUnlock(
+    body?: DevicesSimulateAccessCodeUnlockBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      pathname: '/devices/simulate/access_code_unlock',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
   connect(body?: DevicesSimulateConnectBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/connect',
@@ -190,6 +212,24 @@ export class SeamHttpDevicesSimulate {
     })
   }
 }
+
+export type DevicesSimulateAccessCodeLockBody =
+  RouteRequestBody<'/devices/simulate/access_code_lock'>
+
+export type DevicesSimulateAccessCodeLockResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/simulate/access_code_lock'>>
+>
+
+export type DevicesSimulateAccessCodeLockOptions = never
+
+export type DevicesSimulateAccessCodeUnlockBody =
+  RouteRequestBody<'/devices/simulate/access_code_unlock'>
+
+export type DevicesSimulateAccessCodeUnlockResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/simulate/access_code_unlock'>>
+>
+
+export type DevicesSimulateAccessCodeUnlockOptions = never
 
 export type DevicesSimulateConnectBody =
   RouteRequestBody<'/devices/simulate/connect'>
