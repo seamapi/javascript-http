@@ -3,6 +3,7 @@ import { isSeamHttpRequestOption } from './parse-options.js'
 import type { ResolveActionAttemptOptions } from './resolve-action-attempt.js'
 
 export type SeamHttpMultiWorkspaceOptions =
+  | SeamHttpMultiWorkspaceOptionsFromEnv
   | SeamHttpMultiWorkspaceOptionsWithClient
   | SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken
   | SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken
@@ -27,6 +28,9 @@ export interface SeamHttpFromPublishableKeyOptions
   extends SeamHttpCommonOptions {}
 
 export interface SeamHttpOptionsFromEnv extends SeamHttpCommonOptions {}
+
+export interface SeamHttpMultiWorkspaceOptionsFromEnv
+  extends SeamHttpCommonOptions {}
 
 export interface SeamHttpMultiWorkspaceOptionsWithClient
   extends SeamHttpRequestOptions {
