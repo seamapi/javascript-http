@@ -5,6 +5,7 @@ import { getTestServer } from 'fixtures/seam/connect/api.js'
 import jwt from 'jsonwebtoken'
 
 import { SeamHttp, SeamHttpInvalidOptionsError } from '@seamapi/http/connect'
+import { SeamHttpMultiWorkspace } from '@seamapi/http/connect'
 
 /*
  * Tests in this file must run serially to ensure a clean environment for each test.
@@ -271,5 +272,78 @@ test.serial(
     })
     t.is(device.workspace_id, seed.seed_workspace_1)
     t.is(device.device_id, seed.august_device_1)
+  },
+)
+
+test.serial(
+  'SeamHttp: constructor uses SEAM_PERSONAL_ACCESS_TOKEN and SEAM_WORKSPACE_ID environment variables',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    env['SEAM_PERSONAL_ACCESS_TOKEN'] = seed.seam_at1_token
+    env['SEAM_WORKSPACE_ID'] = seed.seed_workspace_1
+    const seam = new SeamHttp({ endpoint })
+    const device = await seam.devices.get({
+      device_id: seed.august_device_1,
+    })
+    t.is(device.workspace_id, seed.seed_workspace_1)
+    t.is(device.device_id, seed.august_device_1)
+  },
+)
+
+test.serial(
+  'SeamHttp: throws error when both SEAM_API_KEY and SEAM_PERSONAL_ACCESS_TOKEN are defined',
+  (t) => {
+    env['SEAM_API_KEY'] = 'some-api-key'
+    env['SEAM_PERSONAL_ACCESS_TOKEN'] = 'some-access-token'
+    env['SEAM_WORKSPACE_ID'] = 'some-workspace-id'
+    t.throws(() => new SeamHttp(), {
+      instanceOf: SeamHttpInvalidOptionsError,
+      message:
+        /Both SEAM_API_KEY and SEAM_PERSONAL_ACCESS_TOKEN environment variables are defined/,
+    })
+  },
+)
+
+test.serial(
+  'SeamHttp: personalAccessToken option overrides environment variables',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    env['SEAM_PERSONAL_ACCESS_TOKEN'] = 'some-invalid-token'
+    env['SEAM_WORKSPACE_ID'] = seed.seed_workspace_1
+    const seam = new SeamHttp({
+      personalAccessToken: seed.seam_at1_token,
+      workspaceId: seed.seed_workspace_1,
+      endpoint,
+    })
+    const device = await seam.devices.get({
+      device_id: seed.august_device_1,
+    })
+    t.is(device.workspace_id, seed.seed_workspace_1)
+    t.is(device.device_id, seed.august_device_1)
+  },
+)
+
+test.serial(
+  'SeamHttpMultiWorkspace: constructor uses SEAM_PERSONAL_ACCESS_TOKEN environment variable',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    env['SEAM_PERSONAL_ACCESS_TOKEN'] = seed.seam_at1_token
+    const multiWorkspace = new SeamHttpMultiWorkspace({ endpoint })
+    const workspaces = await multiWorkspace.workspaces.list()
+    t.true(workspaces.length > 0)
+  },
+)
+
+test.serial(
+  'SeamHttpMultiWorkspace: personalAccessToken option overrides environment variables',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    env['SEAM_PERSONAL_ACCESS_TOKEN'] = 'some-invalid-token'
+    const multiWorkspace = new SeamHttpMultiWorkspace({
+      personalAccessToken: seed.seam_at1_token,
+      endpoint,
+    })
+    const workspaces = await multiWorkspace.workspaces.list()
+    t.true(workspaces.length > 0)
   },
 )
