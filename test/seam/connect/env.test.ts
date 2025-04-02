@@ -4,8 +4,7 @@ import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 import jwt from 'jsonwebtoken'
 
-import { SeamHttp, SeamHttpInvalidOptionsError } from '@seamapi/http/connect'
-import { SeamHttpMultiWorkspace } from '@seamapi/http/connect'
+import { SeamHttp, SeamHttpInvalidOptionsError , SeamHttpMultiWorkspace } from '@seamapi/http/connect'
 
 /*
  * Tests in this file must run serially to ensure a clean environment for each test.
@@ -293,7 +292,7 @@ test.serial(
 test.serial(
   'SeamHttp: throws error when both SEAM_API_KEY and SEAM_PERSONAL_ACCESS_TOKEN are defined',
   (t) => {
-    env['SEAM_API_KEY'] = 'some-api-key'
+    env.SEAM_API_KEY = 'some-api-key'
     env['SEAM_PERSONAL_ACCESS_TOKEN'] = 'some-access-token'
     env['SEAM_WORKSPACE_ID'] = 'some-workspace-id'
     t.throws(() => new SeamHttp(), {
