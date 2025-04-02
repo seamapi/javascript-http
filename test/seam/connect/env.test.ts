@@ -4,7 +4,11 @@ import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 import jwt from 'jsonwebtoken'
 
-import { SeamHttp, SeamHttpInvalidOptionsError , SeamHttpMultiWorkspace } from '@seamapi/http/connect'
+import {
+  SeamHttp,
+  SeamHttpInvalidOptionsError,
+  SeamHttpMultiWorkspace,
+} from '@seamapi/http/connect'
 
 /*
  * Tests in this file must run serially to ensure a clean environment for each test.
