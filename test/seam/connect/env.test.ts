@@ -315,6 +315,23 @@ test.serial(
     env['SEAM_WORKSPACE_ID'] = seed.seed_workspace_1
     const seam = new SeamHttp({
       personalAccessToken: seed.seam_at1_token,
+      endpoint,
+    })
+    const device = await seam.devices.get({
+      device_id: seed.august_device_1,
+    })
+    t.is(device.workspace_id, seed.seed_workspace_1)
+    t.is(device.device_id, seed.august_device_1)
+  },
+)
+
+test.serial(
+  'SeamHttp: workspaceId option overrides environment variables',
+  async (t) => {
+    const { seed, endpoint } = await getTestServer(t)
+    env['SEAM_PERSONAL_ACCESS_TOKEN'] = seed.seam_at1_token
+    env['SEAM_WORKSPACE_ID'] = 'some-invalid-workspace'
+    const seam = new SeamHttp({
       workspaceId: seed.seed_workspace_1,
       endpoint,
     })
