@@ -409,7 +409,7 @@ A Personal Access Token is scoped to a Seam Console user.
 Obtain one from the Seam Console.
 
 ```ts
-// Set the `SEAM_PERSONAL_ACCESS_TOKEN` and `SEAM_WORKSPACE_ID` environment variables
+// Set the `SEAM_PERSONAL_ACCESS_TOKEN` environment variable
 const seam = new SeamHttpMultiWorkspace()
 
 // Pass as an option to the constructor
