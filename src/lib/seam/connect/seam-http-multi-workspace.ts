@@ -17,7 +17,7 @@ export class SeamHttpMultiWorkspace {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
-  constructor(options: SeamHttpMultiWorkspaceOptions) {
+  constructor(options: SeamHttpMultiWorkspaceOptions = {}) {
     const opts = parseOptions(options)
     this.client = 'client' in opts ? opts.client : createClient(opts)
     this.defaults = limitToSeamHttpRequestOptions(opts)

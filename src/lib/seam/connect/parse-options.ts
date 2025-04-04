@@ -7,6 +7,7 @@ import {
   isSeamHttpMultiWorkspaceOptionsWithClient,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
+  SeamHttpInvalidOptionsError,
   type SeamHttpMultiWorkspaceOptions,
   type SeamHttpOptions,
   type SeamHttpRequestOptions,
@@ -76,9 +77,31 @@ const getNormalizedOptions = (
   const apiKey =
     'apiKey' in options ? options.apiKey : getApiKeyFromEnv(options)
 
+  const personalAccessToken =
+    'personalAccessToken' in options
+      ? options.personalAccessToken
+      : getPersonalAccessTokenFromEnv(options)
+
+  const workspaceId =
+    'workspaceId' in options ? options.workspaceId : getWorkspaceIdFromEnv()
+
+  if (
+    apiKey != null &&
+    personalAccessToken != null &&
+    !('apiKey' in options) &&
+    !('personalAccessToken' in options)
+  ) {
+    throw new SeamHttpInvalidOptionsError(
+      'Both SEAM_API_KEY and SEAM_PERSONAL_ACCESS_TOKEN environment variables are defined. Please use only one authentication method.',
+    )
+  }
+
   return {
     ...options,
     ...(apiKey != null ? { apiKey } : {}),
+    ...(personalAccessToken != null && workspaceId != null
+      ? { personalAccessToken, workspaceId }
+      : {}),
     ...requestOptions,
   }
 }
@@ -96,6 +119,25 @@ const getApiKeyFromEnv = (
     return null
   }
   return globalThis.process?.env?.SEAM_API_KEY
+}
+
+const getPersonalAccessTokenFromEnv = (
+  options: SeamHttpOptions,
+): string | null | undefined => {
+  if ('apiKey' in options && options.apiKey != null) {
+    return null
+  }
+  if ('clientSessionToken' in options && options.clientSessionToken != null) {
+    return null
+  }
+  if ('consoleSessionToken' in options && options.consoleSessionToken != null) {
+    return null
+  }
+  return globalThis.process?.env?.['SEAM_PERSONAL_ACCESS_TOKEN']
+}
+
+const getWorkspaceIdFromEnv = (): string | null | undefined => {
+  return globalThis.process?.env?.['SEAM_WORKSPACE_ID']
 }
 
 const getEndpointFromEnv = (): string | null | undefined => {
