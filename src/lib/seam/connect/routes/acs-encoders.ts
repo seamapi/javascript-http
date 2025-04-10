@@ -179,6 +179,17 @@ export class SeamHttpAcsEncoders {
     })
   }
 
+  get(
+    body?: AcsEncodersGetParams,
+  ): SeamHttpRequest<AcsEncodersGetResponse, 'acs_encoder'> {
+    return new SeamHttpRequest(this, {
+      pathname: '/acs/encoders/get',
+      method: 'post',
+      body,
+      responseKey: 'acs_encoder',
+    })
+  }
+
   list(
     body?: AcsEncodersListParams,
   ): SeamHttpRequest<AcsEncodersListResponse, 'acs_encoders'> {
@@ -215,6 +226,14 @@ export type AcsEncodersEncodeCredentialOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
+
+export type AcsEncodersGetParams = RouteRequestBody<'/acs/encoders/get'>
+
+export type AcsEncodersGetResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/encoders/get'>>
+>
+
+export type AcsEncodersGetOptions = never
 
 export type AcsEncodersListParams = RouteRequestBody<'/acs/encoders/list'>
 
