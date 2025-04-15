@@ -200,6 +200,17 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  generateInstantKey(
+    body?: UserIdentitiesGenerateInstantKeyBody,
+  ): SeamHttpRequest<UserIdentitiesGenerateInstantKeyResponse, 'instant_key'> {
+    return new SeamHttpRequest(this, {
+      pathname: '/user_identities/generate_instant_key',
+      method: 'post',
+      body,
+      responseKey: 'instant_key',
+    })
+  }
+
   get(
     body?: UserIdentitiesGetParams,
   ): SeamHttpRequest<UserIdentitiesGetResponse, 'user_identity'> {
@@ -324,6 +335,15 @@ export type UserIdentitiesDeleteResponse = SetNonNullable<
 >
 
 export type UserIdentitiesDeleteOptions = never
+
+export type UserIdentitiesGenerateInstantKeyBody =
+  RouteRequestBody<'/user_identities/generate_instant_key'>
+
+export type UserIdentitiesGenerateInstantKeyResponse = SetNonNullable<
+  Required<RouteResponse<'/user_identities/generate_instant_key'>>
+>
+
+export type UserIdentitiesGenerateInstantKeyOptions = never
 
 export type UserIdentitiesGetParams = RouteRequestBody<'/user_identities/get'>
 
