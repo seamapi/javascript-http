@@ -30,7 +30,7 @@ import {
 type Headers = Record<string, string>
 
 export const getAuthHeaders = (options: Options): Headers => {
-  if ('publishableKey' in options) {
+  if ('publishableKey' in options && options.publishableKey !== null) {
     return getAuthHeadersForPublishableKey(options.publishableKey)
   }
 
