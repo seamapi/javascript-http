@@ -166,6 +166,19 @@ export class SeamHttpAcsEncoders {
     return SeamHttpAcsEncodersSimulate.fromClient(this.client, this.defaults)
   }
 
+  encodeAccessMethod(
+    body?: AcsEncodersEncodeAccessMethodBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): SeamHttpRequest<AcsEncodersEncodeAccessMethodResponse, 'action_attempt'> {
+    return new SeamHttpRequest(this, {
+      pathname: '/acs/encoders/encode_access_method',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
+      options,
+    })
+  }
+
   encodeCredential(
     body?: AcsEncodersEncodeCredentialBody,
     options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
@@ -214,6 +227,18 @@ export class SeamHttpAcsEncoders {
     })
   }
 }
+
+export type AcsEncodersEncodeAccessMethodBody =
+  RouteRequestBody<'/acs/encoders/encode_access_method'>
+
+export type AcsEncodersEncodeAccessMethodResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/encoders/encode_access_method'>>
+>
+
+export type AcsEncodersEncodeAccessMethodOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type AcsEncodersEncodeCredentialBody =
   RouteRequestBody<'/acs/encoders/encode_credential'>

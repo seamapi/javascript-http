@@ -206,6 +206,15 @@ export class SeamHttpWorkspaces {
       options,
     })
   }
+
+  update(body?: WorkspacesUpdateBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      pathname: '/workspaces/update',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
 }
 
 export type WorkspacesCreateBody = RouteRequestBody<'/workspaces/create'>
@@ -243,3 +252,11 @@ export type WorkspacesResetSandboxOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
+
+export type WorkspacesUpdateBody = RouteRequestBody<'/workspaces/update'>
+
+export type WorkspacesUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/workspaces/update'>>
+>
+
+export type WorkspacesUpdateOptions = never

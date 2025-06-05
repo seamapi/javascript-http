@@ -35,6 +35,7 @@ import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
+import { SeamHttpThermostatsDailyPrograms } from './thermostats-daily-programs.js'
 import { SeamHttpThermostatsSchedules } from './thermostats-schedules.js'
 import { SeamHttpThermostatsSimulate } from './thermostats-simulate.js'
 
@@ -169,6 +170,13 @@ export class SeamHttpThermostats {
 
   get simulate(): SeamHttpThermostatsSimulate {
     return SeamHttpThermostatsSimulate.fromClient(this.client, this.defaults)
+  }
+
+  get dailyPrograms(): SeamHttpThermostatsDailyPrograms {
+    return SeamHttpThermostatsDailyPrograms.fromClient(
+      this.client,
+      this.defaults,
+    )
   }
 
   activateClimatePreset(
@@ -330,6 +338,19 @@ export class SeamHttpThermostats {
       responseKey: undefined,
     })
   }
+
+  updateWeeklyProgram(
+    body?: ThermostatsUpdateWeeklyProgramBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): SeamHttpRequest<ThermostatsUpdateWeeklyProgramResponse, 'action_attempt'> {
+    return new SeamHttpRequest(this, {
+      pathname: '/thermostats/update_weekly_program',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
+      options,
+    })
+  }
 }
 
 export type ThermostatsActivateClimatePresetBody =
@@ -464,3 +485,15 @@ export type ThermostatsUpdateClimatePresetResponse = SetNonNullable<
 >
 
 export type ThermostatsUpdateClimatePresetOptions = never
+
+export type ThermostatsUpdateWeeklyProgramBody =
+  RouteRequestBody<'/thermostats/update_weekly_program'>
+
+export type ThermostatsUpdateWeeklyProgramResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/update_weekly_program'>>
+>
+
+export type ThermostatsUpdateWeeklyProgramOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>

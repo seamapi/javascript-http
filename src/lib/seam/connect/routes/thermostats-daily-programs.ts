@@ -36,7 +36,7 @@ import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpClientSessions } from './client-sessions.js'
 
-export class SeamHttpNetworks {
+export class SeamHttpThermostatsDailyPrograms {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
@@ -49,23 +49,23 @@ export class SeamHttpNetworks {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpNetworks {
+  ): SeamHttpThermostatsDailyPrograms {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpNetworks(constructorOptions)
+    return new SeamHttpThermostatsDailyPrograms(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpNetworks {
+  ): SeamHttpThermostatsDailyPrograms {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpNetworks(constructorOptions)
+    return new SeamHttpThermostatsDailyPrograms(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -74,19 +74,19 @@ export class SeamHttpNetworks {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpNetworks {
+  ): SeamHttpThermostatsDailyPrograms {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpNetworks(constructorOptions)
+    return new SeamHttpThermostatsDailyPrograms(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpNetworks> {
+  ): Promise<SeamHttpThermostatsDailyPrograms> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
@@ -99,7 +99,10 @@ export class SeamHttpNetworks {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpNetworks.fromClientSessionToken(token, options)
+    return SeamHttpThermostatsDailyPrograms.fromClientSessionToken(
+      token,
+      options,
+    )
   }
 
   static fromConsoleSessionToken(
@@ -109,14 +112,14 @@ export class SeamHttpNetworks {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpNetworks {
+  ): SeamHttpThermostatsDailyPrograms {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpNetworks(constructorOptions)
+    return new SeamHttpThermostatsDailyPrograms(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -126,14 +129,14 @@ export class SeamHttpNetworks {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpNetworks {
+  ): SeamHttpThermostatsDailyPrograms {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpNetworks(constructorOptions)
+    return new SeamHttpThermostatsDailyPrograms(constructorOptions)
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
@@ -161,41 +164,71 @@ export class SeamHttpNetworks {
     await clientSessions.get()
   }
 
-  get(
-    body?: NetworksGetParams,
-  ): SeamHttpRequest<NetworksGetResponse, 'network'> {
+  create(
+    body?: ThermostatsDailyProgramsCreateBody,
+  ): SeamHttpRequest<
+    ThermostatsDailyProgramsCreateResponse,
+    'thermostat_daily_program'
+  > {
     return new SeamHttpRequest(this, {
-      pathname: '/networks/get',
+      pathname: '/thermostats/daily_programs/create',
       method: 'post',
       body,
-      responseKey: 'network',
+      responseKey: 'thermostat_daily_program',
     })
   }
 
-  list(
-    body?: NetworksListParams,
-  ): SeamHttpRequest<NetworksListResponse, 'networks'> {
+  delete(
+    body?: ThermostatsDailyProgramsDeleteParams,
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
-      pathname: '/networks/list',
+      pathname: '/thermostats/daily_programs/delete',
       method: 'post',
       body,
-      responseKey: 'networks',
+      responseKey: undefined,
+    })
+  }
+
+  update(
+    body?: ThermostatsDailyProgramsUpdateBody,
+    options: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'> = {},
+  ): SeamHttpRequest<ThermostatsDailyProgramsUpdateResponse, 'action_attempt'> {
+    return new SeamHttpRequest(this, {
+      pathname: '/thermostats/daily_programs/update',
+      method: 'post',
+      body,
+      responseKey: 'action_attempt',
+      options,
     })
   }
 }
 
-export type NetworksGetParams = RouteRequestBody<'/networks/get'>
+export type ThermostatsDailyProgramsCreateBody =
+  RouteRequestBody<'/thermostats/daily_programs/create'>
 
-export type NetworksGetResponse = SetNonNullable<
-  Required<RouteResponse<'/networks/get'>>
+export type ThermostatsDailyProgramsCreateResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/daily_programs/create'>>
 >
 
-export type NetworksGetOptions = never
+export type ThermostatsDailyProgramsCreateOptions = never
 
-export type NetworksListParams = RouteRequestBody<'/networks/list'>
+export type ThermostatsDailyProgramsDeleteParams =
+  RouteRequestBody<'/thermostats/daily_programs/delete'>
 
-export type NetworksListResponse = SetNonNullable<
-  Required<RouteResponse<'/networks/list'>>
+export type ThermostatsDailyProgramsDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/daily_programs/delete'>>
 >
 
-export type NetworksListOptions = never
+export type ThermostatsDailyProgramsDeleteOptions = never
+
+export type ThermostatsDailyProgramsUpdateBody =
+  RouteRequestBody<'/thermostats/daily_programs/update'>
+
+export type ThermostatsDailyProgramsUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/daily_programs/update'>>
+>
+
+export type ThermostatsDailyProgramsUpdateOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>

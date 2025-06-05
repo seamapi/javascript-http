@@ -246,6 +246,17 @@ export class SeamHttpAccessCodes {
     })
   }
 
+  reportDeviceConstraints(
+    body?: AccessCodesReportDeviceConstraintsBody,
+  ): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      pathname: '/access_codes/report_device_constraints',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
   update(body?: AccessCodesUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/update',
@@ -325,6 +336,15 @@ export type AccessCodesPullBackupAccessCodeResponse = SetNonNullable<
 >
 
 export type AccessCodesPullBackupAccessCodeOptions = never
+
+export type AccessCodesReportDeviceConstraintsBody =
+  RouteRequestBody<'/access_codes/report_device_constraints'>
+
+export type AccessCodesReportDeviceConstraintsResponse = SetNonNullable<
+  Required<RouteResponse<'/access_codes/report_device_constraints'>>
+>
+
+export type AccessCodesReportDeviceConstraintsOptions = never
 
 export type AccessCodesUpdateBody = RouteRequestBody<'/access_codes/update'>
 
