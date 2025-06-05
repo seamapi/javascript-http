@@ -61,7 +61,6 @@ const routePaths = [
   '/events',
   '/locks',
   '/locks/simulate',
-  '/networks',
   '/noise_sensors',
   '/noise_sensors/noise_thresholds',
   '/noise_sensors/simulate',

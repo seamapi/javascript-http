@@ -32,7 +32,6 @@ import {
   SeamHttpDevices,
   SeamHttpEvents,
   SeamHttpLocks,
-  SeamHttpNetworks,
   SeamHttpNoiseSensors,
   SeamHttpPhones,
   SeamHttpThermostats,
@@ -204,10 +203,6 @@ export class SeamHttp {
 
   get locks(): SeamHttpLocks {
     return SeamHttpLocks.fromClient(this.client, this.defaults)
-  }
-
-  get networks(): SeamHttpNetworks {
-    return SeamHttpNetworks.fromClient(this.client, this.defaults)
   }
 
   get noiseSensors(): SeamHttpNoiseSensors {
