@@ -16,6 +16,7 @@ type AxiosRetryConfig = Parameters<AxiosRetry>[1]
 export const createClient = (options: ClientOptions): AxiosInstance => {
   const client = axios.create({
     paramsSerializer: serializeUrlSearchParams,
+    adapter: 'fetch',
     ...options.axiosOptions,
   })
 
