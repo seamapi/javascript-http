@@ -60,7 +60,7 @@ const routePaths = [
   '/bridges',
   '/events',
   '/locks',
-  '/networks',
+  '/locks/simulate',
   '/noise_sensors',
   '/noise_sensors/noise_thresholds',
   '/noise_sensors/simulate',
@@ -69,8 +69,13 @@ const routePaths = [
   '/thermostats',
   '/thermostats/schedules',
   '/thermostats/simulate',
+  '/thermostats/daily_programs',
   '/unstable_locations',
   '/unstable_access_grants',
+  '/unstable_access_methods',
+  '/unstable_partner',
+  '/unstable_partner/resources',
+  '/unstable_partner/building_blocks',
   '/user_identities',
   '/user_identities/enrollment_automations',
   '/webhooks',
@@ -91,6 +96,7 @@ const routePathSubresources: Partial<
     'systems',
     'users',
   ],
+  '/locks': ['simulate'],
   '/acs/users': ['unmanaged'],
   '/acs/access_groups': ['unmanaged'],
   '/acs/credentials': ['unmanaged'],
@@ -98,8 +104,9 @@ const routePathSubresources: Partial<
   '/phones': ['simulate'],
   '/devices': ['unmanaged', 'simulate'],
   '/noise_sensors': ['noise_thresholds', 'simulate'],
-  '/thermostats': ['schedules', 'simulate'],
+  '/thermostats': ['schedules', 'simulate', 'daily_programs'],
   '/user_identities': ['enrollment_automations'],
+  '/unstable_partner': ['building_blocks', 'resources'],
 }
 
 interface Route {
@@ -133,6 +140,7 @@ const createRoutes = (): Route[] => {
         !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
     )
     .filter((path) => !path.startsWith('/seam'))
+    .filter((path) => !path.startsWith('/networks'))
 
   if (unmatchedEndpointPaths.length > 0) {
     throw new Error(

@@ -194,6 +194,15 @@ export class SeamHttpConnectedAccounts {
     })
   }
 
+  sync(body?: ConnectedAccountsSyncBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      pathname: '/connected_accounts/sync',
+      method: 'post',
+      body,
+      responseKey: undefined,
+    })
+  }
+
   update(body?: ConnectedAccountsUpdateBody): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/update',
@@ -230,6 +239,15 @@ export type ConnectedAccountsListResponse = SetNonNullable<
 >
 
 export type ConnectedAccountsListOptions = never
+
+export type ConnectedAccountsSyncBody =
+  RouteRequestBody<'/connected_accounts/sync'>
+
+export type ConnectedAccountsSyncResponse = SetNonNullable<
+  Required<RouteResponse<'/connected_accounts/sync'>>
+>
+
+export type ConnectedAccountsSyncOptions = never
 
 export type ConnectedAccountsUpdateBody =
   RouteRequestBody<'/connected_accounts/update'>
