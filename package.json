@@ -94,7 +94,6 @@
   "dependencies": {
     "@seamapi/url-search-params-serializer": "^1.2.0",
     "axios": "^1.9.0",
-    "axios-better-stacktrace": "^2.1.7",
     "axios-retry": "^4.4.2"
   },
   "devDependencies": {

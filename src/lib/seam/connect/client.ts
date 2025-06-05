@@ -1,6 +1,5 @@
 import { serializeUrlSearchParams } from '@seamapi/url-search-params-serializer'
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
-import axiosBetterStacktrace from 'axios-better-stacktrace'
 import axiosRetry, { type AxiosRetry, exponentialDelay } from 'axios-retry'
 
 import { errorInterceptor } from './error-interceptor.js'
@@ -19,8 +18,6 @@ export const createClient = (options: ClientOptions): AxiosInstance => {
     paramsSerializer: serializeUrlSearchParams,
     ...options.axiosOptions,
   })
-
-  axiosBetterStacktrace(axios)
 
   axiosRetry(client, {
     retries: 2,
