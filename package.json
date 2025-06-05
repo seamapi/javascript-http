@@ -80,8 +80,8 @@
     "report": "c8 report"
   },
   "engines": {
-    "node": ">=18.12.0",
-    "npm": ">= 9.0.0"
+    "node": ">=22.11.0",
+    "npm": ">= 10.9.0"
   },
   "peerDependencies": {
     "@seamapi/types": "^1.384.0"
@@ -102,7 +102,8 @@
     "@seamapi/types": "1.384.0",
     "@types/eslint": "^8.44.2",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^20.8.10",
+    "@swc/core": "^1.11.29",
+    "@types/node": "^22.15.21",
     "ava": "^5.0.1",
     "c8": "^10.1.2",
     "change-case": "^5.0.2",
