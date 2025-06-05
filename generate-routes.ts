@@ -140,6 +140,7 @@ const createRoutes = (): Route[] => {
         !routePaths.some((routePath) => isEndpointUnderRoute(path, routePath)),
     )
     .filter((path) => !path.startsWith('/seam'))
+    .filter((path) => !path.startsWith('/networks'))
 
   if (unmatchedEndpointPaths.length > 0) {
     throw new Error(
