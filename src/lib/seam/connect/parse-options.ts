@@ -99,9 +99,8 @@ const getNormalizedOptions = (
   return {
     ...options,
     ...(apiKey != null ? { apiKey } : {}),
-    ...(personalAccessToken != null && workspaceId != null
-      ? { personalAccessToken, workspaceId }
-      : {}),
+    ...(workspaceId != null ? { workspaceId } : {}),
+    ...(personalAccessToken != null ? { personalAccessToken } : {}),
     ...requestOptions,
   }
 }
@@ -133,11 +132,11 @@ const getPersonalAccessTokenFromEnv = (
   if ('consoleSessionToken' in options && options.consoleSessionToken != null) {
     return null
   }
-  return globalThis.process?.env?.['SEAM_PERSONAL_ACCESS_TOKEN']
+  return globalThis.process?.env?.SEAM_PERSONAL_ACCESS_TOKEN
 }
 
 const getWorkspaceIdFromEnv = (): string | null | undefined => {
-  return globalThis.process?.env?.['SEAM_WORKSPACE_ID']
+  return globalThis.process?.env?.SEAM_WORKSPACE_ID
 }
 
 const getEndpointFromEnv = (): string | null | undefined => {
