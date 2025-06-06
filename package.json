@@ -84,7 +84,7 @@
     "npm": ">=10.1.0"
   },
   "peerDependencies": {
-    "@seamapi/types": "^^1.409.0"
+    "@seamapi/types": "^1.409.0"
   },
   "peerDependenciesMeta": {
     "@seamapi/types": {
@@ -98,7 +98,7 @@
   },
   "devDependencies": {
     "@seamapi/fake-seam-connect": "^1.77.0",
-    "@seamapi/types": "^1.409.0",
+    "@seamapi/types": "1.409.0",
     "@swc/core": "^1.11.29",
     "@types/eslint": "^8.44.2",
     "@types/jsonwebtoken": "^9.0.6",
