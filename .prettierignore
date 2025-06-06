@@ -12,9 +12,6 @@
 !src/**/*.d.ts
 !ava.config.js
 
-# Codegen
-CODEGEN.md
-
 # Build directories
 docs
 package
@@ -221,3 +218,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Prettier exceptions
+*.hbs

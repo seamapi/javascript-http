@@ -69,14 +69,14 @@
     "test:watch": "ava --watch",
     "test:debug": "ava debug --break",
     "lint": "eslint --ignore-path .gitignore .",
-    "prelint": "prettier --check --ignore-path .gitignore .",
+    "prelint": "prettier --check --ignore-path .prettierignore .",
     "prepack": "tsx ./prepack.ts",
     "postversion": "git push --follow-tags",
     "example": "tsx examples",
     "example:inspect": "tsx --inspect examples",
-    "generate": "tsx generate-routes.ts",
+    "generate": "tsx codegen/smith.ts",
     "format": "eslint --ignore-path .gitignore --fix .",
-    "preformat": "prettier --write --ignore-path .gitignore .",
+    "preformat": "prettier --write --ignore-path .prettierignore .",
     "report": "c8 report"
   },
   "engines": {
