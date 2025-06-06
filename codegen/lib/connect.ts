@@ -18,7 +18,7 @@ export const connect = (
   const { blueprint } = metadata
 
   for (const route of Object.values(blueprint.routes ?? {})) {
-    const k = `${rootPath}/${kebabCase(route.name)}.ts`
+    const k = `${rootPath}/${route.path.split('/').map(p => kebabCase(p)).join('/')}.ts`
     files[k] = { contents: Buffer.from('\n') }
     const file = files[k] as unknown as File
     file.layout = 'route.hbs'
