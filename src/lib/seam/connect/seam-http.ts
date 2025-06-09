@@ -24,6 +24,8 @@ import {
 import { limitToSeamHttpRequestOptions, parseOptions } from './parse-options.js'
 import {
   SeamHttpAccessCodes,
+  SeamHttpAccessGrants,
+  SeamHttpAccessMethods,
   SeamHttpAcs,
   SeamHttpActionAttempts,
   SeamHttpClientSessions,
@@ -34,6 +36,7 @@ import {
   SeamHttpLocks,
   SeamHttpNoiseSensors,
   SeamHttpPhones,
+  SeamHttpSpaces,
   SeamHttpThermostats,
   SeamHttpUserIdentities,
   SeamHttpWebhooks,
@@ -173,6 +176,14 @@ export class SeamHttp {
     return SeamHttpAccessCodes.fromClient(this.client, this.defaults)
   }
 
+  get accessGrants(): SeamHttpAccessGrants {
+    return SeamHttpAccessGrants.fromClient(this.client, this.defaults)
+  }
+
+  get accessMethods(): SeamHttpAccessMethods {
+    return SeamHttpAccessMethods.fromClient(this.client, this.defaults)
+  }
+
   get acs(): SeamHttpAcs {
     return SeamHttpAcs.fromClient(this.client, this.defaults)
   }
@@ -211,6 +222,10 @@ export class SeamHttp {
 
   get phones(): SeamHttpPhones {
     return SeamHttpPhones.fromClient(this.client, this.defaults)
+  }
+
+  get spaces(): SeamHttpSpaces {
+    return SeamHttpSpaces.fromClient(this.client, this.defaults)
   }
 
   get thermostats(): SeamHttpThermostats {
