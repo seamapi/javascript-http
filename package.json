@@ -1,6 +1,6 @@
 {
   "name": "@seamapi/http",
-  "version": "1.34.0",
+  "version": "1.33.0",
   "description": "JavaScript HTTP client for the Seam API written in TypeScript.",
   "type": "module",
   "main": "index.js",
@@ -69,14 +69,15 @@
     "test:watch": "ava --watch",
     "test:debug": "ava debug --break",
     "lint": "eslint --ignore-path .gitignore .",
-    "prelint": "prettier --check --ignore-path .gitignore .",
+    "prelint": "prettier --check --ignore-path .prettierignore .",
     "prepack": "tsx ./prepack.ts",
     "postversion": "git push --follow-tags",
     "example": "tsx examples",
     "example:inspect": "tsx --inspect examples",
-    "generate": "tsx generate-routes.ts",
+    "generate": "tsx codegen/smith.ts",
+    "postgenerate": "npm run format",
     "format": "eslint --ignore-path .gitignore --fix .",
-    "preformat": "prettier --write --ignore-path .gitignore .",
+    "postformat": "prettier --write --ignore-path .prettierignore .",
     "report": "c8 report"
   },
   "engines": {
@@ -84,7 +85,7 @@
     "npm": ">=10.1.0"
   },
   "peerDependencies": {
-    "@seamapi/types": "^1.410.1"
+    "@seamapi/types": "^1.413.0"
   },
   "peerDependenciesMeta": {
     "@seamapi/types": {
@@ -97,8 +98,10 @@
     "axios-retry": "^4.4.2"
   },
   "devDependencies": {
+    "@seamapi/blueprint": "^0.48.1",
     "@seamapi/fake-seam-connect": "^1.77.0",
-    "@seamapi/types": "1.410.1",
+    "@seamapi/smith": "^0.4.4",
+    "@seamapi/types": "1.413.0",
     "@swc/core": "^1.11.29",
     "@types/eslint": "^8.44.2",
     "@types/jsonwebtoken": "^9.0.6",
@@ -107,7 +110,6 @@
     "c8": "^10.1.2",
     "change-case": "^5.0.2",
     "concurrently": "^9.1.0",
-    "del": "^8.0.0",
     "del-cli": "^6.0.0",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^9.0.0",

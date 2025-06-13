@@ -1,0 +1,7 @@
+export type {{requestTypeName}} = RouteRequest{{requestFormatSuffix}}<'{{path}}'>
+
+export type {{responseTypeName}} = SetNonNullable<
+  Required<RouteResponse<'{{path}}'>>
+>
+
+export type {{optionsTypeName}} = {{#if returnsActionAttempt}}Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>{{else}}never{{/if}}
