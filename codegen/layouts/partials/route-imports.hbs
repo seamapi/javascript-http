@@ -1,0 +1,47 @@
+import { seamApiLtsVersion } from 'lib/lts-version.js'
+import type {
+  RouteRequestBody,
+  RouteRequestParams,
+  RouteResponse,
+} from '@seamapi/types/connect'
+import type { SetNonNullable } from 'lib/types.js'
+
+import {
+  getAuthHeadersForClientSessionToken,
+  warnOnInsecureuserIdentifierKey,
+} from 'lib/seam/connect/auth.js'
+import {
+  type Client,
+  type ClientOptions,
+  createClient,
+} from 'lib/seam/connect/client.js'
+import {
+  isSeamHttpOptionsWithApiKey,
+  isSeamHttpOptionsWithClient,
+  isSeamHttpOptionsWithClientSessionToken,
+  isSeamHttpOptionsWithConsoleSessionToken,
+  isSeamHttpOptionsWithPersonalAccessToken,
+  type SeamHttpFromPublishableKeyOptions,
+  SeamHttpInvalidOptionsError,
+  type SeamHttpOptions,
+  type SeamHttpOptionsWithApiKey,
+  type SeamHttpOptionsWithClient,
+  type SeamHttpOptionsWithClientSessionToken,
+  type SeamHttpOptionsWithConsoleSessionToken,
+  type SeamHttpOptionsWithPersonalAccessToken,
+  type SeamHttpRequestOptions,
+} from 'lib/seam/connect/options.js'
+import {
+  limitToSeamHttpRequestOptions,
+  parseOptions
+} from 'lib/seam/connect/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
+import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
+
+{{#unless skipClientSessionImport}}
+import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
+{{/unless}}
+
+{{#each subroutes}}
+import { {{className}} } from './{{fileName}}'
+{{/each}}

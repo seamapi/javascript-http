@@ -1,0 +1,125 @@
+client: Client
+readonly defaults: Required<SeamHttpRequestOptions>
+readonly ltsVersion = seamApiLtsVersion
+static ltsVersion = seamApiLtsVersion
+
+constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
+  const options = parseOptions(apiKeyOrOptions)
+  this.client = 'client' in options ? options.client : createClient(options)
+  this.defaults = limitToSeamHttpRequestOptions(options)
+}
+
+static fromClient(
+  client: SeamHttpOptionsWithClient['client'],
+  options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
+): {{className}} {
+  const constructorOptions = { ...options, client }
+  if (!isSeamHttpOptionsWithClient(constructorOptions)) {
+    throw new SeamHttpInvalidOptionsError('Missing client')
+  }
+  return new {{className}}(constructorOptions)
+}
+
+static fromApiKey(
+  apiKey: SeamHttpOptionsWithApiKey['apiKey'],
+  options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
+): {{className}} {
+  const constructorOptions = { ...options, apiKey }
+  if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
+    throw new SeamHttpInvalidOptionsError('Missing apiKey')
+  }
+  return new {{className}}(constructorOptions)
+}
+
+static fromClientSessionToken(
+  clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
+  options: Omit<
+    SeamHttpOptionsWithClientSessionToken,
+    'clientSessionToken'
+  > = {},
+): {{className}} {
+  const constructorOptions = { ...options, clientSessionToken }
+  if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
+    throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
+  }
+  return new {{className}}(constructorOptions)
+}
+
+static async fromPublishableKey(
+  publishableKey: string,
+  userIdentifierKey: string,
+  options: SeamHttpFromPublishableKeyOptions = {},
+): Promise<{{className}}> {
+  warnOnInsecureuserIdentifierKey(userIdentifierKey)
+  const clientOptions = parseOptions({ ...options, publishableKey })
+  if (isSeamHttpOptionsWithClient(clientOptions)) {
+    throw new SeamHttpInvalidOptionsError(
+      'The client option cannot be used with {{className}}.fromPublishableKey',
+    )
+  }
+  const client = createClient(clientOptions)
+  const clientSessions = SeamHttpClientSessions.fromClient(client)
+  const { token } = await clientSessions.getOrCreate({
+    user_identifier_key: userIdentifierKey,
+  })
+  return {{className}}.fromClientSessionToken(token, options)
+}
+
+static fromConsoleSessionToken(
+  consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
+  workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
+  options: Omit<
+    SeamHttpOptionsWithConsoleSessionToken,
+    'consoleSessionToken' | 'workspaceId'
+  > = {},
+): {{className}} {
+  const constructorOptions = { ...options, consoleSessionToken, workspaceId }
+  if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
+    throw new SeamHttpInvalidOptionsError(
+      'Missing consoleSessionToken or workspaceId',
+    )
+  }
+  return new {{className}}(constructorOptions)
+}
+
+static fromPersonalAccessToken(
+  personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
+  workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
+  options: Omit<
+    SeamHttpOptionsWithPersonalAccessToken,
+    'personalAccessToken' | 'workspaceId'
+  > = {},
+): {{className}} {
+  const constructorOptions = { ...options, personalAccessToken, workspaceId }
+  if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
+    throw new SeamHttpInvalidOptionsError(
+      'Missing personalAccessToken or workspaceId',
+    )
+  }
+  return new {{className}}(constructorOptions)
+}
+
+createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
+  request: SeamHttpRequest<TResponse, TResponseKey>,
+): SeamPaginator<TResponse, TResponseKey> {
+  return new SeamPaginator<TResponse, TResponseKey>(this, request)
+}
+
+async updateClientSessionToken(
+  clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
+): Promise<void> {
+  const { headers } = this.client.defaults
+  const authHeaders = getAuthHeadersForClientSessionToken({
+    clientSessionToken,
+  })
+  for (const key of Object.keys(authHeaders)) {
+    if (headers[key] == null) {
+      throw new Error(
+        'Cannot update a clientSessionToken on a client created without a clientSessionToken',
+      )
+    }
+  }
+  this.client.defaults.headers = { ...headers, ...authHeaders }
+  const clientSessions = SeamHttpClientSessions.fromClient(this.client)
+  await clientSessions.get()
+}

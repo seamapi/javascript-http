@@ -10,6 +10,7 @@
     "jsx": "react-jsx",
     "sourceMap": true,
     "newLine": "lf",
+    "skipLibCheck": true,
     "verbatimModuleSyntax": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
@@ -35,8 +36,8 @@
     "src/**/*",
     "test/**/*",
     "examples/**/*",
+    "codegen/**/*",
     "tsup.config.ts",
-    "prepack.ts",
-    "generate-routes.ts"
+    "prepack.ts"
   ]
 }
