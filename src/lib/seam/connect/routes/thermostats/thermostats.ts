@@ -223,12 +223,12 @@ export class SeamHttpThermostats {
   }
 
   deleteClimatePreset(
-    body?: ThermostatsDeleteClimatePresetBody,
+    params?: ThermostatsDeleteClimatePresetParams,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/delete_climate_preset',
       method: 'POST',
-      body,
+      body: params,
       responseKey: undefined,
     })
   }
@@ -388,7 +388,7 @@ export type ThermostatsCreateClimatePresetResponse = SetNonNullable<
 
 export type ThermostatsCreateClimatePresetOptions = never
 
-export type ThermostatsDeleteClimatePresetBody =
+export type ThermostatsDeleteClimatePresetParams =
   RouteRequestBody<'/thermostats/delete_climate_preset'>
 
 export type ThermostatsDeleteClimatePresetResponse = SetNonNullable<

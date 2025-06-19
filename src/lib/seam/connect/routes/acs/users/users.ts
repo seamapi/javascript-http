@@ -239,12 +239,12 @@ export class SeamHttpAcsUsers {
   }
 
   revokeAccessToAllEntrances(
-    params?: AcsUsersRevokeAccessToAllEntrancesParams,
+    body?: AcsUsersRevokeAccessToAllEntrancesBody,
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/revoke_access_to_all_entrances',
       method: 'POST',
-      body: params,
+      body,
       responseKey: undefined,
     })
   }
@@ -336,7 +336,7 @@ export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
 
 export type AcsUsersRemoveFromAccessGroupOptions = never
 
-export type AcsUsersRevokeAccessToAllEntrancesParams =
+export type AcsUsersRevokeAccessToAllEntrancesBody =
   RouteRequestBody<'/acs/users/revoke_access_to_all_entrances'>
 
 export type AcsUsersRevokeAccessToAllEntrancesResponse = SetNonNullable<
