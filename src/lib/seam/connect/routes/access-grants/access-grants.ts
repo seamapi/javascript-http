@@ -204,6 +204,15 @@ export class SeamHttpAccessGrants {
       responseKey: 'access_grants',
     })
   }
+
+  update(body?: AccessGrantsUpdateBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      pathname: '/access_grants/update',
+      method: 'PATCH',
+      body,
+      responseKey: undefined,
+    })
+  }
 }
 
 export type AccessGrantsCreateBody = RouteRequestBody<'/access_grants/create'>
@@ -237,3 +246,11 @@ export type AccessGrantsListResponse = SetNonNullable<
 >
 
 export type AccessGrantsListOptions = never
+
+export type AccessGrantsUpdateBody = RouteRequestBody<'/access_grants/update'>
+
+export type AccessGrantsUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/access_grants/update'>>
+>
+
+export type AccessGrantsUpdateOptions = never

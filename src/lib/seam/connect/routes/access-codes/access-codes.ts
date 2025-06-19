@@ -206,12 +206,12 @@ export class SeamHttpAccessCodes {
   }
 
   generateCode(
-    body?: AccessCodesGenerateCodeBody,
+    params?: AccessCodesGenerateCodeParams,
   ): SeamHttpRequest<AccessCodesGenerateCodeResponse, 'generated_code'> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/generate_code',
       method: 'POST',
-      body,
+      body: params,
       responseKey: 'generated_code',
     })
   }
@@ -306,7 +306,7 @@ export type AccessCodesDeleteResponse = SetNonNullable<
 
 export type AccessCodesDeleteOptions = never
 
-export type AccessCodesGenerateCodeBody =
+export type AccessCodesGenerateCodeParams =
   RouteRequestBody<'/access_codes/generate_code'>
 
 export type AccessCodesGenerateCodeResponse = SetNonNullable<
