@@ -77,7 +77,11 @@ const getEndpointLayoutContext = (
 ): EndpointLayoutContext => {
   const prefix = pascalCase([route.path.split('/'), endpoint.name].join('_'))
 
-  const methodParamName = getMethodParamName(endpoint.name, route.name)
+  const methodParamName = ['GET', 'DELETE'].includes(
+    endpoint.request.semanticMethod,
+  )
+    ? 'params'
+    : 'body'
 
   const requestFormat = ['GET', 'DELETE'].includes(
     endpoint.request.preferredMethod,
@@ -127,27 +131,3 @@ const getResponseContext = (
 
 const getClassName = (name: string | null): string =>
   `SeamHttp${pascalCase(name ?? '')}`
-
-const getMethodParamName = (
-  endpointName: string,
-  routeName: string,
-): 'params' | 'body' => {
-  // UPSTREAM: This function implements a workaround, as the request format should always follow the semantic method.
-  // Blocked on https://github.com/seamapi/nextlove/issues/117
-  // and https://github.com/seamapi/javascript-http/issues/43
-  //
-  // The desired implementation:
-  //
-  // return ['GET', 'DELETE'].includes(endpoint.request.semanticMethod)
-  //   ? 'params'
-  //   : 'body'
-
-  if (routeName.includes('simulate')) return 'body'
-  if (['get', 'list', 'view'].includes(endpointName)) return 'params'
-  if (['delete'].includes(endpointName)) return 'params'
-  if (endpointName.includes('revoke')) return 'params'
-  if (endpointName.includes('remove')) return 'params'
-  if (endpointName.includes('deactivate')) return 'params'
-  if (endpointName.startsWith('list')) return 'params'
-  return 'body'
-}
