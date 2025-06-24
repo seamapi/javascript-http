@@ -32,7 +32,7 @@ export interface EndpointLayoutContext {
   isOptionalParamsOk: boolean
 }
 
-interface SubrouteLayoutContext {
+export interface SubrouteLayoutContext {
   methodName: string
   className: string
   fileName: string

@@ -4,17 +4,14 @@ import {
   type EndpointLayoutContext,
   getClassName,
   getEndpointLayoutContext,
+  type SubrouteLayoutContext,
   toFilePath,
 } from './route.js'
 
 export interface EndpointsLayoutContext {
   className: string
   endpoints: EndpointLayoutContext[]
-  routes: Array<{
-    fileName: string
-    className: string
-    typeNames: string[]
-  }>
+  routeImports: Array<Pick<SubrouteLayoutContext, 'className' | 'fileName'>>
   skipClientSessionImport: boolean
 }
 
@@ -29,18 +26,9 @@ export const setEndpointsLayoutContext = (
       .filter(({ isUndocumented }) => !isUndocumented)
       .map((endpoint) => getEndpointLayoutContext(endpoint, route)),
   )
-  file.routes = routes.map((route) => {
-    const typeNames = route.endpoints
-      .filter(({ isUndocumented }) => !isUndocumented)
-      .map((e) => getEndpointLayoutContext(e, route))
-      .flatMap((e) => [
-        e.optionsTypeName,
-        e.requestTypeName,
-        e.responseTypeName,
-      ])
+  file.routeImports = routes.map((route) => {
     return {
       className: getClassName(route.path),
-      typeNames,
       fileName: `${toFilePath(route.path)}/index.js`,
     }
   })

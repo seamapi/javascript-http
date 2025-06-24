@@ -5,7 +5,7 @@
 
 {{> route-imports }}
 
-{{#each routes}}
+{{#each routeImports}}
 import {
 {{className}},
 {{#each typeNames}}
@@ -21,10 +21,10 @@ export class SeamHttpEndpoints {
   get['{{path}}'](): {{className}}['{{methodName}}']
   {
   const { client, defaults } = this
-  return function {{> route-class-endpoint-sig methodName=functionName}}
+  return function {{functionName}} (...args: Parameters<{{className}}['{{methodName}}']>): ReturnType<{{className}}['{{methodName}}']>
     {
       const seam = {{className}}.fromClient(client, defaults)
-      return seam.{{methodName}}({{methodParamName}}{{#if hasOptions}},options{{/if}})
+      return seam.{{methodName}}(...args)
     }
   }
 
