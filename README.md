@@ -512,6 +512,18 @@ const devices = await seam.client.get<DevicesListResponse>('/devices/list')
 An Axios compatible client may be provided to create a `SeamHttp` instance.
 This API is used internally and is not directly supported.
 
+#### Alternative endpoint path interface
+
+The `SeamHttpEndpoints` class offers an alternative path-based interface to every API endpoint.
+Each endpoint is exposed as simple property that returns the corresponding method from `SeamHttp`.
+
+```ts
+import { SeamHttpEndpoints } from '@seamapi/http/connect'
+
+const seam = new SeamHttpEndpoints()
+const devices = await seam['/devices/list']()
+```
+
 #### Inspecting the Request
 
 All client methods return an instance of `SeamHttpRequest`.

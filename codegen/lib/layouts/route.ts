@@ -13,9 +13,11 @@ export interface RouteIndexLayoutContext {
   routes: string[]
 }
 
-interface EndpointLayoutContext {
+export interface EndpointLayoutContext {
   path: string
   methodName: string
+  functionName: string
+  className: string
   method: Method
   hasOptions: boolean
   responseKey: string
@@ -30,7 +32,7 @@ interface EndpointLayoutContext {
   isOptionalParamsOk: boolean
 }
 
-interface SubrouteLayoutContext {
+export interface SubrouteLayoutContext {
   methodName: string
   className: string
   fileName: string
@@ -71,7 +73,7 @@ const getSubrouteLayoutContext = (
   }
 }
 
-const getEndpointLayoutContext = (
+export const getEndpointLayoutContext = (
   endpoint: Endpoint,
   route: Pick<Route, 'path' | 'name'>,
 ): EndpointLayoutContext => {
@@ -95,11 +97,15 @@ const getEndpointLayoutContext = (
     endpoint.response.responseType === 'resource' &&
     endpoint.response.resourceType === 'action_attempt'
 
+  const methodName = camelCase(endpoint.name)
+
   return {
     path: endpoint.path,
-    methodName: camelCase(endpoint.name),
+    methodName,
+    functionName: camelCase(prefix),
     method: endpoint.request.preferredMethod,
     hasOptions: returnsActionAttempt,
+    className: getClassName(route.path),
     methodParamName,
     requestFormat,
     requestFormatSuffix,
@@ -129,5 +135,12 @@ const getResponseContext = (
   }
 }
 
-const getClassName = (name: string | null): string =>
-  `SeamHttp${pascalCase(name ?? '')}`
+export const getClassName = (path: string | null): string =>
+  `SeamHttp${pascalCase(path ?? '')}`
+
+export const toFilePath = (path: string): string =>
+  path
+    .slice(1)
+    .split('/')
+    .map((p) => kebabCase(p))
+    .join('/')
