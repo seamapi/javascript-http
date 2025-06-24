@@ -28,14 +28,9 @@ export const connect = (
   metalsmith: Metalsmith,
 ): void => {
   const metadata = metalsmith.metadata() as Metadata
-  const { blueprint } = metadata
-
-  const namespaces = blueprint.namespaces.filter(
-    ({ isUndocumented }) => !isUndocumented,
-  )
-  const routes = blueprint.routes.filter(
-    ({ isUndocumented }) => !isUndocumented,
-  )
+  const {
+    blueprint: { namespaces, routes },
+  } = metadata
 
   const nodes = [...namespaces, ...routes]
 

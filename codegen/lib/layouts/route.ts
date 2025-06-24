@@ -49,10 +49,7 @@ export const setRouteLayoutContext = (
 
   file.endpoints = []
   if (node != null && 'endpoints' in node) {
-    const endpoints = node.endpoints.filter(
-      ({ isUndocumented }) => !isUndocumented,
-    )
-    file.endpoints = endpoints.map((endpoint) =>
+    file.endpoints = node.endpoints.map((endpoint) =>
       getEndpointLayoutContext(endpoint, node),
     )
   }
