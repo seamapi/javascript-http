@@ -3,16 +3,23 @@ import { kebabCase } from 'change-case'
 import type Metalsmith from 'metalsmith'
 
 import {
+  type EndpointsLayoutContext,
+  setEndpointsLayoutContext,
+} from './layouts/endpoints.js'
+import {
   type RouteIndexLayoutContext,
   type RouteLayoutContext,
   setRouteLayoutContext,
+  toFilePath,
 } from './layouts/route.js'
 
 interface Metadata {
   blueprint: Blueprint
 }
 
-type File = RouteLayoutContext & RouteIndexLayoutContext & { layout: string }
+type File = RouteLayoutContext &
+  RouteIndexLayoutContext &
+  EndpointsLayoutContext & { layout: string }
 
 const rootPath = 'src/lib/seam/connect/routes'
 
@@ -34,14 +41,21 @@ export const connect = (
 
   const routeIndexes: Record<string, Set<string>> = {}
 
-  const rootRouteKey = `${rootPath}/seam-http.ts`
-  files[rootRouteKey] = { contents: Buffer.from('\n') }
-  const file = files[rootRouteKey] as unknown as File
+  const k = `${rootPath}/seam-http.ts`
+  files[k] = { contents: Buffer.from('\n') }
+  const file = files[k] as unknown as File
   file.layout = 'route.hbs'
   setRouteLayoutContext(file, null, nodes)
 
   routeIndexes[''] ??= new Set()
   routeIndexes['']?.add('seam-http.js')
+
+  const endpointsKey = `${rootPath}/seam-http-endpoints.ts`
+  files[endpointsKey] = { contents: Buffer.from('\n') }
+  const endpointFile = files[endpointsKey] as unknown as File
+  endpointFile.layout = 'endpoints.hbs'
+  setEndpointsLayoutContext(endpointFile, routes)
+  routeIndexes['']?.add('seam-http-endpoints.js')
 
   for (const node of nodes) {
     const path = toFilePath(node.path)
@@ -75,10 +89,3 @@ export const connect = (
     file.routes = [...routes]
   }
 }
-
-const toFilePath = (path: string): string =>
-  path
-    .slice(1)
-    .split('/')
-    .map((p) => kebabCase(p))
-    .join('/')

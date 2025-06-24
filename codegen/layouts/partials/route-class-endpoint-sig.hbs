@@ -1,0 +1,4 @@
+{{methodName}}(
+  {{methodParamName}}{{#if isOptionalParamsOk}}?{{/if}}: {{requestTypeName}},
+  {{#if hasOptions}}options: {{optionsTypeName}} = {},{{/if}}
+  ): SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
