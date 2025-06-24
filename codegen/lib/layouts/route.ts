@@ -4,6 +4,7 @@ import { camelCase, kebabCase, pascalCase } from 'change-case'
 
 export interface RouteLayoutContext {
   className: string
+  isUndocumented: boolean
   endpoints: EndpointLayoutContext[]
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
@@ -37,7 +38,6 @@ export interface SubrouteLayoutContext {
   methodName: string
   className: string
   fileName: string
-  isUndocumented: boolean
 }
 
 export const setRouteLayoutContext = (
@@ -46,6 +46,7 @@ export const setRouteLayoutContext = (
   nodes: Array<Route | Namespace>,
 ): void => {
   file.className = getClassName(node?.path ?? null)
+  file.isUndocumented = node?.isUndocumented ?? false
   file.skipClientSessionImport =
     node == null || node?.path === '/client_sessions'
 
@@ -69,7 +70,6 @@ const getSubrouteLayoutContext = (
     fileName: `${kebabCase(route.name)}/index.js`,
     methodName: camelCase(route.name),
     className: getClassName(route.path),
-    isUndocumented: route.isUndocumented,
   }
 }
 
