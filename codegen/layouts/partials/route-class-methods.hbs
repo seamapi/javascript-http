@@ -17,6 +17,11 @@ static fromClient(
   if (!isSeamHttpOptionsWithClient(constructorOptions)) {
     throw new SeamHttpInvalidOptionsError('Missing client')
   }
+  {{#if isUndocumented}}
+  if (!options.isUndocumentedApiEnabled) {
+    throw new Error('Cannot use undocumented API without isUndocumentedApiEnabled')
+  }
+  {{/if}}
   return new {{className}}(constructorOptions)
 }
 

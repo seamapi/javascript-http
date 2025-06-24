@@ -524,6 +524,19 @@ const seam = new SeamHttpEndpoints()
 const devices = await seam['/devices/list']()
 ```
 
+#### Enable undocumented API
+
+Pass the `isUndocumentedApiEnabled` option to allow using the undocumented API.
+This API is used internally and is not directly supported.
+Do not use the undocumented API in production environments.
+Seam is not responsible for any issues you may encounter with the undocumented API.
+
+```ts
+import { SeamHttp } from '@seamapi/http/connect'
+
+const seam = new SeamHttp({ isUndocumentedApiEnabled: true })
+```
+
 #### Inspecting the Request
 
 All client methods return an instance of `SeamHttpRequest`.
