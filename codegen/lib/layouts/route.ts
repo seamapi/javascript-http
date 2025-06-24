@@ -30,12 +30,14 @@ export interface EndpointLayoutContext {
   returnsActionAttempt: boolean
   returnsVoid: boolean
   isOptionalParamsOk: boolean
+  isUndocumented: boolean
 }
 
 export interface SubrouteLayoutContext {
   methodName: string
   className: string
   fileName: string
+  isUndocumented: boolean
 }
 
 export const setRouteLayoutContext = (
@@ -61,12 +63,13 @@ export const setRouteLayoutContext = (
 }
 
 const getSubrouteLayoutContext = (
-  route: Pick<Route, 'path' | 'name'>,
+  route: Pick<Route, 'path' | 'name' | 'isUndocumented'>,
 ): SubrouteLayoutContext => {
   return {
     fileName: `${kebabCase(route.name)}/index.js`,
     methodName: camelCase(route.name),
     className: getClassName(route.path),
+    isUndocumented: route.isUndocumented,
   }
 }
 
@@ -113,6 +116,7 @@ export const getEndpointLayoutContext = (
     // UPSTREAM: Needs support in blueprint, fallback to true for now.
     // https://github.com/seamapi/blueprint/issues/205
     isOptionalParamsOk: true,
+    isUndocumented: endpoint.isUndocumented,
     ...getResponseContext(endpoint),
   }
 }
