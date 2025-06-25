@@ -37,16 +37,22 @@ import { SeamHttpAccessGrants } from './access-grants/index.js'
 import { SeamHttpAccessMethods } from './access-methods/index.js'
 import { SeamHttpAcs } from './acs/index.js'
 import { SeamHttpActionAttempts } from './action-attempts/index.js'
+import { SeamHttpBridges } from './bridges/index.js'
 import { SeamHttpClientSessions } from './client-sessions/index.js'
 import { SeamHttpConnectWebviews } from './connect-webviews/index.js'
 import { SeamHttpConnectedAccounts } from './connected-accounts/index.js'
 import { SeamHttpDevices } from './devices/index.js'
 import { SeamHttpEvents } from './events/index.js'
 import { SeamHttpLocks } from './locks/index.js'
+import { SeamHttpNetworks } from './networks/index.js'
 import { SeamHttpNoiseSensors } from './noise-sensors/index.js'
 import { SeamHttpPhones } from './phones/index.js'
 import { SeamHttpSpaces } from './spaces/index.js'
 import { SeamHttpThermostats } from './thermostats/index.js'
+import { SeamHttpUnstableAccessGrants } from './unstable-access-grants/index.js'
+import { SeamHttpUnstableAccessMethods } from './unstable-access-methods/index.js'
+import { SeamHttpUnstableLocations } from './unstable-locations/index.js'
+import { SeamHttpUnstablePartner } from './unstable-partner/index.js'
 import { SeamHttpUserIdentities } from './user-identities/index.js'
 import { SeamHttpWebhooks } from './webhooks/index.js'
 import { SeamHttpWorkspaces } from './workspaces/index.js'
@@ -198,6 +204,10 @@ export class SeamHttp {
     return SeamHttpActionAttempts.fromClient(this.client, this.defaults)
   }
 
+  get bridges(): SeamHttpBridges {
+    return SeamHttpBridges.fromClient(this.client, this.defaults)
+  }
+
   get clientSessions(): SeamHttpClientSessions {
     return SeamHttpClientSessions.fromClient(this.client, this.defaults)
   }
@@ -222,6 +232,10 @@ export class SeamHttp {
     return SeamHttpLocks.fromClient(this.client, this.defaults)
   }
 
+  get networks(): SeamHttpNetworks {
+    return SeamHttpNetworks.fromClient(this.client, this.defaults)
+  }
+
   get noiseSensors(): SeamHttpNoiseSensors {
     return SeamHttpNoiseSensors.fromClient(this.client, this.defaults)
   }
@@ -236,6 +250,22 @@ export class SeamHttp {
 
   get thermostats(): SeamHttpThermostats {
     return SeamHttpThermostats.fromClient(this.client, this.defaults)
+  }
+
+  get unstableAccessGrants(): SeamHttpUnstableAccessGrants {
+    return SeamHttpUnstableAccessGrants.fromClient(this.client, this.defaults)
+  }
+
+  get unstableAccessMethods(): SeamHttpUnstableAccessMethods {
+    return SeamHttpUnstableAccessMethods.fromClient(this.client, this.defaults)
+  }
+
+  get unstableLocations(): SeamHttpUnstableLocations {
+    return SeamHttpUnstableLocations.fromClient(this.client, this.defaults)
+  }
+
+  get unstablePartner(): SeamHttpUnstablePartner {
+    return SeamHttpUnstablePartner.fromClient(this.client, this.defaults)
   }
 
   get userIdentities(): SeamHttpUserIdentities {

@@ -36,6 +36,8 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
+import { SeamHttpLocksSimulate } from './simulate/index.js'
+
 export class SeamHttpLocks {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
@@ -161,6 +163,10 @@ export class SeamHttpLocks {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
+  }
+
+  get simulate(): SeamHttpLocksSimulate {
+    return SeamHttpLocksSimulate.fromClient(this.client, this.defaults)
   }
 
   get(params?: LocksGetParams): SeamHttpRequest<LocksGetResponse, 'device'> {

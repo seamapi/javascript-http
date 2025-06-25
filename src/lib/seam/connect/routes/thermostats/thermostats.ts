@@ -233,6 +233,22 @@ export class SeamHttpThermostats {
     })
   }
 
+  get(
+    params?: ThermostatsGetParams,
+  ): SeamHttpRequest<ThermostatsGetResponse, 'thermostat'> {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/thermostats/get',
+      method: 'POST',
+      body: params,
+      responseKey: 'thermostat',
+    })
+  }
+
   heat(
     body?: ThermostatsHeatBody,
     options: ThermostatsHeatOptions = {},
@@ -396,6 +412,14 @@ export type ThermostatsDeleteClimatePresetResponse = SetNonNullable<
 >
 
 export type ThermostatsDeleteClimatePresetOptions = never
+
+export type ThermostatsGetParams = RouteRequestBody<'/thermostats/get'>
+
+export type ThermostatsGetResponse = SetNonNullable<
+  Required<RouteResponse<'/thermostats/get'>>
+>
+
+export type ThermostatsGetOptions = never
 
 export type ThermostatsHeatBody = RouteRequestBody<'/thermostats/heat'>
 

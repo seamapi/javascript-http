@@ -22,9 +22,9 @@ export const setEndpointsLayoutContext = (
   file.className = getClassName('Endpoints')
   file.skipClientSessionImport = true
   file.endpoints = routes.flatMap((route) =>
-    route.endpoints
-      .filter(({ isUndocumented }) => !isUndocumented)
-      .map((endpoint) => getEndpointLayoutContext(endpoint, route)),
+    route.endpoints.map((endpoint) =>
+      getEndpointLayoutContext(endpoint, route),
+    ),
   )
   file.routeImports = routes.map((route) => {
     return {

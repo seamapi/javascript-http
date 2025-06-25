@@ -174,6 +174,20 @@ export class SeamHttpDevices {
     return SeamHttpDevicesUnmanaged.fromClient(this.client, this.defaults)
   }
 
+  delete(params?: DevicesDeleteParams): SeamHttpRequest<void, undefined> {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/devices/delete',
+      method: 'POST',
+      body: params,
+      responseKey: undefined,
+    })
+  }
+
   get(
     params?: DevicesGetParams,
   ): SeamHttpRequest<DevicesGetResponse, 'device'> {
@@ -216,6 +230,14 @@ export class SeamHttpDevices {
     })
   }
 }
+
+export type DevicesDeleteParams = RouteRequestBody<'/devices/delete'>
+
+export type DevicesDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/delete'>>
+>
+
+export type DevicesDeleteOptions = never
 
 export type DevicesGetParams = RouteRequestBody<'/devices/get'>
 

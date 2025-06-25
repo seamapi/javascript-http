@@ -4,6 +4,7 @@ import { camelCase, kebabCase, pascalCase } from 'change-case'
 
 export interface RouteLayoutContext {
   className: string
+  isUndocumented: boolean
   endpoints: EndpointLayoutContext[]
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
@@ -30,6 +31,7 @@ export interface EndpointLayoutContext {
   returnsActionAttempt: boolean
   returnsVoid: boolean
   isOptionalParamsOk: boolean
+  isUndocumented: boolean
 }
 
 export interface SubrouteLayoutContext {
@@ -44,15 +46,13 @@ export const setRouteLayoutContext = (
   nodes: Array<Route | Namespace>,
 ): void => {
   file.className = getClassName(node?.path ?? null)
+  file.isUndocumented = node?.isUndocumented ?? false
   file.skipClientSessionImport =
     node == null || node?.path === '/client_sessions'
 
   file.endpoints = []
   if (node != null && 'endpoints' in node) {
-    const endpoints = node.endpoints.filter(
-      ({ isUndocumented }) => !isUndocumented,
-    )
-    file.endpoints = endpoints.map((endpoint) =>
+    file.endpoints = node.endpoints.map((endpoint) =>
       getEndpointLayoutContext(endpoint, node),
     )
   }
@@ -64,7 +64,7 @@ export const setRouteLayoutContext = (
 }
 
 const getSubrouteLayoutContext = (
-  route: Pick<Route, 'path' | 'name'>,
+  route: Pick<Route, 'path' | 'name' | 'isUndocumented'>,
 ): SubrouteLayoutContext => {
   return {
     fileName: `${kebabCase(route.name)}/index.js`,
@@ -116,6 +116,7 @@ export const getEndpointLayoutContext = (
     // UPSTREAM: Needs support in blueprint, fallback to true for now.
     // https://github.com/seamapi/blueprint/issues/205
     isOptionalParamsOk: true,
+    isUndocumented: endpoint.isUndocumented,
     ...getResponseContext(endpoint),
   }
 }

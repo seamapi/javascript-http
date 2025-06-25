@@ -22,6 +22,7 @@ interface SeamHttpCommonOptions extends ClientOptions, SeamHttpRequestOptions {
 
 export interface SeamHttpRequestOptions {
   waitForActionAttempt?: boolean | ResolveActionAttemptOptions
+  isUndocumentedApiEnabled?: boolean
 }
 
 export interface SeamHttpFromPublishableKeyOptions
@@ -33,7 +34,7 @@ export interface SeamHttpMultiWorkspaceOptionsFromEnv
   extends SeamHttpCommonOptions {}
 
 export interface SeamHttpMultiWorkspaceOptionsWithClient
-  extends SeamHttpRequestOptions {
+  extends SeamHttpCommonOptions {
   client: Client
 }
 
