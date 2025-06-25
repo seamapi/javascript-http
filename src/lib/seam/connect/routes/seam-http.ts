@@ -41,6 +41,7 @@ import { SeamHttpBridges } from './bridges/index.js'
 import { SeamHttpClientSessions } from './client-sessions/index.js'
 import { SeamHttpConnectWebviews } from './connect-webviews/index.js'
 import { SeamHttpConnectedAccounts } from './connected-accounts/index.js'
+import { SeamHttpCustomers } from './customers/index.js'
 import { SeamHttpDevices } from './devices/index.js'
 import { SeamHttpEvents } from './events/index.js'
 import { SeamHttpLocks } from './locks/index.js'
@@ -218,6 +219,10 @@ export class SeamHttp {
 
   get connectedAccounts(): SeamHttpConnectedAccounts {
     return SeamHttpConnectedAccounts.fromClient(this.client, this.defaults)
+  }
+
+  get customers(): SeamHttpCustomers {
+    return SeamHttpCustomers.fromClient(this.client, this.defaults)
   }
 
   get devices(): SeamHttpDevices {

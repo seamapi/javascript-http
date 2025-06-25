@@ -36,7 +36,7 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-export class SeamHttpPhonesSimulate {
+export class SeamHttpCustomers {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
   readonly ltsVersion = seamApiLtsVersion
@@ -51,23 +51,23 @@ export class SeamHttpPhonesSimulate {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpPhonesSimulate {
+  ): SeamHttpCustomers {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpPhonesSimulate(constructorOptions)
+    return new SeamHttpCustomers(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpPhonesSimulate {
+  ): SeamHttpCustomers {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpPhonesSimulate(constructorOptions)
+    return new SeamHttpCustomers(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -76,24 +76,24 @@ export class SeamHttpPhonesSimulate {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpPhonesSimulate {
+  ): SeamHttpCustomers {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpPhonesSimulate(constructorOptions)
+    return new SeamHttpCustomers(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpPhonesSimulate> {
+  ): Promise<SeamHttpCustomers> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
       throw new SeamHttpInvalidOptionsError(
-        'The client option cannot be used with SeamHttpPhonesSimulate.fromPublishableKey',
+        'The client option cannot be used with SeamHttpCustomers.fromPublishableKey',
       )
     }
     const client = createClient(clientOptions)
@@ -101,7 +101,7 @@ export class SeamHttpPhonesSimulate {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpPhonesSimulate.fromClientSessionToken(token, options)
+    return SeamHttpCustomers.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -111,14 +111,14 @@ export class SeamHttpPhonesSimulate {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpPhonesSimulate {
+  ): SeamHttpCustomers {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpPhonesSimulate(constructorOptions)
+    return new SeamHttpCustomers(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -128,14 +128,14 @@ export class SeamHttpPhonesSimulate {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpPhonesSimulate {
+  ): SeamHttpCustomers {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpPhonesSimulate(constructorOptions)
+    return new SeamHttpCustomers(constructorOptions)
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
@@ -163,23 +163,40 @@ export class SeamHttpPhonesSimulate {
     await clientSessions.get()
   }
 
-  createSandboxPhone(
-    body?: PhonesSimulateCreateSandboxPhoneBody,
-  ): SeamHttpRequest<PhonesSimulateCreateSandboxPhoneResponse, 'phone'> {
+  createPortal(
+    body?: CustomersCreatePortalBody,
+  ): SeamHttpRequest<CustomersCreatePortalResponse, 'magic_link'> {
     return new SeamHttpRequest(this, {
-      pathname: '/phones/simulate/create_sandbox_phone',
+      pathname: '/customers/create_portal',
       method: 'POST',
       body,
-      responseKey: 'phone',
+      responseKey: 'magic_link',
+    })
+  }
+
+  pushData(body?: CustomersPushDataBody): SeamHttpRequest<void, undefined> {
+    return new SeamHttpRequest(this, {
+      pathname: '/customers/push_data',
+      method: 'POST',
+      body,
+      responseKey: undefined,
     })
   }
 }
 
-export type PhonesSimulateCreateSandboxPhoneBody =
-  RouteRequestBody<'/phones/simulate/create_sandbox_phone'>
+export type CustomersCreatePortalBody =
+  RouteRequestBody<'/customers/create_portal'>
 
-export type PhonesSimulateCreateSandboxPhoneResponse = SetNonNullable<
-  Required<RouteResponse<'/phones/simulate/create_sandbox_phone'>>
+export type CustomersCreatePortalResponse = SetNonNullable<
+  Required<RouteResponse<'/customers/create_portal'>>
 >
 
-export type PhonesSimulateCreateSandboxPhoneOptions = never
+export type CustomersCreatePortalOptions = never
+
+export type CustomersPushDataBody = RouteRequestBody<'/customers/push_data'>
+
+export type CustomersPushDataResponse = SetNonNullable<
+  Required<RouteResponse<'/customers/push_data'>>
+>
+
+export type CustomersPushDataOptions = never
