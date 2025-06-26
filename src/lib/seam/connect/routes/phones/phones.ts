@@ -172,7 +172,7 @@ export class SeamHttpPhones {
   deactivate(
     parameters?: PhonesDeactivateParameters,
     options: PhonesDeactivateOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): PhonesDeactivateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/deactivate',
       method: 'POST',
@@ -185,7 +185,7 @@ export class SeamHttpPhones {
   get(
     parameters?: PhonesGetParameters,
     options: PhonesGetOptions = {},
-  ): SeamHttpRequest<PhonesGetResponse, 'phone'> {
+  ): PhonesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/get',
       method: 'POST',
@@ -198,7 +198,7 @@ export class SeamHttpPhones {
   list(
     parameters?: PhonesListParameters,
     options: PhonesListOptions = {},
-  ): SeamHttpRequest<PhonesListResponse, 'phones'> {
+  ): PhonesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/list',
       method: 'POST',
@@ -216,9 +216,14 @@ export type PhonesDeactivateParameters = RouteRequestBody<'/phones/deactivate'>
  */
 export type PhonesDeactivateParams = PhonesDeactivateParameters
 
+/**
+ * @deprecated Use PhonesDeactivateRequest instead.
+ */
 export type PhonesDeactivateResponse = SetNonNullable<
   Required<RouteResponse<'/phones/deactivate'>>
 >
+
+export type PhonesDeactivateRequest = SeamHttpRequest<void, undefined>
 
 export type PhonesDeactivateOptions = Record<string, never>
 
@@ -229,9 +234,14 @@ export type PhonesGetParameters = RouteRequestBody<'/phones/get'>
  */
 export type PhonesGetParams = PhonesGetParameters
 
+/**
+ * @deprecated Use PhonesGetRequest instead.
+ */
 export type PhonesGetResponse = SetNonNullable<
   Required<RouteResponse<'/phones/get'>>
 >
+
+export type PhonesGetRequest = SeamHttpRequest<PhonesGetResponse, 'phone'>
 
 export type PhonesGetOptions = Record<string, never>
 
@@ -242,8 +252,13 @@ export type PhonesListParameters = RouteRequestBody<'/phones/list'>
  */
 export type PhonesListParams = PhonesListParameters
 
+/**
+ * @deprecated Use PhonesListRequest instead.
+ */
 export type PhonesListResponse = SetNonNullable<
   Required<RouteResponse<'/phones/list'>>
 >
+
+export type PhonesListRequest = SeamHttpRequest<PhonesListResponse, 'phones'>
 
 export type PhonesListOptions = Record<string, never>

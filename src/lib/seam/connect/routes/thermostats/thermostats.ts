@@ -185,10 +185,7 @@ export class SeamHttpThermostats {
   activateClimatePreset(
     parameters?: ThermostatsActivateClimatePresetParameters,
     options: ThermostatsActivateClimatePresetOptions = {},
-  ): SeamHttpRequest<
-    ThermostatsActivateClimatePresetResponse,
-    'action_attempt'
-  > {
+  ): ThermostatsActivateClimatePresetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/activate_climate_preset',
       method: 'POST',
@@ -201,7 +198,7 @@ export class SeamHttpThermostats {
   cool(
     parameters?: ThermostatsCoolParameters,
     options: ThermostatsCoolOptions = {},
-  ): SeamHttpRequest<ThermostatsCoolResponse, 'action_attempt'> {
+  ): ThermostatsCoolRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/cool',
       method: 'POST',
@@ -214,7 +211,7 @@ export class SeamHttpThermostats {
   createClimatePreset(
     parameters?: ThermostatsCreateClimatePresetParameters,
     options: ThermostatsCreateClimatePresetOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ThermostatsCreateClimatePresetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/create_climate_preset',
       method: 'POST',
@@ -227,7 +224,7 @@ export class SeamHttpThermostats {
   deleteClimatePreset(
     parameters?: ThermostatsDeleteClimatePresetParameters,
     options: ThermostatsDeleteClimatePresetOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ThermostatsDeleteClimatePresetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/delete_climate_preset',
       method: 'POST',
@@ -240,7 +237,7 @@ export class SeamHttpThermostats {
   get(
     parameters?: ThermostatsGetParameters,
     options: ThermostatsGetOptions = {},
-  ): SeamHttpRequest<ThermostatsGetResponse, 'thermostat'> {
+  ): ThermostatsGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -258,7 +255,7 @@ export class SeamHttpThermostats {
   heat(
     parameters?: ThermostatsHeatParameters,
     options: ThermostatsHeatOptions = {},
-  ): SeamHttpRequest<ThermostatsHeatResponse, 'action_attempt'> {
+  ): ThermostatsHeatRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/heat',
       method: 'POST',
@@ -271,7 +268,7 @@ export class SeamHttpThermostats {
   heatCool(
     parameters?: ThermostatsHeatCoolParameters,
     options: ThermostatsHeatCoolOptions = {},
-  ): SeamHttpRequest<ThermostatsHeatCoolResponse, 'action_attempt'> {
+  ): ThermostatsHeatCoolRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/heat_cool',
       method: 'POST',
@@ -284,7 +281,7 @@ export class SeamHttpThermostats {
   list(
     parameters?: ThermostatsListParameters,
     options: ThermostatsListOptions = {},
-  ): SeamHttpRequest<ThermostatsListResponse, 'devices'> {
+  ): ThermostatsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/list',
       method: 'POST',
@@ -297,7 +294,7 @@ export class SeamHttpThermostats {
   off(
     parameters?: ThermostatsOffParameters,
     options: ThermostatsOffOptions = {},
-  ): SeamHttpRequest<ThermostatsOffResponse, 'action_attempt'> {
+  ): ThermostatsOffRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/off',
       method: 'POST',
@@ -310,7 +307,7 @@ export class SeamHttpThermostats {
   setFallbackClimatePreset(
     parameters?: ThermostatsSetFallbackClimatePresetParameters,
     options: ThermostatsSetFallbackClimatePresetOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ThermostatsSetFallbackClimatePresetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_fallback_climate_preset',
       method: 'POST',
@@ -323,7 +320,7 @@ export class SeamHttpThermostats {
   setFanMode(
     parameters?: ThermostatsSetFanModeParameters,
     options: ThermostatsSetFanModeOptions = {},
-  ): SeamHttpRequest<ThermostatsSetFanModeResponse, 'action_attempt'> {
+  ): ThermostatsSetFanModeRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_fan_mode',
       method: 'POST',
@@ -336,7 +333,7 @@ export class SeamHttpThermostats {
   setHvacMode(
     parameters?: ThermostatsSetHvacModeParameters,
     options: ThermostatsSetHvacModeOptions = {},
-  ): SeamHttpRequest<ThermostatsSetHvacModeResponse, 'action_attempt'> {
+  ): ThermostatsSetHvacModeRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_hvac_mode',
       method: 'POST',
@@ -349,7 +346,7 @@ export class SeamHttpThermostats {
   setTemperatureThreshold(
     parameters?: ThermostatsSetTemperatureThresholdParameters,
     options: ThermostatsSetTemperatureThresholdOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ThermostatsSetTemperatureThresholdRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_temperature_threshold',
       method: 'PATCH',
@@ -362,7 +359,7 @@ export class SeamHttpThermostats {
   updateClimatePreset(
     parameters?: ThermostatsUpdateClimatePresetParameters,
     options: ThermostatsUpdateClimatePresetOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ThermostatsUpdateClimatePresetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/update_climate_preset',
       method: 'PATCH',
@@ -375,7 +372,7 @@ export class SeamHttpThermostats {
   updateWeeklyProgram(
     parameters?: ThermostatsUpdateWeeklyProgramParameters,
     options: ThermostatsUpdateWeeklyProgramOptions = {},
-  ): SeamHttpRequest<ThermostatsUpdateWeeklyProgramResponse, 'action_attempt'> {
+  ): ThermostatsUpdateWeeklyProgramRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/update_weekly_program',
       method: 'POST',
@@ -395,8 +392,16 @@ export type ThermostatsActivateClimatePresetParameters =
 export type ThermostatsActivateClimatePresetBody =
   ThermostatsActivateClimatePresetParameters
 
+/**
+ * @deprecated Use ThermostatsActivateClimatePresetRequest instead.
+ */
 export type ThermostatsActivateClimatePresetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/activate_climate_preset'>>
+>
+
+export type ThermostatsActivateClimatePresetRequest = SeamHttpRequest<
+  ThermostatsActivateClimatePresetResponse,
+  'action_attempt'
 >
 
 export type ThermostatsActivateClimatePresetOptions = Pick<
@@ -411,8 +416,16 @@ export type ThermostatsCoolParameters = RouteRequestBody<'/thermostats/cool'>
  */
 export type ThermostatsCoolBody = ThermostatsCoolParameters
 
+/**
+ * @deprecated Use ThermostatsCoolRequest instead.
+ */
 export type ThermostatsCoolResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/cool'>>
+>
+
+export type ThermostatsCoolRequest = SeamHttpRequest<
+  ThermostatsCoolResponse,
+  'action_attempt'
 >
 
 export type ThermostatsCoolOptions = Pick<
@@ -429,8 +442,16 @@ export type ThermostatsCreateClimatePresetParameters =
 export type ThermostatsCreateClimatePresetBody =
   ThermostatsCreateClimatePresetParameters
 
+/**
+ * @deprecated Use ThermostatsCreateClimatePresetRequest instead.
+ */
 export type ThermostatsCreateClimatePresetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/create_climate_preset'>>
+>
+
+export type ThermostatsCreateClimatePresetRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type ThermostatsCreateClimatePresetOptions = Record<string, never>
@@ -444,8 +465,16 @@ export type ThermostatsDeleteClimatePresetParameters =
 export type ThermostatsDeleteClimatePresetParams =
   ThermostatsDeleteClimatePresetParameters
 
+/**
+ * @deprecated Use ThermostatsDeleteClimatePresetRequest instead.
+ */
 export type ThermostatsDeleteClimatePresetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/delete_climate_preset'>>
+>
+
+export type ThermostatsDeleteClimatePresetRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type ThermostatsDeleteClimatePresetOptions = Record<string, never>
@@ -457,8 +486,16 @@ export type ThermostatsGetParameters = RouteRequestBody<'/thermostats/get'>
  */
 export type ThermostatsGetParams = ThermostatsGetParameters
 
+/**
+ * @deprecated Use ThermostatsGetRequest instead.
+ */
 export type ThermostatsGetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/get'>>
+>
+
+export type ThermostatsGetRequest = SeamHttpRequest<
+  ThermostatsGetResponse,
+  'thermostat'
 >
 
 export type ThermostatsGetOptions = Record<string, never>
@@ -470,8 +507,16 @@ export type ThermostatsHeatParameters = RouteRequestBody<'/thermostats/heat'>
  */
 export type ThermostatsHeatBody = ThermostatsHeatParameters
 
+/**
+ * @deprecated Use ThermostatsHeatRequest instead.
+ */
 export type ThermostatsHeatResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/heat'>>
+>
+
+export type ThermostatsHeatRequest = SeamHttpRequest<
+  ThermostatsHeatResponse,
+  'action_attempt'
 >
 
 export type ThermostatsHeatOptions = Pick<
@@ -487,8 +532,16 @@ export type ThermostatsHeatCoolParameters =
  */
 export type ThermostatsHeatCoolBody = ThermostatsHeatCoolParameters
 
+/**
+ * @deprecated Use ThermostatsHeatCoolRequest instead.
+ */
 export type ThermostatsHeatCoolResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/heat_cool'>>
+>
+
+export type ThermostatsHeatCoolRequest = SeamHttpRequest<
+  ThermostatsHeatCoolResponse,
+  'action_attempt'
 >
 
 export type ThermostatsHeatCoolOptions = Pick<
@@ -503,8 +556,16 @@ export type ThermostatsListParameters = RouteRequestBody<'/thermostats/list'>
  */
 export type ThermostatsListParams = ThermostatsListParameters
 
+/**
+ * @deprecated Use ThermostatsListRequest instead.
+ */
 export type ThermostatsListResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/list'>>
+>
+
+export type ThermostatsListRequest = SeamHttpRequest<
+  ThermostatsListResponse,
+  'devices'
 >
 
 export type ThermostatsListOptions = Record<string, never>
@@ -516,8 +577,16 @@ export type ThermostatsOffParameters = RouteRequestBody<'/thermostats/off'>
  */
 export type ThermostatsOffBody = ThermostatsOffParameters
 
+/**
+ * @deprecated Use ThermostatsOffRequest instead.
+ */
 export type ThermostatsOffResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/off'>>
+>
+
+export type ThermostatsOffRequest = SeamHttpRequest<
+  ThermostatsOffResponse,
+  'action_attempt'
 >
 
 export type ThermostatsOffOptions = Pick<
@@ -534,8 +603,16 @@ export type ThermostatsSetFallbackClimatePresetParameters =
 export type ThermostatsSetFallbackClimatePresetBody =
   ThermostatsSetFallbackClimatePresetParameters
 
+/**
+ * @deprecated Use ThermostatsSetFallbackClimatePresetRequest instead.
+ */
 export type ThermostatsSetFallbackClimatePresetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/set_fallback_climate_preset'>>
+>
+
+export type ThermostatsSetFallbackClimatePresetRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type ThermostatsSetFallbackClimatePresetOptions = Record<string, never>
@@ -548,8 +625,16 @@ export type ThermostatsSetFanModeParameters =
  */
 export type ThermostatsSetFanModeBody = ThermostatsSetFanModeParameters
 
+/**
+ * @deprecated Use ThermostatsSetFanModeRequest instead.
+ */
 export type ThermostatsSetFanModeResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/set_fan_mode'>>
+>
+
+export type ThermostatsSetFanModeRequest = SeamHttpRequest<
+  ThermostatsSetFanModeResponse,
+  'action_attempt'
 >
 
 export type ThermostatsSetFanModeOptions = Pick<
@@ -565,8 +650,16 @@ export type ThermostatsSetHvacModeParameters =
  */
 export type ThermostatsSetHvacModeBody = ThermostatsSetHvacModeParameters
 
+/**
+ * @deprecated Use ThermostatsSetHvacModeRequest instead.
+ */
 export type ThermostatsSetHvacModeResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/set_hvac_mode'>>
+>
+
+export type ThermostatsSetHvacModeRequest = SeamHttpRequest<
+  ThermostatsSetHvacModeResponse,
+  'action_attempt'
 >
 
 export type ThermostatsSetHvacModeOptions = Pick<
@@ -583,8 +676,16 @@ export type ThermostatsSetTemperatureThresholdParameters =
 export type ThermostatsSetTemperatureThresholdBody =
   ThermostatsSetTemperatureThresholdParameters
 
+/**
+ * @deprecated Use ThermostatsSetTemperatureThresholdRequest instead.
+ */
 export type ThermostatsSetTemperatureThresholdResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/set_temperature_threshold'>>
+>
+
+export type ThermostatsSetTemperatureThresholdRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type ThermostatsSetTemperatureThresholdOptions = Record<string, never>
@@ -598,8 +699,16 @@ export type ThermostatsUpdateClimatePresetParameters =
 export type ThermostatsUpdateClimatePresetBody =
   ThermostatsUpdateClimatePresetParameters
 
+/**
+ * @deprecated Use ThermostatsUpdateClimatePresetRequest instead.
+ */
 export type ThermostatsUpdateClimatePresetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/update_climate_preset'>>
+>
+
+export type ThermostatsUpdateClimatePresetRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type ThermostatsUpdateClimatePresetOptions = Record<string, never>
@@ -613,8 +722,16 @@ export type ThermostatsUpdateWeeklyProgramParameters =
 export type ThermostatsUpdateWeeklyProgramBody =
   ThermostatsUpdateWeeklyProgramParameters
 
+/**
+ * @deprecated Use ThermostatsUpdateWeeklyProgramRequest instead.
+ */
 export type ThermostatsUpdateWeeklyProgramResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/update_weekly_program'>>
+>
+
+export type ThermostatsUpdateWeeklyProgramRequest = SeamHttpRequest<
+  ThermostatsUpdateWeeklyProgramResponse,
+  'action_attempt'
 >
 
 export type ThermostatsUpdateWeeklyProgramOptions = Pick<

@@ -178,10 +178,7 @@ export class SeamHttpSeamBridgeV1BridgeClientSessions {
   create(
     parameters?: SeamBridgeV1BridgeClientSessionsCreateParameters,
     options: SeamBridgeV1BridgeClientSessionsCreateOptions = {},
-  ): SeamHttpRequest<
-    SeamBridgeV1BridgeClientSessionsCreateResponse,
-    'bridge_client_session'
-  > {
+  ): SeamBridgeV1BridgeClientSessionsCreateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -199,10 +196,7 @@ export class SeamHttpSeamBridgeV1BridgeClientSessions {
   get(
     parameters?: SeamBridgeV1BridgeClientSessionsGetParameters,
     options: SeamBridgeV1BridgeClientSessionsGetOptions = {},
-  ): SeamHttpRequest<
-    SeamBridgeV1BridgeClientSessionsGetResponse,
-    'bridge_client_session'
-  > {
+  ): SeamBridgeV1BridgeClientSessionsGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -220,10 +214,7 @@ export class SeamHttpSeamBridgeV1BridgeClientSessions {
   refreshTelemetryToken(
     parameters?: SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenParameters,
     options: SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenOptions = {},
-  ): SeamHttpRequest<
-    SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenResponse,
-    'bridge_client_session'
-  > {
+  ): SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -242,10 +233,7 @@ export class SeamHttpSeamBridgeV1BridgeClientSessions {
   regeneratePairingCode(
     parameters?: SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeParameters,
     options: SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeOptions = {},
-  ): SeamHttpRequest<
-    SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeResponse,
-    'bridge_client_session'
-  > {
+  ): SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -264,7 +252,7 @@ export class SeamHttpSeamBridgeV1BridgeClientSessions {
   reportStatus(
     parameters?: SeamBridgeV1BridgeClientSessionsReportStatusParameters,
     options: SeamBridgeV1BridgeClientSessionsReportStatusOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): SeamBridgeV1BridgeClientSessionsReportStatusRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -289,8 +277,16 @@ export type SeamBridgeV1BridgeClientSessionsCreateParameters =
 export type SeamBridgeV1BridgeClientSessionsCreateBody =
   SeamBridgeV1BridgeClientSessionsCreateParameters
 
+/**
+ * @deprecated Use SeamBridgeV1BridgeClientSessionsCreateRequest instead.
+ */
 export type SeamBridgeV1BridgeClientSessionsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/seam/bridge/v1/bridge_client_sessions/create'>>
+>
+
+export type SeamBridgeV1BridgeClientSessionsCreateRequest = SeamHttpRequest<
+  SeamBridgeV1BridgeClientSessionsCreateResponse,
+  'bridge_client_session'
 >
 
 export type SeamBridgeV1BridgeClientSessionsCreateOptions = Record<
@@ -307,8 +303,16 @@ export type SeamBridgeV1BridgeClientSessionsGetParameters =
 export type SeamBridgeV1BridgeClientSessionsGetParams =
   SeamBridgeV1BridgeClientSessionsGetParameters
 
+/**
+ * @deprecated Use SeamBridgeV1BridgeClientSessionsGetRequest instead.
+ */
 export type SeamBridgeV1BridgeClientSessionsGetResponse = SetNonNullable<
   Required<RouteResponse<'/seam/bridge/v1/bridge_client_sessions/get'>>
+>
+
+export type SeamBridgeV1BridgeClientSessionsGetRequest = SeamHttpRequest<
+  SeamBridgeV1BridgeClientSessionsGetResponse,
+  'bridge_client_session'
 >
 
 export type SeamBridgeV1BridgeClientSessionsGetOptions = Record<string, never>
@@ -322,11 +326,20 @@ export type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenParameters =
 export type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenBody =
   SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenParameters
 
+/**
+ * @deprecated Use SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenRequest instead.
+ */
 export type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/seam/bridge/v1/bridge_client_sessions/refresh_telemetry_token'>
     >
+  >
+
+export type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenRequest =
+  SeamHttpRequest<
+    SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenResponse,
+    'bridge_client_session'
   >
 
 export type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenOptions =
@@ -341,11 +354,20 @@ export type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeParameters =
 export type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeBody =
   SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeParameters
 
+/**
+ * @deprecated Use SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeRequest instead.
+ */
 export type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/seam/bridge/v1/bridge_client_sessions/regenerate_pairing_code'>
     >
+  >
+
+export type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeRequest =
+  SeamHttpRequest<
+    SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeResponse,
+    'bridge_client_session'
   >
 
 export type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeOptions =
@@ -360,12 +382,18 @@ export type SeamBridgeV1BridgeClientSessionsReportStatusParameters =
 export type SeamBridgeV1BridgeClientSessionsReportStatusBody =
   SeamBridgeV1BridgeClientSessionsReportStatusParameters
 
+/**
+ * @deprecated Use SeamBridgeV1BridgeClientSessionsReportStatusRequest instead.
+ */
 export type SeamBridgeV1BridgeClientSessionsReportStatusResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/seam/bridge/v1/bridge_client_sessions/report_status'>
     >
   >
+
+export type SeamBridgeV1BridgeClientSessionsReportStatusRequest =
+  SeamHttpRequest<void, undefined>
 
 export type SeamBridgeV1BridgeClientSessionsReportStatusOptions = Record<
   string,

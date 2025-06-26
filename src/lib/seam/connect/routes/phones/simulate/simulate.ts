@@ -166,7 +166,7 @@ export class SeamHttpPhonesSimulate {
   createSandboxPhone(
     parameters?: PhonesSimulateCreateSandboxPhoneParameters,
     options: PhonesSimulateCreateSandboxPhoneOptions = {},
-  ): SeamHttpRequest<PhonesSimulateCreateSandboxPhoneResponse, 'phone'> {
+  ): PhonesSimulateCreateSandboxPhoneRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/simulate/create_sandbox_phone',
       method: 'POST',
@@ -186,8 +186,16 @@ export type PhonesSimulateCreateSandboxPhoneParameters =
 export type PhonesSimulateCreateSandboxPhoneParams =
   PhonesSimulateCreateSandboxPhoneParameters
 
+/**
+ * @deprecated Use PhonesSimulateCreateSandboxPhoneRequest instead.
+ */
 export type PhonesSimulateCreateSandboxPhoneResponse = SetNonNullable<
   Required<RouteResponse<'/phones/simulate/create_sandbox_phone'>>
+>
+
+export type PhonesSimulateCreateSandboxPhoneRequest = SeamHttpRequest<
+  PhonesSimulateCreateSandboxPhoneResponse,
+  'phone'
 >
 
 export type PhonesSimulateCreateSandboxPhoneOptions = Record<string, never>

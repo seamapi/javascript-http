@@ -166,7 +166,7 @@ export class SeamHttpThermostatsSimulate {
   hvacModeAdjusted(
     parameters?: ThermostatsSimulateHvacModeAdjustedParameters,
     options: ThermostatsSimulateHvacModeAdjustedOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ThermostatsSimulateHvacModeAdjustedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/simulate/hvac_mode_adjusted',
       method: 'POST',
@@ -179,7 +179,7 @@ export class SeamHttpThermostatsSimulate {
   temperatureReached(
     parameters?: ThermostatsSimulateTemperatureReachedParameters,
     options: ThermostatsSimulateTemperatureReachedOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ThermostatsSimulateTemperatureReachedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/simulate/temperature_reached',
       method: 'POST',
@@ -199,8 +199,16 @@ export type ThermostatsSimulateHvacModeAdjustedParameters =
 export type ThermostatsSimulateHvacModeAdjustedBody =
   ThermostatsSimulateHvacModeAdjustedParameters
 
+/**
+ * @deprecated Use ThermostatsSimulateHvacModeAdjustedRequest instead.
+ */
 export type ThermostatsSimulateHvacModeAdjustedResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/simulate/hvac_mode_adjusted'>>
+>
+
+export type ThermostatsSimulateHvacModeAdjustedRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type ThermostatsSimulateHvacModeAdjustedOptions = Record<string, never>
@@ -214,8 +222,16 @@ export type ThermostatsSimulateTemperatureReachedParameters =
 export type ThermostatsSimulateTemperatureReachedBody =
   ThermostatsSimulateTemperatureReachedParameters
 
+/**
+ * @deprecated Use ThermostatsSimulateTemperatureReachedRequest instead.
+ */
 export type ThermostatsSimulateTemperatureReachedResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/simulate/temperature_reached'>>
+>
+
+export type ThermostatsSimulateTemperatureReachedRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type ThermostatsSimulateTemperatureReachedOptions = Record<string, never>

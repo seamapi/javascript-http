@@ -174,10 +174,7 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
   connectAccounts(
     parameters?: UnstablePartnerBuildingBlocksConnectAccountsParameters,
     options: UnstablePartnerBuildingBlocksConnectAccountsOptions = {},
-  ): SeamHttpRequest<
-    UnstablePartnerBuildingBlocksConnectAccountsResponse,
-    'magic_link'
-  > {
+  ): UnstablePartnerBuildingBlocksConnectAccountsRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -195,10 +192,7 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
   generateMagicLink(
     parameters?: UnstablePartnerBuildingBlocksGenerateMagicLinkParameters,
     options: UnstablePartnerBuildingBlocksGenerateMagicLinkOptions = {},
-  ): SeamHttpRequest<
-    UnstablePartnerBuildingBlocksGenerateMagicLinkResponse,
-    'magic_link'
-  > {
+  ): UnstablePartnerBuildingBlocksGenerateMagicLinkRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -216,10 +210,7 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
   manageDevices(
     parameters?: UnstablePartnerBuildingBlocksManageDevicesParameters,
     options: UnstablePartnerBuildingBlocksManageDevicesOptions = {},
-  ): SeamHttpRequest<
-    UnstablePartnerBuildingBlocksManageDevicesResponse,
-    'magic_link'
-  > {
+  ): UnstablePartnerBuildingBlocksManageDevicesRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -237,10 +228,7 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
   organizeSpaces(
     parameters?: UnstablePartnerBuildingBlocksOrganizeSpacesParameters,
     options: UnstablePartnerBuildingBlocksOrganizeSpacesOptions = {},
-  ): SeamHttpRequest<
-    UnstablePartnerBuildingBlocksOrganizeSpacesResponse,
-    'magic_link'
-  > {
+  ): UnstablePartnerBuildingBlocksOrganizeSpacesRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -265,11 +253,20 @@ export type UnstablePartnerBuildingBlocksConnectAccountsParameters =
 export type UnstablePartnerBuildingBlocksConnectAccountsBody =
   UnstablePartnerBuildingBlocksConnectAccountsParameters
 
+/**
+ * @deprecated Use UnstablePartnerBuildingBlocksConnectAccountsRequest instead.
+ */
 export type UnstablePartnerBuildingBlocksConnectAccountsResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/unstable_partner/building_blocks/connect_accounts'>
     >
+  >
+
+export type UnstablePartnerBuildingBlocksConnectAccountsRequest =
+  SeamHttpRequest<
+    UnstablePartnerBuildingBlocksConnectAccountsResponse,
+    'magic_link'
   >
 
 export type UnstablePartnerBuildingBlocksConnectAccountsOptions = Record<
@@ -286,11 +283,20 @@ export type UnstablePartnerBuildingBlocksGenerateMagicLinkParameters =
 export type UnstablePartnerBuildingBlocksGenerateMagicLinkParams =
   UnstablePartnerBuildingBlocksGenerateMagicLinkParameters
 
+/**
+ * @deprecated Use UnstablePartnerBuildingBlocksGenerateMagicLinkRequest instead.
+ */
 export type UnstablePartnerBuildingBlocksGenerateMagicLinkResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/unstable_partner/building_blocks/generate_magic_link'>
     >
+  >
+
+export type UnstablePartnerBuildingBlocksGenerateMagicLinkRequest =
+  SeamHttpRequest<
+    UnstablePartnerBuildingBlocksGenerateMagicLinkResponse,
+    'magic_link'
   >
 
 export type UnstablePartnerBuildingBlocksGenerateMagicLinkOptions = Record<
@@ -307,8 +313,16 @@ export type UnstablePartnerBuildingBlocksManageDevicesParameters =
 export type UnstablePartnerBuildingBlocksManageDevicesBody =
   UnstablePartnerBuildingBlocksManageDevicesParameters
 
+/**
+ * @deprecated Use UnstablePartnerBuildingBlocksManageDevicesRequest instead.
+ */
 export type UnstablePartnerBuildingBlocksManageDevicesResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_partner/building_blocks/manage_devices'>>
+>
+
+export type UnstablePartnerBuildingBlocksManageDevicesRequest = SeamHttpRequest<
+  UnstablePartnerBuildingBlocksManageDevicesResponse,
+  'magic_link'
 >
 
 export type UnstablePartnerBuildingBlocksManageDevicesOptions = Record<
@@ -325,9 +339,18 @@ export type UnstablePartnerBuildingBlocksOrganizeSpacesParameters =
 export type UnstablePartnerBuildingBlocksOrganizeSpacesBody =
   UnstablePartnerBuildingBlocksOrganizeSpacesParameters
 
+/**
+ * @deprecated Use UnstablePartnerBuildingBlocksOrganizeSpacesRequest instead.
+ */
 export type UnstablePartnerBuildingBlocksOrganizeSpacesResponse =
   SetNonNullable<
     Required<RouteResponse<'/unstable_partner/building_blocks/organize_spaces'>>
+  >
+
+export type UnstablePartnerBuildingBlocksOrganizeSpacesRequest =
+  SeamHttpRequest<
+    UnstablePartnerBuildingBlocksOrganizeSpacesResponse,
+    'magic_link'
   >
 
 export type UnstablePartnerBuildingBlocksOrganizeSpacesOptions = Record<

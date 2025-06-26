@@ -174,7 +174,7 @@ export class SeamHttpAcsAccessGroupsUnmanaged {
   get(
     parameters?: AcsAccessGroupsUnmanagedGetParameters,
     options: AcsAccessGroupsUnmanagedGetOptions = {},
-  ): SeamHttpRequest<AcsAccessGroupsUnmanagedGetResponse, 'acs_access_group'> {
+  ): AcsAccessGroupsUnmanagedGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -192,10 +192,7 @@ export class SeamHttpAcsAccessGroupsUnmanaged {
   list(
     parameters?: AcsAccessGroupsUnmanagedListParameters,
     options: AcsAccessGroupsUnmanagedListOptions = {},
-  ): SeamHttpRequest<
-    AcsAccessGroupsUnmanagedListResponse,
-    'acs_access_groups'
-  > {
+  ): AcsAccessGroupsUnmanagedListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -220,8 +217,16 @@ export type AcsAccessGroupsUnmanagedGetParameters =
 export type AcsAccessGroupsUnmanagedGetParams =
   AcsAccessGroupsUnmanagedGetParameters
 
+/**
+ * @deprecated Use AcsAccessGroupsUnmanagedGetRequest instead.
+ */
 export type AcsAccessGroupsUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/unmanaged/get'>>
+>
+
+export type AcsAccessGroupsUnmanagedGetRequest = SeamHttpRequest<
+  AcsAccessGroupsUnmanagedGetResponse,
+  'acs_access_group'
 >
 
 export type AcsAccessGroupsUnmanagedGetOptions = Record<string, never>
@@ -235,8 +240,16 @@ export type AcsAccessGroupsUnmanagedListParameters =
 export type AcsAccessGroupsUnmanagedListParams =
   AcsAccessGroupsUnmanagedListParameters
 
+/**
+ * @deprecated Use AcsAccessGroupsUnmanagedListRequest instead.
+ */
 export type AcsAccessGroupsUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/unmanaged/list'>>
+>
+
+export type AcsAccessGroupsUnmanagedListRequest = SeamHttpRequest<
+  AcsAccessGroupsUnmanagedListResponse,
+  'acs_access_groups'
 >
 
 export type AcsAccessGroupsUnmanagedListOptions = Record<string, never>

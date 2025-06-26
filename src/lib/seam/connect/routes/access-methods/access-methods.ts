@@ -166,7 +166,7 @@ export class SeamHttpAccessMethods {
   delete(
     parameters?: AccessMethodsDeleteParameters,
     options: AccessMethodsDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AccessMethodsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/delete',
       method: 'POST',
@@ -179,7 +179,7 @@ export class SeamHttpAccessMethods {
   get(
     parameters?: AccessMethodsGetParameters,
     options: AccessMethodsGetOptions = {},
-  ): SeamHttpRequest<AccessMethodsGetResponse, 'access_method'> {
+  ): AccessMethodsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/get',
       method: 'POST',
@@ -192,7 +192,7 @@ export class SeamHttpAccessMethods {
   list(
     parameters?: AccessMethodsListParameters,
     options: AccessMethodsListOptions = {},
-  ): SeamHttpRequest<AccessMethodsListResponse, 'access_methods'> {
+  ): AccessMethodsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/list',
       method: 'POST',
@@ -211,9 +211,14 @@ export type AccessMethodsDeleteParameters =
  */
 export type AccessMethodsDeleteParams = AccessMethodsDeleteParameters
 
+/**
+ * @deprecated Use AccessMethodsDeleteRequest instead.
+ */
 export type AccessMethodsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_methods/delete'>>
 >
+
+export type AccessMethodsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export type AccessMethodsDeleteOptions = Record<string, never>
 
@@ -224,8 +229,16 @@ export type AccessMethodsGetParameters = RouteRequestBody<'/access_methods/get'>
  */
 export type AccessMethodsGetParams = AccessMethodsGetParameters
 
+/**
+ * @deprecated Use AccessMethodsGetRequest instead.
+ */
 export type AccessMethodsGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_methods/get'>>
+>
+
+export type AccessMethodsGetRequest = SeamHttpRequest<
+  AccessMethodsGetResponse,
+  'access_method'
 >
 
 export type AccessMethodsGetOptions = Record<string, never>
@@ -238,8 +251,16 @@ export type AccessMethodsListParameters =
  */
 export type AccessMethodsListParams = AccessMethodsListParameters
 
+/**
+ * @deprecated Use AccessMethodsListRequest instead.
+ */
 export type AccessMethodsListResponse = SetNonNullable<
   Required<RouteResponse<'/access_methods/list'>>
+>
+
+export type AccessMethodsListRequest = SeamHttpRequest<
+  AccessMethodsListResponse,
+  'access_methods'
 >
 
 export type AccessMethodsListOptions = Record<string, never>

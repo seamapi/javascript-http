@@ -171,7 +171,7 @@ export class SeamHttpLocksSimulate {
   keypadCodeEntry(
     parameters?: LocksSimulateKeypadCodeEntryParameters,
     options: LocksSimulateKeypadCodeEntryOptions = {},
-  ): SeamHttpRequest<LocksSimulateKeypadCodeEntryResponse, 'action_attempt'> {
+  ): LocksSimulateKeypadCodeEntryRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -189,10 +189,7 @@ export class SeamHttpLocksSimulate {
   manualLockViaKeypad(
     parameters?: LocksSimulateManualLockViaKeypadParameters,
     options: LocksSimulateManualLockViaKeypadOptions = {},
-  ): SeamHttpRequest<
-    LocksSimulateManualLockViaKeypadResponse,
-    'action_attempt'
-  > {
+  ): LocksSimulateManualLockViaKeypadRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -217,8 +214,16 @@ export type LocksSimulateKeypadCodeEntryParameters =
 export type LocksSimulateKeypadCodeEntryBody =
   LocksSimulateKeypadCodeEntryParameters
 
+/**
+ * @deprecated Use LocksSimulateKeypadCodeEntryRequest instead.
+ */
 export type LocksSimulateKeypadCodeEntryResponse = SetNonNullable<
   Required<RouteResponse<'/locks/simulate/keypad_code_entry'>>
+>
+
+export type LocksSimulateKeypadCodeEntryRequest = SeamHttpRequest<
+  LocksSimulateKeypadCodeEntryResponse,
+  'action_attempt'
 >
 
 export type LocksSimulateKeypadCodeEntryOptions = Pick<
@@ -235,8 +240,16 @@ export type LocksSimulateManualLockViaKeypadParameters =
 export type LocksSimulateManualLockViaKeypadBody =
   LocksSimulateManualLockViaKeypadParameters
 
+/**
+ * @deprecated Use LocksSimulateManualLockViaKeypadRequest instead.
+ */
 export type LocksSimulateManualLockViaKeypadResponse = SetNonNullable<
   Required<RouteResponse<'/locks/simulate/manual_lock_via_keypad'>>
+>
+
+export type LocksSimulateManualLockViaKeypadRequest = SeamHttpRequest<
+  LocksSimulateManualLockViaKeypadResponse,
+  'action_attempt'
 >
 
 export type LocksSimulateManualLockViaKeypadOptions = Pick<

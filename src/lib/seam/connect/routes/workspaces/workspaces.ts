@@ -170,7 +170,7 @@ export class SeamHttpWorkspaces {
   create(
     parameters?: WorkspacesCreateParameters,
     options: WorkspacesCreateOptions = {},
-  ): SeamHttpRequest<WorkspacesCreateResponse, 'workspace'> {
+  ): WorkspacesCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/create',
       method: 'POST',
@@ -183,7 +183,7 @@ export class SeamHttpWorkspaces {
   get(
     parameters?: WorkspacesGetParameters,
     options: WorkspacesGetOptions = {},
-  ): SeamHttpRequest<WorkspacesGetResponse, 'workspace'> {
+  ): WorkspacesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/get',
       method: 'GET',
@@ -196,7 +196,7 @@ export class SeamHttpWorkspaces {
   list(
     parameters?: WorkspacesListParameters,
     options: WorkspacesListOptions = {},
-  ): SeamHttpRequest<WorkspacesListResponse, 'workspaces'> {
+  ): WorkspacesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/list',
       method: 'GET',
@@ -209,7 +209,7 @@ export class SeamHttpWorkspaces {
   resetSandbox(
     parameters?: WorkspacesResetSandboxParameters,
     options: WorkspacesResetSandboxOptions = {},
-  ): SeamHttpRequest<WorkspacesResetSandboxResponse, 'action_attempt'> {
+  ): WorkspacesResetSandboxRequest {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/reset_sandbox',
       method: 'POST',
@@ -222,7 +222,7 @@ export class SeamHttpWorkspaces {
   update(
     parameters?: WorkspacesUpdateParameters,
     options: WorkspacesUpdateOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): WorkspacesUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/update',
       method: 'PATCH',
@@ -240,8 +240,16 @@ export type WorkspacesCreateParameters = RouteRequestBody<'/workspaces/create'>
  */
 export type WorkspacesCreateBody = WorkspacesCreateParameters
 
+/**
+ * @deprecated Use WorkspacesCreateRequest instead.
+ */
 export type WorkspacesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/create'>>
+>
+
+export type WorkspacesCreateRequest = SeamHttpRequest<
+  WorkspacesCreateResponse,
+  'workspace'
 >
 
 export type WorkspacesCreateOptions = Record<string, never>
@@ -253,8 +261,16 @@ export type WorkspacesGetParameters = RouteRequestParams<'/workspaces/get'>
  */
 export type WorkspacesGetParams = WorkspacesGetParameters
 
+/**
+ * @deprecated Use WorkspacesGetRequest instead.
+ */
 export type WorkspacesGetResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/get'>>
+>
+
+export type WorkspacesGetRequest = SeamHttpRequest<
+  WorkspacesGetResponse,
+  'workspace'
 >
 
 export type WorkspacesGetOptions = Record<string, never>
@@ -266,8 +282,16 @@ export type WorkspacesListParameters = RouteRequestParams<'/workspaces/list'>
  */
 export type WorkspacesListParams = WorkspacesListParameters
 
+/**
+ * @deprecated Use WorkspacesListRequest instead.
+ */
 export type WorkspacesListResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/list'>>
+>
+
+export type WorkspacesListRequest = SeamHttpRequest<
+  WorkspacesListResponse,
+  'workspaces'
 >
 
 export type WorkspacesListOptions = Record<string, never>
@@ -280,8 +304,16 @@ export type WorkspacesResetSandboxParameters =
  */
 export type WorkspacesResetSandboxBody = WorkspacesResetSandboxParameters
 
+/**
+ * @deprecated Use WorkspacesResetSandboxRequest instead.
+ */
 export type WorkspacesResetSandboxResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/reset_sandbox'>>
+>
+
+export type WorkspacesResetSandboxRequest = SeamHttpRequest<
+  WorkspacesResetSandboxResponse,
+  'action_attempt'
 >
 
 export type WorkspacesResetSandboxOptions = Pick<
@@ -296,8 +328,13 @@ export type WorkspacesUpdateParameters = RouteRequestBody<'/workspaces/update'>
  */
 export type WorkspacesUpdateBody = WorkspacesUpdateParameters
 
+/**
+ * @deprecated Use WorkspacesUpdateRequest instead.
+ */
 export type WorkspacesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/update'>>
 >
+
+export type WorkspacesUpdateRequest = SeamHttpRequest<void, undefined>
 
 export type WorkspacesUpdateOptions = Record<string, never>

@@ -166,7 +166,7 @@ export class SeamHttpNoiseSensorsSimulate {
   triggerNoiseThreshold(
     parameters?: NoiseSensorsSimulateTriggerNoiseThresholdParameters,
     options: NoiseSensorsSimulateTriggerNoiseThresholdOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): NoiseSensorsSimulateTriggerNoiseThresholdRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/simulate/trigger_noise_threshold',
       method: 'POST',
@@ -186,8 +186,16 @@ export type NoiseSensorsSimulateTriggerNoiseThresholdParameters =
 export type NoiseSensorsSimulateTriggerNoiseThresholdBody =
   NoiseSensorsSimulateTriggerNoiseThresholdParameters
 
+/**
+ * @deprecated Use NoiseSensorsSimulateTriggerNoiseThresholdRequest instead.
+ */
 export type NoiseSensorsSimulateTriggerNoiseThresholdResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/simulate/trigger_noise_threshold'>>
+>
+
+export type NoiseSensorsSimulateTriggerNoiseThresholdRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type NoiseSensorsSimulateTriggerNoiseThresholdOptions = Record<

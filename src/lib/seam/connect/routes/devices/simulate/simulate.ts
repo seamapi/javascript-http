@@ -166,7 +166,7 @@ export class SeamHttpDevicesSimulate {
   connect(
     parameters?: DevicesSimulateConnectParameters,
     options: DevicesSimulateConnectOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): DevicesSimulateConnectRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/connect',
       method: 'POST',
@@ -179,7 +179,7 @@ export class SeamHttpDevicesSimulate {
   disconnect(
     parameters?: DevicesSimulateDisconnectParameters,
     options: DevicesSimulateDisconnectOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): DevicesSimulateDisconnectRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/disconnect',
       method: 'POST',
@@ -192,7 +192,7 @@ export class SeamHttpDevicesSimulate {
   remove(
     parameters?: DevicesSimulateRemoveParameters,
     options: DevicesSimulateRemoveOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): DevicesSimulateRemoveRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/remove',
       method: 'POST',
@@ -211,9 +211,14 @@ export type DevicesSimulateConnectParameters =
  */
 export type DevicesSimulateConnectBody = DevicesSimulateConnectParameters
 
+/**
+ * @deprecated Use DevicesSimulateConnectRequest instead.
+ */
 export type DevicesSimulateConnectResponse = SetNonNullable<
   Required<RouteResponse<'/devices/simulate/connect'>>
 >
+
+export type DevicesSimulateConnectRequest = SeamHttpRequest<void, undefined>
 
 export type DevicesSimulateConnectOptions = Record<string, never>
 
@@ -225,9 +230,14 @@ export type DevicesSimulateDisconnectParameters =
  */
 export type DevicesSimulateDisconnectBody = DevicesSimulateDisconnectParameters
 
+/**
+ * @deprecated Use DevicesSimulateDisconnectRequest instead.
+ */
 export type DevicesSimulateDisconnectResponse = SetNonNullable<
   Required<RouteResponse<'/devices/simulate/disconnect'>>
 >
+
+export type DevicesSimulateDisconnectRequest = SeamHttpRequest<void, undefined>
 
 export type DevicesSimulateDisconnectOptions = Record<string, never>
 
@@ -239,8 +249,13 @@ export type DevicesSimulateRemoveParameters =
  */
 export type DevicesSimulateRemoveParams = DevicesSimulateRemoveParameters
 
+/**
+ * @deprecated Use DevicesSimulateRemoveRequest instead.
+ */
 export type DevicesSimulateRemoveResponse = SetNonNullable<
   Required<RouteResponse<'/devices/simulate/remove'>>
 >
+
+export type DevicesSimulateRemoveRequest = SeamHttpRequest<void, undefined>
 
 export type DevicesSimulateRemoveOptions = Record<string, never>

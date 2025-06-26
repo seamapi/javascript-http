@@ -174,10 +174,7 @@ export class SeamHttpAcsCredentialProvisioningAutomations {
   launch(
     parameters?: AcsCredentialProvisioningAutomationsLaunchParameters,
     options: AcsCredentialProvisioningAutomationsLaunchOptions = {},
-  ): SeamHttpRequest<
-    AcsCredentialProvisioningAutomationsLaunchResponse,
-    'acs_credential_provisioning_automation'
-  > {
+  ): AcsCredentialProvisioningAutomationsLaunchRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -202,8 +199,16 @@ export type AcsCredentialProvisioningAutomationsLaunchParameters =
 export type AcsCredentialProvisioningAutomationsLaunchBody =
   AcsCredentialProvisioningAutomationsLaunchParameters
 
+/**
+ * @deprecated Use AcsCredentialProvisioningAutomationsLaunchRequest instead.
+ */
 export type AcsCredentialProvisioningAutomationsLaunchResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credential_provisioning_automations/launch'>>
+>
+
+export type AcsCredentialProvisioningAutomationsLaunchRequest = SeamHttpRequest<
+  AcsCredentialProvisioningAutomationsLaunchResponse,
+  'acs_credential_provisioning_automation'
 >
 
 export type AcsCredentialProvisioningAutomationsLaunchOptions = Record<

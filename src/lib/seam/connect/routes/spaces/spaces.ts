@@ -170,7 +170,7 @@ export class SeamHttpSpaces {
   addAcsEntrances(
     parameters?: SpacesAddAcsEntrancesParameters,
     options: SpacesAddAcsEntrancesOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): SpacesAddAcsEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/add_acs_entrances',
       method: 'PUT',
@@ -183,7 +183,7 @@ export class SeamHttpSpaces {
   addDevices(
     parameters?: SpacesAddDevicesParameters,
     options: SpacesAddDevicesOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): SpacesAddDevicesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/add_devices',
       method: 'PUT',
@@ -196,7 +196,7 @@ export class SeamHttpSpaces {
   create(
     parameters?: SpacesCreateParameters,
     options: SpacesCreateOptions = {},
-  ): SeamHttpRequest<SpacesCreateResponse, 'space'> {
+  ): SpacesCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/create',
       method: 'POST',
@@ -209,7 +209,7 @@ export class SeamHttpSpaces {
   delete(
     parameters?: SpacesDeleteParameters,
     options: SpacesDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): SpacesDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/delete',
       method: 'POST',
@@ -222,7 +222,7 @@ export class SeamHttpSpaces {
   get(
     parameters?: SpacesGetParameters,
     options: SpacesGetOptions = {},
-  ): SeamHttpRequest<SpacesGetResponse, 'space'> {
+  ): SpacesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/get',
       method: 'POST',
@@ -235,7 +235,7 @@ export class SeamHttpSpaces {
   list(
     parameters?: SpacesListParameters,
     options: SpacesListOptions = {},
-  ): SeamHttpRequest<SpacesListResponse, 'spaces'> {
+  ): SpacesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/list',
       method: 'GET',
@@ -248,7 +248,7 @@ export class SeamHttpSpaces {
   removeAcsEntrances(
     parameters?: SpacesRemoveAcsEntrancesParameters,
     options: SpacesRemoveAcsEntrancesOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): SpacesRemoveAcsEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_acs_entrances',
       method: 'POST',
@@ -261,7 +261,7 @@ export class SeamHttpSpaces {
   removeDevices(
     parameters?: SpacesRemoveDevicesParameters,
     options: SpacesRemoveDevicesOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): SpacesRemoveDevicesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_devices',
       method: 'POST',
@@ -274,7 +274,7 @@ export class SeamHttpSpaces {
   update(
     parameters?: SpacesUpdateParameters,
     options: SpacesUpdateOptions = {},
-  ): SeamHttpRequest<SpacesUpdateResponse, 'space'> {
+  ): SpacesUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/update',
       method: 'PATCH',
@@ -293,9 +293,14 @@ export type SpacesAddAcsEntrancesParameters =
  */
 export type SpacesAddAcsEntrancesBody = SpacesAddAcsEntrancesParameters
 
+/**
+ * @deprecated Use SpacesAddAcsEntrancesRequest instead.
+ */
 export type SpacesAddAcsEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/spaces/add_acs_entrances'>>
 >
+
+export type SpacesAddAcsEntrancesRequest = SeamHttpRequest<void, undefined>
 
 export type SpacesAddAcsEntrancesOptions = Record<string, never>
 
@@ -306,9 +311,14 @@ export type SpacesAddDevicesParameters = RouteRequestBody<'/spaces/add_devices'>
  */
 export type SpacesAddDevicesBody = SpacesAddDevicesParameters
 
+/**
+ * @deprecated Use SpacesAddDevicesRequest instead.
+ */
 export type SpacesAddDevicesResponse = SetNonNullable<
   Required<RouteResponse<'/spaces/add_devices'>>
 >
+
+export type SpacesAddDevicesRequest = SeamHttpRequest<void, undefined>
 
 export type SpacesAddDevicesOptions = Record<string, never>
 
@@ -319,9 +329,14 @@ export type SpacesCreateParameters = RouteRequestBody<'/spaces/create'>
  */
 export type SpacesCreateBody = SpacesCreateParameters
 
+/**
+ * @deprecated Use SpacesCreateRequest instead.
+ */
 export type SpacesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/spaces/create'>>
 >
+
+export type SpacesCreateRequest = SeamHttpRequest<SpacesCreateResponse, 'space'>
 
 export type SpacesCreateOptions = Record<string, never>
 
@@ -332,9 +347,14 @@ export type SpacesDeleteParameters = RouteRequestBody<'/spaces/delete'>
  */
 export type SpacesDeleteParams = SpacesDeleteParameters
 
+/**
+ * @deprecated Use SpacesDeleteRequest instead.
+ */
 export type SpacesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/spaces/delete'>>
 >
+
+export type SpacesDeleteRequest = SeamHttpRequest<void, undefined>
 
 export type SpacesDeleteOptions = Record<string, never>
 
@@ -345,9 +365,14 @@ export type SpacesGetParameters = RouteRequestBody<'/spaces/get'>
  */
 export type SpacesGetParams = SpacesGetParameters
 
+/**
+ * @deprecated Use SpacesGetRequest instead.
+ */
 export type SpacesGetResponse = SetNonNullable<
   Required<RouteResponse<'/spaces/get'>>
 >
+
+export type SpacesGetRequest = SeamHttpRequest<SpacesGetResponse, 'space'>
 
 export type SpacesGetOptions = Record<string, never>
 
@@ -358,9 +383,14 @@ export type SpacesListParameters = RouteRequestParams<'/spaces/list'>
  */
 export type SpacesListParams = SpacesListParameters
 
+/**
+ * @deprecated Use SpacesListRequest instead.
+ */
 export type SpacesListResponse = SetNonNullable<
   Required<RouteResponse<'/spaces/list'>>
 >
+
+export type SpacesListRequest = SeamHttpRequest<SpacesListResponse, 'spaces'>
 
 export type SpacesListOptions = Record<string, never>
 
@@ -372,9 +402,14 @@ export type SpacesRemoveAcsEntrancesParameters =
  */
 export type SpacesRemoveAcsEntrancesParams = SpacesRemoveAcsEntrancesParameters
 
+/**
+ * @deprecated Use SpacesRemoveAcsEntrancesRequest instead.
+ */
 export type SpacesRemoveAcsEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/spaces/remove_acs_entrances'>>
 >
+
+export type SpacesRemoveAcsEntrancesRequest = SeamHttpRequest<void, undefined>
 
 export type SpacesRemoveAcsEntrancesOptions = Record<string, never>
 
@@ -386,9 +421,14 @@ export type SpacesRemoveDevicesParameters =
  */
 export type SpacesRemoveDevicesParams = SpacesRemoveDevicesParameters
 
+/**
+ * @deprecated Use SpacesRemoveDevicesRequest instead.
+ */
 export type SpacesRemoveDevicesResponse = SetNonNullable<
   Required<RouteResponse<'/spaces/remove_devices'>>
 >
+
+export type SpacesRemoveDevicesRequest = SeamHttpRequest<void, undefined>
 
 export type SpacesRemoveDevicesOptions = Record<string, never>
 
@@ -399,8 +439,13 @@ export type SpacesUpdateParameters = RouteRequestBody<'/spaces/update'>
  */
 export type SpacesUpdateBody = SpacesUpdateParameters
 
+/**
+ * @deprecated Use SpacesUpdateRequest instead.
+ */
 export type SpacesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/spaces/update'>>
 >
+
+export type SpacesUpdateRequest = SeamHttpRequest<SpacesUpdateResponse, 'space'>
 
 export type SpacesUpdateOptions = Record<string, never>

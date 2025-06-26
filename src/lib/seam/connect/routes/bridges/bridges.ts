@@ -171,7 +171,7 @@ export class SeamHttpBridges {
   get(
     parameters?: BridgesGetParameters,
     options: BridgesGetOptions = {},
-  ): SeamHttpRequest<BridgesGetResponse, 'bridge'> {
+  ): BridgesGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -189,7 +189,7 @@ export class SeamHttpBridges {
   list(
     parameters?: BridgesListParameters,
     options: BridgesListOptions = {},
-  ): SeamHttpRequest<BridgesListResponse, 'bridges'> {
+  ): BridgesListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -212,9 +212,14 @@ export type BridgesGetParameters = RouteRequestBody<'/bridges/get'>
  */
 export type BridgesGetParams = BridgesGetParameters
 
+/**
+ * @deprecated Use BridgesGetRequest instead.
+ */
 export type BridgesGetResponse = SetNonNullable<
   Required<RouteResponse<'/bridges/get'>>
 >
+
+export type BridgesGetRequest = SeamHttpRequest<BridgesGetResponse, 'bridge'>
 
 export type BridgesGetOptions = Record<string, never>
 
@@ -225,8 +230,13 @@ export type BridgesListParameters = RouteRequestBody<'/bridges/list'>
  */
 export type BridgesListParams = BridgesListParameters
 
+/**
+ * @deprecated Use BridgesListRequest instead.
+ */
 export type BridgesListResponse = SetNonNullable<
   Required<RouteResponse<'/bridges/list'>>
 >
+
+export type BridgesListRequest = SeamHttpRequest<BridgesListResponse, 'bridges'>
 
 export type BridgesListOptions = Record<string, never>

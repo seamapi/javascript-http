@@ -169,7 +169,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
   delete(
     parameters?: UserIdentitiesEnrollmentAutomationsDeleteParameters,
     options: UserIdentitiesEnrollmentAutomationsDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): UserIdentitiesEnrollmentAutomationsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/enrollment_automations/delete',
       method: 'POST',
@@ -182,10 +182,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
   get(
     parameters?: UserIdentitiesEnrollmentAutomationsGetParameters,
     options: UserIdentitiesEnrollmentAutomationsGetOptions = {},
-  ): SeamHttpRequest<
-    UserIdentitiesEnrollmentAutomationsGetResponse,
-    'enrollment_automation'
-  > {
+  ): UserIdentitiesEnrollmentAutomationsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/enrollment_automations/get',
       method: 'POST',
@@ -198,10 +195,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
   launch(
     parameters?: UserIdentitiesEnrollmentAutomationsLaunchParameters,
     options: UserIdentitiesEnrollmentAutomationsLaunchOptions = {},
-  ): SeamHttpRequest<
-    UserIdentitiesEnrollmentAutomationsLaunchResponse,
-    'enrollment_automation'
-  > {
+  ): UserIdentitiesEnrollmentAutomationsLaunchRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/enrollment_automations/launch',
       method: 'POST',
@@ -214,10 +208,7 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
   list(
     parameters?: UserIdentitiesEnrollmentAutomationsListParameters,
     options: UserIdentitiesEnrollmentAutomationsListOptions = {},
-  ): SeamHttpRequest<
-    UserIdentitiesEnrollmentAutomationsListResponse,
-    'enrollment_automations'
-  > {
+  ): UserIdentitiesEnrollmentAutomationsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/enrollment_automations/list',
       method: 'POST',
@@ -237,8 +228,16 @@ export type UserIdentitiesEnrollmentAutomationsDeleteParameters =
 export type UserIdentitiesEnrollmentAutomationsDeleteParams =
   UserIdentitiesEnrollmentAutomationsDeleteParameters
 
+/**
+ * @deprecated Use UserIdentitiesEnrollmentAutomationsDeleteRequest instead.
+ */
 export type UserIdentitiesEnrollmentAutomationsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/enrollment_automations/delete'>>
+>
+
+export type UserIdentitiesEnrollmentAutomationsDeleteRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type UserIdentitiesEnrollmentAutomationsDeleteOptions = Record<
@@ -255,8 +254,16 @@ export type UserIdentitiesEnrollmentAutomationsGetParameters =
 export type UserIdentitiesEnrollmentAutomationsGetParams =
   UserIdentitiesEnrollmentAutomationsGetParameters
 
+/**
+ * @deprecated Use UserIdentitiesEnrollmentAutomationsGetRequest instead.
+ */
 export type UserIdentitiesEnrollmentAutomationsGetResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/enrollment_automations/get'>>
+>
+
+export type UserIdentitiesEnrollmentAutomationsGetRequest = SeamHttpRequest<
+  UserIdentitiesEnrollmentAutomationsGetResponse,
+  'enrollment_automation'
 >
 
 export type UserIdentitiesEnrollmentAutomationsGetOptions = Record<
@@ -273,8 +280,16 @@ export type UserIdentitiesEnrollmentAutomationsLaunchParameters =
 export type UserIdentitiesEnrollmentAutomationsLaunchBody =
   UserIdentitiesEnrollmentAutomationsLaunchParameters
 
+/**
+ * @deprecated Use UserIdentitiesEnrollmentAutomationsLaunchRequest instead.
+ */
 export type UserIdentitiesEnrollmentAutomationsLaunchResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/enrollment_automations/launch'>>
+>
+
+export type UserIdentitiesEnrollmentAutomationsLaunchRequest = SeamHttpRequest<
+  UserIdentitiesEnrollmentAutomationsLaunchResponse,
+  'enrollment_automation'
 >
 
 export type UserIdentitiesEnrollmentAutomationsLaunchOptions = Record<
@@ -291,8 +306,16 @@ export type UserIdentitiesEnrollmentAutomationsListParameters =
 export type UserIdentitiesEnrollmentAutomationsListParams =
   UserIdentitiesEnrollmentAutomationsListParameters
 
+/**
+ * @deprecated Use UserIdentitiesEnrollmentAutomationsListRequest instead.
+ */
 export type UserIdentitiesEnrollmentAutomationsListResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/enrollment_automations/list'>>
+>
+
+export type UserIdentitiesEnrollmentAutomationsListRequest = SeamHttpRequest<
+  UserIdentitiesEnrollmentAutomationsListResponse,
+  'enrollment_automations'
 >
 
 export type UserIdentitiesEnrollmentAutomationsListOptions = Record<

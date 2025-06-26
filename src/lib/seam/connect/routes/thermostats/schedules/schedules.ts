@@ -166,10 +166,7 @@ export class SeamHttpThermostatsSchedules {
   create(
     parameters?: ThermostatsSchedulesCreateParameters,
     options: ThermostatsSchedulesCreateOptions = {},
-  ): SeamHttpRequest<
-    ThermostatsSchedulesCreateResponse,
-    'thermostat_schedule'
-  > {
+  ): ThermostatsSchedulesCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/create',
       method: 'POST',
@@ -182,7 +179,7 @@ export class SeamHttpThermostatsSchedules {
   delete(
     parameters?: ThermostatsSchedulesDeleteParameters,
     options: ThermostatsSchedulesDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ThermostatsSchedulesDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/delete',
       method: 'POST',
@@ -195,7 +192,7 @@ export class SeamHttpThermostatsSchedules {
   get(
     parameters?: ThermostatsSchedulesGetParameters,
     options: ThermostatsSchedulesGetOptions = {},
-  ): SeamHttpRequest<ThermostatsSchedulesGetResponse, 'thermostat_schedule'> {
+  ): ThermostatsSchedulesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/get',
       method: 'POST',
@@ -208,7 +205,7 @@ export class SeamHttpThermostatsSchedules {
   list(
     parameters?: ThermostatsSchedulesListParameters,
     options: ThermostatsSchedulesListOptions = {},
-  ): SeamHttpRequest<ThermostatsSchedulesListResponse, 'thermostat_schedules'> {
+  ): ThermostatsSchedulesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/list',
       method: 'POST',
@@ -221,7 +218,7 @@ export class SeamHttpThermostatsSchedules {
   update(
     parameters?: ThermostatsSchedulesUpdateParameters,
     options: ThermostatsSchedulesUpdateOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ThermostatsSchedulesUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/update',
       method: 'PATCH',
@@ -241,8 +238,16 @@ export type ThermostatsSchedulesCreateParameters =
 export type ThermostatsSchedulesCreateBody =
   ThermostatsSchedulesCreateParameters
 
+/**
+ * @deprecated Use ThermostatsSchedulesCreateRequest instead.
+ */
 export type ThermostatsSchedulesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/schedules/create'>>
+>
+
+export type ThermostatsSchedulesCreateRequest = SeamHttpRequest<
+  ThermostatsSchedulesCreateResponse,
+  'thermostat_schedule'
 >
 
 export type ThermostatsSchedulesCreateOptions = Record<string, never>
@@ -256,9 +261,14 @@ export type ThermostatsSchedulesDeleteParameters =
 export type ThermostatsSchedulesDeleteParams =
   ThermostatsSchedulesDeleteParameters
 
+/**
+ * @deprecated Use ThermostatsSchedulesDeleteRequest instead.
+ */
 export type ThermostatsSchedulesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/schedules/delete'>>
 >
+
+export type ThermostatsSchedulesDeleteRequest = SeamHttpRequest<void, undefined>
 
 export type ThermostatsSchedulesDeleteOptions = Record<string, never>
 
@@ -270,8 +280,16 @@ export type ThermostatsSchedulesGetParameters =
  */
 export type ThermostatsSchedulesGetParams = ThermostatsSchedulesGetParameters
 
+/**
+ * @deprecated Use ThermostatsSchedulesGetRequest instead.
+ */
 export type ThermostatsSchedulesGetResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/schedules/get'>>
+>
+
+export type ThermostatsSchedulesGetRequest = SeamHttpRequest<
+  ThermostatsSchedulesGetResponse,
+  'thermostat_schedule'
 >
 
 export type ThermostatsSchedulesGetOptions = Record<string, never>
@@ -284,8 +302,16 @@ export type ThermostatsSchedulesListParameters =
  */
 export type ThermostatsSchedulesListParams = ThermostatsSchedulesListParameters
 
+/**
+ * @deprecated Use ThermostatsSchedulesListRequest instead.
+ */
 export type ThermostatsSchedulesListResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/schedules/list'>>
+>
+
+export type ThermostatsSchedulesListRequest = SeamHttpRequest<
+  ThermostatsSchedulesListResponse,
+  'thermostat_schedules'
 >
 
 export type ThermostatsSchedulesListOptions = Record<string, never>
@@ -299,8 +325,13 @@ export type ThermostatsSchedulesUpdateParameters =
 export type ThermostatsSchedulesUpdateBody =
   ThermostatsSchedulesUpdateParameters
 
+/**
+ * @deprecated Use ThermostatsSchedulesUpdateRequest instead.
+ */
 export type ThermostatsSchedulesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/schedules/update'>>
 >
+
+export type ThermostatsSchedulesUpdateRequest = SeamHttpRequest<void, undefined>
 
 export type ThermostatsSchedulesUpdateOptions = Record<string, never>

@@ -165,7 +165,7 @@ export class SeamHttpClientSessions {
   create(
     parameters?: ClientSessionsCreateParameters,
     options: ClientSessionsCreateOptions = {},
-  ): SeamHttpRequest<ClientSessionsCreateResponse, 'client_session'> {
+  ): ClientSessionsCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/create',
       method: 'PUT',
@@ -178,7 +178,7 @@ export class SeamHttpClientSessions {
   delete(
     parameters?: ClientSessionsDeleteParameters,
     options: ClientSessionsDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ClientSessionsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/delete',
       method: 'POST',
@@ -191,7 +191,7 @@ export class SeamHttpClientSessions {
   get(
     parameters?: ClientSessionsGetParameters,
     options: ClientSessionsGetOptions = {},
-  ): SeamHttpRequest<ClientSessionsGetResponse, 'client_session'> {
+  ): ClientSessionsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/get',
       method: 'POST',
@@ -204,7 +204,7 @@ export class SeamHttpClientSessions {
   getOrCreate(
     parameters?: ClientSessionsGetOrCreateParameters,
     options: ClientSessionsGetOrCreateOptions = {},
-  ): SeamHttpRequest<ClientSessionsGetOrCreateResponse, 'client_session'> {
+  ): ClientSessionsGetOrCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/get_or_create',
       method: 'POST',
@@ -217,7 +217,7 @@ export class SeamHttpClientSessions {
   grantAccess(
     parameters?: ClientSessionsGrantAccessParameters,
     options: ClientSessionsGrantAccessOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ClientSessionsGrantAccessRequest {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/grant_access',
       method: 'PATCH',
@@ -230,7 +230,7 @@ export class SeamHttpClientSessions {
   list(
     parameters?: ClientSessionsListParameters,
     options: ClientSessionsListOptions = {},
-  ): SeamHttpRequest<ClientSessionsListResponse, 'client_sessions'> {
+  ): ClientSessionsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/list',
       method: 'POST',
@@ -243,7 +243,7 @@ export class SeamHttpClientSessions {
   revoke(
     parameters?: ClientSessionsRevokeParameters,
     options: ClientSessionsRevokeOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ClientSessionsRevokeRequest {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/revoke',
       method: 'POST',
@@ -262,8 +262,16 @@ export type ClientSessionsCreateParameters =
  */
 export type ClientSessionsCreateBody = ClientSessionsCreateParameters
 
+/**
+ * @deprecated Use ClientSessionsCreateRequest instead.
+ */
 export type ClientSessionsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/create'>>
+>
+
+export type ClientSessionsCreateRequest = SeamHttpRequest<
+  ClientSessionsCreateResponse,
+  'client_session'
 >
 
 export type ClientSessionsCreateOptions = Record<string, never>
@@ -276,9 +284,14 @@ export type ClientSessionsDeleteParameters =
  */
 export type ClientSessionsDeleteParams = ClientSessionsDeleteParameters
 
+/**
+ * @deprecated Use ClientSessionsDeleteRequest instead.
+ */
 export type ClientSessionsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/delete'>>
 >
+
+export type ClientSessionsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export type ClientSessionsDeleteOptions = Record<string, never>
 
@@ -290,8 +303,16 @@ export type ClientSessionsGetParameters =
  */
 export type ClientSessionsGetParams = ClientSessionsGetParameters
 
+/**
+ * @deprecated Use ClientSessionsGetRequest instead.
+ */
 export type ClientSessionsGetResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/get'>>
+>
+
+export type ClientSessionsGetRequest = SeamHttpRequest<
+  ClientSessionsGetResponse,
+  'client_session'
 >
 
 export type ClientSessionsGetOptions = Record<string, never>
@@ -304,8 +325,16 @@ export type ClientSessionsGetOrCreateParameters =
  */
 export type ClientSessionsGetOrCreateBody = ClientSessionsGetOrCreateParameters
 
+/**
+ * @deprecated Use ClientSessionsGetOrCreateRequest instead.
+ */
 export type ClientSessionsGetOrCreateResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/get_or_create'>>
+>
+
+export type ClientSessionsGetOrCreateRequest = SeamHttpRequest<
+  ClientSessionsGetOrCreateResponse,
+  'client_session'
 >
 
 export type ClientSessionsGetOrCreateOptions = Record<string, never>
@@ -318,9 +347,14 @@ export type ClientSessionsGrantAccessParameters =
  */
 export type ClientSessionsGrantAccessBody = ClientSessionsGrantAccessParameters
 
+/**
+ * @deprecated Use ClientSessionsGrantAccessRequest instead.
+ */
 export type ClientSessionsGrantAccessResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/grant_access'>>
 >
+
+export type ClientSessionsGrantAccessRequest = SeamHttpRequest<void, undefined>
 
 export type ClientSessionsGrantAccessOptions = Record<string, never>
 
@@ -332,8 +366,16 @@ export type ClientSessionsListParameters =
  */
 export type ClientSessionsListParams = ClientSessionsListParameters
 
+/**
+ * @deprecated Use ClientSessionsListRequest instead.
+ */
 export type ClientSessionsListResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/list'>>
+>
+
+export type ClientSessionsListRequest = SeamHttpRequest<
+  ClientSessionsListResponse,
+  'client_sessions'
 >
 
 export type ClientSessionsListOptions = Record<string, never>
@@ -346,8 +388,13 @@ export type ClientSessionsRevokeParameters =
  */
 export type ClientSessionsRevokeBody = ClientSessionsRevokeParameters
 
+/**
+ * @deprecated Use ClientSessionsRevokeRequest instead.
+ */
 export type ClientSessionsRevokeResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/revoke'>>
 >
+
+export type ClientSessionsRevokeRequest = SeamHttpRequest<void, undefined>
 
 export type ClientSessionsRevokeOptions = Record<string, never>

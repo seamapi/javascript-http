@@ -171,7 +171,7 @@ export class SeamHttpSeamPartnerV1Resources {
   list(
     parameters?: SeamPartnerV1ResourcesListParameters,
     options: SeamPartnerV1ResourcesListOptions = {},
-  ): SeamHttpRequest<SeamPartnerV1ResourcesListResponse, 'partner_resources'> {
+  ): SeamPartnerV1ResourcesListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -196,8 +196,16 @@ export type SeamPartnerV1ResourcesListParameters =
 export type SeamPartnerV1ResourcesListParams =
   SeamPartnerV1ResourcesListParameters
 
+/**
+ * @deprecated Use SeamPartnerV1ResourcesListRequest instead.
+ */
 export type SeamPartnerV1ResourcesListResponse = SetNonNullable<
   Required<RouteResponse<'/seam/partner/v1/resources/list'>>
+>
+
+export type SeamPartnerV1ResourcesListRequest = SeamHttpRequest<
+  SeamPartnerV1ResourcesListResponse,
+  'partner_resources'
 >
 
 export type SeamPartnerV1ResourcesListOptions = Record<string, never>

@@ -177,7 +177,7 @@ export class SeamHttpDevices {
   delete(
     parameters?: DevicesDeleteParameters,
     options: DevicesDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): DevicesDeleteRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -195,7 +195,7 @@ export class SeamHttpDevices {
   get(
     parameters?: DevicesGetParameters,
     options: DevicesGetOptions = {},
-  ): SeamHttpRequest<DevicesGetResponse, 'device'> {
+  ): DevicesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/get',
       method: 'POST',
@@ -208,7 +208,7 @@ export class SeamHttpDevices {
   list(
     parameters?: DevicesListParameters,
     options: DevicesListOptions = {},
-  ): SeamHttpRequest<DevicesListResponse, 'devices'> {
+  ): DevicesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/list',
       method: 'POST',
@@ -221,7 +221,7 @@ export class SeamHttpDevices {
   listDeviceProviders(
     parameters?: DevicesListDeviceProvidersParameters,
     options: DevicesListDeviceProvidersOptions = {},
-  ): SeamHttpRequest<DevicesListDeviceProvidersResponse, 'device_providers'> {
+  ): DevicesListDeviceProvidersRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/list_device_providers',
       method: 'POST',
@@ -234,7 +234,7 @@ export class SeamHttpDevices {
   update(
     parameters?: DevicesUpdateParameters,
     options: DevicesUpdateOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): DevicesUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/update',
       method: 'PATCH',
@@ -252,9 +252,14 @@ export type DevicesDeleteParameters = RouteRequestBody<'/devices/delete'>
  */
 export type DevicesDeleteParams = DevicesDeleteParameters
 
+/**
+ * @deprecated Use DevicesDeleteRequest instead.
+ */
 export type DevicesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/devices/delete'>>
 >
+
+export type DevicesDeleteRequest = SeamHttpRequest<void, undefined>
 
 export type DevicesDeleteOptions = Record<string, never>
 
@@ -265,9 +270,14 @@ export type DevicesGetParameters = RouteRequestBody<'/devices/get'>
  */
 export type DevicesGetParams = DevicesGetParameters
 
+/**
+ * @deprecated Use DevicesGetRequest instead.
+ */
 export type DevicesGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/get'>>
 >
+
+export type DevicesGetRequest = SeamHttpRequest<DevicesGetResponse, 'device'>
 
 export type DevicesGetOptions = Record<string, never>
 
@@ -278,9 +288,14 @@ export type DevicesListParameters = RouteRequestBody<'/devices/list'>
  */
 export type DevicesListParams = DevicesListParameters
 
+/**
+ * @deprecated Use DevicesListRequest instead.
+ */
 export type DevicesListResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list'>>
 >
+
+export type DevicesListRequest = SeamHttpRequest<DevicesListResponse, 'devices'>
 
 export type DevicesListOptions = Record<string, never>
 
@@ -293,8 +308,16 @@ export type DevicesListDeviceProvidersParameters =
 export type DevicesListDeviceProvidersParams =
   DevicesListDeviceProvidersParameters
 
+/**
+ * @deprecated Use DevicesListDeviceProvidersRequest instead.
+ */
 export type DevicesListDeviceProvidersResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list_device_providers'>>
+>
+
+export type DevicesListDeviceProvidersRequest = SeamHttpRequest<
+  DevicesListDeviceProvidersResponse,
+  'device_providers'
 >
 
 export type DevicesListDeviceProvidersOptions = Record<string, never>
@@ -306,8 +329,13 @@ export type DevicesUpdateParameters = RouteRequestBody<'/devices/update'>
  */
 export type DevicesUpdateBody = DevicesUpdateParameters
 
+/**
+ * @deprecated Use DevicesUpdateRequest instead.
+ */
 export type DevicesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/devices/update'>>
 >
+
+export type DevicesUpdateRequest = SeamHttpRequest<void, undefined>
 
 export type DevicesUpdateOptions = Record<string, never>

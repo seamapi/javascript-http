@@ -169,10 +169,7 @@ export class SeamHttpThermostatsDailyPrograms {
   create(
     parameters?: ThermostatsDailyProgramsCreateParameters,
     options: ThermostatsDailyProgramsCreateOptions = {},
-  ): SeamHttpRequest<
-    ThermostatsDailyProgramsCreateResponse,
-    'thermostat_daily_program'
-  > {
+  ): ThermostatsDailyProgramsCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/create',
       method: 'POST',
@@ -185,7 +182,7 @@ export class SeamHttpThermostatsDailyPrograms {
   delete(
     parameters?: ThermostatsDailyProgramsDeleteParameters,
     options: ThermostatsDailyProgramsDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): ThermostatsDailyProgramsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/delete',
       method: 'POST',
@@ -198,7 +195,7 @@ export class SeamHttpThermostatsDailyPrograms {
   update(
     parameters?: ThermostatsDailyProgramsUpdateParameters,
     options: ThermostatsDailyProgramsUpdateOptions = {},
-  ): SeamHttpRequest<ThermostatsDailyProgramsUpdateResponse, 'action_attempt'> {
+  ): ThermostatsDailyProgramsUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/update',
       method: 'PATCH',
@@ -218,8 +215,16 @@ export type ThermostatsDailyProgramsCreateParameters =
 export type ThermostatsDailyProgramsCreateBody =
   ThermostatsDailyProgramsCreateParameters
 
+/**
+ * @deprecated Use ThermostatsDailyProgramsCreateRequest instead.
+ */
 export type ThermostatsDailyProgramsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/daily_programs/create'>>
+>
+
+export type ThermostatsDailyProgramsCreateRequest = SeamHttpRequest<
+  ThermostatsDailyProgramsCreateResponse,
+  'thermostat_daily_program'
 >
 
 export type ThermostatsDailyProgramsCreateOptions = Record<string, never>
@@ -233,8 +238,16 @@ export type ThermostatsDailyProgramsDeleteParameters =
 export type ThermostatsDailyProgramsDeleteParams =
   ThermostatsDailyProgramsDeleteParameters
 
+/**
+ * @deprecated Use ThermostatsDailyProgramsDeleteRequest instead.
+ */
 export type ThermostatsDailyProgramsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/daily_programs/delete'>>
+>
+
+export type ThermostatsDailyProgramsDeleteRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type ThermostatsDailyProgramsDeleteOptions = Record<string, never>
@@ -248,8 +261,16 @@ export type ThermostatsDailyProgramsUpdateParameters =
 export type ThermostatsDailyProgramsUpdateBody =
   ThermostatsDailyProgramsUpdateParameters
 
+/**
+ * @deprecated Use ThermostatsDailyProgramsUpdateRequest instead.
+ */
 export type ThermostatsDailyProgramsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/daily_programs/update'>>
+>
+
+export type ThermostatsDailyProgramsUpdateRequest = SeamHttpRequest<
+  ThermostatsDailyProgramsUpdateResponse,
+  'action_attempt'
 >
 
 export type ThermostatsDailyProgramsUpdateOptions = Pick<

@@ -166,7 +166,7 @@ export class SeamHttpAcsSystems {
   get(
     parameters?: AcsSystemsGetParameters,
     options: AcsSystemsGetOptions = {},
-  ): SeamHttpRequest<AcsSystemsGetResponse, 'acs_system'> {
+  ): AcsSystemsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/get',
       method: 'POST',
@@ -179,7 +179,7 @@ export class SeamHttpAcsSystems {
   list(
     parameters?: AcsSystemsListParameters,
     options: AcsSystemsListOptions = {},
-  ): SeamHttpRequest<AcsSystemsListResponse, 'acs_systems'> {
+  ): AcsSystemsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/list',
       method: 'POST',
@@ -192,10 +192,7 @@ export class SeamHttpAcsSystems {
   listCompatibleCredentialManagerAcsSystems(
     parameters?: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
     options: AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = {},
-  ): SeamHttpRequest<
-    AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse,
-    'acs_systems'
-  > {
+  ): AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/list_compatible_credential_manager_acs_systems',
       method: 'POST',
@@ -213,8 +210,16 @@ export type AcsSystemsGetParameters = RouteRequestBody<'/acs/systems/get'>
  */
 export type AcsSystemsGetParams = AcsSystemsGetParameters
 
+/**
+ * @deprecated Use AcsSystemsGetRequest instead.
+ */
 export type AcsSystemsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/get'>>
+>
+
+export type AcsSystemsGetRequest = SeamHttpRequest<
+  AcsSystemsGetResponse,
+  'acs_system'
 >
 
 export type AcsSystemsGetOptions = Record<string, never>
@@ -226,8 +231,16 @@ export type AcsSystemsListParameters = RouteRequestBody<'/acs/systems/list'>
  */
 export type AcsSystemsListParams = AcsSystemsListParameters
 
+/**
+ * @deprecated Use AcsSystemsListRequest instead.
+ */
 export type AcsSystemsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/list'>>
+>
+
+export type AcsSystemsListRequest = SeamHttpRequest<
+  AcsSystemsListResponse,
+  'acs_systems'
 >
 
 export type AcsSystemsListOptions = Record<string, never>
@@ -241,11 +254,20 @@ export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters =
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParams =
   AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters
 
+/**
+ * @deprecated Use AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest instead.
+ */
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/acs/systems/list_compatible_credential_manager_acs_systems'>
     >
+  >
+
+export type AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest =
+  SeamHttpRequest<
+    AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse,
+    'acs_systems'
   >
 
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = Record<

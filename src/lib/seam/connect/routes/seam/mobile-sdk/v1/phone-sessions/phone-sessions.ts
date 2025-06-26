@@ -174,10 +174,7 @@ export class SeamHttpSeamMobileSdkV1PhoneSessions {
   getOrCreate(
     parameters?: SeamMobileSdkV1PhoneSessionsGetOrCreateParameters,
     options: SeamMobileSdkV1PhoneSessionsGetOrCreateOptions = {},
-  ): SeamHttpRequest<
-    SeamMobileSdkV1PhoneSessionsGetOrCreateResponse,
-    'phone_session'
-  > {
+  ): SeamMobileSdkV1PhoneSessionsGetOrCreateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -202,8 +199,16 @@ export type SeamMobileSdkV1PhoneSessionsGetOrCreateParameters =
 export type SeamMobileSdkV1PhoneSessionsGetOrCreateBody =
   SeamMobileSdkV1PhoneSessionsGetOrCreateParameters
 
+/**
+ * @deprecated Use SeamMobileSdkV1PhoneSessionsGetOrCreateRequest instead.
+ */
 export type SeamMobileSdkV1PhoneSessionsGetOrCreateResponse = SetNonNullable<
   Required<RouteResponse<'/seam/mobile_sdk/v1/phone_sessions/get_or_create'>>
+>
+
+export type SeamMobileSdkV1PhoneSessionsGetOrCreateRequest = SeamHttpRequest<
+  SeamMobileSdkV1PhoneSessionsGetOrCreateResponse,
+  'phone_session'
 >
 
 export type SeamMobileSdkV1PhoneSessionsGetOrCreateOptions = Record<

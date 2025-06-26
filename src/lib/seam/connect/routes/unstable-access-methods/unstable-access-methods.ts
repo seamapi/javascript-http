@@ -171,7 +171,7 @@ export class SeamHttpUnstableAccessMethods {
   delete(
     parameters?: UnstableAccessMethodsDeleteParameters,
     options: UnstableAccessMethodsDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): UnstableAccessMethodsDeleteRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -189,7 +189,7 @@ export class SeamHttpUnstableAccessMethods {
   get(
     parameters?: UnstableAccessMethodsGetParameters,
     options: UnstableAccessMethodsGetOptions = {},
-  ): SeamHttpRequest<UnstableAccessMethodsGetResponse, 'access_method'> {
+  ): UnstableAccessMethodsGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -207,7 +207,7 @@ export class SeamHttpUnstableAccessMethods {
   list(
     parameters?: UnstableAccessMethodsListParameters,
     options: UnstableAccessMethodsListOptions = {},
-  ): SeamHttpRequest<UnstableAccessMethodsListResponse, 'access_methods'> {
+  ): UnstableAccessMethodsListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -232,8 +232,16 @@ export type UnstableAccessMethodsDeleteParameters =
 export type UnstableAccessMethodsDeleteParams =
   UnstableAccessMethodsDeleteParameters
 
+/**
+ * @deprecated Use UnstableAccessMethodsDeleteRequest instead.
+ */
 export type UnstableAccessMethodsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_methods/delete'>>
+>
+
+export type UnstableAccessMethodsDeleteRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type UnstableAccessMethodsDeleteOptions = Record<string, never>
@@ -246,8 +254,16 @@ export type UnstableAccessMethodsGetParameters =
  */
 export type UnstableAccessMethodsGetParams = UnstableAccessMethodsGetParameters
 
+/**
+ * @deprecated Use UnstableAccessMethodsGetRequest instead.
+ */
 export type UnstableAccessMethodsGetResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_methods/get'>>
+>
+
+export type UnstableAccessMethodsGetRequest = SeamHttpRequest<
+  UnstableAccessMethodsGetResponse,
+  'access_method'
 >
 
 export type UnstableAccessMethodsGetOptions = Record<string, never>
@@ -261,8 +277,16 @@ export type UnstableAccessMethodsListParameters =
 export type UnstableAccessMethodsListParams =
   UnstableAccessMethodsListParameters
 
+/**
+ * @deprecated Use UnstableAccessMethodsListRequest instead.
+ */
 export type UnstableAccessMethodsListResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_methods/list'>>
+>
+
+export type UnstableAccessMethodsListRequest = SeamHttpRequest<
+  UnstableAccessMethodsListResponse,
+  'access_methods'
 >
 
 export type UnstableAccessMethodsListOptions = Record<string, never>

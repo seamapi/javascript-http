@@ -178,7 +178,7 @@ export class SeamHttpAcsCredentialsUnmanaged {
   get(
     parameters?: AcsCredentialsUnmanagedGetParameters,
     options: AcsCredentialsUnmanagedGetOptions = {},
-  ): SeamHttpRequest<AcsCredentialsUnmanagedGetResponse, 'acs_credential'> {
+  ): AcsCredentialsUnmanagedGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -196,7 +196,7 @@ export class SeamHttpAcsCredentialsUnmanaged {
   list(
     parameters?: AcsCredentialsUnmanagedListParameters,
     options: AcsCredentialsUnmanagedListOptions = {},
-  ): SeamHttpRequest<AcsCredentialsUnmanagedListResponse, 'acs_credentials'> {
+  ): AcsCredentialsUnmanagedListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -221,8 +221,16 @@ export type AcsCredentialsUnmanagedGetParameters =
 export type AcsCredentialsUnmanagedGetParams =
   AcsCredentialsUnmanagedGetParameters
 
+/**
+ * @deprecated Use AcsCredentialsUnmanagedGetRequest instead.
+ */
 export type AcsCredentialsUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/unmanaged/get'>>
+>
+
+export type AcsCredentialsUnmanagedGetRequest = SeamHttpRequest<
+  AcsCredentialsUnmanagedGetResponse,
+  'acs_credential'
 >
 
 export type AcsCredentialsUnmanagedGetOptions = Record<string, never>
@@ -236,8 +244,16 @@ export type AcsCredentialsUnmanagedListParameters =
 export type AcsCredentialsUnmanagedListParams =
   AcsCredentialsUnmanagedListParameters
 
+/**
+ * @deprecated Use AcsCredentialsUnmanagedListRequest instead.
+ */
 export type AcsCredentialsUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/unmanaged/list'>>
+>
+
+export type AcsCredentialsUnmanagedListRequest = SeamHttpRequest<
+  AcsCredentialsUnmanagedListResponse,
+  'acs_credentials'
 >
 
 export type AcsCredentialsUnmanagedListOptions = Record<string, never>

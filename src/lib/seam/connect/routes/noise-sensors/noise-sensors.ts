@@ -180,7 +180,7 @@ export class SeamHttpNoiseSensors {
   list(
     parameters?: NoiseSensorsListParameters,
     options: NoiseSensorsListOptions = {},
-  ): SeamHttpRequest<NoiseSensorsListResponse, 'devices'> {
+  ): NoiseSensorsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/list',
       method: 'POST',
@@ -198,8 +198,16 @@ export type NoiseSensorsListParameters = RouteRequestBody<'/noise_sensors/list'>
  */
 export type NoiseSensorsListParams = NoiseSensorsListParameters
 
+/**
+ * @deprecated Use NoiseSensorsListRequest instead.
+ */
 export type NoiseSensorsListResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/list'>>
+>
+
+export type NoiseSensorsListRequest = SeamHttpRequest<
+  NoiseSensorsListResponse,
+  'devices'
 >
 
 export type NoiseSensorsListOptions = Record<string, never>

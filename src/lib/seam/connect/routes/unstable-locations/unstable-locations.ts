@@ -175,7 +175,7 @@ export class SeamHttpUnstableLocations {
   addAcsEntrances(
     parameters?: UnstableLocationsAddAcsEntrancesParameters,
     options: UnstableLocationsAddAcsEntrancesOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): UnstableLocationsAddAcsEntrancesRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -193,7 +193,7 @@ export class SeamHttpUnstableLocations {
   addDevices(
     parameters?: UnstableLocationsAddDevicesParameters,
     options: UnstableLocationsAddDevicesOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): UnstableLocationsAddDevicesRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -211,7 +211,7 @@ export class SeamHttpUnstableLocations {
   create(
     parameters?: UnstableLocationsCreateParameters,
     options: UnstableLocationsCreateOptions = {},
-  ): SeamHttpRequest<UnstableLocationsCreateResponse, 'location'> {
+  ): UnstableLocationsCreateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -229,7 +229,7 @@ export class SeamHttpUnstableLocations {
   delete(
     parameters?: UnstableLocationsDeleteParameters,
     options: UnstableLocationsDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): UnstableLocationsDeleteRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -247,7 +247,7 @@ export class SeamHttpUnstableLocations {
   get(
     parameters?: UnstableLocationsGetParameters,
     options: UnstableLocationsGetOptions = {},
-  ): SeamHttpRequest<UnstableLocationsGetResponse, 'location'> {
+  ): UnstableLocationsGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -265,7 +265,7 @@ export class SeamHttpUnstableLocations {
   list(
     parameters?: UnstableLocationsListParameters,
     options: UnstableLocationsListOptions = {},
-  ): SeamHttpRequest<UnstableLocationsListResponse, 'locations'> {
+  ): UnstableLocationsListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -283,7 +283,7 @@ export class SeamHttpUnstableLocations {
   removeAcsEntrances(
     parameters?: UnstableLocationsRemoveAcsEntrancesParameters,
     options: UnstableLocationsRemoveAcsEntrancesOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): UnstableLocationsRemoveAcsEntrancesRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -301,7 +301,7 @@ export class SeamHttpUnstableLocations {
   removeDevices(
     parameters?: UnstableLocationsRemoveDevicesParameters,
     options: UnstableLocationsRemoveDevicesOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): UnstableLocationsRemoveDevicesRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -319,7 +319,7 @@ export class SeamHttpUnstableLocations {
   update(
     parameters?: UnstableLocationsUpdateParameters,
     options: UnstableLocationsUpdateOptions = {},
-  ): SeamHttpRequest<UnstableLocationsUpdateResponse, 'location'> {
+  ): UnstableLocationsUpdateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -344,8 +344,16 @@ export type UnstableLocationsAddAcsEntrancesParameters =
 export type UnstableLocationsAddAcsEntrancesBody =
   UnstableLocationsAddAcsEntrancesParameters
 
+/**
+ * @deprecated Use UnstableLocationsAddAcsEntrancesRequest instead.
+ */
 export type UnstableLocationsAddAcsEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/add_acs_entrances'>>
+>
+
+export type UnstableLocationsAddAcsEntrancesRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type UnstableLocationsAddAcsEntrancesOptions = Record<string, never>
@@ -359,8 +367,16 @@ export type UnstableLocationsAddDevicesParameters =
 export type UnstableLocationsAddDevicesBody =
   UnstableLocationsAddDevicesParameters
 
+/**
+ * @deprecated Use UnstableLocationsAddDevicesRequest instead.
+ */
 export type UnstableLocationsAddDevicesResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/add_devices'>>
+>
+
+export type UnstableLocationsAddDevicesRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type UnstableLocationsAddDevicesOptions = Record<string, never>
@@ -373,8 +389,16 @@ export type UnstableLocationsCreateParameters =
  */
 export type UnstableLocationsCreateBody = UnstableLocationsCreateParameters
 
+/**
+ * @deprecated Use UnstableLocationsCreateRequest instead.
+ */
 export type UnstableLocationsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/create'>>
+>
+
+export type UnstableLocationsCreateRequest = SeamHttpRequest<
+  UnstableLocationsCreateResponse,
+  'location'
 >
 
 export type UnstableLocationsCreateOptions = Record<string, never>
@@ -387,9 +411,14 @@ export type UnstableLocationsDeleteParameters =
  */
 export type UnstableLocationsDeleteParams = UnstableLocationsDeleteParameters
 
+/**
+ * @deprecated Use UnstableLocationsDeleteRequest instead.
+ */
 export type UnstableLocationsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/delete'>>
 >
+
+export type UnstableLocationsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export type UnstableLocationsDeleteOptions = Record<string, never>
 
@@ -401,8 +430,16 @@ export type UnstableLocationsGetParameters =
  */
 export type UnstableLocationsGetParams = UnstableLocationsGetParameters
 
+/**
+ * @deprecated Use UnstableLocationsGetRequest instead.
+ */
 export type UnstableLocationsGetResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/get'>>
+>
+
+export type UnstableLocationsGetRequest = SeamHttpRequest<
+  UnstableLocationsGetResponse,
+  'location'
 >
 
 export type UnstableLocationsGetOptions = Record<string, never>
@@ -415,8 +452,16 @@ export type UnstableLocationsListParameters =
  */
 export type UnstableLocationsListParams = UnstableLocationsListParameters
 
+/**
+ * @deprecated Use UnstableLocationsListRequest instead.
+ */
 export type UnstableLocationsListResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/list'>>
+>
+
+export type UnstableLocationsListRequest = SeamHttpRequest<
+  UnstableLocationsListResponse,
+  'locations'
 >
 
 export type UnstableLocationsListOptions = Record<string, never>
@@ -430,8 +475,16 @@ export type UnstableLocationsRemoveAcsEntrancesParameters =
 export type UnstableLocationsRemoveAcsEntrancesParams =
   UnstableLocationsRemoveAcsEntrancesParameters
 
+/**
+ * @deprecated Use UnstableLocationsRemoveAcsEntrancesRequest instead.
+ */
 export type UnstableLocationsRemoveAcsEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/remove_acs_entrances'>>
+>
+
+export type UnstableLocationsRemoveAcsEntrancesRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type UnstableLocationsRemoveAcsEntrancesOptions = Record<string, never>
@@ -445,8 +498,16 @@ export type UnstableLocationsRemoveDevicesParameters =
 export type UnstableLocationsRemoveDevicesParams =
   UnstableLocationsRemoveDevicesParameters
 
+/**
+ * @deprecated Use UnstableLocationsRemoveDevicesRequest instead.
+ */
 export type UnstableLocationsRemoveDevicesResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/remove_devices'>>
+>
+
+export type UnstableLocationsRemoveDevicesRequest = SeamHttpRequest<
+  void,
+  undefined
 >
 
 export type UnstableLocationsRemoveDevicesOptions = Record<string, never>
@@ -459,8 +520,16 @@ export type UnstableLocationsUpdateParameters =
  */
 export type UnstableLocationsUpdateBody = UnstableLocationsUpdateParameters
 
+/**
+ * @deprecated Use UnstableLocationsUpdateRequest instead.
+ */
 export type UnstableLocationsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/update'>>
+>
+
+export type UnstableLocationsUpdateRequest = SeamHttpRequest<
+  UnstableLocationsUpdateResponse,
+  'location'
 >
 
 export type UnstableLocationsUpdateOptions = Record<string, never>

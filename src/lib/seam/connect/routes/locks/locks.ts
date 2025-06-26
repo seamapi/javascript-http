@@ -172,7 +172,7 @@ export class SeamHttpLocks {
   get(
     parameters?: LocksGetParameters,
     options: LocksGetOptions = {},
-  ): SeamHttpRequest<LocksGetResponse, 'device'> {
+  ): LocksGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/locks/get',
       method: 'POST',
@@ -185,7 +185,7 @@ export class SeamHttpLocks {
   list(
     parameters?: LocksListParameters,
     options: LocksListOptions = {},
-  ): SeamHttpRequest<LocksListResponse, 'devices'> {
+  ): LocksListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/locks/list',
       method: 'POST',
@@ -198,7 +198,7 @@ export class SeamHttpLocks {
   lockDoor(
     parameters?: LocksLockDoorParameters,
     options: LocksLockDoorOptions = {},
-  ): SeamHttpRequest<LocksLockDoorResponse, 'action_attempt'> {
+  ): LocksLockDoorRequest {
     return new SeamHttpRequest(this, {
       pathname: '/locks/lock_door',
       method: 'POST',
@@ -211,7 +211,7 @@ export class SeamHttpLocks {
   unlockDoor(
     parameters?: LocksUnlockDoorParameters,
     options: LocksUnlockDoorOptions = {},
-  ): SeamHttpRequest<LocksUnlockDoorResponse, 'action_attempt'> {
+  ): LocksUnlockDoorRequest {
     return new SeamHttpRequest(this, {
       pathname: '/locks/unlock_door',
       method: 'POST',
@@ -229,9 +229,14 @@ export type LocksGetParameters = RouteRequestBody<'/locks/get'>
  */
 export type LocksGetParams = LocksGetParameters
 
+/**
+ * @deprecated Use LocksGetRequest instead.
+ */
 export type LocksGetResponse = SetNonNullable<
   Required<RouteResponse<'/locks/get'>>
 >
+
+export type LocksGetRequest = SeamHttpRequest<LocksGetResponse, 'device'>
 
 export type LocksGetOptions = Record<string, never>
 
@@ -242,9 +247,14 @@ export type LocksListParameters = RouteRequestBody<'/locks/list'>
  */
 export type LocksListParams = LocksListParameters
 
+/**
+ * @deprecated Use LocksListRequest instead.
+ */
 export type LocksListResponse = SetNonNullable<
   Required<RouteResponse<'/locks/list'>>
 >
+
+export type LocksListRequest = SeamHttpRequest<LocksListResponse, 'devices'>
 
 export type LocksListOptions = Record<string, never>
 
@@ -255,8 +265,16 @@ export type LocksLockDoorParameters = RouteRequestBody<'/locks/lock_door'>
  */
 export type LocksLockDoorBody = LocksLockDoorParameters
 
+/**
+ * @deprecated Use LocksLockDoorRequest instead.
+ */
 export type LocksLockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/lock_door'>>
+>
+
+export type LocksLockDoorRequest = SeamHttpRequest<
+  LocksLockDoorResponse,
+  'action_attempt'
 >
 
 export type LocksLockDoorOptions = Pick<
@@ -271,8 +289,16 @@ export type LocksUnlockDoorParameters = RouteRequestBody<'/locks/unlock_door'>
  */
 export type LocksUnlockDoorBody = LocksUnlockDoorParameters
 
+/**
+ * @deprecated Use LocksUnlockDoorRequest instead.
+ */
 export type LocksUnlockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/unlock_door'>>
+>
+
+export type LocksUnlockDoorRequest = SeamHttpRequest<
+  LocksUnlockDoorResponse,
+  'action_attempt'
 >
 
 export type LocksUnlockDoorOptions = Pick<

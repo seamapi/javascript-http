@@ -166,7 +166,7 @@ export class SeamHttpEvents {
   get(
     parameters?: EventsGetParameters,
     options: EventsGetOptions = {},
-  ): SeamHttpRequest<EventsGetResponse, 'event'> {
+  ): EventsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/events/get',
       method: 'POST',
@@ -179,7 +179,7 @@ export class SeamHttpEvents {
   list(
     parameters?: EventsListParameters,
     options: EventsListOptions = {},
-  ): SeamHttpRequest<EventsListResponse, 'events'> {
+  ): EventsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/events/list',
       method: 'POST',
@@ -197,9 +197,14 @@ export type EventsGetParameters = RouteRequestBody<'/events/get'>
  */
 export type EventsGetParams = EventsGetParameters
 
+/**
+ * @deprecated Use EventsGetRequest instead.
+ */
 export type EventsGetResponse = SetNonNullable<
   Required<RouteResponse<'/events/get'>>
 >
+
+export type EventsGetRequest = SeamHttpRequest<EventsGetResponse, 'event'>
 
 export type EventsGetOptions = Record<string, never>
 
@@ -210,8 +215,13 @@ export type EventsListParameters = RouteRequestBody<'/events/list'>
  */
 export type EventsListParams = EventsListParameters
 
+/**
+ * @deprecated Use EventsListRequest instead.
+ */
 export type EventsListResponse = SetNonNullable<
   Required<RouteResponse<'/events/list'>>
 >
+
+export type EventsListRequest = SeamHttpRequest<EventsListResponse, 'events'>
 
 export type EventsListOptions = Record<string, never>

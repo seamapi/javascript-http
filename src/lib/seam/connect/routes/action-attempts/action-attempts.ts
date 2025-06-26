@@ -166,7 +166,7 @@ export class SeamHttpActionAttempts {
   get(
     parameters?: ActionAttemptsGetParameters,
     options: ActionAttemptsGetOptions = {},
-  ): SeamHttpRequest<ActionAttemptsGetResponse, 'action_attempt'> {
+  ): ActionAttemptsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/action_attempts/get',
       method: 'POST',
@@ -179,7 +179,7 @@ export class SeamHttpActionAttempts {
   list(
     parameters?: ActionAttemptsListParameters,
     options: ActionAttemptsListOptions = {},
-  ): SeamHttpRequest<ActionAttemptsListResponse, 'action_attempts'> {
+  ): ActionAttemptsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/action_attempts/list',
       method: 'POST',
@@ -198,8 +198,16 @@ export type ActionAttemptsGetParameters =
  */
 export type ActionAttemptsGetParams = ActionAttemptsGetParameters
 
+/**
+ * @deprecated Use ActionAttemptsGetRequest instead.
+ */
 export type ActionAttemptsGetResponse = SetNonNullable<
   Required<RouteResponse<'/action_attempts/get'>>
+>
+
+export type ActionAttemptsGetRequest = SeamHttpRequest<
+  ActionAttemptsGetResponse,
+  'action_attempt'
 >
 
 export type ActionAttemptsGetOptions = Pick<
@@ -215,8 +223,16 @@ export type ActionAttemptsListParameters =
  */
 export type ActionAttemptsListParams = ActionAttemptsListParameters
 
+/**
+ * @deprecated Use ActionAttemptsListRequest instead.
+ */
 export type ActionAttemptsListResponse = SetNonNullable<
   Required<RouteResponse<'/action_attempts/list'>>
+>
+
+export type ActionAttemptsListRequest = SeamHttpRequest<
+  ActionAttemptsListResponse,
+  'action_attempts'
 >
 
 export type ActionAttemptsListOptions = Record<string, never>

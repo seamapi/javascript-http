@@ -166,7 +166,7 @@ export class SeamHttpAccessGrants {
   create(
     parameters?: AccessGrantsCreateParameters,
     options: AccessGrantsCreateOptions = {},
-  ): SeamHttpRequest<AccessGrantsCreateResponse, 'access_grant'> {
+  ): AccessGrantsCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/create',
       method: 'POST',
@@ -179,7 +179,7 @@ export class SeamHttpAccessGrants {
   delete(
     parameters?: AccessGrantsDeleteParameters,
     options: AccessGrantsDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AccessGrantsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/delete',
       method: 'POST',
@@ -192,7 +192,7 @@ export class SeamHttpAccessGrants {
   get(
     parameters?: AccessGrantsGetParameters,
     options: AccessGrantsGetOptions = {},
-  ): SeamHttpRequest<AccessGrantsGetResponse, 'access_grant'> {
+  ): AccessGrantsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/get',
       method: 'POST',
@@ -205,7 +205,7 @@ export class SeamHttpAccessGrants {
   list(
     parameters?: AccessGrantsListParameters,
     options: AccessGrantsListOptions = {},
-  ): SeamHttpRequest<AccessGrantsListResponse, 'access_grants'> {
+  ): AccessGrantsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/list',
       method: 'POST',
@@ -218,7 +218,7 @@ export class SeamHttpAccessGrants {
   update(
     parameters?: AccessGrantsUpdateParameters,
     options: AccessGrantsUpdateOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AccessGrantsUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/update',
       method: 'PATCH',
@@ -237,8 +237,16 @@ export type AccessGrantsCreateParameters =
  */
 export type AccessGrantsCreateBody = AccessGrantsCreateParameters
 
+/**
+ * @deprecated Use AccessGrantsCreateRequest instead.
+ */
 export type AccessGrantsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/access_grants/create'>>
+>
+
+export type AccessGrantsCreateRequest = SeamHttpRequest<
+  AccessGrantsCreateResponse,
+  'access_grant'
 >
 
 export type AccessGrantsCreateOptions = Record<string, never>
@@ -251,9 +259,14 @@ export type AccessGrantsDeleteParameters =
  */
 export type AccessGrantsDeleteParams = AccessGrantsDeleteParameters
 
+/**
+ * @deprecated Use AccessGrantsDeleteRequest instead.
+ */
 export type AccessGrantsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_grants/delete'>>
 >
+
+export type AccessGrantsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export type AccessGrantsDeleteOptions = Record<string, never>
 
@@ -264,8 +277,16 @@ export type AccessGrantsGetParameters = RouteRequestBody<'/access_grants/get'>
  */
 export type AccessGrantsGetParams = AccessGrantsGetParameters
 
+/**
+ * @deprecated Use AccessGrantsGetRequest instead.
+ */
 export type AccessGrantsGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_grants/get'>>
+>
+
+export type AccessGrantsGetRequest = SeamHttpRequest<
+  AccessGrantsGetResponse,
+  'access_grant'
 >
 
 export type AccessGrantsGetOptions = Record<string, never>
@@ -277,8 +298,16 @@ export type AccessGrantsListParameters = RouteRequestBody<'/access_grants/list'>
  */
 export type AccessGrantsListParams = AccessGrantsListParameters
 
+/**
+ * @deprecated Use AccessGrantsListRequest instead.
+ */
 export type AccessGrantsListResponse = SetNonNullable<
   Required<RouteResponse<'/access_grants/list'>>
+>
+
+export type AccessGrantsListRequest = SeamHttpRequest<
+  AccessGrantsListResponse,
+  'access_grants'
 >
 
 export type AccessGrantsListOptions = Record<string, never>
@@ -291,8 +320,13 @@ export type AccessGrantsUpdateParameters =
  */
 export type AccessGrantsUpdateBody = AccessGrantsUpdateParameters
 
+/**
+ * @deprecated Use AccessGrantsUpdateRequest instead.
+ */
 export type AccessGrantsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/access_grants/update'>>
 >
+
+export type AccessGrantsUpdateRequest = SeamHttpRequest<void, undefined>
 
 export type AccessGrantsUpdateOptions = Record<string, never>

@@ -174,10 +174,7 @@ export class SeamHttpSeamPartnerV1BuildingBlocksSpaces {
   autoMap(
     parameters?: SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
     options: SeamPartnerV1BuildingBlocksSpacesAutoMapOptions = {},
-  ): SeamHttpRequest<
-    SeamPartnerV1BuildingBlocksSpacesAutoMapResponse,
-    'spaces'
-  > {
+  ): SeamPartnerV1BuildingBlocksSpacesAutoMapRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -202,8 +199,16 @@ export type SeamPartnerV1BuildingBlocksSpacesAutoMapParameters =
 export type SeamPartnerV1BuildingBlocksSpacesAutoMapParams =
   SeamPartnerV1BuildingBlocksSpacesAutoMapParameters
 
+/**
+ * @deprecated Use SeamPartnerV1BuildingBlocksSpacesAutoMapRequest instead.
+ */
 export type SeamPartnerV1BuildingBlocksSpacesAutoMapResponse = SetNonNullable<
   Required<RouteResponse<'/seam/partner/v1/building_blocks/spaces/auto_map'>>
+>
+
+export type SeamPartnerV1BuildingBlocksSpacesAutoMapRequest = SeamHttpRequest<
+  SeamPartnerV1BuildingBlocksSpacesAutoMapResponse,
+  'spaces'
 >
 
 export type SeamPartnerV1BuildingBlocksSpacesAutoMapOptions = Record<

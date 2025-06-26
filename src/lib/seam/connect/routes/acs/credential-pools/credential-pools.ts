@@ -171,7 +171,7 @@ export class SeamHttpAcsCredentialPools {
   list(
     parameters?: AcsCredentialPoolsListParameters,
     options: AcsCredentialPoolsListOptions = {},
-  ): SeamHttpRequest<AcsCredentialPoolsListResponse, 'acs_credential_pools'> {
+  ): AcsCredentialPoolsListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -195,8 +195,16 @@ export type AcsCredentialPoolsListParameters =
  */
 export type AcsCredentialPoolsListParams = AcsCredentialPoolsListParameters
 
+/**
+ * @deprecated Use AcsCredentialPoolsListRequest instead.
+ */
 export type AcsCredentialPoolsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credential_pools/list'>>
+>
+
+export type AcsCredentialPoolsListRequest = SeamHttpRequest<
+  AcsCredentialPoolsListResponse,
+  'acs_credential_pools'
 >
 
 export type AcsCredentialPoolsListOptions = Record<string, never>

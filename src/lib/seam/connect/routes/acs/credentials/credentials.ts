@@ -179,7 +179,7 @@ export class SeamHttpAcsCredentials {
   assign(
     parameters?: AcsCredentialsAssignParameters,
     options: AcsCredentialsAssignOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsCredentialsAssignRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/assign',
       method: 'PATCH',
@@ -192,7 +192,7 @@ export class SeamHttpAcsCredentials {
   create(
     parameters?: AcsCredentialsCreateParameters,
     options: AcsCredentialsCreateOptions = {},
-  ): SeamHttpRequest<AcsCredentialsCreateResponse, 'acs_credential'> {
+  ): AcsCredentialsCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/create',
       method: 'POST',
@@ -205,10 +205,7 @@ export class SeamHttpAcsCredentials {
   createOfflineCode(
     parameters?: AcsCredentialsCreateOfflineCodeParameters,
     options: AcsCredentialsCreateOfflineCodeOptions = {},
-  ): SeamHttpRequest<
-    AcsCredentialsCreateOfflineCodeResponse,
-    'acs_credential'
-  > {
+  ): AcsCredentialsCreateOfflineCodeRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -226,7 +223,7 @@ export class SeamHttpAcsCredentials {
   delete(
     parameters?: AcsCredentialsDeleteParameters,
     options: AcsCredentialsDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsCredentialsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/delete',
       method: 'POST',
@@ -239,7 +236,7 @@ export class SeamHttpAcsCredentials {
   get(
     parameters?: AcsCredentialsGetParameters,
     options: AcsCredentialsGetOptions = {},
-  ): SeamHttpRequest<AcsCredentialsGetResponse, 'acs_credential'> {
+  ): AcsCredentialsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/get',
       method: 'POST',
@@ -252,7 +249,7 @@ export class SeamHttpAcsCredentials {
   list(
     parameters?: AcsCredentialsListParameters,
     options: AcsCredentialsListOptions = {},
-  ): SeamHttpRequest<AcsCredentialsListResponse, 'acs_credentials'> {
+  ): AcsCredentialsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/list',
       method: 'GET',
@@ -265,10 +262,7 @@ export class SeamHttpAcsCredentials {
   listAccessibleEntrances(
     parameters?: AcsCredentialsListAccessibleEntrancesParameters,
     options: AcsCredentialsListAccessibleEntrancesOptions = {},
-  ): SeamHttpRequest<
-    AcsCredentialsListAccessibleEntrancesResponse,
-    'acs_entrances'
-  > {
+  ): AcsCredentialsListAccessibleEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/list_accessible_entrances',
       method: 'POST',
@@ -281,7 +275,7 @@ export class SeamHttpAcsCredentials {
   unassign(
     parameters?: AcsCredentialsUnassignParameters,
     options: AcsCredentialsUnassignOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsCredentialsUnassignRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/unassign',
       method: 'PATCH',
@@ -294,7 +288,7 @@ export class SeamHttpAcsCredentials {
   update(
     parameters?: AcsCredentialsUpdateParameters,
     options: AcsCredentialsUpdateOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsCredentialsUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/update',
       method: 'PATCH',
@@ -313,9 +307,14 @@ export type AcsCredentialsAssignParameters =
  */
 export type AcsCredentialsAssignBody = AcsCredentialsAssignParameters
 
+/**
+ * @deprecated Use AcsCredentialsAssignRequest instead.
+ */
 export type AcsCredentialsAssignResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/assign'>>
 >
+
+export type AcsCredentialsAssignRequest = SeamHttpRequest<void, undefined>
 
 export type AcsCredentialsAssignOptions = Record<string, never>
 
@@ -327,8 +326,16 @@ export type AcsCredentialsCreateParameters =
  */
 export type AcsCredentialsCreateBody = AcsCredentialsCreateParameters
 
+/**
+ * @deprecated Use AcsCredentialsCreateRequest instead.
+ */
 export type AcsCredentialsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/create'>>
+>
+
+export type AcsCredentialsCreateRequest = SeamHttpRequest<
+  AcsCredentialsCreateResponse,
+  'acs_credential'
 >
 
 export type AcsCredentialsCreateOptions = Record<string, never>
@@ -342,8 +349,16 @@ export type AcsCredentialsCreateOfflineCodeParameters =
 export type AcsCredentialsCreateOfflineCodeBody =
   AcsCredentialsCreateOfflineCodeParameters
 
+/**
+ * @deprecated Use AcsCredentialsCreateOfflineCodeRequest instead.
+ */
 export type AcsCredentialsCreateOfflineCodeResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/create_offline_code'>>
+>
+
+export type AcsCredentialsCreateOfflineCodeRequest = SeamHttpRequest<
+  AcsCredentialsCreateOfflineCodeResponse,
+  'acs_credential'
 >
 
 export type AcsCredentialsCreateOfflineCodeOptions = Record<string, never>
@@ -356,9 +371,14 @@ export type AcsCredentialsDeleteParameters =
  */
 export type AcsCredentialsDeleteParams = AcsCredentialsDeleteParameters
 
+/**
+ * @deprecated Use AcsCredentialsDeleteRequest instead.
+ */
 export type AcsCredentialsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/delete'>>
 >
+
+export type AcsCredentialsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export type AcsCredentialsDeleteOptions = Record<string, never>
 
@@ -370,8 +390,16 @@ export type AcsCredentialsGetParameters =
  */
 export type AcsCredentialsGetParams = AcsCredentialsGetParameters
 
+/**
+ * @deprecated Use AcsCredentialsGetRequest instead.
+ */
 export type AcsCredentialsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/get'>>
+>
+
+export type AcsCredentialsGetRequest = SeamHttpRequest<
+  AcsCredentialsGetResponse,
+  'acs_credential'
 >
 
 export type AcsCredentialsGetOptions = Record<string, never>
@@ -384,8 +412,16 @@ export type AcsCredentialsListParameters =
  */
 export type AcsCredentialsListParams = AcsCredentialsListParameters
 
+/**
+ * @deprecated Use AcsCredentialsListRequest instead.
+ */
 export type AcsCredentialsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/list'>>
+>
+
+export type AcsCredentialsListRequest = SeamHttpRequest<
+  AcsCredentialsListResponse,
+  'acs_credentials'
 >
 
 export type AcsCredentialsListOptions = Record<string, never>
@@ -399,8 +435,16 @@ export type AcsCredentialsListAccessibleEntrancesParameters =
 export type AcsCredentialsListAccessibleEntrancesParams =
   AcsCredentialsListAccessibleEntrancesParameters
 
+/**
+ * @deprecated Use AcsCredentialsListAccessibleEntrancesRequest instead.
+ */
 export type AcsCredentialsListAccessibleEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/list_accessible_entrances'>>
+>
+
+export type AcsCredentialsListAccessibleEntrancesRequest = SeamHttpRequest<
+  AcsCredentialsListAccessibleEntrancesResponse,
+  'acs_entrances'
 >
 
 export type AcsCredentialsListAccessibleEntrancesOptions = Record<string, never>
@@ -413,9 +457,14 @@ export type AcsCredentialsUnassignParameters =
  */
 export type AcsCredentialsUnassignBody = AcsCredentialsUnassignParameters
 
+/**
+ * @deprecated Use AcsCredentialsUnassignRequest instead.
+ */
 export type AcsCredentialsUnassignResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/unassign'>>
 >
+
+export type AcsCredentialsUnassignRequest = SeamHttpRequest<void, undefined>
 
 export type AcsCredentialsUnassignOptions = Record<string, never>
 
@@ -427,8 +476,13 @@ export type AcsCredentialsUpdateParameters =
  */
 export type AcsCredentialsUpdateBody = AcsCredentialsUpdateParameters
 
+/**
+ * @deprecated Use AcsCredentialsUpdateRequest instead.
+ */
 export type AcsCredentialsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/update'>>
 >
+
+export type AcsCredentialsUpdateRequest = SeamHttpRequest<void, undefined>
 
 export type AcsCredentialsUpdateOptions = Record<string, never>

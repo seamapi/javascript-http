@@ -171,7 +171,7 @@ export class SeamHttpUnstableAccessGrants {
   create(
     parameters?: UnstableAccessGrantsCreateParameters,
     options: UnstableAccessGrantsCreateOptions = {},
-  ): SeamHttpRequest<UnstableAccessGrantsCreateResponse, 'access_grant'> {
+  ): UnstableAccessGrantsCreateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -189,7 +189,7 @@ export class SeamHttpUnstableAccessGrants {
   delete(
     parameters?: UnstableAccessGrantsDeleteParameters,
     options: UnstableAccessGrantsDeleteOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): UnstableAccessGrantsDeleteRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -207,7 +207,7 @@ export class SeamHttpUnstableAccessGrants {
   get(
     parameters?: UnstableAccessGrantsGetParameters,
     options: UnstableAccessGrantsGetOptions = {},
-  ): SeamHttpRequest<UnstableAccessGrantsGetResponse, 'access_grant'> {
+  ): UnstableAccessGrantsGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -225,7 +225,7 @@ export class SeamHttpUnstableAccessGrants {
   list(
     parameters?: UnstableAccessGrantsListParameters,
     options: UnstableAccessGrantsListOptions = {},
-  ): SeamHttpRequest<UnstableAccessGrantsListResponse, 'access_grants'> {
+  ): UnstableAccessGrantsListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -250,8 +250,16 @@ export type UnstableAccessGrantsCreateParameters =
 export type UnstableAccessGrantsCreateBody =
   UnstableAccessGrantsCreateParameters
 
+/**
+ * @deprecated Use UnstableAccessGrantsCreateRequest instead.
+ */
 export type UnstableAccessGrantsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_grants/create'>>
+>
+
+export type UnstableAccessGrantsCreateRequest = SeamHttpRequest<
+  UnstableAccessGrantsCreateResponse,
+  'access_grant'
 >
 
 export type UnstableAccessGrantsCreateOptions = Record<string, never>
@@ -265,9 +273,14 @@ export type UnstableAccessGrantsDeleteParameters =
 export type UnstableAccessGrantsDeleteParams =
   UnstableAccessGrantsDeleteParameters
 
+/**
+ * @deprecated Use UnstableAccessGrantsDeleteRequest instead.
+ */
 export type UnstableAccessGrantsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_grants/delete'>>
 >
+
+export type UnstableAccessGrantsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export type UnstableAccessGrantsDeleteOptions = Record<string, never>
 
@@ -279,8 +292,16 @@ export type UnstableAccessGrantsGetParameters =
  */
 export type UnstableAccessGrantsGetParams = UnstableAccessGrantsGetParameters
 
+/**
+ * @deprecated Use UnstableAccessGrantsGetRequest instead.
+ */
 export type UnstableAccessGrantsGetResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_grants/get'>>
+>
+
+export type UnstableAccessGrantsGetRequest = SeamHttpRequest<
+  UnstableAccessGrantsGetResponse,
+  'access_grant'
 >
 
 export type UnstableAccessGrantsGetOptions = Record<string, never>
@@ -293,8 +314,16 @@ export type UnstableAccessGrantsListParameters =
  */
 export type UnstableAccessGrantsListParams = UnstableAccessGrantsListParameters
 
+/**
+ * @deprecated Use UnstableAccessGrantsListRequest instead.
+ */
 export type UnstableAccessGrantsListResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_grants/list'>>
+>
+
+export type UnstableAccessGrantsListRequest = SeamHttpRequest<
+  UnstableAccessGrantsListResponse,
+  'access_grants'
 >
 
 export type UnstableAccessGrantsListOptions = Record<string, never>

@@ -166,7 +166,7 @@ export class SeamHttpAcsEntrances {
   get(
     parameters?: AcsEntrancesGetParameters,
     options: AcsEntrancesGetOptions = {},
-  ): SeamHttpRequest<AcsEntrancesGetResponse, 'acs_entrance'> {
+  ): AcsEntrancesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/get',
       method: 'POST',
@@ -179,7 +179,7 @@ export class SeamHttpAcsEntrances {
   grantAccess(
     parameters?: AcsEntrancesGrantAccessParameters,
     options: AcsEntrancesGrantAccessOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsEntrancesGrantAccessRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/grant_access',
       method: 'POST',
@@ -192,7 +192,7 @@ export class SeamHttpAcsEntrances {
   list(
     parameters?: AcsEntrancesListParameters,
     options: AcsEntrancesListOptions = {},
-  ): SeamHttpRequest<AcsEntrancesListResponse, 'acs_entrances'> {
+  ): AcsEntrancesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/list',
       method: 'POST',
@@ -205,10 +205,7 @@ export class SeamHttpAcsEntrances {
   listCredentialsWithAccess(
     parameters?: AcsEntrancesListCredentialsWithAccessParameters,
     options: AcsEntrancesListCredentialsWithAccessOptions = {},
-  ): SeamHttpRequest<
-    AcsEntrancesListCredentialsWithAccessResponse,
-    'acs_credentials'
-  > {
+  ): AcsEntrancesListCredentialsWithAccessRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/list_credentials_with_access',
       method: 'POST',
@@ -226,8 +223,16 @@ export type AcsEntrancesGetParameters = RouteRequestBody<'/acs/entrances/get'>
  */
 export type AcsEntrancesGetParams = AcsEntrancesGetParameters
 
+/**
+ * @deprecated Use AcsEntrancesGetRequest instead.
+ */
 export type AcsEntrancesGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/get'>>
+>
+
+export type AcsEntrancesGetRequest = SeamHttpRequest<
+  AcsEntrancesGetResponse,
+  'acs_entrance'
 >
 
 export type AcsEntrancesGetOptions = Record<string, never>
@@ -240,9 +245,14 @@ export type AcsEntrancesGrantAccessParameters =
  */
 export type AcsEntrancesGrantAccessBody = AcsEntrancesGrantAccessParameters
 
+/**
+ * @deprecated Use AcsEntrancesGrantAccessRequest instead.
+ */
 export type AcsEntrancesGrantAccessResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/grant_access'>>
 >
+
+export type AcsEntrancesGrantAccessRequest = SeamHttpRequest<void, undefined>
 
 export type AcsEntrancesGrantAccessOptions = Record<string, never>
 
@@ -253,8 +263,16 @@ export type AcsEntrancesListParameters = RouteRequestBody<'/acs/entrances/list'>
  */
 export type AcsEntrancesListParams = AcsEntrancesListParameters
 
+/**
+ * @deprecated Use AcsEntrancesListRequest instead.
+ */
 export type AcsEntrancesListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/list'>>
+>
+
+export type AcsEntrancesListRequest = SeamHttpRequest<
+  AcsEntrancesListResponse,
+  'acs_entrances'
 >
 
 export type AcsEntrancesListOptions = Record<string, never>
@@ -268,8 +286,16 @@ export type AcsEntrancesListCredentialsWithAccessParameters =
 export type AcsEntrancesListCredentialsWithAccessParams =
   AcsEntrancesListCredentialsWithAccessParameters
 
+/**
+ * @deprecated Use AcsEntrancesListCredentialsWithAccessRequest instead.
+ */
 export type AcsEntrancesListCredentialsWithAccessResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/list_credentials_with_access'>>
+>
+
+export type AcsEntrancesListCredentialsWithAccessRequest = SeamHttpRequest<
+  AcsEntrancesListCredentialsWithAccessResponse,
+  'acs_credentials'
 >
 
 export type AcsEntrancesListCredentialsWithAccessOptions = Record<string, never>

@@ -166,7 +166,7 @@ export class SeamHttpAcsEncodersSimulate {
   nextCredentialEncodeWillFail(
     parameters?: AcsEncodersSimulateNextCredentialEncodeWillFailParameters,
     options: AcsEncodersSimulateNextCredentialEncodeWillFailOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsEncodersSimulateNextCredentialEncodeWillFailRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_encode_will_fail',
       method: 'POST',
@@ -179,7 +179,7 @@ export class SeamHttpAcsEncodersSimulate {
   nextCredentialEncodeWillSucceed(
     parameters?: AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters,
     options: AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_encode_will_succeed',
       method: 'POST',
@@ -192,7 +192,7 @@ export class SeamHttpAcsEncodersSimulate {
   nextCredentialScanWillFail(
     parameters?: AcsEncodersSimulateNextCredentialScanWillFailParameters,
     options: AcsEncodersSimulateNextCredentialScanWillFailOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsEncodersSimulateNextCredentialScanWillFailRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_scan_will_fail',
       method: 'POST',
@@ -205,7 +205,7 @@ export class SeamHttpAcsEncodersSimulate {
   nextCredentialScanWillSucceed(
     parameters?: AcsEncodersSimulateNextCredentialScanWillSucceedParameters,
     options: AcsEncodersSimulateNextCredentialScanWillSucceedOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsEncodersSimulateNextCredentialScanWillSucceedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_scan_will_succeed',
       method: 'POST',
@@ -225,12 +225,18 @@ export type AcsEncodersSimulateNextCredentialEncodeWillFailParameters =
 export type AcsEncodersSimulateNextCredentialEncodeWillFailBody =
   AcsEncodersSimulateNextCredentialEncodeWillFailParameters
 
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillFailRequest instead.
+ */
 export type AcsEncodersSimulateNextCredentialEncodeWillFailResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/acs/encoders/simulate/next_credential_encode_will_fail'>
     >
   >
+
+export type AcsEncodersSimulateNextCredentialEncodeWillFailRequest =
+  SeamHttpRequest<void, undefined>
 
 export type AcsEncodersSimulateNextCredentialEncodeWillFailOptions = Record<
   string,
@@ -246,12 +252,18 @@ export type AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters =
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedBody =
   AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters
 
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest instead.
+ */
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/acs/encoders/simulate/next_credential_encode_will_succeed'>
     >
   >
+
+export type AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest =
+  SeamHttpRequest<void, undefined>
 
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = Record<
   string,
@@ -267,12 +279,18 @@ export type AcsEncodersSimulateNextCredentialScanWillFailParameters =
 export type AcsEncodersSimulateNextCredentialScanWillFailBody =
   AcsEncodersSimulateNextCredentialScanWillFailParameters
 
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialScanWillFailRequest instead.
+ */
 export type AcsEncodersSimulateNextCredentialScanWillFailResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/acs/encoders/simulate/next_credential_scan_will_fail'>
     >
   >
+
+export type AcsEncodersSimulateNextCredentialScanWillFailRequest =
+  SeamHttpRequest<void, undefined>
 
 export type AcsEncodersSimulateNextCredentialScanWillFailOptions = Record<
   string,
@@ -288,12 +306,18 @@ export type AcsEncodersSimulateNextCredentialScanWillSucceedParameters =
 export type AcsEncodersSimulateNextCredentialScanWillSucceedBody =
   AcsEncodersSimulateNextCredentialScanWillSucceedParameters
 
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialScanWillSucceedRequest instead.
+ */
 export type AcsEncodersSimulateNextCredentialScanWillSucceedResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/acs/encoders/simulate/next_credential_scan_will_succeed'>
     >
   >
+
+export type AcsEncodersSimulateNextCredentialScanWillSucceedRequest =
+  SeamHttpRequest<void, undefined>
 
 export type AcsEncodersSimulateNextCredentialScanWillSucceedOptions = Record<
   string,

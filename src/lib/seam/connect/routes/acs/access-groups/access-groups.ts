@@ -175,7 +175,7 @@ export class SeamHttpAcsAccessGroups {
   addUser(
     parameters?: AcsAccessGroupsAddUserParameters,
     options: AcsAccessGroupsAddUserOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsAccessGroupsAddUserRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/add_user',
       method: 'PUT',
@@ -188,7 +188,7 @@ export class SeamHttpAcsAccessGroups {
   get(
     parameters?: AcsAccessGroupsGetParameters,
     options: AcsAccessGroupsGetOptions = {},
-  ): SeamHttpRequest<AcsAccessGroupsGetResponse, 'acs_access_group'> {
+  ): AcsAccessGroupsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/get',
       method: 'POST',
@@ -201,7 +201,7 @@ export class SeamHttpAcsAccessGroups {
   list(
     parameters?: AcsAccessGroupsListParameters,
     options: AcsAccessGroupsListOptions = {},
-  ): SeamHttpRequest<AcsAccessGroupsListResponse, 'acs_access_groups'> {
+  ): AcsAccessGroupsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list',
       method: 'POST',
@@ -214,10 +214,7 @@ export class SeamHttpAcsAccessGroups {
   listAccessibleEntrances(
     parameters?: AcsAccessGroupsListAccessibleEntrancesParameters,
     options: AcsAccessGroupsListAccessibleEntrancesOptions = {},
-  ): SeamHttpRequest<
-    AcsAccessGroupsListAccessibleEntrancesResponse,
-    'acs_entrances'
-  > {
+  ): AcsAccessGroupsListAccessibleEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list_accessible_entrances',
       method: 'POST',
@@ -230,7 +227,7 @@ export class SeamHttpAcsAccessGroups {
   listUsers(
     parameters?: AcsAccessGroupsListUsersParameters,
     options: AcsAccessGroupsListUsersOptions = {},
-  ): SeamHttpRequest<AcsAccessGroupsListUsersResponse, 'acs_users'> {
+  ): AcsAccessGroupsListUsersRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list_users',
       method: 'POST',
@@ -243,7 +240,7 @@ export class SeamHttpAcsAccessGroups {
   removeUser(
     parameters?: AcsAccessGroupsRemoveUserParameters,
     options: AcsAccessGroupsRemoveUserOptions = {},
-  ): SeamHttpRequest<void, undefined> {
+  ): AcsAccessGroupsRemoveUserRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/remove_user',
       method: 'POST',
@@ -262,9 +259,14 @@ export type AcsAccessGroupsAddUserParameters =
  */
 export type AcsAccessGroupsAddUserBody = AcsAccessGroupsAddUserParameters
 
+/**
+ * @deprecated Use AcsAccessGroupsAddUserRequest instead.
+ */
 export type AcsAccessGroupsAddUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/add_user'>>
 >
+
+export type AcsAccessGroupsAddUserRequest = SeamHttpRequest<void, undefined>
 
 export type AcsAccessGroupsAddUserOptions = Record<string, never>
 
@@ -276,8 +278,16 @@ export type AcsAccessGroupsGetParameters =
  */
 export type AcsAccessGroupsGetParams = AcsAccessGroupsGetParameters
 
+/**
+ * @deprecated Use AcsAccessGroupsGetRequest instead.
+ */
 export type AcsAccessGroupsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/get'>>
+>
+
+export type AcsAccessGroupsGetRequest = SeamHttpRequest<
+  AcsAccessGroupsGetResponse,
+  'acs_access_group'
 >
 
 export type AcsAccessGroupsGetOptions = Record<string, never>
@@ -290,8 +300,16 @@ export type AcsAccessGroupsListParameters =
  */
 export type AcsAccessGroupsListParams = AcsAccessGroupsListParameters
 
+/**
+ * @deprecated Use AcsAccessGroupsListRequest instead.
+ */
 export type AcsAccessGroupsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list'>>
+>
+
+export type AcsAccessGroupsListRequest = SeamHttpRequest<
+  AcsAccessGroupsListResponse,
+  'acs_access_groups'
 >
 
 export type AcsAccessGroupsListOptions = Record<string, never>
@@ -305,8 +323,16 @@ export type AcsAccessGroupsListAccessibleEntrancesParameters =
 export type AcsAccessGroupsListAccessibleEntrancesParams =
   AcsAccessGroupsListAccessibleEntrancesParameters
 
+/**
+ * @deprecated Use AcsAccessGroupsListAccessibleEntrancesRequest instead.
+ */
 export type AcsAccessGroupsListAccessibleEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list_accessible_entrances'>>
+>
+
+export type AcsAccessGroupsListAccessibleEntrancesRequest = SeamHttpRequest<
+  AcsAccessGroupsListAccessibleEntrancesResponse,
+  'acs_entrances'
 >
 
 export type AcsAccessGroupsListAccessibleEntrancesOptions = Record<
@@ -322,8 +348,16 @@ export type AcsAccessGroupsListUsersParameters =
  */
 export type AcsAccessGroupsListUsersParams = AcsAccessGroupsListUsersParameters
 
+/**
+ * @deprecated Use AcsAccessGroupsListUsersRequest instead.
+ */
 export type AcsAccessGroupsListUsersResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list_users'>>
+>
+
+export type AcsAccessGroupsListUsersRequest = SeamHttpRequest<
+  AcsAccessGroupsListUsersResponse,
+  'acs_users'
 >
 
 export type AcsAccessGroupsListUsersOptions = Record<string, never>
@@ -337,8 +371,13 @@ export type AcsAccessGroupsRemoveUserParameters =
 export type AcsAccessGroupsRemoveUserParams =
   AcsAccessGroupsRemoveUserParameters
 
+/**
+ * @deprecated Use AcsAccessGroupsRemoveUserRequest instead.
+ */
 export type AcsAccessGroupsRemoveUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/remove_user'>>
 >
+
+export type AcsAccessGroupsRemoveUserRequest = SeamHttpRequest<void, undefined>
 
 export type AcsAccessGroupsRemoveUserOptions = Record<string, never>

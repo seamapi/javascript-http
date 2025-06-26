@@ -174,10 +174,7 @@ export class SeamHttpSeamInstantKeyV1ClientSessions {
   exchangeShortCode(
     parameters?: SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters,
     options: SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions = {},
-  ): SeamHttpRequest<
-    SeamInstantKeyV1ClientSessionsExchangeShortCodeResponse,
-    'client_session'
-  > {
+  ): SeamInstantKeyV1ClientSessionsExchangeShortCodeRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -202,11 +199,20 @@ export type SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters =
 export type SeamInstantKeyV1ClientSessionsExchangeShortCodeBody =
   SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters
 
+/**
+ * @deprecated Use SeamInstantKeyV1ClientSessionsExchangeShortCodeRequest instead.
+ */
 export type SeamInstantKeyV1ClientSessionsExchangeShortCodeResponse =
   SetNonNullable<
     Required<
       RouteResponse<'/seam/instant_key/v1/client_sessions/exchange_short_code'>
     >
+  >
+
+export type SeamInstantKeyV1ClientSessionsExchangeShortCodeRequest =
+  SeamHttpRequest<
+    SeamInstantKeyV1ClientSessionsExchangeShortCodeResponse,
+    'client_session'
   >
 
 export type SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions = Record<
