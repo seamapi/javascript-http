@@ -20,7 +20,6 @@ export interface EndpointLayoutContext {
   functionName: string
   className: string
   method: Method
-  hasOptions: boolean
   responseKey: string
   methodParamName: 'params' | 'body'
   requestFormat: 'params' | 'body'
@@ -104,7 +103,6 @@ export const getEndpointLayoutContext = (
     methodName,
     functionName: camelCase(prefix),
     method: endpoint.request.preferredMethod,
-    hasOptions: returnsActionAttempt,
     className: getClassName(route.path),
     methodParamName,
     requestFormat,

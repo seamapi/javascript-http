@@ -1,6 +1,6 @@
 {{methodName}}(
   {{methodParamName}}{{#if isOptionalParamsOk}}?{{/if}}: {{requestTypeName}},
-  {{#if hasOptions}}options: {{optionsTypeName}} = {},{{/if}}
+  options: {{optionsTypeName}} = {},
   ): SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
 {
   {{#if isUndocumented}}
@@ -13,6 +13,6 @@
     method: '{{method}}',
     {{requestFormat}}: {{methodParamName}},
     responseKey: {{#if returnsVoid}}undefined{{else}}'{{responseKey}}'{{/if}},
-    {{#if hasOptions}}options,{{/if}}
+    options,
   })
 }
