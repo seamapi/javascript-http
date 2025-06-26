@@ -1,4 +1,9 @@
-export type {{requestTypeName}} = RouteRequest{{requestFormatSuffix}}<'{{path}}'>
+export type {{parametersTypeName}} = RouteRequest{{requestFormatSuffix}}<'{{path}}'>
+
+/**
+ * @deprecated Use {{parametersTypeName}} instead.
+ */
+export type {{legacyRequestTypeName}} = {{parametersTypeName}}
 
 export type {{responseTypeName}} = SetNonNullable<
   Required<RouteResponse<'{{path}}'>>

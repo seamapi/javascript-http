@@ -21,9 +21,9 @@ export interface EndpointLayoutContext {
   className: string
   method: Method
   responseKey: string
-  methodParamName: 'params' | 'body'
   requestFormat: 'params' | 'body'
-  requestTypeName: string
+  parametersTypeName: string
+  legacyRequestTypeName: string
   responseTypeName: string
   requestFormatSuffix: string
   optionsTypeName: string
@@ -78,7 +78,7 @@ export const getEndpointLayoutContext = (
 ): EndpointLayoutContext => {
   const prefix = pascalCase([route.path.split('/'), endpoint.name].join('_'))
 
-  const methodParamName = ['GET', 'DELETE'].includes(
+  const legacyMethodParamName = ['GET', 'DELETE'].includes(
     endpoint.request.semanticMethod,
   )
     ? 'params'
@@ -104,11 +104,11 @@ export const getEndpointLayoutContext = (
     functionName: camelCase(prefix),
     method: endpoint.request.preferredMethod,
     className: getClassName(route.path),
-    methodParamName,
     requestFormat,
     requestFormatSuffix,
     returnsActionAttempt,
-    requestTypeName: `${prefix}${pascalCase(methodParamName)}`,
+    parametersTypeName: `${prefix}Parameters`,
+    legacyRequestTypeName: `${prefix}${pascalCase(legacyMethodParamName)}`,
     responseTypeName: `${prefix}Response`,
     optionsTypeName: `${prefix}Options`,
     // UPSTREAM: Needs support in blueprint, fallback to true for now.

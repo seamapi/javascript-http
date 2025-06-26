@@ -1,5 +1,5 @@
 {{methodName}}(
-  {{methodParamName}}{{#if isOptionalParamsOk}}?{{/if}}: {{requestTypeName}},
+  parameters{{#if isOptionalParamsOk}}?{{/if}}: {{parametersTypeName}},
   options: {{optionsTypeName}} = {},
   ): SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
 {
@@ -11,7 +11,7 @@
   return new SeamHttpRequest(this, {
     pathname: '{{path}}',
     method: '{{method}}',
-    {{requestFormat}}: {{methodParamName}},
+    {{requestFormat}}: parameters,
     responseKey: {{#if returnsVoid}}undefined{{else}}'{{responseKey}}'{{/if}},
     options,
   })
