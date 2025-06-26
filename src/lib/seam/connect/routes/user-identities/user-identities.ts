@@ -177,258 +177,360 @@ export class SeamHttpUserIdentities {
   }
 
   addAcsUser(
-    body?: UserIdentitiesAddAcsUserBody,
+    parameters?: UserIdentitiesAddAcsUserParameters,
+    options: UserIdentitiesAddAcsUserOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/add_acs_user',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   create(
-    body?: UserIdentitiesCreateBody,
+    parameters?: UserIdentitiesCreateParameters,
+    options: UserIdentitiesCreateOptions = {},
   ): SeamHttpRequest<UserIdentitiesCreateResponse, 'user_identity'> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'user_identity',
+      options,
     })
   }
 
   delete(
-    params?: UserIdentitiesDeleteParams,
+    parameters?: UserIdentitiesDeleteParameters,
+    options: UserIdentitiesDeleteOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   generateInstantKey(
-    body?: UserIdentitiesGenerateInstantKeyBody,
+    parameters?: UserIdentitiesGenerateInstantKeyParameters,
+    options: UserIdentitiesGenerateInstantKeyOptions = {},
   ): SeamHttpRequest<UserIdentitiesGenerateInstantKeyResponse, 'instant_key'> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/generate_instant_key',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'instant_key',
+      options,
     })
   }
 
   get(
-    params?: UserIdentitiesGetParams,
+    parameters?: UserIdentitiesGetParameters,
+    options: UserIdentitiesGetOptions = {},
   ): SeamHttpRequest<UserIdentitiesGetResponse, 'user_identity'> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/get',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'user_identity',
+      options,
     })
   }
 
   grantAccessToDevice(
-    body?: UserIdentitiesGrantAccessToDeviceBody,
+    parameters?: UserIdentitiesGrantAccessToDeviceParameters,
+    options: UserIdentitiesGrantAccessToDeviceOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/grant_access_to_device',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   list(
-    params?: UserIdentitiesListParams,
+    parameters?: UserIdentitiesListParameters,
+    options: UserIdentitiesListOptions = {},
   ): SeamHttpRequest<UserIdentitiesListResponse, 'user_identities'> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'user_identities',
+      options,
     })
   }
 
   listAccessibleDevices(
-    params?: UserIdentitiesListAccessibleDevicesParams,
+    parameters?: UserIdentitiesListAccessibleDevicesParameters,
+    options: UserIdentitiesListAccessibleDevicesOptions = {},
   ): SeamHttpRequest<UserIdentitiesListAccessibleDevicesResponse, 'devices'> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_accessible_devices',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'devices',
+      options,
     })
   }
 
   listAcsSystems(
-    params?: UserIdentitiesListAcsSystemsParams,
+    parameters?: UserIdentitiesListAcsSystemsParameters,
+    options: UserIdentitiesListAcsSystemsOptions = {},
   ): SeamHttpRequest<UserIdentitiesListAcsSystemsResponse, 'acs_systems'> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_acs_systems',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_systems',
+      options,
     })
   }
 
   listAcsUsers(
-    params?: UserIdentitiesListAcsUsersParams,
+    parameters?: UserIdentitiesListAcsUsersParameters,
+    options: UserIdentitiesListAcsUsersOptions = {},
   ): SeamHttpRequest<UserIdentitiesListAcsUsersResponse, 'acs_users'> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_acs_users',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_users',
+      options,
     })
   }
 
   removeAcsUser(
-    params?: UserIdentitiesRemoveAcsUserParams,
+    parameters?: UserIdentitiesRemoveAcsUserParameters,
+    options: UserIdentitiesRemoveAcsUserOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/remove_acs_user',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   revokeAccessToDevice(
-    params?: UserIdentitiesRevokeAccessToDeviceParams,
+    parameters?: UserIdentitiesRevokeAccessToDeviceParameters,
+    options: UserIdentitiesRevokeAccessToDeviceOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/revoke_access_to_device',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
-  update(body?: UserIdentitiesUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: UserIdentitiesUpdateParameters,
+    options: UserIdentitiesUpdateOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type UserIdentitiesAddAcsUserBody =
+export type UserIdentitiesAddAcsUserParameters =
   RouteRequestBody<'/user_identities/add_acs_user'>
+
+/**
+ * @deprecated Use UserIdentitiesAddAcsUserParameters instead.
+ */
+export type UserIdentitiesAddAcsUserBody = UserIdentitiesAddAcsUserParameters
 
 export type UserIdentitiesAddAcsUserResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/add_acs_user'>>
 >
 
-export type UserIdentitiesAddAcsUserOptions = never
+export type UserIdentitiesAddAcsUserOptions = Record<string, never>
 
-export type UserIdentitiesCreateBody =
+export type UserIdentitiesCreateParameters =
   RouteRequestBody<'/user_identities/create'>
+
+/**
+ * @deprecated Use UserIdentitiesCreateParameters instead.
+ */
+export type UserIdentitiesCreateBody = UserIdentitiesCreateParameters
 
 export type UserIdentitiesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/create'>>
 >
 
-export type UserIdentitiesCreateOptions = never
+export type UserIdentitiesCreateOptions = Record<string, never>
 
-export type UserIdentitiesDeleteParams =
+export type UserIdentitiesDeleteParameters =
   RouteRequestBody<'/user_identities/delete'>
+
+/**
+ * @deprecated Use UserIdentitiesDeleteParameters instead.
+ */
+export type UserIdentitiesDeleteParams = UserIdentitiesDeleteParameters
 
 export type UserIdentitiesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/delete'>>
 >
 
-export type UserIdentitiesDeleteOptions = never
+export type UserIdentitiesDeleteOptions = Record<string, never>
 
-export type UserIdentitiesGenerateInstantKeyBody =
+export type UserIdentitiesGenerateInstantKeyParameters =
   RouteRequestBody<'/user_identities/generate_instant_key'>
+
+/**
+ * @deprecated Use UserIdentitiesGenerateInstantKeyParameters instead.
+ */
+export type UserIdentitiesGenerateInstantKeyBody =
+  UserIdentitiesGenerateInstantKeyParameters
 
 export type UserIdentitiesGenerateInstantKeyResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/generate_instant_key'>>
 >
 
-export type UserIdentitiesGenerateInstantKeyOptions = never
+export type UserIdentitiesGenerateInstantKeyOptions = Record<string, never>
 
-export type UserIdentitiesGetParams = RouteRequestParams<'/user_identities/get'>
+export type UserIdentitiesGetParameters =
+  RouteRequestParams<'/user_identities/get'>
+
+/**
+ * @deprecated Use UserIdentitiesGetParameters instead.
+ */
+export type UserIdentitiesGetParams = UserIdentitiesGetParameters
 
 export type UserIdentitiesGetResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/get'>>
 >
 
-export type UserIdentitiesGetOptions = never
+export type UserIdentitiesGetOptions = Record<string, never>
 
-export type UserIdentitiesGrantAccessToDeviceBody =
+export type UserIdentitiesGrantAccessToDeviceParameters =
   RouteRequestBody<'/user_identities/grant_access_to_device'>
+
+/**
+ * @deprecated Use UserIdentitiesGrantAccessToDeviceParameters instead.
+ */
+export type UserIdentitiesGrantAccessToDeviceBody =
+  UserIdentitiesGrantAccessToDeviceParameters
 
 export type UserIdentitiesGrantAccessToDeviceResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/grant_access_to_device'>>
 >
 
-export type UserIdentitiesGrantAccessToDeviceOptions = never
+export type UserIdentitiesGrantAccessToDeviceOptions = Record<string, never>
 
-export type UserIdentitiesListParams = RouteRequestBody<'/user_identities/list'>
+export type UserIdentitiesListParameters =
+  RouteRequestBody<'/user_identities/list'>
+
+/**
+ * @deprecated Use UserIdentitiesListParameters instead.
+ */
+export type UserIdentitiesListParams = UserIdentitiesListParameters
 
 export type UserIdentitiesListResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/list'>>
 >
 
-export type UserIdentitiesListOptions = never
+export type UserIdentitiesListOptions = Record<string, never>
 
-export type UserIdentitiesListAccessibleDevicesParams =
+export type UserIdentitiesListAccessibleDevicesParameters =
   RouteRequestBody<'/user_identities/list_accessible_devices'>
+
+/**
+ * @deprecated Use UserIdentitiesListAccessibleDevicesParameters instead.
+ */
+export type UserIdentitiesListAccessibleDevicesParams =
+  UserIdentitiesListAccessibleDevicesParameters
 
 export type UserIdentitiesListAccessibleDevicesResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/list_accessible_devices'>>
 >
 
-export type UserIdentitiesListAccessibleDevicesOptions = never
+export type UserIdentitiesListAccessibleDevicesOptions = Record<string, never>
 
-export type UserIdentitiesListAcsSystemsParams =
+export type UserIdentitiesListAcsSystemsParameters =
   RouteRequestBody<'/user_identities/list_acs_systems'>
+
+/**
+ * @deprecated Use UserIdentitiesListAcsSystemsParameters instead.
+ */
+export type UserIdentitiesListAcsSystemsParams =
+  UserIdentitiesListAcsSystemsParameters
 
 export type UserIdentitiesListAcsSystemsResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/list_acs_systems'>>
 >
 
-export type UserIdentitiesListAcsSystemsOptions = never
+export type UserIdentitiesListAcsSystemsOptions = Record<string, never>
 
-export type UserIdentitiesListAcsUsersParams =
+export type UserIdentitiesListAcsUsersParameters =
   RouteRequestBody<'/user_identities/list_acs_users'>
+
+/**
+ * @deprecated Use UserIdentitiesListAcsUsersParameters instead.
+ */
+export type UserIdentitiesListAcsUsersParams =
+  UserIdentitiesListAcsUsersParameters
 
 export type UserIdentitiesListAcsUsersResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/list_acs_users'>>
 >
 
-export type UserIdentitiesListAcsUsersOptions = never
+export type UserIdentitiesListAcsUsersOptions = Record<string, never>
 
-export type UserIdentitiesRemoveAcsUserParams =
+export type UserIdentitiesRemoveAcsUserParameters =
   RouteRequestBody<'/user_identities/remove_acs_user'>
+
+/**
+ * @deprecated Use UserIdentitiesRemoveAcsUserParameters instead.
+ */
+export type UserIdentitiesRemoveAcsUserParams =
+  UserIdentitiesRemoveAcsUserParameters
 
 export type UserIdentitiesRemoveAcsUserResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/remove_acs_user'>>
 >
 
-export type UserIdentitiesRemoveAcsUserOptions = never
+export type UserIdentitiesRemoveAcsUserOptions = Record<string, never>
 
-export type UserIdentitiesRevokeAccessToDeviceParams =
+export type UserIdentitiesRevokeAccessToDeviceParameters =
   RouteRequestBody<'/user_identities/revoke_access_to_device'>
+
+/**
+ * @deprecated Use UserIdentitiesRevokeAccessToDeviceParameters instead.
+ */
+export type UserIdentitiesRevokeAccessToDeviceParams =
+  UserIdentitiesRevokeAccessToDeviceParameters
 
 export type UserIdentitiesRevokeAccessToDeviceResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/revoke_access_to_device'>>
 >
 
-export type UserIdentitiesRevokeAccessToDeviceOptions = never
+export type UserIdentitiesRevokeAccessToDeviceOptions = Record<string, never>
 
-export type UserIdentitiesUpdateBody =
+export type UserIdentitiesUpdateParameters =
   RouteRequestBody<'/user_identities/update'>
+
+/**
+ * @deprecated Use UserIdentitiesUpdateParameters instead.
+ */
+export type UserIdentitiesUpdateBody = UserIdentitiesUpdateParameters
 
 export type UserIdentitiesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/user_identities/update'>>
 >
 
-export type UserIdentitiesUpdateOptions = never
+export type UserIdentitiesUpdateOptions = Record<string, never>

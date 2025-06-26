@@ -169,7 +169,8 @@ export class SeamHttpSeamPartnerV1Resources {
   }
 
   list(
-    params?: SeamPartnerV1ResourcesListParams,
+    parameters?: SeamPartnerV1ResourcesListParameters,
+    options: SeamPartnerV1ResourcesListOptions = {},
   ): SeamHttpRequest<SeamPartnerV1ResourcesListResponse, 'partner_resources'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -179,17 +180,24 @@ export class SeamHttpSeamPartnerV1Resources {
     return new SeamHttpRequest(this, {
       pathname: '/seam/partner/v1/resources/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'partner_resources',
+      options,
     })
   }
 }
 
-export type SeamPartnerV1ResourcesListParams =
+export type SeamPartnerV1ResourcesListParameters =
   RouteRequestBody<'/seam/partner/v1/resources/list'>
+
+/**
+ * @deprecated Use SeamPartnerV1ResourcesListParameters instead.
+ */
+export type SeamPartnerV1ResourcesListParams =
+  SeamPartnerV1ResourcesListParameters
 
 export type SeamPartnerV1ResourcesListResponse = SetNonNullable<
   Required<RouteResponse<'/seam/partner/v1/resources/list'>>
 >
 
-export type SeamPartnerV1ResourcesListOptions = never
+export type SeamPartnerV1ResourcesListOptions = Record<string, never>

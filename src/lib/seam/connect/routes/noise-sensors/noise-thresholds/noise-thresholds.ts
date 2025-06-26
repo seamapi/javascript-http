@@ -167,7 +167,8 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   create(
-    body?: NoiseSensorsNoiseThresholdsCreateBody,
+    parameters?: NoiseSensorsNoiseThresholdsCreateParameters,
+    options: NoiseSensorsNoiseThresholdsCreateOptions = {},
   ): SeamHttpRequest<
     NoiseSensorsNoiseThresholdsCreateResponse,
     'noise_threshold'
@@ -175,24 +176,28 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'noise_threshold',
+      options,
     })
   }
 
   delete(
-    params?: NoiseSensorsNoiseThresholdsDeleteParams,
+    parameters?: NoiseSensorsNoiseThresholdsDeleteParameters,
+    options: NoiseSensorsNoiseThresholdsDeleteOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: NoiseSensorsNoiseThresholdsGetParams,
+    parameters?: NoiseSensorsNoiseThresholdsGetParameters,
+    options: NoiseSensorsNoiseThresholdsGetOptions = {},
   ): SeamHttpRequest<
     NoiseSensorsNoiseThresholdsGetResponse,
     'noise_threshold'
@@ -200,13 +205,15 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'noise_threshold',
+      options,
     })
   }
 
   list(
-    params?: NoiseSensorsNoiseThresholdsListParams,
+    parameters?: NoiseSensorsNoiseThresholdsListParameters,
+    options: NoiseSensorsNoiseThresholdsListOptions = {},
   ): SeamHttpRequest<
     NoiseSensorsNoiseThresholdsListResponse,
     'noise_thresholds'
@@ -214,64 +221,97 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'noise_thresholds',
+      options,
     })
   }
 
   update(
-    body?: NoiseSensorsNoiseThresholdsUpdateBody,
+    parameters?: NoiseSensorsNoiseThresholdsUpdateParameters,
+    options: NoiseSensorsNoiseThresholdsUpdateOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/update',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type NoiseSensorsNoiseThresholdsCreateBody =
+export type NoiseSensorsNoiseThresholdsCreateParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/create'>
+
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsCreateParameters instead.
+ */
+export type NoiseSensorsNoiseThresholdsCreateBody =
+  NoiseSensorsNoiseThresholdsCreateParameters
 
 export type NoiseSensorsNoiseThresholdsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/create'>>
 >
 
-export type NoiseSensorsNoiseThresholdsCreateOptions = never
+export type NoiseSensorsNoiseThresholdsCreateOptions = Record<string, never>
 
-export type NoiseSensorsNoiseThresholdsDeleteParams =
+export type NoiseSensorsNoiseThresholdsDeleteParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/delete'>
+
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsDeleteParameters instead.
+ */
+export type NoiseSensorsNoiseThresholdsDeleteParams =
+  NoiseSensorsNoiseThresholdsDeleteParameters
 
 export type NoiseSensorsNoiseThresholdsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/delete'>>
 >
 
-export type NoiseSensorsNoiseThresholdsDeleteOptions = never
+export type NoiseSensorsNoiseThresholdsDeleteOptions = Record<string, never>
 
-export type NoiseSensorsNoiseThresholdsGetParams =
+export type NoiseSensorsNoiseThresholdsGetParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/get'>
+
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsGetParameters instead.
+ */
+export type NoiseSensorsNoiseThresholdsGetParams =
+  NoiseSensorsNoiseThresholdsGetParameters
 
 export type NoiseSensorsNoiseThresholdsGetResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/get'>>
 >
 
-export type NoiseSensorsNoiseThresholdsGetOptions = never
+export type NoiseSensorsNoiseThresholdsGetOptions = Record<string, never>
 
-export type NoiseSensorsNoiseThresholdsListParams =
+export type NoiseSensorsNoiseThresholdsListParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/list'>
+
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsListParameters instead.
+ */
+export type NoiseSensorsNoiseThresholdsListParams =
+  NoiseSensorsNoiseThresholdsListParameters
 
 export type NoiseSensorsNoiseThresholdsListResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/list'>>
 >
 
-export type NoiseSensorsNoiseThresholdsListOptions = never
+export type NoiseSensorsNoiseThresholdsListOptions = Record<string, never>
 
-export type NoiseSensorsNoiseThresholdsUpdateBody =
+export type NoiseSensorsNoiseThresholdsUpdateParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/update'>
+
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsUpdateParameters instead.
+ */
+export type NoiseSensorsNoiseThresholdsUpdateBody =
+  NoiseSensorsNoiseThresholdsUpdateParameters
 
 export type NoiseSensorsNoiseThresholdsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/update'>>
 >
 
-export type NoiseSensorsNoiseThresholdsUpdateOptions = never
+export type NoiseSensorsNoiseThresholdsUpdateOptions = Record<string, never>

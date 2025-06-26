@@ -164,81 +164,110 @@ export class SeamHttpConnectWebviews {
   }
 
   create(
-    body?: ConnectWebviewsCreateBody,
+    parameters?: ConnectWebviewsCreateParameters,
+    options: ConnectWebviewsCreateOptions = {},
   ): SeamHttpRequest<ConnectWebviewsCreateResponse, 'connect_webview'> {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'connect_webview',
+      options,
     })
   }
 
   delete(
-    params?: ConnectWebviewsDeleteParams,
+    parameters?: ConnectWebviewsDeleteParameters,
+    options: ConnectWebviewsDeleteOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: ConnectWebviewsGetParams,
+    parameters?: ConnectWebviewsGetParameters,
+    options: ConnectWebviewsGetOptions = {},
   ): SeamHttpRequest<ConnectWebviewsGetResponse, 'connect_webview'> {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'connect_webview',
+      options,
     })
   }
 
   list(
-    params?: ConnectWebviewsListParams,
+    parameters?: ConnectWebviewsListParameters,
+    options: ConnectWebviewsListOptions = {},
   ): SeamHttpRequest<ConnectWebviewsListResponse, 'connect_webviews'> {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'connect_webviews',
+      options,
     })
   }
 }
 
-export type ConnectWebviewsCreateBody =
+export type ConnectWebviewsCreateParameters =
   RouteRequestBody<'/connect_webviews/create'>
+
+/**
+ * @deprecated Use ConnectWebviewsCreateParameters instead.
+ */
+export type ConnectWebviewsCreateBody = ConnectWebviewsCreateParameters
 
 export type ConnectWebviewsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/create'>>
 >
 
-export type ConnectWebviewsCreateOptions = never
+export type ConnectWebviewsCreateOptions = Record<string, never>
 
-export type ConnectWebviewsDeleteParams =
+export type ConnectWebviewsDeleteParameters =
   RouteRequestBody<'/connect_webviews/delete'>
+
+/**
+ * @deprecated Use ConnectWebviewsDeleteParameters instead.
+ */
+export type ConnectWebviewsDeleteParams = ConnectWebviewsDeleteParameters
 
 export type ConnectWebviewsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/delete'>>
 >
 
-export type ConnectWebviewsDeleteOptions = never
+export type ConnectWebviewsDeleteOptions = Record<string, never>
 
-export type ConnectWebviewsGetParams = RouteRequestBody<'/connect_webviews/get'>
+export type ConnectWebviewsGetParameters =
+  RouteRequestBody<'/connect_webviews/get'>
+
+/**
+ * @deprecated Use ConnectWebviewsGetParameters instead.
+ */
+export type ConnectWebviewsGetParams = ConnectWebviewsGetParameters
 
 export type ConnectWebviewsGetResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/get'>>
 >
 
-export type ConnectWebviewsGetOptions = never
+export type ConnectWebviewsGetOptions = Record<string, never>
 
-export type ConnectWebviewsListParams =
+export type ConnectWebviewsListParameters =
   RouteRequestBody<'/connect_webviews/list'>
+
+/**
+ * @deprecated Use ConnectWebviewsListParameters instead.
+ */
+export type ConnectWebviewsListParams = ConnectWebviewsListParameters
 
 export type ConnectWebviewsListResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/list'>>
 >
 
-export type ConnectWebviewsListOptions = never
+export type ConnectWebviewsListOptions = Record<string, never>

@@ -172,7 +172,8 @@ export class SeamHttpSeamMobileSdkV1PhoneSessions {
   }
 
   getOrCreate(
-    body?: SeamMobileSdkV1PhoneSessionsGetOrCreateBody,
+    parameters?: SeamMobileSdkV1PhoneSessionsGetOrCreateParameters,
+    options: SeamMobileSdkV1PhoneSessionsGetOrCreateOptions = {},
   ): SeamHttpRequest<
     SeamMobileSdkV1PhoneSessionsGetOrCreateResponse,
     'phone_session'
@@ -185,17 +186,27 @@ export class SeamHttpSeamMobileSdkV1PhoneSessions {
     return new SeamHttpRequest(this, {
       pathname: '/seam/mobile_sdk/v1/phone_sessions/get_or_create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'phone_session',
+      options,
     })
   }
 }
 
-export type SeamMobileSdkV1PhoneSessionsGetOrCreateBody =
+export type SeamMobileSdkV1PhoneSessionsGetOrCreateParameters =
   RouteRequestBody<'/seam/mobile_sdk/v1/phone_sessions/get_or_create'>
+
+/**
+ * @deprecated Use SeamMobileSdkV1PhoneSessionsGetOrCreateParameters instead.
+ */
+export type SeamMobileSdkV1PhoneSessionsGetOrCreateBody =
+  SeamMobileSdkV1PhoneSessionsGetOrCreateParameters
 
 export type SeamMobileSdkV1PhoneSessionsGetOrCreateResponse = SetNonNullable<
   Required<RouteResponse<'/seam/mobile_sdk/v1/phone_sessions/get_or_create'>>
 >
 
-export type SeamMobileSdkV1PhoneSessionsGetOrCreateOptions = never
+export type SeamMobileSdkV1PhoneSessionsGetOrCreateOptions = Record<
+  string,
+  never
+>

@@ -173,7 +173,8 @@ export class SeamHttpUnstableLocations {
   }
 
   addAcsEntrances(
-    body?: UnstableLocationsAddAcsEntrancesBody,
+    parameters?: UnstableLocationsAddAcsEntrancesParameters,
+    options: UnstableLocationsAddAcsEntrancesOptions = {},
   ): SeamHttpRequest<void, undefined> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -183,13 +184,15 @@ export class SeamHttpUnstableLocations {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_locations/add_acs_entrances',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   addDevices(
-    body?: UnstableLocationsAddDevicesBody,
+    parameters?: UnstableLocationsAddDevicesParameters,
+    options: UnstableLocationsAddDevicesOptions = {},
   ): SeamHttpRequest<void, undefined> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -199,13 +202,15 @@ export class SeamHttpUnstableLocations {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_locations/add_devices',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   create(
-    body?: UnstableLocationsCreateBody,
+    parameters?: UnstableLocationsCreateParameters,
+    options: UnstableLocationsCreateOptions = {},
   ): SeamHttpRequest<UnstableLocationsCreateResponse, 'location'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -215,13 +220,15 @@ export class SeamHttpUnstableLocations {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_locations/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'location',
+      options,
     })
   }
 
   delete(
-    params?: UnstableLocationsDeleteParams,
+    parameters?: UnstableLocationsDeleteParameters,
+    options: UnstableLocationsDeleteOptions = {},
   ): SeamHttpRequest<void, undefined> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -231,13 +238,15 @@ export class SeamHttpUnstableLocations {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_locations/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: UnstableLocationsGetParams,
+    parameters?: UnstableLocationsGetParameters,
+    options: UnstableLocationsGetOptions = {},
   ): SeamHttpRequest<UnstableLocationsGetResponse, 'location'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -247,13 +256,15 @@ export class SeamHttpUnstableLocations {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_locations/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'location',
+      options,
     })
   }
 
   list(
-    params?: UnstableLocationsListParams,
+    parameters?: UnstableLocationsListParameters,
+    options: UnstableLocationsListOptions = {},
   ): SeamHttpRequest<UnstableLocationsListResponse, 'locations'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -263,13 +274,15 @@ export class SeamHttpUnstableLocations {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_locations/list',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'locations',
+      options,
     })
   }
 
   removeAcsEntrances(
-    params?: UnstableLocationsRemoveAcsEntrancesParams,
+    parameters?: UnstableLocationsRemoveAcsEntrancesParameters,
+    options: UnstableLocationsRemoveAcsEntrancesOptions = {},
   ): SeamHttpRequest<void, undefined> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -279,13 +292,15 @@ export class SeamHttpUnstableLocations {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_locations/remove_acs_entrances',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   removeDevices(
-    params?: UnstableLocationsRemoveDevicesParams,
+    parameters?: UnstableLocationsRemoveDevicesParameters,
+    options: UnstableLocationsRemoveDevicesOptions = {},
   ): SeamHttpRequest<void, undefined> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -295,13 +310,15 @@ export class SeamHttpUnstableLocations {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_locations/remove_devices',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   update(
-    body?: UnstableLocationsUpdateBody,
+    parameters?: UnstableLocationsUpdateParameters,
+    options: UnstableLocationsUpdateOptions = {},
   ): SeamHttpRequest<UnstableLocationsUpdateResponse, 'location'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -311,89 +328,139 @@ export class SeamHttpUnstableLocations {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_locations/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: 'location',
+      options,
     })
   }
 }
 
-export type UnstableLocationsAddAcsEntrancesBody =
+export type UnstableLocationsAddAcsEntrancesParameters =
   RouteRequestBody<'/unstable_locations/add_acs_entrances'>
+
+/**
+ * @deprecated Use UnstableLocationsAddAcsEntrancesParameters instead.
+ */
+export type UnstableLocationsAddAcsEntrancesBody =
+  UnstableLocationsAddAcsEntrancesParameters
 
 export type UnstableLocationsAddAcsEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/add_acs_entrances'>>
 >
 
-export type UnstableLocationsAddAcsEntrancesOptions = never
+export type UnstableLocationsAddAcsEntrancesOptions = Record<string, never>
 
-export type UnstableLocationsAddDevicesBody =
+export type UnstableLocationsAddDevicesParameters =
   RouteRequestBody<'/unstable_locations/add_devices'>
+
+/**
+ * @deprecated Use UnstableLocationsAddDevicesParameters instead.
+ */
+export type UnstableLocationsAddDevicesBody =
+  UnstableLocationsAddDevicesParameters
 
 export type UnstableLocationsAddDevicesResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/add_devices'>>
 >
 
-export type UnstableLocationsAddDevicesOptions = never
+export type UnstableLocationsAddDevicesOptions = Record<string, never>
 
-export type UnstableLocationsCreateBody =
+export type UnstableLocationsCreateParameters =
   RouteRequestBody<'/unstable_locations/create'>
+
+/**
+ * @deprecated Use UnstableLocationsCreateParameters instead.
+ */
+export type UnstableLocationsCreateBody = UnstableLocationsCreateParameters
 
 export type UnstableLocationsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/create'>>
 >
 
-export type UnstableLocationsCreateOptions = never
+export type UnstableLocationsCreateOptions = Record<string, never>
 
-export type UnstableLocationsDeleteParams =
+export type UnstableLocationsDeleteParameters =
   RouteRequestBody<'/unstable_locations/delete'>
+
+/**
+ * @deprecated Use UnstableLocationsDeleteParameters instead.
+ */
+export type UnstableLocationsDeleteParams = UnstableLocationsDeleteParameters
 
 export type UnstableLocationsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/delete'>>
 >
 
-export type UnstableLocationsDeleteOptions = never
+export type UnstableLocationsDeleteOptions = Record<string, never>
 
-export type UnstableLocationsGetParams =
+export type UnstableLocationsGetParameters =
   RouteRequestBody<'/unstable_locations/get'>
+
+/**
+ * @deprecated Use UnstableLocationsGetParameters instead.
+ */
+export type UnstableLocationsGetParams = UnstableLocationsGetParameters
 
 export type UnstableLocationsGetResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/get'>>
 >
 
-export type UnstableLocationsGetOptions = never
+export type UnstableLocationsGetOptions = Record<string, never>
 
-export type UnstableLocationsListParams =
+export type UnstableLocationsListParameters =
   RouteRequestParams<'/unstable_locations/list'>
+
+/**
+ * @deprecated Use UnstableLocationsListParameters instead.
+ */
+export type UnstableLocationsListParams = UnstableLocationsListParameters
 
 export type UnstableLocationsListResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/list'>>
 >
 
-export type UnstableLocationsListOptions = never
+export type UnstableLocationsListOptions = Record<string, never>
 
-export type UnstableLocationsRemoveAcsEntrancesParams =
+export type UnstableLocationsRemoveAcsEntrancesParameters =
   RouteRequestBody<'/unstable_locations/remove_acs_entrances'>
+
+/**
+ * @deprecated Use UnstableLocationsRemoveAcsEntrancesParameters instead.
+ */
+export type UnstableLocationsRemoveAcsEntrancesParams =
+  UnstableLocationsRemoveAcsEntrancesParameters
 
 export type UnstableLocationsRemoveAcsEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/remove_acs_entrances'>>
 >
 
-export type UnstableLocationsRemoveAcsEntrancesOptions = never
+export type UnstableLocationsRemoveAcsEntrancesOptions = Record<string, never>
 
-export type UnstableLocationsRemoveDevicesParams =
+export type UnstableLocationsRemoveDevicesParameters =
   RouteRequestBody<'/unstable_locations/remove_devices'>
+
+/**
+ * @deprecated Use UnstableLocationsRemoveDevicesParameters instead.
+ */
+export type UnstableLocationsRemoveDevicesParams =
+  UnstableLocationsRemoveDevicesParameters
 
 export type UnstableLocationsRemoveDevicesResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/remove_devices'>>
 >
 
-export type UnstableLocationsRemoveDevicesOptions = never
+export type UnstableLocationsRemoveDevicesOptions = Record<string, never>
 
-export type UnstableLocationsUpdateBody =
+export type UnstableLocationsUpdateParameters =
   RouteRequestBody<'/unstable_locations/update'>
+
+/**
+ * @deprecated Use UnstableLocationsUpdateParameters instead.
+ */
+export type UnstableLocationsUpdateBody = UnstableLocationsUpdateParameters
 
 export type UnstableLocationsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_locations/update'>>
 >
 
-export type UnstableLocationsUpdateOptions = never
+export type UnstableLocationsUpdateOptions = Record<string, never>

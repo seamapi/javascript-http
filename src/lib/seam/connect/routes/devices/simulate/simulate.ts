@@ -163,61 +163,84 @@ export class SeamHttpDevicesSimulate {
     await clientSessions.get()
   }
 
-  connect(body?: DevicesSimulateConnectBody): SeamHttpRequest<void, undefined> {
+  connect(
+    parameters?: DevicesSimulateConnectParameters,
+    options: DevicesSimulateConnectOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/connect',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   disconnect(
-    body?: DevicesSimulateDisconnectBody,
+    parameters?: DevicesSimulateDisconnectParameters,
+    options: DevicesSimulateDisconnectOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/disconnect',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   remove(
-    params?: DevicesSimulateRemoveParams,
+    parameters?: DevicesSimulateRemoveParameters,
+    options: DevicesSimulateRemoveOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/remove',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type DevicesSimulateConnectBody =
+export type DevicesSimulateConnectParameters =
   RouteRequestBody<'/devices/simulate/connect'>
+
+/**
+ * @deprecated Use DevicesSimulateConnectParameters instead.
+ */
+export type DevicesSimulateConnectBody = DevicesSimulateConnectParameters
 
 export type DevicesSimulateConnectResponse = SetNonNullable<
   Required<RouteResponse<'/devices/simulate/connect'>>
 >
 
-export type DevicesSimulateConnectOptions = never
+export type DevicesSimulateConnectOptions = Record<string, never>
 
-export type DevicesSimulateDisconnectBody =
+export type DevicesSimulateDisconnectParameters =
   RouteRequestBody<'/devices/simulate/disconnect'>
+
+/**
+ * @deprecated Use DevicesSimulateDisconnectParameters instead.
+ */
+export type DevicesSimulateDisconnectBody = DevicesSimulateDisconnectParameters
 
 export type DevicesSimulateDisconnectResponse = SetNonNullable<
   Required<RouteResponse<'/devices/simulate/disconnect'>>
 >
 
-export type DevicesSimulateDisconnectOptions = never
+export type DevicesSimulateDisconnectOptions = Record<string, never>
 
-export type DevicesSimulateRemoveParams =
+export type DevicesSimulateRemoveParameters =
   RouteRequestBody<'/devices/simulate/remove'>
+
+/**
+ * @deprecated Use DevicesSimulateRemoveParameters instead.
+ */
+export type DevicesSimulateRemoveParams = DevicesSimulateRemoveParameters
 
 export type DevicesSimulateRemoveResponse = SetNonNullable<
   Required<RouteResponse<'/devices/simulate/remove'>>
 >
 
-export type DevicesSimulateRemoveOptions = never
+export type DevicesSimulateRemoveOptions = Record<string, never>

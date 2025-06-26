@@ -172,7 +172,8 @@ export class SeamHttpAcsAccessGroupsUnmanaged {
   }
 
   get(
-    params?: AcsAccessGroupsUnmanagedGetParams,
+    parameters?: AcsAccessGroupsUnmanagedGetParameters,
+    options: AcsAccessGroupsUnmanagedGetOptions = {},
   ): SeamHttpRequest<AcsAccessGroupsUnmanagedGetResponse, 'acs_access_group'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -182,13 +183,15 @@ export class SeamHttpAcsAccessGroupsUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/unmanaged/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_access_group',
+      options,
     })
   }
 
   list(
-    params?: AcsAccessGroupsUnmanagedListParams,
+    parameters?: AcsAccessGroupsUnmanagedListParameters,
+    options: AcsAccessGroupsUnmanagedListOptions = {},
   ): SeamHttpRequest<
     AcsAccessGroupsUnmanagedListResponse,
     'acs_access_groups'
@@ -201,26 +204,39 @@ export class SeamHttpAcsAccessGroupsUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/unmanaged/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_access_groups',
+      options,
     })
   }
 }
 
-export type AcsAccessGroupsUnmanagedGetParams =
+export type AcsAccessGroupsUnmanagedGetParameters =
   RouteRequestBody<'/acs/access_groups/unmanaged/get'>
+
+/**
+ * @deprecated Use AcsAccessGroupsUnmanagedGetParameters instead.
+ */
+export type AcsAccessGroupsUnmanagedGetParams =
+  AcsAccessGroupsUnmanagedGetParameters
 
 export type AcsAccessGroupsUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/unmanaged/get'>>
 >
 
-export type AcsAccessGroupsUnmanagedGetOptions = never
+export type AcsAccessGroupsUnmanagedGetOptions = Record<string, never>
 
-export type AcsAccessGroupsUnmanagedListParams =
+export type AcsAccessGroupsUnmanagedListParameters =
   RouteRequestBody<'/acs/access_groups/unmanaged/list'>
+
+/**
+ * @deprecated Use AcsAccessGroupsUnmanagedListParameters instead.
+ */
+export type AcsAccessGroupsUnmanagedListParams =
+  AcsAccessGroupsUnmanagedListParameters
 
 export type AcsAccessGroupsUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/unmanaged/list'>>
 >
 
-export type AcsAccessGroupsUnmanagedListOptions = never
+export type AcsAccessGroupsUnmanagedListOptions = Record<string, never>

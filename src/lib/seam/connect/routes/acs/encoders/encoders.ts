@@ -174,69 +174,79 @@ export class SeamHttpAcsEncoders {
   }
 
   encodeAccessMethod(
-    body?: AcsEncodersEncodeAccessMethodBody,
+    parameters?: AcsEncodersEncodeAccessMethodParameters,
     options: AcsEncodersEncodeAccessMethodOptions = {},
   ): SeamHttpRequest<AcsEncodersEncodeAccessMethodResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/encode_access_method',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 
   encodeCredential(
-    body?: AcsEncodersEncodeCredentialBody,
+    parameters?: AcsEncodersEncodeCredentialParameters,
     options: AcsEncodersEncodeCredentialOptions = {},
   ): SeamHttpRequest<AcsEncodersEncodeCredentialResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/encode_credential',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 
   get(
-    params?: AcsEncodersGetParams,
+    parameters?: AcsEncodersGetParameters,
+    options: AcsEncodersGetOptions = {},
   ): SeamHttpRequest<AcsEncodersGetResponse, 'acs_encoder'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_encoder',
+      options,
     })
   }
 
   list(
-    params?: AcsEncodersListParams,
+    parameters?: AcsEncodersListParameters,
+    options: AcsEncodersListOptions = {},
   ): SeamHttpRequest<AcsEncodersListResponse, 'acs_encoders'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/list',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'acs_encoders',
+      options,
     })
   }
 
   scanCredential(
-    body?: AcsEncodersScanCredentialBody,
+    parameters?: AcsEncodersScanCredentialParameters,
     options: AcsEncodersScanCredentialOptions = {},
   ): SeamHttpRequest<AcsEncodersScanCredentialResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/scan_credential',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 }
 
-export type AcsEncodersEncodeAccessMethodBody =
+export type AcsEncodersEncodeAccessMethodParameters =
   RouteRequestBody<'/acs/encoders/encode_access_method'>
+
+/**
+ * @deprecated Use AcsEncodersEncodeAccessMethodParameters instead.
+ */
+export type AcsEncodersEncodeAccessMethodBody =
+  AcsEncodersEncodeAccessMethodParameters
 
 export type AcsEncodersEncodeAccessMethodResponse = SetNonNullable<
   Required<RouteResponse<'/acs/encoders/encode_access_method'>>
@@ -247,8 +257,14 @@ export type AcsEncodersEncodeAccessMethodOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type AcsEncodersEncodeCredentialBody =
+export type AcsEncodersEncodeCredentialParameters =
   RouteRequestBody<'/acs/encoders/encode_credential'>
+
+/**
+ * @deprecated Use AcsEncodersEncodeCredentialParameters instead.
+ */
+export type AcsEncodersEncodeCredentialBody =
+  AcsEncodersEncodeCredentialParameters
 
 export type AcsEncodersEncodeCredentialResponse = SetNonNullable<
   Required<RouteResponse<'/acs/encoders/encode_credential'>>
@@ -259,24 +275,39 @@ export type AcsEncodersEncodeCredentialOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type AcsEncodersGetParams = RouteRequestBody<'/acs/encoders/get'>
+export type AcsEncodersGetParameters = RouteRequestBody<'/acs/encoders/get'>
+
+/**
+ * @deprecated Use AcsEncodersGetParameters instead.
+ */
+export type AcsEncodersGetParams = AcsEncodersGetParameters
 
 export type AcsEncodersGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/encoders/get'>>
 >
 
-export type AcsEncodersGetOptions = never
+export type AcsEncodersGetOptions = Record<string, never>
 
-export type AcsEncodersListParams = RouteRequestParams<'/acs/encoders/list'>
+export type AcsEncodersListParameters = RouteRequestParams<'/acs/encoders/list'>
+
+/**
+ * @deprecated Use AcsEncodersListParameters instead.
+ */
+export type AcsEncodersListParams = AcsEncodersListParameters
 
 export type AcsEncodersListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/encoders/list'>>
 >
 
-export type AcsEncodersListOptions = never
+export type AcsEncodersListOptions = Record<string, never>
 
-export type AcsEncodersScanCredentialBody =
+export type AcsEncodersScanCredentialParameters =
   RouteRequestBody<'/acs/encoders/scan_credential'>
+
+/**
+ * @deprecated Use AcsEncodersScanCredentialParameters instead.
+ */
+export type AcsEncodersScanCredentialBody = AcsEncodersScanCredentialParameters
 
 export type AcsEncodersScanCredentialResponse = SetNonNullable<
   Required<RouteResponse<'/acs/encoders/scan_credential'>>

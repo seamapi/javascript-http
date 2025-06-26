@@ -164,52 +164,66 @@ export class SeamHttpAcsEncodersSimulate {
   }
 
   nextCredentialEncodeWillFail(
-    body?: AcsEncodersSimulateNextCredentialEncodeWillFailBody,
+    parameters?: AcsEncodersSimulateNextCredentialEncodeWillFailParameters,
+    options: AcsEncodersSimulateNextCredentialEncodeWillFailOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_encode_will_fail',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   nextCredentialEncodeWillSucceed(
-    body?: AcsEncodersSimulateNextCredentialEncodeWillSucceedBody,
+    parameters?: AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters,
+    options: AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_encode_will_succeed',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   nextCredentialScanWillFail(
-    body?: AcsEncodersSimulateNextCredentialScanWillFailBody,
+    parameters?: AcsEncodersSimulateNextCredentialScanWillFailParameters,
+    options: AcsEncodersSimulateNextCredentialScanWillFailOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_scan_will_fail',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   nextCredentialScanWillSucceed(
-    body?: AcsEncodersSimulateNextCredentialScanWillSucceedBody,
+    parameters?: AcsEncodersSimulateNextCredentialScanWillSucceedParameters,
+    options: AcsEncodersSimulateNextCredentialScanWillSucceedOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_scan_will_succeed',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type AcsEncodersSimulateNextCredentialEncodeWillFailBody =
+export type AcsEncodersSimulateNextCredentialEncodeWillFailParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_encode_will_fail'>
+
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillFailParameters instead.
+ */
+export type AcsEncodersSimulateNextCredentialEncodeWillFailBody =
+  AcsEncodersSimulateNextCredentialEncodeWillFailParameters
 
 export type AcsEncodersSimulateNextCredentialEncodeWillFailResponse =
   SetNonNullable<
@@ -218,10 +232,19 @@ export type AcsEncodersSimulateNextCredentialEncodeWillFailResponse =
     >
   >
 
-export type AcsEncodersSimulateNextCredentialEncodeWillFailOptions = never
+export type AcsEncodersSimulateNextCredentialEncodeWillFailOptions = Record<
+  string,
+  never
+>
 
-export type AcsEncodersSimulateNextCredentialEncodeWillSucceedBody =
+export type AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_encode_will_succeed'>
+
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters instead.
+ */
+export type AcsEncodersSimulateNextCredentialEncodeWillSucceedBody =
+  AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters
 
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedResponse =
   SetNonNullable<
@@ -230,10 +253,19 @@ export type AcsEncodersSimulateNextCredentialEncodeWillSucceedResponse =
     >
   >
 
-export type AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = never
+export type AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = Record<
+  string,
+  never
+>
 
-export type AcsEncodersSimulateNextCredentialScanWillFailBody =
+export type AcsEncodersSimulateNextCredentialScanWillFailParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_scan_will_fail'>
+
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialScanWillFailParameters instead.
+ */
+export type AcsEncodersSimulateNextCredentialScanWillFailBody =
+  AcsEncodersSimulateNextCredentialScanWillFailParameters
 
 export type AcsEncodersSimulateNextCredentialScanWillFailResponse =
   SetNonNullable<
@@ -242,10 +274,19 @@ export type AcsEncodersSimulateNextCredentialScanWillFailResponse =
     >
   >
 
-export type AcsEncodersSimulateNextCredentialScanWillFailOptions = never
+export type AcsEncodersSimulateNextCredentialScanWillFailOptions = Record<
+  string,
+  never
+>
 
-export type AcsEncodersSimulateNextCredentialScanWillSucceedBody =
+export type AcsEncodersSimulateNextCredentialScanWillSucceedParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_scan_will_succeed'>
+
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialScanWillSucceedParameters instead.
+ */
+export type AcsEncodersSimulateNextCredentialScanWillSucceedBody =
+  AcsEncodersSimulateNextCredentialScanWillSucceedParameters
 
 export type AcsEncodersSimulateNextCredentialScanWillSucceedResponse =
   SetNonNullable<
@@ -254,4 +295,7 @@ export type AcsEncodersSimulateNextCredentialScanWillSucceedResponse =
     >
   >
 
-export type AcsEncodersSimulateNextCredentialScanWillSucceedOptions = never
+export type AcsEncodersSimulateNextCredentialScanWillSucceedOptions = Record<
+  string,
+  never
+>

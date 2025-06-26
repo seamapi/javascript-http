@@ -164,42 +164,58 @@ export class SeamHttpThermostatsSimulate {
   }
 
   hvacModeAdjusted(
-    body?: ThermostatsSimulateHvacModeAdjustedBody,
+    parameters?: ThermostatsSimulateHvacModeAdjustedParameters,
+    options: ThermostatsSimulateHvacModeAdjustedOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/simulate/hvac_mode_adjusted',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   temperatureReached(
-    body?: ThermostatsSimulateTemperatureReachedBody,
+    parameters?: ThermostatsSimulateTemperatureReachedParameters,
+    options: ThermostatsSimulateTemperatureReachedOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/simulate/temperature_reached',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type ThermostatsSimulateHvacModeAdjustedBody =
+export type ThermostatsSimulateHvacModeAdjustedParameters =
   RouteRequestBody<'/thermostats/simulate/hvac_mode_adjusted'>
+
+/**
+ * @deprecated Use ThermostatsSimulateHvacModeAdjustedParameters instead.
+ */
+export type ThermostatsSimulateHvacModeAdjustedBody =
+  ThermostatsSimulateHvacModeAdjustedParameters
 
 export type ThermostatsSimulateHvacModeAdjustedResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/simulate/hvac_mode_adjusted'>>
 >
 
-export type ThermostatsSimulateHvacModeAdjustedOptions = never
+export type ThermostatsSimulateHvacModeAdjustedOptions = Record<string, never>
 
-export type ThermostatsSimulateTemperatureReachedBody =
+export type ThermostatsSimulateTemperatureReachedParameters =
   RouteRequestBody<'/thermostats/simulate/temperature_reached'>
+
+/**
+ * @deprecated Use ThermostatsSimulateTemperatureReachedParameters instead.
+ */
+export type ThermostatsSimulateTemperatureReachedBody =
+  ThermostatsSimulateTemperatureReachedParameters
 
 export type ThermostatsSimulateTemperatureReachedResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/simulate/temperature_reached'>>
 >
 
-export type ThermostatsSimulateTemperatureReachedOptions = never
+export type ThermostatsSimulateTemperatureReachedOptions = Record<string, never>

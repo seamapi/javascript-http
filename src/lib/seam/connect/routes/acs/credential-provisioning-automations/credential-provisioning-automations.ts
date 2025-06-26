@@ -172,7 +172,8 @@ export class SeamHttpAcsCredentialProvisioningAutomations {
   }
 
   launch(
-    body?: AcsCredentialProvisioningAutomationsLaunchBody,
+    parameters?: AcsCredentialProvisioningAutomationsLaunchParameters,
+    options: AcsCredentialProvisioningAutomationsLaunchOptions = {},
   ): SeamHttpRequest<
     AcsCredentialProvisioningAutomationsLaunchResponse,
     'acs_credential_provisioning_automation'
@@ -185,17 +186,27 @@ export class SeamHttpAcsCredentialProvisioningAutomations {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credential_provisioning_automations/launch',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'acs_credential_provisioning_automation',
+      options,
     })
   }
 }
 
-export type AcsCredentialProvisioningAutomationsLaunchBody =
+export type AcsCredentialProvisioningAutomationsLaunchParameters =
   RouteRequestBody<'/acs/credential_provisioning_automations/launch'>
+
+/**
+ * @deprecated Use AcsCredentialProvisioningAutomationsLaunchParameters instead.
+ */
+export type AcsCredentialProvisioningAutomationsLaunchBody =
+  AcsCredentialProvisioningAutomationsLaunchParameters
 
 export type AcsCredentialProvisioningAutomationsLaunchResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credential_provisioning_automations/launch'>>
 >
 
-export type AcsCredentialProvisioningAutomationsLaunchOptions = never
+export type AcsCredentialProvisioningAutomationsLaunchOptions = Record<
+  string,
+  never
+>

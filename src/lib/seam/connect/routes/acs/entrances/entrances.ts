@@ -164,40 +164,47 @@ export class SeamHttpAcsEntrances {
   }
 
   get(
-    params?: AcsEntrancesGetParams,
+    parameters?: AcsEntrancesGetParameters,
+    options: AcsEntrancesGetOptions = {},
   ): SeamHttpRequest<AcsEntrancesGetResponse, 'acs_entrance'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_entrance',
+      options,
     })
   }
 
   grantAccess(
-    body?: AcsEntrancesGrantAccessBody,
+    parameters?: AcsEntrancesGrantAccessParameters,
+    options: AcsEntrancesGrantAccessOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/grant_access',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   list(
-    params?: AcsEntrancesListParams,
+    parameters?: AcsEntrancesListParameters,
+    options: AcsEntrancesListOptions = {},
   ): SeamHttpRequest<AcsEntrancesListResponse, 'acs_entrances'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_entrances',
+      options,
     })
   }
 
   listCredentialsWithAccess(
-    params?: AcsEntrancesListCredentialsWithAccessParams,
+    parameters?: AcsEntrancesListCredentialsWithAccessParameters,
+    options: AcsEntrancesListCredentialsWithAccessOptions = {},
   ): SeamHttpRequest<
     AcsEntrancesListCredentialsWithAccessResponse,
     'acs_credentials'
@@ -205,42 +212,64 @@ export class SeamHttpAcsEntrances {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/list_credentials_with_access',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_credentials',
+      options,
     })
   }
 }
 
-export type AcsEntrancesGetParams = RouteRequestBody<'/acs/entrances/get'>
+export type AcsEntrancesGetParameters = RouteRequestBody<'/acs/entrances/get'>
+
+/**
+ * @deprecated Use AcsEntrancesGetParameters instead.
+ */
+export type AcsEntrancesGetParams = AcsEntrancesGetParameters
 
 export type AcsEntrancesGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/get'>>
 >
 
-export type AcsEntrancesGetOptions = never
+export type AcsEntrancesGetOptions = Record<string, never>
 
-export type AcsEntrancesGrantAccessBody =
+export type AcsEntrancesGrantAccessParameters =
   RouteRequestBody<'/acs/entrances/grant_access'>
+
+/**
+ * @deprecated Use AcsEntrancesGrantAccessParameters instead.
+ */
+export type AcsEntrancesGrantAccessBody = AcsEntrancesGrantAccessParameters
 
 export type AcsEntrancesGrantAccessResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/grant_access'>>
 >
 
-export type AcsEntrancesGrantAccessOptions = never
+export type AcsEntrancesGrantAccessOptions = Record<string, never>
 
-export type AcsEntrancesListParams = RouteRequestBody<'/acs/entrances/list'>
+export type AcsEntrancesListParameters = RouteRequestBody<'/acs/entrances/list'>
+
+/**
+ * @deprecated Use AcsEntrancesListParameters instead.
+ */
+export type AcsEntrancesListParams = AcsEntrancesListParameters
 
 export type AcsEntrancesListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/list'>>
 >
 
-export type AcsEntrancesListOptions = never
+export type AcsEntrancesListOptions = Record<string, never>
 
-export type AcsEntrancesListCredentialsWithAccessParams =
+export type AcsEntrancesListCredentialsWithAccessParameters =
   RouteRequestBody<'/acs/entrances/list_credentials_with_access'>
+
+/**
+ * @deprecated Use AcsEntrancesListCredentialsWithAccessParameters instead.
+ */
+export type AcsEntrancesListCredentialsWithAccessParams =
+  AcsEntrancesListCredentialsWithAccessParameters
 
 export type AcsEntrancesListCredentialsWithAccessResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/list_credentials_with_access'>>
 >
 
-export type AcsEntrancesListCredentialsWithAccessOptions = never
+export type AcsEntrancesListCredentialsWithAccessOptions = Record<string, never>

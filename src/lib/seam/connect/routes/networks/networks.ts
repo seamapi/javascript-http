@@ -169,7 +169,8 @@ export class SeamHttpNetworks {
   }
 
   get(
-    params?: NetworksGetParams,
+    parameters?: NetworksGetParameters,
+    options: NetworksGetOptions = {},
   ): SeamHttpRequest<NetworksGetResponse, 'network'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -179,13 +180,15 @@ export class SeamHttpNetworks {
     return new SeamHttpRequest(this, {
       pathname: '/networks/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'network',
+      options,
     })
   }
 
   list(
-    params?: NetworksListParams,
+    parameters?: NetworksListParameters,
+    options: NetworksListOptions = {},
   ): SeamHttpRequest<NetworksListResponse, 'networks'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -195,24 +198,35 @@ export class SeamHttpNetworks {
     return new SeamHttpRequest(this, {
       pathname: '/networks/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'networks',
+      options,
     })
   }
 }
 
-export type NetworksGetParams = RouteRequestBody<'/networks/get'>
+export type NetworksGetParameters = RouteRequestBody<'/networks/get'>
+
+/**
+ * @deprecated Use NetworksGetParameters instead.
+ */
+export type NetworksGetParams = NetworksGetParameters
 
 export type NetworksGetResponse = SetNonNullable<
   Required<RouteResponse<'/networks/get'>>
 >
 
-export type NetworksGetOptions = never
+export type NetworksGetOptions = Record<string, never>
 
-export type NetworksListParams = RouteRequestBody<'/networks/list'>
+export type NetworksListParameters = RouteRequestBody<'/networks/list'>
+
+/**
+ * @deprecated Use NetworksListParameters instead.
+ */
+export type NetworksListParams = NetworksListParameters
 
 export type NetworksListResponse = SetNonNullable<
   Required<RouteResponse<'/networks/list'>>
 >
 
-export type NetworksListOptions = never
+export type NetworksListOptions = Record<string, never>

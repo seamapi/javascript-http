@@ -164,102 +164,140 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   convertToManaged(
-    body?: AccessCodesUnmanagedConvertToManagedBody,
+    parameters?: AccessCodesUnmanagedConvertToManagedParameters,
+    options: AccessCodesUnmanagedConvertToManagedOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/convert_to_managed',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   delete(
-    params?: AccessCodesUnmanagedDeleteParams,
+    parameters?: AccessCodesUnmanagedDeleteParameters,
+    options: AccessCodesUnmanagedDeleteOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: AccessCodesUnmanagedGetParams,
+    parameters?: AccessCodesUnmanagedGetParameters,
+    options: AccessCodesUnmanagedGetOptions = {},
   ): SeamHttpRequest<AccessCodesUnmanagedGetResponse, 'access_code'> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_code',
+      options,
     })
   }
 
   list(
-    params?: AccessCodesUnmanagedListParams,
+    parameters?: AccessCodesUnmanagedListParameters,
+    options: AccessCodesUnmanagedListOptions = {},
   ): SeamHttpRequest<AccessCodesUnmanagedListResponse, 'access_codes'> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_codes',
+      options,
     })
   }
 
   update(
-    body?: AccessCodesUnmanagedUpdateBody,
+    parameters?: AccessCodesUnmanagedUpdateParameters,
+    options: AccessCodesUnmanagedUpdateOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type AccessCodesUnmanagedConvertToManagedBody =
+export type AccessCodesUnmanagedConvertToManagedParameters =
   RouteRequestBody<'/access_codes/unmanaged/convert_to_managed'>
+
+/**
+ * @deprecated Use AccessCodesUnmanagedConvertToManagedParameters instead.
+ */
+export type AccessCodesUnmanagedConvertToManagedBody =
+  AccessCodesUnmanagedConvertToManagedParameters
 
 export type AccessCodesUnmanagedConvertToManagedResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/convert_to_managed'>>
 >
 
-export type AccessCodesUnmanagedConvertToManagedOptions = never
+export type AccessCodesUnmanagedConvertToManagedOptions = Record<string, never>
 
-export type AccessCodesUnmanagedDeleteParams =
+export type AccessCodesUnmanagedDeleteParameters =
   RouteRequestBody<'/access_codes/unmanaged/delete'>
+
+/**
+ * @deprecated Use AccessCodesUnmanagedDeleteParameters instead.
+ */
+export type AccessCodesUnmanagedDeleteParams =
+  AccessCodesUnmanagedDeleteParameters
 
 export type AccessCodesUnmanagedDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/delete'>>
 >
 
-export type AccessCodesUnmanagedDeleteOptions = never
+export type AccessCodesUnmanagedDeleteOptions = Record<string, never>
 
-export type AccessCodesUnmanagedGetParams =
+export type AccessCodesUnmanagedGetParameters =
   RouteRequestBody<'/access_codes/unmanaged/get'>
+
+/**
+ * @deprecated Use AccessCodesUnmanagedGetParameters instead.
+ */
+export type AccessCodesUnmanagedGetParams = AccessCodesUnmanagedGetParameters
 
 export type AccessCodesUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/get'>>
 >
 
-export type AccessCodesUnmanagedGetOptions = never
+export type AccessCodesUnmanagedGetOptions = Record<string, never>
 
-export type AccessCodesUnmanagedListParams =
+export type AccessCodesUnmanagedListParameters =
   RouteRequestBody<'/access_codes/unmanaged/list'>
+
+/**
+ * @deprecated Use AccessCodesUnmanagedListParameters instead.
+ */
+export type AccessCodesUnmanagedListParams = AccessCodesUnmanagedListParameters
 
 export type AccessCodesUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/list'>>
 >
 
-export type AccessCodesUnmanagedListOptions = never
+export type AccessCodesUnmanagedListOptions = Record<string, never>
 
-export type AccessCodesUnmanagedUpdateBody =
+export type AccessCodesUnmanagedUpdateParameters =
   RouteRequestBody<'/access_codes/unmanaged/update'>
+
+/**
+ * @deprecated Use AccessCodesUnmanagedUpdateParameters instead.
+ */
+export type AccessCodesUnmanagedUpdateBody =
+  AccessCodesUnmanagedUpdateParameters
 
 export type AccessCodesUnmanagedUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/update'>>
 >
 
-export type AccessCodesUnmanagedUpdateOptions = never
+export type AccessCodesUnmanagedUpdateOptions = Record<string, never>

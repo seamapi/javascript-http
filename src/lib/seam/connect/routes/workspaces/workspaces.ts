@@ -168,87 +168,117 @@ export class SeamHttpWorkspaces {
   }
 
   create(
-    body?: WorkspacesCreateBody,
+    parameters?: WorkspacesCreateParameters,
+    options: WorkspacesCreateOptions = {},
   ): SeamHttpRequest<WorkspacesCreateResponse, 'workspace'> {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'workspace',
+      options,
     })
   }
 
   get(
-    params?: WorkspacesGetParams,
+    parameters?: WorkspacesGetParameters,
+    options: WorkspacesGetOptions = {},
   ): SeamHttpRequest<WorkspacesGetResponse, 'workspace'> {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/get',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'workspace',
+      options,
     })
   }
 
   list(
-    params?: WorkspacesListParams,
+    parameters?: WorkspacesListParameters,
+    options: WorkspacesListOptions = {},
   ): SeamHttpRequest<WorkspacesListResponse, 'workspaces'> {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/list',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'workspaces',
+      options,
     })
   }
 
   resetSandbox(
-    body?: WorkspacesResetSandboxBody,
+    parameters?: WorkspacesResetSandboxParameters,
     options: WorkspacesResetSandboxOptions = {},
   ): SeamHttpRequest<WorkspacesResetSandboxResponse, 'action_attempt'> {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/reset_sandbox',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 
-  update(body?: WorkspacesUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: WorkspacesUpdateParameters,
+    options: WorkspacesUpdateOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type WorkspacesCreateBody = RouteRequestBody<'/workspaces/create'>
+export type WorkspacesCreateParameters = RouteRequestBody<'/workspaces/create'>
+
+/**
+ * @deprecated Use WorkspacesCreateParameters instead.
+ */
+export type WorkspacesCreateBody = WorkspacesCreateParameters
 
 export type WorkspacesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/create'>>
 >
 
-export type WorkspacesCreateOptions = never
+export type WorkspacesCreateOptions = Record<string, never>
 
-export type WorkspacesGetParams = RouteRequestParams<'/workspaces/get'>
+export type WorkspacesGetParameters = RouteRequestParams<'/workspaces/get'>
+
+/**
+ * @deprecated Use WorkspacesGetParameters instead.
+ */
+export type WorkspacesGetParams = WorkspacesGetParameters
 
 export type WorkspacesGetResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/get'>>
 >
 
-export type WorkspacesGetOptions = never
+export type WorkspacesGetOptions = Record<string, never>
 
-export type WorkspacesListParams = RouteRequestParams<'/workspaces/list'>
+export type WorkspacesListParameters = RouteRequestParams<'/workspaces/list'>
+
+/**
+ * @deprecated Use WorkspacesListParameters instead.
+ */
+export type WorkspacesListParams = WorkspacesListParameters
 
 export type WorkspacesListResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/list'>>
 >
 
-export type WorkspacesListOptions = never
+export type WorkspacesListOptions = Record<string, never>
 
-export type WorkspacesResetSandboxBody =
+export type WorkspacesResetSandboxParameters =
   RouteRequestBody<'/workspaces/reset_sandbox'>
+
+/**
+ * @deprecated Use WorkspacesResetSandboxParameters instead.
+ */
+export type WorkspacesResetSandboxBody = WorkspacesResetSandboxParameters
 
 export type WorkspacesResetSandboxResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/reset_sandbox'>>
@@ -259,10 +289,15 @@ export type WorkspacesResetSandboxOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type WorkspacesUpdateBody = RouteRequestBody<'/workspaces/update'>
+export type WorkspacesUpdateParameters = RouteRequestBody<'/workspaces/update'>
+
+/**
+ * @deprecated Use WorkspacesUpdateParameters instead.
+ */
+export type WorkspacesUpdateBody = WorkspacesUpdateParameters
 
 export type WorkspacesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/update'>>
 >
 
-export type WorkspacesUpdateOptions = never
+export type WorkspacesUpdateOptions = Record<string, never>

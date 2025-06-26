@@ -170,57 +170,80 @@ export class SeamHttpPhones {
   }
 
   deactivate(
-    params?: PhonesDeactivateParams,
+    parameters?: PhonesDeactivateParameters,
+    options: PhonesDeactivateOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/phones/deactivate',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
-  get(params?: PhonesGetParams): SeamHttpRequest<PhonesGetResponse, 'phone'> {
+  get(
+    parameters?: PhonesGetParameters,
+    options: PhonesGetOptions = {},
+  ): SeamHttpRequest<PhonesGetResponse, 'phone'> {
     return new SeamHttpRequest(this, {
       pathname: '/phones/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'phone',
+      options,
     })
   }
 
   list(
-    params?: PhonesListParams,
+    parameters?: PhonesListParameters,
+    options: PhonesListOptions = {},
   ): SeamHttpRequest<PhonesListResponse, 'phones'> {
     return new SeamHttpRequest(this, {
       pathname: '/phones/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'phones',
+      options,
     })
   }
 }
 
-export type PhonesDeactivateParams = RouteRequestBody<'/phones/deactivate'>
+export type PhonesDeactivateParameters = RouteRequestBody<'/phones/deactivate'>
+
+/**
+ * @deprecated Use PhonesDeactivateParameters instead.
+ */
+export type PhonesDeactivateParams = PhonesDeactivateParameters
 
 export type PhonesDeactivateResponse = SetNonNullable<
   Required<RouteResponse<'/phones/deactivate'>>
 >
 
-export type PhonesDeactivateOptions = never
+export type PhonesDeactivateOptions = Record<string, never>
 
-export type PhonesGetParams = RouteRequestBody<'/phones/get'>
+export type PhonesGetParameters = RouteRequestBody<'/phones/get'>
+
+/**
+ * @deprecated Use PhonesGetParameters instead.
+ */
+export type PhonesGetParams = PhonesGetParameters
 
 export type PhonesGetResponse = SetNonNullable<
   Required<RouteResponse<'/phones/get'>>
 >
 
-export type PhonesGetOptions = never
+export type PhonesGetOptions = Record<string, never>
 
-export type PhonesListParams = RouteRequestBody<'/phones/list'>
+export type PhonesListParameters = RouteRequestBody<'/phones/list'>
+
+/**
+ * @deprecated Use PhonesListParameters instead.
+ */
+export type PhonesListParams = PhonesListParameters
 
 export type PhonesListResponse = SetNonNullable<
   Required<RouteResponse<'/phones/list'>>
 >
 
-export type PhonesListOptions = never
+export type PhonesListOptions = Record<string, never>

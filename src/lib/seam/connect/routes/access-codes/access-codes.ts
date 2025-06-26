@@ -175,193 +175,272 @@ export class SeamHttpAccessCodes {
   }
 
   create(
-    body?: AccessCodesCreateBody,
+    parameters?: AccessCodesCreateParameters,
+    options: AccessCodesCreateOptions = {},
   ): SeamHttpRequest<AccessCodesCreateResponse, 'access_code'> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'access_code',
+      options,
     })
   }
 
   createMultiple(
-    body?: AccessCodesCreateMultipleBody,
+    parameters?: AccessCodesCreateMultipleParameters,
+    options: AccessCodesCreateMultipleOptions = {},
   ): SeamHttpRequest<AccessCodesCreateMultipleResponse, 'access_codes'> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/create_multiple',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: 'access_codes',
+      options,
     })
   }
 
-  delete(params?: AccessCodesDeleteParams): SeamHttpRequest<void, undefined> {
+  delete(
+    parameters?: AccessCodesDeleteParameters,
+    options: AccessCodesDeleteOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   generateCode(
-    params?: AccessCodesGenerateCodeParams,
+    parameters?: AccessCodesGenerateCodeParameters,
+    options: AccessCodesGenerateCodeOptions = {},
   ): SeamHttpRequest<AccessCodesGenerateCodeResponse, 'generated_code'> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/generate_code',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'generated_code',
+      options,
     })
   }
 
   get(
-    params?: AccessCodesGetParams,
+    parameters?: AccessCodesGetParameters,
+    options: AccessCodesGetOptions = {},
   ): SeamHttpRequest<AccessCodesGetResponse, 'access_code'> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_code',
+      options,
     })
   }
 
   list(
-    params?: AccessCodesListParams,
+    parameters?: AccessCodesListParameters,
+    options: AccessCodesListOptions = {},
   ): SeamHttpRequest<AccessCodesListResponse, 'access_codes'> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_codes',
+      options,
     })
   }
 
   pullBackupAccessCode(
-    body?: AccessCodesPullBackupAccessCodeBody,
+    parameters?: AccessCodesPullBackupAccessCodeParameters,
+    options: AccessCodesPullBackupAccessCodeOptions = {},
   ): SeamHttpRequest<AccessCodesPullBackupAccessCodeResponse, 'access_code'> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/pull_backup_access_code',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'access_code',
+      options,
     })
   }
 
   reportDeviceConstraints(
-    body?: AccessCodesReportDeviceConstraintsBody,
+    parameters?: AccessCodesReportDeviceConstraintsParameters,
+    options: AccessCodesReportDeviceConstraintsOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/report_device_constraints',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
-  update(body?: AccessCodesUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: AccessCodesUpdateParameters,
+    options: AccessCodesUpdateOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/update',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   updateMultiple(
-    body?: AccessCodesUpdateMultipleBody,
+    parameters?: AccessCodesUpdateMultipleParameters,
+    options: AccessCodesUpdateMultipleOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/update_multiple',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type AccessCodesCreateBody = RouteRequestBody<'/access_codes/create'>
+export type AccessCodesCreateParameters =
+  RouteRequestBody<'/access_codes/create'>
+
+/**
+ * @deprecated Use AccessCodesCreateParameters instead.
+ */
+export type AccessCodesCreateBody = AccessCodesCreateParameters
 
 export type AccessCodesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/create'>>
 >
 
-export type AccessCodesCreateOptions = never
+export type AccessCodesCreateOptions = Record<string, never>
 
-export type AccessCodesCreateMultipleBody =
+export type AccessCodesCreateMultipleParameters =
   RouteRequestBody<'/access_codes/create_multiple'>
+
+/**
+ * @deprecated Use AccessCodesCreateMultipleParameters instead.
+ */
+export type AccessCodesCreateMultipleBody = AccessCodesCreateMultipleParameters
 
 export type AccessCodesCreateMultipleResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/create_multiple'>>
 >
 
-export type AccessCodesCreateMultipleOptions = never
+export type AccessCodesCreateMultipleOptions = Record<string, never>
 
-export type AccessCodesDeleteParams = RouteRequestBody<'/access_codes/delete'>
+export type AccessCodesDeleteParameters =
+  RouteRequestBody<'/access_codes/delete'>
+
+/**
+ * @deprecated Use AccessCodesDeleteParameters instead.
+ */
+export type AccessCodesDeleteParams = AccessCodesDeleteParameters
 
 export type AccessCodesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/delete'>>
 >
 
-export type AccessCodesDeleteOptions = never
+export type AccessCodesDeleteOptions = Record<string, never>
 
-export type AccessCodesGenerateCodeParams =
+export type AccessCodesGenerateCodeParameters =
   RouteRequestBody<'/access_codes/generate_code'>
+
+/**
+ * @deprecated Use AccessCodesGenerateCodeParameters instead.
+ */
+export type AccessCodesGenerateCodeParams = AccessCodesGenerateCodeParameters
 
 export type AccessCodesGenerateCodeResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/generate_code'>>
 >
 
-export type AccessCodesGenerateCodeOptions = never
+export type AccessCodesGenerateCodeOptions = Record<string, never>
 
-export type AccessCodesGetParams = RouteRequestBody<'/access_codes/get'>
+export type AccessCodesGetParameters = RouteRequestBody<'/access_codes/get'>
+
+/**
+ * @deprecated Use AccessCodesGetParameters instead.
+ */
+export type AccessCodesGetParams = AccessCodesGetParameters
 
 export type AccessCodesGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/get'>>
 >
 
-export type AccessCodesGetOptions = never
+export type AccessCodesGetOptions = Record<string, never>
 
-export type AccessCodesListParams = RouteRequestBody<'/access_codes/list'>
+export type AccessCodesListParameters = RouteRequestBody<'/access_codes/list'>
+
+/**
+ * @deprecated Use AccessCodesListParameters instead.
+ */
+export type AccessCodesListParams = AccessCodesListParameters
 
 export type AccessCodesListResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/list'>>
 >
 
-export type AccessCodesListOptions = never
+export type AccessCodesListOptions = Record<string, never>
 
-export type AccessCodesPullBackupAccessCodeBody =
+export type AccessCodesPullBackupAccessCodeParameters =
   RouteRequestBody<'/access_codes/pull_backup_access_code'>
+
+/**
+ * @deprecated Use AccessCodesPullBackupAccessCodeParameters instead.
+ */
+export type AccessCodesPullBackupAccessCodeBody =
+  AccessCodesPullBackupAccessCodeParameters
 
 export type AccessCodesPullBackupAccessCodeResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/pull_backup_access_code'>>
 >
 
-export type AccessCodesPullBackupAccessCodeOptions = never
+export type AccessCodesPullBackupAccessCodeOptions = Record<string, never>
 
-export type AccessCodesReportDeviceConstraintsBody =
+export type AccessCodesReportDeviceConstraintsParameters =
   RouteRequestBody<'/access_codes/report_device_constraints'>
+
+/**
+ * @deprecated Use AccessCodesReportDeviceConstraintsParameters instead.
+ */
+export type AccessCodesReportDeviceConstraintsBody =
+  AccessCodesReportDeviceConstraintsParameters
 
 export type AccessCodesReportDeviceConstraintsResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/report_device_constraints'>>
 >
 
-export type AccessCodesReportDeviceConstraintsOptions = never
+export type AccessCodesReportDeviceConstraintsOptions = Record<string, never>
 
-export type AccessCodesUpdateBody = RouteRequestBody<'/access_codes/update'>
+export type AccessCodesUpdateParameters =
+  RouteRequestBody<'/access_codes/update'>
+
+/**
+ * @deprecated Use AccessCodesUpdateParameters instead.
+ */
+export type AccessCodesUpdateBody = AccessCodesUpdateParameters
 
 export type AccessCodesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/update'>>
 >
 
-export type AccessCodesUpdateOptions = never
+export type AccessCodesUpdateOptions = Record<string, never>
 
-export type AccessCodesUpdateMultipleBody =
+export type AccessCodesUpdateMultipleParameters =
   RouteRequestBody<'/access_codes/update_multiple'>
+
+/**
+ * @deprecated Use AccessCodesUpdateMultipleParameters instead.
+ */
+export type AccessCodesUpdateMultipleBody = AccessCodesUpdateMultipleParameters
 
 export type AccessCodesUpdateMultipleResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/update_multiple'>>
 >
 
-export type AccessCodesUpdateMultipleOptions = never
+export type AccessCodesUpdateMultipleOptions = Record<string, never>

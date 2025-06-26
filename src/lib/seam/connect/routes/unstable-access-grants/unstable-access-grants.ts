@@ -169,7 +169,8 @@ export class SeamHttpUnstableAccessGrants {
   }
 
   create(
-    body?: UnstableAccessGrantsCreateBody,
+    parameters?: UnstableAccessGrantsCreateParameters,
+    options: UnstableAccessGrantsCreateOptions = {},
   ): SeamHttpRequest<UnstableAccessGrantsCreateResponse, 'access_grant'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -179,13 +180,15 @@ export class SeamHttpUnstableAccessGrants {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_access_grants/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'access_grant',
+      options,
     })
   }
 
   delete(
-    params?: UnstableAccessGrantsDeleteParams,
+    parameters?: UnstableAccessGrantsDeleteParameters,
+    options: UnstableAccessGrantsDeleteOptions = {},
   ): SeamHttpRequest<void, undefined> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -195,13 +198,15 @@ export class SeamHttpUnstableAccessGrants {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_access_grants/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: UnstableAccessGrantsGetParams,
+    parameters?: UnstableAccessGrantsGetParameters,
+    options: UnstableAccessGrantsGetOptions = {},
   ): SeamHttpRequest<UnstableAccessGrantsGetResponse, 'access_grant'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -211,13 +216,15 @@ export class SeamHttpUnstableAccessGrants {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_access_grants/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_grant',
+      options,
     })
   }
 
   list(
-    params?: UnstableAccessGrantsListParams,
+    parameters?: UnstableAccessGrantsListParameters,
+    options: UnstableAccessGrantsListOptions = {},
   ): SeamHttpRequest<UnstableAccessGrantsListResponse, 'access_grants'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -227,44 +234,67 @@ export class SeamHttpUnstableAccessGrants {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_access_grants/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_grants',
+      options,
     })
   }
 }
 
-export type UnstableAccessGrantsCreateBody =
+export type UnstableAccessGrantsCreateParameters =
   RouteRequestBody<'/unstable_access_grants/create'>
+
+/**
+ * @deprecated Use UnstableAccessGrantsCreateParameters instead.
+ */
+export type UnstableAccessGrantsCreateBody =
+  UnstableAccessGrantsCreateParameters
 
 export type UnstableAccessGrantsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_grants/create'>>
 >
 
-export type UnstableAccessGrantsCreateOptions = never
+export type UnstableAccessGrantsCreateOptions = Record<string, never>
 
-export type UnstableAccessGrantsDeleteParams =
+export type UnstableAccessGrantsDeleteParameters =
   RouteRequestBody<'/unstable_access_grants/delete'>
+
+/**
+ * @deprecated Use UnstableAccessGrantsDeleteParameters instead.
+ */
+export type UnstableAccessGrantsDeleteParams =
+  UnstableAccessGrantsDeleteParameters
 
 export type UnstableAccessGrantsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_grants/delete'>>
 >
 
-export type UnstableAccessGrantsDeleteOptions = never
+export type UnstableAccessGrantsDeleteOptions = Record<string, never>
 
-export type UnstableAccessGrantsGetParams =
+export type UnstableAccessGrantsGetParameters =
   RouteRequestBody<'/unstable_access_grants/get'>
+
+/**
+ * @deprecated Use UnstableAccessGrantsGetParameters instead.
+ */
+export type UnstableAccessGrantsGetParams = UnstableAccessGrantsGetParameters
 
 export type UnstableAccessGrantsGetResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_grants/get'>>
 >
 
-export type UnstableAccessGrantsGetOptions = never
+export type UnstableAccessGrantsGetOptions = Record<string, never>
 
-export type UnstableAccessGrantsListParams =
+export type UnstableAccessGrantsListParameters =
   RouteRequestBody<'/unstable_access_grants/list'>
+
+/**
+ * @deprecated Use UnstableAccessGrantsListParameters instead.
+ */
+export type UnstableAccessGrantsListParams = UnstableAccessGrantsListParameters
 
 export type UnstableAccessGrantsListResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_grants/list'>>
 >
 
-export type UnstableAccessGrantsListOptions = never
+export type UnstableAccessGrantsListOptions = Record<string, never>

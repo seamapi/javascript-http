@@ -169,7 +169,8 @@ export class SeamHttpAcsUsersUnmanaged {
   }
 
   get(
-    params?: AcsUsersUnmanagedGetParams,
+    parameters?: AcsUsersUnmanagedGetParameters,
+    options: AcsUsersUnmanagedGetOptions = {},
   ): SeamHttpRequest<AcsUsersUnmanagedGetResponse, 'acs_user'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -179,13 +180,15 @@ export class SeamHttpAcsUsersUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/unmanaged/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_user',
+      options,
     })
   }
 
   list(
-    params?: AcsUsersUnmanagedListParams,
+    parameters?: AcsUsersUnmanagedListParameters,
+    options: AcsUsersUnmanagedListOptions = {},
   ): SeamHttpRequest<AcsUsersUnmanagedListResponse, 'acs_users'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -195,26 +198,37 @@ export class SeamHttpAcsUsersUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/unmanaged/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_users',
+      options,
     })
   }
 }
 
-export type AcsUsersUnmanagedGetParams =
+export type AcsUsersUnmanagedGetParameters =
   RouteRequestBody<'/acs/users/unmanaged/get'>
+
+/**
+ * @deprecated Use AcsUsersUnmanagedGetParameters instead.
+ */
+export type AcsUsersUnmanagedGetParams = AcsUsersUnmanagedGetParameters
 
 export type AcsUsersUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/unmanaged/get'>>
 >
 
-export type AcsUsersUnmanagedGetOptions = never
+export type AcsUsersUnmanagedGetOptions = Record<string, never>
 
-export type AcsUsersUnmanagedListParams =
+export type AcsUsersUnmanagedListParameters =
   RouteRequestBody<'/acs/users/unmanaged/list'>
+
+/**
+ * @deprecated Use AcsUsersUnmanagedListParameters instead.
+ */
+export type AcsUsersUnmanagedListParams = AcsUsersUnmanagedListParameters
 
 export type AcsUsersUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/unmanaged/list'>>
 >
 
-export type AcsUsersUnmanagedListOptions = never
+export type AcsUsersUnmanagedListOptions = Record<string, never>

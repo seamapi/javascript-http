@@ -176,28 +176,35 @@ export class SeamHttpAcsCredentials {
     )
   }
 
-  assign(body?: AcsCredentialsAssignBody): SeamHttpRequest<void, undefined> {
+  assign(
+    parameters?: AcsCredentialsAssignParameters,
+    options: AcsCredentialsAssignOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/assign',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   create(
-    body?: AcsCredentialsCreateBody,
+    parameters?: AcsCredentialsCreateParameters,
+    options: AcsCredentialsCreateOptions = {},
   ): SeamHttpRequest<AcsCredentialsCreateResponse, 'acs_credential'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'acs_credential',
+      options,
     })
   }
 
   createOfflineCode(
-    body?: AcsCredentialsCreateOfflineCodeBody,
+    parameters?: AcsCredentialsCreateOfflineCodeParameters,
+    options: AcsCredentialsCreateOfflineCodeOptions = {},
   ): SeamHttpRequest<
     AcsCredentialsCreateOfflineCodeResponse,
     'acs_credential'
@@ -210,46 +217,54 @@ export class SeamHttpAcsCredentials {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/create_offline_code',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'acs_credential',
+      options,
     })
   }
 
   delete(
-    params?: AcsCredentialsDeleteParams,
+    parameters?: AcsCredentialsDeleteParameters,
+    options: AcsCredentialsDeleteOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: AcsCredentialsGetParams,
+    parameters?: AcsCredentialsGetParameters,
+    options: AcsCredentialsGetOptions = {},
   ): SeamHttpRequest<AcsCredentialsGetResponse, 'acs_credential'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_credential',
+      options,
     })
   }
 
   list(
-    params?: AcsCredentialsListParams,
+    parameters?: AcsCredentialsListParameters,
+    options: AcsCredentialsListOptions = {},
   ): SeamHttpRequest<AcsCredentialsListResponse, 'acs_credentials'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/list',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'acs_credentials',
+      options,
     })
   }
 
   listAccessibleEntrances(
-    params?: AcsCredentialsListAccessibleEntrancesParams,
+    parameters?: AcsCredentialsListAccessibleEntrancesParameters,
+    options: AcsCredentialsListAccessibleEntrancesOptions = {},
   ): SeamHttpRequest<
     AcsCredentialsListAccessibleEntrancesResponse,
     'acs_entrances'
@@ -257,108 +272,163 @@ export class SeamHttpAcsCredentials {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/list_accessible_entrances',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_entrances',
+      options,
     })
   }
 
   unassign(
-    body?: AcsCredentialsUnassignBody,
+    parameters?: AcsCredentialsUnassignParameters,
+    options: AcsCredentialsUnassignOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/unassign',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
-  update(body?: AcsCredentialsUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: AcsCredentialsUpdateParameters,
+    options: AcsCredentialsUpdateOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type AcsCredentialsAssignBody =
+export type AcsCredentialsAssignParameters =
   RouteRequestBody<'/acs/credentials/assign'>
+
+/**
+ * @deprecated Use AcsCredentialsAssignParameters instead.
+ */
+export type AcsCredentialsAssignBody = AcsCredentialsAssignParameters
 
 export type AcsCredentialsAssignResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/assign'>>
 >
 
-export type AcsCredentialsAssignOptions = never
+export type AcsCredentialsAssignOptions = Record<string, never>
 
-export type AcsCredentialsCreateBody =
+export type AcsCredentialsCreateParameters =
   RouteRequestBody<'/acs/credentials/create'>
+
+/**
+ * @deprecated Use AcsCredentialsCreateParameters instead.
+ */
+export type AcsCredentialsCreateBody = AcsCredentialsCreateParameters
 
 export type AcsCredentialsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/create'>>
 >
 
-export type AcsCredentialsCreateOptions = never
+export type AcsCredentialsCreateOptions = Record<string, never>
 
-export type AcsCredentialsCreateOfflineCodeBody =
+export type AcsCredentialsCreateOfflineCodeParameters =
   RouteRequestBody<'/acs/credentials/create_offline_code'>
+
+/**
+ * @deprecated Use AcsCredentialsCreateOfflineCodeParameters instead.
+ */
+export type AcsCredentialsCreateOfflineCodeBody =
+  AcsCredentialsCreateOfflineCodeParameters
 
 export type AcsCredentialsCreateOfflineCodeResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/create_offline_code'>>
 >
 
-export type AcsCredentialsCreateOfflineCodeOptions = never
+export type AcsCredentialsCreateOfflineCodeOptions = Record<string, never>
 
-export type AcsCredentialsDeleteParams =
+export type AcsCredentialsDeleteParameters =
   RouteRequestBody<'/acs/credentials/delete'>
+
+/**
+ * @deprecated Use AcsCredentialsDeleteParameters instead.
+ */
+export type AcsCredentialsDeleteParams = AcsCredentialsDeleteParameters
 
 export type AcsCredentialsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/delete'>>
 >
 
-export type AcsCredentialsDeleteOptions = never
+export type AcsCredentialsDeleteOptions = Record<string, never>
 
-export type AcsCredentialsGetParams = RouteRequestBody<'/acs/credentials/get'>
+export type AcsCredentialsGetParameters =
+  RouteRequestBody<'/acs/credentials/get'>
+
+/**
+ * @deprecated Use AcsCredentialsGetParameters instead.
+ */
+export type AcsCredentialsGetParams = AcsCredentialsGetParameters
 
 export type AcsCredentialsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/get'>>
 >
 
-export type AcsCredentialsGetOptions = never
+export type AcsCredentialsGetOptions = Record<string, never>
 
-export type AcsCredentialsListParams =
+export type AcsCredentialsListParameters =
   RouteRequestParams<'/acs/credentials/list'>
+
+/**
+ * @deprecated Use AcsCredentialsListParameters instead.
+ */
+export type AcsCredentialsListParams = AcsCredentialsListParameters
 
 export type AcsCredentialsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/list'>>
 >
 
-export type AcsCredentialsListOptions = never
+export type AcsCredentialsListOptions = Record<string, never>
 
-export type AcsCredentialsListAccessibleEntrancesParams =
+export type AcsCredentialsListAccessibleEntrancesParameters =
   RouteRequestBody<'/acs/credentials/list_accessible_entrances'>
+
+/**
+ * @deprecated Use AcsCredentialsListAccessibleEntrancesParameters instead.
+ */
+export type AcsCredentialsListAccessibleEntrancesParams =
+  AcsCredentialsListAccessibleEntrancesParameters
 
 export type AcsCredentialsListAccessibleEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/list_accessible_entrances'>>
 >
 
-export type AcsCredentialsListAccessibleEntrancesOptions = never
+export type AcsCredentialsListAccessibleEntrancesOptions = Record<string, never>
 
-export type AcsCredentialsUnassignBody =
+export type AcsCredentialsUnassignParameters =
   RouteRequestBody<'/acs/credentials/unassign'>
+
+/**
+ * @deprecated Use AcsCredentialsUnassignParameters instead.
+ */
+export type AcsCredentialsUnassignBody = AcsCredentialsUnassignParameters
 
 export type AcsCredentialsUnassignResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/unassign'>>
 >
 
-export type AcsCredentialsUnassignOptions = never
+export type AcsCredentialsUnassignOptions = Record<string, never>
 
-export type AcsCredentialsUpdateBody =
+export type AcsCredentialsUpdateParameters =
   RouteRequestBody<'/acs/credentials/update'>
+
+/**
+ * @deprecated Use AcsCredentialsUpdateParameters instead.
+ */
+export type AcsCredentialsUpdateBody = AcsCredentialsUpdateParameters
 
 export type AcsCredentialsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/update'>>
 >
 
-export type AcsCredentialsUpdateOptions = never
+export type AcsCredentialsUpdateOptions = Record<string, never>

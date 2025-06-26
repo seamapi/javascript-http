@@ -168,93 +168,132 @@ export class SeamHttpWebhooks {
   }
 
   create(
-    body?: WebhooksCreateBody,
+    parameters?: WebhooksCreateParameters,
+    options: WebhooksCreateOptions = {},
   ): SeamHttpRequest<WebhooksCreateResponse, 'webhook'> {
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'webhook',
+      options,
     })
   }
 
-  delete(params?: WebhooksDeleteParams): SeamHttpRequest<void, undefined> {
+  delete(
+    parameters?: WebhooksDeleteParameters,
+    options: WebhooksDeleteOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: WebhooksGetParams,
+    parameters?: WebhooksGetParameters,
+    options: WebhooksGetOptions = {},
   ): SeamHttpRequest<WebhooksGetResponse, 'webhook'> {
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'webhook',
+      options,
     })
   }
 
   list(
-    params?: WebhooksListParams,
+    parameters?: WebhooksListParameters,
+    options: WebhooksListOptions = {},
   ): SeamHttpRequest<WebhooksListResponse, 'webhooks'> {
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/list',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'webhooks',
+      options,
     })
   }
 
-  update(body?: WebhooksUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: WebhooksUpdateParameters,
+    options: WebhooksUpdateOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/update',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type WebhooksCreateBody = RouteRequestBody<'/webhooks/create'>
+export type WebhooksCreateParameters = RouteRequestBody<'/webhooks/create'>
+
+/**
+ * @deprecated Use WebhooksCreateParameters instead.
+ */
+export type WebhooksCreateBody = WebhooksCreateParameters
 
 export type WebhooksCreateResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/create'>>
 >
 
-export type WebhooksCreateOptions = never
+export type WebhooksCreateOptions = Record<string, never>
 
-export type WebhooksDeleteParams = RouteRequestBody<'/webhooks/delete'>
+export type WebhooksDeleteParameters = RouteRequestBody<'/webhooks/delete'>
+
+/**
+ * @deprecated Use WebhooksDeleteParameters instead.
+ */
+export type WebhooksDeleteParams = WebhooksDeleteParameters
 
 export type WebhooksDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/delete'>>
 >
 
-export type WebhooksDeleteOptions = never
+export type WebhooksDeleteOptions = Record<string, never>
 
-export type WebhooksGetParams = RouteRequestBody<'/webhooks/get'>
+export type WebhooksGetParameters = RouteRequestBody<'/webhooks/get'>
+
+/**
+ * @deprecated Use WebhooksGetParameters instead.
+ */
+export type WebhooksGetParams = WebhooksGetParameters
 
 export type WebhooksGetResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/get'>>
 >
 
-export type WebhooksGetOptions = never
+export type WebhooksGetOptions = Record<string, never>
 
-export type WebhooksListParams = RouteRequestParams<'/webhooks/list'>
+export type WebhooksListParameters = RouteRequestParams<'/webhooks/list'>
+
+/**
+ * @deprecated Use WebhooksListParameters instead.
+ */
+export type WebhooksListParams = WebhooksListParameters
 
 export type WebhooksListResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/list'>>
 >
 
-export type WebhooksListOptions = never
+export type WebhooksListOptions = Record<string, never>
 
-export type WebhooksUpdateBody = RouteRequestBody<'/webhooks/update'>
+export type WebhooksUpdateParameters = RouteRequestBody<'/webhooks/update'>
+
+/**
+ * @deprecated Use WebhooksUpdateParameters instead.
+ */
+export type WebhooksUpdateBody = WebhooksUpdateParameters
 
 export type WebhooksUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/webhooks/update'>>
 >
 
-export type WebhooksUpdateOptions = never
+export type WebhooksUpdateOptions = Record<string, never>

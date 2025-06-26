@@ -169,7 +169,7 @@ export class SeamHttpLocksSimulate {
   }
 
   keypadCodeEntry(
-    body?: LocksSimulateKeypadCodeEntryBody,
+    parameters?: LocksSimulateKeypadCodeEntryParameters,
     options: LocksSimulateKeypadCodeEntryOptions = {},
   ): SeamHttpRequest<LocksSimulateKeypadCodeEntryResponse, 'action_attempt'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -180,14 +180,14 @@ export class SeamHttpLocksSimulate {
     return new SeamHttpRequest(this, {
       pathname: '/locks/simulate/keypad_code_entry',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 
   manualLockViaKeypad(
-    body?: LocksSimulateManualLockViaKeypadBody,
+    parameters?: LocksSimulateManualLockViaKeypadParameters,
     options: LocksSimulateManualLockViaKeypadOptions = {},
   ): SeamHttpRequest<
     LocksSimulateManualLockViaKeypadResponse,
@@ -201,15 +201,21 @@ export class SeamHttpLocksSimulate {
     return new SeamHttpRequest(this, {
       pathname: '/locks/simulate/manual_lock_via_keypad',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 }
 
-export type LocksSimulateKeypadCodeEntryBody =
+export type LocksSimulateKeypadCodeEntryParameters =
   RouteRequestBody<'/locks/simulate/keypad_code_entry'>
+
+/**
+ * @deprecated Use LocksSimulateKeypadCodeEntryParameters instead.
+ */
+export type LocksSimulateKeypadCodeEntryBody =
+  LocksSimulateKeypadCodeEntryParameters
 
 export type LocksSimulateKeypadCodeEntryResponse = SetNonNullable<
   Required<RouteResponse<'/locks/simulate/keypad_code_entry'>>
@@ -220,8 +226,14 @@ export type LocksSimulateKeypadCodeEntryOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type LocksSimulateManualLockViaKeypadBody =
+export type LocksSimulateManualLockViaKeypadParameters =
   RouteRequestBody<'/locks/simulate/manual_lock_via_keypad'>
+
+/**
+ * @deprecated Use LocksSimulateManualLockViaKeypadParameters instead.
+ */
+export type LocksSimulateManualLockViaKeypadBody =
+  LocksSimulateManualLockViaKeypadParameters
 
 export type LocksSimulateManualLockViaKeypadResponse = SetNonNullable<
   Required<RouteResponse<'/locks/simulate/manual_lock_via_keypad'>>

@@ -176,7 +176,8 @@ export class SeamHttpAcsCredentialsUnmanaged {
   }
 
   get(
-    params?: AcsCredentialsUnmanagedGetParams,
+    parameters?: AcsCredentialsUnmanagedGetParameters,
+    options: AcsCredentialsUnmanagedGetOptions = {},
   ): SeamHttpRequest<AcsCredentialsUnmanagedGetResponse, 'acs_credential'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -186,13 +187,15 @@ export class SeamHttpAcsCredentialsUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/unmanaged/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_credential',
+      options,
     })
   }
 
   list(
-    params?: AcsCredentialsUnmanagedListParams,
+    parameters?: AcsCredentialsUnmanagedListParameters,
+    options: AcsCredentialsUnmanagedListOptions = {},
   ): SeamHttpRequest<AcsCredentialsUnmanagedListResponse, 'acs_credentials'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -202,26 +205,39 @@ export class SeamHttpAcsCredentialsUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/unmanaged/list',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'acs_credentials',
+      options,
     })
   }
 }
 
-export type AcsCredentialsUnmanagedGetParams =
+export type AcsCredentialsUnmanagedGetParameters =
   RouteRequestBody<'/acs/credentials/unmanaged/get'>
+
+/**
+ * @deprecated Use AcsCredentialsUnmanagedGetParameters instead.
+ */
+export type AcsCredentialsUnmanagedGetParams =
+  AcsCredentialsUnmanagedGetParameters
 
 export type AcsCredentialsUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/unmanaged/get'>>
 >
 
-export type AcsCredentialsUnmanagedGetOptions = never
+export type AcsCredentialsUnmanagedGetOptions = Record<string, never>
 
-export type AcsCredentialsUnmanagedListParams =
+export type AcsCredentialsUnmanagedListParameters =
   RouteRequestParams<'/acs/credentials/unmanaged/list'>
+
+/**
+ * @deprecated Use AcsCredentialsUnmanagedListParameters instead.
+ */
+export type AcsCredentialsUnmanagedListParams =
+  AcsCredentialsUnmanagedListParameters
 
 export type AcsCredentialsUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/unmanaged/list'>>
 >
 
-export type AcsCredentialsUnmanagedListOptions = never
+export type AcsCredentialsUnmanagedListOptions = Record<string, never>

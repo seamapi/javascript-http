@@ -163,138 +163,191 @@ export class SeamHttpClientSessions {
   }
 
   create(
-    body?: ClientSessionsCreateBody,
+    parameters?: ClientSessionsCreateParameters,
+    options: ClientSessionsCreateOptions = {},
   ): SeamHttpRequest<ClientSessionsCreateResponse, 'client_session'> {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/create',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: 'client_session',
+      options,
     })
   }
 
   delete(
-    params?: ClientSessionsDeleteParams,
+    parameters?: ClientSessionsDeleteParameters,
+    options: ClientSessionsDeleteOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: ClientSessionsGetParams,
+    parameters?: ClientSessionsGetParameters,
+    options: ClientSessionsGetOptions = {},
   ): SeamHttpRequest<ClientSessionsGetResponse, 'client_session'> {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'client_session',
+      options,
     })
   }
 
   getOrCreate(
-    body?: ClientSessionsGetOrCreateBody,
+    parameters?: ClientSessionsGetOrCreateParameters,
+    options: ClientSessionsGetOrCreateOptions = {},
   ): SeamHttpRequest<ClientSessionsGetOrCreateResponse, 'client_session'> {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/get_or_create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'client_session',
+      options,
     })
   }
 
   grantAccess(
-    body?: ClientSessionsGrantAccessBody,
+    parameters?: ClientSessionsGrantAccessParameters,
+    options: ClientSessionsGrantAccessOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/grant_access',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   list(
-    params?: ClientSessionsListParams,
+    parameters?: ClientSessionsListParameters,
+    options: ClientSessionsListOptions = {},
   ): SeamHttpRequest<ClientSessionsListResponse, 'client_sessions'> {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'client_sessions',
+      options,
     })
   }
 
-  revoke(body?: ClientSessionsRevokeBody): SeamHttpRequest<void, undefined> {
+  revoke(
+    parameters?: ClientSessionsRevokeParameters,
+    options: ClientSessionsRevokeOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/revoke',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type ClientSessionsCreateBody =
+export type ClientSessionsCreateParameters =
   RouteRequestBody<'/client_sessions/create'>
+
+/**
+ * @deprecated Use ClientSessionsCreateParameters instead.
+ */
+export type ClientSessionsCreateBody = ClientSessionsCreateParameters
 
 export type ClientSessionsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/create'>>
 >
 
-export type ClientSessionsCreateOptions = never
+export type ClientSessionsCreateOptions = Record<string, never>
 
-export type ClientSessionsDeleteParams =
+export type ClientSessionsDeleteParameters =
   RouteRequestBody<'/client_sessions/delete'>
+
+/**
+ * @deprecated Use ClientSessionsDeleteParameters instead.
+ */
+export type ClientSessionsDeleteParams = ClientSessionsDeleteParameters
 
 export type ClientSessionsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/delete'>>
 >
 
-export type ClientSessionsDeleteOptions = never
+export type ClientSessionsDeleteOptions = Record<string, never>
 
-export type ClientSessionsGetParams = RouteRequestBody<'/client_sessions/get'>
+export type ClientSessionsGetParameters =
+  RouteRequestBody<'/client_sessions/get'>
+
+/**
+ * @deprecated Use ClientSessionsGetParameters instead.
+ */
+export type ClientSessionsGetParams = ClientSessionsGetParameters
 
 export type ClientSessionsGetResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/get'>>
 >
 
-export type ClientSessionsGetOptions = never
+export type ClientSessionsGetOptions = Record<string, never>
 
-export type ClientSessionsGetOrCreateBody =
+export type ClientSessionsGetOrCreateParameters =
   RouteRequestBody<'/client_sessions/get_or_create'>
+
+/**
+ * @deprecated Use ClientSessionsGetOrCreateParameters instead.
+ */
+export type ClientSessionsGetOrCreateBody = ClientSessionsGetOrCreateParameters
 
 export type ClientSessionsGetOrCreateResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/get_or_create'>>
 >
 
-export type ClientSessionsGetOrCreateOptions = never
+export type ClientSessionsGetOrCreateOptions = Record<string, never>
 
-export type ClientSessionsGrantAccessBody =
+export type ClientSessionsGrantAccessParameters =
   RouteRequestBody<'/client_sessions/grant_access'>
+
+/**
+ * @deprecated Use ClientSessionsGrantAccessParameters instead.
+ */
+export type ClientSessionsGrantAccessBody = ClientSessionsGrantAccessParameters
 
 export type ClientSessionsGrantAccessResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/grant_access'>>
 >
 
-export type ClientSessionsGrantAccessOptions = never
+export type ClientSessionsGrantAccessOptions = Record<string, never>
 
-export type ClientSessionsListParams = RouteRequestBody<'/client_sessions/list'>
+export type ClientSessionsListParameters =
+  RouteRequestBody<'/client_sessions/list'>
+
+/**
+ * @deprecated Use ClientSessionsListParameters instead.
+ */
+export type ClientSessionsListParams = ClientSessionsListParameters
 
 export type ClientSessionsListResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/list'>>
 >
 
-export type ClientSessionsListOptions = never
+export type ClientSessionsListOptions = Record<string, never>
 
-export type ClientSessionsRevokeBody =
+export type ClientSessionsRevokeParameters =
   RouteRequestBody<'/client_sessions/revoke'>
+
+/**
+ * @deprecated Use ClientSessionsRevokeParameters instead.
+ */
+export type ClientSessionsRevokeBody = ClientSessionsRevokeParameters
 
 export type ClientSessionsRevokeResponse = SetNonNullable<
   Required<RouteResponse<'/client_sessions/revoke'>>
 >
 
-export type ClientSessionsRevokeOptions = never
+export type ClientSessionsRevokeOptions = Record<string, never>

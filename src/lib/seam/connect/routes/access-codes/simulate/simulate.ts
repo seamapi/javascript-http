@@ -164,7 +164,8 @@ export class SeamHttpAccessCodesSimulate {
   }
 
   createUnmanagedAccessCode(
-    body?: AccessCodesSimulateCreateUnmanagedAccessCodeBody,
+    parameters?: AccessCodesSimulateCreateUnmanagedAccessCodeParameters,
+    options: AccessCodesSimulateCreateUnmanagedAccessCodeOptions = {},
   ): SeamHttpRequest<
     AccessCodesSimulateCreateUnmanagedAccessCodeResponse,
     'access_code'
@@ -172,14 +173,21 @@ export class SeamHttpAccessCodesSimulate {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/simulate/create_unmanaged_access_code',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'access_code',
+      options,
     })
   }
 }
 
-export type AccessCodesSimulateCreateUnmanagedAccessCodeBody =
+export type AccessCodesSimulateCreateUnmanagedAccessCodeParameters =
   RouteRequestBody<'/access_codes/simulate/create_unmanaged_access_code'>
+
+/**
+ * @deprecated Use AccessCodesSimulateCreateUnmanagedAccessCodeParameters instead.
+ */
+export type AccessCodesSimulateCreateUnmanagedAccessCodeBody =
+  AccessCodesSimulateCreateUnmanagedAccessCodeParameters
 
 export type AccessCodesSimulateCreateUnmanagedAccessCodeResponse =
   SetNonNullable<
@@ -188,4 +196,7 @@ export type AccessCodesSimulateCreateUnmanagedAccessCodeResponse =
     >
   >
 
-export type AccessCodesSimulateCreateUnmanagedAccessCodeOptions = never
+export type AccessCodesSimulateCreateUnmanagedAccessCodeOptions = Record<
+  string,
+  never
+>

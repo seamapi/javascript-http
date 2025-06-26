@@ -169,7 +169,8 @@ export class SeamHttpUnstableAccessMethods {
   }
 
   delete(
-    params?: UnstableAccessMethodsDeleteParams,
+    parameters?: UnstableAccessMethodsDeleteParameters,
+    options: UnstableAccessMethodsDeleteOptions = {},
   ): SeamHttpRequest<void, undefined> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -179,13 +180,15 @@ export class SeamHttpUnstableAccessMethods {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_access_methods/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: UnstableAccessMethodsGetParams,
+    parameters?: UnstableAccessMethodsGetParameters,
+    options: UnstableAccessMethodsGetOptions = {},
   ): SeamHttpRequest<UnstableAccessMethodsGetResponse, 'access_method'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -195,13 +198,15 @@ export class SeamHttpUnstableAccessMethods {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_access_methods/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_method',
+      options,
     })
   }
 
   list(
-    params?: UnstableAccessMethodsListParams,
+    parameters?: UnstableAccessMethodsListParameters,
+    options: UnstableAccessMethodsListOptions = {},
   ): SeamHttpRequest<UnstableAccessMethodsListResponse, 'access_methods'> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
@@ -211,35 +216,53 @@ export class SeamHttpUnstableAccessMethods {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_access_methods/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_methods',
+      options,
     })
   }
 }
 
-export type UnstableAccessMethodsDeleteParams =
+export type UnstableAccessMethodsDeleteParameters =
   RouteRequestBody<'/unstable_access_methods/delete'>
+
+/**
+ * @deprecated Use UnstableAccessMethodsDeleteParameters instead.
+ */
+export type UnstableAccessMethodsDeleteParams =
+  UnstableAccessMethodsDeleteParameters
 
 export type UnstableAccessMethodsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_methods/delete'>>
 >
 
-export type UnstableAccessMethodsDeleteOptions = never
+export type UnstableAccessMethodsDeleteOptions = Record<string, never>
 
-export type UnstableAccessMethodsGetParams =
+export type UnstableAccessMethodsGetParameters =
   RouteRequestBody<'/unstable_access_methods/get'>
+
+/**
+ * @deprecated Use UnstableAccessMethodsGetParameters instead.
+ */
+export type UnstableAccessMethodsGetParams = UnstableAccessMethodsGetParameters
 
 export type UnstableAccessMethodsGetResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_methods/get'>>
 >
 
-export type UnstableAccessMethodsGetOptions = never
+export type UnstableAccessMethodsGetOptions = Record<string, never>
 
-export type UnstableAccessMethodsListParams =
+export type UnstableAccessMethodsListParameters =
   RouteRequestBody<'/unstable_access_methods/list'>
+
+/**
+ * @deprecated Use UnstableAccessMethodsListParameters instead.
+ */
+export type UnstableAccessMethodsListParams =
+  UnstableAccessMethodsListParameters
 
 export type UnstableAccessMethodsListResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_access_methods/list'>>
 >
 
-export type UnstableAccessMethodsListOptions = never
+export type UnstableAccessMethodsListOptions = Record<string, never>

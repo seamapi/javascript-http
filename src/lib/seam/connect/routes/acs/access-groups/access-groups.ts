@@ -172,39 +172,48 @@ export class SeamHttpAcsAccessGroups {
     )
   }
 
-  addUser(body?: AcsAccessGroupsAddUserBody): SeamHttpRequest<void, undefined> {
+  addUser(
+    parameters?: AcsAccessGroupsAddUserParameters,
+    options: AcsAccessGroupsAddUserOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/add_user',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: AcsAccessGroupsGetParams,
+    parameters?: AcsAccessGroupsGetParameters,
+    options: AcsAccessGroupsGetOptions = {},
   ): SeamHttpRequest<AcsAccessGroupsGetResponse, 'acs_access_group'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_access_group',
+      options,
     })
   }
 
   list(
-    params?: AcsAccessGroupsListParams,
+    parameters?: AcsAccessGroupsListParameters,
+    options: AcsAccessGroupsListOptions = {},
   ): SeamHttpRequest<AcsAccessGroupsListResponse, 'acs_access_groups'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_access_groups',
+      options,
     })
   }
 
   listAccessibleEntrances(
-    params?: AcsAccessGroupsListAccessibleEntrancesParams,
+    parameters?: AcsAccessGroupsListAccessibleEntrancesParameters,
+    options: AcsAccessGroupsListAccessibleEntrancesOptions = {},
   ): SeamHttpRequest<
     AcsAccessGroupsListAccessibleEntrancesResponse,
     'acs_entrances'
@@ -212,84 +221,124 @@ export class SeamHttpAcsAccessGroups {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list_accessible_entrances',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_entrances',
+      options,
     })
   }
 
   listUsers(
-    params?: AcsAccessGroupsListUsersParams,
+    parameters?: AcsAccessGroupsListUsersParameters,
+    options: AcsAccessGroupsListUsersOptions = {},
   ): SeamHttpRequest<AcsAccessGroupsListUsersResponse, 'acs_users'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list_users',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_users',
+      options,
     })
   }
 
   removeUser(
-    params?: AcsAccessGroupsRemoveUserParams,
+    parameters?: AcsAccessGroupsRemoveUserParameters,
+    options: AcsAccessGroupsRemoveUserOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/remove_user',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type AcsAccessGroupsAddUserBody =
+export type AcsAccessGroupsAddUserParameters =
   RouteRequestBody<'/acs/access_groups/add_user'>
+
+/**
+ * @deprecated Use AcsAccessGroupsAddUserParameters instead.
+ */
+export type AcsAccessGroupsAddUserBody = AcsAccessGroupsAddUserParameters
 
 export type AcsAccessGroupsAddUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/add_user'>>
 >
 
-export type AcsAccessGroupsAddUserOptions = never
+export type AcsAccessGroupsAddUserOptions = Record<string, never>
 
-export type AcsAccessGroupsGetParams =
+export type AcsAccessGroupsGetParameters =
   RouteRequestBody<'/acs/access_groups/get'>
+
+/**
+ * @deprecated Use AcsAccessGroupsGetParameters instead.
+ */
+export type AcsAccessGroupsGetParams = AcsAccessGroupsGetParameters
 
 export type AcsAccessGroupsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/get'>>
 >
 
-export type AcsAccessGroupsGetOptions = never
+export type AcsAccessGroupsGetOptions = Record<string, never>
 
-export type AcsAccessGroupsListParams =
+export type AcsAccessGroupsListParameters =
   RouteRequestBody<'/acs/access_groups/list'>
+
+/**
+ * @deprecated Use AcsAccessGroupsListParameters instead.
+ */
+export type AcsAccessGroupsListParams = AcsAccessGroupsListParameters
 
 export type AcsAccessGroupsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list'>>
 >
 
-export type AcsAccessGroupsListOptions = never
+export type AcsAccessGroupsListOptions = Record<string, never>
 
-export type AcsAccessGroupsListAccessibleEntrancesParams =
+export type AcsAccessGroupsListAccessibleEntrancesParameters =
   RouteRequestBody<'/acs/access_groups/list_accessible_entrances'>
+
+/**
+ * @deprecated Use AcsAccessGroupsListAccessibleEntrancesParameters instead.
+ */
+export type AcsAccessGroupsListAccessibleEntrancesParams =
+  AcsAccessGroupsListAccessibleEntrancesParameters
 
 export type AcsAccessGroupsListAccessibleEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list_accessible_entrances'>>
 >
 
-export type AcsAccessGroupsListAccessibleEntrancesOptions = never
+export type AcsAccessGroupsListAccessibleEntrancesOptions = Record<
+  string,
+  never
+>
 
-export type AcsAccessGroupsListUsersParams =
+export type AcsAccessGroupsListUsersParameters =
   RouteRequestBody<'/acs/access_groups/list_users'>
+
+/**
+ * @deprecated Use AcsAccessGroupsListUsersParameters instead.
+ */
+export type AcsAccessGroupsListUsersParams = AcsAccessGroupsListUsersParameters
 
 export type AcsAccessGroupsListUsersResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/list_users'>>
 >
 
-export type AcsAccessGroupsListUsersOptions = never
+export type AcsAccessGroupsListUsersOptions = Record<string, never>
 
-export type AcsAccessGroupsRemoveUserParams =
+export type AcsAccessGroupsRemoveUserParameters =
   RouteRequestBody<'/acs/access_groups/remove_user'>
+
+/**
+ * @deprecated Use AcsAccessGroupsRemoveUserParameters instead.
+ */
+export type AcsAccessGroupsRemoveUserParams =
+  AcsAccessGroupsRemoveUserParameters
 
 export type AcsAccessGroupsRemoveUserResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/remove_user'>>
 >
 
-export type AcsAccessGroupsRemoveUserOptions = never
+export type AcsAccessGroupsRemoveUserOptions = Record<string, never>

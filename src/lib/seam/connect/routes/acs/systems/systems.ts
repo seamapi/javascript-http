@@ -164,29 +164,34 @@ export class SeamHttpAcsSystems {
   }
 
   get(
-    params?: AcsSystemsGetParams,
+    parameters?: AcsSystemsGetParameters,
+    options: AcsSystemsGetOptions = {},
   ): SeamHttpRequest<AcsSystemsGetResponse, 'acs_system'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_system',
+      options,
     })
   }
 
   list(
-    params?: AcsSystemsListParams,
+    parameters?: AcsSystemsListParameters,
+    options: AcsSystemsListOptions = {},
   ): SeamHttpRequest<AcsSystemsListResponse, 'acs_systems'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_systems',
+      options,
     })
   }
 
   listCompatibleCredentialManagerAcsSystems(
-    params?: AcsSystemsListCompatibleCredentialManagerAcsSystemsParams,
+    parameters?: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
+    options: AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = {},
   ): SeamHttpRequest<
     AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse,
     'acs_systems'
@@ -194,30 +199,47 @@ export class SeamHttpAcsSystems {
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/list_compatible_credential_manager_acs_systems',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_systems',
+      options,
     })
   }
 }
 
-export type AcsSystemsGetParams = RouteRequestBody<'/acs/systems/get'>
+export type AcsSystemsGetParameters = RouteRequestBody<'/acs/systems/get'>
+
+/**
+ * @deprecated Use AcsSystemsGetParameters instead.
+ */
+export type AcsSystemsGetParams = AcsSystemsGetParameters
 
 export type AcsSystemsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/get'>>
 >
 
-export type AcsSystemsGetOptions = never
+export type AcsSystemsGetOptions = Record<string, never>
 
-export type AcsSystemsListParams = RouteRequestBody<'/acs/systems/list'>
+export type AcsSystemsListParameters = RouteRequestBody<'/acs/systems/list'>
+
+/**
+ * @deprecated Use AcsSystemsListParameters instead.
+ */
+export type AcsSystemsListParams = AcsSystemsListParameters
 
 export type AcsSystemsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/list'>>
 >
 
-export type AcsSystemsListOptions = never
+export type AcsSystemsListOptions = Record<string, never>
 
-export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParams =
+export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters =
   RouteRequestBody<'/acs/systems/list_compatible_credential_manager_acs_systems'>
+
+/**
+ * @deprecated Use AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters instead.
+ */
+export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParams =
+  AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters
 
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse =
   SetNonNullable<
@@ -226,4 +248,7 @@ export type AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse =
     >
   >
 
-export type AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = never
+export type AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = Record<
+  string,
+  never
+>

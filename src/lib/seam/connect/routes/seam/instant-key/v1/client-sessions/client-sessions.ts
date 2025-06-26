@@ -172,7 +172,8 @@ export class SeamHttpSeamInstantKeyV1ClientSessions {
   }
 
   exchangeShortCode(
-    body?: SeamInstantKeyV1ClientSessionsExchangeShortCodeBody,
+    parameters?: SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters,
+    options: SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions = {},
   ): SeamHttpRequest<
     SeamInstantKeyV1ClientSessionsExchangeShortCodeResponse,
     'client_session'
@@ -185,14 +186,21 @@ export class SeamHttpSeamInstantKeyV1ClientSessions {
     return new SeamHttpRequest(this, {
       pathname: '/seam/instant_key/v1/client_sessions/exchange_short_code',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'client_session',
+      options,
     })
   }
 }
 
-export type SeamInstantKeyV1ClientSessionsExchangeShortCodeBody =
+export type SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters =
   RouteRequestBody<'/seam/instant_key/v1/client_sessions/exchange_short_code'>
+
+/**
+ * @deprecated Use SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters instead.
+ */
+export type SeamInstantKeyV1ClientSessionsExchangeShortCodeBody =
+  SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters
 
 export type SeamInstantKeyV1ClientSessionsExchangeShortCodeResponse =
   SetNonNullable<
@@ -201,4 +209,7 @@ export type SeamInstantKeyV1ClientSessionsExchangeShortCodeResponse =
     >
   >
 
-export type SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions = never
+export type SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions = Record<
+  string,
+  never
+>

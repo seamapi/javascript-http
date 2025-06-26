@@ -172,7 +172,8 @@ export class SeamHttpSeamMobileSdkV1AcsCredentials {
   }
 
   list(
-    params?: SeamMobileSdkV1AcsCredentialsListParams,
+    parameters?: SeamMobileSdkV1AcsCredentialsListParameters,
+    options: SeamMobileSdkV1AcsCredentialsListOptions = {},
   ): SeamHttpRequest<
     SeamMobileSdkV1AcsCredentialsListResponse,
     'acs_credentials'
@@ -185,17 +186,24 @@ export class SeamHttpSeamMobileSdkV1AcsCredentials {
     return new SeamHttpRequest(this, {
       pathname: '/seam/mobile_sdk/v1/acs/credentials/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_credentials',
+      options,
     })
   }
 }
 
-export type SeamMobileSdkV1AcsCredentialsListParams =
+export type SeamMobileSdkV1AcsCredentialsListParameters =
   RouteRequestBody<'/seam/mobile_sdk/v1/acs/credentials/list'>
+
+/**
+ * @deprecated Use SeamMobileSdkV1AcsCredentialsListParameters instead.
+ */
+export type SeamMobileSdkV1AcsCredentialsListParams =
+  SeamMobileSdkV1AcsCredentialsListParameters
 
 export type SeamMobileSdkV1AcsCredentialsListResponse = SetNonNullable<
   Required<RouteResponse<'/seam/mobile_sdk/v1/acs/credentials/list'>>
 >
 
-export type SeamMobileSdkV1AcsCredentialsListOptions = never
+export type SeamMobileSdkV1AcsCredentialsListOptions = Record<string, never>

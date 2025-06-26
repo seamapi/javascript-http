@@ -172,7 +172,8 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
   }
 
   connectAccounts(
-    body?: UnstablePartnerBuildingBlocksConnectAccountsBody,
+    parameters?: UnstablePartnerBuildingBlocksConnectAccountsParameters,
+    options: UnstablePartnerBuildingBlocksConnectAccountsOptions = {},
   ): SeamHttpRequest<
     UnstablePartnerBuildingBlocksConnectAccountsResponse,
     'magic_link'
@@ -185,13 +186,15 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_partner/building_blocks/connect_accounts',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'magic_link',
+      options,
     })
   }
 
   generateMagicLink(
-    params?: UnstablePartnerBuildingBlocksGenerateMagicLinkParams,
+    parameters?: UnstablePartnerBuildingBlocksGenerateMagicLinkParameters,
+    options: UnstablePartnerBuildingBlocksGenerateMagicLinkOptions = {},
   ): SeamHttpRequest<
     UnstablePartnerBuildingBlocksGenerateMagicLinkResponse,
     'magic_link'
@@ -204,13 +207,15 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_partner/building_blocks/generate_magic_link',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'magic_link',
+      options,
     })
   }
 
   manageDevices(
-    body?: UnstablePartnerBuildingBlocksManageDevicesBody,
+    parameters?: UnstablePartnerBuildingBlocksManageDevicesParameters,
+    options: UnstablePartnerBuildingBlocksManageDevicesOptions = {},
   ): SeamHttpRequest<
     UnstablePartnerBuildingBlocksManageDevicesResponse,
     'magic_link'
@@ -223,13 +228,15 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_partner/building_blocks/manage_devices',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'magic_link',
+      options,
     })
   }
 
   organizeSpaces(
-    body?: UnstablePartnerBuildingBlocksOrganizeSpacesBody,
+    parameters?: UnstablePartnerBuildingBlocksOrganizeSpacesParameters,
+    options: UnstablePartnerBuildingBlocksOrganizeSpacesOptions = {},
   ): SeamHttpRequest<
     UnstablePartnerBuildingBlocksOrganizeSpacesResponse,
     'magic_link'
@@ -242,14 +249,21 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_partner/building_blocks/organize_spaces',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'magic_link',
+      options,
     })
   }
 }
 
-export type UnstablePartnerBuildingBlocksConnectAccountsBody =
+export type UnstablePartnerBuildingBlocksConnectAccountsParameters =
   RouteRequestBody<'/unstable_partner/building_blocks/connect_accounts'>
+
+/**
+ * @deprecated Use UnstablePartnerBuildingBlocksConnectAccountsParameters instead.
+ */
+export type UnstablePartnerBuildingBlocksConnectAccountsBody =
+  UnstablePartnerBuildingBlocksConnectAccountsParameters
 
 export type UnstablePartnerBuildingBlocksConnectAccountsResponse =
   SetNonNullable<
@@ -258,10 +272,19 @@ export type UnstablePartnerBuildingBlocksConnectAccountsResponse =
     >
   >
 
-export type UnstablePartnerBuildingBlocksConnectAccountsOptions = never
+export type UnstablePartnerBuildingBlocksConnectAccountsOptions = Record<
+  string,
+  never
+>
 
-export type UnstablePartnerBuildingBlocksGenerateMagicLinkParams =
+export type UnstablePartnerBuildingBlocksGenerateMagicLinkParameters =
   RouteRequestBody<'/unstable_partner/building_blocks/generate_magic_link'>
+
+/**
+ * @deprecated Use UnstablePartnerBuildingBlocksGenerateMagicLinkParameters instead.
+ */
+export type UnstablePartnerBuildingBlocksGenerateMagicLinkParams =
+  UnstablePartnerBuildingBlocksGenerateMagicLinkParameters
 
 export type UnstablePartnerBuildingBlocksGenerateMagicLinkResponse =
   SetNonNullable<
@@ -270,23 +293,44 @@ export type UnstablePartnerBuildingBlocksGenerateMagicLinkResponse =
     >
   >
 
-export type UnstablePartnerBuildingBlocksGenerateMagicLinkOptions = never
+export type UnstablePartnerBuildingBlocksGenerateMagicLinkOptions = Record<
+  string,
+  never
+>
 
-export type UnstablePartnerBuildingBlocksManageDevicesBody =
+export type UnstablePartnerBuildingBlocksManageDevicesParameters =
   RouteRequestBody<'/unstable_partner/building_blocks/manage_devices'>
+
+/**
+ * @deprecated Use UnstablePartnerBuildingBlocksManageDevicesParameters instead.
+ */
+export type UnstablePartnerBuildingBlocksManageDevicesBody =
+  UnstablePartnerBuildingBlocksManageDevicesParameters
 
 export type UnstablePartnerBuildingBlocksManageDevicesResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_partner/building_blocks/manage_devices'>>
 >
 
-export type UnstablePartnerBuildingBlocksManageDevicesOptions = never
+export type UnstablePartnerBuildingBlocksManageDevicesOptions = Record<
+  string,
+  never
+>
 
-export type UnstablePartnerBuildingBlocksOrganizeSpacesBody =
+export type UnstablePartnerBuildingBlocksOrganizeSpacesParameters =
   RouteRequestBody<'/unstable_partner/building_blocks/organize_spaces'>
+
+/**
+ * @deprecated Use UnstablePartnerBuildingBlocksOrganizeSpacesParameters instead.
+ */
+export type UnstablePartnerBuildingBlocksOrganizeSpacesBody =
+  UnstablePartnerBuildingBlocksOrganizeSpacesParameters
 
 export type UnstablePartnerBuildingBlocksOrganizeSpacesResponse =
   SetNonNullable<
     Required<RouteResponse<'/unstable_partner/building_blocks/organize_spaces'>>
   >
 
-export type UnstablePartnerBuildingBlocksOrganizeSpacesOptions = never
+export type UnstablePartnerBuildingBlocksOrganizeSpacesOptions = Record<
+  string,
+  never
+>

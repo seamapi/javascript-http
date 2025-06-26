@@ -168,98 +168,137 @@ export class SeamHttpConnectedAccounts {
   }
 
   delete(
-    params?: ConnectedAccountsDeleteParams,
+    parameters?: ConnectedAccountsDeleteParameters,
+    options: ConnectedAccountsDeleteOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: ConnectedAccountsGetParams,
+    parameters?: ConnectedAccountsGetParameters,
+    options: ConnectedAccountsGetOptions = {},
   ): SeamHttpRequest<ConnectedAccountsGetResponse, 'connected_account'> {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/get',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'connected_account',
+      options,
     })
   }
 
   list(
-    params?: ConnectedAccountsListParams,
+    parameters?: ConnectedAccountsListParameters,
+    options: ConnectedAccountsListOptions = {},
   ): SeamHttpRequest<ConnectedAccountsListResponse, 'connected_accounts'> {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'connected_accounts',
+      options,
     })
   }
 
-  sync(body?: ConnectedAccountsSyncBody): SeamHttpRequest<void, undefined> {
+  sync(
+    parameters?: ConnectedAccountsSyncParameters,
+    options: ConnectedAccountsSyncOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/sync',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
-  update(body?: ConnectedAccountsUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: ConnectedAccountsUpdateParameters,
+    options: ConnectedAccountsUpdateOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/update',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type ConnectedAccountsDeleteParams =
+export type ConnectedAccountsDeleteParameters =
   RouteRequestBody<'/connected_accounts/delete'>
+
+/**
+ * @deprecated Use ConnectedAccountsDeleteParameters instead.
+ */
+export type ConnectedAccountsDeleteParams = ConnectedAccountsDeleteParameters
 
 export type ConnectedAccountsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/delete'>>
 >
 
-export type ConnectedAccountsDeleteOptions = never
+export type ConnectedAccountsDeleteOptions = Record<string, never>
 
-export type ConnectedAccountsGetParams =
+export type ConnectedAccountsGetParameters =
   RouteRequestParams<'/connected_accounts/get'>
+
+/**
+ * @deprecated Use ConnectedAccountsGetParameters instead.
+ */
+export type ConnectedAccountsGetParams = ConnectedAccountsGetParameters
 
 export type ConnectedAccountsGetResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/get'>>
 >
 
-export type ConnectedAccountsGetOptions = never
+export type ConnectedAccountsGetOptions = Record<string, never>
 
-export type ConnectedAccountsListParams =
+export type ConnectedAccountsListParameters =
   RouteRequestBody<'/connected_accounts/list'>
+
+/**
+ * @deprecated Use ConnectedAccountsListParameters instead.
+ */
+export type ConnectedAccountsListParams = ConnectedAccountsListParameters
 
 export type ConnectedAccountsListResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/list'>>
 >
 
-export type ConnectedAccountsListOptions = never
+export type ConnectedAccountsListOptions = Record<string, never>
 
-export type ConnectedAccountsSyncBody =
+export type ConnectedAccountsSyncParameters =
   RouteRequestBody<'/connected_accounts/sync'>
+
+/**
+ * @deprecated Use ConnectedAccountsSyncParameters instead.
+ */
+export type ConnectedAccountsSyncBody = ConnectedAccountsSyncParameters
 
 export type ConnectedAccountsSyncResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/sync'>>
 >
 
-export type ConnectedAccountsSyncOptions = never
+export type ConnectedAccountsSyncOptions = Record<string, never>
 
-export type ConnectedAccountsUpdateBody =
+export type ConnectedAccountsUpdateParameters =
   RouteRequestBody<'/connected_accounts/update'>
+
+/**
+ * @deprecated Use ConnectedAccountsUpdateParameters instead.
+ */
+export type ConnectedAccountsUpdateBody = ConnectedAccountsUpdateParameters
 
 export type ConnectedAccountsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/connected_accounts/update'>>
 >
 
-export type ConnectedAccountsUpdateOptions = never
+export type ConnectedAccountsUpdateOptions = Record<string, never>

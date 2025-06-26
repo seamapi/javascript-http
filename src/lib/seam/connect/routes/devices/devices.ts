@@ -174,7 +174,10 @@ export class SeamHttpDevices {
     return SeamHttpDevicesUnmanaged.fromClient(this.client, this.defaults)
   }
 
-  delete(params?: DevicesDeleteParams): SeamHttpRequest<void, undefined> {
+  delete(
+    parameters?: DevicesDeleteParameters,
+    options: DevicesDeleteOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -183,91 +186,128 @@ export class SeamHttpDevices {
     return new SeamHttpRequest(this, {
       pathname: '/devices/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: DevicesGetParams,
+    parameters?: DevicesGetParameters,
+    options: DevicesGetOptions = {},
   ): SeamHttpRequest<DevicesGetResponse, 'device'> {
     return new SeamHttpRequest(this, {
       pathname: '/devices/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'device',
+      options,
     })
   }
 
   list(
-    params?: DevicesListParams,
+    parameters?: DevicesListParameters,
+    options: DevicesListOptions = {},
   ): SeamHttpRequest<DevicesListResponse, 'devices'> {
     return new SeamHttpRequest(this, {
       pathname: '/devices/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'devices',
+      options,
     })
   }
 
   listDeviceProviders(
-    params?: DevicesListDeviceProvidersParams,
+    parameters?: DevicesListDeviceProvidersParameters,
+    options: DevicesListDeviceProvidersOptions = {},
   ): SeamHttpRequest<DevicesListDeviceProvidersResponse, 'device_providers'> {
     return new SeamHttpRequest(this, {
       pathname: '/devices/list_device_providers',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'device_providers',
+      options,
     })
   }
 
-  update(body?: DevicesUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: DevicesUpdateParameters,
+    options: DevicesUpdateOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/devices/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type DevicesDeleteParams = RouteRequestBody<'/devices/delete'>
+export type DevicesDeleteParameters = RouteRequestBody<'/devices/delete'>
+
+/**
+ * @deprecated Use DevicesDeleteParameters instead.
+ */
+export type DevicesDeleteParams = DevicesDeleteParameters
 
 export type DevicesDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/devices/delete'>>
 >
 
-export type DevicesDeleteOptions = never
+export type DevicesDeleteOptions = Record<string, never>
 
-export type DevicesGetParams = RouteRequestBody<'/devices/get'>
+export type DevicesGetParameters = RouteRequestBody<'/devices/get'>
+
+/**
+ * @deprecated Use DevicesGetParameters instead.
+ */
+export type DevicesGetParams = DevicesGetParameters
 
 export type DevicesGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/get'>>
 >
 
-export type DevicesGetOptions = never
+export type DevicesGetOptions = Record<string, never>
 
-export type DevicesListParams = RouteRequestBody<'/devices/list'>
+export type DevicesListParameters = RouteRequestBody<'/devices/list'>
+
+/**
+ * @deprecated Use DevicesListParameters instead.
+ */
+export type DevicesListParams = DevicesListParameters
 
 export type DevicesListResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list'>>
 >
 
-export type DevicesListOptions = never
+export type DevicesListOptions = Record<string, never>
 
-export type DevicesListDeviceProvidersParams =
+export type DevicesListDeviceProvidersParameters =
   RouteRequestBody<'/devices/list_device_providers'>
+
+/**
+ * @deprecated Use DevicesListDeviceProvidersParameters instead.
+ */
+export type DevicesListDeviceProvidersParams =
+  DevicesListDeviceProvidersParameters
 
 export type DevicesListDeviceProvidersResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list_device_providers'>>
 >
 
-export type DevicesListDeviceProvidersOptions = never
+export type DevicesListDeviceProvidersOptions = Record<string, never>
 
-export type DevicesUpdateBody = RouteRequestBody<'/devices/update'>
+export type DevicesUpdateParameters = RouteRequestBody<'/devices/update'>
+
+/**
+ * @deprecated Use DevicesUpdateParameters instead.
+ */
+export type DevicesUpdateBody = DevicesUpdateParameters
 
 export type DevicesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/devices/update'>>
 >
 
-export type DevicesUpdateOptions = never
+export type DevicesUpdateOptions = Record<string, never>

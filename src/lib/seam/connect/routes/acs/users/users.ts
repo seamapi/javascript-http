@@ -170,207 +170,296 @@ export class SeamHttpAcsUsers {
   }
 
   addToAccessGroup(
-    body?: AcsUsersAddToAccessGroupBody,
+    parameters?: AcsUsersAddToAccessGroupParameters,
+    options: AcsUsersAddToAccessGroupOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/add_to_access_group',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   create(
-    body?: AcsUsersCreateBody,
+    parameters?: AcsUsersCreateParameters,
+    options: AcsUsersCreateOptions = {},
   ): SeamHttpRequest<AcsUsersCreateResponse, 'acs_user'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'acs_user',
+      options,
     })
   }
 
-  delete(params?: AcsUsersDeleteParams): SeamHttpRequest<void, undefined> {
+  delete(
+    parameters?: AcsUsersDeleteParameters,
+    options: AcsUsersDeleteOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: AcsUsersGetParams,
+    parameters?: AcsUsersGetParameters,
+    options: AcsUsersGetOptions = {},
   ): SeamHttpRequest<AcsUsersGetResponse, 'acs_user'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_user',
+      options,
     })
   }
 
   list(
-    params?: AcsUsersListParams,
+    parameters?: AcsUsersListParameters,
+    options: AcsUsersListOptions = {},
   ): SeamHttpRequest<AcsUsersListResponse, 'acs_users'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_users',
+      options,
     })
   }
 
   listAccessibleEntrances(
-    params?: AcsUsersListAccessibleEntrancesParams,
+    parameters?: AcsUsersListAccessibleEntrancesParameters,
+    options: AcsUsersListAccessibleEntrancesOptions = {},
   ): SeamHttpRequest<AcsUsersListAccessibleEntrancesResponse, 'acs_entrances'> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/list_accessible_entrances',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_entrances',
+      options,
     })
   }
 
   removeFromAccessGroup(
-    params?: AcsUsersRemoveFromAccessGroupParams,
+    parameters?: AcsUsersRemoveFromAccessGroupParameters,
+    options: AcsUsersRemoveFromAccessGroupOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/remove_from_access_group',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   revokeAccessToAllEntrances(
-    body?: AcsUsersRevokeAccessToAllEntrancesBody,
+    parameters?: AcsUsersRevokeAccessToAllEntrancesParameters,
+    options: AcsUsersRevokeAccessToAllEntrancesOptions = {},
   ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/revoke_access_to_all_entrances',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
-  suspend(body?: AcsUsersSuspendBody): SeamHttpRequest<void, undefined> {
+  suspend(
+    parameters?: AcsUsersSuspendParameters,
+    options: AcsUsersSuspendOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/suspend',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
-  unsuspend(body?: AcsUsersUnsuspendBody): SeamHttpRequest<void, undefined> {
+  unsuspend(
+    parameters?: AcsUsersUnsuspendParameters,
+    options: AcsUsersUnsuspendOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/unsuspend',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
-  update(body?: AcsUsersUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: AcsUsersUpdateParameters,
+    options: AcsUsersUpdateOptions = {},
+  ): SeamHttpRequest<void, undefined> {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type AcsUsersAddToAccessGroupBody =
+export type AcsUsersAddToAccessGroupParameters =
   RouteRequestBody<'/acs/users/add_to_access_group'>
+
+/**
+ * @deprecated Use AcsUsersAddToAccessGroupParameters instead.
+ */
+export type AcsUsersAddToAccessGroupBody = AcsUsersAddToAccessGroupParameters
 
 export type AcsUsersAddToAccessGroupResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/add_to_access_group'>>
 >
 
-export type AcsUsersAddToAccessGroupOptions = never
+export type AcsUsersAddToAccessGroupOptions = Record<string, never>
 
-export type AcsUsersCreateBody = RouteRequestBody<'/acs/users/create'>
+export type AcsUsersCreateParameters = RouteRequestBody<'/acs/users/create'>
+
+/**
+ * @deprecated Use AcsUsersCreateParameters instead.
+ */
+export type AcsUsersCreateBody = AcsUsersCreateParameters
 
 export type AcsUsersCreateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/create'>>
 >
 
-export type AcsUsersCreateOptions = never
+export type AcsUsersCreateOptions = Record<string, never>
 
-export type AcsUsersDeleteParams = RouteRequestBody<'/acs/users/delete'>
+export type AcsUsersDeleteParameters = RouteRequestBody<'/acs/users/delete'>
+
+/**
+ * @deprecated Use AcsUsersDeleteParameters instead.
+ */
+export type AcsUsersDeleteParams = AcsUsersDeleteParameters
 
 export type AcsUsersDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/delete'>>
 >
 
-export type AcsUsersDeleteOptions = never
+export type AcsUsersDeleteOptions = Record<string, never>
 
-export type AcsUsersGetParams = RouteRequestBody<'/acs/users/get'>
+export type AcsUsersGetParameters = RouteRequestBody<'/acs/users/get'>
+
+/**
+ * @deprecated Use AcsUsersGetParameters instead.
+ */
+export type AcsUsersGetParams = AcsUsersGetParameters
 
 export type AcsUsersGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/get'>>
 >
 
-export type AcsUsersGetOptions = never
+export type AcsUsersGetOptions = Record<string, never>
 
-export type AcsUsersListParams = RouteRequestBody<'/acs/users/list'>
+export type AcsUsersListParameters = RouteRequestBody<'/acs/users/list'>
+
+/**
+ * @deprecated Use AcsUsersListParameters instead.
+ */
+export type AcsUsersListParams = AcsUsersListParameters
 
 export type AcsUsersListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/list'>>
 >
 
-export type AcsUsersListOptions = never
+export type AcsUsersListOptions = Record<string, never>
 
-export type AcsUsersListAccessibleEntrancesParams =
+export type AcsUsersListAccessibleEntrancesParameters =
   RouteRequestBody<'/acs/users/list_accessible_entrances'>
+
+/**
+ * @deprecated Use AcsUsersListAccessibleEntrancesParameters instead.
+ */
+export type AcsUsersListAccessibleEntrancesParams =
+  AcsUsersListAccessibleEntrancesParameters
 
 export type AcsUsersListAccessibleEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/list_accessible_entrances'>>
 >
 
-export type AcsUsersListAccessibleEntrancesOptions = never
+export type AcsUsersListAccessibleEntrancesOptions = Record<string, never>
 
-export type AcsUsersRemoveFromAccessGroupParams =
+export type AcsUsersRemoveFromAccessGroupParameters =
   RouteRequestBody<'/acs/users/remove_from_access_group'>
+
+/**
+ * @deprecated Use AcsUsersRemoveFromAccessGroupParameters instead.
+ */
+export type AcsUsersRemoveFromAccessGroupParams =
+  AcsUsersRemoveFromAccessGroupParameters
 
 export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/remove_from_access_group'>>
 >
 
-export type AcsUsersRemoveFromAccessGroupOptions = never
+export type AcsUsersRemoveFromAccessGroupOptions = Record<string, never>
 
-export type AcsUsersRevokeAccessToAllEntrancesBody =
+export type AcsUsersRevokeAccessToAllEntrancesParameters =
   RouteRequestBody<'/acs/users/revoke_access_to_all_entrances'>
+
+/**
+ * @deprecated Use AcsUsersRevokeAccessToAllEntrancesParameters instead.
+ */
+export type AcsUsersRevokeAccessToAllEntrancesBody =
+  AcsUsersRevokeAccessToAllEntrancesParameters
 
 export type AcsUsersRevokeAccessToAllEntrancesResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/revoke_access_to_all_entrances'>>
 >
 
-export type AcsUsersRevokeAccessToAllEntrancesOptions = never
+export type AcsUsersRevokeAccessToAllEntrancesOptions = Record<string, never>
 
-export type AcsUsersSuspendBody = RouteRequestBody<'/acs/users/suspend'>
+export type AcsUsersSuspendParameters = RouteRequestBody<'/acs/users/suspend'>
+
+/**
+ * @deprecated Use AcsUsersSuspendParameters instead.
+ */
+export type AcsUsersSuspendBody = AcsUsersSuspendParameters
 
 export type AcsUsersSuspendResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/suspend'>>
 >
 
-export type AcsUsersSuspendOptions = never
+export type AcsUsersSuspendOptions = Record<string, never>
 
-export type AcsUsersUnsuspendBody = RouteRequestBody<'/acs/users/unsuspend'>
+export type AcsUsersUnsuspendParameters =
+  RouteRequestBody<'/acs/users/unsuspend'>
+
+/**
+ * @deprecated Use AcsUsersUnsuspendParameters instead.
+ */
+export type AcsUsersUnsuspendBody = AcsUsersUnsuspendParameters
 
 export type AcsUsersUnsuspendResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/unsuspend'>>
 >
 
-export type AcsUsersUnsuspendOptions = never
+export type AcsUsersUnsuspendOptions = Record<string, never>
 
-export type AcsUsersUpdateBody = RouteRequestBody<'/acs/users/update'>
+export type AcsUsersUpdateParameters = RouteRequestBody<'/acs/users/update'>
+
+/**
+ * @deprecated Use AcsUsersUpdateParameters instead.
+ */
+export type AcsUsersUpdateBody = AcsUsersUpdateParameters
 
 export type AcsUsersUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/update'>>
 >
 
-export type AcsUsersUpdateOptions = never
+export type AcsUsersUpdateOptions = Record<string, never>
