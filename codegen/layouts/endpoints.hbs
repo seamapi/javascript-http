@@ -35,3 +35,5 @@ export class SeamHttpEndpoints {
 
   {{/each}}
 }
+
+export type SeamHttpEndpointPaths = {{#each endpoints}}'{{path}}' {{#unless @last}} | {{/unless}}{{/each}}
