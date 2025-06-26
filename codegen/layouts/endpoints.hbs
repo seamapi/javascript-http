@@ -18,7 +18,7 @@ export class SeamHttpEndpoints {
   {{> route-class-methods }}
 
   {{#each endpoints}}
-  get['{{path}}'](): {{className}}['{{methodName}}']
+  get['{{path}}'](): {{> endpont-method-signature isFnType=true }}
   {
   const { client, defaults } = this
   {{#if isUndocumented}}

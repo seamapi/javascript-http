@@ -1,4 +1,4 @@
 (
   parameters{{#if isOptionalParamsOk}}?{{/if}}: {{parametersTypeName}},
-  options: {{optionsTypeName}} = {},
-): SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
+  options{{#if isFnType}}?{{/if}}: {{optionsTypeName}}{{#unless isFnType}} = {}{{/unless}},
+  ){{#if isFnType}} => {{else}}: {{/if}} SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
