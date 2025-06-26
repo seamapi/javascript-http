@@ -10,6 +10,8 @@ import {
 export interface EndpointsLayoutContext {
   className: string
   endpoints: EndpointLayoutContext[]
+  endpointReadPaths: string[]
+  endpointWritePaths: string[]
   routeImports: RouteImportLayoutContext[]
   skipClientSessionImport: boolean
 }
@@ -30,6 +32,16 @@ export const setEndpointsLayoutContext = (
     route.endpoints.map((endpoint) =>
       getEndpointLayoutContext(endpoint, route),
     ),
+  )
+  file.endpointReadPaths = routes.flatMap((route) =>
+    route.endpoints
+      .filter(({ request }) => request.semanticMethod === 'GET')
+      .map(({ path }) => path),
+  )
+  file.endpointWritePaths = routes.flatMap((route) =>
+    route.endpoints
+      .filter(({ request }) => request.semanticMethod !== 'GET')
+      .map(({ path }) => path),
   )
   file.routeImports = routes.map((route) => {
     const endpoints = route.endpoints.map((endpoint) =>
