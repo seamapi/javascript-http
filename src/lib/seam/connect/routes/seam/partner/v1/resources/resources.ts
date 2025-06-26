@@ -169,8 +169,9 @@ export class SeamHttpSeamPartnerV1Resources {
   }
 
   list(
-    params?: SeamPartnerV1ResourcesListParams,
-  ): SeamHttpRequest<SeamPartnerV1ResourcesListResponse, 'partner_resources'> {
+    parameters?: SeamPartnerV1ResourcesListParameters,
+    options: SeamPartnerV1ResourcesListOptions = {},
+  ): SeamPartnerV1ResourcesListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -179,17 +180,32 @@ export class SeamHttpSeamPartnerV1Resources {
     return new SeamHttpRequest(this, {
       pathname: '/seam/partner/v1/resources/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'partner_resources',
+      options,
     })
   }
 }
 
-export type SeamPartnerV1ResourcesListParams =
+export type SeamPartnerV1ResourcesListParameters =
   RouteRequestBody<'/seam/partner/v1/resources/list'>
 
+/**
+ * @deprecated Use SeamPartnerV1ResourcesListParameters instead.
+ */
+export type SeamPartnerV1ResourcesListParams =
+  SeamPartnerV1ResourcesListParameters
+
+/**
+ * @deprecated Use SeamPartnerV1ResourcesListRequest instead.
+ */
 export type SeamPartnerV1ResourcesListResponse = SetNonNullable<
   Required<RouteResponse<'/seam/partner/v1/resources/list'>>
 >
 
-export type SeamPartnerV1ResourcesListOptions = never
+export type SeamPartnerV1ResourcesListRequest = SeamHttpRequest<
+  SeamPartnerV1ResourcesListResponse,
+  'partner_resources'
+>
+
+export type SeamPartnerV1ResourcesListOptions = Record<string, never>

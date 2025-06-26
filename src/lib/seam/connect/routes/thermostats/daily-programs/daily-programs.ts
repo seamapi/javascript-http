@@ -167,67 +167,110 @@ export class SeamHttpThermostatsDailyPrograms {
   }
 
   create(
-    body?: ThermostatsDailyProgramsCreateBody,
-  ): SeamHttpRequest<
-    ThermostatsDailyProgramsCreateResponse,
-    'thermostat_daily_program'
-  > {
+    parameters?: ThermostatsDailyProgramsCreateParameters,
+    options: ThermostatsDailyProgramsCreateOptions = {},
+  ): ThermostatsDailyProgramsCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'thermostat_daily_program',
+      options,
     })
   }
 
   delete(
-    params?: ThermostatsDailyProgramsDeleteParams,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: ThermostatsDailyProgramsDeleteParameters,
+    options: ThermostatsDailyProgramsDeleteOptions = {},
+  ): ThermostatsDailyProgramsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   update(
-    body?: ThermostatsDailyProgramsUpdateBody,
+    parameters?: ThermostatsDailyProgramsUpdateParameters,
     options: ThermostatsDailyProgramsUpdateOptions = {},
-  ): SeamHttpRequest<ThermostatsDailyProgramsUpdateResponse, 'action_attempt'> {
+  ): ThermostatsDailyProgramsUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 }
 
-export type ThermostatsDailyProgramsCreateBody =
+export type ThermostatsDailyProgramsCreateParameters =
   RouteRequestBody<'/thermostats/daily_programs/create'>
 
+/**
+ * @deprecated Use ThermostatsDailyProgramsCreateParameters instead.
+ */
+export type ThermostatsDailyProgramsCreateBody =
+  ThermostatsDailyProgramsCreateParameters
+
+/**
+ * @deprecated Use ThermostatsDailyProgramsCreateRequest instead.
+ */
 export type ThermostatsDailyProgramsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/daily_programs/create'>>
 >
 
-export type ThermostatsDailyProgramsCreateOptions = never
+export type ThermostatsDailyProgramsCreateRequest = SeamHttpRequest<
+  ThermostatsDailyProgramsCreateResponse,
+  'thermostat_daily_program'
+>
 
-export type ThermostatsDailyProgramsDeleteParams =
+export type ThermostatsDailyProgramsCreateOptions = Record<string, never>
+
+export type ThermostatsDailyProgramsDeleteParameters =
   RouteRequestBody<'/thermostats/daily_programs/delete'>
 
+/**
+ * @deprecated Use ThermostatsDailyProgramsDeleteParameters instead.
+ */
+export type ThermostatsDailyProgramsDeleteParams =
+  ThermostatsDailyProgramsDeleteParameters
+
+/**
+ * @deprecated Use ThermostatsDailyProgramsDeleteRequest instead.
+ */
 export type ThermostatsDailyProgramsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/daily_programs/delete'>>
 >
 
-export type ThermostatsDailyProgramsDeleteOptions = never
+export type ThermostatsDailyProgramsDeleteRequest = SeamHttpRequest<
+  void,
+  undefined
+>
 
-export type ThermostatsDailyProgramsUpdateBody =
+export type ThermostatsDailyProgramsDeleteOptions = Record<string, never>
+
+export type ThermostatsDailyProgramsUpdateParameters =
   RouteRequestBody<'/thermostats/daily_programs/update'>
 
+/**
+ * @deprecated Use ThermostatsDailyProgramsUpdateParameters instead.
+ */
+export type ThermostatsDailyProgramsUpdateBody =
+  ThermostatsDailyProgramsUpdateParameters
+
+/**
+ * @deprecated Use ThermostatsDailyProgramsUpdateRequest instead.
+ */
 export type ThermostatsDailyProgramsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/daily_programs/update'>>
+>
+
+export type ThermostatsDailyProgramsUpdateRequest = SeamHttpRequest<
+  ThermostatsDailyProgramsUpdateResponse,
+  'action_attempt'
 >
 
 export type ThermostatsDailyProgramsUpdateOptions = Pick<

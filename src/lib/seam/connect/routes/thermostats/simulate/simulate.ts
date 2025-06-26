@@ -164,42 +164,74 @@ export class SeamHttpThermostatsSimulate {
   }
 
   hvacModeAdjusted(
-    body?: ThermostatsSimulateHvacModeAdjustedBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: ThermostatsSimulateHvacModeAdjustedParameters,
+    options: ThermostatsSimulateHvacModeAdjustedOptions = {},
+  ): ThermostatsSimulateHvacModeAdjustedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/simulate/hvac_mode_adjusted',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   temperatureReached(
-    body?: ThermostatsSimulateTemperatureReachedBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: ThermostatsSimulateTemperatureReachedParameters,
+    options: ThermostatsSimulateTemperatureReachedOptions = {},
+  ): ThermostatsSimulateTemperatureReachedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/simulate/temperature_reached',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type ThermostatsSimulateHvacModeAdjustedBody =
+export type ThermostatsSimulateHvacModeAdjustedParameters =
   RouteRequestBody<'/thermostats/simulate/hvac_mode_adjusted'>
 
+/**
+ * @deprecated Use ThermostatsSimulateHvacModeAdjustedParameters instead.
+ */
+export type ThermostatsSimulateHvacModeAdjustedBody =
+  ThermostatsSimulateHvacModeAdjustedParameters
+
+/**
+ * @deprecated Use ThermostatsSimulateHvacModeAdjustedRequest instead.
+ */
 export type ThermostatsSimulateHvacModeAdjustedResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/simulate/hvac_mode_adjusted'>>
 >
 
-export type ThermostatsSimulateHvacModeAdjustedOptions = never
+export type ThermostatsSimulateHvacModeAdjustedRequest = SeamHttpRequest<
+  void,
+  undefined
+>
 
-export type ThermostatsSimulateTemperatureReachedBody =
+export type ThermostatsSimulateHvacModeAdjustedOptions = Record<string, never>
+
+export type ThermostatsSimulateTemperatureReachedParameters =
   RouteRequestBody<'/thermostats/simulate/temperature_reached'>
 
+/**
+ * @deprecated Use ThermostatsSimulateTemperatureReachedParameters instead.
+ */
+export type ThermostatsSimulateTemperatureReachedBody =
+  ThermostatsSimulateTemperatureReachedParameters
+
+/**
+ * @deprecated Use ThermostatsSimulateTemperatureReachedRequest instead.
+ */
 export type ThermostatsSimulateTemperatureReachedResponse = SetNonNullable<
   Required<RouteResponse<'/thermostats/simulate/temperature_reached'>>
 >
 
-export type ThermostatsSimulateTemperatureReachedOptions = never
+export type ThermostatsSimulateTemperatureReachedRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+export type ThermostatsSimulateTemperatureReachedOptions = Record<string, never>

@@ -20,14 +20,14 @@ export interface EndpointLayoutContext {
   functionName: string
   className: string
   method: Method
-  hasOptions: boolean
   responseKey: string
-  methodParamName: 'params' | 'body'
   requestFormat: 'params' | 'body'
-  requestTypeName: string
+  parametersTypeName: string
+  legacyRequestTypeName: string
   responseTypeName: string
   requestFormatSuffix: string
   optionsTypeName: string
+  requestTypeName: string
   returnsActionAttempt: boolean
   returnsVoid: boolean
   isOptionalParamsOk: boolean
@@ -79,7 +79,7 @@ export const getEndpointLayoutContext = (
 ): EndpointLayoutContext => {
   const prefix = pascalCase([route.path.split('/'), endpoint.name].join('_'))
 
-  const methodParamName = ['GET', 'DELETE'].includes(
+  const legacyMethodParamName = ['GET', 'DELETE'].includes(
     endpoint.request.semanticMethod,
   )
     ? 'params'
@@ -104,15 +104,15 @@ export const getEndpointLayoutContext = (
     methodName,
     functionName: camelCase(prefix),
     method: endpoint.request.preferredMethod,
-    hasOptions: returnsActionAttempt,
     className: getClassName(route.path),
-    methodParamName,
     requestFormat,
     requestFormatSuffix,
     returnsActionAttempt,
-    requestTypeName: `${prefix}${pascalCase(methodParamName)}`,
+    parametersTypeName: `${prefix}Parameters`,
+    legacyRequestTypeName: `${prefix}${pascalCase(legacyMethodParamName)}`,
     responseTypeName: `${prefix}Response`,
     optionsTypeName: `${prefix}Options`,
+    requestTypeName: `${prefix}Request`,
     // UPSTREAM: Needs support in blueprint, fallback to true for now.
     // https://github.com/seamapi/blueprint/issues/205
     isOptionalParamsOk: true,

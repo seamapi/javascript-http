@@ -172,8 +172,9 @@ export class SeamHttpUnstablePartnerResources {
   }
 
   push(
-    body?: UnstablePartnerResourcesPushBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: UnstablePartnerResourcesPushParameters,
+    options: UnstablePartnerResourcesPushOptions = {},
+  ): UnstablePartnerResourcesPushRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -182,17 +183,32 @@ export class SeamHttpUnstablePartnerResources {
     return new SeamHttpRequest(this, {
       pathname: '/unstable_partner/resources/push',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type UnstablePartnerResourcesPushBody =
+export type UnstablePartnerResourcesPushParameters =
   RouteRequestBody<'/unstable_partner/resources/push'>
 
+/**
+ * @deprecated Use UnstablePartnerResourcesPushParameters instead.
+ */
+export type UnstablePartnerResourcesPushBody =
+  UnstablePartnerResourcesPushParameters
+
+/**
+ * @deprecated Use UnstablePartnerResourcesPushRequest instead.
+ */
 export type UnstablePartnerResourcesPushResponse = SetNonNullable<
   Required<RouteResponse<'/unstable_partner/resources/push'>>
 >
 
-export type UnstablePartnerResourcesPushOptions = never
+export type UnstablePartnerResourcesPushRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+export type UnstablePartnerResourcesPushOptions = Record<string, never>

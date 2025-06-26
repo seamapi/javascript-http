@@ -172,11 +172,9 @@ export class SeamHttpSeamBridgeV1BridgeConnectedSystems {
   }
 
   list(
-    params?: SeamBridgeV1BridgeConnectedSystemsListParams,
-  ): SeamHttpRequest<
-    SeamBridgeV1BridgeConnectedSystemsListResponse,
-    'bridge_connected_systems'
-  > {
+    parameters?: SeamBridgeV1BridgeConnectedSystemsListParameters,
+    options: SeamBridgeV1BridgeConnectedSystemsListOptions = {},
+  ): SeamBridgeV1BridgeConnectedSystemsListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -185,17 +183,35 @@ export class SeamHttpSeamBridgeV1BridgeConnectedSystems {
     return new SeamHttpRequest(this, {
       pathname: '/seam/bridge/v1/bridge_connected_systems/list',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'bridge_connected_systems',
+      options,
     })
   }
 }
 
-export type SeamBridgeV1BridgeConnectedSystemsListParams =
+export type SeamBridgeV1BridgeConnectedSystemsListParameters =
   RouteRequestParams<'/seam/bridge/v1/bridge_connected_systems/list'>
 
+/**
+ * @deprecated Use SeamBridgeV1BridgeConnectedSystemsListParameters instead.
+ */
+export type SeamBridgeV1BridgeConnectedSystemsListParams =
+  SeamBridgeV1BridgeConnectedSystemsListParameters
+
+/**
+ * @deprecated Use SeamBridgeV1BridgeConnectedSystemsListRequest instead.
+ */
 export type SeamBridgeV1BridgeConnectedSystemsListResponse = SetNonNullable<
   Required<RouteResponse<'/seam/bridge/v1/bridge_connected_systems/list'>>
 >
 
-export type SeamBridgeV1BridgeConnectedSystemsListOptions = never
+export type SeamBridgeV1BridgeConnectedSystemsListRequest = SeamHttpRequest<
+  SeamBridgeV1BridgeConnectedSystemsListResponse,
+  'bridge_connected_systems'
+>
+
+export type SeamBridgeV1BridgeConnectedSystemsListOptions = Record<
+  string,
+  never
+>

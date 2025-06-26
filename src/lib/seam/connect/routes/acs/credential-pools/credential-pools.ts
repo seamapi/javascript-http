@@ -169,8 +169,9 @@ export class SeamHttpAcsCredentialPools {
   }
 
   list(
-    params?: AcsCredentialPoolsListParams,
-  ): SeamHttpRequest<AcsCredentialPoolsListResponse, 'acs_credential_pools'> {
+    parameters?: AcsCredentialPoolsListParameters,
+    options: AcsCredentialPoolsListOptions = {},
+  ): AcsCredentialPoolsListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -179,17 +180,31 @@ export class SeamHttpAcsCredentialPools {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credential_pools/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_credential_pools',
+      options,
     })
   }
 }
 
-export type AcsCredentialPoolsListParams =
+export type AcsCredentialPoolsListParameters =
   RouteRequestBody<'/acs/credential_pools/list'>
 
+/**
+ * @deprecated Use AcsCredentialPoolsListParameters instead.
+ */
+export type AcsCredentialPoolsListParams = AcsCredentialPoolsListParameters
+
+/**
+ * @deprecated Use AcsCredentialPoolsListRequest instead.
+ */
 export type AcsCredentialPoolsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credential_pools/list'>>
 >
 
-export type AcsCredentialPoolsListOptions = never
+export type AcsCredentialPoolsListRequest = SeamHttpRequest<
+  AcsCredentialPoolsListResponse,
+  'acs_credential_pools'
+>
+
+export type AcsCredentialPoolsListOptions = Record<string, never>

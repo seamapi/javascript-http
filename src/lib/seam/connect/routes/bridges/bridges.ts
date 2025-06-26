@@ -169,8 +169,9 @@ export class SeamHttpBridges {
   }
 
   get(
-    params?: BridgesGetParams,
-  ): SeamHttpRequest<BridgesGetResponse, 'bridge'> {
+    parameters?: BridgesGetParameters,
+    options: BridgesGetOptions = {},
+  ): BridgesGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -179,14 +180,16 @@ export class SeamHttpBridges {
     return new SeamHttpRequest(this, {
       pathname: '/bridges/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'bridge',
+      options,
     })
   }
 
   list(
-    params?: BridgesListParams,
-  ): SeamHttpRequest<BridgesListResponse, 'bridges'> {
+    parameters?: BridgesListParameters,
+    options: BridgesListOptions = {},
+  ): BridgesListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -195,24 +198,45 @@ export class SeamHttpBridges {
     return new SeamHttpRequest(this, {
       pathname: '/bridges/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'bridges',
+      options,
     })
   }
 }
 
-export type BridgesGetParams = RouteRequestBody<'/bridges/get'>
+export type BridgesGetParameters = RouteRequestBody<'/bridges/get'>
 
+/**
+ * @deprecated Use BridgesGetParameters instead.
+ */
+export type BridgesGetParams = BridgesGetParameters
+
+/**
+ * @deprecated Use BridgesGetRequest instead.
+ */
 export type BridgesGetResponse = SetNonNullable<
   Required<RouteResponse<'/bridges/get'>>
 >
 
-export type BridgesGetOptions = never
+export type BridgesGetRequest = SeamHttpRequest<BridgesGetResponse, 'bridge'>
 
-export type BridgesListParams = RouteRequestBody<'/bridges/list'>
+export type BridgesGetOptions = Record<string, never>
 
+export type BridgesListParameters = RouteRequestBody<'/bridges/list'>
+
+/**
+ * @deprecated Use BridgesListParameters instead.
+ */
+export type BridgesListParams = BridgesListParameters
+
+/**
+ * @deprecated Use BridgesListRequest instead.
+ */
 export type BridgesListResponse = SetNonNullable<
   Required<RouteResponse<'/bridges/list'>>
 >
 
-export type BridgesListOptions = never
+export type BridgesListRequest = SeamHttpRequest<BridgesListResponse, 'bridges'>
+
+export type BridgesListOptions = Record<string, never>

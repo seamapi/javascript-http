@@ -176,8 +176,9 @@ export class SeamHttpAcsCredentialsUnmanaged {
   }
 
   get(
-    params?: AcsCredentialsUnmanagedGetParams,
-  ): SeamHttpRequest<AcsCredentialsUnmanagedGetResponse, 'acs_credential'> {
+    parameters?: AcsCredentialsUnmanagedGetParameters,
+    options: AcsCredentialsUnmanagedGetOptions = {},
+  ): AcsCredentialsUnmanagedGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -186,14 +187,16 @@ export class SeamHttpAcsCredentialsUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/unmanaged/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_credential',
+      options,
     })
   }
 
   list(
-    params?: AcsCredentialsUnmanagedListParams,
-  ): SeamHttpRequest<AcsCredentialsUnmanagedListResponse, 'acs_credentials'> {
+    parameters?: AcsCredentialsUnmanagedListParameters,
+    options: AcsCredentialsUnmanagedListOptions = {},
+  ): AcsCredentialsUnmanagedListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -202,26 +205,55 @@ export class SeamHttpAcsCredentialsUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/unmanaged/list',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'acs_credentials',
+      options,
     })
   }
 }
 
-export type AcsCredentialsUnmanagedGetParams =
+export type AcsCredentialsUnmanagedGetParameters =
   RouteRequestBody<'/acs/credentials/unmanaged/get'>
 
+/**
+ * @deprecated Use AcsCredentialsUnmanagedGetParameters instead.
+ */
+export type AcsCredentialsUnmanagedGetParams =
+  AcsCredentialsUnmanagedGetParameters
+
+/**
+ * @deprecated Use AcsCredentialsUnmanagedGetRequest instead.
+ */
 export type AcsCredentialsUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/unmanaged/get'>>
 >
 
-export type AcsCredentialsUnmanagedGetOptions = never
+export type AcsCredentialsUnmanagedGetRequest = SeamHttpRequest<
+  AcsCredentialsUnmanagedGetResponse,
+  'acs_credential'
+>
 
-export type AcsCredentialsUnmanagedListParams =
+export type AcsCredentialsUnmanagedGetOptions = Record<string, never>
+
+export type AcsCredentialsUnmanagedListParameters =
   RouteRequestParams<'/acs/credentials/unmanaged/list'>
 
+/**
+ * @deprecated Use AcsCredentialsUnmanagedListParameters instead.
+ */
+export type AcsCredentialsUnmanagedListParams =
+  AcsCredentialsUnmanagedListParameters
+
+/**
+ * @deprecated Use AcsCredentialsUnmanagedListRequest instead.
+ */
 export type AcsCredentialsUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/credentials/unmanaged/list'>>
 >
 
-export type AcsCredentialsUnmanagedListOptions = never
+export type AcsCredentialsUnmanagedListRequest = SeamHttpRequest<
+  AcsCredentialsUnmanagedListResponse,
+  'acs_credentials'
+>
+
+export type AcsCredentialsUnmanagedListOptions = Record<string, never>

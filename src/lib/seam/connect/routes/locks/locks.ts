@@ -169,73 +169,112 @@ export class SeamHttpLocks {
     return SeamHttpLocksSimulate.fromClient(this.client, this.defaults)
   }
 
-  get(params?: LocksGetParams): SeamHttpRequest<LocksGetResponse, 'device'> {
+  get(
+    parameters?: LocksGetParameters,
+    options: LocksGetOptions = {},
+  ): LocksGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/locks/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'device',
+      options,
     })
   }
 
   list(
-    params?: LocksListParams,
-  ): SeamHttpRequest<LocksListResponse, 'devices'> {
+    parameters?: LocksListParameters,
+    options: LocksListOptions = {},
+  ): LocksListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/locks/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'devices',
+      options,
     })
   }
 
   lockDoor(
-    body?: LocksLockDoorBody,
+    parameters?: LocksLockDoorParameters,
     options: LocksLockDoorOptions = {},
-  ): SeamHttpRequest<LocksLockDoorResponse, 'action_attempt'> {
+  ): LocksLockDoorRequest {
     return new SeamHttpRequest(this, {
       pathname: '/locks/lock_door',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 
   unlockDoor(
-    body?: LocksUnlockDoorBody,
+    parameters?: LocksUnlockDoorParameters,
     options: LocksUnlockDoorOptions = {},
-  ): SeamHttpRequest<LocksUnlockDoorResponse, 'action_attempt'> {
+  ): LocksUnlockDoorRequest {
     return new SeamHttpRequest(this, {
       pathname: '/locks/unlock_door',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 }
 
-export type LocksGetParams = RouteRequestBody<'/locks/get'>
+export type LocksGetParameters = RouteRequestBody<'/locks/get'>
 
+/**
+ * @deprecated Use LocksGetParameters instead.
+ */
+export type LocksGetParams = LocksGetParameters
+
+/**
+ * @deprecated Use LocksGetRequest instead.
+ */
 export type LocksGetResponse = SetNonNullable<
   Required<RouteResponse<'/locks/get'>>
 >
 
-export type LocksGetOptions = never
+export type LocksGetRequest = SeamHttpRequest<LocksGetResponse, 'device'>
 
-export type LocksListParams = RouteRequestBody<'/locks/list'>
+export type LocksGetOptions = Record<string, never>
 
+export type LocksListParameters = RouteRequestBody<'/locks/list'>
+
+/**
+ * @deprecated Use LocksListParameters instead.
+ */
+export type LocksListParams = LocksListParameters
+
+/**
+ * @deprecated Use LocksListRequest instead.
+ */
 export type LocksListResponse = SetNonNullable<
   Required<RouteResponse<'/locks/list'>>
 >
 
-export type LocksListOptions = never
+export type LocksListRequest = SeamHttpRequest<LocksListResponse, 'devices'>
 
-export type LocksLockDoorBody = RouteRequestBody<'/locks/lock_door'>
+export type LocksListOptions = Record<string, never>
 
+export type LocksLockDoorParameters = RouteRequestBody<'/locks/lock_door'>
+
+/**
+ * @deprecated Use LocksLockDoorParameters instead.
+ */
+export type LocksLockDoorBody = LocksLockDoorParameters
+
+/**
+ * @deprecated Use LocksLockDoorRequest instead.
+ */
 export type LocksLockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/lock_door'>>
+>
+
+export type LocksLockDoorRequest = SeamHttpRequest<
+  LocksLockDoorResponse,
+  'action_attempt'
 >
 
 export type LocksLockDoorOptions = Pick<
@@ -243,10 +282,23 @@ export type LocksLockDoorOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type LocksUnlockDoorBody = RouteRequestBody<'/locks/unlock_door'>
+export type LocksUnlockDoorParameters = RouteRequestBody<'/locks/unlock_door'>
 
+/**
+ * @deprecated Use LocksUnlockDoorParameters instead.
+ */
+export type LocksUnlockDoorBody = LocksUnlockDoorParameters
+
+/**
+ * @deprecated Use LocksUnlockDoorRequest instead.
+ */
 export type LocksUnlockDoorResponse = SetNonNullable<
   Required<RouteResponse<'/locks/unlock_door'>>
+>
+
+export type LocksUnlockDoorRequest = SeamHttpRequest<
+  LocksUnlockDoorResponse,
+  'action_attempt'
 >
 
 export type LocksUnlockDoorOptions = Pick<

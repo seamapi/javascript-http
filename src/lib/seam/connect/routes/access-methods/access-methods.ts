@@ -163,59 +163,104 @@ export class SeamHttpAccessMethods {
     await clientSessions.get()
   }
 
-  delete(params?: AccessMethodsDeleteParams): SeamHttpRequest<void, undefined> {
+  delete(
+    parameters?: AccessMethodsDeleteParameters,
+    options: AccessMethodsDeleteOptions = {},
+  ): AccessMethodsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: AccessMethodsGetParams,
-  ): SeamHttpRequest<AccessMethodsGetResponse, 'access_method'> {
+    parameters?: AccessMethodsGetParameters,
+    options: AccessMethodsGetOptions = {},
+  ): AccessMethodsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_method',
+      options,
     })
   }
 
   list(
-    params?: AccessMethodsListParams,
-  ): SeamHttpRequest<AccessMethodsListResponse, 'access_methods'> {
+    parameters?: AccessMethodsListParameters,
+    options: AccessMethodsListOptions = {},
+  ): AccessMethodsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_methods',
+      options,
     })
   }
 }
 
-export type AccessMethodsDeleteParams =
+export type AccessMethodsDeleteParameters =
   RouteRequestBody<'/access_methods/delete'>
 
+/**
+ * @deprecated Use AccessMethodsDeleteParameters instead.
+ */
+export type AccessMethodsDeleteParams = AccessMethodsDeleteParameters
+
+/**
+ * @deprecated Use AccessMethodsDeleteRequest instead.
+ */
 export type AccessMethodsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_methods/delete'>>
 >
 
-export type AccessMethodsDeleteOptions = never
+export type AccessMethodsDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type AccessMethodsGetParams = RouteRequestBody<'/access_methods/get'>
+export type AccessMethodsDeleteOptions = Record<string, never>
 
+export type AccessMethodsGetParameters = RouteRequestBody<'/access_methods/get'>
+
+/**
+ * @deprecated Use AccessMethodsGetParameters instead.
+ */
+export type AccessMethodsGetParams = AccessMethodsGetParameters
+
+/**
+ * @deprecated Use AccessMethodsGetRequest instead.
+ */
 export type AccessMethodsGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_methods/get'>>
 >
 
-export type AccessMethodsGetOptions = never
+export type AccessMethodsGetRequest = SeamHttpRequest<
+  AccessMethodsGetResponse,
+  'access_method'
+>
 
-export type AccessMethodsListParams = RouteRequestBody<'/access_methods/list'>
+export type AccessMethodsGetOptions = Record<string, never>
 
+export type AccessMethodsListParameters =
+  RouteRequestBody<'/access_methods/list'>
+
+/**
+ * @deprecated Use AccessMethodsListParameters instead.
+ */
+export type AccessMethodsListParams = AccessMethodsListParameters
+
+/**
+ * @deprecated Use AccessMethodsListRequest instead.
+ */
 export type AccessMethodsListResponse = SetNonNullable<
   Required<RouteResponse<'/access_methods/list'>>
 >
 
-export type AccessMethodsListOptions = never
+export type AccessMethodsListRequest = SeamHttpRequest<
+  AccessMethodsListResponse,
+  'access_methods'
+>
+
+export type AccessMethodsListOptions = Record<string, never>

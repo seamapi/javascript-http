@@ -172,11 +172,9 @@ export class SeamHttpSeamInstantKeyV1ClientSessions {
   }
 
   exchangeShortCode(
-    body?: SeamInstantKeyV1ClientSessionsExchangeShortCodeBody,
-  ): SeamHttpRequest<
-    SeamInstantKeyV1ClientSessionsExchangeShortCodeResponse,
-    'client_session'
-  > {
+    parameters?: SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters,
+    options: SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions = {},
+  ): SeamInstantKeyV1ClientSessionsExchangeShortCodeRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -185,15 +183,25 @@ export class SeamHttpSeamInstantKeyV1ClientSessions {
     return new SeamHttpRequest(this, {
       pathname: '/seam/instant_key/v1/client_sessions/exchange_short_code',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'client_session',
+      options,
     })
   }
 }
 
-export type SeamInstantKeyV1ClientSessionsExchangeShortCodeBody =
+export type SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters =
   RouteRequestBody<'/seam/instant_key/v1/client_sessions/exchange_short_code'>
 
+/**
+ * @deprecated Use SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters instead.
+ */
+export type SeamInstantKeyV1ClientSessionsExchangeShortCodeBody =
+  SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters
+
+/**
+ * @deprecated Use SeamInstantKeyV1ClientSessionsExchangeShortCodeRequest instead.
+ */
 export type SeamInstantKeyV1ClientSessionsExchangeShortCodeResponse =
   SetNonNullable<
     Required<
@@ -201,4 +209,13 @@ export type SeamInstantKeyV1ClientSessionsExchangeShortCodeResponse =
     >
   >
 
-export type SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions = never
+export type SeamInstantKeyV1ClientSessionsExchangeShortCodeRequest =
+  SeamHttpRequest<
+    SeamInstantKeyV1ClientSessionsExchangeShortCodeResponse,
+    'client_session'
+  >
+
+export type SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions = Record<
+  string,
+  never
+>

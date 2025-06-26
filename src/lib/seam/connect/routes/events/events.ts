@@ -163,39 +163,65 @@ export class SeamHttpEvents {
     await clientSessions.get()
   }
 
-  get(params?: EventsGetParams): SeamHttpRequest<EventsGetResponse, 'event'> {
+  get(
+    parameters?: EventsGetParameters,
+    options: EventsGetOptions = {},
+  ): EventsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/events/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'event',
+      options,
     })
   }
 
   list(
-    params?: EventsListParams,
-  ): SeamHttpRequest<EventsListResponse, 'events'> {
+    parameters?: EventsListParameters,
+    options: EventsListOptions = {},
+  ): EventsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/events/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'events',
+      options,
     })
   }
 }
 
-export type EventsGetParams = RouteRequestBody<'/events/get'>
+export type EventsGetParameters = RouteRequestBody<'/events/get'>
 
+/**
+ * @deprecated Use EventsGetParameters instead.
+ */
+export type EventsGetParams = EventsGetParameters
+
+/**
+ * @deprecated Use EventsGetRequest instead.
+ */
 export type EventsGetResponse = SetNonNullable<
   Required<RouteResponse<'/events/get'>>
 >
 
-export type EventsGetOptions = never
+export type EventsGetRequest = SeamHttpRequest<EventsGetResponse, 'event'>
 
-export type EventsListParams = RouteRequestBody<'/events/list'>
+export type EventsGetOptions = Record<string, never>
 
+export type EventsListParameters = RouteRequestBody<'/events/list'>
+
+/**
+ * @deprecated Use EventsListParameters instead.
+ */
+export type EventsListParams = EventsListParameters
+
+/**
+ * @deprecated Use EventsListRequest instead.
+ */
 export type EventsListResponse = SetNonNullable<
   Required<RouteResponse<'/events/list'>>
 >
 
-export type EventsListOptions = never
+export type EventsListRequest = SeamHttpRequest<EventsListResponse, 'events'>
+
+export type EventsListOptions = Record<string, never>

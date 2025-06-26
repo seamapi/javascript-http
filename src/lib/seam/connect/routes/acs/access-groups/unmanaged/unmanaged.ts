@@ -172,8 +172,9 @@ export class SeamHttpAcsAccessGroupsUnmanaged {
   }
 
   get(
-    params?: AcsAccessGroupsUnmanagedGetParams,
-  ): SeamHttpRequest<AcsAccessGroupsUnmanagedGetResponse, 'acs_access_group'> {
+    parameters?: AcsAccessGroupsUnmanagedGetParameters,
+    options: AcsAccessGroupsUnmanagedGetOptions = {},
+  ): AcsAccessGroupsUnmanagedGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -182,17 +183,16 @@ export class SeamHttpAcsAccessGroupsUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/unmanaged/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_access_group',
+      options,
     })
   }
 
   list(
-    params?: AcsAccessGroupsUnmanagedListParams,
-  ): SeamHttpRequest<
-    AcsAccessGroupsUnmanagedListResponse,
-    'acs_access_groups'
-  > {
+    parameters?: AcsAccessGroupsUnmanagedListParameters,
+    options: AcsAccessGroupsUnmanagedListOptions = {},
+  ): AcsAccessGroupsUnmanagedListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -201,26 +201,55 @@ export class SeamHttpAcsAccessGroupsUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/unmanaged/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_access_groups',
+      options,
     })
   }
 }
 
-export type AcsAccessGroupsUnmanagedGetParams =
+export type AcsAccessGroupsUnmanagedGetParameters =
   RouteRequestBody<'/acs/access_groups/unmanaged/get'>
 
+/**
+ * @deprecated Use AcsAccessGroupsUnmanagedGetParameters instead.
+ */
+export type AcsAccessGroupsUnmanagedGetParams =
+  AcsAccessGroupsUnmanagedGetParameters
+
+/**
+ * @deprecated Use AcsAccessGroupsUnmanagedGetRequest instead.
+ */
 export type AcsAccessGroupsUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/unmanaged/get'>>
 >
 
-export type AcsAccessGroupsUnmanagedGetOptions = never
+export type AcsAccessGroupsUnmanagedGetRequest = SeamHttpRequest<
+  AcsAccessGroupsUnmanagedGetResponse,
+  'acs_access_group'
+>
 
-export type AcsAccessGroupsUnmanagedListParams =
+export type AcsAccessGroupsUnmanagedGetOptions = Record<string, never>
+
+export type AcsAccessGroupsUnmanagedListParameters =
   RouteRequestBody<'/acs/access_groups/unmanaged/list'>
 
+/**
+ * @deprecated Use AcsAccessGroupsUnmanagedListParameters instead.
+ */
+export type AcsAccessGroupsUnmanagedListParams =
+  AcsAccessGroupsUnmanagedListParameters
+
+/**
+ * @deprecated Use AcsAccessGroupsUnmanagedListRequest instead.
+ */
 export type AcsAccessGroupsUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/access_groups/unmanaged/list'>>
 >
 
-export type AcsAccessGroupsUnmanagedListOptions = never
+export type AcsAccessGroupsUnmanagedListRequest = SeamHttpRequest<
+  AcsAccessGroupsUnmanagedListResponse,
+  'acs_access_groups'
+>
+
+export type AcsAccessGroupsUnmanagedListOptions = Record<string, never>

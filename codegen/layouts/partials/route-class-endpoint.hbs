@@ -1,7 +1,5 @@
-{{methodName}}(
-  {{methodParamName}}{{#if isOptionalParamsOk}}?{{/if}}: {{requestTypeName}},
-  {{#if hasOptions}}options: {{optionsTypeName}} = {},{{/if}}
-  ): SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
+{{methodName}}
+{{> endpont-method-signature }}
 {
   {{#if isUndocumented}}
   if (!this.defaults.isUndocumentedApiEnabled) {
@@ -11,8 +9,8 @@
   return new SeamHttpRequest(this, {
     pathname: '{{path}}',
     method: '{{method}}',
-    {{requestFormat}}: {{methodParamName}},
+    {{requestFormat}}: parameters,
     responseKey: {{#if returnsVoid}}undefined{{else}}'{{responseKey}}'{{/if}},
-    {{#if hasOptions}}options,{{/if}}
+    options,
   })
 }

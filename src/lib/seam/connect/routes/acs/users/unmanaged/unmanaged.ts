@@ -169,8 +169,9 @@ export class SeamHttpAcsUsersUnmanaged {
   }
 
   get(
-    params?: AcsUsersUnmanagedGetParams,
-  ): SeamHttpRequest<AcsUsersUnmanagedGetResponse, 'acs_user'> {
+    parameters?: AcsUsersUnmanagedGetParameters,
+    options: AcsUsersUnmanagedGetOptions = {},
+  ): AcsUsersUnmanagedGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -179,14 +180,16 @@ export class SeamHttpAcsUsersUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/unmanaged/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_user',
+      options,
     })
   }
 
   list(
-    params?: AcsUsersUnmanagedListParams,
-  ): SeamHttpRequest<AcsUsersUnmanagedListResponse, 'acs_users'> {
+    parameters?: AcsUsersUnmanagedListParameters,
+    options: AcsUsersUnmanagedListOptions = {},
+  ): AcsUsersUnmanagedListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
@@ -195,26 +198,53 @@ export class SeamHttpAcsUsersUnmanaged {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/unmanaged/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_users',
+      options,
     })
   }
 }
 
-export type AcsUsersUnmanagedGetParams =
+export type AcsUsersUnmanagedGetParameters =
   RouteRequestBody<'/acs/users/unmanaged/get'>
 
+/**
+ * @deprecated Use AcsUsersUnmanagedGetParameters instead.
+ */
+export type AcsUsersUnmanagedGetParams = AcsUsersUnmanagedGetParameters
+
+/**
+ * @deprecated Use AcsUsersUnmanagedGetRequest instead.
+ */
 export type AcsUsersUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/unmanaged/get'>>
 >
 
-export type AcsUsersUnmanagedGetOptions = never
+export type AcsUsersUnmanagedGetRequest = SeamHttpRequest<
+  AcsUsersUnmanagedGetResponse,
+  'acs_user'
+>
 
-export type AcsUsersUnmanagedListParams =
+export type AcsUsersUnmanagedGetOptions = Record<string, never>
+
+export type AcsUsersUnmanagedListParameters =
   RouteRequestBody<'/acs/users/unmanaged/list'>
 
+/**
+ * @deprecated Use AcsUsersUnmanagedListParameters instead.
+ */
+export type AcsUsersUnmanagedListParams = AcsUsersUnmanagedListParameters
+
+/**
+ * @deprecated Use AcsUsersUnmanagedListRequest instead.
+ */
 export type AcsUsersUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/users/unmanaged/list'>>
 >
 
-export type AcsUsersUnmanagedListOptions = never
+export type AcsUsersUnmanagedListRequest = SeamHttpRequest<
+  AcsUsersUnmanagedListResponse,
+  'acs_users'
+>
+
+export type AcsUsersUnmanagedListOptions = Record<string, never>

@@ -1,7 +1,17 @@
-export type {{requestTypeName}} = RouteRequest{{requestFormatSuffix}}<'{{path}}'>
+export type {{parametersTypeName}} = RouteRequest{{requestFormatSuffix}}<'{{path}}'>
 
+/**
+ * @deprecated Use {{parametersTypeName}} instead.
+ */
+export type {{legacyRequestTypeName}} = {{parametersTypeName}}
+
+/**
+ * @deprecated Use {{requestTypeName}} instead.
+ */
 export type {{responseTypeName}} = SetNonNullable<
   Required<RouteResponse<'{{path}}'>>
 >
 
-export type {{optionsTypeName}} = {{#if returnsActionAttempt}}Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>{{else}}never{{/if}}
+export type {{requestTypeName}} = SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
+
+export type {{optionsTypeName}} = {{#if returnsActionAttempt}}Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>{{else}}Record<string, never>{{/if}}

@@ -164,60 +164,104 @@ export class SeamHttpDevicesUnmanaged {
   }
 
   get(
-    params?: DevicesUnmanagedGetParams,
-  ): SeamHttpRequest<DevicesUnmanagedGetResponse, 'device'> {
+    parameters?: DevicesUnmanagedGetParameters,
+    options: DevicesUnmanagedGetOptions = {},
+  ): DevicesUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'device',
+      options,
     })
   }
 
   list(
-    params?: DevicesUnmanagedListParams,
-  ): SeamHttpRequest<DevicesUnmanagedListResponse, 'devices'> {
+    parameters?: DevicesUnmanagedListParameters,
+    options: DevicesUnmanagedListOptions = {},
+  ): DevicesUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'devices',
+      options,
     })
   }
 
-  update(body?: DevicesUnmanagedUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: DevicesUnmanagedUpdateParameters,
+    options: DevicesUnmanagedUpdateOptions = {},
+  ): DevicesUnmanagedUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type DevicesUnmanagedGetParams =
+export type DevicesUnmanagedGetParameters =
   RouteRequestBody<'/devices/unmanaged/get'>
 
+/**
+ * @deprecated Use DevicesUnmanagedGetParameters instead.
+ */
+export type DevicesUnmanagedGetParams = DevicesUnmanagedGetParameters
+
+/**
+ * @deprecated Use DevicesUnmanagedGetRequest instead.
+ */
 export type DevicesUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/unmanaged/get'>>
 >
 
-export type DevicesUnmanagedGetOptions = never
+export type DevicesUnmanagedGetRequest = SeamHttpRequest<
+  DevicesUnmanagedGetResponse,
+  'device'
+>
 
-export type DevicesUnmanagedListParams =
+export type DevicesUnmanagedGetOptions = Record<string, never>
+
+export type DevicesUnmanagedListParameters =
   RouteRequestBody<'/devices/unmanaged/list'>
 
+/**
+ * @deprecated Use DevicesUnmanagedListParameters instead.
+ */
+export type DevicesUnmanagedListParams = DevicesUnmanagedListParameters
+
+/**
+ * @deprecated Use DevicesUnmanagedListRequest instead.
+ */
 export type DevicesUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/devices/unmanaged/list'>>
 >
 
-export type DevicesUnmanagedListOptions = never
+export type DevicesUnmanagedListRequest = SeamHttpRequest<
+  DevicesUnmanagedListResponse,
+  'devices'
+>
 
-export type DevicesUnmanagedUpdateBody =
+export type DevicesUnmanagedListOptions = Record<string, never>
+
+export type DevicesUnmanagedUpdateParameters =
   RouteRequestBody<'/devices/unmanaged/update'>
 
+/**
+ * @deprecated Use DevicesUnmanagedUpdateParameters instead.
+ */
+export type DevicesUnmanagedUpdateBody = DevicesUnmanagedUpdateParameters
+
+/**
+ * @deprecated Use DevicesUnmanagedUpdateRequest instead.
+ */
 export type DevicesUnmanagedUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/devices/unmanaged/update'>>
 >
 
-export type DevicesUnmanagedUpdateOptions = never
+export type DevicesUnmanagedUpdateRequest = SeamHttpRequest<void, undefined>
+
+export type DevicesUnmanagedUpdateOptions = Record<string, never>
