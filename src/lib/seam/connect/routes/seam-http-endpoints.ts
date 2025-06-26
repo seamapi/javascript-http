@@ -4187,7 +4187,7 @@ export class SeamHttpEndpoints {
   }
 }
 
-export type SeamHttpEndpointMutationPaths =
+export type SeamHttpEndpointQueryPaths =
   | '/access_codes/generate_code'
   | '/access_codes/get'
   | '/access_codes/list'
@@ -4283,7 +4283,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/workspaces/get'
   | '/workspaces/list'
 
-export type SeamHttpEndpointQueryPaths =
+export type SeamHttpEndpointMutationPaths =
   | '/access_codes/create'
   | '/access_codes/create_multiple'
   | '/access_codes/delete'

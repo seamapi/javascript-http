@@ -36,6 +36,6 @@ export class SeamHttpEndpoints {
   {{/each}}
 }
 
-export type SeamHttpEndpointMutationPaths = {{#each endpointReadPaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
+export type SeamHttpEndpointQueryPaths = {{#each endpointReadPaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
 
-export type SeamHttpEndpointQueryPaths = {{#each endpointWritePaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
+export type SeamHttpEndpointMutationPaths = {{#each endpointWritePaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
