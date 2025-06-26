@@ -27,6 +27,7 @@ export interface EndpointLayoutContext {
   responseTypeName: string
   requestFormatSuffix: string
   optionsTypeName: string
+  requestTypeName: string
   returnsActionAttempt: boolean
   returnsVoid: boolean
   isOptionalParamsOk: boolean
@@ -111,6 +112,7 @@ export const getEndpointLayoutContext = (
     legacyRequestTypeName: `${prefix}${pascalCase(legacyMethodParamName)}`,
     responseTypeName: `${prefix}Response`,
     optionsTypeName: `${prefix}Options`,
+    requestTypeName: `${prefix}Request`,
     // UPSTREAM: Needs support in blueprint, fallback to true for now.
     // https://github.com/seamapi/blueprint/issues/205
     isOptionalParamsOk: true,

@@ -41,7 +41,7 @@ export const setEndpointsLayoutContext = (
       typeNames: endpoints.flatMap((endpoint) => [
         endpoint.parametersTypeName,
         endpoint.optionsTypeName,
-        endpoint.responseTypeName,
+        endpoint.requestTypeName,
       ]),
     }
   })
