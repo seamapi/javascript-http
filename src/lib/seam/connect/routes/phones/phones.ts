@@ -225,7 +225,8 @@ export type PhonesDeactivateResponse = SetNonNullable<
 
 export type PhonesDeactivateRequest = SeamHttpRequest<void, undefined>
 
-export type PhonesDeactivateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface PhonesDeactivateOptions {}
 
 export type PhonesGetParameters = RouteRequestBody<'/phones/get'>
 
@@ -243,7 +244,8 @@ export type PhonesGetResponse = SetNonNullable<
 
 export type PhonesGetRequest = SeamHttpRequest<PhonesGetResponse, 'phone'>
 
-export type PhonesGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface PhonesGetOptions {}
 
 export type PhonesListParameters = RouteRequestBody<'/phones/list'>
 
@@ -261,4 +263,5 @@ export type PhonesListResponse = SetNonNullable<
 
 export type PhonesListRequest = SeamHttpRequest<PhonesListResponse, 'phones'>
 
-export type PhonesListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface PhonesListOptions {}

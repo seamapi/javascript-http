@@ -222,7 +222,8 @@ export type AcsSystemsGetRequest = SeamHttpRequest<
   'acs_system'
 >
 
-export type AcsSystemsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsSystemsGetOptions {}
 
 export type AcsSystemsListParameters = RouteRequestBody<'/acs/systems/list'>
 
@@ -243,7 +244,8 @@ export type AcsSystemsListRequest = SeamHttpRequest<
   'acs_systems'
 >
 
-export type AcsSystemsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsSystemsListOptions {}
 
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters =
   RouteRequestBody<'/acs/systems/list_compatible_credential_manager_acs_systems'>
@@ -270,7 +272,5 @@ export type AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest =
     'acs_systems'
   >
 
-export type AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions {}

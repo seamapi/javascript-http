@@ -235,7 +235,8 @@ export type AcsEntrancesGetRequest = SeamHttpRequest<
   'acs_entrance'
 >
 
-export type AcsEntrancesGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEntrancesGetOptions {}
 
 export type AcsEntrancesGrantAccessParameters =
   RouteRequestBody<'/acs/entrances/grant_access'>
@@ -254,7 +255,8 @@ export type AcsEntrancesGrantAccessResponse = SetNonNullable<
 
 export type AcsEntrancesGrantAccessRequest = SeamHttpRequest<void, undefined>
 
-export type AcsEntrancesGrantAccessOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEntrancesGrantAccessOptions {}
 
 export type AcsEntrancesListParameters = RouteRequestBody<'/acs/entrances/list'>
 
@@ -275,7 +277,8 @@ export type AcsEntrancesListRequest = SeamHttpRequest<
   'acs_entrances'
 >
 
-export type AcsEntrancesListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEntrancesListOptions {}
 
 export type AcsEntrancesListCredentialsWithAccessParameters =
   RouteRequestBody<'/acs/entrances/list_credentials_with_access'>
@@ -298,4 +301,5 @@ export type AcsEntrancesListCredentialsWithAccessRequest = SeamHttpRequest<
   'acs_credentials'
 >
 
-export type AcsEntrancesListCredentialsWithAccessOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEntrancesListCredentialsWithAccessOptions {}

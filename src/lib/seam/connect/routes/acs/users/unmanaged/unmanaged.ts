@@ -225,7 +225,8 @@ export type AcsUsersUnmanagedGetRequest = SeamHttpRequest<
   'acs_user'
 >
 
-export type AcsUsersUnmanagedGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersUnmanagedGetOptions {}
 
 export type AcsUsersUnmanagedListParameters =
   RouteRequestBody<'/acs/users/unmanaged/list'>
@@ -247,4 +248,5 @@ export type AcsUsersUnmanagedListRequest = SeamHttpRequest<
   'acs_users'
 >
 
-export type AcsUsersUnmanagedListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersUnmanagedListOptions {}

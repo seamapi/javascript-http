@@ -330,7 +330,8 @@ export type AcsUsersAddToAccessGroupResponse = SetNonNullable<
 
 export type AcsUsersAddToAccessGroupRequest = SeamHttpRequest<void, undefined>
 
-export type AcsUsersAddToAccessGroupOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersAddToAccessGroupOptions {}
 
 export type AcsUsersCreateParameters = RouteRequestBody<'/acs/users/create'>
 
@@ -351,7 +352,8 @@ export type AcsUsersCreateRequest = SeamHttpRequest<
   'acs_user'
 >
 
-export type AcsUsersCreateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersCreateOptions {}
 
 export type AcsUsersDeleteParameters = RouteRequestBody<'/acs/users/delete'>
 
@@ -369,7 +371,8 @@ export type AcsUsersDeleteResponse = SetNonNullable<
 
 export type AcsUsersDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type AcsUsersDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersDeleteOptions {}
 
 export type AcsUsersGetParameters = RouteRequestBody<'/acs/users/get'>
 
@@ -390,7 +393,8 @@ export type AcsUsersGetRequest = SeamHttpRequest<
   'acs_user'
 >
 
-export type AcsUsersGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersGetOptions {}
 
 export type AcsUsersListParameters = RouteRequestBody<'/acs/users/list'>
 
@@ -411,7 +415,8 @@ export type AcsUsersListRequest = SeamHttpRequest<
   'acs_users'
 >
 
-export type AcsUsersListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersListOptions {}
 
 export type AcsUsersListAccessibleEntrancesParameters =
   RouteRequestBody<'/acs/users/list_accessible_entrances'>
@@ -434,7 +439,8 @@ export type AcsUsersListAccessibleEntrancesRequest = SeamHttpRequest<
   'acs_entrances'
 >
 
-export type AcsUsersListAccessibleEntrancesOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersListAccessibleEntrancesOptions {}
 
 export type AcsUsersRemoveFromAccessGroupParameters =
   RouteRequestBody<'/acs/users/remove_from_access_group'>
@@ -457,7 +463,8 @@ export type AcsUsersRemoveFromAccessGroupRequest = SeamHttpRequest<
   undefined
 >
 
-export type AcsUsersRemoveFromAccessGroupOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersRemoveFromAccessGroupOptions {}
 
 export type AcsUsersRevokeAccessToAllEntrancesParameters =
   RouteRequestBody<'/acs/users/revoke_access_to_all_entrances'>
@@ -480,7 +487,8 @@ export type AcsUsersRevokeAccessToAllEntrancesRequest = SeamHttpRequest<
   undefined
 >
 
-export type AcsUsersRevokeAccessToAllEntrancesOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersRevokeAccessToAllEntrancesOptions {}
 
 export type AcsUsersSuspendParameters = RouteRequestBody<'/acs/users/suspend'>
 
@@ -498,7 +506,8 @@ export type AcsUsersSuspendResponse = SetNonNullable<
 
 export type AcsUsersSuspendRequest = SeamHttpRequest<void, undefined>
 
-export type AcsUsersSuspendOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersSuspendOptions {}
 
 export type AcsUsersUnsuspendParameters =
   RouteRequestBody<'/acs/users/unsuspend'>
@@ -517,7 +526,8 @@ export type AcsUsersUnsuspendResponse = SetNonNullable<
 
 export type AcsUsersUnsuspendRequest = SeamHttpRequest<void, undefined>
 
-export type AcsUsersUnsuspendOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersUnsuspendOptions {}
 
 export type AcsUsersUpdateParameters = RouteRequestBody<'/acs/users/update'>
 
@@ -535,4 +545,5 @@ export type AcsUsersUpdateResponse = SetNonNullable<
 
 export type AcsUsersUpdateRequest = SeamHttpRequest<void, undefined>
 
-export type AcsUsersUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsUsersUpdateOptions {}

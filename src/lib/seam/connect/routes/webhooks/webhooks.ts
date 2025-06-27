@@ -252,7 +252,8 @@ export type WebhooksCreateRequest = SeamHttpRequest<
   'webhook'
 >
 
-export type WebhooksCreateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WebhooksCreateOptions {}
 
 export type WebhooksDeleteParameters = RouteRequestBody<'/webhooks/delete'>
 
@@ -270,7 +271,8 @@ export type WebhooksDeleteResponse = SetNonNullable<
 
 export type WebhooksDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type WebhooksDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WebhooksDeleteOptions {}
 
 export type WebhooksGetParameters = RouteRequestBody<'/webhooks/get'>
 
@@ -288,7 +290,8 @@ export type WebhooksGetResponse = SetNonNullable<
 
 export type WebhooksGetRequest = SeamHttpRequest<WebhooksGetResponse, 'webhook'>
 
-export type WebhooksGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WebhooksGetOptions {}
 
 export type WebhooksListParameters = RouteRequestParams<'/webhooks/list'>
 
@@ -309,7 +312,8 @@ export type WebhooksListRequest = SeamHttpRequest<
   'webhooks'
 >
 
-export type WebhooksListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WebhooksListOptions {}
 
 export type WebhooksUpdateParameters = RouteRequestBody<'/webhooks/update'>
 
@@ -327,4 +331,5 @@ export type WebhooksUpdateResponse = SetNonNullable<
 
 export type WebhooksUpdateRequest = SeamHttpRequest<void, undefined>
 
-export type WebhooksUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WebhooksUpdateOptions {}

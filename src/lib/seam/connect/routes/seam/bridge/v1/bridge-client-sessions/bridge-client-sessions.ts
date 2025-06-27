@@ -289,10 +289,8 @@ export type SeamBridgeV1BridgeClientSessionsCreateRequest = SeamHttpRequest<
   'bridge_client_session'
 >
 
-export type SeamBridgeV1BridgeClientSessionsCreateOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamBridgeV1BridgeClientSessionsCreateOptions {}
 
 export type SeamBridgeV1BridgeClientSessionsGetParameters =
   RouteRequestParams<'/seam/bridge/v1/bridge_client_sessions/get'>
@@ -315,7 +313,8 @@ export type SeamBridgeV1BridgeClientSessionsGetRequest = SeamHttpRequest<
   'bridge_client_session'
 >
 
-export type SeamBridgeV1BridgeClientSessionsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamBridgeV1BridgeClientSessionsGetOptions {}
 
 export type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenParameters =
   RouteRequestBody<'/seam/bridge/v1/bridge_client_sessions/refresh_telemetry_token'>
@@ -342,8 +341,8 @@ export type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenRequest =
     'bridge_client_session'
   >
 
-export type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenOptions =
-  Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenOptions {}
 
 export type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeParameters =
   RouteRequestBody<'/seam/bridge/v1/bridge_client_sessions/regenerate_pairing_code'>
@@ -370,8 +369,8 @@ export type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeRequest =
     'bridge_client_session'
   >
 
-export type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeOptions =
-  Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeOptions {}
 
 export type SeamBridgeV1BridgeClientSessionsReportStatusParameters =
   RouteRequestBody<'/seam/bridge/v1/bridge_client_sessions/report_status'>
@@ -395,7 +394,5 @@ export type SeamBridgeV1BridgeClientSessionsReportStatusResponse =
 export type SeamBridgeV1BridgeClientSessionsReportStatusRequest =
   SeamHttpRequest<void, undefined>
 
-export type SeamBridgeV1BridgeClientSessionsReportStatusOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamBridgeV1BridgeClientSessionsReportStatusOptions {}

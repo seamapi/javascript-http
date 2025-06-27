@@ -198,7 +198,5 @@ export type NoiseSensorsSimulateTriggerNoiseThresholdRequest = SeamHttpRequest<
   undefined
 >
 
-export type NoiseSensorsSimulateTriggerNoiseThresholdOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsSimulateTriggerNoiseThresholdOptions {}

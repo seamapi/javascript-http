@@ -215,7 +215,5 @@ export type SeamInstantKeyV1ClientSessionsExchangeShortCodeRequest =
     'client_session'
   >
 
-export type SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions {}

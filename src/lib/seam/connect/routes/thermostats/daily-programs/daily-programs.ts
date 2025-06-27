@@ -227,7 +227,8 @@ export type ThermostatsDailyProgramsCreateRequest = SeamHttpRequest<
   'thermostat_daily_program'
 >
 
-export type ThermostatsDailyProgramsCreateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsDailyProgramsCreateOptions {}
 
 export type ThermostatsDailyProgramsDeleteParameters =
   RouteRequestBody<'/thermostats/daily_programs/delete'>
@@ -250,7 +251,8 @@ export type ThermostatsDailyProgramsDeleteRequest = SeamHttpRequest<
   undefined
 >
 
-export type ThermostatsDailyProgramsDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsDailyProgramsDeleteOptions {}
 
 export type ThermostatsDailyProgramsUpdateParameters =
   RouteRequestBody<'/thermostats/daily_programs/update'>

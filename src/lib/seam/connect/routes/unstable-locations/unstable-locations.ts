@@ -356,7 +356,8 @@ export type UnstableLocationsAddAcsEntrancesRequest = SeamHttpRequest<
   undefined
 >
 
-export type UnstableLocationsAddAcsEntrancesOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableLocationsAddAcsEntrancesOptions {}
 
 export type UnstableLocationsAddDevicesParameters =
   RouteRequestBody<'/unstable_locations/add_devices'>
@@ -379,7 +380,8 @@ export type UnstableLocationsAddDevicesRequest = SeamHttpRequest<
   undefined
 >
 
-export type UnstableLocationsAddDevicesOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableLocationsAddDevicesOptions {}
 
 export type UnstableLocationsCreateParameters =
   RouteRequestBody<'/unstable_locations/create'>
@@ -401,7 +403,8 @@ export type UnstableLocationsCreateRequest = SeamHttpRequest<
   'location'
 >
 
-export type UnstableLocationsCreateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableLocationsCreateOptions {}
 
 export type UnstableLocationsDeleteParameters =
   RouteRequestBody<'/unstable_locations/delete'>
@@ -420,7 +423,8 @@ export type UnstableLocationsDeleteResponse = SetNonNullable<
 
 export type UnstableLocationsDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type UnstableLocationsDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableLocationsDeleteOptions {}
 
 export type UnstableLocationsGetParameters =
   RouteRequestBody<'/unstable_locations/get'>
@@ -442,7 +446,8 @@ export type UnstableLocationsGetRequest = SeamHttpRequest<
   'location'
 >
 
-export type UnstableLocationsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableLocationsGetOptions {}
 
 export type UnstableLocationsListParameters =
   RouteRequestParams<'/unstable_locations/list'>
@@ -464,7 +469,8 @@ export type UnstableLocationsListRequest = SeamHttpRequest<
   'locations'
 >
 
-export type UnstableLocationsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableLocationsListOptions {}
 
 export type UnstableLocationsRemoveAcsEntrancesParameters =
   RouteRequestBody<'/unstable_locations/remove_acs_entrances'>
@@ -487,7 +493,8 @@ export type UnstableLocationsRemoveAcsEntrancesRequest = SeamHttpRequest<
   undefined
 >
 
-export type UnstableLocationsRemoveAcsEntrancesOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableLocationsRemoveAcsEntrancesOptions {}
 
 export type UnstableLocationsRemoveDevicesParameters =
   RouteRequestBody<'/unstable_locations/remove_devices'>
@@ -510,7 +517,8 @@ export type UnstableLocationsRemoveDevicesRequest = SeamHttpRequest<
   undefined
 >
 
-export type UnstableLocationsRemoveDevicesOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableLocationsRemoveDevicesOptions {}
 
 export type UnstableLocationsUpdateParameters =
   RouteRequestBody<'/unstable_locations/update'>
@@ -532,4 +540,5 @@ export type UnstableLocationsUpdateRequest = SeamHttpRequest<
   'location'
 >
 
-export type UnstableLocationsUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableLocationsUpdateOptions {}

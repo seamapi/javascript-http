@@ -211,4 +211,5 @@ export type SeamMobileSdkV1AcsCredentialsListRequest = SeamHttpRequest<
   'acs_credentials'
 >
 
-export type SeamMobileSdkV1AcsCredentialsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamMobileSdkV1AcsCredentialsListOptions {}

@@ -221,7 +221,8 @@ export type NetworksGetResponse = SetNonNullable<
 
 export type NetworksGetRequest = SeamHttpRequest<NetworksGetResponse, 'network'>
 
-export type NetworksGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NetworksGetOptions {}
 
 export type NetworksListParameters = RouteRequestBody<'/networks/list'>
 
@@ -242,4 +243,5 @@ export type NetworksListRequest = SeamHttpRequest<
   'networks'
 >
 
-export type NetworksListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NetworksListOptions {}

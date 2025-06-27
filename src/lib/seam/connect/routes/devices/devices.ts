@@ -261,7 +261,8 @@ export type DevicesDeleteResponse = SetNonNullable<
 
 export type DevicesDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type DevicesDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesDeleteOptions {}
 
 export type DevicesGetParameters = RouteRequestBody<'/devices/get'>
 
@@ -279,7 +280,8 @@ export type DevicesGetResponse = SetNonNullable<
 
 export type DevicesGetRequest = SeamHttpRequest<DevicesGetResponse, 'device'>
 
-export type DevicesGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesGetOptions {}
 
 export type DevicesListParameters = RouteRequestBody<'/devices/list'>
 
@@ -297,7 +299,8 @@ export type DevicesListResponse = SetNonNullable<
 
 export type DevicesListRequest = SeamHttpRequest<DevicesListResponse, 'devices'>
 
-export type DevicesListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesListOptions {}
 
 export type DevicesListDeviceProvidersParameters =
   RouteRequestBody<'/devices/list_device_providers'>
@@ -320,7 +323,8 @@ export type DevicesListDeviceProvidersRequest = SeamHttpRequest<
   'device_providers'
 >
 
-export type DevicesListDeviceProvidersOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesListDeviceProvidersOptions {}
 
 export type DevicesUpdateParameters = RouteRequestBody<'/devices/update'>
 
@@ -338,4 +342,5 @@ export type DevicesUpdateResponse = SetNonNullable<
 
 export type DevicesUpdateRequest = SeamHttpRequest<void, undefined>
 
-export type DevicesUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesUpdateOptions {}

@@ -250,7 +250,8 @@ export type ThermostatsSchedulesCreateRequest = SeamHttpRequest<
   'thermostat_schedule'
 >
 
-export type ThermostatsSchedulesCreateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsSchedulesCreateOptions {}
 
 export type ThermostatsSchedulesDeleteParameters =
   RouteRequestBody<'/thermostats/schedules/delete'>
@@ -270,7 +271,8 @@ export type ThermostatsSchedulesDeleteResponse = SetNonNullable<
 
 export type ThermostatsSchedulesDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type ThermostatsSchedulesDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsSchedulesDeleteOptions {}
 
 export type ThermostatsSchedulesGetParameters =
   RouteRequestBody<'/thermostats/schedules/get'>
@@ -292,7 +294,8 @@ export type ThermostatsSchedulesGetRequest = SeamHttpRequest<
   'thermostat_schedule'
 >
 
-export type ThermostatsSchedulesGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsSchedulesGetOptions {}
 
 export type ThermostatsSchedulesListParameters =
   RouteRequestBody<'/thermostats/schedules/list'>
@@ -314,7 +317,8 @@ export type ThermostatsSchedulesListRequest = SeamHttpRequest<
   'thermostat_schedules'
 >
 
-export type ThermostatsSchedulesListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsSchedulesListOptions {}
 
 export type ThermostatsSchedulesUpdateParameters =
   RouteRequestBody<'/thermostats/schedules/update'>
@@ -334,4 +338,5 @@ export type ThermostatsSchedulesUpdateResponse = SetNonNullable<
 
 export type ThermostatsSchedulesUpdateRequest = SeamHttpRequest<void, undefined>
 
-export type ThermostatsSchedulesUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsSchedulesUpdateOptions {}

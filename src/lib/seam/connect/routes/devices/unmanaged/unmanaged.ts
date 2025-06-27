@@ -223,7 +223,8 @@ export type DevicesUnmanagedGetRequest = SeamHttpRequest<
   'device'
 >
 
-export type DevicesUnmanagedGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesUnmanagedGetOptions {}
 
 export type DevicesUnmanagedListParameters =
   RouteRequestBody<'/devices/unmanaged/list'>
@@ -245,7 +246,8 @@ export type DevicesUnmanagedListRequest = SeamHttpRequest<
   'devices'
 >
 
-export type DevicesUnmanagedListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesUnmanagedListOptions {}
 
 export type DevicesUnmanagedUpdateParameters =
   RouteRequestBody<'/devices/unmanaged/update'>
@@ -264,4 +266,5 @@ export type DevicesUnmanagedUpdateResponse = SetNonNullable<
 
 export type DevicesUnmanagedUpdateRequest = SeamHttpRequest<void, undefined>
 
-export type DevicesUnmanagedUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesUnmanagedUpdateOptions {}

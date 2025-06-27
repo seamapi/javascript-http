@@ -253,7 +253,8 @@ export type NoiseSensorsNoiseThresholdsCreateRequest = SeamHttpRequest<
   'noise_threshold'
 >
 
-export type NoiseSensorsNoiseThresholdsCreateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsNoiseThresholdsCreateOptions {}
 
 export type NoiseSensorsNoiseThresholdsDeleteParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/delete'>
@@ -276,7 +277,8 @@ export type NoiseSensorsNoiseThresholdsDeleteRequest = SeamHttpRequest<
   undefined
 >
 
-export type NoiseSensorsNoiseThresholdsDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsNoiseThresholdsDeleteOptions {}
 
 export type NoiseSensorsNoiseThresholdsGetParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/get'>
@@ -299,7 +301,8 @@ export type NoiseSensorsNoiseThresholdsGetRequest = SeamHttpRequest<
   'noise_threshold'
 >
 
-export type NoiseSensorsNoiseThresholdsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsNoiseThresholdsGetOptions {}
 
 export type NoiseSensorsNoiseThresholdsListParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/list'>
@@ -322,7 +325,8 @@ export type NoiseSensorsNoiseThresholdsListRequest = SeamHttpRequest<
   'noise_thresholds'
 >
 
-export type NoiseSensorsNoiseThresholdsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsNoiseThresholdsListOptions {}
 
 export type NoiseSensorsNoiseThresholdsUpdateParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/update'>
@@ -345,4 +349,5 @@ export type NoiseSensorsNoiseThresholdsUpdateRequest = SeamHttpRequest<
   undefined
 >
 
-export type NoiseSensorsNoiseThresholdsUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsNoiseThresholdsUpdateOptions {}
