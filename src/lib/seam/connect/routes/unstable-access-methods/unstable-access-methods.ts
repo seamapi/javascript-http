@@ -244,7 +244,8 @@ export type UnstableAccessMethodsDeleteRequest = SeamHttpRequest<
   undefined
 >
 
-export type UnstableAccessMethodsDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableAccessMethodsDeleteOptions {}
 
 export type UnstableAccessMethodsGetParameters =
   RouteRequestBody<'/unstable_access_methods/get'>
@@ -266,7 +267,8 @@ export type UnstableAccessMethodsGetRequest = SeamHttpRequest<
   'access_method'
 >
 
-export type UnstableAccessMethodsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableAccessMethodsGetOptions {}
 
 export type UnstableAccessMethodsListParameters =
   RouteRequestBody<'/unstable_access_methods/list'>
@@ -289,4 +291,5 @@ export type UnstableAccessMethodsListRequest = SeamHttpRequest<
   'access_methods'
 >
 
-export type UnstableAccessMethodsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableAccessMethodsListOptions {}

@@ -363,7 +363,8 @@ export type UserIdentitiesAddAcsUserResponse = SetNonNullable<
 
 export type UserIdentitiesAddAcsUserRequest = SeamHttpRequest<void, undefined>
 
-export type UserIdentitiesAddAcsUserOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesAddAcsUserOptions {}
 
 export type UserIdentitiesCreateParameters =
   RouteRequestBody<'/user_identities/create'>
@@ -385,7 +386,8 @@ export type UserIdentitiesCreateRequest = SeamHttpRequest<
   'user_identity'
 >
 
-export type UserIdentitiesCreateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesCreateOptions {}
 
 export type UserIdentitiesDeleteParameters =
   RouteRequestBody<'/user_identities/delete'>
@@ -404,7 +406,8 @@ export type UserIdentitiesDeleteResponse = SetNonNullable<
 
 export type UserIdentitiesDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type UserIdentitiesDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesDeleteOptions {}
 
 export type UserIdentitiesGenerateInstantKeyParameters =
   RouteRequestBody<'/user_identities/generate_instant_key'>
@@ -427,7 +430,8 @@ export type UserIdentitiesGenerateInstantKeyRequest = SeamHttpRequest<
   'instant_key'
 >
 
-export type UserIdentitiesGenerateInstantKeyOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesGenerateInstantKeyOptions {}
 
 export type UserIdentitiesGetParameters =
   RouteRequestParams<'/user_identities/get'>
@@ -449,7 +453,8 @@ export type UserIdentitiesGetRequest = SeamHttpRequest<
   'user_identity'
 >
 
-export type UserIdentitiesGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesGetOptions {}
 
 export type UserIdentitiesGrantAccessToDeviceParameters =
   RouteRequestBody<'/user_identities/grant_access_to_device'>
@@ -472,7 +477,8 @@ export type UserIdentitiesGrantAccessToDeviceRequest = SeamHttpRequest<
   undefined
 >
 
-export type UserIdentitiesGrantAccessToDeviceOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesGrantAccessToDeviceOptions {}
 
 export type UserIdentitiesListParameters =
   RouteRequestBody<'/user_identities/list'>
@@ -494,7 +500,8 @@ export type UserIdentitiesListRequest = SeamHttpRequest<
   'user_identities'
 >
 
-export type UserIdentitiesListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesListOptions {}
 
 export type UserIdentitiesListAccessibleDevicesParameters =
   RouteRequestBody<'/user_identities/list_accessible_devices'>
@@ -517,7 +524,8 @@ export type UserIdentitiesListAccessibleDevicesRequest = SeamHttpRequest<
   'devices'
 >
 
-export type UserIdentitiesListAccessibleDevicesOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesListAccessibleDevicesOptions {}
 
 export type UserIdentitiesListAcsSystemsParameters =
   RouteRequestBody<'/user_identities/list_acs_systems'>
@@ -540,7 +548,8 @@ export type UserIdentitiesListAcsSystemsRequest = SeamHttpRequest<
   'acs_systems'
 >
 
-export type UserIdentitiesListAcsSystemsOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesListAcsSystemsOptions {}
 
 export type UserIdentitiesListAcsUsersParameters =
   RouteRequestBody<'/user_identities/list_acs_users'>
@@ -563,7 +572,8 @@ export type UserIdentitiesListAcsUsersRequest = SeamHttpRequest<
   'acs_users'
 >
 
-export type UserIdentitiesListAcsUsersOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesListAcsUsersOptions {}
 
 export type UserIdentitiesRemoveAcsUserParameters =
   RouteRequestBody<'/user_identities/remove_acs_user'>
@@ -586,7 +596,8 @@ export type UserIdentitiesRemoveAcsUserRequest = SeamHttpRequest<
   undefined
 >
 
-export type UserIdentitiesRemoveAcsUserOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesRemoveAcsUserOptions {}
 
 export type UserIdentitiesRevokeAccessToDeviceParameters =
   RouteRequestBody<'/user_identities/revoke_access_to_device'>
@@ -609,7 +620,8 @@ export type UserIdentitiesRevokeAccessToDeviceRequest = SeamHttpRequest<
   undefined
 >
 
-export type UserIdentitiesRevokeAccessToDeviceOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesRevokeAccessToDeviceOptions {}
 
 export type UserIdentitiesUpdateParameters =
   RouteRequestBody<'/user_identities/update'>
@@ -628,4 +640,5 @@ export type UserIdentitiesUpdateResponse = SetNonNullable<
 
 export type UserIdentitiesUpdateRequest = SeamHttpRequest<void, undefined>
 
-export type UserIdentitiesUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesUpdateOptions {}

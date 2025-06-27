@@ -208,4 +208,5 @@ export type SeamPartnerV1ResourcesListRequest = SeamHttpRequest<
   'partner_resources'
 >
 
-export type SeamPartnerV1ResourcesListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamPartnerV1ResourcesListOptions {}

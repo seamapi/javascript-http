@@ -211,7 +211,5 @@ export type SeamMobileSdkV1PhoneSessionsGetOrCreateRequest = SeamHttpRequest<
   'phone_session'
 >
 
-export type SeamMobileSdkV1PhoneSessionsGetOrCreateOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamMobileSdkV1PhoneSessionsGetOrCreateOptions {}

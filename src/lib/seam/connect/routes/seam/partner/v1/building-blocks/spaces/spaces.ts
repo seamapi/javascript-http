@@ -211,7 +211,5 @@ export type SeamPartnerV1BuildingBlocksSpacesAutoMapRequest = SeamHttpRequest<
   'spaces'
 >
 
-export type SeamPartnerV1BuildingBlocksSpacesAutoMapOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamPartnerV1BuildingBlocksSpacesAutoMapOptions {}

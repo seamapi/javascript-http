@@ -207,4 +207,5 @@ export type AcsCredentialPoolsListRequest = SeamHttpRequest<
   'acs_credential_pools'
 >
 
-export type AcsCredentialPoolsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsCredentialPoolsListOptions {}

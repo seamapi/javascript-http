@@ -238,10 +238,8 @@ export type AcsEncodersSimulateNextCredentialEncodeWillFailResponse =
 export type AcsEncodersSimulateNextCredentialEncodeWillFailRequest =
   SeamHttpRequest<void, undefined>
 
-export type AcsEncodersSimulateNextCredentialEncodeWillFailOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEncodersSimulateNextCredentialEncodeWillFailOptions {}
 
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_encode_will_succeed'>
@@ -265,10 +263,8 @@ export type AcsEncodersSimulateNextCredentialEncodeWillSucceedResponse =
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest =
   SeamHttpRequest<void, undefined>
 
-export type AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions {}
 
 export type AcsEncodersSimulateNextCredentialScanWillFailParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_scan_will_fail'>
@@ -292,10 +288,8 @@ export type AcsEncodersSimulateNextCredentialScanWillFailResponse =
 export type AcsEncodersSimulateNextCredentialScanWillFailRequest =
   SeamHttpRequest<void, undefined>
 
-export type AcsEncodersSimulateNextCredentialScanWillFailOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEncodersSimulateNextCredentialScanWillFailOptions {}
 
 export type AcsEncodersSimulateNextCredentialScanWillSucceedParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_scan_will_succeed'>
@@ -319,7 +313,5 @@ export type AcsEncodersSimulateNextCredentialScanWillSucceedResponse =
 export type AcsEncodersSimulateNextCredentialScanWillSucceedRequest =
   SeamHttpRequest<void, undefined>
 
-export type AcsEncodersSimulateNextCredentialScanWillSucceedOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEncodersSimulateNextCredentialScanWillSucceedOptions {}

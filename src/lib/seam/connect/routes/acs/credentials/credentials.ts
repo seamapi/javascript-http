@@ -316,7 +316,8 @@ export type AcsCredentialsAssignResponse = SetNonNullable<
 
 export type AcsCredentialsAssignRequest = SeamHttpRequest<void, undefined>
 
-export type AcsCredentialsAssignOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsCredentialsAssignOptions {}
 
 export type AcsCredentialsCreateParameters =
   RouteRequestBody<'/acs/credentials/create'>
@@ -338,7 +339,8 @@ export type AcsCredentialsCreateRequest = SeamHttpRequest<
   'acs_credential'
 >
 
-export type AcsCredentialsCreateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsCredentialsCreateOptions {}
 
 export type AcsCredentialsCreateOfflineCodeParameters =
   RouteRequestBody<'/acs/credentials/create_offline_code'>
@@ -361,7 +363,8 @@ export type AcsCredentialsCreateOfflineCodeRequest = SeamHttpRequest<
   'acs_credential'
 >
 
-export type AcsCredentialsCreateOfflineCodeOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsCredentialsCreateOfflineCodeOptions {}
 
 export type AcsCredentialsDeleteParameters =
   RouteRequestBody<'/acs/credentials/delete'>
@@ -380,7 +383,8 @@ export type AcsCredentialsDeleteResponse = SetNonNullable<
 
 export type AcsCredentialsDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type AcsCredentialsDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsCredentialsDeleteOptions {}
 
 export type AcsCredentialsGetParameters =
   RouteRequestBody<'/acs/credentials/get'>
@@ -402,7 +406,8 @@ export type AcsCredentialsGetRequest = SeamHttpRequest<
   'acs_credential'
 >
 
-export type AcsCredentialsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsCredentialsGetOptions {}
 
 export type AcsCredentialsListParameters =
   RouteRequestParams<'/acs/credentials/list'>
@@ -424,7 +429,8 @@ export type AcsCredentialsListRequest = SeamHttpRequest<
   'acs_credentials'
 >
 
-export type AcsCredentialsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsCredentialsListOptions {}
 
 export type AcsCredentialsListAccessibleEntrancesParameters =
   RouteRequestBody<'/acs/credentials/list_accessible_entrances'>
@@ -447,7 +453,8 @@ export type AcsCredentialsListAccessibleEntrancesRequest = SeamHttpRequest<
   'acs_entrances'
 >
 
-export type AcsCredentialsListAccessibleEntrancesOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsCredentialsListAccessibleEntrancesOptions {}
 
 export type AcsCredentialsUnassignParameters =
   RouteRequestBody<'/acs/credentials/unassign'>
@@ -466,7 +473,8 @@ export type AcsCredentialsUnassignResponse = SetNonNullable<
 
 export type AcsCredentialsUnassignRequest = SeamHttpRequest<void, undefined>
 
-export type AcsCredentialsUnassignOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsCredentialsUnassignOptions {}
 
 export type AcsCredentialsUpdateParameters =
   RouteRequestBody<'/acs/credentials/update'>
@@ -485,4 +493,5 @@ export type AcsCredentialsUpdateResponse = SetNonNullable<
 
 export type AcsCredentialsUpdateRequest = SeamHttpRequest<void, undefined>
 
-export type AcsCredentialsUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsCredentialsUpdateOptions {}

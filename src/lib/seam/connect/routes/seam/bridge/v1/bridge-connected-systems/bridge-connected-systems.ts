@@ -211,7 +211,5 @@ export type SeamBridgeV1BridgeConnectedSystemsListRequest = SeamHttpRequest<
   'bridge_connected_systems'
 >
 
-export type SeamBridgeV1BridgeConnectedSystemsListOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SeamBridgeV1BridgeConnectedSystemsListOptions {}

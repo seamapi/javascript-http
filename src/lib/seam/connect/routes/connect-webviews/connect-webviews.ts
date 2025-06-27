@@ -236,7 +236,8 @@ export type ConnectWebviewsCreateRequest = SeamHttpRequest<
   'connect_webview'
 >
 
-export type ConnectWebviewsCreateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectWebviewsCreateOptions {}
 
 export type ConnectWebviewsDeleteParameters =
   RouteRequestBody<'/connect_webviews/delete'>
@@ -255,7 +256,8 @@ export type ConnectWebviewsDeleteResponse = SetNonNullable<
 
 export type ConnectWebviewsDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type ConnectWebviewsDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectWebviewsDeleteOptions {}
 
 export type ConnectWebviewsGetParameters =
   RouteRequestBody<'/connect_webviews/get'>
@@ -277,7 +279,8 @@ export type ConnectWebviewsGetRequest = SeamHttpRequest<
   'connect_webview'
 >
 
-export type ConnectWebviewsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectWebviewsGetOptions {}
 
 export type ConnectWebviewsListParameters =
   RouteRequestBody<'/connect_webviews/list'>
@@ -299,4 +302,5 @@ export type ConnectWebviewsListRequest = SeamHttpRequest<
   'connect_webviews'
 >
 
-export type ConnectWebviewsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectWebviewsListOptions {}

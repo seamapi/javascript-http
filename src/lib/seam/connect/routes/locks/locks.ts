@@ -238,7 +238,8 @@ export type LocksGetResponse = SetNonNullable<
 
 export type LocksGetRequest = SeamHttpRequest<LocksGetResponse, 'device'>
 
-export type LocksGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface LocksGetOptions {}
 
 export type LocksListParameters = RouteRequestBody<'/locks/list'>
 
@@ -256,7 +257,8 @@ export type LocksListResponse = SetNonNullable<
 
 export type LocksListRequest = SeamHttpRequest<LocksListResponse, 'devices'>
 
-export type LocksListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface LocksListOptions {}
 
 export type LocksLockDoorParameters = RouteRequestBody<'/locks/lock_door'>
 

@@ -262,7 +262,8 @@ export type UnstableAccessGrantsCreateRequest = SeamHttpRequest<
   'access_grant'
 >
 
-export type UnstableAccessGrantsCreateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableAccessGrantsCreateOptions {}
 
 export type UnstableAccessGrantsDeleteParameters =
   RouteRequestBody<'/unstable_access_grants/delete'>
@@ -282,7 +283,8 @@ export type UnstableAccessGrantsDeleteResponse = SetNonNullable<
 
 export type UnstableAccessGrantsDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type UnstableAccessGrantsDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableAccessGrantsDeleteOptions {}
 
 export type UnstableAccessGrantsGetParameters =
   RouteRequestBody<'/unstable_access_grants/get'>
@@ -304,7 +306,8 @@ export type UnstableAccessGrantsGetRequest = SeamHttpRequest<
   'access_grant'
 >
 
-export type UnstableAccessGrantsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableAccessGrantsGetOptions {}
 
 export type UnstableAccessGrantsListParameters =
   RouteRequestBody<'/unstable_access_grants/list'>
@@ -326,4 +329,5 @@ export type UnstableAccessGrantsListRequest = SeamHttpRequest<
   'access_grants'
 >
 
-export type UnstableAccessGrantsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UnstableAccessGrantsListOptions {}

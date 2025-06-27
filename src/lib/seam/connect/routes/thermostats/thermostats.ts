@@ -454,7 +454,8 @@ export type ThermostatsCreateClimatePresetRequest = SeamHttpRequest<
   undefined
 >
 
-export type ThermostatsCreateClimatePresetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsCreateClimatePresetOptions {}
 
 export type ThermostatsDeleteClimatePresetParameters =
   RouteRequestBody<'/thermostats/delete_climate_preset'>
@@ -477,7 +478,8 @@ export type ThermostatsDeleteClimatePresetRequest = SeamHttpRequest<
   undefined
 >
 
-export type ThermostatsDeleteClimatePresetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsDeleteClimatePresetOptions {}
 
 export type ThermostatsGetParameters = RouteRequestBody<'/thermostats/get'>
 
@@ -498,7 +500,8 @@ export type ThermostatsGetRequest = SeamHttpRequest<
   'thermostat'
 >
 
-export type ThermostatsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsGetOptions {}
 
 export type ThermostatsHeatParameters = RouteRequestBody<'/thermostats/heat'>
 
@@ -568,7 +571,8 @@ export type ThermostatsListRequest = SeamHttpRequest<
   'devices'
 >
 
-export type ThermostatsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsListOptions {}
 
 export type ThermostatsOffParameters = RouteRequestBody<'/thermostats/off'>
 
@@ -615,7 +619,8 @@ export type ThermostatsSetFallbackClimatePresetRequest = SeamHttpRequest<
   undefined
 >
 
-export type ThermostatsSetFallbackClimatePresetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsSetFallbackClimatePresetOptions {}
 
 export type ThermostatsSetFanModeParameters =
   RouteRequestBody<'/thermostats/set_fan_mode'>
@@ -688,7 +693,8 @@ export type ThermostatsSetTemperatureThresholdRequest = SeamHttpRequest<
   undefined
 >
 
-export type ThermostatsSetTemperatureThresholdOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsSetTemperatureThresholdOptions {}
 
 export type ThermostatsUpdateClimatePresetParameters =
   RouteRequestBody<'/thermostats/update_climate_preset'>
@@ -711,7 +717,8 @@ export type ThermostatsUpdateClimatePresetRequest = SeamHttpRequest<
   undefined
 >
 
-export type ThermostatsUpdateClimatePresetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ThermostatsUpdateClimatePresetOptions {}
 
 export type ThermostatsUpdateWeeklyProgramParameters =
   RouteRequestBody<'/thermostats/update_weekly_program'>

@@ -250,7 +250,8 @@ export type AccessCodesUnmanagedConvertToManagedRequest = SeamHttpRequest<
   undefined
 >
 
-export type AccessCodesUnmanagedConvertToManagedOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesUnmanagedConvertToManagedOptions {}
 
 export type AccessCodesUnmanagedDeleteParameters =
   RouteRequestBody<'/access_codes/unmanaged/delete'>
@@ -270,7 +271,8 @@ export type AccessCodesUnmanagedDeleteResponse = SetNonNullable<
 
 export type AccessCodesUnmanagedDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type AccessCodesUnmanagedDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesUnmanagedDeleteOptions {}
 
 export type AccessCodesUnmanagedGetParameters =
   RouteRequestBody<'/access_codes/unmanaged/get'>
@@ -292,7 +294,8 @@ export type AccessCodesUnmanagedGetRequest = SeamHttpRequest<
   'access_code'
 >
 
-export type AccessCodesUnmanagedGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesUnmanagedGetOptions {}
 
 export type AccessCodesUnmanagedListParameters =
   RouteRequestBody<'/access_codes/unmanaged/list'>
@@ -314,7 +317,8 @@ export type AccessCodesUnmanagedListRequest = SeamHttpRequest<
   'access_codes'
 >
 
-export type AccessCodesUnmanagedListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesUnmanagedListOptions {}
 
 export type AccessCodesUnmanagedUpdateParameters =
   RouteRequestBody<'/access_codes/unmanaged/update'>
@@ -334,4 +338,5 @@ export type AccessCodesUnmanagedUpdateResponse = SetNonNullable<
 
 export type AccessCodesUnmanagedUpdateRequest = SeamHttpRequest<void, undefined>
 
-export type AccessCodesUnmanagedUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesUnmanagedUpdateOptions {}

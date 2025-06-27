@@ -220,7 +220,8 @@ export type DevicesSimulateConnectResponse = SetNonNullable<
 
 export type DevicesSimulateConnectRequest = SeamHttpRequest<void, undefined>
 
-export type DevicesSimulateConnectOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesSimulateConnectOptions {}
 
 export type DevicesSimulateDisconnectParameters =
   RouteRequestBody<'/devices/simulate/disconnect'>
@@ -239,7 +240,8 @@ export type DevicesSimulateDisconnectResponse = SetNonNullable<
 
 export type DevicesSimulateDisconnectRequest = SeamHttpRequest<void, undefined>
 
-export type DevicesSimulateDisconnectOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesSimulateDisconnectOptions {}
 
 export type DevicesSimulateRemoveParameters =
   RouteRequestBody<'/devices/simulate/remove'>
@@ -258,4 +260,5 @@ export type DevicesSimulateRemoveResponse = SetNonNullable<
 
 export type DevicesSimulateRemoveRequest = SeamHttpRequest<void, undefined>
 
-export type DevicesSimulateRemoveOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesSimulateRemoveOptions {}

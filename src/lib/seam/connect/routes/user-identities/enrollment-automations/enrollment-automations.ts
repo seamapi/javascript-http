@@ -240,10 +240,8 @@ export type UserIdentitiesEnrollmentAutomationsDeleteRequest = SeamHttpRequest<
   undefined
 >
 
-export type UserIdentitiesEnrollmentAutomationsDeleteOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesEnrollmentAutomationsDeleteOptions {}
 
 export type UserIdentitiesEnrollmentAutomationsGetParameters =
   RouteRequestBody<'/user_identities/enrollment_automations/get'>
@@ -266,10 +264,8 @@ export type UserIdentitiesEnrollmentAutomationsGetRequest = SeamHttpRequest<
   'enrollment_automation'
 >
 
-export type UserIdentitiesEnrollmentAutomationsGetOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesEnrollmentAutomationsGetOptions {}
 
 export type UserIdentitiesEnrollmentAutomationsLaunchParameters =
   RouteRequestBody<'/user_identities/enrollment_automations/launch'>
@@ -292,10 +288,8 @@ export type UserIdentitiesEnrollmentAutomationsLaunchRequest = SeamHttpRequest<
   'enrollment_automation'
 >
 
-export type UserIdentitiesEnrollmentAutomationsLaunchOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesEnrollmentAutomationsLaunchOptions {}
 
 export type UserIdentitiesEnrollmentAutomationsListParameters =
   RouteRequestBody<'/user_identities/enrollment_automations/list'>
@@ -318,7 +312,5 @@ export type UserIdentitiesEnrollmentAutomationsListRequest = SeamHttpRequest<
   'enrollment_automations'
 >
 
-export type UserIdentitiesEnrollmentAutomationsListOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UserIdentitiesEnrollmentAutomationsListOptions {}

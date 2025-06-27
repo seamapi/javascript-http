@@ -268,7 +268,8 @@ export type AcsAccessGroupsAddUserResponse = SetNonNullable<
 
 export type AcsAccessGroupsAddUserRequest = SeamHttpRequest<void, undefined>
 
-export type AcsAccessGroupsAddUserOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsAccessGroupsAddUserOptions {}
 
 export type AcsAccessGroupsGetParameters =
   RouteRequestBody<'/acs/access_groups/get'>
@@ -290,7 +291,8 @@ export type AcsAccessGroupsGetRequest = SeamHttpRequest<
   'acs_access_group'
 >
 
-export type AcsAccessGroupsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsAccessGroupsGetOptions {}
 
 export type AcsAccessGroupsListParameters =
   RouteRequestBody<'/acs/access_groups/list'>
@@ -312,7 +314,8 @@ export type AcsAccessGroupsListRequest = SeamHttpRequest<
   'acs_access_groups'
 >
 
-export type AcsAccessGroupsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsAccessGroupsListOptions {}
 
 export type AcsAccessGroupsListAccessibleEntrancesParameters =
   RouteRequestBody<'/acs/access_groups/list_accessible_entrances'>
@@ -335,10 +338,8 @@ export type AcsAccessGroupsListAccessibleEntrancesRequest = SeamHttpRequest<
   'acs_entrances'
 >
 
-export type AcsAccessGroupsListAccessibleEntrancesOptions = Record<
-  string,
-  never
->
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsAccessGroupsListAccessibleEntrancesOptions {}
 
 export type AcsAccessGroupsListUsersParameters =
   RouteRequestBody<'/acs/access_groups/list_users'>
@@ -360,7 +361,8 @@ export type AcsAccessGroupsListUsersRequest = SeamHttpRequest<
   'acs_users'
 >
 
-export type AcsAccessGroupsListUsersOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsAccessGroupsListUsersOptions {}
 
 export type AcsAccessGroupsRemoveUserParameters =
   RouteRequestBody<'/acs/access_groups/remove_user'>
@@ -380,4 +382,5 @@ export type AcsAccessGroupsRemoveUserResponse = SetNonNullable<
 
 export type AcsAccessGroupsRemoveUserRequest = SeamHttpRequest<void, undefined>
 
-export type AcsAccessGroupsRemoveUserOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsAccessGroupsRemoveUserOptions {}

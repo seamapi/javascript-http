@@ -250,7 +250,8 @@ export type ConnectedAccountsDeleteResponse = SetNonNullable<
 
 export type ConnectedAccountsDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type ConnectedAccountsDeleteOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectedAccountsDeleteOptions {}
 
 export type ConnectedAccountsGetParameters =
   RouteRequestParams<'/connected_accounts/get'>
@@ -272,7 +273,8 @@ export type ConnectedAccountsGetRequest = SeamHttpRequest<
   'connected_account'
 >
 
-export type ConnectedAccountsGetOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectedAccountsGetOptions {}
 
 export type ConnectedAccountsListParameters =
   RouteRequestBody<'/connected_accounts/list'>
@@ -294,7 +296,8 @@ export type ConnectedAccountsListRequest = SeamHttpRequest<
   'connected_accounts'
 >
 
-export type ConnectedAccountsListOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectedAccountsListOptions {}
 
 export type ConnectedAccountsSyncParameters =
   RouteRequestBody<'/connected_accounts/sync'>
@@ -313,7 +316,8 @@ export type ConnectedAccountsSyncResponse = SetNonNullable<
 
 export type ConnectedAccountsSyncRequest = SeamHttpRequest<void, undefined>
 
-export type ConnectedAccountsSyncOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectedAccountsSyncOptions {}
 
 export type ConnectedAccountsUpdateParameters =
   RouteRequestBody<'/connected_accounts/update'>
@@ -332,4 +336,5 @@ export type ConnectedAccountsUpdateResponse = SetNonNullable<
 
 export type ConnectedAccountsUpdateRequest = SeamHttpRequest<void, undefined>
 
-export type ConnectedAccountsUpdateOptions = Record<string, never>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectedAccountsUpdateOptions {}
