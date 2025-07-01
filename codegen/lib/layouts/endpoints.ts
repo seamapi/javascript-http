@@ -11,6 +11,7 @@ export interface EndpointsLayoutContext {
   className: string
   endpoints: EndpointLayoutContext[]
   endpointReadPaths: string[]
+  endpointPaginatedPaths: string[]
   endpointWritePaths: string[]
   routeImports: RouteImportLayoutContext[]
   skipClientSessionImport: boolean
