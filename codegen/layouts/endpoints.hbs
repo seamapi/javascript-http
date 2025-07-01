@@ -38,4 +38,6 @@ export class SeamHttpEndpoints {
 
 export type SeamHttpEndpointQueryPaths = {{#each endpointReadPaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
 
+export type SeamHttpEndpointPaginatedQueryPaths = {{#each endpointPaginatedReadPaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
+
 export type SeamHttpEndpointMutationPaths = {{#each endpointWritePaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}

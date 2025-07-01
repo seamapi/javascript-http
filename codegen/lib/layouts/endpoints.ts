@@ -38,6 +38,11 @@ export const setEndpointsLayoutContext = (
       .filter(({ request }) => request.semanticMethod === 'GET')
       .map(({ path }) => path),
   )
+  file.endpointPaginatedPaths = routes.flatMap((route) =>
+    route.endpoints
+      .filter(({ request, hasPagination }) => request.semanticMethod === 'GET' && hasPagination)
+      .map(({ path }) => path),
+  )
   file.endpointWritePaths = routes.flatMap((route) =>
     route.endpoints
       .filter(({ request }) => request.semanticMethod !== 'GET')
