@@ -4283,6 +4283,13 @@ export type SeamHttpEndpointQueryPaths =
   | '/workspaces/get'
   | '/workspaces/list'
 
+export type SeamHttpEndpointPaginatedQueryPaths =
+  | '/access_codes/list'
+  | '/acs/users/list'
+  | '/connect_webviews/list'
+  | '/connected_accounts/list'
+  | '/devices/list'
+
 export type SeamHttpEndpointMutationPaths =
   | '/access_codes/create'
   | '/access_codes/create_multiple'
