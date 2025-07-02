@@ -33,6 +33,8 @@ import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/
 import type { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
+import { SeamHttpSeamCustomerV1AutomationRuns } from './automation-runs/index.js'
+import { SeamHttpSeamCustomerV1Automations } from './automations/index.js'
 import { SeamHttpSeamCustomerV1Portals } from './portals/index.js'
 import { SeamHttpSeamCustomerV1Settings } from './settings/index.js'
 
@@ -166,6 +168,20 @@ export class SeamHttpSeamCustomerV1 {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
+  }
+
+  get automationRuns(): SeamHttpSeamCustomerV1AutomationRuns {
+    return SeamHttpSeamCustomerV1AutomationRuns.fromClient(
+      this.client,
+      this.defaults,
+    )
+  }
+
+  get automations(): SeamHttpSeamCustomerV1Automations {
+    return SeamHttpSeamCustomerV1Automations.fromClient(
+      this.client,
+      this.defaults,
+    )
   }
 
   get portals(): SeamHttpSeamCustomerV1Portals {
