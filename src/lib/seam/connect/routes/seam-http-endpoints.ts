@@ -513,18 +513,6 @@ import {
   SeamHttpPhonesSimulate,
 } from './phones/simulate/index.js'
 import {
-  SeamHttpSeamMobileSdkV1AcsCredentials,
-  type SeamMobileSdkV1AcsCredentialsListOptions,
-  type SeamMobileSdkV1AcsCredentialsListParameters,
-  type SeamMobileSdkV1AcsCredentialsListRequest,
-} from './seam/mobile-sdk/v1/acs/credentials/index.js'
-import {
-  SeamHttpSeamMobileSdkV1PhoneSessions,
-  type SeamMobileSdkV1PhoneSessionsGetOrCreateOptions,
-  type SeamMobileSdkV1PhoneSessionsGetOrCreateParameters,
-  type SeamMobileSdkV1PhoneSessionsGetOrCreateRequest,
-} from './seam/mobile-sdk/v1/phone-sessions/index.js'
-import {
   SeamHttpSeamPartnerV1BuildingBlocksSpaces,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
@@ -2708,48 +2696,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/mobile_sdk/v1/acs/credentials/list'](): (
-    parameters?: SeamMobileSdkV1AcsCredentialsListParameters,
-    options?: SeamMobileSdkV1AcsCredentialsListOptions,
-  ) => SeamMobileSdkV1AcsCredentialsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamMobileSdkV1AcsCredentialsList(
-      ...args: Parameters<SeamHttpSeamMobileSdkV1AcsCredentials['list']>
-    ): ReturnType<SeamHttpSeamMobileSdkV1AcsCredentials['list']> {
-      const seam = SeamHttpSeamMobileSdkV1AcsCredentials.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get ['/seam/mobile_sdk/v1/phone_sessions/get_or_create'](): (
-    parameters?: SeamMobileSdkV1PhoneSessionsGetOrCreateParameters,
-    options?: SeamMobileSdkV1PhoneSessionsGetOrCreateOptions,
-  ) => SeamMobileSdkV1PhoneSessionsGetOrCreateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamMobileSdkV1PhoneSessionsGetOrCreate(
-      ...args: Parameters<SeamHttpSeamMobileSdkV1PhoneSessions['getOrCreate']>
-    ): ReturnType<SeamHttpSeamMobileSdkV1PhoneSessions['getOrCreate']> {
-      const seam = SeamHttpSeamMobileSdkV1PhoneSessions.fromClient(
-        client,
-        defaults,
-      )
-      return seam.getOrCreate(...args)
-    }
-  }
-
   get ['/seam/partner/v1/building_blocks/spaces/auto_map'](): (
     parameters?: SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
     options?: SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
@@ -4062,7 +4008,6 @@ export type SeamHttpEndpointQueryPaths =
   | '/phones/get'
   | '/phones/list'
   | '/phones/simulate/create_sandbox_phone'
-  | '/seam/mobile_sdk/v1/acs/credentials/list'
   | '/seam/partner/v1/building_blocks/spaces/auto_map'
   | '/seam/partner/v1/resources/list'
   | '/spaces/get'
@@ -4163,7 +4108,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/noise_sensors/noise_thresholds/update'
   | '/noise_sensors/simulate/trigger_noise_threshold'
   | '/phones/deactivate'
-  | '/seam/mobile_sdk/v1/phone_sessions/get_or_create'
   | '/spaces/add_acs_entrances'
   | '/spaces/add_devices'
   | '/spaces/create'

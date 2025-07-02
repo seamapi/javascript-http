@@ -38,13 +38,15 @@ export const connect = (
   const metadata = metalsmith.metadata() as Metadata
   const { blueprint } = metadata
 
-  const routes = blueprint.routes.filter((route) =>
-    route.endpoints.some((endpoint) =>
-      endpoint.authMethods.some((authMethod) =>
-        supportedAuthMethods.includes(authMethod),
+  const routes = blueprint.routes
+    .filter((route) =>
+      route.endpoints.some((endpoint) =>
+        endpoint.authMethods.some((authMethod) =>
+          supportedAuthMethods.includes(authMethod),
+        ),
       ),
-    ),
-  )
+    )
+    .filter((route) => !route.path.startsWith('/seam/mobile_sdk'))
 
   const namespaces = blueprint.namespaces.filter((namespace) =>
     routes.some((route) => route.parentPath === namespace.path),
