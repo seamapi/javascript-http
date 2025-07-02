@@ -34,7 +34,6 @@ import type { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
 import { SeamHttpUnstablePartnerBuildingBlocks } from './building-blocks/index.js'
-import { SeamHttpUnstablePartnerResources } from './resources/index.js'
 
 export class SeamHttpUnstablePartner {
   client: Client
@@ -170,13 +169,6 @@ export class SeamHttpUnstablePartner {
 
   get buildingBlocks(): SeamHttpUnstablePartnerBuildingBlocks {
     return SeamHttpUnstablePartnerBuildingBlocks.fromClient(
-      this.client,
-      this.defaults,
-    )
-  }
-
-  get resources(): SeamHttpUnstablePartnerResources {
-    return SeamHttpUnstablePartnerResources.fromClient(
       this.client,
       this.defaults,
     )

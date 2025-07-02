@@ -164,39 +164,71 @@ export class SeamHttpCustomers {
   }
 
   createPortal(
-    body?: CustomersCreatePortalBody,
-  ): SeamHttpRequest<CustomersCreatePortalResponse, 'magic_link'> {
+    parameters?: CustomersCreatePortalParameters,
+    options: CustomersCreatePortalOptions = {},
+  ): CustomersCreatePortalRequest {
     return new SeamHttpRequest(this, {
       pathname: '/customers/create_portal',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'magic_link',
+      options,
     })
   }
 
-  pushData(body?: CustomersPushDataBody): SeamHttpRequest<void, undefined> {
+  pushData(
+    parameters?: CustomersPushDataParameters,
+    options: CustomersPushDataOptions = {},
+  ): CustomersPushDataRequest {
     return new SeamHttpRequest(this, {
       pathname: '/customers/push_data',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type CustomersCreatePortalBody =
+export type CustomersCreatePortalParameters =
   RouteRequestBody<'/customers/create_portal'>
 
+/**
+ * @deprecated Use CustomersCreatePortalParameters instead.
+ */
+export type CustomersCreatePortalBody = CustomersCreatePortalParameters
+
+/**
+ * @deprecated Use CustomersCreatePortalRequest instead.
+ */
 export type CustomersCreatePortalResponse = SetNonNullable<
   Required<RouteResponse<'/customers/create_portal'>>
 >
 
-export type CustomersCreatePortalOptions = never
+export type CustomersCreatePortalRequest = SeamHttpRequest<
+  CustomersCreatePortalResponse,
+  'magic_link'
+>
 
-export type CustomersPushDataBody = RouteRequestBody<'/customers/push_data'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface CustomersCreatePortalOptions {}
 
+export type CustomersPushDataParameters =
+  RouteRequestBody<'/customers/push_data'>
+
+/**
+ * @deprecated Use CustomersPushDataParameters instead.
+ */
+export type CustomersPushDataBody = CustomersPushDataParameters
+
+/**
+ * @deprecated Use CustomersPushDataRequest instead.
+ */
 export type CustomersPushDataResponse = SetNonNullable<
   Required<RouteResponse<'/customers/push_data'>>
 >
 
-export type CustomersPushDataOptions = never
+export type CustomersPushDataRequest = SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface CustomersPushDataOptions {}

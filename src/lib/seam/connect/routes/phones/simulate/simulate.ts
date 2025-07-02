@@ -183,7 +183,7 @@ export type PhonesSimulateCreateSandboxPhoneParameters =
 /**
  * @deprecated Use PhonesSimulateCreateSandboxPhoneParameters instead.
  */
-export type PhonesSimulateCreateSandboxPhoneParams =
+export type PhonesSimulateCreateSandboxPhoneBody =
   PhonesSimulateCreateSandboxPhoneParameters
 
 /**
