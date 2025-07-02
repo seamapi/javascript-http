@@ -4,5 +4,3 @@
  */
 
 export * from './building-blocks/index.js'
-export * from './resources/index.js'
-export * from './v1.js'

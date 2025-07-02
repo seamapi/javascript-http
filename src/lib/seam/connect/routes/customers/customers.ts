@@ -36,7 +36,7 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-export class SeamHttpSeamPartnerV1Resources {
+export class SeamHttpCustomers {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
   readonly ltsVersion = seamApiLtsVersion
@@ -44,11 +44,6 @@ export class SeamHttpSeamPartnerV1Resources {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
-    if (!options.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
     this.client = 'client' in options ? options.client : createClient(options)
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
@@ -56,23 +51,23 @@ export class SeamHttpSeamPartnerV1Resources {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpSeamPartnerV1Resources {
+  ): SeamHttpCustomers {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpSeamPartnerV1Resources(constructorOptions)
+    return new SeamHttpCustomers(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpSeamPartnerV1Resources {
+  ): SeamHttpCustomers {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpSeamPartnerV1Resources(constructorOptions)
+    return new SeamHttpCustomers(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -81,24 +76,24 @@ export class SeamHttpSeamPartnerV1Resources {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpSeamPartnerV1Resources {
+  ): SeamHttpCustomers {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpSeamPartnerV1Resources(constructorOptions)
+    return new SeamHttpCustomers(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpSeamPartnerV1Resources> {
+  ): Promise<SeamHttpCustomers> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
       throw new SeamHttpInvalidOptionsError(
-        'The client option cannot be used with SeamHttpSeamPartnerV1Resources.fromPublishableKey',
+        'The client option cannot be used with SeamHttpCustomers.fromPublishableKey',
       )
     }
     const client = createClient(clientOptions)
@@ -106,7 +101,7 @@ export class SeamHttpSeamPartnerV1Resources {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpSeamPartnerV1Resources.fromClientSessionToken(token, options)
+    return SeamHttpCustomers.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -116,14 +111,14 @@ export class SeamHttpSeamPartnerV1Resources {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpSeamPartnerV1Resources {
+  ): SeamHttpCustomers {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpSeamPartnerV1Resources(constructorOptions)
+    return new SeamHttpCustomers(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -133,14 +128,14 @@ export class SeamHttpSeamPartnerV1Resources {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpSeamPartnerV1Resources {
+  ): SeamHttpCustomers {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpSeamPartnerV1Resources(constructorOptions)
+    return new SeamHttpCustomers(constructorOptions)
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
@@ -168,45 +163,72 @@ export class SeamHttpSeamPartnerV1Resources {
     await clientSessions.get()
   }
 
-  list(
-    parameters?: SeamPartnerV1ResourcesListParameters,
-    options: SeamPartnerV1ResourcesListOptions = {},
-  ): SeamPartnerV1ResourcesListRequest {
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
+  createPortal(
+    parameters?: CustomersCreatePortalParameters,
+    options: CustomersCreatePortalOptions = {},
+  ): CustomersCreatePortalRequest {
     return new SeamHttpRequest(this, {
-      pathname: '/seam/partner/v1/resources/list',
+      pathname: '/customers/create_portal',
       method: 'POST',
       body: parameters,
-      responseKey: 'partner_resources',
+      responseKey: 'magic_link',
+      options,
+    })
+  }
+
+  pushData(
+    parameters?: CustomersPushDataParameters,
+    options: CustomersPushDataOptions = {},
+  ): CustomersPushDataRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/customers/push_data',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
       options,
     })
   }
 }
 
-export type SeamPartnerV1ResourcesListParameters =
-  RouteRequestBody<'/seam/partner/v1/resources/list'>
+export type CustomersCreatePortalParameters =
+  RouteRequestBody<'/customers/create_portal'>
 
 /**
- * @deprecated Use SeamPartnerV1ResourcesListParameters instead.
+ * @deprecated Use CustomersCreatePortalParameters instead.
  */
-export type SeamPartnerV1ResourcesListParams =
-  SeamPartnerV1ResourcesListParameters
+export type CustomersCreatePortalBody = CustomersCreatePortalParameters
 
 /**
- * @deprecated Use SeamPartnerV1ResourcesListRequest instead.
+ * @deprecated Use CustomersCreatePortalRequest instead.
  */
-export type SeamPartnerV1ResourcesListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/partner/v1/resources/list'>>
+export type CustomersCreatePortalResponse = SetNonNullable<
+  Required<RouteResponse<'/customers/create_portal'>>
 >
 
-export type SeamPartnerV1ResourcesListRequest = SeamHttpRequest<
-  SeamPartnerV1ResourcesListResponse,
-  'partner_resources'
+export type CustomersCreatePortalRequest = SeamHttpRequest<
+  CustomersCreatePortalResponse,
+  'magic_link'
 >
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface SeamPartnerV1ResourcesListOptions {}
+export interface CustomersCreatePortalOptions {}
+
+export type CustomersPushDataParameters =
+  RouteRequestBody<'/customers/push_data'>
+
+/**
+ * @deprecated Use CustomersPushDataParameters instead.
+ */
+export type CustomersPushDataBody = CustomersPushDataParameters
+
+/**
+ * @deprecated Use CustomersPushDataRequest instead.
+ */
+export type CustomersPushDataResponse = SetNonNullable<
+  Required<RouteResponse<'/customers/push_data'>>
+>
+
+export type CustomersPushDataRequest = SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface CustomersPushDataOptions {}

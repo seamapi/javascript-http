@@ -381,6 +381,15 @@ import {
   SeamHttpConnectedAccounts,
 } from './connected-accounts/index.js'
 import {
+  type CustomersCreatePortalOptions,
+  type CustomersCreatePortalParameters,
+  type CustomersCreatePortalRequest,
+  type CustomersPushDataOptions,
+  type CustomersPushDataParameters,
+  type CustomersPushDataRequest,
+  SeamHttpCustomers,
+} from './customers/index.js'
+import {
   type DevicesDeleteOptions,
   type DevicesDeleteParameters,
   type DevicesDeleteRequest,
@@ -513,17 +522,23 @@ import {
   SeamHttpPhonesSimulate,
 } from './phones/simulate/index.js'
 import {
+  type SeamCustomerV1PortalsGetOptions,
+  type SeamCustomerV1PortalsGetParameters,
+  type SeamCustomerV1PortalsGetRequest,
+  SeamHttpSeamCustomerV1Portals,
+} from './seam/customer/v1/portals/index.js'
+import {
+  type SeamCustomerV1SettingsUpdateOptions,
+  type SeamCustomerV1SettingsUpdateParameters,
+  type SeamCustomerV1SettingsUpdateRequest,
+  SeamHttpSeamCustomerV1Settings,
+} from './seam/customer/v1/settings/index.js'
+import {
   SeamHttpSeamPartnerV1BuildingBlocksSpaces,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapRequest,
 } from './seam/partner/v1/building-blocks/spaces/index.js'
-import {
-  SeamHttpSeamPartnerV1Resources,
-  type SeamPartnerV1ResourcesListOptions,
-  type SeamPartnerV1ResourcesListParameters,
-  type SeamPartnerV1ResourcesListRequest,
-} from './seam/partner/v1/resources/index.js'
 import {
   SeamHttpSpaces,
   type SpacesAddAcsEntrancesOptions,
@@ -713,12 +728,6 @@ import {
   type UnstablePartnerBuildingBlocksOrganizeSpacesParameters,
   type UnstablePartnerBuildingBlocksOrganizeSpacesRequest,
 } from './unstable-partner/building-blocks/index.js'
-import {
-  SeamHttpUnstablePartnerResources,
-  type UnstablePartnerResourcesPushOptions,
-  type UnstablePartnerResourcesPushParameters,
-  type UnstablePartnerResourcesPushRequest,
-} from './unstable-partner/resources/index.js'
 import {
   SeamHttpUserIdentitiesEnrollmentAutomations,
   type UserIdentitiesEnrollmentAutomationsDeleteOptions,
@@ -2240,6 +2249,32 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/customers/create_portal'](): (
+    parameters?: CustomersCreatePortalParameters,
+    options?: CustomersCreatePortalOptions,
+  ) => CustomersCreatePortalRequest {
+    const { client, defaults } = this
+    return function customersCreatePortal(
+      ...args: Parameters<SeamHttpCustomers['createPortal']>
+    ): ReturnType<SeamHttpCustomers['createPortal']> {
+      const seam = SeamHttpCustomers.fromClient(client, defaults)
+      return seam.createPortal(...args)
+    }
+  }
+
+  get ['/customers/push_data'](): (
+    parameters?: CustomersPushDataParameters,
+    options?: CustomersPushDataOptions,
+  ) => CustomersPushDataRequest {
+    const { client, defaults } = this
+    return function customersPushData(
+      ...args: Parameters<SeamHttpCustomers['pushData']>
+    ): ReturnType<SeamHttpCustomers['pushData']> {
+      const seam = SeamHttpCustomers.fromClient(client, defaults)
+      return seam.pushData(...args)
+    }
+  }
+
   get ['/devices/delete'](): (
     parameters?: DevicesDeleteParameters,
     options?: DevicesDeleteOptions,
@@ -2696,6 +2731,42 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/seam/customer/v1/portals/get'](): (
+    parameters?: SeamCustomerV1PortalsGetParameters,
+    options?: SeamCustomerV1PortalsGetOptions,
+  ) => SeamCustomerV1PortalsGetRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1PortalsGet(
+      ...args: Parameters<SeamHttpSeamCustomerV1Portals['get']>
+    ): ReturnType<SeamHttpSeamCustomerV1Portals['get']> {
+      const seam = SeamHttpSeamCustomerV1Portals.fromClient(client, defaults)
+      return seam.get(...args)
+    }
+  }
+
+  get ['/seam/customer/v1/settings/update'](): (
+    parameters?: SeamCustomerV1SettingsUpdateParameters,
+    options?: SeamCustomerV1SettingsUpdateOptions,
+  ) => SeamCustomerV1SettingsUpdateRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1SettingsUpdate(
+      ...args: Parameters<SeamHttpSeamCustomerV1Settings['update']>
+    ): ReturnType<SeamHttpSeamCustomerV1Settings['update']> {
+      const seam = SeamHttpSeamCustomerV1Settings.fromClient(client, defaults)
+      return seam.update(...args)
+    }
+  }
+
   get ['/seam/partner/v1/building_blocks/spaces/auto_map'](): (
     parameters?: SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
     options?: SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
@@ -2714,24 +2785,6 @@ export class SeamHttpEndpoints {
         defaults,
       )
       return seam.autoMap(...args)
-    }
-  }
-
-  get ['/seam/partner/v1/resources/list'](): (
-    parameters?: SeamPartnerV1ResourcesListParameters,
-    options?: SeamPartnerV1ResourcesListOptions,
-  ) => SeamPartnerV1ResourcesListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamPartnerV1ResourcesList(
-      ...args: Parameters<SeamHttpSeamPartnerV1Resources['list']>
-    ): ReturnType<SeamHttpSeamPartnerV1Resources['list']> {
-      const seam = SeamHttpSeamPartnerV1Resources.fromClient(client, defaults)
-      return seam.list(...args)
     }
   }
 
@@ -3562,24 +3615,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/unstable_partner/resources/push'](): (
-    parameters?: UnstablePartnerResourcesPushParameters,
-    options?: UnstablePartnerResourcesPushOptions,
-  ) => UnstablePartnerResourcesPushRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstablePartnerResourcesPush(
-      ...args: Parameters<SeamHttpUnstablePartnerResources['push']>
-    ): ReturnType<SeamHttpUnstablePartnerResources['push']> {
-      const seam = SeamHttpUnstablePartnerResources.fromClient(client, defaults)
-      return seam.push(...args)
-    }
-  }
-
   get ['/user_identities/add_acs_user'](): (
     parameters?: UserIdentitiesAddAcsUserParameters,
     options?: UserIdentitiesAddAcsUserOptions,
@@ -4007,9 +4042,8 @@ export type SeamHttpEndpointQueryPaths =
   | '/noise_sensors/noise_thresholds/list'
   | '/phones/get'
   | '/phones/list'
-  | '/phones/simulate/create_sandbox_phone'
+  | '/seam/customer/v1/portals/get'
   | '/seam/partner/v1/building_blocks/spaces/auto_map'
-  | '/seam/partner/v1/resources/list'
   | '/spaces/get'
   | '/spaces/list'
   | '/thermostats/get'
@@ -4093,6 +4127,8 @@ export type SeamHttpEndpointMutationPaths =
   | '/connected_accounts/delete'
   | '/connected_accounts/sync'
   | '/connected_accounts/update'
+  | '/customers/create_portal'
+  | '/customers/push_data'
   | '/devices/delete'
   | '/devices/update'
   | '/devices/simulate/connect'
@@ -4108,6 +4144,8 @@ export type SeamHttpEndpointMutationPaths =
   | '/noise_sensors/noise_thresholds/update'
   | '/noise_sensors/simulate/trigger_noise_threshold'
   | '/phones/deactivate'
+  | '/phones/simulate/create_sandbox_phone'
+  | '/seam/customer/v1/settings/update'
   | '/spaces/add_acs_entrances'
   | '/spaces/add_devices'
   | '/spaces/create'
@@ -4147,7 +4185,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/unstable_partner/building_blocks/connect_accounts'
   | '/unstable_partner/building_blocks/manage_devices'
   | '/unstable_partner/building_blocks/organize_spaces'
-  | '/unstable_partner/resources/push'
   | '/user_identities/add_acs_user'
   | '/user_identities/create'
   | '/user_identities/delete'

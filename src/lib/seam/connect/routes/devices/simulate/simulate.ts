@@ -249,7 +249,7 @@ export type DevicesSimulateRemoveParameters =
 /**
  * @deprecated Use DevicesSimulateRemoveParameters instead.
  */
-export type DevicesSimulateRemoveParams = DevicesSimulateRemoveParameters
+export type DevicesSimulateRemoveBody = DevicesSimulateRemoveParameters
 
 /**
  * @deprecated Use DevicesSimulateRemoveRequest instead.
