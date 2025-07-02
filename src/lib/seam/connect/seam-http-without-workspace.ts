@@ -1,0 +1,85 @@
+import { type Client, createClient } from './client.js'
+import {
+  isSeamHttpWithoutWorkspaceOptionsWithClient,
+  isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
+  isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken,
+  type SeamHttpRequestOptions,
+  SeamHttpWithoutWorkspaceInvalidOptionsError,
+  type SeamHttpWithoutWorkspaceOptions,
+  type SeamHttpWithoutWorkspaceOptionsWithClient,
+  type SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
+  type SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken,
+} from './options.js'
+import { limitToSeamHttpRequestOptions, parseOptions } from './parse-options.js'
+import { SeamHttpWorkspaces } from './routes/index.js'
+
+export class SeamHttpWithoutWorkspace {
+  client: Client
+  readonly defaults: Required<SeamHttpRequestOptions>
+
+  constructor(options: SeamHttpWithoutWorkspaceOptions = {}) {
+    const opts = parseOptions(options)
+    this.client = 'client' in opts ? opts.client : createClient(opts)
+    this.defaults = limitToSeamHttpRequestOptions(opts)
+  }
+
+  static fromClient(
+    client: SeamHttpWithoutWorkspaceOptionsWithClient['client'],
+    options: Omit<SeamHttpWithoutWorkspaceOptionsWithClient, 'client'> = {},
+  ): SeamHttpWithoutWorkspace {
+    const constructorOptions = { ...options, client }
+    if (!isSeamHttpWithoutWorkspaceOptionsWithClient(constructorOptions)) {
+      throw new SeamHttpWithoutWorkspaceInvalidOptionsError('Missing client')
+    }
+    return new SeamHttpWithoutWorkspace(constructorOptions)
+  }
+
+  static fromConsoleSessionToken(
+    consoleSessionToken: SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken['consoleSessionToken'],
+    options: Omit<
+      SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
+      'consoleSessionToken'
+    > = {},
+  ): SeamHttpWithoutWorkspace {
+    const constructorOptions = { ...options, consoleSessionToken }
+    if (
+      !isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken(
+        constructorOptions,
+      )
+    ) {
+      throw new SeamHttpWithoutWorkspaceInvalidOptionsError(
+        'Missing consoleSessionToken',
+      )
+    }
+    return new SeamHttpWithoutWorkspace(constructorOptions)
+  }
+
+  static fromPersonalAccessToken(
+    personalAccessToken: SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken['personalAccessToken'],
+    options: Omit<
+      SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken,
+      'personalAccessToken'
+    > = {},
+  ): SeamHttpWithoutWorkspace {
+    const constructorOptions = { ...options, personalAccessToken }
+    if (
+      !isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken(
+        constructorOptions,
+      )
+    ) {
+      throw new SeamHttpWithoutWorkspaceInvalidOptionsError(
+        'Missing personalAccessToken',
+      )
+    }
+    return new SeamHttpWithoutWorkspace(constructorOptions)
+  }
+
+  get workspaces(): Pick<SeamHttpWorkspaces, 'create' | 'list'> {
+    return SeamHttpWorkspaces.fromClient(this.client, this.defaults)
+  }
+}
+
+/**
+ * @deprecated Use SeamHttpWithoutWorkspace instead.
+ */
+export const SeamHttpMultiWorkspace = SeamHttpWithoutWorkspace

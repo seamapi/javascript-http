@@ -400,7 +400,7 @@ const devices = await pages.flattenToArray()
 ### Interacting with Multiple Workspaces
 
 Some Seam API endpoints interact with multiple workspaces.
-The `SeamHttpMultiWorkspace` client is not bound to a specific workspace
+The `SeamHttpWithoutWorkspace` client is not bound to a specific workspace
 and may use those endpoints with an appropriate authentication method.
 
 #### Personal Access Token
@@ -410,15 +410,15 @@ Obtain one from the Seam Console.
 
 ```ts
 // Set the `SEAM_PERSONAL_ACCESS_TOKEN` environment variable
-const seam = new SeamHttpMultiWorkspace()
+const seam = new SeamHttpWithoutWorkspace()
 
 // Pass as an option to the constructor
-const seam = new SeamHttpMultiWorkspace({
+const seam = new SeamHttpWithoutWorkspace({
   personalAccessToken: 'your-personal-access-token',
 })
 
 // Use the factory method
-const seam = SeamHttpMultiWorkspace.fromPersonalAccessToken(
+const seam = SeamHttpWithoutWorkspace.fromPersonalAccessToken(
   'some-console-session-token',
 )
 
@@ -433,12 +433,12 @@ This authentication method is only used by internal Seam applications.
 
 ```ts
 // Pass as an option to the constructor
-const seam = new SeamHttpMultiWorkspace({
+const seam = new SeamHttpWithoutWorkspace({
   consoleSessionToken: 'some-console-session-token',
 })
 
 // Use the factory method
-const seam = SeamHttpMultiWorkspace.fromConsoleSessionToken(
+const seam = SeamHttpWithoutWorkspace.fromConsoleSessionToken(
   'some-console-session-token',
 )
 
