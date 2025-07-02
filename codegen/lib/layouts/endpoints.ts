@@ -9,6 +9,7 @@ import {
 
 export interface EndpointsLayoutContext {
   className: string
+  typeNamePrefix: string
   endpoints: EndpointLayoutContext[]
   endpointReadPaths: string[]
   endpointPaginatedPaths: string[]
@@ -28,6 +29,7 @@ export const setEndpointsLayoutContext = (
   routes: Route[],
 ): void => {
   file.className = getClassName('Endpoints')
+  file.typeNamePrefix = getClassName('Endpoint')
   file.skipClientSessionImport = true
   file.endpoints = routes.flatMap((route) =>
     route.endpoints.map((endpoint) =>

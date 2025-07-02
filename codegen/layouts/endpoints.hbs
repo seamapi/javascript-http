@@ -14,7 +14,7 @@ import {
 } from './{{fileName}}'
 {{/each}}
 
-export class SeamHttpEndpoints {
+export class {{className}} {
   {{> route-class-methods }}
 
   {{#each endpoints}}
@@ -36,8 +36,8 @@ export class SeamHttpEndpoints {
   {{/each}}
 }
 
-export type SeamHttpEndpointQueryPaths = {{#each endpointReadPaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
+export type {{typeNamePrefix}}QueryPaths = {{#each endpointReadPaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
 
-export type SeamHttpEndpointPaginatedQueryPaths = {{#each endpointPaginatedPaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
+export type {{typeNamePrefix}}PaginatedQueryPaths = {{#each endpointPaginatedPaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
 
-export type SeamHttpEndpointMutationPaths = {{#each endpointWritePaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
+export type {{typeNamePrefix}}MutationPaths = {{#each endpointWritePaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
