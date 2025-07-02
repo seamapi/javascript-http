@@ -111,6 +111,9 @@ import {
   type AccessMethodsDeleteOptions,
   type AccessMethodsDeleteParameters,
   type AccessMethodsDeleteRequest,
+  type AccessMethodsEncodeOptions,
+  type AccessMethodsEncodeParameters,
+  type AccessMethodsEncodeRequest,
   type AccessMethodsGetOptions,
   type AccessMethodsGetParameters,
   type AccessMethodsGetRequest,
@@ -201,9 +204,6 @@ import {
   SeamHttpAcsCredentialsUnmanaged,
 } from './acs/credentials/unmanaged/index.js'
 import {
-  type AcsEncodersEncodeAccessMethodOptions,
-  type AcsEncodersEncodeAccessMethodParameters,
-  type AcsEncodersEncodeAccessMethodRequest,
   type AcsEncodersEncodeCredentialOptions,
   type AcsEncodersEncodeCredentialParameters,
   type AcsEncodersEncodeCredentialRequest,
@@ -521,6 +521,24 @@ import {
   type PhonesSimulateCreateSandboxPhoneRequest,
   SeamHttpPhonesSimulate,
 } from './phones/simulate/index.js'
+import {
+  type SeamCustomerV1AutomationRunsListOptions,
+  type SeamCustomerV1AutomationRunsListParameters,
+  type SeamCustomerV1AutomationRunsListRequest,
+  SeamHttpSeamCustomerV1AutomationRuns,
+} from './seam/customer/v1/automation-runs/index.js'
+import {
+  type SeamCustomerV1AutomationsDeleteOptions,
+  type SeamCustomerV1AutomationsDeleteParameters,
+  type SeamCustomerV1AutomationsDeleteRequest,
+  type SeamCustomerV1AutomationsGetOptions,
+  type SeamCustomerV1AutomationsGetParameters,
+  type SeamCustomerV1AutomationsGetRequest,
+  type SeamCustomerV1AutomationsUpdateOptions,
+  type SeamCustomerV1AutomationsUpdateParameters,
+  type SeamCustomerV1AutomationsUpdateRequest,
+  SeamHttpSeamCustomerV1Automations,
+} from './seam/customer/v1/automations/index.js'
 import {
   type SeamCustomerV1PortalsGetOptions,
   type SeamCustomerV1PortalsGetParameters,
@@ -1237,6 +1255,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/access_methods/encode'](): (
+    parameters?: AccessMethodsEncodeParameters,
+    options?: AccessMethodsEncodeOptions,
+  ) => AccessMethodsEncodeRequest {
+    const { client, defaults } = this
+    return function accessMethodsEncode(
+      ...args: Parameters<SeamHttpAccessMethods['encode']>
+    ): ReturnType<SeamHttpAccessMethods['encode']> {
+      const seam = SeamHttpAccessMethods.fromClient(client, defaults)
+      return seam.encode(...args)
+    }
+  }
+
   get ['/access_methods/get'](): (
     parameters?: AccessMethodsGetParameters,
     options?: AccessMethodsGetOptions,
@@ -1573,19 +1604,6 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAcsCredentialsUnmanaged['list']> {
       const seam = SeamHttpAcsCredentialsUnmanaged.fromClient(client, defaults)
       return seam.list(...args)
-    }
-  }
-
-  get ['/acs/encoders/encode_access_method'](): (
-    parameters?: AcsEncodersEncodeAccessMethodParameters,
-    options?: AcsEncodersEncodeAccessMethodOptions,
-  ) => AcsEncodersEncodeAccessMethodRequest {
-    const { client, defaults } = this
-    return function acsEncodersEncodeAccessMethod(
-      ...args: Parameters<SeamHttpAcsEncoders['encodeAccessMethod']>
-    ): ReturnType<SeamHttpAcsEncoders['encodeAccessMethod']> {
-      const seam = SeamHttpAcsEncoders.fromClient(client, defaults)
-      return seam.encodeAccessMethod(...args)
     }
   }
 
@@ -2728,6 +2746,90 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpPhonesSimulate['createSandboxPhone']> {
       const seam = SeamHttpPhonesSimulate.fromClient(client, defaults)
       return seam.createSandboxPhone(...args)
+    }
+  }
+
+  get ['/seam/customer/v1/automation_runs/list'](): (
+    parameters?: SeamCustomerV1AutomationRunsListParameters,
+    options?: SeamCustomerV1AutomationRunsListOptions,
+  ) => SeamCustomerV1AutomationRunsListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1AutomationRunsList(
+      ...args: Parameters<SeamHttpSeamCustomerV1AutomationRuns['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1AutomationRuns['list']> {
+      const seam = SeamHttpSeamCustomerV1AutomationRuns.fromClient(
+        client,
+        defaults,
+      )
+      return seam.list(...args)
+    }
+  }
+
+  get ['/seam/customer/v1/automations/delete'](): (
+    parameters?: SeamCustomerV1AutomationsDeleteParameters,
+    options?: SeamCustomerV1AutomationsDeleteOptions,
+  ) => SeamCustomerV1AutomationsDeleteRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1AutomationsDelete(
+      ...args: Parameters<SeamHttpSeamCustomerV1Automations['delete']>
+    ): ReturnType<SeamHttpSeamCustomerV1Automations['delete']> {
+      const seam = SeamHttpSeamCustomerV1Automations.fromClient(
+        client,
+        defaults,
+      )
+      return seam.delete(...args)
+    }
+  }
+
+  get ['/seam/customer/v1/automations/get'](): (
+    parameters?: SeamCustomerV1AutomationsGetParameters,
+    options?: SeamCustomerV1AutomationsGetOptions,
+  ) => SeamCustomerV1AutomationsGetRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1AutomationsGet(
+      ...args: Parameters<SeamHttpSeamCustomerV1Automations['get']>
+    ): ReturnType<SeamHttpSeamCustomerV1Automations['get']> {
+      const seam = SeamHttpSeamCustomerV1Automations.fromClient(
+        client,
+        defaults,
+      )
+      return seam.get(...args)
+    }
+  }
+
+  get ['/seam/customer/v1/automations/update'](): (
+    parameters?: SeamCustomerV1AutomationsUpdateParameters,
+    options?: SeamCustomerV1AutomationsUpdateOptions,
+  ) => SeamCustomerV1AutomationsUpdateRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1AutomationsUpdate(
+      ...args: Parameters<SeamHttpSeamCustomerV1Automations['update']>
+    ): ReturnType<SeamHttpSeamCustomerV1Automations['update']> {
+      const seam = SeamHttpSeamCustomerV1Automations.fromClient(
+        client,
+        defaults,
+      )
+      return seam.update(...args)
     }
   }
 
@@ -3985,10 +4087,8 @@ export type SeamHttpEndpointQueryPaths =
   | '/access_codes/list'
   | '/access_codes/unmanaged/get'
   | '/access_codes/unmanaged/list'
-  | '/access_grants/delete'
   | '/access_grants/get'
   | '/access_grants/list'
-  | '/access_methods/delete'
   | '/access_methods/get'
   | '/access_methods/list'
   | '/acs/access_groups/get'
@@ -4042,6 +4142,8 @@ export type SeamHttpEndpointQueryPaths =
   | '/noise_sensors/noise_thresholds/list'
   | '/phones/get'
   | '/phones/list'
+  | '/seam/customer/v1/automation_runs/list'
+  | '/seam/customer/v1/automations/get'
   | '/seam/customer/v1/portals/get'
   | '/seam/partner/v1/building_blocks/spaces/auto_map'
   | '/spaces/get'
@@ -4050,10 +4152,8 @@ export type SeamHttpEndpointQueryPaths =
   | '/thermostats/list'
   | '/thermostats/schedules/get'
   | '/thermostats/schedules/list'
-  | '/unstable_access_grants/delete'
   | '/unstable_access_grants/get'
   | '/unstable_access_grants/list'
-  | '/unstable_access_methods/delete'
   | '/unstable_access_methods/get'
   | '/unstable_access_methods/list'
   | '/unstable_locations/get'
@@ -4077,6 +4177,7 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/connect_webviews/list'
   | '/connected_accounts/list'
   | '/devices/list'
+  | '/seam/customer/v1/automation_runs/list'
 
 export type SeamHttpEndpointMutationPaths =
   | '/access_codes/create'
@@ -4091,7 +4192,10 @@ export type SeamHttpEndpointMutationPaths =
   | '/access_codes/unmanaged/delete'
   | '/access_codes/unmanaged/update'
   | '/access_grants/create'
+  | '/access_grants/delete'
   | '/access_grants/update'
+  | '/access_methods/delete'
+  | '/access_methods/encode'
   | '/acs/access_groups/add_user'
   | '/acs/access_groups/remove_user'
   | '/acs/credential_provisioning_automations/launch'
@@ -4101,7 +4205,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/acs/credentials/delete'
   | '/acs/credentials/unassign'
   | '/acs/credentials/update'
-  | '/acs/encoders/encode_access_method'
   | '/acs/encoders/encode_credential'
   | '/acs/encoders/scan_credential'
   | '/acs/encoders/simulate/next_credential_encode_will_fail'
@@ -4145,6 +4248,8 @@ export type SeamHttpEndpointMutationPaths =
   | '/noise_sensors/simulate/trigger_noise_threshold'
   | '/phones/deactivate'
   | '/phones/simulate/create_sandbox_phone'
+  | '/seam/customer/v1/automations/delete'
+  | '/seam/customer/v1/automations/update'
   | '/seam/customer/v1/settings/update'
   | '/spaces/add_acs_entrances'
   | '/spaces/add_devices'
@@ -4175,6 +4280,8 @@ export type SeamHttpEndpointMutationPaths =
   | '/thermostats/simulate/hvac_mode_adjusted'
   | '/thermostats/simulate/temperature_reached'
   | '/unstable_access_grants/create'
+  | '/unstable_access_grants/delete'
+  | '/unstable_access_methods/delete'
   | '/unstable_locations/add_acs_entrances'
   | '/unstable_locations/add_devices'
   | '/unstable_locations/create'

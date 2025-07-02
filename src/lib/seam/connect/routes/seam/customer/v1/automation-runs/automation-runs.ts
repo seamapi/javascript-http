@@ -36,7 +36,7 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-export class SeamHttpAccessMethods {
+export class SeamHttpSeamCustomerV1AutomationRuns {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
   readonly ltsVersion = seamApiLtsVersion
@@ -44,6 +44,11 @@ export class SeamHttpAccessMethods {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
+    if (!options.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     this.client = 'client' in options ? options.client : createClient(options)
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
@@ -51,23 +56,23 @@ export class SeamHttpAccessMethods {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpAccessMethods {
+  ): SeamHttpSeamCustomerV1AutomationRuns {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpAccessMethods(constructorOptions)
+    return new SeamHttpSeamCustomerV1AutomationRuns(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpAccessMethods {
+  ): SeamHttpSeamCustomerV1AutomationRuns {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpAccessMethods(constructorOptions)
+    return new SeamHttpSeamCustomerV1AutomationRuns(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -76,24 +81,24 @@ export class SeamHttpAccessMethods {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpAccessMethods {
+  ): SeamHttpSeamCustomerV1AutomationRuns {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpAccessMethods(constructorOptions)
+    return new SeamHttpSeamCustomerV1AutomationRuns(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpAccessMethods> {
+  ): Promise<SeamHttpSeamCustomerV1AutomationRuns> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
       throw new SeamHttpInvalidOptionsError(
-        'The client option cannot be used with SeamHttpAccessMethods.fromPublishableKey',
+        'The client option cannot be used with SeamHttpSeamCustomerV1AutomationRuns.fromPublishableKey',
       )
     }
     const client = createClient(clientOptions)
@@ -101,7 +106,10 @@ export class SeamHttpAccessMethods {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpAccessMethods.fromClientSessionToken(token, options)
+    return SeamHttpSeamCustomerV1AutomationRuns.fromClientSessionToken(
+      token,
+      options,
+    )
   }
 
   static fromConsoleSessionToken(
@@ -111,14 +119,14 @@ export class SeamHttpAccessMethods {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpAccessMethods {
+  ): SeamHttpSeamCustomerV1AutomationRuns {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpAccessMethods(constructorOptions)
+    return new SeamHttpSeamCustomerV1AutomationRuns(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -128,14 +136,14 @@ export class SeamHttpAccessMethods {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpAccessMethods {
+  ): SeamHttpSeamCustomerV1AutomationRuns {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpAccessMethods(constructorOptions)
+    return new SeamHttpSeamCustomerV1AutomationRuns(constructorOptions)
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
@@ -163,145 +171,45 @@ export class SeamHttpAccessMethods {
     await clientSessions.get()
   }
 
-  delete(
-    parameters?: AccessMethodsDeleteParameters,
-    options: AccessMethodsDeleteOptions = {},
-  ): AccessMethodsDeleteRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/access_methods/delete',
-      method: 'POST',
-      body: parameters,
-      responseKey: undefined,
-      options,
-    })
-  }
-
-  encode(
-    parameters?: AccessMethodsEncodeParameters,
-    options: AccessMethodsEncodeOptions = {},
-  ): AccessMethodsEncodeRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/access_methods/encode',
-      method: 'POST',
-      body: parameters,
-      responseKey: 'action_attempt',
-      options,
-    })
-  }
-
-  get(
-    parameters?: AccessMethodsGetParameters,
-    options: AccessMethodsGetOptions = {},
-  ): AccessMethodsGetRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/access_methods/get',
-      method: 'POST',
-      body: parameters,
-      responseKey: 'access_method',
-      options,
-    })
-  }
-
   list(
-    parameters?: AccessMethodsListParameters,
-    options: AccessMethodsListOptions = {},
-  ): AccessMethodsListRequest {
+    parameters?: SeamCustomerV1AutomationRunsListParameters,
+    options: SeamCustomerV1AutomationRunsListOptions = {},
+  ): SeamCustomerV1AutomationRunsListRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
-      pathname: '/access_methods/list',
+      pathname: '/seam/customer/v1/automation_runs/list',
       method: 'POST',
       body: parameters,
-      responseKey: 'access_methods',
+      responseKey: 'automation_runs',
       options,
     })
   }
 }
 
-export type AccessMethodsDeleteParameters =
-  RouteRequestBody<'/access_methods/delete'>
+export type SeamCustomerV1AutomationRunsListParameters =
+  RouteRequestBody<'/seam/customer/v1/automation_runs/list'>
 
 /**
- * @deprecated Use AccessMethodsDeleteParameters instead.
+ * @deprecated Use SeamCustomerV1AutomationRunsListParameters instead.
  */
-export type AccessMethodsDeleteParams = AccessMethodsDeleteParameters
+export type SeamCustomerV1AutomationRunsListParams =
+  SeamCustomerV1AutomationRunsListParameters
 
 /**
- * @deprecated Use AccessMethodsDeleteRequest instead.
+ * @deprecated Use SeamCustomerV1AutomationRunsListRequest instead.
  */
-export type AccessMethodsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/delete'>>
+export type SeamCustomerV1AutomationRunsListResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/automation_runs/list'>>
 >
 
-export type AccessMethodsDeleteRequest = SeamHttpRequest<void, undefined>
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AccessMethodsDeleteOptions {}
-
-export type AccessMethodsEncodeParameters =
-  RouteRequestBody<'/access_methods/encode'>
-
-/**
- * @deprecated Use AccessMethodsEncodeParameters instead.
- */
-export type AccessMethodsEncodeBody = AccessMethodsEncodeParameters
-
-/**
- * @deprecated Use AccessMethodsEncodeRequest instead.
- */
-export type AccessMethodsEncodeResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/encode'>>
->
-
-export type AccessMethodsEncodeRequest = SeamHttpRequest<
-  AccessMethodsEncodeResponse,
-  'action_attempt'
->
-
-export type AccessMethodsEncodeOptions = Pick<
-  SeamHttpRequestOptions,
-  'waitForActionAttempt'
->
-
-export type AccessMethodsGetParameters = RouteRequestBody<'/access_methods/get'>
-
-/**
- * @deprecated Use AccessMethodsGetParameters instead.
- */
-export type AccessMethodsGetParams = AccessMethodsGetParameters
-
-/**
- * @deprecated Use AccessMethodsGetRequest instead.
- */
-export type AccessMethodsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/get'>>
->
-
-export type AccessMethodsGetRequest = SeamHttpRequest<
-  AccessMethodsGetResponse,
-  'access_method'
+export type SeamCustomerV1AutomationRunsListRequest = SeamHttpRequest<
+  SeamCustomerV1AutomationRunsListResponse,
+  'automation_runs'
 >
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AccessMethodsGetOptions {}
-
-export type AccessMethodsListParameters =
-  RouteRequestBody<'/access_methods/list'>
-
-/**
- * @deprecated Use AccessMethodsListParameters instead.
- */
-export type AccessMethodsListParams = AccessMethodsListParameters
-
-/**
- * @deprecated Use AccessMethodsListRequest instead.
- */
-export type AccessMethodsListResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/list'>>
->
-
-export type AccessMethodsListRequest = SeamHttpRequest<
-  AccessMethodsListResponse,
-  'access_methods'
->
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AccessMethodsListOptions {}
+export interface SeamCustomerV1AutomationRunsListOptions {}
