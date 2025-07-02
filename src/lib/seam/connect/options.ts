@@ -2,11 +2,11 @@ import type { Client, ClientOptions } from './client.js'
 import { isSeamHttpRequestOption } from './parse-options.js'
 import type { ResolveActionAttemptOptions } from './resolve-action-attempt.js'
 
-export type SeamHttpMultiWorkspaceOptions =
-  | SeamHttpMultiWorkspaceOptionsFromEnv
-  | SeamHttpMultiWorkspaceOptionsWithClient
-  | SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken
-  | SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken
+export type SeamHttpWithoutWorkspaceOptions =
+  | SeamHttpWithoutWorkspaceOptionsFromEnv
+  | SeamHttpWithoutWorkspaceOptionsWithClient
+  | SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken
+  | SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken
 
 export type SeamHttpOptions =
   | SeamHttpOptionsFromEnv
@@ -30,17 +30,17 @@ export interface SeamHttpFromPublishableKeyOptions
 
 export interface SeamHttpOptionsFromEnv extends SeamHttpCommonOptions {}
 
-export interface SeamHttpMultiWorkspaceOptionsFromEnv
+export interface SeamHttpWithoutWorkspaceOptionsFromEnv
   extends SeamHttpCommonOptions {}
 
-export interface SeamHttpMultiWorkspaceOptionsWithClient
+export interface SeamHttpWithoutWorkspaceOptionsWithClient
   extends SeamHttpCommonOptions {
   client: Client
 }
 
-export const isSeamHttpMultiWorkspaceOptionsWithClient = (
+export const isSeamHttpWithoutWorkspaceOptionsWithClient = (
   options: SeamHttpOptions,
-): options is SeamHttpMultiWorkspaceOptionsWithClient =>
+): options is SeamHttpWithoutWorkspaceOptionsWithClient =>
   isSeamHttpOptionsWithClient(options)
 
 export interface SeamHttpOptionsWithClient extends SeamHttpRequestOptions {
@@ -128,14 +128,14 @@ export const isSeamHttpOptionsWithClientSessionToken = (
   return true
 }
 
-export interface SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken
+export interface SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken
   extends SeamHttpCommonOptions {
   consoleSessionToken: string
 }
 
-export const isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken = (
+export const isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken = (
   options: SeamHttpOptions,
-): options is SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken => {
+): options is SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken => {
   if (!('consoleSessionToken' in options)) return false
   if (options.consoleSessionToken == null) return false
 
@@ -169,7 +169,7 @@ export interface SeamHttpOptionsWithConsoleSessionToken
 export const isSeamHttpOptionsWithConsoleSessionToken = (
   options: SeamHttpOptions,
 ): options is SeamHttpOptionsWithConsoleSessionToken => {
-  if (!isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken(options)) {
+  if (!isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken(options)) {
     return false
   }
 
@@ -182,14 +182,14 @@ export const isSeamHttpOptionsWithConsoleSessionToken = (
   return true
 }
 
-export interface SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken
+export interface SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken
   extends SeamHttpCommonOptions {
   personalAccessToken: string
 }
 
-export const isSeamHttpMultiWorkspaceOptionsWithPersonalAccessToken = (
+export const isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken = (
   options: SeamHttpOptions,
-): options is SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken => {
+): options is SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken => {
   if (!('personalAccessToken' in options)) return false
   if (options.personalAccessToken == null) return false
 
@@ -223,7 +223,7 @@ export interface SeamHttpOptionsWithPersonalAccessToken
 export const isSeamHttpOptionsWithPersonalAccessToken = (
   options: SeamHttpOptions,
 ): options is SeamHttpOptionsWithPersonalAccessToken => {
-  if (!isSeamHttpMultiWorkspaceOptionsWithPersonalAccessToken(options)) {
+  if (!isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken(options)) {
     return false
   }
 
@@ -243,9 +243,9 @@ export class SeamHttpInvalidOptionsError extends Error {
   }
 }
 
-export class SeamHttpMultiWorkspaceInvalidOptionsError extends Error {
+export class SeamHttpWithoutWorkspaceInvalidOptionsError extends Error {
   constructor(message: string) {
-    super(`SeamHttpMultiWorkspace received invalid options: ${message}`)
+    super(`SeamHttpWithoutWorkspace received invalid options: ${message}`)
     this.name = this.constructor.name
   }
 }

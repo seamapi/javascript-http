@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken'
 import {
   SeamHttp,
   SeamHttpInvalidOptionsError,
-  SeamHttpMultiWorkspace,
+  SeamHttpWithoutWorkspace,
 } from '@seamapi/http/connect'
 
 /*
@@ -346,26 +346,26 @@ test.serial(
 )
 
 test.serial(
-  'SeamHttpMultiWorkspace: constructor uses SEAM_PERSONAL_ACCESS_TOKEN environment variable',
+  'SeamHttpWithoutWorkspace: constructor uses SEAM_PERSONAL_ACCESS_TOKEN environment variable',
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_PERSONAL_ACCESS_TOKEN = seed.seam_at1_token
-    const multiWorkspace = new SeamHttpMultiWorkspace({ endpoint })
-    const workspaces = await multiWorkspace.workspaces.list()
+    const seam = new SeamHttpWithoutWorkspace({ endpoint })
+    const workspaces = await seam.workspaces.list()
     t.true(workspaces.length > 0)
   },
 )
 
 test.serial(
-  'SeamHttpMultiWorkspace: personalAccessToken option overrides environment variables',
+  'SeamHttpWithoutWorkspace: personalAccessToken option overrides environment variables',
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
     env.SEAM_PERSONAL_ACCESS_TOKEN = 'some-invalid-token'
-    const multiWorkspace = new SeamHttpMultiWorkspace({
+    const seam = new SeamHttpWithoutWorkspace({
       personalAccessToken: seed.seam_at1_token,
       endpoint,
     })
-    const workspaces = await multiWorkspace.workspaces.list()
+    const workspaces = await seam.workspaces.list()
     t.true(workspaces.length > 0)
   },
 )

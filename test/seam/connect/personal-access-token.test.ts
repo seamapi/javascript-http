@@ -4,7 +4,7 @@ import { getTestServer } from 'fixtures/seam/connect/api.js'
 import {
   SeamHttp,
   SeamHttpInvalidTokenError,
-  SeamHttpMultiWorkspace,
+  SeamHttpWithoutWorkspace,
 } from '@seamapi/http/connect'
 
 test('SeamHttp: fromPersonalAccessToken returns instance authorized with personalAccessToken', async (t) => {
@@ -64,9 +64,9 @@ test('SeamHttp: checks personalAccessToken format', (t) => {
   })
 })
 
-test('SeamHttpMultiWorkspace: fromPersonalAccessToken returns instance authorized with personalAccessToken', async (t) => {
+test('SeamHttpWithoutWorkspace: fromPersonalAccessToken returns instance authorized with personalAccessToken', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
-  const seam = SeamHttpMultiWorkspace.fromPersonalAccessToken(
+  const seam = SeamHttpWithoutWorkspace.fromPersonalAccessToken(
     seed.seam_at1_token,
     {
       endpoint,
@@ -76,9 +76,9 @@ test('SeamHttpMultiWorkspace: fromPersonalAccessToken returns instance authorize
   t.true(workspaces.length > 0)
 })
 
-test('SeamHttpMultiWorkspace: constructor returns instance authorized with personalAccessToken', async (t) => {
+test('SeamHttpWithoutWorkspace: constructor returns instance authorized with personalAccessToken', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
-  const seam = new SeamHttpMultiWorkspace({
+  const seam = new SeamHttpWithoutWorkspace({
     personalAccessToken: seed.seam_at1_token,
     endpoint,
   })
@@ -86,27 +86,29 @@ test('SeamHttpMultiWorkspace: constructor returns instance authorized with perso
   t.true(workspaces.length > 0)
 })
 
-test('SeamHttpMultiWorkspace: checks personalAccessToken format', (t) => {
+test('SeamHttpWithoutWorkspace: checks personalAccessToken format', (t) => {
   t.throws(
     () =>
-      SeamHttpMultiWorkspace.fromPersonalAccessToken('some-invalid-key-format'),
+      SeamHttpWithoutWorkspace.fromPersonalAccessToken(
+        'some-invalid-key-format',
+      ),
     {
       instanceOf: SeamHttpInvalidTokenError,
       message: /Unknown/,
     },
   )
   t.throws(
-    () => SeamHttpMultiWorkspace.fromPersonalAccessToken('seam_apikey_token'),
+    () => SeamHttpWithoutWorkspace.fromPersonalAccessToken('seam_apikey_token'),
     {
       instanceOf: SeamHttpInvalidTokenError,
       message: /Unknown/,
     },
   )
-  t.throws(() => SeamHttpMultiWorkspace.fromPersonalAccessToken('seam_cst'), {
+  t.throws(() => SeamHttpWithoutWorkspace.fromPersonalAccessToken('seam_cst'), {
     instanceOf: SeamHttpInvalidTokenError,
     message: /Client Session Token/,
   })
-  t.throws(() => SeamHttpMultiWorkspace.fromPersonalAccessToken('ey'), {
+  t.throws(() => SeamHttpWithoutWorkspace.fromPersonalAccessToken('ey'), {
     instanceOf: SeamHttpInvalidTokenError,
     message: /JWT/,
   })

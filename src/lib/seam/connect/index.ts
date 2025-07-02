@@ -12,7 +12,6 @@ export {
 } from './resolve-action-attempt.js'
 export * from './routes/index.js'
 export * from './seam-http-error.js'
-export * from './seam-http-multi-workspace.js'
 export * from './seam-http-request.js'
 export * from './seam-paginator.js'
 export * from './seam-paginator.js'

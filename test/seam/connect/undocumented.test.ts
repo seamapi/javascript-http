@@ -89,8 +89,8 @@ test('SeamHttpEndpoints: cannot use undocumented endpoint', async (t) => {
 })
 
 test.todo(
-  'SeamHttpMultiWorkspace: must use isUndocumentedApiEnabled to use undocumented route',
+  'SeamHttpWithoutWorkspace: must use isUndocumentedApiEnabled to use undocumented route',
 )
 test.todo(
-  'SeamHttpMultiWorkspace: must use isUndocumentedApiEnabled to use undocumented endpoint',
+  'SeamHttpWithoutWorkspace: must use isUndocumentedApiEnabled to use undocumented endpoint',
 )

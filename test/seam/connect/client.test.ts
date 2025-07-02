@@ -6,7 +6,7 @@ import {
   type DevicesListParams,
   type DevicesListResponse,
   SeamHttp,
-  SeamHttpMultiWorkspace,
+  SeamHttpWithoutWorkspace,
   type WorkspacesListResponse,
 } from '@seamapi/http/connect'
 
@@ -108,10 +108,10 @@ test('SeamHttp: merges axios headers when creating client', async (t) => {
   t.is(device.device_id, seed.august_device_1)
 })
 
-test('SeamHttpMultiWorkspace: fromClient returns instance that uses client', async (t) => {
+test('SeamHttpWithoutWorkspace: fromClient returns instance that uses client', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
-  const seam = SeamHttpMultiWorkspace.fromClient(
-    SeamHttpMultiWorkspace.fromPersonalAccessToken(seed.seam_at1_token, {
+  const seam = SeamHttpWithoutWorkspace.fromClient(
+    SeamHttpWithoutWorkspace.fromPersonalAccessToken(seed.seam_at1_token, {
       endpoint,
     }).client,
   )
@@ -119,10 +119,10 @@ test('SeamHttpMultiWorkspace: fromClient returns instance that uses client', asy
   t.true(workspaces.length > 0)
 })
 
-test('SeamHttpMultiWorkspace: constructor returns instance that uses client', async (t) => {
+test('SeamHttpWithoutWorkspace: constructor returns instance that uses client', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
-  const seam = new SeamHttpMultiWorkspace({
-    client: SeamHttpMultiWorkspace.fromPersonalAccessToken(
+  const seam = new SeamHttpWithoutWorkspace({
+    client: SeamHttpWithoutWorkspace.fromPersonalAccessToken(
       seed.seam_at1_token,
       {
         endpoint,
@@ -133,10 +133,10 @@ test('SeamHttpMultiWorkspace: constructor returns instance that uses client', as
   t.true(workspaces.length > 0)
 })
 
-test('SeamHttpMultiWorkspace: can use client to make requests', async (t) => {
+test('SeamHttpWithoutWorkspace: can use client to make requests', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
-  const seam = new SeamHttpMultiWorkspace({
-    client: SeamHttpMultiWorkspace.fromPersonalAccessToken(
+  const seam = new SeamHttpWithoutWorkspace({
+    client: SeamHttpWithoutWorkspace.fromPersonalAccessToken(
       seed.seam_at1_token,
       {
         endpoint,

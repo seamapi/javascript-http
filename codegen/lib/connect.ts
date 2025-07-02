@@ -72,6 +72,24 @@ export const connect = (
   setEndpointsLayoutContext(endpointFile, routes)
   routeIndexes['']?.add('seam-http-endpoints.js')
 
+  const withoutWorkspaceKey = `${rootPath}/seam-http-without-workspace.ts`
+  files[withoutWorkspaceKey] = { contents: Buffer.from('\n') }
+  const withoutWorkspaceFile = files[withoutWorkspaceKey] as unknown as File
+  withoutWorkspaceFile.layout = 'without-workspace.hbs'
+  withoutWorkspaceFile.className = 'SeamHttpWithoutWorkspace'
+  routeIndexes['']?.add('seam-http-without-workspace.js')
+
+  const endpointsWithoutWorkspaceKey = `${rootPath}/seam-http-endpoints-without-workspace.ts`
+  files[endpointsWithoutWorkspaceKey] = { contents: Buffer.from('\n') }
+  const endpointWithoutWorkspaceFile = files[
+    endpointsWithoutWorkspaceKey
+  ] as unknown as File
+  endpointWithoutWorkspaceFile.layout = 'endpoints.hbs'
+  setEndpointsLayoutContext(endpointWithoutWorkspaceFile, routes, {
+    withoutWorkspace: true,
+  })
+  routeIndexes['']?.add('seam-http-endpoints-without-workspace.js')
+
   for (const node of nodes) {
     const path = toFilePath(node.path)
     const name = kebabCase(node.name)
