@@ -397,9 +397,9 @@ const pages = seam.createPaginator(
 const devices = await pages.flattenToArray()
 ```
 
-### Interacting with Multiple Workspaces
+### Requests without a Workspace in scope
 
-Some Seam API endpoints interact with multiple workspaces.
+Some Seam API endpoints do not require a workspace in scope.
 The `SeamHttpWithoutWorkspace` client is not bound to a specific workspace
 and may use those endpoints with an appropriate authentication method.
 
