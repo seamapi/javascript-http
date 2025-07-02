@@ -513,36 +513,6 @@ import {
   SeamHttpPhonesSimulate,
 } from './phones/simulate/index.js'
 import {
-  type SeamBridgeV1BridgeClientSessionsCreateOptions,
-  type SeamBridgeV1BridgeClientSessionsCreateParameters,
-  type SeamBridgeV1BridgeClientSessionsCreateRequest,
-  type SeamBridgeV1BridgeClientSessionsGetOptions,
-  type SeamBridgeV1BridgeClientSessionsGetParameters,
-  type SeamBridgeV1BridgeClientSessionsGetRequest,
-  type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenOptions,
-  type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenParameters,
-  type SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenRequest,
-  type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeOptions,
-  type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeParameters,
-  type SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeRequest,
-  type SeamBridgeV1BridgeClientSessionsReportStatusOptions,
-  type SeamBridgeV1BridgeClientSessionsReportStatusParameters,
-  type SeamBridgeV1BridgeClientSessionsReportStatusRequest,
-  SeamHttpSeamBridgeV1BridgeClientSessions,
-} from './seam/bridge/v1/bridge-client-sessions/index.js'
-import {
-  type SeamBridgeV1BridgeConnectedSystemsListOptions,
-  type SeamBridgeV1BridgeConnectedSystemsListParameters,
-  type SeamBridgeV1BridgeConnectedSystemsListRequest,
-  SeamHttpSeamBridgeV1BridgeConnectedSystems,
-} from './seam/bridge/v1/bridge-connected-systems/index.js'
-import {
-  SeamHttpSeamInstantKeyV1ClientSessions,
-  type SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions,
-  type SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters,
-  type SeamInstantKeyV1ClientSessionsExchangeShortCodeRequest,
-} from './seam/instant-key/v1/client-sessions/index.js'
-import {
   SeamHttpSeamMobileSdkV1AcsCredentials,
   type SeamMobileSdkV1AcsCredentialsListOptions,
   type SeamMobileSdkV1AcsCredentialsListParameters,
@@ -2738,165 +2708,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/bridge/v1/bridge_client_sessions/create'](): (
-    parameters?: SeamBridgeV1BridgeClientSessionsCreateParameters,
-    options?: SeamBridgeV1BridgeClientSessionsCreateOptions,
-  ) => SeamBridgeV1BridgeClientSessionsCreateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamBridgeV1BridgeClientSessionsCreate(
-      ...args: Parameters<SeamHttpSeamBridgeV1BridgeClientSessions['create']>
-    ): ReturnType<SeamHttpSeamBridgeV1BridgeClientSessions['create']> {
-      const seam = SeamHttpSeamBridgeV1BridgeClientSessions.fromClient(
-        client,
-        defaults,
-      )
-      return seam.create(...args)
-    }
-  }
-
-  get ['/seam/bridge/v1/bridge_client_sessions/get'](): (
-    parameters?: SeamBridgeV1BridgeClientSessionsGetParameters,
-    options?: SeamBridgeV1BridgeClientSessionsGetOptions,
-  ) => SeamBridgeV1BridgeClientSessionsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamBridgeV1BridgeClientSessionsGet(
-      ...args: Parameters<SeamHttpSeamBridgeV1BridgeClientSessions['get']>
-    ): ReturnType<SeamHttpSeamBridgeV1BridgeClientSessions['get']> {
-      const seam = SeamHttpSeamBridgeV1BridgeClientSessions.fromClient(
-        client,
-        defaults,
-      )
-      return seam.get(...args)
-    }
-  }
-
-  get ['/seam/bridge/v1/bridge_client_sessions/refresh_telemetry_token'](): (
-    parameters?: SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenParameters,
-    options?: SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenOptions,
-  ) => SeamBridgeV1BridgeClientSessionsRefreshTelemetryTokenRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamBridgeV1BridgeClientSessionsRefreshTelemetryToken(
-      ...args: Parameters<
-        SeamHttpSeamBridgeV1BridgeClientSessions['refreshTelemetryToken']
-      >
-    ): ReturnType<
-      SeamHttpSeamBridgeV1BridgeClientSessions['refreshTelemetryToken']
-    > {
-      const seam = SeamHttpSeamBridgeV1BridgeClientSessions.fromClient(
-        client,
-        defaults,
-      )
-      return seam.refreshTelemetryToken(...args)
-    }
-  }
-
-  get ['/seam/bridge/v1/bridge_client_sessions/regenerate_pairing_code'](): (
-    parameters?: SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeParameters,
-    options?: SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeOptions,
-  ) => SeamBridgeV1BridgeClientSessionsRegeneratePairingCodeRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamBridgeV1BridgeClientSessionsRegeneratePairingCode(
-      ...args: Parameters<
-        SeamHttpSeamBridgeV1BridgeClientSessions['regeneratePairingCode']
-      >
-    ): ReturnType<
-      SeamHttpSeamBridgeV1BridgeClientSessions['regeneratePairingCode']
-    > {
-      const seam = SeamHttpSeamBridgeV1BridgeClientSessions.fromClient(
-        client,
-        defaults,
-      )
-      return seam.regeneratePairingCode(...args)
-    }
-  }
-
-  get ['/seam/bridge/v1/bridge_client_sessions/report_status'](): (
-    parameters?: SeamBridgeV1BridgeClientSessionsReportStatusParameters,
-    options?: SeamBridgeV1BridgeClientSessionsReportStatusOptions,
-  ) => SeamBridgeV1BridgeClientSessionsReportStatusRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamBridgeV1BridgeClientSessionsReportStatus(
-      ...args: Parameters<
-        SeamHttpSeamBridgeV1BridgeClientSessions['reportStatus']
-      >
-    ): ReturnType<SeamHttpSeamBridgeV1BridgeClientSessions['reportStatus']> {
-      const seam = SeamHttpSeamBridgeV1BridgeClientSessions.fromClient(
-        client,
-        defaults,
-      )
-      return seam.reportStatus(...args)
-    }
-  }
-
-  get ['/seam/bridge/v1/bridge_connected_systems/list'](): (
-    parameters?: SeamBridgeV1BridgeConnectedSystemsListParameters,
-    options?: SeamBridgeV1BridgeConnectedSystemsListOptions,
-  ) => SeamBridgeV1BridgeConnectedSystemsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamBridgeV1BridgeConnectedSystemsList(
-      ...args: Parameters<SeamHttpSeamBridgeV1BridgeConnectedSystems['list']>
-    ): ReturnType<SeamHttpSeamBridgeV1BridgeConnectedSystems['list']> {
-      const seam = SeamHttpSeamBridgeV1BridgeConnectedSystems.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get ['/seam/instant_key/v1/client_sessions/exchange_short_code'](): (
-    parameters?: SeamInstantKeyV1ClientSessionsExchangeShortCodeParameters,
-    options?: SeamInstantKeyV1ClientSessionsExchangeShortCodeOptions,
-  ) => SeamInstantKeyV1ClientSessionsExchangeShortCodeRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamInstantKeyV1ClientSessionsExchangeShortCode(
-      ...args: Parameters<
-        SeamHttpSeamInstantKeyV1ClientSessions['exchangeShortCode']
-      >
-    ): ReturnType<SeamHttpSeamInstantKeyV1ClientSessions['exchangeShortCode']> {
-      const seam = SeamHttpSeamInstantKeyV1ClientSessions.fromClient(
-        client,
-        defaults,
-      )
-      return seam.exchangeShortCode(...args)
-    }
-  }
-
   get ['/seam/mobile_sdk/v1/acs/credentials/list'](): (
     parameters?: SeamMobileSdkV1AcsCredentialsListParameters,
     options?: SeamMobileSdkV1AcsCredentialsListOptions,
@@ -4251,8 +4062,6 @@ export type SeamHttpEndpointQueryPaths =
   | '/phones/get'
   | '/phones/list'
   | '/phones/simulate/create_sandbox_phone'
-  | '/seam/bridge/v1/bridge_client_sessions/get'
-  | '/seam/bridge/v1/bridge_connected_systems/list'
   | '/seam/mobile_sdk/v1/acs/credentials/list'
   | '/seam/partner/v1/building_blocks/spaces/auto_map'
   | '/seam/partner/v1/resources/list'
@@ -4354,11 +4163,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/noise_sensors/noise_thresholds/update'
   | '/noise_sensors/simulate/trigger_noise_threshold'
   | '/phones/deactivate'
-  | '/seam/bridge/v1/bridge_client_sessions/create'
-  | '/seam/bridge/v1/bridge_client_sessions/refresh_telemetry_token'
-  | '/seam/bridge/v1/bridge_client_sessions/regenerate_pairing_code'
-  | '/seam/bridge/v1/bridge_client_sessions/report_status'
-  | '/seam/instant_key/v1/client_sessions/exchange_short_code'
   | '/seam/mobile_sdk/v1/phone_sessions/get_or_create'
   | '/spaces/add_acs_entrances'
   | '/spaces/add_devices'
