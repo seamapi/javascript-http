@@ -397,10 +397,10 @@ const pages = seam.createPaginator(
 const devices = await pages.flattenToArray()
 ```
 
-### Interacting with Multiple Workspaces
+### Requests without a Workspace in scope
 
-Some Seam API endpoints interact with multiple workspaces.
-The `SeamHttpMultiWorkspace` client is not bound to a specific workspace
+Some Seam API endpoints do not require a workspace in scope.
+The `SeamHttpWithoutWorkspace` client is not bound to a specific workspace
 and may use those endpoints with an appropriate authentication method.
 
 #### Personal Access Token
@@ -410,15 +410,15 @@ Obtain one from the Seam Console.
 
 ```ts
 // Set the `SEAM_PERSONAL_ACCESS_TOKEN` environment variable
-const seam = new SeamHttpMultiWorkspace()
+const seam = new SeamHttpWithoutWorkspace()
 
 // Pass as an option to the constructor
-const seam = new SeamHttpMultiWorkspace({
+const seam = new SeamHttpWithoutWorkspace({
   personalAccessToken: 'your-personal-access-token',
 })
 
 // Use the factory method
-const seam = SeamHttpMultiWorkspace.fromPersonalAccessToken(
+const seam = SeamHttpWithoutWorkspace.fromPersonalAccessToken(
   'some-console-session-token',
 )
 
@@ -433,12 +433,12 @@ This authentication method is only used by internal Seam applications.
 
 ```ts
 // Pass as an option to the constructor
-const seam = new SeamHttpMultiWorkspace({
+const seam = new SeamHttpWithoutWorkspace({
   consoleSessionToken: 'some-console-session-token',
 })
 
 // Use the factory method
-const seam = SeamHttpMultiWorkspace.fromConsoleSessionToken(
+const seam = SeamHttpWithoutWorkspace.fromConsoleSessionToken(
   'some-console-session-token',
 )
 
@@ -511,6 +511,31 @@ const devices = await seam.client.get<DevicesListResponse>('/devices/list')
 
 An Axios compatible client may be provided to create a `SeamHttp` instance.
 This API is used internally and is not directly supported.
+
+#### Alternative endpoint path interface
+
+The `SeamHttpEndpoints` class offers an alternative path-based interface to every API endpoint.
+Each endpoint is exposed as simple property that returns the corresponding method from `SeamHttp`.
+
+```ts
+import { SeamHttpEndpoints } from '@seamapi/http/connect'
+
+const seam = new SeamHttpEndpoints()
+const devices = await seam['/devices/list']()
+```
+
+#### Enable undocumented API
+
+Pass the `isUndocumentedApiEnabled` option to allow using the undocumented API.
+This API is used internally and is not directly supported.
+Do not use the undocumented API in production environments.
+Seam is not responsible for any issues you may encounter with the undocumented API.
+
+```ts
+import { SeamHttp } from '@seamapi/http/connect'
+
+const seam = new SeamHttp({ isUndocumentedApiEnabled: true })
+```
 
 #### Inspecting the Request
 

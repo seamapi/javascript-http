@@ -5,6 +5,8 @@
 
 export * from './access-groups/index.js'
 export * from './acs.js'
+export * from './credential-pools/index.js'
+export * from './credential-provisioning-automations/index.js'
 export * from './credentials/index.js'
 export * from './encoders/index.js'
 export * from './entrances/index.js'

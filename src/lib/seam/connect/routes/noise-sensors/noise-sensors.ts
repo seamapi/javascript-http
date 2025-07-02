@@ -178,21 +178,37 @@ export class SeamHttpNoiseSensors {
   }
 
   list(
-    params?: NoiseSensorsListParams,
-  ): SeamHttpRequest<NoiseSensorsListResponse, 'devices'> {
+    parameters?: NoiseSensorsListParameters,
+    options: NoiseSensorsListOptions = {},
+  ): NoiseSensorsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'devices',
+      options,
     })
   }
 }
 
-export type NoiseSensorsListParams = RouteRequestBody<'/noise_sensors/list'>
+export type NoiseSensorsListParameters = RouteRequestBody<'/noise_sensors/list'>
 
+/**
+ * @deprecated Use NoiseSensorsListParameters instead.
+ */
+export type NoiseSensorsListParams = NoiseSensorsListParameters
+
+/**
+ * @deprecated Use NoiseSensorsListRequest instead.
+ */
 export type NoiseSensorsListResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/list'>>
 >
 
-export type NoiseSensorsListOptions = never
+export type NoiseSensorsListRequest = SeamHttpRequest<
+  NoiseSensorsListResponse,
+  'devices'
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsListOptions {}

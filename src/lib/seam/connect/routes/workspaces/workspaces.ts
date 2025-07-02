@@ -168,90 +168,155 @@ export class SeamHttpWorkspaces {
   }
 
   create(
-    body?: WorkspacesCreateBody,
-  ): SeamHttpRequest<WorkspacesCreateResponse, 'workspace'> {
+    parameters?: WorkspacesCreateParameters,
+    options: WorkspacesCreateOptions = {},
+  ): WorkspacesCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'workspace',
+      options,
     })
   }
 
   get(
-    params?: WorkspacesGetParams,
-  ): SeamHttpRequest<WorkspacesGetResponse, 'workspace'> {
+    parameters?: WorkspacesGetParameters,
+    options: WorkspacesGetOptions = {},
+  ): WorkspacesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/get',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'workspace',
+      options,
     })
   }
 
   list(
-    params?: WorkspacesListParams,
-  ): SeamHttpRequest<WorkspacesListResponse, 'workspaces'> {
+    parameters?: WorkspacesListParameters,
+    options: WorkspacesListOptions = {},
+  ): WorkspacesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/list',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'workspaces',
+      options,
     })
   }
 
   resetSandbox(
-    body?: WorkspacesResetSandboxBody,
+    parameters?: WorkspacesResetSandboxParameters,
     options: WorkspacesResetSandboxOptions = {},
-  ): SeamHttpRequest<WorkspacesResetSandboxResponse, 'action_attempt'> {
+  ): WorkspacesResetSandboxRequest {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/reset_sandbox',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 
-  update(body?: WorkspacesUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: WorkspacesUpdateParameters,
+    options: WorkspacesUpdateOptions = {},
+  ): WorkspacesUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type WorkspacesCreateBody = RouteRequestBody<'/workspaces/create'>
+export type WorkspacesCreateParameters = RouteRequestBody<'/workspaces/create'>
 
+/**
+ * @deprecated Use WorkspacesCreateParameters instead.
+ */
+export type WorkspacesCreateBody = WorkspacesCreateParameters
+
+/**
+ * @deprecated Use WorkspacesCreateRequest instead.
+ */
 export type WorkspacesCreateResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/create'>>
 >
 
-export type WorkspacesCreateOptions = never
+export type WorkspacesCreateRequest = SeamHttpRequest<
+  WorkspacesCreateResponse,
+  'workspace'
+>
 
-export type WorkspacesGetParams = RouteRequestParams<'/workspaces/get'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WorkspacesCreateOptions {}
 
+export type WorkspacesGetParameters = RouteRequestParams<'/workspaces/get'>
+
+/**
+ * @deprecated Use WorkspacesGetParameters instead.
+ */
+export type WorkspacesGetParams = WorkspacesGetParameters
+
+/**
+ * @deprecated Use WorkspacesGetRequest instead.
+ */
 export type WorkspacesGetResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/get'>>
 >
 
-export type WorkspacesGetOptions = never
+export type WorkspacesGetRequest = SeamHttpRequest<
+  WorkspacesGetResponse,
+  'workspace'
+>
 
-export type WorkspacesListParams = RouteRequestParams<'/workspaces/list'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WorkspacesGetOptions {}
 
+export type WorkspacesListParameters = RouteRequestParams<'/workspaces/list'>
+
+/**
+ * @deprecated Use WorkspacesListParameters instead.
+ */
+export type WorkspacesListParams = WorkspacesListParameters
+
+/**
+ * @deprecated Use WorkspacesListRequest instead.
+ */
 export type WorkspacesListResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/list'>>
 >
 
-export type WorkspacesListOptions = never
+export type WorkspacesListRequest = SeamHttpRequest<
+  WorkspacesListResponse,
+  'workspaces'
+>
 
-export type WorkspacesResetSandboxBody =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WorkspacesListOptions {}
+
+export type WorkspacesResetSandboxParameters =
   RouteRequestBody<'/workspaces/reset_sandbox'>
 
+/**
+ * @deprecated Use WorkspacesResetSandboxParameters instead.
+ */
+export type WorkspacesResetSandboxBody = WorkspacesResetSandboxParameters
+
+/**
+ * @deprecated Use WorkspacesResetSandboxRequest instead.
+ */
 export type WorkspacesResetSandboxResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/reset_sandbox'>>
+>
+
+export type WorkspacesResetSandboxRequest = SeamHttpRequest<
+  WorkspacesResetSandboxResponse,
+  'action_attempt'
 >
 
 export type WorkspacesResetSandboxOptions = Pick<
@@ -259,10 +324,21 @@ export type WorkspacesResetSandboxOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type WorkspacesUpdateBody = RouteRequestBody<'/workspaces/update'>
+export type WorkspacesUpdateParameters = RouteRequestBody<'/workspaces/update'>
 
+/**
+ * @deprecated Use WorkspacesUpdateParameters instead.
+ */
+export type WorkspacesUpdateBody = WorkspacesUpdateParameters
+
+/**
+ * @deprecated Use WorkspacesUpdateRequest instead.
+ */
 export type WorkspacesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/workspaces/update'>>
 >
 
-export type WorkspacesUpdateOptions = never
+export type WorkspacesUpdateRequest = SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WorkspacesUpdateOptions {}

@@ -170,57 +170,98 @@ export class SeamHttpPhones {
   }
 
   deactivate(
-    params?: PhonesDeactivateParams,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: PhonesDeactivateParameters,
+    options: PhonesDeactivateOptions = {},
+  ): PhonesDeactivateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/deactivate',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
-  get(params?: PhonesGetParams): SeamHttpRequest<PhonesGetResponse, 'phone'> {
+  get(
+    parameters?: PhonesGetParameters,
+    options: PhonesGetOptions = {},
+  ): PhonesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'phone',
+      options,
     })
   }
 
   list(
-    params?: PhonesListParams,
-  ): SeamHttpRequest<PhonesListResponse, 'phones'> {
+    parameters?: PhonesListParameters,
+    options: PhonesListOptions = {},
+  ): PhonesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'phones',
+      options,
     })
   }
 }
 
-export type PhonesDeactivateParams = RouteRequestBody<'/phones/deactivate'>
+export type PhonesDeactivateParameters = RouteRequestBody<'/phones/deactivate'>
 
+/**
+ * @deprecated Use PhonesDeactivateParameters instead.
+ */
+export type PhonesDeactivateParams = PhonesDeactivateParameters
+
+/**
+ * @deprecated Use PhonesDeactivateRequest instead.
+ */
 export type PhonesDeactivateResponse = SetNonNullable<
   Required<RouteResponse<'/phones/deactivate'>>
 >
 
-export type PhonesDeactivateOptions = never
+export type PhonesDeactivateRequest = SeamHttpRequest<void, undefined>
 
-export type PhonesGetParams = RouteRequestBody<'/phones/get'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface PhonesDeactivateOptions {}
 
+export type PhonesGetParameters = RouteRequestBody<'/phones/get'>
+
+/**
+ * @deprecated Use PhonesGetParameters instead.
+ */
+export type PhonesGetParams = PhonesGetParameters
+
+/**
+ * @deprecated Use PhonesGetRequest instead.
+ */
 export type PhonesGetResponse = SetNonNullable<
   Required<RouteResponse<'/phones/get'>>
 >
 
-export type PhonesGetOptions = never
+export type PhonesGetRequest = SeamHttpRequest<PhonesGetResponse, 'phone'>
 
-export type PhonesListParams = RouteRequestBody<'/phones/list'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface PhonesGetOptions {}
 
+export type PhonesListParameters = RouteRequestBody<'/phones/list'>
+
+/**
+ * @deprecated Use PhonesListParameters instead.
+ */
+export type PhonesListParams = PhonesListParameters
+
+/**
+ * @deprecated Use PhonesListRequest instead.
+ */
 export type PhonesListResponse = SetNonNullable<
   Required<RouteResponse<'/phones/list'>>
 >
 
-export type PhonesListOptions = never
+export type PhonesListRequest = SeamHttpRequest<PhonesListResponse, 'phones'>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface PhonesListOptions {}

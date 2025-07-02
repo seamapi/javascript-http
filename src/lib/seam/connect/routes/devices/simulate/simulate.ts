@@ -163,59 +163,102 @@ export class SeamHttpDevicesSimulate {
     await clientSessions.get()
   }
 
-  connect(body?: DevicesSimulateConnectBody): SeamHttpRequest<void, undefined> {
+  connect(
+    parameters?: DevicesSimulateConnectParameters,
+    options: DevicesSimulateConnectOptions = {},
+  ): DevicesSimulateConnectRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/connect',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   disconnect(
-    body?: DevicesSimulateDisconnectBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: DevicesSimulateDisconnectParameters,
+    options: DevicesSimulateDisconnectOptions = {},
+  ): DevicesSimulateDisconnectRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/disconnect',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
-  remove(body?: DevicesSimulateRemoveBody): SeamHttpRequest<void, undefined> {
+  remove(
+    parameters?: DevicesSimulateRemoveParameters,
+    options: DevicesSimulateRemoveOptions = {},
+  ): DevicesSimulateRemoveRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/remove',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type DevicesSimulateConnectBody =
+export type DevicesSimulateConnectParameters =
   RouteRequestBody<'/devices/simulate/connect'>
 
+/**
+ * @deprecated Use DevicesSimulateConnectParameters instead.
+ */
+export type DevicesSimulateConnectBody = DevicesSimulateConnectParameters
+
+/**
+ * @deprecated Use DevicesSimulateConnectRequest instead.
+ */
 export type DevicesSimulateConnectResponse = SetNonNullable<
   Required<RouteResponse<'/devices/simulate/connect'>>
 >
 
-export type DevicesSimulateConnectOptions = never
+export type DevicesSimulateConnectRequest = SeamHttpRequest<void, undefined>
 
-export type DevicesSimulateDisconnectBody =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesSimulateConnectOptions {}
+
+export type DevicesSimulateDisconnectParameters =
   RouteRequestBody<'/devices/simulate/disconnect'>
 
+/**
+ * @deprecated Use DevicesSimulateDisconnectParameters instead.
+ */
+export type DevicesSimulateDisconnectBody = DevicesSimulateDisconnectParameters
+
+/**
+ * @deprecated Use DevicesSimulateDisconnectRequest instead.
+ */
 export type DevicesSimulateDisconnectResponse = SetNonNullable<
   Required<RouteResponse<'/devices/simulate/disconnect'>>
 >
 
-export type DevicesSimulateDisconnectOptions = never
+export type DevicesSimulateDisconnectRequest = SeamHttpRequest<void, undefined>
 
-export type DevicesSimulateRemoveBody =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesSimulateDisconnectOptions {}
+
+export type DevicesSimulateRemoveParameters =
   RouteRequestBody<'/devices/simulate/remove'>
 
+/**
+ * @deprecated Use DevicesSimulateRemoveParameters instead.
+ */
+export type DevicesSimulateRemoveParams = DevicesSimulateRemoveParameters
+
+/**
+ * @deprecated Use DevicesSimulateRemoveRequest instead.
+ */
 export type DevicesSimulateRemoveResponse = SetNonNullable<
   Required<RouteResponse<'/devices/simulate/remove'>>
 >
 
-export type DevicesSimulateRemoveOptions = never
+export type DevicesSimulateRemoveRequest = SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesSimulateRemoveOptions {}

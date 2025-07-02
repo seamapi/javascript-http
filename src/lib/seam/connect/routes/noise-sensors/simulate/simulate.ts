@@ -164,22 +164,39 @@ export class SeamHttpNoiseSensorsSimulate {
   }
 
   triggerNoiseThreshold(
-    body?: NoiseSensorsSimulateTriggerNoiseThresholdBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: NoiseSensorsSimulateTriggerNoiseThresholdParameters,
+    options: NoiseSensorsSimulateTriggerNoiseThresholdOptions = {},
+  ): NoiseSensorsSimulateTriggerNoiseThresholdRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/simulate/trigger_noise_threshold',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type NoiseSensorsSimulateTriggerNoiseThresholdBody =
+export type NoiseSensorsSimulateTriggerNoiseThresholdParameters =
   RouteRequestBody<'/noise_sensors/simulate/trigger_noise_threshold'>
 
+/**
+ * @deprecated Use NoiseSensorsSimulateTriggerNoiseThresholdParameters instead.
+ */
+export type NoiseSensorsSimulateTriggerNoiseThresholdBody =
+  NoiseSensorsSimulateTriggerNoiseThresholdParameters
+
+/**
+ * @deprecated Use NoiseSensorsSimulateTriggerNoiseThresholdRequest instead.
+ */
 export type NoiseSensorsSimulateTriggerNoiseThresholdResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/simulate/trigger_noise_threshold'>>
 >
 
-export type NoiseSensorsSimulateTriggerNoiseThresholdOptions = never
+export type NoiseSensorsSimulateTriggerNoiseThresholdRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsSimulateTriggerNoiseThresholdOptions {}

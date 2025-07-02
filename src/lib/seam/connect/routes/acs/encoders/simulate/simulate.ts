@@ -164,53 +164,70 @@ export class SeamHttpAcsEncodersSimulate {
   }
 
   nextCredentialEncodeWillFail(
-    body?: AcsEncodersSimulateNextCredentialEncodeWillFailBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: AcsEncodersSimulateNextCredentialEncodeWillFailParameters,
+    options: AcsEncodersSimulateNextCredentialEncodeWillFailOptions = {},
+  ): AcsEncodersSimulateNextCredentialEncodeWillFailRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_encode_will_fail',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   nextCredentialEncodeWillSucceed(
-    body?: AcsEncodersSimulateNextCredentialEncodeWillSucceedBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters,
+    options: AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = {},
+  ): AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_encode_will_succeed',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   nextCredentialScanWillFail(
-    body?: AcsEncodersSimulateNextCredentialScanWillFailBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: AcsEncodersSimulateNextCredentialScanWillFailParameters,
+    options: AcsEncodersSimulateNextCredentialScanWillFailOptions = {},
+  ): AcsEncodersSimulateNextCredentialScanWillFailRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_scan_will_fail',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   nextCredentialScanWillSucceed(
-    body?: AcsEncodersSimulateNextCredentialScanWillSucceedBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: AcsEncodersSimulateNextCredentialScanWillSucceedParameters,
+    options: AcsEncodersSimulateNextCredentialScanWillSucceedOptions = {},
+  ): AcsEncodersSimulateNextCredentialScanWillSucceedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_scan_will_succeed',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type AcsEncodersSimulateNextCredentialEncodeWillFailBody =
+export type AcsEncodersSimulateNextCredentialEncodeWillFailParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_encode_will_fail'>
 
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillFailParameters instead.
+ */
+export type AcsEncodersSimulateNextCredentialEncodeWillFailBody =
+  AcsEncodersSimulateNextCredentialEncodeWillFailParameters
+
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillFailRequest instead.
+ */
 export type AcsEncodersSimulateNextCredentialEncodeWillFailResponse =
   SetNonNullable<
     Required<
@@ -218,11 +235,24 @@ export type AcsEncodersSimulateNextCredentialEncodeWillFailResponse =
     >
   >
 
-export type AcsEncodersSimulateNextCredentialEncodeWillFailOptions = never
+export type AcsEncodersSimulateNextCredentialEncodeWillFailRequest =
+  SeamHttpRequest<void, undefined>
 
-export type AcsEncodersSimulateNextCredentialEncodeWillSucceedBody =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEncodersSimulateNextCredentialEncodeWillFailOptions {}
+
+export type AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_encode_will_succeed'>
 
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters instead.
+ */
+export type AcsEncodersSimulateNextCredentialEncodeWillSucceedBody =
+  AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters
+
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest instead.
+ */
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedResponse =
   SetNonNullable<
     Required<
@@ -230,11 +260,24 @@ export type AcsEncodersSimulateNextCredentialEncodeWillSucceedResponse =
     >
   >
 
-export type AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = never
+export type AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest =
+  SeamHttpRequest<void, undefined>
 
-export type AcsEncodersSimulateNextCredentialScanWillFailBody =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions {}
+
+export type AcsEncodersSimulateNextCredentialScanWillFailParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_scan_will_fail'>
 
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialScanWillFailParameters instead.
+ */
+export type AcsEncodersSimulateNextCredentialScanWillFailBody =
+  AcsEncodersSimulateNextCredentialScanWillFailParameters
+
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialScanWillFailRequest instead.
+ */
 export type AcsEncodersSimulateNextCredentialScanWillFailResponse =
   SetNonNullable<
     Required<
@@ -242,11 +285,24 @@ export type AcsEncodersSimulateNextCredentialScanWillFailResponse =
     >
   >
 
-export type AcsEncodersSimulateNextCredentialScanWillFailOptions = never
+export type AcsEncodersSimulateNextCredentialScanWillFailRequest =
+  SeamHttpRequest<void, undefined>
 
-export type AcsEncodersSimulateNextCredentialScanWillSucceedBody =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEncodersSimulateNextCredentialScanWillFailOptions {}
+
+export type AcsEncodersSimulateNextCredentialScanWillSucceedParameters =
   RouteRequestBody<'/acs/encoders/simulate/next_credential_scan_will_succeed'>
 
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialScanWillSucceedParameters instead.
+ */
+export type AcsEncodersSimulateNextCredentialScanWillSucceedBody =
+  AcsEncodersSimulateNextCredentialScanWillSucceedParameters
+
+/**
+ * @deprecated Use AcsEncodersSimulateNextCredentialScanWillSucceedRequest instead.
+ */
 export type AcsEncodersSimulateNextCredentialScanWillSucceedResponse =
   SetNonNullable<
     Required<
@@ -254,4 +310,8 @@ export type AcsEncodersSimulateNextCredentialScanWillSucceedResponse =
     >
   >
 
-export type AcsEncodersSimulateNextCredentialScanWillSucceedOptions = never
+export type AcsEncodersSimulateNextCredentialScanWillSucceedRequest =
+  SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEncodersSimulateNextCredentialScanWillSucceedOptions {}

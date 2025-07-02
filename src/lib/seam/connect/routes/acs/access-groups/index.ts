@@ -4,3 +4,4 @@
  */
 
 export * from './access-groups.js'
+export * from './unmanaged/index.js'

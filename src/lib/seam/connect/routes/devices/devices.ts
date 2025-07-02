@@ -174,78 +174,173 @@ export class SeamHttpDevices {
     return SeamHttpDevicesUnmanaged.fromClient(this.client, this.defaults)
   }
 
+  delete(
+    parameters?: DevicesDeleteParameters,
+    options: DevicesDeleteOptions = {},
+  ): DevicesDeleteRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/devices/delete',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
   get(
-    params?: DevicesGetParams,
-  ): SeamHttpRequest<DevicesGetResponse, 'device'> {
+    parameters?: DevicesGetParameters,
+    options: DevicesGetOptions = {},
+  ): DevicesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'device',
+      options,
     })
   }
 
   list(
-    params?: DevicesListParams,
-  ): SeamHttpRequest<DevicesListResponse, 'devices'> {
+    parameters?: DevicesListParameters,
+    options: DevicesListOptions = {},
+  ): DevicesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'devices',
+      options,
     })
   }
 
   listDeviceProviders(
-    params?: DevicesListDeviceProvidersParams,
-  ): SeamHttpRequest<DevicesListDeviceProvidersResponse, 'device_providers'> {
+    parameters?: DevicesListDeviceProvidersParameters,
+    options: DevicesListDeviceProvidersOptions = {},
+  ): DevicesListDeviceProvidersRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/list_device_providers',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'device_providers',
+      options,
     })
   }
 
-  update(body?: DevicesUpdateBody): SeamHttpRequest<void, undefined> {
+  update(
+    parameters?: DevicesUpdateParameters,
+    options: DevicesUpdateOptions = {},
+  ): DevicesUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type DevicesGetParams = RouteRequestBody<'/devices/get'>
+export type DevicesDeleteParameters = RouteRequestBody<'/devices/delete'>
 
+/**
+ * @deprecated Use DevicesDeleteParameters instead.
+ */
+export type DevicesDeleteParams = DevicesDeleteParameters
+
+/**
+ * @deprecated Use DevicesDeleteRequest instead.
+ */
+export type DevicesDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/delete'>>
+>
+
+export type DevicesDeleteRequest = SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesDeleteOptions {}
+
+export type DevicesGetParameters = RouteRequestBody<'/devices/get'>
+
+/**
+ * @deprecated Use DevicesGetParameters instead.
+ */
+export type DevicesGetParams = DevicesGetParameters
+
+/**
+ * @deprecated Use DevicesGetRequest instead.
+ */
 export type DevicesGetResponse = SetNonNullable<
   Required<RouteResponse<'/devices/get'>>
 >
 
-export type DevicesGetOptions = never
+export type DevicesGetRequest = SeamHttpRequest<DevicesGetResponse, 'device'>
 
-export type DevicesListParams = RouteRequestBody<'/devices/list'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesGetOptions {}
 
+export type DevicesListParameters = RouteRequestBody<'/devices/list'>
+
+/**
+ * @deprecated Use DevicesListParameters instead.
+ */
+export type DevicesListParams = DevicesListParameters
+
+/**
+ * @deprecated Use DevicesListRequest instead.
+ */
 export type DevicesListResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list'>>
 >
 
-export type DevicesListOptions = never
+export type DevicesListRequest = SeamHttpRequest<DevicesListResponse, 'devices'>
 
-export type DevicesListDeviceProvidersParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesListOptions {}
+
+export type DevicesListDeviceProvidersParameters =
   RouteRequestBody<'/devices/list_device_providers'>
 
+/**
+ * @deprecated Use DevicesListDeviceProvidersParameters instead.
+ */
+export type DevicesListDeviceProvidersParams =
+  DevicesListDeviceProvidersParameters
+
+/**
+ * @deprecated Use DevicesListDeviceProvidersRequest instead.
+ */
 export type DevicesListDeviceProvidersResponse = SetNonNullable<
   Required<RouteResponse<'/devices/list_device_providers'>>
 >
 
-export type DevicesListDeviceProvidersOptions = never
+export type DevicesListDeviceProvidersRequest = SeamHttpRequest<
+  DevicesListDeviceProvidersResponse,
+  'device_providers'
+>
 
-export type DevicesUpdateBody = RouteRequestBody<'/devices/update'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesListDeviceProvidersOptions {}
 
+export type DevicesUpdateParameters = RouteRequestBody<'/devices/update'>
+
+/**
+ * @deprecated Use DevicesUpdateParameters instead.
+ */
+export type DevicesUpdateBody = DevicesUpdateParameters
+
+/**
+ * @deprecated Use DevicesUpdateRequest instead.
+ */
 export type DevicesUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/devices/update'>>
 >
 
-export type DevicesUpdateOptions = never
+export type DevicesUpdateRequest = SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesUpdateOptions {}

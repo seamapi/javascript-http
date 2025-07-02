@@ -164,22 +164,39 @@ export class SeamHttpPhonesSimulate {
   }
 
   createSandboxPhone(
-    body?: PhonesSimulateCreateSandboxPhoneBody,
-  ): SeamHttpRequest<PhonesSimulateCreateSandboxPhoneResponse, 'phone'> {
+    parameters?: PhonesSimulateCreateSandboxPhoneParameters,
+    options: PhonesSimulateCreateSandboxPhoneOptions = {},
+  ): PhonesSimulateCreateSandboxPhoneRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/simulate/create_sandbox_phone',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'phone',
+      options,
     })
   }
 }
 
-export type PhonesSimulateCreateSandboxPhoneBody =
+export type PhonesSimulateCreateSandboxPhoneParameters =
   RouteRequestBody<'/phones/simulate/create_sandbox_phone'>
 
+/**
+ * @deprecated Use PhonesSimulateCreateSandboxPhoneParameters instead.
+ */
+export type PhonesSimulateCreateSandboxPhoneParams =
+  PhonesSimulateCreateSandboxPhoneParameters
+
+/**
+ * @deprecated Use PhonesSimulateCreateSandboxPhoneRequest instead.
+ */
 export type PhonesSimulateCreateSandboxPhoneResponse = SetNonNullable<
   Required<RouteResponse<'/phones/simulate/create_sandbox_phone'>>
 >
 
-export type PhonesSimulateCreateSandboxPhoneOptions = never
+export type PhonesSimulateCreateSandboxPhoneRequest = SeamHttpRequest<
+  PhonesSimulateCreateSandboxPhoneResponse,
+  'phone'
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface PhonesSimulateCreateSandboxPhoneOptions {}

@@ -164,102 +164,179 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   convertToManaged(
-    body?: AccessCodesUnmanagedConvertToManagedBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: AccessCodesUnmanagedConvertToManagedParameters,
+    options: AccessCodesUnmanagedConvertToManagedOptions = {},
+  ): AccessCodesUnmanagedConvertToManagedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/convert_to_managed',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   delete(
-    params?: AccessCodesUnmanagedDeleteParams,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: AccessCodesUnmanagedDeleteParameters,
+    options: AccessCodesUnmanagedDeleteOptions = {},
+  ): AccessCodesUnmanagedDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: AccessCodesUnmanagedGetParams,
-  ): SeamHttpRequest<AccessCodesUnmanagedGetResponse, 'access_code'> {
+    parameters?: AccessCodesUnmanagedGetParameters,
+    options: AccessCodesUnmanagedGetOptions = {},
+  ): AccessCodesUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_code',
+      options,
     })
   }
 
   list(
-    params?: AccessCodesUnmanagedListParams,
-  ): SeamHttpRequest<AccessCodesUnmanagedListResponse, 'access_codes'> {
+    parameters?: AccessCodesUnmanagedListParameters,
+    options: AccessCodesUnmanagedListOptions = {},
+  ): AccessCodesUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'access_codes',
+      options,
     })
   }
 
   update(
-    body?: AccessCodesUnmanagedUpdateBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: AccessCodesUnmanagedUpdateParameters,
+    options: AccessCodesUnmanagedUpdateOptions = {},
+  ): AccessCodesUnmanagedUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/update',
       method: 'PATCH',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type AccessCodesUnmanagedConvertToManagedBody =
+export type AccessCodesUnmanagedConvertToManagedParameters =
   RouteRequestBody<'/access_codes/unmanaged/convert_to_managed'>
 
+/**
+ * @deprecated Use AccessCodesUnmanagedConvertToManagedParameters instead.
+ */
+export type AccessCodesUnmanagedConvertToManagedBody =
+  AccessCodesUnmanagedConvertToManagedParameters
+
+/**
+ * @deprecated Use AccessCodesUnmanagedConvertToManagedRequest instead.
+ */
 export type AccessCodesUnmanagedConvertToManagedResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/convert_to_managed'>>
 >
 
-export type AccessCodesUnmanagedConvertToManagedOptions = never
+export type AccessCodesUnmanagedConvertToManagedRequest = SeamHttpRequest<
+  void,
+  undefined
+>
 
-export type AccessCodesUnmanagedDeleteParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesUnmanagedConvertToManagedOptions {}
+
+export type AccessCodesUnmanagedDeleteParameters =
   RouteRequestBody<'/access_codes/unmanaged/delete'>
 
+/**
+ * @deprecated Use AccessCodesUnmanagedDeleteParameters instead.
+ */
+export type AccessCodesUnmanagedDeleteParams =
+  AccessCodesUnmanagedDeleteParameters
+
+/**
+ * @deprecated Use AccessCodesUnmanagedDeleteRequest instead.
+ */
 export type AccessCodesUnmanagedDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/delete'>>
 >
 
-export type AccessCodesUnmanagedDeleteOptions = never
+export type AccessCodesUnmanagedDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type AccessCodesUnmanagedGetParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesUnmanagedDeleteOptions {}
+
+export type AccessCodesUnmanagedGetParameters =
   RouteRequestBody<'/access_codes/unmanaged/get'>
 
+/**
+ * @deprecated Use AccessCodesUnmanagedGetParameters instead.
+ */
+export type AccessCodesUnmanagedGetParams = AccessCodesUnmanagedGetParameters
+
+/**
+ * @deprecated Use AccessCodesUnmanagedGetRequest instead.
+ */
 export type AccessCodesUnmanagedGetResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/get'>>
 >
 
-export type AccessCodesUnmanagedGetOptions = never
+export type AccessCodesUnmanagedGetRequest = SeamHttpRequest<
+  AccessCodesUnmanagedGetResponse,
+  'access_code'
+>
 
-export type AccessCodesUnmanagedListParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesUnmanagedGetOptions {}
+
+export type AccessCodesUnmanagedListParameters =
   RouteRequestBody<'/access_codes/unmanaged/list'>
 
+/**
+ * @deprecated Use AccessCodesUnmanagedListParameters instead.
+ */
+export type AccessCodesUnmanagedListParams = AccessCodesUnmanagedListParameters
+
+/**
+ * @deprecated Use AccessCodesUnmanagedListRequest instead.
+ */
 export type AccessCodesUnmanagedListResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/list'>>
 >
 
-export type AccessCodesUnmanagedListOptions = never
+export type AccessCodesUnmanagedListRequest = SeamHttpRequest<
+  AccessCodesUnmanagedListResponse,
+  'access_codes'
+>
 
-export type AccessCodesUnmanagedUpdateBody =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesUnmanagedListOptions {}
+
+export type AccessCodesUnmanagedUpdateParameters =
   RouteRequestBody<'/access_codes/unmanaged/update'>
 
+/**
+ * @deprecated Use AccessCodesUnmanagedUpdateParameters instead.
+ */
+export type AccessCodesUnmanagedUpdateBody =
+  AccessCodesUnmanagedUpdateParameters
+
+/**
+ * @deprecated Use AccessCodesUnmanagedUpdateRequest instead.
+ */
 export type AccessCodesUnmanagedUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/access_codes/unmanaged/update'>>
 >
 
-export type AccessCodesUnmanagedUpdateOptions = never
+export type AccessCodesUnmanagedUpdateRequest = SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesUnmanagedUpdateOptions {}

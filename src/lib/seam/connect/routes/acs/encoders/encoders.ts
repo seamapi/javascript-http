@@ -174,72 +174,90 @@ export class SeamHttpAcsEncoders {
   }
 
   encodeAccessMethod(
-    body?: AcsEncodersEncodeAccessMethodBody,
+    parameters?: AcsEncodersEncodeAccessMethodParameters,
     options: AcsEncodersEncodeAccessMethodOptions = {},
-  ): SeamHttpRequest<AcsEncodersEncodeAccessMethodResponse, 'action_attempt'> {
+  ): AcsEncodersEncodeAccessMethodRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/encode_access_method',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 
   encodeCredential(
-    body?: AcsEncodersEncodeCredentialBody,
+    parameters?: AcsEncodersEncodeCredentialParameters,
     options: AcsEncodersEncodeCredentialOptions = {},
-  ): SeamHttpRequest<AcsEncodersEncodeCredentialResponse, 'action_attempt'> {
+  ): AcsEncodersEncodeCredentialRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/encode_credential',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 
   get(
-    params?: AcsEncodersGetParams,
-  ): SeamHttpRequest<AcsEncodersGetResponse, 'acs_encoder'> {
+    parameters?: AcsEncodersGetParameters,
+    options: AcsEncodersGetOptions = {},
+  ): AcsEncodersGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_encoder',
+      options,
     })
   }
 
   list(
-    params?: AcsEncodersListParams,
-  ): SeamHttpRequest<AcsEncodersListResponse, 'acs_encoders'> {
+    parameters?: AcsEncodersListParameters,
+    options: AcsEncodersListOptions = {},
+  ): AcsEncodersListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/list',
       method: 'GET',
-      params,
+      params: parameters,
       responseKey: 'acs_encoders',
+      options,
     })
   }
 
   scanCredential(
-    body?: AcsEncodersScanCredentialBody,
+    parameters?: AcsEncodersScanCredentialParameters,
     options: AcsEncodersScanCredentialOptions = {},
-  ): SeamHttpRequest<AcsEncodersScanCredentialResponse, 'action_attempt'> {
+  ): AcsEncodersScanCredentialRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/scan_credential',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'action_attempt',
       options,
     })
   }
 }
 
-export type AcsEncodersEncodeAccessMethodBody =
+export type AcsEncodersEncodeAccessMethodParameters =
   RouteRequestBody<'/acs/encoders/encode_access_method'>
 
+/**
+ * @deprecated Use AcsEncodersEncodeAccessMethodParameters instead.
+ */
+export type AcsEncodersEncodeAccessMethodBody =
+  AcsEncodersEncodeAccessMethodParameters
+
+/**
+ * @deprecated Use AcsEncodersEncodeAccessMethodRequest instead.
+ */
 export type AcsEncodersEncodeAccessMethodResponse = SetNonNullable<
   Required<RouteResponse<'/acs/encoders/encode_access_method'>>
+>
+
+export type AcsEncodersEncodeAccessMethodRequest = SeamHttpRequest<
+  AcsEncodersEncodeAccessMethodResponse,
+  'action_attempt'
 >
 
 export type AcsEncodersEncodeAccessMethodOptions = Pick<
@@ -247,11 +265,25 @@ export type AcsEncodersEncodeAccessMethodOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type AcsEncodersEncodeCredentialBody =
+export type AcsEncodersEncodeCredentialParameters =
   RouteRequestBody<'/acs/encoders/encode_credential'>
 
+/**
+ * @deprecated Use AcsEncodersEncodeCredentialParameters instead.
+ */
+export type AcsEncodersEncodeCredentialBody =
+  AcsEncodersEncodeCredentialParameters
+
+/**
+ * @deprecated Use AcsEncodersEncodeCredentialRequest instead.
+ */
 export type AcsEncodersEncodeCredentialResponse = SetNonNullable<
   Required<RouteResponse<'/acs/encoders/encode_credential'>>
+>
+
+export type AcsEncodersEncodeCredentialRequest = SeamHttpRequest<
+  AcsEncodersEncodeCredentialResponse,
+  'action_attempt'
 >
 
 export type AcsEncodersEncodeCredentialOptions = Pick<
@@ -259,27 +291,68 @@ export type AcsEncodersEncodeCredentialOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type AcsEncodersGetParams = RouteRequestBody<'/acs/encoders/get'>
+export type AcsEncodersGetParameters = RouteRequestBody<'/acs/encoders/get'>
 
+/**
+ * @deprecated Use AcsEncodersGetParameters instead.
+ */
+export type AcsEncodersGetParams = AcsEncodersGetParameters
+
+/**
+ * @deprecated Use AcsEncodersGetRequest instead.
+ */
 export type AcsEncodersGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/encoders/get'>>
 >
 
-export type AcsEncodersGetOptions = never
+export type AcsEncodersGetRequest = SeamHttpRequest<
+  AcsEncodersGetResponse,
+  'acs_encoder'
+>
 
-export type AcsEncodersListParams = RouteRequestParams<'/acs/encoders/list'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEncodersGetOptions {}
 
+export type AcsEncodersListParameters = RouteRequestParams<'/acs/encoders/list'>
+
+/**
+ * @deprecated Use AcsEncodersListParameters instead.
+ */
+export type AcsEncodersListParams = AcsEncodersListParameters
+
+/**
+ * @deprecated Use AcsEncodersListRequest instead.
+ */
 export type AcsEncodersListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/encoders/list'>>
 >
 
-export type AcsEncodersListOptions = never
+export type AcsEncodersListRequest = SeamHttpRequest<
+  AcsEncodersListResponse,
+  'acs_encoders'
+>
 
-export type AcsEncodersScanCredentialBody =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEncodersListOptions {}
+
+export type AcsEncodersScanCredentialParameters =
   RouteRequestBody<'/acs/encoders/scan_credential'>
 
+/**
+ * @deprecated Use AcsEncodersScanCredentialParameters instead.
+ */
+export type AcsEncodersScanCredentialBody = AcsEncodersScanCredentialParameters
+
+/**
+ * @deprecated Use AcsEncodersScanCredentialRequest instead.
+ */
 export type AcsEncodersScanCredentialResponse = SetNonNullable<
   Required<RouteResponse<'/acs/encoders/scan_credential'>>
+>
+
+export type AcsEncodersScanCredentialRequest = SeamHttpRequest<
+  AcsEncodersScanCredentialResponse,
+  'action_attempt'
 >
 
 export type AcsEncodersScanCredentialOptions = Pick<

@@ -1,20 +1,35 @@
-import type { Blueprint } from '@seamapi/blueprint'
+import type { Blueprint, SeamAuthMethod } from '@seamapi/blueprint'
 import { kebabCase } from 'change-case'
 import type Metalsmith from 'metalsmith'
 
 import {
+  type EndpointsLayoutContext,
+  setEndpointsLayoutContext,
+} from './layouts/endpoints.js'
+import {
   type RouteIndexLayoutContext,
   type RouteLayoutContext,
   setRouteLayoutContext,
+  toFilePath,
 } from './layouts/route.js'
 
 interface Metadata {
   blueprint: Blueprint
 }
 
-type File = RouteLayoutContext & RouteIndexLayoutContext & { layout: string }
+type File = RouteLayoutContext &
+  RouteIndexLayoutContext &
+  EndpointsLayoutContext & { layout: string }
 
 const rootPath = 'src/lib/seam/connect/routes'
+
+const supportedAuthMethods: SeamAuthMethod[] = [
+  'api_key',
+  'publishable_key',
+  'client_session_token',
+  'personal_access_token',
+  'console_session_token',
+]
 
 export const connect = (
   files: Metalsmith.Files,
@@ -23,25 +38,57 @@ export const connect = (
   const metadata = metalsmith.metadata() as Metadata
   const { blueprint } = metadata
 
-  const namespaces = blueprint.namespaces.filter(
-    ({ isUndocumented }) => !isUndocumented,
-  )
-  const routes = blueprint.routes.filter(
-    ({ isUndocumented }) => !isUndocumented,
+  const routes = blueprint.routes
+    .filter((route) =>
+      route.endpoints.some((endpoint) =>
+        endpoint.authMethods.some((authMethod) =>
+          supportedAuthMethods.includes(authMethod),
+        ),
+      ),
+    )
+    .filter((route) => !route.path.startsWith('/seam/mobile_sdk'))
+
+  const namespaces = blueprint.namespaces.filter((namespace) =>
+    routes.some((route) => route.parentPath === namespace.path),
   )
 
   const nodes = [...namespaces, ...routes]
 
   const routeIndexes: Record<string, Set<string>> = {}
 
-  const rootRouteKey = `${rootPath}/seam-http.ts`
-  files[rootRouteKey] = { contents: Buffer.from('\n') }
-  const file = files[rootRouteKey] as unknown as File
+  const k = `${rootPath}/seam-http.ts`
+  files[k] = { contents: Buffer.from('\n') }
+  const file = files[k] as unknown as File
   file.layout = 'route.hbs'
   setRouteLayoutContext(file, null, nodes)
 
   routeIndexes[''] ??= new Set()
   routeIndexes['']?.add('seam-http.js')
+
+  const endpointsKey = `${rootPath}/seam-http-endpoints.ts`
+  files[endpointsKey] = { contents: Buffer.from('\n') }
+  const endpointFile = files[endpointsKey] as unknown as File
+  endpointFile.layout = 'endpoints.hbs'
+  setEndpointsLayoutContext(endpointFile, routes)
+  routeIndexes['']?.add('seam-http-endpoints.js')
+
+  const withoutWorkspaceKey = `${rootPath}/seam-http-without-workspace.ts`
+  files[withoutWorkspaceKey] = { contents: Buffer.from('\n') }
+  const withoutWorkspaceFile = files[withoutWorkspaceKey] as unknown as File
+  withoutWorkspaceFile.layout = 'without-workspace.hbs'
+  withoutWorkspaceFile.className = 'SeamHttpWithoutWorkspace'
+  routeIndexes['']?.add('seam-http-without-workspace.js')
+
+  const endpointsWithoutWorkspaceKey = `${rootPath}/seam-http-endpoints-without-workspace.ts`
+  files[endpointsWithoutWorkspaceKey] = { contents: Buffer.from('\n') }
+  const endpointWithoutWorkspaceFile = files[
+    endpointsWithoutWorkspaceKey
+  ] as unknown as File
+  endpointWithoutWorkspaceFile.layout = 'endpoints.hbs'
+  setEndpointsLayoutContext(endpointWithoutWorkspaceFile, routes, {
+    withoutWorkspace: true,
+  })
+  routeIndexes['']?.add('seam-http-endpoints-without-workspace.js')
 
   for (const node of nodes) {
     const path = toFilePath(node.path)
@@ -75,10 +122,3 @@ export const connect = (
     file.routes = [...routes]
   }
 }
-
-const toFilePath = (path: string): string =>
-  path
-    .slice(1)
-    .split('/')
-    .map((p) => kebabCase(p))
-    .join('/')

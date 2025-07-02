@@ -164,83 +164,142 @@ export class SeamHttpAcsEntrances {
   }
 
   get(
-    params?: AcsEntrancesGetParams,
-  ): SeamHttpRequest<AcsEntrancesGetResponse, 'acs_entrance'> {
+    parameters?: AcsEntrancesGetParameters,
+    options: AcsEntrancesGetOptions = {},
+  ): AcsEntrancesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_entrance',
+      options,
     })
   }
 
   grantAccess(
-    body?: AcsEntrancesGrantAccessBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: AcsEntrancesGrantAccessParameters,
+    options: AcsEntrancesGrantAccessOptions = {},
+  ): AcsEntrancesGrantAccessRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/grant_access',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   list(
-    params?: AcsEntrancesListParams,
-  ): SeamHttpRequest<AcsEntrancesListResponse, 'acs_entrances'> {
+    parameters?: AcsEntrancesListParameters,
+    options: AcsEntrancesListOptions = {},
+  ): AcsEntrancesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_entrances',
+      options,
     })
   }
 
   listCredentialsWithAccess(
-    params?: AcsEntrancesListCredentialsWithAccessParams,
-  ): SeamHttpRequest<
-    AcsEntrancesListCredentialsWithAccessResponse,
-    'acs_credentials'
-  > {
+    parameters?: AcsEntrancesListCredentialsWithAccessParameters,
+    options: AcsEntrancesListCredentialsWithAccessOptions = {},
+  ): AcsEntrancesListCredentialsWithAccessRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/list_credentials_with_access',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_credentials',
+      options,
     })
   }
 }
 
-export type AcsEntrancesGetParams = RouteRequestBody<'/acs/entrances/get'>
+export type AcsEntrancesGetParameters = RouteRequestBody<'/acs/entrances/get'>
 
+/**
+ * @deprecated Use AcsEntrancesGetParameters instead.
+ */
+export type AcsEntrancesGetParams = AcsEntrancesGetParameters
+
+/**
+ * @deprecated Use AcsEntrancesGetRequest instead.
+ */
 export type AcsEntrancesGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/get'>>
 >
 
-export type AcsEntrancesGetOptions = never
+export type AcsEntrancesGetRequest = SeamHttpRequest<
+  AcsEntrancesGetResponse,
+  'acs_entrance'
+>
 
-export type AcsEntrancesGrantAccessBody =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEntrancesGetOptions {}
+
+export type AcsEntrancesGrantAccessParameters =
   RouteRequestBody<'/acs/entrances/grant_access'>
 
+/**
+ * @deprecated Use AcsEntrancesGrantAccessParameters instead.
+ */
+export type AcsEntrancesGrantAccessBody = AcsEntrancesGrantAccessParameters
+
+/**
+ * @deprecated Use AcsEntrancesGrantAccessRequest instead.
+ */
 export type AcsEntrancesGrantAccessResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/grant_access'>>
 >
 
-export type AcsEntrancesGrantAccessOptions = never
+export type AcsEntrancesGrantAccessRequest = SeamHttpRequest<void, undefined>
 
-export type AcsEntrancesListParams = RouteRequestBody<'/acs/entrances/list'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEntrancesGrantAccessOptions {}
 
+export type AcsEntrancesListParameters = RouteRequestBody<'/acs/entrances/list'>
+
+/**
+ * @deprecated Use AcsEntrancesListParameters instead.
+ */
+export type AcsEntrancesListParams = AcsEntrancesListParameters
+
+/**
+ * @deprecated Use AcsEntrancesListRequest instead.
+ */
 export type AcsEntrancesListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/list'>>
 >
 
-export type AcsEntrancesListOptions = never
+export type AcsEntrancesListRequest = SeamHttpRequest<
+  AcsEntrancesListResponse,
+  'acs_entrances'
+>
 
-export type AcsEntrancesListCredentialsWithAccessParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEntrancesListOptions {}
+
+export type AcsEntrancesListCredentialsWithAccessParameters =
   RouteRequestBody<'/acs/entrances/list_credentials_with_access'>
 
+/**
+ * @deprecated Use AcsEntrancesListCredentialsWithAccessParameters instead.
+ */
+export type AcsEntrancesListCredentialsWithAccessParams =
+  AcsEntrancesListCredentialsWithAccessParameters
+
+/**
+ * @deprecated Use AcsEntrancesListCredentialsWithAccessRequest instead.
+ */
 export type AcsEntrancesListCredentialsWithAccessResponse = SetNonNullable<
   Required<RouteResponse<'/acs/entrances/list_credentials_with_access'>>
 >
 
-export type AcsEntrancesListCredentialsWithAccessOptions = never
+export type AcsEntrancesListCredentialsWithAccessRequest = SeamHttpRequest<
+  AcsEntrancesListCredentialsWithAccessResponse,
+  'acs_credentials'
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsEntrancesListCredentialsWithAccessOptions {}

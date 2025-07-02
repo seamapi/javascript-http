@@ -4,3 +4,4 @@
  */
 
 export * from './locks.js'
+export * from './simulate/index.js'

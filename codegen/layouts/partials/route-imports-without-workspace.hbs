@@ -1,0 +1,14 @@
+import { seamApiLtsVersion } from 'lib/lts-version.js'
+import { type Client, createClient } from 'lib/seam/connect/client.js'
+import {
+  isSeamHttpWithoutWorkspaceOptionsWithClient,
+  isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
+  isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken,
+  type SeamHttpRequestOptions,
+  SeamHttpWithoutWorkspaceInvalidOptionsError,
+  type SeamHttpWithoutWorkspaceOptions,
+  type SeamHttpWithoutWorkspaceOptionsWithClient,
+  type SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
+  type SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken,
+} from 'lib/seam/connect/options.js'
+import { limitToSeamHttpRequestOptions, parseOptions } from 'lib/seam/connect/parse-options.js'

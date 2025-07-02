@@ -164,23 +164,31 @@ export class SeamHttpAccessCodesSimulate {
   }
 
   createUnmanagedAccessCode(
-    body?: AccessCodesSimulateCreateUnmanagedAccessCodeBody,
-  ): SeamHttpRequest<
-    AccessCodesSimulateCreateUnmanagedAccessCodeResponse,
-    'access_code'
-  > {
+    parameters?: AccessCodesSimulateCreateUnmanagedAccessCodeParameters,
+    options: AccessCodesSimulateCreateUnmanagedAccessCodeOptions = {},
+  ): AccessCodesSimulateCreateUnmanagedAccessCodeRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/simulate/create_unmanaged_access_code',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'access_code',
+      options,
     })
   }
 }
 
-export type AccessCodesSimulateCreateUnmanagedAccessCodeBody =
+export type AccessCodesSimulateCreateUnmanagedAccessCodeParameters =
   RouteRequestBody<'/access_codes/simulate/create_unmanaged_access_code'>
 
+/**
+ * @deprecated Use AccessCodesSimulateCreateUnmanagedAccessCodeParameters instead.
+ */
+export type AccessCodesSimulateCreateUnmanagedAccessCodeBody =
+  AccessCodesSimulateCreateUnmanagedAccessCodeParameters
+
+/**
+ * @deprecated Use AccessCodesSimulateCreateUnmanagedAccessCodeRequest instead.
+ */
 export type AccessCodesSimulateCreateUnmanagedAccessCodeResponse =
   SetNonNullable<
     Required<
@@ -188,4 +196,11 @@ export type AccessCodesSimulateCreateUnmanagedAccessCodeResponse =
     >
   >
 
-export type AccessCodesSimulateCreateUnmanagedAccessCodeOptions = never
+export type AccessCodesSimulateCreateUnmanagedAccessCodeRequest =
+  SeamHttpRequest<
+    AccessCodesSimulateCreateUnmanagedAccessCodeResponse,
+    'access_code'
+  >
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessCodesSimulateCreateUnmanagedAccessCodeOptions {}

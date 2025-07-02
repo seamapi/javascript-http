@@ -4,13 +4,13 @@ import version from 'lib/version.js'
 import { getAuthHeaders } from './auth.js'
 import type { Client, ClientOptions } from './client.js'
 import {
-  isSeamHttpMultiWorkspaceOptionsWithClient,
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
+  isSeamHttpWithoutWorkspaceOptionsWithClient,
   SeamHttpInvalidOptionsError,
-  type SeamHttpMultiWorkspaceOptions,
   type SeamHttpOptions,
   type SeamHttpRequestOptions,
+  type SeamHttpWithoutWorkspaceOptions,
 } from './options.js'
 
 export const defaultEndpoint = 'https://connect.getseam.com'
@@ -22,7 +22,7 @@ export const sdkHeaders = {
 }
 
 export type Options =
-  | SeamHttpMultiWorkspaceOptions
+  | SeamHttpWithoutWorkspaceOptions
   | (SeamHttpOptions & { publishableKey?: string })
 
 type ParsedOptions = Required<
@@ -35,7 +35,7 @@ export const parseOptions = (
   const options = getNormalizedOptions(apiKeyOrOptions)
 
   if (isSeamHttpOptionsWithClient(options)) return options
-  if (isSeamHttpMultiWorkspaceOptionsWithClient(options)) return options
+  if (isSeamHttpWithoutWorkspaceOptionsWithClient(options)) return options
 
   return {
     ...options,
@@ -64,6 +64,7 @@ const getNormalizedOptions = (
       : apiKeyOrOptions
 
   const requestOptions = {
+    isUndocumentedApiEnabled: options.isUndocumentedApiEnabled ?? false,
     waitForActionAttempt: options.waitForActionAttempt ?? true,
   }
 
@@ -181,6 +182,7 @@ export const isSeamHttpRequestOption = (
   key: string,
 ): key is keyof SeamHttpRequestOptions => {
   const keys: Record<keyof SeamHttpRequestOptions, true> = {
+    isUndocumentedApiEnabled: true,
     waitForActionAttempt: true,
   }
   return Object.keys(keys).includes(key)

@@ -1,0 +1,4 @@
+(
+  parameters{{#if isOptionalParamsOk}}?{{/if}}: {{parametersTypeName}},
+  options{{#if isFnType}}?{{/if}}: {{optionsTypeName}}{{#unless isFnType}} = {}{{/unless}},
+  ){{#if isFnType}} => {{else}}: {{/if}}{{requestTypeName}}

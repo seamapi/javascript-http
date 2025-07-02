@@ -9,11 +9,11 @@ interface SeamPaginatorParent {
 
 declare const $brand: unique symbol
 
-type PageCursor = string & { [$brand]: 'SeamPageCursor' }
+export type SeamPageCursor = string & { [$brand]: 'SeamPageCursor' }
 
 interface Pagination {
   readonly hasNextPage: boolean
-  readonly nextPageCursor: PageCursor | null
+  readonly nextPageCursor: SeamPageCursor | null
   readonly nextPageUrl: string | null
 }
 
@@ -150,6 +150,6 @@ type EnsureMutableArray<T> = T extends any[] ? T : never
 
 interface PaginationData {
   has_next_page: boolean
-  next_page_cursor: PageCursor | null
+  next_page_cursor: SeamPageCursor | null
   next_page_url: string | null
 }

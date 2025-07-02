@@ -164,61 +164,101 @@ export class SeamHttpAcsSystems {
   }
 
   get(
-    params?: AcsSystemsGetParams,
-  ): SeamHttpRequest<AcsSystemsGetResponse, 'acs_system'> {
+    parameters?: AcsSystemsGetParameters,
+    options: AcsSystemsGetOptions = {},
+  ): AcsSystemsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_system',
+      options,
     })
   }
 
   list(
-    params?: AcsSystemsListParams,
-  ): SeamHttpRequest<AcsSystemsListResponse, 'acs_systems'> {
+    parameters?: AcsSystemsListParameters,
+    options: AcsSystemsListOptions = {},
+  ): AcsSystemsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_systems',
+      options,
     })
   }
 
   listCompatibleCredentialManagerAcsSystems(
-    params?: AcsSystemsListCompatibleCredentialManagerAcsSystemsParams,
-  ): SeamHttpRequest<
-    AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse,
-    'acs_systems'
-  > {
+    parameters?: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
+    options: AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = {},
+  ): AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/list_compatible_credential_manager_acs_systems',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'acs_systems',
+      options,
     })
   }
 }
 
-export type AcsSystemsGetParams = RouteRequestBody<'/acs/systems/get'>
+export type AcsSystemsGetParameters = RouteRequestBody<'/acs/systems/get'>
 
+/**
+ * @deprecated Use AcsSystemsGetParameters instead.
+ */
+export type AcsSystemsGetParams = AcsSystemsGetParameters
+
+/**
+ * @deprecated Use AcsSystemsGetRequest instead.
+ */
 export type AcsSystemsGetResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/get'>>
 >
 
-export type AcsSystemsGetOptions = never
+export type AcsSystemsGetRequest = SeamHttpRequest<
+  AcsSystemsGetResponse,
+  'acs_system'
+>
 
-export type AcsSystemsListParams = RouteRequestBody<'/acs/systems/list'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsSystemsGetOptions {}
 
+export type AcsSystemsListParameters = RouteRequestBody<'/acs/systems/list'>
+
+/**
+ * @deprecated Use AcsSystemsListParameters instead.
+ */
+export type AcsSystemsListParams = AcsSystemsListParameters
+
+/**
+ * @deprecated Use AcsSystemsListRequest instead.
+ */
 export type AcsSystemsListResponse = SetNonNullable<
   Required<RouteResponse<'/acs/systems/list'>>
 >
 
-export type AcsSystemsListOptions = never
+export type AcsSystemsListRequest = SeamHttpRequest<
+  AcsSystemsListResponse,
+  'acs_systems'
+>
 
-export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsSystemsListOptions {}
+
+export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters =
   RouteRequestBody<'/acs/systems/list_compatible_credential_manager_acs_systems'>
 
+/**
+ * @deprecated Use AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters instead.
+ */
+export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParams =
+  AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters
+
+/**
+ * @deprecated Use AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest instead.
+ */
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse =
   SetNonNullable<
     Required<
@@ -226,4 +266,11 @@ export type AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse =
     >
   >
 
-export type AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = never
+export type AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest =
+  SeamHttpRequest<
+    AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse,
+    'acs_systems'
+  >
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions {}

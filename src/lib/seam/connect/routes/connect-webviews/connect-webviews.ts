@@ -164,81 +164,143 @@ export class SeamHttpConnectWebviews {
   }
 
   create(
-    body?: ConnectWebviewsCreateBody,
-  ): SeamHttpRequest<ConnectWebviewsCreateResponse, 'connect_webview'> {
+    parameters?: ConnectWebviewsCreateParameters,
+    options: ConnectWebviewsCreateOptions = {},
+  ): ConnectWebviewsCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'connect_webview',
+      options,
     })
   }
 
   delete(
-    params?: ConnectWebviewsDeleteParams,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: ConnectWebviewsDeleteParameters,
+    options: ConnectWebviewsDeleteOptions = {},
+  ): ConnectWebviewsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: ConnectWebviewsGetParams,
-  ): SeamHttpRequest<ConnectWebviewsGetResponse, 'connect_webview'> {
+    parameters?: ConnectWebviewsGetParameters,
+    options: ConnectWebviewsGetOptions = {},
+  ): ConnectWebviewsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'connect_webview',
+      options,
     })
   }
 
   list(
-    params?: ConnectWebviewsListParams,
-  ): SeamHttpRequest<ConnectWebviewsListResponse, 'connect_webviews'> {
+    parameters?: ConnectWebviewsListParameters,
+    options: ConnectWebviewsListOptions = {},
+  ): ConnectWebviewsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'connect_webviews',
+      options,
     })
   }
 }
 
-export type ConnectWebviewsCreateBody =
+export type ConnectWebviewsCreateParameters =
   RouteRequestBody<'/connect_webviews/create'>
 
+/**
+ * @deprecated Use ConnectWebviewsCreateParameters instead.
+ */
+export type ConnectWebviewsCreateBody = ConnectWebviewsCreateParameters
+
+/**
+ * @deprecated Use ConnectWebviewsCreateRequest instead.
+ */
 export type ConnectWebviewsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/create'>>
 >
 
-export type ConnectWebviewsCreateOptions = never
+export type ConnectWebviewsCreateRequest = SeamHttpRequest<
+  ConnectWebviewsCreateResponse,
+  'connect_webview'
+>
 
-export type ConnectWebviewsDeleteParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectWebviewsCreateOptions {}
+
+export type ConnectWebviewsDeleteParameters =
   RouteRequestBody<'/connect_webviews/delete'>
 
+/**
+ * @deprecated Use ConnectWebviewsDeleteParameters instead.
+ */
+export type ConnectWebviewsDeleteParams = ConnectWebviewsDeleteParameters
+
+/**
+ * @deprecated Use ConnectWebviewsDeleteRequest instead.
+ */
 export type ConnectWebviewsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/delete'>>
 >
 
-export type ConnectWebviewsDeleteOptions = never
+export type ConnectWebviewsDeleteRequest = SeamHttpRequest<void, undefined>
 
-export type ConnectWebviewsGetParams = RouteRequestBody<'/connect_webviews/get'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectWebviewsDeleteOptions {}
 
+export type ConnectWebviewsGetParameters =
+  RouteRequestBody<'/connect_webviews/get'>
+
+/**
+ * @deprecated Use ConnectWebviewsGetParameters instead.
+ */
+export type ConnectWebviewsGetParams = ConnectWebviewsGetParameters
+
+/**
+ * @deprecated Use ConnectWebviewsGetRequest instead.
+ */
 export type ConnectWebviewsGetResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/get'>>
 >
 
-export type ConnectWebviewsGetOptions = never
+export type ConnectWebviewsGetRequest = SeamHttpRequest<
+  ConnectWebviewsGetResponse,
+  'connect_webview'
+>
 
-export type ConnectWebviewsListParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectWebviewsGetOptions {}
+
+export type ConnectWebviewsListParameters =
   RouteRequestBody<'/connect_webviews/list'>
 
+/**
+ * @deprecated Use ConnectWebviewsListParameters instead.
+ */
+export type ConnectWebviewsListParams = ConnectWebviewsListParameters
+
+/**
+ * @deprecated Use ConnectWebviewsListRequest instead.
+ */
 export type ConnectWebviewsListResponse = SetNonNullable<
   Required<RouteResponse<'/connect_webviews/list'>>
 >
 
-export type ConnectWebviewsListOptions = never
+export type ConnectWebviewsListRequest = SeamHttpRequest<
+  ConnectWebviewsListResponse,
+  'connect_webviews'
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ConnectWebviewsListOptions {}

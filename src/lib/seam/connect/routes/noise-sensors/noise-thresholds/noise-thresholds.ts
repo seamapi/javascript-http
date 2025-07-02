@@ -167,111 +167,187 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   create(
-    body?: NoiseSensorsNoiseThresholdsCreateBody,
-  ): SeamHttpRequest<
-    NoiseSensorsNoiseThresholdsCreateResponse,
-    'noise_threshold'
-  > {
+    parameters?: NoiseSensorsNoiseThresholdsCreateParameters,
+    options: NoiseSensorsNoiseThresholdsCreateOptions = {},
+  ): NoiseSensorsNoiseThresholdsCreateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/create',
       method: 'POST',
-      body,
+      body: parameters,
       responseKey: 'noise_threshold',
+      options,
     })
   }
 
   delete(
-    params?: NoiseSensorsNoiseThresholdsDeleteParams,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: NoiseSensorsNoiseThresholdsDeleteParameters,
+    options: NoiseSensorsNoiseThresholdsDeleteOptions = {},
+  ): NoiseSensorsNoiseThresholdsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/delete',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 
   get(
-    params?: NoiseSensorsNoiseThresholdsGetParams,
-  ): SeamHttpRequest<
-    NoiseSensorsNoiseThresholdsGetResponse,
-    'noise_threshold'
-  > {
+    parameters?: NoiseSensorsNoiseThresholdsGetParameters,
+    options: NoiseSensorsNoiseThresholdsGetOptions = {},
+  ): NoiseSensorsNoiseThresholdsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/get',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'noise_threshold',
+      options,
     })
   }
 
   list(
-    params?: NoiseSensorsNoiseThresholdsListParams,
-  ): SeamHttpRequest<
-    NoiseSensorsNoiseThresholdsListResponse,
-    'noise_thresholds'
-  > {
+    parameters?: NoiseSensorsNoiseThresholdsListParameters,
+    options: NoiseSensorsNoiseThresholdsListOptions = {},
+  ): NoiseSensorsNoiseThresholdsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/list',
       method: 'POST',
-      body: params,
+      body: parameters,
       responseKey: 'noise_thresholds',
+      options,
     })
   }
 
   update(
-    body?: NoiseSensorsNoiseThresholdsUpdateBody,
-  ): SeamHttpRequest<void, undefined> {
+    parameters?: NoiseSensorsNoiseThresholdsUpdateParameters,
+    options: NoiseSensorsNoiseThresholdsUpdateOptions = {},
+  ): NoiseSensorsNoiseThresholdsUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/update',
       method: 'PUT',
-      body,
+      body: parameters,
       responseKey: undefined,
+      options,
     })
   }
 }
 
-export type NoiseSensorsNoiseThresholdsCreateBody =
+export type NoiseSensorsNoiseThresholdsCreateParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/create'>
 
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsCreateParameters instead.
+ */
+export type NoiseSensorsNoiseThresholdsCreateBody =
+  NoiseSensorsNoiseThresholdsCreateParameters
+
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsCreateRequest instead.
+ */
 export type NoiseSensorsNoiseThresholdsCreateResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/create'>>
 >
 
-export type NoiseSensorsNoiseThresholdsCreateOptions = never
+export type NoiseSensorsNoiseThresholdsCreateRequest = SeamHttpRequest<
+  NoiseSensorsNoiseThresholdsCreateResponse,
+  'noise_threshold'
+>
 
-export type NoiseSensorsNoiseThresholdsDeleteParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsNoiseThresholdsCreateOptions {}
+
+export type NoiseSensorsNoiseThresholdsDeleteParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/delete'>
 
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsDeleteParameters instead.
+ */
+export type NoiseSensorsNoiseThresholdsDeleteParams =
+  NoiseSensorsNoiseThresholdsDeleteParameters
+
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsDeleteRequest instead.
+ */
 export type NoiseSensorsNoiseThresholdsDeleteResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/delete'>>
 >
 
-export type NoiseSensorsNoiseThresholdsDeleteOptions = never
+export type NoiseSensorsNoiseThresholdsDeleteRequest = SeamHttpRequest<
+  void,
+  undefined
+>
 
-export type NoiseSensorsNoiseThresholdsGetParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsNoiseThresholdsDeleteOptions {}
+
+export type NoiseSensorsNoiseThresholdsGetParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/get'>
 
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsGetParameters instead.
+ */
+export type NoiseSensorsNoiseThresholdsGetParams =
+  NoiseSensorsNoiseThresholdsGetParameters
+
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsGetRequest instead.
+ */
 export type NoiseSensorsNoiseThresholdsGetResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/get'>>
 >
 
-export type NoiseSensorsNoiseThresholdsGetOptions = never
+export type NoiseSensorsNoiseThresholdsGetRequest = SeamHttpRequest<
+  NoiseSensorsNoiseThresholdsGetResponse,
+  'noise_threshold'
+>
 
-export type NoiseSensorsNoiseThresholdsListParams =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsNoiseThresholdsGetOptions {}
+
+export type NoiseSensorsNoiseThresholdsListParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/list'>
 
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsListParameters instead.
+ */
+export type NoiseSensorsNoiseThresholdsListParams =
+  NoiseSensorsNoiseThresholdsListParameters
+
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsListRequest instead.
+ */
 export type NoiseSensorsNoiseThresholdsListResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/list'>>
 >
 
-export type NoiseSensorsNoiseThresholdsListOptions = never
+export type NoiseSensorsNoiseThresholdsListRequest = SeamHttpRequest<
+  NoiseSensorsNoiseThresholdsListResponse,
+  'noise_thresholds'
+>
 
-export type NoiseSensorsNoiseThresholdsUpdateBody =
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsNoiseThresholdsListOptions {}
+
+export type NoiseSensorsNoiseThresholdsUpdateParameters =
   RouteRequestBody<'/noise_sensors/noise_thresholds/update'>
 
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsUpdateParameters instead.
+ */
+export type NoiseSensorsNoiseThresholdsUpdateBody =
+  NoiseSensorsNoiseThresholdsUpdateParameters
+
+/**
+ * @deprecated Use NoiseSensorsNoiseThresholdsUpdateRequest instead.
+ */
 export type NoiseSensorsNoiseThresholdsUpdateResponse = SetNonNullable<
   Required<RouteResponse<'/noise_sensors/noise_thresholds/update'>>
 >
 
-export type NoiseSensorsNoiseThresholdsUpdateOptions = never
+export type NoiseSensorsNoiseThresholdsUpdateRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NoiseSensorsNoiseThresholdsUpdateOptions {}

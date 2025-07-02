@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import {
   SeamHttp,
   SeamHttpInvalidTokenError,
-  SeamHttpMultiWorkspace,
+  SeamHttpWithoutWorkspace,
 } from '@seamapi/http/connect'
 
 test('SeamHttp: fromConsoleSessionToken returns instance authorized with consoleSessionToken', async (t) => {
@@ -83,7 +83,7 @@ test('SeamHttp: checks consoleSessionToken format', (t) => {
   })
 })
 
-test('SeamHttpMultiWorkspace: fromConsoleSessionToken returns instance authorized with consoleSessionToken', async (t) => {
+test('SeamHttpWithoutWorkspace: fromConsoleSessionToken returns instance authorized with consoleSessionToken', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const consoleSessionToken = jwt.sign(
     {
@@ -93,7 +93,7 @@ test('SeamHttpMultiWorkspace: fromConsoleSessionToken returns instance authorize
     'secret',
   )
 
-  const seam = SeamHttpMultiWorkspace.fromConsoleSessionToken(
+  const seam = SeamHttpWithoutWorkspace.fromConsoleSessionToken(
     consoleSessionToken,
     {
       endpoint,
@@ -103,7 +103,7 @@ test('SeamHttpMultiWorkspace: fromConsoleSessionToken returns instance authorize
   t.true(workspaces.length > 0)
 })
 
-test('SeamHttpMultiWorkspace: constructor returns instance authorized with consoleSessionToken', async (t) => {
+test('SeamHttpWithoutWorkspace: constructor returns instance authorized with consoleSessionToken', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const consoleSessionToken = jwt.sign(
     {
@@ -113,7 +113,7 @@ test('SeamHttpMultiWorkspace: constructor returns instance authorized with conso
     'secret',
   )
 
-  const seam = new SeamHttpMultiWorkspace({
+  const seam = new SeamHttpWithoutWorkspace({
     consoleSessionToken,
     endpoint,
   })
@@ -121,27 +121,29 @@ test('SeamHttpMultiWorkspace: constructor returns instance authorized with conso
   t.true(workspaces.length > 0)
 })
 
-test('SeamHttpMultiWorkspace: checks consoleSessionToken format', (t) => {
+test('SeamHttpWithoutWorkspace: checks consoleSessionToken format', (t) => {
   t.throws(
     () =>
-      SeamHttpMultiWorkspace.fromConsoleSessionToken('some-invalid-key-format'),
+      SeamHttpWithoutWorkspace.fromConsoleSessionToken(
+        'some-invalid-key-format',
+      ),
     {
       instanceOf: SeamHttpInvalidTokenError,
       message: /Unknown/,
     },
   )
   t.throws(
-    () => SeamHttpMultiWorkspace.fromConsoleSessionToken('seam_apikey_token'),
+    () => SeamHttpWithoutWorkspace.fromConsoleSessionToken('seam_apikey_token'),
     {
       instanceOf: SeamHttpInvalidTokenError,
       message: /Unknown/,
     },
   )
-  t.throws(() => SeamHttpMultiWorkspace.fromConsoleSessionToken('seam_cst'), {
+  t.throws(() => SeamHttpWithoutWorkspace.fromConsoleSessionToken('seam_cst'), {
     instanceOf: SeamHttpInvalidTokenError,
     message: /Client Session Token/,
   })
-  t.throws(() => SeamHttpMultiWorkspace.fromConsoleSessionToken('seam_at'), {
+  t.throws(() => SeamHttpWithoutWorkspace.fromConsoleSessionToken('seam_at'), {
     instanceOf: SeamHttpInvalidTokenError,
     message: /Access Token/,
   })

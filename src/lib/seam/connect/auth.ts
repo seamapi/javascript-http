@@ -1,17 +1,17 @@
 import {
-  isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken,
-  isSeamHttpMultiWorkspaceOptionsWithPersonalAccessToken,
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClientSessionToken,
   isSeamHttpOptionsWithConsoleSessionToken,
   isSeamHttpOptionsWithPersonalAccessToken,
+  isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
+  isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken,
   SeamHttpInvalidOptionsError,
-  type SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken,
-  type SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
   type SeamHttpOptionsWithPersonalAccessToken,
+  type SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
+  type SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken,
 } from './options.js'
 import type { Options } from './parse-options.js'
 import {
@@ -43,14 +43,14 @@ export const getAuthHeaders = (options: Options): Headers => {
   }
 
   if (
-    isSeamHttpMultiWorkspaceOptionsWithConsoleSessionToken(options) ||
+    isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken(options) ||
     isSeamHttpOptionsWithConsoleSessionToken(options)
   ) {
     return getAuthHeadersForConsoleSessionToken(options)
   }
 
   if (
-    isSeamHttpMultiWorkspaceOptionsWithPersonalAccessToken(options) ||
+    isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken(options) ||
     isSeamHttpOptionsWithPersonalAccessToken(options)
   ) {
     return getAuthHeadersForPersonalAccessToken(options)
@@ -142,7 +142,7 @@ const getAuthHeadersForConsoleSessionToken = ({
   consoleSessionToken,
   ...options
 }:
-  | SeamHttpMultiWorkspaceOptionsWithConsoleSessionToken
+  | SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken
   | SeamHttpOptionsWithConsoleSessionToken): Headers => {
   const workspaceId = 'workspaceId' in options ? options.workspaceId : undefined
 
@@ -180,7 +180,7 @@ const getAuthHeadersForPersonalAccessToken = ({
   personalAccessToken,
   ...options
 }:
-  | SeamHttpMultiWorkspaceOptionsWithPersonalAccessToken
+  | SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken
   | SeamHttpOptionsWithPersonalAccessToken): Headers => {
   const workspaceId = 'workspaceId' in options ? options.workspaceId : undefined
 

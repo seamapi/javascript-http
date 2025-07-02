@@ -1,0 +1,61 @@
+client: Client
+readonly defaults: Required<SeamHttpRequestOptions>
+readonly ltsVersion = seamApiLtsVersion
+static ltsVersion = seamApiLtsVersion
+
+constructor(options: SeamHttpWithoutWorkspaceOptions = {}) {
+  const opts = parseOptions(options)
+  this.client = 'client' in opts ? opts.client : createClient(opts)
+  this.defaults = limitToSeamHttpRequestOptions(opts)
+}
+
+static fromClient(
+  client: SeamHttpWithoutWorkspaceOptionsWithClient['client'],
+  options: Omit<SeamHttpWithoutWorkspaceOptionsWithClient, 'client'> = {},
+): {{className}}{
+  const constructorOptions = { ...options, client }
+  if (!isSeamHttpWithoutWorkspaceOptionsWithClient(constructorOptions)) {
+    throw new SeamHttpWithoutWorkspaceInvalidOptionsError('Missing client')
+  }
+  return new {{className}}(constructorOptions)
+}
+
+static fromConsoleSessionToken(
+  consoleSessionToken: SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken['consoleSessionToken'],
+  options: Omit<
+    SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
+    'consoleSessionToken'
+  > = {},
+): {{className}}{
+  const constructorOptions = { ...options, consoleSessionToken }
+  if (
+    !isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken(
+      constructorOptions,
+    )
+  ) {
+    throw new SeamHttpWithoutWorkspaceInvalidOptionsError(
+      'Missing consoleSessionToken',
+    )
+  }
+  return new {{className}}(constructorOptions)
+}
+
+static fromPersonalAccessToken(
+  personalAccessToken: SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken['personalAccessToken'],
+  options: Omit<
+    SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken,
+    'personalAccessToken'
+  > = {},
+): {{className}}{
+  const constructorOptions = { ...options, personalAccessToken }
+  if (
+    !isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken(
+      constructorOptions,
+    )
+  ) {
+    throw new SeamHttpWithoutWorkspaceInvalidOptionsError(
+      'Missing personalAccessToken',
+    )
+  }
+  return new {{className}}(constructorOptions)
+}
