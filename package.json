@@ -98,7 +98,7 @@
     "axios-retry": "^4.4.2"
   },
   "devDependencies": {
-    "@seamapi/blueprint": "^0.51.0",
+    "@seamapi/blueprint": "^0.51.1",
     "@seamapi/fake-seam-connect": "^1.77.0",
     "@seamapi/smith": "^0.4.4",
     "@seamapi/types": "1.420.2",
