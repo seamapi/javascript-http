@@ -1,4 +1,4 @@
-import type { Blueprint } from '@seamapi/blueprint'
+import type { Blueprint, SeamAuthMethod } from '@seamapi/blueprint'
 import { kebabCase } from 'change-case'
 import type Metalsmith from 'metalsmith'
 
@@ -23,14 +23,34 @@ type File = RouteLayoutContext &
 
 const rootPath = 'src/lib/seam/connect/routes'
 
+const supportedAuthMethods: SeamAuthMethod[] = [
+  'api_key',
+  'publishable_key',
+  'client_session_token',
+  'personal_access_token',
+  'console_session_token',
+]
+
 export const connect = (
   files: Metalsmith.Files,
   metalsmith: Metalsmith,
 ): void => {
   const metadata = metalsmith.metadata() as Metadata
-  const {
-    blueprint: { namespaces, routes },
-  } = metadata
+  const { blueprint } = metadata
+
+  const routes = blueprint.routes
+    .filter((route) =>
+      route.endpoints.some((endpoint) =>
+        endpoint.authMethods.some((authMethod) =>
+          supportedAuthMethods.includes(authMethod),
+        ),
+      ),
+    )
+    .filter((route) => !route.path.startsWith('/seam/mobile_sdk'))
+
+  const namespaces = blueprint.namespaces.filter((namespace) =>
+    routes.some((route) => route.parentPath === namespace.path),
+  )
 
   const nodes = [...namespaces, ...routes]
 
