@@ -2524,11 +2524,6 @@ export class SeamHttpEndpoints {
     options?: LocksSimulateKeypadCodeEntryOptions,
   ) => LocksSimulateKeypadCodeEntryRequest {
     const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
     return function locksSimulateKeypadCodeEntry(
       ...args: Parameters<SeamHttpLocksSimulate['keypadCodeEntry']>
     ): ReturnType<SeamHttpLocksSimulate['keypadCodeEntry']> {
@@ -2542,11 +2537,6 @@ export class SeamHttpEndpoints {
     options?: LocksSimulateManualLockViaKeypadOptions,
   ) => LocksSimulateManualLockViaKeypadRequest {
     const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
     return function locksSimulateManualLockViaKeypad(
       ...args: Parameters<SeamHttpLocksSimulate['manualLockViaKeypad']>
     ): ReturnType<SeamHttpLocksSimulate['manualLockViaKeypad']> {
