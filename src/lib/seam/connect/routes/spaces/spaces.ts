@@ -232,6 +232,19 @@ export class SeamHttpSpaces {
     })
   }
 
+  getRelated(
+    parameters?: SpacesGetRelatedParameters,
+    options: SpacesGetRelatedOptions = {},
+  ): SpacesGetRelatedRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/spaces/get_related',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'batch',
+      options,
+    })
+  }
+
   list(
     parameters?: SpacesListParameters,
     options: SpacesListOptions = {},
@@ -380,6 +393,28 @@ export type SpacesGetRequest = SeamHttpRequest<SpacesGetResponse, 'space'>
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesGetOptions {}
+
+export type SpacesGetRelatedParameters = RouteRequestBody<'/spaces/get_related'>
+
+/**
+ * @deprecated Use SpacesGetRelatedParameters instead.
+ */
+export type SpacesGetRelatedParams = SpacesGetRelatedParameters
+
+/**
+ * @deprecated Use SpacesGetRelatedRequest instead.
+ */
+export type SpacesGetRelatedResponse = SetNonNullable<
+  Required<RouteResponse<'/spaces/get_related'>>
+>
+
+export type SpacesGetRelatedRequest = SeamHttpRequest<
+  SpacesGetRelatedResponse,
+  'batch'
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SpacesGetRelatedOptions {}
 
 export type SpacesListParameters = RouteRequestParams<'/spaces/list'>
 

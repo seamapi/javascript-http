@@ -411,6 +411,12 @@ import {
   type DevicesSimulateConnectOptions,
   type DevicesSimulateConnectParameters,
   type DevicesSimulateConnectRequest,
+  type DevicesSimulateConnectToHubOptions,
+  type DevicesSimulateConnectToHubParameters,
+  type DevicesSimulateConnectToHubRequest,
+  type DevicesSimulateDisconnectFromHubOptions,
+  type DevicesSimulateDisconnectFromHubParameters,
+  type DevicesSimulateDisconnectFromHubRequest,
   type DevicesSimulateDisconnectOptions,
   type DevicesSimulateDisconnectParameters,
   type DevicesSimulateDisconnectRequest,
@@ -573,6 +579,9 @@ import {
   type SpacesDeleteRequest,
   type SpacesGetOptions,
   type SpacesGetParameters,
+  type SpacesGetRelatedOptions,
+  type SpacesGetRelatedParameters,
+  type SpacesGetRelatedRequest,
   type SpacesGetRequest,
   type SpacesListOptions,
   type SpacesListParameters,
@@ -2376,6 +2385,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/devices/simulate/connect_to_hub'](): (
+    parameters?: DevicesSimulateConnectToHubParameters,
+    options?: DevicesSimulateConnectToHubOptions,
+  ) => DevicesSimulateConnectToHubRequest {
+    const { client, defaults } = this
+    return function devicesSimulateConnectToHub(
+      ...args: Parameters<SeamHttpDevicesSimulate['connectToHub']>
+    ): ReturnType<SeamHttpDevicesSimulate['connectToHub']> {
+      const seam = SeamHttpDevicesSimulate.fromClient(client, defaults)
+      return seam.connectToHub(...args)
+    }
+  }
+
   get ['/devices/simulate/disconnect'](): (
     parameters?: DevicesSimulateDisconnectParameters,
     options?: DevicesSimulateDisconnectOptions,
@@ -2386,6 +2408,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpDevicesSimulate['disconnect']> {
       const seam = SeamHttpDevicesSimulate.fromClient(client, defaults)
       return seam.disconnect(...args)
+    }
+  }
+
+  get ['/devices/simulate/disconnect_from_hub'](): (
+    parameters?: DevicesSimulateDisconnectFromHubParameters,
+    options?: DevicesSimulateDisconnectFromHubOptions,
+  ) => DevicesSimulateDisconnectFromHubRequest {
+    const { client, defaults } = this
+    return function devicesSimulateDisconnectFromHub(
+      ...args: Parameters<SeamHttpDevicesSimulate['disconnectFromHub']>
+    ): ReturnType<SeamHttpDevicesSimulate['disconnectFromHub']> {
+      const seam = SeamHttpDevicesSimulate.fromClient(client, defaults)
+      return seam.disconnectFromHub(...args)
     }
   }
 
@@ -2942,6 +2977,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpSpaces['get']> {
       const seam = SeamHttpSpaces.fromClient(client, defaults)
       return seam.get(...args)
+    }
+  }
+
+  get ['/spaces/get_related'](): (
+    parameters?: SpacesGetRelatedParameters,
+    options?: SpacesGetRelatedOptions,
+  ) => SpacesGetRelatedRequest {
+    const { client, defaults } = this
+    return function spacesGetRelated(
+      ...args: Parameters<SeamHttpSpaces['getRelated']>
+    ): ReturnType<SeamHttpSpaces['getRelated']> {
+      const seam = SeamHttpSpaces.fromClient(client, defaults)
+      return seam.getRelated(...args)
     }
   }
 
@@ -4137,6 +4185,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/portals/get'
   | '/seam/partner/v1/building_blocks/spaces/auto_map'
   | '/spaces/get'
+  | '/spaces/get_related'
   | '/spaces/list'
   | '/thermostats/get'
   | '/thermostats/list'
@@ -4225,7 +4274,9 @@ export type SeamHttpEndpointMutationPaths =
   | '/devices/delete'
   | '/devices/update'
   | '/devices/simulate/connect'
+  | '/devices/simulate/connect_to_hub'
   | '/devices/simulate/disconnect'
+  | '/devices/simulate/disconnect_from_hub'
   | '/devices/simulate/remove'
   | '/devices/unmanaged/update'
   | '/locks/lock_door'

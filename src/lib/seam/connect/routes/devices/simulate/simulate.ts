@@ -176,12 +176,38 @@ export class SeamHttpDevicesSimulate {
     })
   }
 
+  connectToHub(
+    parameters?: DevicesSimulateConnectToHubParameters,
+    options: DevicesSimulateConnectToHubOptions = {},
+  ): DevicesSimulateConnectToHubRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/devices/simulate/connect_to_hub',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
   disconnect(
     parameters?: DevicesSimulateDisconnectParameters,
     options: DevicesSimulateDisconnectOptions = {},
   ): DevicesSimulateDisconnectRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/disconnect',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
+  disconnectFromHub(
+    parameters?: DevicesSimulateDisconnectFromHubParameters,
+    options: DevicesSimulateDisconnectFromHubOptions = {},
+  ): DevicesSimulateDisconnectFromHubRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/devices/simulate/disconnect_from_hub',
       method: 'POST',
       body: parameters,
       responseKey: undefined,
@@ -223,6 +249,30 @@ export type DevicesSimulateConnectRequest = SeamHttpRequest<void, undefined>
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DevicesSimulateConnectOptions {}
 
+export type DevicesSimulateConnectToHubParameters =
+  RouteRequestBody<'/devices/simulate/connect_to_hub'>
+
+/**
+ * @deprecated Use DevicesSimulateConnectToHubParameters instead.
+ */
+export type DevicesSimulateConnectToHubBody =
+  DevicesSimulateConnectToHubParameters
+
+/**
+ * @deprecated Use DevicesSimulateConnectToHubRequest instead.
+ */
+export type DevicesSimulateConnectToHubResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/simulate/connect_to_hub'>>
+>
+
+export type DevicesSimulateConnectToHubRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesSimulateConnectToHubOptions {}
+
 export type DevicesSimulateDisconnectParameters =
   RouteRequestBody<'/devices/simulate/disconnect'>
 
@@ -242,6 +292,30 @@ export type DevicesSimulateDisconnectRequest = SeamHttpRequest<void, undefined>
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DevicesSimulateDisconnectOptions {}
+
+export type DevicesSimulateDisconnectFromHubParameters =
+  RouteRequestBody<'/devices/simulate/disconnect_from_hub'>
+
+/**
+ * @deprecated Use DevicesSimulateDisconnectFromHubParameters instead.
+ */
+export type DevicesSimulateDisconnectFromHubBody =
+  DevicesSimulateDisconnectFromHubParameters
+
+/**
+ * @deprecated Use DevicesSimulateDisconnectFromHubRequest instead.
+ */
+export type DevicesSimulateDisconnectFromHubResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/simulate/disconnect_from_hub'>>
+>
+
+export type DevicesSimulateDisconnectFromHubRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesSimulateDisconnectFromHubOptions {}
 
 export type DevicesSimulateRemoveParameters =
   RouteRequestBody<'/devices/simulate/remove'>
