@@ -4,7 +4,8 @@ updates:
   - package-ecosystem: npm
     directory: '/'
     schedule:
-      interval: daily
+      interval: cron
+      cronjob: '25 * * * * 
     commit-message:
       prefix: feat
       include: scope
