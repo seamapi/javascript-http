@@ -4,7 +4,7 @@ import {
   isSeamActionAttemptFailedError,
   isSeamActionAttemptTimeoutError,
   type LocksUnlockDoorResponse,
-} from '@seamapi/http/connect'
+} from '@seamapi/http'
 
 import type { Handler } from './index.js'
 

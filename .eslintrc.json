@@ -28,7 +28,7 @@
           ["^\\u0000"],
           ["^node:"],
           ["^@?\\w"],
-          ["@seamapi/http/connect"],
+          ["@seamapi/http", "@seamapi/http/connect"],
           ["^lib/"],
           ["^"],
           ["^\\."]

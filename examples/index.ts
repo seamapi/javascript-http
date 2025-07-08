@@ -10,7 +10,7 @@ import landlubber, {
   type MiddlewareFunction,
 } from 'landlubber'
 
-import { SeamHttp } from '@seamapi/http/connect'
+import { SeamHttp } from '@seamapi/http'
 
 import * as locks from './locks.js'
 import * as unlock from './unlock.js'
