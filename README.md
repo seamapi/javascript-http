@@ -83,7 +83,7 @@ $ npm install -D @seamapi/types@latest
 #### List devices
 
 ```ts
-import { SeamHttp } from '@seamapi/http/connect'
+import { SeamHttp } from '@seamapi/http'
 
 const seam = new SeamHttp()
 const devices = await seam.devices.list()
@@ -92,7 +92,7 @@ const devices = await seam.devices.list()
 #### Unlock a door
 
 ```ts
-import { SeamHttp } from '@seamapi/http/connect'
+import { SeamHttp } from '@seamapi/http'
 
 const seam = new SeamHttp()
 const lock = await seam.locks.get({ name: 'Front Door' })
@@ -277,7 +277,7 @@ import {
   SeamHttp,
   isSeamActionAttemptFailedError,
   isSeamActionAttemptTimeoutError,
-} from '@seamapi/http/connect'
+} from '@seamapi/http'
 
 const seam = new SeamHttp('your-api-key', {
   waitForActionAttempt: {
@@ -495,7 +495,7 @@ Options are deep merged with the default options.
 The Axios client is exposed and may be used or configured directly:
 
 ```ts
-import { SeamHttp, DevicesListResponse } from '@seamapi/http/connect'
+import { SeamHttp, DevicesListResponse } from '@seamapi/http'
 
 const seam = new SeamHttp()
 
@@ -518,7 +518,7 @@ The `SeamHttpEndpoints` class offers an alternative path-based interface to ever
 Each endpoint is exposed as simple property that returns the corresponding method from `SeamHttp`.
 
 ```ts
-import { SeamHttpEndpoints } from '@seamapi/http/connect'
+import { SeamHttpEndpoints } from '@seamapi/http'
 
 const seam = new SeamHttpEndpoints()
 const devices = await seam['/devices/list']()
@@ -532,7 +532,7 @@ Do not use the undocumented API in production environments.
 Seam is not responsible for any issues you may encounter with the undocumented API.
 
 ```ts
-import { SeamHttp } from '@seamapi/http/connect'
+import { SeamHttp } from '@seamapi/http'
 
 const seam = new SeamHttp({ isUndocumentedApiEnabled: true })
 ```
