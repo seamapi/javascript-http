@@ -5,7 +5,7 @@ updates:
     directory: '/'
     schedule:
       interval: cron
-      cronjob: '25 * * * * 
+      cronjob: '25 * * * *'
     commit-message:
       prefix: feat
       include: scope
