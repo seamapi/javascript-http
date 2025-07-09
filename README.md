@@ -6,7 +6,7 @@
 
 JavaScript HTTP client for the Seam API written in TypeScript.
 
-Test CodeQL
+Test CodeQL.
 
 ## Description
 
