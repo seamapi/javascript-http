@@ -6,6 +6,8 @@
 
 JavaScript HTTP client for the Seam API written in TypeScript.
 
+Test CodeQL
+
 ## Description
 
 [Seam] makes it easy to integrate IoT devices with your applications.
