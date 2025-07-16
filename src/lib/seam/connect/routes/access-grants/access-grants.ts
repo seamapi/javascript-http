@@ -206,6 +206,19 @@ export class SeamHttpAccessGrants {
     })
   }
 
+  getRelated(
+    parameters?: AccessGrantsGetRelatedParameters,
+    options: AccessGrantsGetRelatedOptions = {},
+  ): AccessGrantsGetRelatedRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/access_grants/get_related',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'batch',
+      options,
+    })
+  }
+
   list(
     parameters?: AccessGrantsListParameters,
     options: AccessGrantsListOptions = {},
@@ -297,6 +310,29 @@ export type AccessGrantsGetRequest = SeamHttpRequest<
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessGrantsGetOptions {}
+
+export type AccessGrantsGetRelatedParameters =
+  RouteRequestBody<'/access_grants/get_related'>
+
+/**
+ * @deprecated Use AccessGrantsGetRelatedParameters instead.
+ */
+export type AccessGrantsGetRelatedParams = AccessGrantsGetRelatedParameters
+
+/**
+ * @deprecated Use AccessGrantsGetRelatedRequest instead.
+ */
+export type AccessGrantsGetRelatedResponse = SetNonNullable<
+  Required<RouteResponse<'/access_grants/get_related'>>
+>
+
+export type AccessGrantsGetRelatedRequest = SeamHttpRequest<
+  AccessGrantsGetRelatedResponse,
+  'batch'
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessGrantsGetRelatedOptions {}
 
 export type AccessGrantsListParameters = RouteRequestBody<'/access_grants/list'>
 
