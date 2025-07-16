@@ -98,6 +98,9 @@ import {
   type AccessGrantsDeleteRequest,
   type AccessGrantsGetOptions,
   type AccessGrantsGetParameters,
+  type AccessGrantsGetRelatedOptions,
+  type AccessGrantsGetRelatedParameters,
+  type AccessGrantsGetRelatedRequest,
   type AccessGrantsGetRequest,
   type AccessGrantsListOptions,
   type AccessGrantsListParameters,
@@ -1222,6 +1225,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAccessGrants['get']> {
       const seam = SeamHttpAccessGrants.fromClient(client, defaults)
       return seam.get(...args)
+    }
+  }
+
+  get ['/access_grants/get_related'](): (
+    parameters?: AccessGrantsGetRelatedParameters,
+    options?: AccessGrantsGetRelatedOptions,
+  ) => AccessGrantsGetRelatedRequest {
+    const { client, defaults } = this
+    return function accessGrantsGetRelated(
+      ...args: Parameters<SeamHttpAccessGrants['getRelated']>
+    ): ReturnType<SeamHttpAccessGrants['getRelated']> {
+      const seam = SeamHttpAccessGrants.fromClient(client, defaults)
+      return seam.getRelated(...args)
     }
   }
 
@@ -4126,6 +4142,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/access_codes/unmanaged/get'
   | '/access_codes/unmanaged/list'
   | '/access_grants/get'
+  | '/access_grants/get_related'
   | '/access_grants/list'
   | '/access_methods/get'
   | '/access_methods/list'
@@ -4212,6 +4229,7 @@ export type SeamHttpEndpointQueryPaths =
 
 export type SeamHttpEndpointPaginatedQueryPaths =
   | '/access_codes/list'
+  | '/access_codes/unmanaged/list'
   | '/acs/users/list'
   | '/connect_webviews/list'
   | '/connected_accounts/list'
