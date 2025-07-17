@@ -202,6 +202,19 @@ export class SeamHttpAccessMethods {
     })
   }
 
+  getRelated(
+    parameters?: AccessMethodsGetRelatedParameters,
+    options: AccessMethodsGetRelatedOptions = {},
+  ): AccessMethodsGetRelatedRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/access_methods/get_related',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'batch',
+      options,
+    })
+  }
+
   list(
     parameters?: AccessMethodsListParameters,
     options: AccessMethodsListOptions = {},
@@ -282,6 +295,29 @@ export type AccessMethodsGetRequest = SeamHttpRequest<
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessMethodsGetOptions {}
+
+export type AccessMethodsGetRelatedParameters =
+  RouteRequestBody<'/access_methods/get_related'>
+
+/**
+ * @deprecated Use AccessMethodsGetRelatedParameters instead.
+ */
+export type AccessMethodsGetRelatedParams = AccessMethodsGetRelatedParameters
+
+/**
+ * @deprecated Use AccessMethodsGetRelatedRequest instead.
+ */
+export type AccessMethodsGetRelatedResponse = SetNonNullable<
+  Required<RouteResponse<'/access_methods/get_related'>>
+>
+
+export type AccessMethodsGetRelatedRequest = SeamHttpRequest<
+  AccessMethodsGetRelatedResponse,
+  'batch'
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AccessMethodsGetRelatedOptions {}
 
 export type AccessMethodsListParameters =
   RouteRequestBody<'/access_methods/list'>
