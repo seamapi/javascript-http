@@ -119,6 +119,9 @@ import {
   type AccessMethodsEncodeRequest,
   type AccessMethodsGetOptions,
   type AccessMethodsGetParameters,
+  type AccessMethodsGetRelatedOptions,
+  type AccessMethodsGetRelatedParameters,
+  type AccessMethodsGetRelatedRequest,
   type AccessMethodsGetRequest,
   type AccessMethodsListOptions,
   type AccessMethodsListParameters,
@@ -1303,6 +1306,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAccessMethods['get']> {
       const seam = SeamHttpAccessMethods.fromClient(client, defaults)
       return seam.get(...args)
+    }
+  }
+
+  get ['/access_methods/get_related'](): (
+    parameters?: AccessMethodsGetRelatedParameters,
+    options?: AccessMethodsGetRelatedOptions,
+  ) => AccessMethodsGetRelatedRequest {
+    const { client, defaults } = this
+    return function accessMethodsGetRelated(
+      ...args: Parameters<SeamHttpAccessMethods['getRelated']>
+    ): ReturnType<SeamHttpAccessMethods['getRelated']> {
+      const seam = SeamHttpAccessMethods.fromClient(client, defaults)
+      return seam.getRelated(...args)
     }
   }
 
@@ -4145,6 +4161,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/access_grants/get_related'
   | '/access_grants/list'
   | '/access_methods/get'
+  | '/access_methods/get_related'
   | '/access_methods/list'
   | '/acs/access_groups/get'
   | '/acs/access_groups/list'
