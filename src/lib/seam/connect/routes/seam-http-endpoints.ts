@@ -477,15 +477,6 @@ import {
   SeamHttpLocksSimulate,
 } from './locks/simulate/index.js'
 import {
-  type NetworksGetOptions,
-  type NetworksGetParameters,
-  type NetworksGetRequest,
-  type NetworksListOptions,
-  type NetworksListParameters,
-  type NetworksListRequest,
-  SeamHttpNetworks,
-} from './networks/index.js'
-import {
   type NoiseSensorsListOptions,
   type NoiseSensorsListParameters,
   type NoiseSensorsListRequest,
@@ -533,6 +524,12 @@ import {
   type PhonesSimulateCreateSandboxPhoneRequest,
   SeamHttpPhonesSimulate,
 } from './phones/simulate/index.js'
+import {
+  type SeamConsoleV1GetResourceTypeOptions,
+  type SeamConsoleV1GetResourceTypeParameters,
+  type SeamConsoleV1GetResourceTypeRequest,
+  SeamHttpSeamConsoleV1,
+} from './seam/console/v1/index.js'
 import {
   type SeamCustomerV1AutomationRunsListOptions,
   type SeamCustomerV1AutomationRunsListParameters,
@@ -841,6 +838,9 @@ import {
   type WorkspacesCreateOptions,
   type WorkspacesCreateParameters,
   type WorkspacesCreateRequest,
+  type WorkspacesFindResourcesOptions,
+  type WorkspacesFindResourcesParameters,
+  type WorkspacesFindResourcesRequest,
   type WorkspacesGetOptions,
   type WorkspacesGetParameters,
   type WorkspacesGetRequest,
@@ -2612,42 +2612,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/networks/get'](): (
-    parameters?: NetworksGetParameters,
-    options?: NetworksGetOptions,
-  ) => NetworksGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function networksGet(
-      ...args: Parameters<SeamHttpNetworks['get']>
-    ): ReturnType<SeamHttpNetworks['get']> {
-      const seam = SeamHttpNetworks.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get ['/networks/list'](): (
-    parameters?: NetworksListParameters,
-    options?: NetworksListOptions,
-  ) => NetworksListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function networksList(
-      ...args: Parameters<SeamHttpNetworks['list']>
-    ): ReturnType<SeamHttpNetworks['list']> {
-      const seam = SeamHttpNetworks.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
   get ['/noise_sensors/list'](): (
     parameters?: NoiseSensorsListParameters,
     options?: NoiseSensorsListOptions,
@@ -2803,6 +2767,24 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpPhonesSimulate['createSandboxPhone']> {
       const seam = SeamHttpPhonesSimulate.fromClient(client, defaults)
       return seam.createSandboxPhone(...args)
+    }
+  }
+
+  get ['/seam/console/v1/get_resource_type'](): (
+    parameters?: SeamConsoleV1GetResourceTypeParameters,
+    options?: SeamConsoleV1GetResourceTypeOptions,
+  ) => SeamConsoleV1GetResourceTypeRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamConsoleV1GetResourceType(
+      ...args: Parameters<SeamHttpSeamConsoleV1['getResourceType']>
+    ): ReturnType<SeamHttpSeamConsoleV1['getResourceType']> {
+      const seam = SeamHttpSeamConsoleV1.fromClient(client, defaults)
+      return seam.getResourceType(...args)
     }
   }
 
@@ -4098,6 +4080,24 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/workspaces/find_resources'](): (
+    parameters?: WorkspacesFindResourcesParameters,
+    options?: WorkspacesFindResourcesOptions,
+  ) => WorkspacesFindResourcesRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function workspacesFindResources(
+      ...args: Parameters<SeamHttpWorkspaces['findResources']>
+    ): ReturnType<SeamHttpWorkspaces['findResources']> {
+      const seam = SeamHttpWorkspaces.fromClient(client, defaults)
+      return seam.findResources(...args)
+    }
+  }
+
   get ['/workspaces/get'](): (
     parameters?: WorkspacesGetParameters,
     options?: WorkspacesGetOptions,
@@ -4207,13 +4207,12 @@ export type SeamHttpEndpointQueryPaths =
   | '/events/list'
   | '/locks/get'
   | '/locks/list'
-  | '/networks/get'
-  | '/networks/list'
   | '/noise_sensors/list'
   | '/noise_sensors/noise_thresholds/get'
   | '/noise_sensors/noise_thresholds/list'
   | '/phones/get'
   | '/phones/list'
+  | '/seam/console/v1/get_resource_type'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/automations/get'
   | '/seam/customer/v1/portals/get'
@@ -4241,6 +4240,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/user_identities/enrollment_automations/list'
   | '/webhooks/get'
   | '/webhooks/list'
+  | '/workspaces/find_resources'
   | '/workspaces/get'
   | '/workspaces/list'
 
