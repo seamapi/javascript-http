@@ -180,6 +180,24 @@ export class SeamHttpWorkspaces {
     })
   }
 
+  findResources(
+    parameters?: WorkspacesFindResourcesParameters,
+    options: WorkspacesFindResourcesOptions = {},
+  ): WorkspacesFindResourcesRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/workspaces/find_resources',
+      method: 'GET',
+      params: parameters,
+      responseKey: 'batch',
+      options,
+    })
+  }
+
   get(
     parameters?: WorkspacesGetParameters,
     options: WorkspacesGetOptions = {},
@@ -254,6 +272,29 @@ export type WorkspacesCreateRequest = SeamHttpRequest<
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesCreateOptions {}
+
+export type WorkspacesFindResourcesParameters =
+  RouteRequestParams<'/workspaces/find_resources'>
+
+/**
+ * @deprecated Use WorkspacesFindResourcesParameters instead.
+ */
+export type WorkspacesFindResourcesParams = WorkspacesFindResourcesParameters
+
+/**
+ * @deprecated Use WorkspacesFindResourcesRequest instead.
+ */
+export type WorkspacesFindResourcesResponse = SetNonNullable<
+  Required<RouteResponse<'/workspaces/find_resources'>>
+>
+
+export type WorkspacesFindResourcesRequest = SeamHttpRequest<
+  WorkspacesFindResourcesResponse,
+  'batch'
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WorkspacesFindResourcesOptions {}
 
 export type WorkspacesGetParameters = RouteRequestParams<'/workspaces/get'>
 
