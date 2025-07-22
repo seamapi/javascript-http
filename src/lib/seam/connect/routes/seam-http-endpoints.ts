@@ -453,6 +453,12 @@ import {
   SeamHttpEvents,
 } from './events/index.js'
 import {
+  type InstantKeysListOptions,
+  type InstantKeysListParameters,
+  type InstantKeysListRequest,
+  SeamHttpInstantKeys,
+} from './instant-keys/index.js'
+import {
   type LocksGetOptions,
   type LocksGetParameters,
   type LocksGetRequest,
@@ -525,9 +531,9 @@ import {
   SeamHttpPhonesSimulate,
 } from './phones/simulate/index.js'
 import {
-  type SeamConsoleV1GetResourceTypeOptions,
-  type SeamConsoleV1GetResourceTypeParameters,
-  type SeamConsoleV1GetResourceTypeRequest,
+  type SeamConsoleV1GetResourceLocatorOptions,
+  type SeamConsoleV1GetResourceLocatorParameters,
+  type SeamConsoleV1GetResourceLocatorRequest,
   SeamHttpSeamConsoleV1,
 } from './seam/console/v1/index.js'
 import {
@@ -2534,6 +2540,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/instant_keys/list'](): (
+    parameters?: InstantKeysListParameters,
+    options?: InstantKeysListOptions,
+  ) => InstantKeysListRequest {
+    const { client, defaults } = this
+    return function instantKeysList(
+      ...args: Parameters<SeamHttpInstantKeys['list']>
+    ): ReturnType<SeamHttpInstantKeys['list']> {
+      const seam = SeamHttpInstantKeys.fromClient(client, defaults)
+      return seam.list(...args)
+    }
+  }
+
   get ['/locks/get'](): (
     parameters?: LocksGetParameters,
     options?: LocksGetOptions,
@@ -2770,21 +2789,21 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/console/v1/get_resource_type'](): (
-    parameters?: SeamConsoleV1GetResourceTypeParameters,
-    options?: SeamConsoleV1GetResourceTypeOptions,
-  ) => SeamConsoleV1GetResourceTypeRequest {
+  get ['/seam/console/v1/get_resource_locator'](): (
+    parameters?: SeamConsoleV1GetResourceLocatorParameters,
+    options?: SeamConsoleV1GetResourceLocatorOptions,
+  ) => SeamConsoleV1GetResourceLocatorRequest {
     const { client, defaults } = this
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
       )
     }
-    return function seamConsoleV1GetResourceType(
-      ...args: Parameters<SeamHttpSeamConsoleV1['getResourceType']>
-    ): ReturnType<SeamHttpSeamConsoleV1['getResourceType']> {
+    return function seamConsoleV1GetResourceLocator(
+      ...args: Parameters<SeamHttpSeamConsoleV1['getResourceLocator']>
+    ): ReturnType<SeamHttpSeamConsoleV1['getResourceLocator']> {
       const seam = SeamHttpSeamConsoleV1.fromClient(client, defaults)
-      return seam.getResourceType(...args)
+      return seam.getResourceLocator(...args)
     }
   }
 
@@ -4205,6 +4224,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/devices/unmanaged/list'
   | '/events/get'
   | '/events/list'
+  | '/instant_keys/list'
   | '/locks/get'
   | '/locks/list'
   | '/noise_sensors/list'
@@ -4212,7 +4232,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/noise_sensors/noise_thresholds/list'
   | '/phones/get'
   | '/phones/list'
-  | '/seam/console/v1/get_resource_type'
+  | '/seam/console/v1/get_resource_locator'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/automations/get'
   | '/seam/customer/v1/portals/get'

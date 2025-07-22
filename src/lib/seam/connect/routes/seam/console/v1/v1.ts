@@ -168,45 +168,45 @@ export class SeamHttpSeamConsoleV1 {
     await clientSessions.get()
   }
 
-  getResourceType(
-    parameters?: SeamConsoleV1GetResourceTypeParameters,
-    options: SeamConsoleV1GetResourceTypeOptions = {},
-  ): SeamConsoleV1GetResourceTypeRequest {
+  getResourceLocator(
+    parameters?: SeamConsoleV1GetResourceLocatorParameters,
+    options: SeamConsoleV1GetResourceLocatorOptions = {},
+  ): SeamConsoleV1GetResourceLocatorRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
       )
     }
     return new SeamHttpRequest(this, {
-      pathname: '/seam/console/v1/get_resource_type',
+      pathname: '/seam/console/v1/get_resource_locator',
       method: 'GET',
       params: parameters,
-      responseKey: 'resource_type',
+      responseKey: 'resource_locator',
       options,
     })
   }
 }
 
-export type SeamConsoleV1GetResourceTypeParameters =
-  RouteRequestParams<'/seam/console/v1/get_resource_type'>
+export type SeamConsoleV1GetResourceLocatorParameters =
+  RouteRequestParams<'/seam/console/v1/get_resource_locator'>
 
 /**
- * @deprecated Use SeamConsoleV1GetResourceTypeParameters instead.
+ * @deprecated Use SeamConsoleV1GetResourceLocatorParameters instead.
  */
-export type SeamConsoleV1GetResourceTypeParams =
-  SeamConsoleV1GetResourceTypeParameters
+export type SeamConsoleV1GetResourceLocatorParams =
+  SeamConsoleV1GetResourceLocatorParameters
 
 /**
- * @deprecated Use SeamConsoleV1GetResourceTypeRequest instead.
+ * @deprecated Use SeamConsoleV1GetResourceLocatorRequest instead.
  */
-export type SeamConsoleV1GetResourceTypeResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/console/v1/get_resource_type'>>
+export type SeamConsoleV1GetResourceLocatorResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/console/v1/get_resource_locator'>>
 >
 
-export type SeamConsoleV1GetResourceTypeRequest = SeamHttpRequest<
-  SeamConsoleV1GetResourceTypeResponse,
-  'resource_type'
+export type SeamConsoleV1GetResourceLocatorRequest = SeamHttpRequest<
+  SeamConsoleV1GetResourceLocatorResponse,
+  'resource_locator'
 >
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface SeamConsoleV1GetResourceTypeOptions {}
+export interface SeamConsoleV1GetResourceLocatorOptions {}
