@@ -453,6 +453,9 @@ import {
   SeamHttpEvents,
 } from './events/index.js'
 import {
+  type InstantKeysGetOptions,
+  type InstantKeysGetParameters,
+  type InstantKeysGetRequest,
   type InstantKeysListOptions,
   type InstantKeysListParameters,
   type InstantKeysListRequest,
@@ -2540,6 +2543,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/instant_keys/get'](): (
+    parameters?: InstantKeysGetParameters,
+    options?: InstantKeysGetOptions,
+  ) => InstantKeysGetRequest {
+    const { client, defaults } = this
+    return function instantKeysGet(
+      ...args: Parameters<SeamHttpInstantKeys['get']>
+    ): ReturnType<SeamHttpInstantKeys['get']> {
+      const seam = SeamHttpInstantKeys.fromClient(client, defaults)
+      return seam.get(...args)
+    }
+  }
+
   get ['/instant_keys/list'](): (
     parameters?: InstantKeysListParameters,
     options?: InstantKeysListOptions,
@@ -4224,6 +4240,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/devices/unmanaged/list'
   | '/events/get'
   | '/events/list'
+  | '/instant_keys/get'
   | '/instant_keys/list'
   | '/locks/get'
   | '/locks/list'
