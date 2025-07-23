@@ -453,6 +453,9 @@ import {
   SeamHttpEvents,
 } from './events/index.js'
 import {
+  type InstantKeysDeleteOptions,
+  type InstantKeysDeleteParameters,
+  type InstantKeysDeleteRequest,
   type InstantKeysGetOptions,
   type InstantKeysGetParameters,
   type InstantKeysGetRequest,
@@ -2543,6 +2546,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/instant_keys/delete'](): (
+    parameters?: InstantKeysDeleteParameters,
+    options?: InstantKeysDeleteOptions,
+  ) => InstantKeysDeleteRequest {
+    const { client, defaults } = this
+    return function instantKeysDelete(
+      ...args: Parameters<SeamHttpInstantKeys['delete']>
+    ): ReturnType<SeamHttpInstantKeys['delete']> {
+      const seam = SeamHttpInstantKeys.fromClient(client, defaults)
+      return seam.delete(...args)
+    }
+  }
+
   get ['/instant_keys/get'](): (
     parameters?: InstantKeysGetParameters,
     options?: InstantKeysGetOptions,
@@ -4351,6 +4367,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/devices/simulate/disconnect_from_hub'
   | '/devices/simulate/remove'
   | '/devices/unmanaged/update'
+  | '/instant_keys/delete'
   | '/locks/lock_door'
   | '/locks/unlock_door'
   | '/locks/simulate/keypad_code_entry'

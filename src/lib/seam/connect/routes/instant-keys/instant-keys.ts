@@ -163,6 +163,19 @@ export class SeamHttpInstantKeys {
     await clientSessions.get()
   }
 
+  delete(
+    parameters?: InstantKeysDeleteParameters,
+    options: InstantKeysDeleteOptions = {},
+  ): InstantKeysDeleteRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/instant_keys/delete',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
   get(
     parameters?: InstantKeysGetParameters,
     options: InstantKeysGetOptions = {},
@@ -189,6 +202,26 @@ export class SeamHttpInstantKeys {
     })
   }
 }
+
+export type InstantKeysDeleteParameters =
+  RouteRequestBody<'/instant_keys/delete'>
+
+/**
+ * @deprecated Use InstantKeysDeleteParameters instead.
+ */
+export type InstantKeysDeleteParams = InstantKeysDeleteParameters
+
+/**
+ * @deprecated Use InstantKeysDeleteRequest instead.
+ */
+export type InstantKeysDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/instant_keys/delete'>>
+>
+
+export type InstantKeysDeleteRequest = SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface InstantKeysDeleteOptions {}
 
 export type InstantKeysGetParameters = RouteRequestBody<'/instant_keys/get'>
 
