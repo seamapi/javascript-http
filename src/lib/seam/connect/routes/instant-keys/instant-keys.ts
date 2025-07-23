@@ -163,6 +163,19 @@ export class SeamHttpInstantKeys {
     await clientSessions.get()
   }
 
+  get(
+    parameters?: InstantKeysGetParameters,
+    options: InstantKeysGetOptions = {},
+  ): InstantKeysGetRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/instant_keys/get',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'instant_key',
+      options,
+    })
+  }
+
   list(
     parameters?: InstantKeysListParameters,
     options: InstantKeysListOptions = {},
@@ -176,6 +189,28 @@ export class SeamHttpInstantKeys {
     })
   }
 }
+
+export type InstantKeysGetParameters = RouteRequestBody<'/instant_keys/get'>
+
+/**
+ * @deprecated Use InstantKeysGetParameters instead.
+ */
+export type InstantKeysGetParams = InstantKeysGetParameters
+
+/**
+ * @deprecated Use InstantKeysGetRequest instead.
+ */
+export type InstantKeysGetResponse = SetNonNullable<
+  Required<RouteResponse<'/instant_keys/get'>>
+>
+
+export type InstantKeysGetRequest = SeamHttpRequest<
+  InstantKeysGetResponse,
+  'instant_key'
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface InstantKeysGetOptions {}
 
 export type InstantKeysListParameters = RouteRequestBody<'/instant_keys/list'>
 
