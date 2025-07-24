@@ -50,8 +50,6 @@ import { SeamHttpNoiseSensors } from './noise-sensors/index.js'
 import { SeamHttpPhones } from './phones/index.js'
 import { SeamHttpSpaces } from './spaces/index.js'
 import { SeamHttpThermostats } from './thermostats/index.js'
-import { SeamHttpUnstableAccessGrants } from './unstable-access-grants/index.js'
-import { SeamHttpUnstableAccessMethods } from './unstable-access-methods/index.js'
 import { SeamHttpUnstableLocations } from './unstable-locations/index.js'
 import { SeamHttpUnstablePartner } from './unstable-partner/index.js'
 import { SeamHttpUserIdentities } from './user-identities/index.js'
@@ -255,14 +253,6 @@ export class SeamHttp {
 
   get thermostats(): SeamHttpThermostats {
     return SeamHttpThermostats.fromClient(this.client, this.defaults)
-  }
-
-  get unstableAccessGrants(): SeamHttpUnstableAccessGrants {
-    return SeamHttpUnstableAccessGrants.fromClient(this.client, this.defaults)
-  }
-
-  get unstableAccessMethods(): SeamHttpUnstableAccessMethods {
-    return SeamHttpUnstableAccessMethods.fromClient(this.client, this.defaults)
   }
 
   get unstableLocations(): SeamHttpUnstableLocations {
