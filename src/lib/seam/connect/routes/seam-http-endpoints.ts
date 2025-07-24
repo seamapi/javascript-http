@@ -708,33 +708,6 @@ import {
   type ThermostatsSimulateTemperatureReachedRequest,
 } from './thermostats/simulate/index.js'
 import {
-  SeamHttpUnstableAccessGrants,
-  type UnstableAccessGrantsCreateOptions,
-  type UnstableAccessGrantsCreateParameters,
-  type UnstableAccessGrantsCreateRequest,
-  type UnstableAccessGrantsDeleteOptions,
-  type UnstableAccessGrantsDeleteParameters,
-  type UnstableAccessGrantsDeleteRequest,
-  type UnstableAccessGrantsGetOptions,
-  type UnstableAccessGrantsGetParameters,
-  type UnstableAccessGrantsGetRequest,
-  type UnstableAccessGrantsListOptions,
-  type UnstableAccessGrantsListParameters,
-  type UnstableAccessGrantsListRequest,
-} from './unstable-access-grants/index.js'
-import {
-  SeamHttpUnstableAccessMethods,
-  type UnstableAccessMethodsDeleteOptions,
-  type UnstableAccessMethodsDeleteParameters,
-  type UnstableAccessMethodsDeleteRequest,
-  type UnstableAccessMethodsGetOptions,
-  type UnstableAccessMethodsGetParameters,
-  type UnstableAccessMethodsGetRequest,
-  type UnstableAccessMethodsListOptions,
-  type UnstableAccessMethodsListParameters,
-  type UnstableAccessMethodsListRequest,
-} from './unstable-access-methods/index.js'
-import {
   SeamHttpUnstableLocations,
   type UnstableLocationsAddAcsEntrancesOptions,
   type UnstableLocationsAddAcsEntrancesParameters,
@@ -3485,132 +3458,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/unstable_access_grants/create'](): (
-    parameters?: UnstableAccessGrantsCreateParameters,
-    options?: UnstableAccessGrantsCreateOptions,
-  ) => UnstableAccessGrantsCreateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableAccessGrantsCreate(
-      ...args: Parameters<SeamHttpUnstableAccessGrants['create']>
-    ): ReturnType<SeamHttpUnstableAccessGrants['create']> {
-      const seam = SeamHttpUnstableAccessGrants.fromClient(client, defaults)
-      return seam.create(...args)
-    }
-  }
-
-  get ['/unstable_access_grants/delete'](): (
-    parameters?: UnstableAccessGrantsDeleteParameters,
-    options?: UnstableAccessGrantsDeleteOptions,
-  ) => UnstableAccessGrantsDeleteRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableAccessGrantsDelete(
-      ...args: Parameters<SeamHttpUnstableAccessGrants['delete']>
-    ): ReturnType<SeamHttpUnstableAccessGrants['delete']> {
-      const seam = SeamHttpUnstableAccessGrants.fromClient(client, defaults)
-      return seam.delete(...args)
-    }
-  }
-
-  get ['/unstable_access_grants/get'](): (
-    parameters?: UnstableAccessGrantsGetParameters,
-    options?: UnstableAccessGrantsGetOptions,
-  ) => UnstableAccessGrantsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableAccessGrantsGet(
-      ...args: Parameters<SeamHttpUnstableAccessGrants['get']>
-    ): ReturnType<SeamHttpUnstableAccessGrants['get']> {
-      const seam = SeamHttpUnstableAccessGrants.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get ['/unstable_access_grants/list'](): (
-    parameters?: UnstableAccessGrantsListParameters,
-    options?: UnstableAccessGrantsListOptions,
-  ) => UnstableAccessGrantsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableAccessGrantsList(
-      ...args: Parameters<SeamHttpUnstableAccessGrants['list']>
-    ): ReturnType<SeamHttpUnstableAccessGrants['list']> {
-      const seam = SeamHttpUnstableAccessGrants.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get ['/unstable_access_methods/delete'](): (
-    parameters?: UnstableAccessMethodsDeleteParameters,
-    options?: UnstableAccessMethodsDeleteOptions,
-  ) => UnstableAccessMethodsDeleteRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableAccessMethodsDelete(
-      ...args: Parameters<SeamHttpUnstableAccessMethods['delete']>
-    ): ReturnType<SeamHttpUnstableAccessMethods['delete']> {
-      const seam = SeamHttpUnstableAccessMethods.fromClient(client, defaults)
-      return seam.delete(...args)
-    }
-  }
-
-  get ['/unstable_access_methods/get'](): (
-    parameters?: UnstableAccessMethodsGetParameters,
-    options?: UnstableAccessMethodsGetOptions,
-  ) => UnstableAccessMethodsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableAccessMethodsGet(
-      ...args: Parameters<SeamHttpUnstableAccessMethods['get']>
-    ): ReturnType<SeamHttpUnstableAccessMethods['get']> {
-      const seam = SeamHttpUnstableAccessMethods.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get ['/unstable_access_methods/list'](): (
-    parameters?: UnstableAccessMethodsListParameters,
-    options?: UnstableAccessMethodsListOptions,
-  ) => UnstableAccessMethodsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableAccessMethodsList(
-      ...args: Parameters<SeamHttpUnstableAccessMethods['list']>
-    ): ReturnType<SeamHttpUnstableAccessMethods['list']> {
-      const seam = SeamHttpUnstableAccessMethods.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
   get ['/unstable_locations/add_acs_entrances'](): (
     parameters?: UnstableLocationsAddAcsEntrancesParameters,
     options?: UnstableLocationsAddAcsEntrancesOptions,
@@ -4344,10 +4191,6 @@ export type SeamHttpEndpointQueryPaths =
   | '/thermostats/list'
   | '/thermostats/schedules/get'
   | '/thermostats/schedules/list'
-  | '/unstable_access_grants/get'
-  | '/unstable_access_grants/list'
-  | '/unstable_access_methods/get'
-  | '/unstable_access_methods/list'
   | '/unstable_locations/get'
   | '/unstable_locations/list'
   | '/unstable_partner/building_blocks/generate_magic_link'
@@ -4476,9 +4319,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/thermostats/schedules/update'
   | '/thermostats/simulate/hvac_mode_adjusted'
   | '/thermostats/simulate/temperature_reached'
-  | '/unstable_access_grants/create'
-  | '/unstable_access_grants/delete'
-  | '/unstable_access_methods/delete'
   | '/unstable_locations/add_acs_entrances'
   | '/unstable_locations/add_devices'
   | '/unstable_locations/create'
