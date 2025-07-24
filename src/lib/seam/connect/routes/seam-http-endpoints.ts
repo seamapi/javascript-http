@@ -3302,6 +3302,11 @@ export class SeamHttpEndpoints {
     options?: ThermostatsUpdateWeeklyProgramOptions,
   ) => ThermostatsUpdateWeeklyProgramRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function thermostatsUpdateWeeklyProgram(
       ...args: Parameters<SeamHttpThermostats['updateWeeklyProgram']>
     ): ReturnType<SeamHttpThermostats['updateWeeklyProgram']> {
@@ -3315,6 +3320,11 @@ export class SeamHttpEndpoints {
     options?: ThermostatsDailyProgramsCreateOptions,
   ) => ThermostatsDailyProgramsCreateRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function thermostatsDailyProgramsCreate(
       ...args: Parameters<SeamHttpThermostatsDailyPrograms['create']>
     ): ReturnType<SeamHttpThermostatsDailyPrograms['create']> {
@@ -3328,6 +3338,11 @@ export class SeamHttpEndpoints {
     options?: ThermostatsDailyProgramsDeleteOptions,
   ) => ThermostatsDailyProgramsDeleteRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function thermostatsDailyProgramsDelete(
       ...args: Parameters<SeamHttpThermostatsDailyPrograms['delete']>
     ): ReturnType<SeamHttpThermostatsDailyPrograms['delete']> {
@@ -3341,6 +3356,11 @@ export class SeamHttpEndpoints {
     options?: ThermostatsDailyProgramsUpdateOptions,
   ) => ThermostatsDailyProgramsUpdateRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function thermostatsDailyProgramsUpdate(
       ...args: Parameters<SeamHttpThermostatsDailyPrograms['update']>
     ): ReturnType<SeamHttpThermostatsDailyPrograms['update']> {
@@ -3994,6 +4014,11 @@ export class SeamHttpEndpoints {
     options?: UserIdentitiesEnrollmentAutomationsDeleteOptions,
   ) => UserIdentitiesEnrollmentAutomationsDeleteRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function userIdentitiesEnrollmentAutomationsDelete(
       ...args: Parameters<SeamHttpUserIdentitiesEnrollmentAutomations['delete']>
     ): ReturnType<SeamHttpUserIdentitiesEnrollmentAutomations['delete']> {
@@ -4010,6 +4035,11 @@ export class SeamHttpEndpoints {
     options?: UserIdentitiesEnrollmentAutomationsGetOptions,
   ) => UserIdentitiesEnrollmentAutomationsGetRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function userIdentitiesEnrollmentAutomationsGet(
       ...args: Parameters<SeamHttpUserIdentitiesEnrollmentAutomations['get']>
     ): ReturnType<SeamHttpUserIdentitiesEnrollmentAutomations['get']> {
@@ -4026,6 +4056,11 @@ export class SeamHttpEndpoints {
     options?: UserIdentitiesEnrollmentAutomationsLaunchOptions,
   ) => UserIdentitiesEnrollmentAutomationsLaunchRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function userIdentitiesEnrollmentAutomationsLaunch(
       ...args: Parameters<SeamHttpUserIdentitiesEnrollmentAutomations['launch']>
     ): ReturnType<SeamHttpUserIdentitiesEnrollmentAutomations['launch']> {
@@ -4042,6 +4077,11 @@ export class SeamHttpEndpoints {
     options?: UserIdentitiesEnrollmentAutomationsListOptions,
   ) => UserIdentitiesEnrollmentAutomationsListRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function userIdentitiesEnrollmentAutomationsList(
       ...args: Parameters<SeamHttpUserIdentitiesEnrollmentAutomations['list']>
     ): ReturnType<SeamHttpUserIdentitiesEnrollmentAutomations['list']> {
