@@ -44,6 +44,11 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
+    if (!options.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     this.client = 'client' in options ? options.client : createClient(options)
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
@@ -170,6 +175,11 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     parameters?: UserIdentitiesEnrollmentAutomationsDeleteParameters,
     options: UserIdentitiesEnrollmentAutomationsDeleteOptions = {},
   ): UserIdentitiesEnrollmentAutomationsDeleteRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/enrollment_automations/delete',
       method: 'POST',
@@ -183,6 +193,11 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     parameters?: UserIdentitiesEnrollmentAutomationsGetParameters,
     options: UserIdentitiesEnrollmentAutomationsGetOptions = {},
   ): UserIdentitiesEnrollmentAutomationsGetRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/enrollment_automations/get',
       method: 'POST',
@@ -196,6 +211,11 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     parameters?: UserIdentitiesEnrollmentAutomationsLaunchParameters,
     options: UserIdentitiesEnrollmentAutomationsLaunchOptions = {},
   ): UserIdentitiesEnrollmentAutomationsLaunchRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/enrollment_automations/launch',
       method: 'POST',
@@ -209,6 +229,11 @@ export class SeamHttpUserIdentitiesEnrollmentAutomations {
     parameters?: UserIdentitiesEnrollmentAutomationsListParameters,
     options: UserIdentitiesEnrollmentAutomationsListOptions = {},
   ): UserIdentitiesEnrollmentAutomationsListRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/enrollment_automations/list',
       method: 'POST',
