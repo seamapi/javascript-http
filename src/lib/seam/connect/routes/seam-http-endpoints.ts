@@ -561,12 +561,21 @@ import {
   SeamHttpSeamCustomerV1Automations,
 } from './seam/customer/v1/automations/index.js'
 import {
+  type SeamCustomerV1EventsListOptions,
+  type SeamCustomerV1EventsListParameters,
+  type SeamCustomerV1EventsListRequest,
+  SeamHttpSeamCustomerV1Events,
+} from './seam/customer/v1/events/index.js'
+import {
   type SeamCustomerV1PortalsGetOptions,
   type SeamCustomerV1PortalsGetParameters,
   type SeamCustomerV1PortalsGetRequest,
   SeamHttpSeamCustomerV1Portals,
 } from './seam/customer/v1/portals/index.js'
 import {
+  type SeamCustomerV1SettingsGetOptions,
+  type SeamCustomerV1SettingsGetParameters,
+  type SeamCustomerV1SettingsGetRequest,
   type SeamCustomerV1SettingsUpdateOptions,
   type SeamCustomerV1SettingsUpdateParameters,
   type SeamCustomerV1SettingsUpdateRequest,
@@ -2923,6 +2932,24 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/seam/customer/v1/events/list'](): (
+    parameters?: SeamCustomerV1EventsListParameters,
+    options?: SeamCustomerV1EventsListOptions,
+  ) => SeamCustomerV1EventsListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1EventsList(
+      ...args: Parameters<SeamHttpSeamCustomerV1Events['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1Events['list']> {
+      const seam = SeamHttpSeamCustomerV1Events.fromClient(client, defaults)
+      return seam.list(...args)
+    }
+  }
+
   get ['/seam/customer/v1/portals/get'](): (
     parameters?: SeamCustomerV1PortalsGetParameters,
     options?: SeamCustomerV1PortalsGetOptions,
@@ -2937,6 +2964,24 @@ export class SeamHttpEndpoints {
       ...args: Parameters<SeamHttpSeamCustomerV1Portals['get']>
     ): ReturnType<SeamHttpSeamCustomerV1Portals['get']> {
       const seam = SeamHttpSeamCustomerV1Portals.fromClient(client, defaults)
+      return seam.get(...args)
+    }
+  }
+
+  get ['/seam/customer/v1/settings/get'](): (
+    parameters?: SeamCustomerV1SettingsGetParameters,
+    options?: SeamCustomerV1SettingsGetOptions,
+  ) => SeamCustomerV1SettingsGetRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1SettingsGet(
+      ...args: Parameters<SeamHttpSeamCustomerV1Settings['get']>
+    ): ReturnType<SeamHttpSeamCustomerV1Settings['get']> {
+      const seam = SeamHttpSeamCustomerV1Settings.fromClient(client, defaults)
       return seam.get(...args)
     }
   }
@@ -4308,7 +4353,9 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/console/v1/get_resource_locator'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/automations/get'
+  | '/seam/customer/v1/events/list'
   | '/seam/customer/v1/portals/get'
+  | '/seam/customer/v1/settings/get'
   | '/seam/partner/v1/building_blocks/spaces/auto_map'
   | '/spaces/get'
   | '/spaces/get_related'

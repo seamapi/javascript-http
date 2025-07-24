@@ -35,6 +35,7 @@ import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
 import { SeamHttpSeamCustomerV1AutomationRuns } from './automation-runs/index.js'
 import { SeamHttpSeamCustomerV1Automations } from './automations/index.js'
+import { SeamHttpSeamCustomerV1Events } from './events/index.js'
 import { SeamHttpSeamCustomerV1Portals } from './portals/index.js'
 import { SeamHttpSeamCustomerV1Settings } from './settings/index.js'
 
@@ -182,6 +183,10 @@ export class SeamHttpSeamCustomerV1 {
       this.client,
       this.defaults,
     )
+  }
+
+  get events(): SeamHttpSeamCustomerV1Events {
+    return SeamHttpSeamCustomerV1Events.fromClient(this.client, this.defaults)
   }
 
   get portals(): SeamHttpSeamCustomerV1Portals {
