@@ -373,11 +373,6 @@ export class SeamHttpThermostats {
     parameters?: ThermostatsUpdateWeeklyProgramParameters,
     options: ThermostatsUpdateWeeklyProgramOptions = {},
   ): ThermostatsUpdateWeeklyProgramRequest {
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/update_weekly_program',
       method: 'POST',

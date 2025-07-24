@@ -3347,11 +3347,6 @@ export class SeamHttpEndpoints {
     options?: ThermostatsUpdateWeeklyProgramOptions,
   ) => ThermostatsUpdateWeeklyProgramRequest {
     const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
     return function thermostatsUpdateWeeklyProgram(
       ...args: Parameters<SeamHttpThermostats['updateWeeklyProgram']>
     ): ReturnType<SeamHttpThermostats['updateWeeklyProgram']> {
@@ -3365,11 +3360,6 @@ export class SeamHttpEndpoints {
     options?: ThermostatsDailyProgramsCreateOptions,
   ) => ThermostatsDailyProgramsCreateRequest {
     const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
     return function thermostatsDailyProgramsCreate(
       ...args: Parameters<SeamHttpThermostatsDailyPrograms['create']>
     ): ReturnType<SeamHttpThermostatsDailyPrograms['create']> {
@@ -3383,11 +3373,6 @@ export class SeamHttpEndpoints {
     options?: ThermostatsDailyProgramsDeleteOptions,
   ) => ThermostatsDailyProgramsDeleteRequest {
     const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
     return function thermostatsDailyProgramsDelete(
       ...args: Parameters<SeamHttpThermostatsDailyPrograms['delete']>
     ): ReturnType<SeamHttpThermostatsDailyPrograms['delete']> {
@@ -3401,11 +3386,6 @@ export class SeamHttpEndpoints {
     options?: ThermostatsDailyProgramsUpdateOptions,
   ) => ThermostatsDailyProgramsUpdateRequest {
     const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
     return function thermostatsDailyProgramsUpdate(
       ...args: Parameters<SeamHttpThermostatsDailyPrograms['update']>
     ): ReturnType<SeamHttpThermostatsDailyPrograms['update']> {
