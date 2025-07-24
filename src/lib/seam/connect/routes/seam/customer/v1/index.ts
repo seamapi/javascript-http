@@ -5,6 +5,7 @@
 
 export * from './automation-runs/index.js'
 export * from './automations/index.js'
+export * from './events/index.js'
 export * from './portals/index.js'
 export * from './settings/index.js'
 export * from './v1.js'
