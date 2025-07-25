@@ -708,36 +708,6 @@ import {
   type ThermostatsSimulateTemperatureReachedRequest,
 } from './thermostats/simulate/index.js'
 import {
-  SeamHttpUnstableLocations,
-  type UnstableLocationsAddAcsEntrancesOptions,
-  type UnstableLocationsAddAcsEntrancesParameters,
-  type UnstableLocationsAddAcsEntrancesRequest,
-  type UnstableLocationsAddDevicesOptions,
-  type UnstableLocationsAddDevicesParameters,
-  type UnstableLocationsAddDevicesRequest,
-  type UnstableLocationsCreateOptions,
-  type UnstableLocationsCreateParameters,
-  type UnstableLocationsCreateRequest,
-  type UnstableLocationsDeleteOptions,
-  type UnstableLocationsDeleteParameters,
-  type UnstableLocationsDeleteRequest,
-  type UnstableLocationsGetOptions,
-  type UnstableLocationsGetParameters,
-  type UnstableLocationsGetRequest,
-  type UnstableLocationsListOptions,
-  type UnstableLocationsListParameters,
-  type UnstableLocationsListRequest,
-  type UnstableLocationsRemoveAcsEntrancesOptions,
-  type UnstableLocationsRemoveAcsEntrancesParameters,
-  type UnstableLocationsRemoveAcsEntrancesRequest,
-  type UnstableLocationsRemoveDevicesOptions,
-  type UnstableLocationsRemoveDevicesParameters,
-  type UnstableLocationsRemoveDevicesRequest,
-  type UnstableLocationsUpdateOptions,
-  type UnstableLocationsUpdateParameters,
-  type UnstableLocationsUpdateRequest,
-} from './unstable-locations/index.js'
-import {
   SeamHttpUnstablePartnerBuildingBlocks,
   type UnstablePartnerBuildingBlocksConnectAccountsOptions,
   type UnstablePartnerBuildingBlocksConnectAccountsParameters,
@@ -3458,168 +3428,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/unstable_locations/add_acs_entrances'](): (
-    parameters?: UnstableLocationsAddAcsEntrancesParameters,
-    options?: UnstableLocationsAddAcsEntrancesOptions,
-  ) => UnstableLocationsAddAcsEntrancesRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableLocationsAddAcsEntrances(
-      ...args: Parameters<SeamHttpUnstableLocations['addAcsEntrances']>
-    ): ReturnType<SeamHttpUnstableLocations['addAcsEntrances']> {
-      const seam = SeamHttpUnstableLocations.fromClient(client, defaults)
-      return seam.addAcsEntrances(...args)
-    }
-  }
-
-  get ['/unstable_locations/add_devices'](): (
-    parameters?: UnstableLocationsAddDevicesParameters,
-    options?: UnstableLocationsAddDevicesOptions,
-  ) => UnstableLocationsAddDevicesRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableLocationsAddDevices(
-      ...args: Parameters<SeamHttpUnstableLocations['addDevices']>
-    ): ReturnType<SeamHttpUnstableLocations['addDevices']> {
-      const seam = SeamHttpUnstableLocations.fromClient(client, defaults)
-      return seam.addDevices(...args)
-    }
-  }
-
-  get ['/unstable_locations/create'](): (
-    parameters?: UnstableLocationsCreateParameters,
-    options?: UnstableLocationsCreateOptions,
-  ) => UnstableLocationsCreateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableLocationsCreate(
-      ...args: Parameters<SeamHttpUnstableLocations['create']>
-    ): ReturnType<SeamHttpUnstableLocations['create']> {
-      const seam = SeamHttpUnstableLocations.fromClient(client, defaults)
-      return seam.create(...args)
-    }
-  }
-
-  get ['/unstable_locations/delete'](): (
-    parameters?: UnstableLocationsDeleteParameters,
-    options?: UnstableLocationsDeleteOptions,
-  ) => UnstableLocationsDeleteRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableLocationsDelete(
-      ...args: Parameters<SeamHttpUnstableLocations['delete']>
-    ): ReturnType<SeamHttpUnstableLocations['delete']> {
-      const seam = SeamHttpUnstableLocations.fromClient(client, defaults)
-      return seam.delete(...args)
-    }
-  }
-
-  get ['/unstable_locations/get'](): (
-    parameters?: UnstableLocationsGetParameters,
-    options?: UnstableLocationsGetOptions,
-  ) => UnstableLocationsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableLocationsGet(
-      ...args: Parameters<SeamHttpUnstableLocations['get']>
-    ): ReturnType<SeamHttpUnstableLocations['get']> {
-      const seam = SeamHttpUnstableLocations.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get ['/unstable_locations/list'](): (
-    parameters?: UnstableLocationsListParameters,
-    options?: UnstableLocationsListOptions,
-  ) => UnstableLocationsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableLocationsList(
-      ...args: Parameters<SeamHttpUnstableLocations['list']>
-    ): ReturnType<SeamHttpUnstableLocations['list']> {
-      const seam = SeamHttpUnstableLocations.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get ['/unstable_locations/remove_acs_entrances'](): (
-    parameters?: UnstableLocationsRemoveAcsEntrancesParameters,
-    options?: UnstableLocationsRemoveAcsEntrancesOptions,
-  ) => UnstableLocationsRemoveAcsEntrancesRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableLocationsRemoveAcsEntrances(
-      ...args: Parameters<SeamHttpUnstableLocations['removeAcsEntrances']>
-    ): ReturnType<SeamHttpUnstableLocations['removeAcsEntrances']> {
-      const seam = SeamHttpUnstableLocations.fromClient(client, defaults)
-      return seam.removeAcsEntrances(...args)
-    }
-  }
-
-  get ['/unstable_locations/remove_devices'](): (
-    parameters?: UnstableLocationsRemoveDevicesParameters,
-    options?: UnstableLocationsRemoveDevicesOptions,
-  ) => UnstableLocationsRemoveDevicesRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableLocationsRemoveDevices(
-      ...args: Parameters<SeamHttpUnstableLocations['removeDevices']>
-    ): ReturnType<SeamHttpUnstableLocations['removeDevices']> {
-      const seam = SeamHttpUnstableLocations.fromClient(client, defaults)
-      return seam.removeDevices(...args)
-    }
-  }
-
-  get ['/unstable_locations/update'](): (
-    parameters?: UnstableLocationsUpdateParameters,
-    options?: UnstableLocationsUpdateOptions,
-  ) => UnstableLocationsUpdateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstableLocationsUpdate(
-      ...args: Parameters<SeamHttpUnstableLocations['update']>
-    ): ReturnType<SeamHttpUnstableLocations['update']> {
-      const seam = SeamHttpUnstableLocations.fromClient(client, defaults)
-      return seam.update(...args)
-    }
-  }
-
   get ['/unstable_partner/building_blocks/connect_accounts'](): (
     parameters?: UnstablePartnerBuildingBlocksConnectAccountsParameters,
     options?: UnstablePartnerBuildingBlocksConnectAccountsOptions,
@@ -4191,8 +3999,6 @@ export type SeamHttpEndpointQueryPaths =
   | '/thermostats/list'
   | '/thermostats/schedules/get'
   | '/thermostats/schedules/list'
-  | '/unstable_locations/get'
-  | '/unstable_locations/list'
   | '/unstable_partner/building_blocks/generate_magic_link'
   | '/user_identities/get'
   | '/user_identities/list'
@@ -4319,13 +4125,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/thermostats/schedules/update'
   | '/thermostats/simulate/hvac_mode_adjusted'
   | '/thermostats/simulate/temperature_reached'
-  | '/unstable_locations/add_acs_entrances'
-  | '/unstable_locations/add_devices'
-  | '/unstable_locations/create'
-  | '/unstable_locations/delete'
-  | '/unstable_locations/remove_acs_entrances'
-  | '/unstable_locations/remove_devices'
-  | '/unstable_locations/update'
   | '/unstable_partner/building_blocks/connect_accounts'
   | '/unstable_partner/building_blocks/manage_devices'
   | '/unstable_partner/building_blocks/organize_spaces'
