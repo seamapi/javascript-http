@@ -48,6 +48,11 @@ export class SeamHttpWorkspacesCustomizationProfiles {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
+    if (!options.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     this.client = 'client' in options ? options.client : createClient(options)
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
@@ -174,6 +179,11 @@ export class SeamHttpWorkspacesCustomizationProfiles {
     parameters?: WorkspacesCustomizationProfilesCreateParameters,
     options: WorkspacesCustomizationProfilesCreateOptions = {},
   ): WorkspacesCustomizationProfilesCreateRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/customization_profiles/create',
       method: 'POST',
@@ -187,6 +197,11 @@ export class SeamHttpWorkspacesCustomizationProfiles {
     parameters?: WorkspacesCustomizationProfilesGetParameters,
     options: WorkspacesCustomizationProfilesGetOptions = {},
   ): WorkspacesCustomizationProfilesGetRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/customization_profiles/get',
       method: 'POST',
@@ -200,6 +215,11 @@ export class SeamHttpWorkspacesCustomizationProfiles {
     parameters?: WorkspacesCustomizationProfilesListParameters,
     options: WorkspacesCustomizationProfilesListOptions = {},
   ): WorkspacesCustomizationProfilesListRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/customization_profiles/list',
       method: 'GET',
@@ -213,6 +233,11 @@ export class SeamHttpWorkspacesCustomizationProfiles {
     parameters?: WorkspacesCustomizationProfilesUpdateParameters,
     options: WorkspacesCustomizationProfilesUpdateOptions = {},
   ): WorkspacesCustomizationProfilesUpdateRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/customization_profiles/update',
       method: 'PATCH',
