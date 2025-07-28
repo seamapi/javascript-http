@@ -3944,6 +3944,11 @@ export class SeamHttpEndpoints {
     options?: WorkspacesCustomizationProfilesCreateOptions,
   ) => WorkspacesCustomizationProfilesCreateRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function workspacesCustomizationProfilesCreate(
       ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['create']>
     ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['create']> {
@@ -3960,6 +3965,11 @@ export class SeamHttpEndpoints {
     options?: WorkspacesCustomizationProfilesGetOptions,
   ) => WorkspacesCustomizationProfilesGetRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function workspacesCustomizationProfilesGet(
       ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['get']>
     ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['get']> {
@@ -3976,6 +3986,11 @@ export class SeamHttpEndpoints {
     options?: WorkspacesCustomizationProfilesListOptions,
   ) => WorkspacesCustomizationProfilesListRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function workspacesCustomizationProfilesList(
       ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['list']>
     ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['list']> {
@@ -3992,6 +4007,11 @@ export class SeamHttpEndpoints {
     options?: WorkspacesCustomizationProfilesUpdateOptions,
   ) => WorkspacesCustomizationProfilesUpdateRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function workspacesCustomizationProfilesUpdate(
       ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['update']>
     ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['update']> {
