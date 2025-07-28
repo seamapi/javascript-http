@@ -40,9 +40,7 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-import { SeamHttpWorkspacesCustomizationProfiles } from './customization-profiles/index.js'
-
-export class SeamHttpWorkspaces {
+export class SeamHttpWorkspacesCustomizationProfiles {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
   readonly ltsVersion = seamApiLtsVersion
@@ -57,23 +55,23 @@ export class SeamHttpWorkspaces {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpWorkspacesCustomizationProfiles {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpWorkspaces(constructorOptions)
+    return new SeamHttpWorkspacesCustomizationProfiles(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpWorkspacesCustomizationProfiles {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpWorkspaces(constructorOptions)
+    return new SeamHttpWorkspacesCustomizationProfiles(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -82,24 +80,24 @@ export class SeamHttpWorkspaces {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpWorkspacesCustomizationProfiles {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpWorkspaces(constructorOptions)
+    return new SeamHttpWorkspacesCustomizationProfiles(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpWorkspaces> {
+  ): Promise<SeamHttpWorkspacesCustomizationProfiles> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
       throw new SeamHttpInvalidOptionsError(
-        'The client option cannot be used with SeamHttpWorkspaces.fromPublishableKey',
+        'The client option cannot be used with SeamHttpWorkspacesCustomizationProfiles.fromPublishableKey',
       )
     }
     const client = createClient(clientOptions)
@@ -107,7 +105,10 @@ export class SeamHttpWorkspaces {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpWorkspaces.fromClientSessionToken(token, options)
+    return SeamHttpWorkspacesCustomizationProfiles.fromClientSessionToken(
+      token,
+      options,
+    )
   }
 
   static fromConsoleSessionToken(
@@ -117,14 +118,14 @@ export class SeamHttpWorkspaces {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpWorkspacesCustomizationProfiles {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpWorkspaces(constructorOptions)
+    return new SeamHttpWorkspacesCustomizationProfiles(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -134,14 +135,14 @@ export class SeamHttpWorkspaces {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpWorkspaces {
+  ): SeamHttpWorkspacesCustomizationProfiles {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpWorkspaces(constructorOptions)
+    return new SeamHttpWorkspacesCustomizationProfiles(constructorOptions)
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
@@ -169,90 +170,70 @@ export class SeamHttpWorkspaces {
     await clientSessions.get()
   }
 
-  get customizationProfiles(): SeamHttpWorkspacesCustomizationProfiles {
-    return SeamHttpWorkspacesCustomizationProfiles.fromClient(
-      this.client,
-      this.defaults,
-    )
-  }
-
   create(
-    parameters?: WorkspacesCreateParameters,
-    options: WorkspacesCreateOptions = {},
-  ): WorkspacesCreateRequest {
+    parameters?: WorkspacesCustomizationProfilesCreateParameters,
+    options: WorkspacesCustomizationProfilesCreateOptions = {},
+  ): WorkspacesCustomizationProfilesCreateRequest {
     return new SeamHttpRequest(this, {
-      pathname: '/workspaces/create',
+      pathname: '/workspaces/customization_profiles/create',
       method: 'POST',
       body: parameters,
-      responseKey: 'workspace',
+      responseKey: 'customization_profile',
       options,
     })
   }
 
-  findResources(
-    parameters?: WorkspacesFindResourcesParameters,
-    options: WorkspacesFindResourcesOptions = {},
-  ): WorkspacesFindResourcesRequest {
+  get(
+    parameters?: WorkspacesCustomizationProfilesGetParameters,
+    options: WorkspacesCustomizationProfilesGetOptions = {},
+  ): WorkspacesCustomizationProfilesGetRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/workspaces/customization_profiles/get',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'customization_profile',
+      options,
+    })
+  }
+
+  list(
+    parameters?: WorkspacesCustomizationProfilesListParameters,
+    options: WorkspacesCustomizationProfilesListOptions = {},
+  ): WorkspacesCustomizationProfilesListRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/workspaces/customization_profiles/list',
+      method: 'GET',
+      params: parameters,
+      responseKey: 'customization_profiles',
+      options,
+    })
+  }
+
+  update(
+    parameters?: WorkspacesCustomizationProfilesUpdateParameters,
+    options: WorkspacesCustomizationProfilesUpdateOptions = {},
+  ): WorkspacesCustomizationProfilesUpdateRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/workspaces/customization_profiles/update',
+      method: 'PATCH',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
+  uploadImages(
+    parameters?: WorkspacesCustomizationProfilesUploadImagesParameters,
+    options: WorkspacesCustomizationProfilesUploadImagesOptions = {},
+  ): WorkspacesCustomizationProfilesUploadImagesRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
       )
     }
     return new SeamHttpRequest(this, {
-      pathname: '/workspaces/find_resources',
-      method: 'GET',
-      params: parameters,
-      responseKey: 'batch',
-      options,
-    })
-  }
-
-  get(
-    parameters?: WorkspacesGetParameters,
-    options: WorkspacesGetOptions = {},
-  ): WorkspacesGetRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/workspaces/get',
-      method: 'GET',
-      params: parameters,
-      responseKey: 'workspace',
-      options,
-    })
-  }
-
-  list(
-    parameters?: WorkspacesListParameters,
-    options: WorkspacesListOptions = {},
-  ): WorkspacesListRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/workspaces/list',
-      method: 'GET',
-      params: parameters,
-      responseKey: 'workspaces',
-      options,
-    })
-  }
-
-  resetSandbox(
-    parameters?: WorkspacesResetSandboxParameters,
-    options: WorkspacesResetSandboxOptions = {},
-  ): WorkspacesResetSandboxRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/workspaces/reset_sandbox',
+      pathname: '/workspaces/customization_profiles/upload_images',
       method: 'POST',
-      body: parameters,
-      responseKey: 'action_attempt',
-      options,
-    })
-  }
-
-  update(
-    parameters?: WorkspacesUpdateParameters,
-    options: WorkspacesUpdateOptions = {},
-  ): WorkspacesUpdateRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/workspaces/update',
-      method: 'PATCH',
       body: parameters,
       responseKey: undefined,
       options,
@@ -260,135 +241,121 @@ export class SeamHttpWorkspaces {
   }
 }
 
-export type WorkspacesCreateParameters = RouteRequestBody<'/workspaces/create'>
+export type WorkspacesCustomizationProfilesCreateParameters =
+  RouteRequestBody<'/workspaces/customization_profiles/create'>
 
 /**
- * @deprecated Use WorkspacesCreateParameters instead.
+ * @deprecated Use WorkspacesCustomizationProfilesCreateParameters instead.
  */
-export type WorkspacesCreateBody = WorkspacesCreateParameters
+export type WorkspacesCustomizationProfilesCreateBody =
+  WorkspacesCustomizationProfilesCreateParameters
 
 /**
- * @deprecated Use WorkspacesCreateRequest instead.
+ * @deprecated Use WorkspacesCustomizationProfilesCreateRequest instead.
  */
-export type WorkspacesCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/create'>>
+export type WorkspacesCustomizationProfilesCreateResponse = SetNonNullable<
+  Required<RouteResponse<'/workspaces/customization_profiles/create'>>
 >
 
-export type WorkspacesCreateRequest = SeamHttpRequest<
-  WorkspacesCreateResponse,
-  'workspace'
->
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface WorkspacesCreateOptions {}
-
-export type WorkspacesFindResourcesParameters =
-  RouteRequestParams<'/workspaces/find_resources'>
-
-/**
- * @deprecated Use WorkspacesFindResourcesParameters instead.
- */
-export type WorkspacesFindResourcesParams = WorkspacesFindResourcesParameters
-
-/**
- * @deprecated Use WorkspacesFindResourcesRequest instead.
- */
-export type WorkspacesFindResourcesResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/find_resources'>>
->
-
-export type WorkspacesFindResourcesRequest = SeamHttpRequest<
-  WorkspacesFindResourcesResponse,
-  'batch'
+export type WorkspacesCustomizationProfilesCreateRequest = SeamHttpRequest<
+  WorkspacesCustomizationProfilesCreateResponse,
+  'customization_profile'
 >
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface WorkspacesFindResourcesOptions {}
+export interface WorkspacesCustomizationProfilesCreateOptions {}
 
-export type WorkspacesGetParameters = RouteRequestParams<'/workspaces/get'>
-
-/**
- * @deprecated Use WorkspacesGetParameters instead.
- */
-export type WorkspacesGetParams = WorkspacesGetParameters
+export type WorkspacesCustomizationProfilesGetParameters =
+  RouteRequestBody<'/workspaces/customization_profiles/get'>
 
 /**
- * @deprecated Use WorkspacesGetRequest instead.
+ * @deprecated Use WorkspacesCustomizationProfilesGetParameters instead.
  */
-export type WorkspacesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/get'>>
+export type WorkspacesCustomizationProfilesGetParams =
+  WorkspacesCustomizationProfilesGetParameters
+
+/**
+ * @deprecated Use WorkspacesCustomizationProfilesGetRequest instead.
+ */
+export type WorkspacesCustomizationProfilesGetResponse = SetNonNullable<
+  Required<RouteResponse<'/workspaces/customization_profiles/get'>>
 >
 
-export type WorkspacesGetRequest = SeamHttpRequest<
-  WorkspacesGetResponse,
-  'workspace'
->
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface WorkspacesGetOptions {}
-
-export type WorkspacesListParameters = RouteRequestParams<'/workspaces/list'>
-
-/**
- * @deprecated Use WorkspacesListParameters instead.
- */
-export type WorkspacesListParams = WorkspacesListParameters
-
-/**
- * @deprecated Use WorkspacesListRequest instead.
- */
-export type WorkspacesListResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/list'>>
->
-
-export type WorkspacesListRequest = SeamHttpRequest<
-  WorkspacesListResponse,
-  'workspaces'
+export type WorkspacesCustomizationProfilesGetRequest = SeamHttpRequest<
+  WorkspacesCustomizationProfilesGetResponse,
+  'customization_profile'
 >
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface WorkspacesListOptions {}
+export interface WorkspacesCustomizationProfilesGetOptions {}
 
-export type WorkspacesResetSandboxParameters =
-  RouteRequestBody<'/workspaces/reset_sandbox'>
-
-/**
- * @deprecated Use WorkspacesResetSandboxParameters instead.
- */
-export type WorkspacesResetSandboxBody = WorkspacesResetSandboxParameters
+export type WorkspacesCustomizationProfilesListParameters =
+  RouteRequestParams<'/workspaces/customization_profiles/list'>
 
 /**
- * @deprecated Use WorkspacesResetSandboxRequest instead.
+ * @deprecated Use WorkspacesCustomizationProfilesListParameters instead.
  */
-export type WorkspacesResetSandboxResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/reset_sandbox'>>
->
-
-export type WorkspacesResetSandboxRequest = SeamHttpRequest<
-  WorkspacesResetSandboxResponse,
-  'action_attempt'
->
-
-export type WorkspacesResetSandboxOptions = Pick<
-  SeamHttpRequestOptions,
-  'waitForActionAttempt'
->
-
-export type WorkspacesUpdateParameters = RouteRequestBody<'/workspaces/update'>
+export type WorkspacesCustomizationProfilesListParams =
+  WorkspacesCustomizationProfilesListParameters
 
 /**
- * @deprecated Use WorkspacesUpdateParameters instead.
+ * @deprecated Use WorkspacesCustomizationProfilesListRequest instead.
  */
-export type WorkspacesUpdateBody = WorkspacesUpdateParameters
-
-/**
- * @deprecated Use WorkspacesUpdateRequest instead.
- */
-export type WorkspacesUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/update'>>
+export type WorkspacesCustomizationProfilesListResponse = SetNonNullable<
+  Required<RouteResponse<'/workspaces/customization_profiles/list'>>
 >
 
-export type WorkspacesUpdateRequest = SeamHttpRequest<void, undefined>
+export type WorkspacesCustomizationProfilesListRequest = SeamHttpRequest<
+  WorkspacesCustomizationProfilesListResponse,
+  'customization_profiles'
+>
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface WorkspacesUpdateOptions {}
+export interface WorkspacesCustomizationProfilesListOptions {}
+
+export type WorkspacesCustomizationProfilesUpdateParameters =
+  RouteRequestBody<'/workspaces/customization_profiles/update'>
+
+/**
+ * @deprecated Use WorkspacesCustomizationProfilesUpdateParameters instead.
+ */
+export type WorkspacesCustomizationProfilesUpdateBody =
+  WorkspacesCustomizationProfilesUpdateParameters
+
+/**
+ * @deprecated Use WorkspacesCustomizationProfilesUpdateRequest instead.
+ */
+export type WorkspacesCustomizationProfilesUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/workspaces/customization_profiles/update'>>
+>
+
+export type WorkspacesCustomizationProfilesUpdateRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WorkspacesCustomizationProfilesUpdateOptions {}
+
+export type WorkspacesCustomizationProfilesUploadImagesParameters =
+  RouteRequestBody<'/workspaces/customization_profiles/upload_images'>
+
+/**
+ * @deprecated Use WorkspacesCustomizationProfilesUploadImagesParameters instead.
+ */
+export type WorkspacesCustomizationProfilesUploadImagesBody =
+  WorkspacesCustomizationProfilesUploadImagesParameters
+
+/**
+ * @deprecated Use WorkspacesCustomizationProfilesUploadImagesRequest instead.
+ */
+export type WorkspacesCustomizationProfilesUploadImagesResponse =
+  SetNonNullable<
+    Required<RouteResponse<'/workspaces/customization_profiles/upload_images'>>
+  >
+
+export type WorkspacesCustomizationProfilesUploadImagesRequest =
+  SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WorkspacesCustomizationProfilesUploadImagesOptions {}

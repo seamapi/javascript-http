@@ -798,6 +798,24 @@ import {
   type WebhooksUpdateRequest,
 } from './webhooks/index.js'
 import {
+  SeamHttpWorkspacesCustomizationProfiles,
+  type WorkspacesCustomizationProfilesCreateOptions,
+  type WorkspacesCustomizationProfilesCreateParameters,
+  type WorkspacesCustomizationProfilesCreateRequest,
+  type WorkspacesCustomizationProfilesGetOptions,
+  type WorkspacesCustomizationProfilesGetParameters,
+  type WorkspacesCustomizationProfilesGetRequest,
+  type WorkspacesCustomizationProfilesListOptions,
+  type WorkspacesCustomizationProfilesListParameters,
+  type WorkspacesCustomizationProfilesListRequest,
+  type WorkspacesCustomizationProfilesUpdateOptions,
+  type WorkspacesCustomizationProfilesUpdateParameters,
+  type WorkspacesCustomizationProfilesUpdateRequest,
+  type WorkspacesCustomizationProfilesUploadImagesOptions,
+  type WorkspacesCustomizationProfilesUploadImagesParameters,
+  type WorkspacesCustomizationProfilesUploadImagesRequest,
+} from './workspaces/customization-profiles/index.js'
+import {
   SeamHttpWorkspaces,
   type WorkspacesCreateOptions,
   type WorkspacesCreateParameters,
@@ -3920,6 +3938,93 @@ export class SeamHttpEndpoints {
       return seam.update(...args)
     }
   }
+
+  get ['/workspaces/customization_profiles/create'](): (
+    parameters?: WorkspacesCustomizationProfilesCreateParameters,
+    options?: WorkspacesCustomizationProfilesCreateOptions,
+  ) => WorkspacesCustomizationProfilesCreateRequest {
+    const { client, defaults } = this
+    return function workspacesCustomizationProfilesCreate(
+      ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['create']>
+    ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['create']> {
+      const seam = SeamHttpWorkspacesCustomizationProfiles.fromClient(
+        client,
+        defaults,
+      )
+      return seam.create(...args)
+    }
+  }
+
+  get ['/workspaces/customization_profiles/get'](): (
+    parameters?: WorkspacesCustomizationProfilesGetParameters,
+    options?: WorkspacesCustomizationProfilesGetOptions,
+  ) => WorkspacesCustomizationProfilesGetRequest {
+    const { client, defaults } = this
+    return function workspacesCustomizationProfilesGet(
+      ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['get']>
+    ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['get']> {
+      const seam = SeamHttpWorkspacesCustomizationProfiles.fromClient(
+        client,
+        defaults,
+      )
+      return seam.get(...args)
+    }
+  }
+
+  get ['/workspaces/customization_profiles/list'](): (
+    parameters?: WorkspacesCustomizationProfilesListParameters,
+    options?: WorkspacesCustomizationProfilesListOptions,
+  ) => WorkspacesCustomizationProfilesListRequest {
+    const { client, defaults } = this
+    return function workspacesCustomizationProfilesList(
+      ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['list']>
+    ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['list']> {
+      const seam = SeamHttpWorkspacesCustomizationProfiles.fromClient(
+        client,
+        defaults,
+      )
+      return seam.list(...args)
+    }
+  }
+
+  get ['/workspaces/customization_profiles/update'](): (
+    parameters?: WorkspacesCustomizationProfilesUpdateParameters,
+    options?: WorkspacesCustomizationProfilesUpdateOptions,
+  ) => WorkspacesCustomizationProfilesUpdateRequest {
+    const { client, defaults } = this
+    return function workspacesCustomizationProfilesUpdate(
+      ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['update']>
+    ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['update']> {
+      const seam = SeamHttpWorkspacesCustomizationProfiles.fromClient(
+        client,
+        defaults,
+      )
+      return seam.update(...args)
+    }
+  }
+
+  get ['/workspaces/customization_profiles/upload_images'](): (
+    parameters?: WorkspacesCustomizationProfilesUploadImagesParameters,
+    options?: WorkspacesCustomizationProfilesUploadImagesOptions,
+  ) => WorkspacesCustomizationProfilesUploadImagesRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function workspacesCustomizationProfilesUploadImages(
+      ...args: Parameters<
+        SeamHttpWorkspacesCustomizationProfiles['uploadImages']
+      >
+    ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['uploadImages']> {
+      const seam = SeamHttpWorkspacesCustomizationProfiles.fromClient(
+        client,
+        defaults,
+      )
+      return seam.uploadImages(...args)
+    }
+  }
 }
 
 export type SeamHttpEndpointQueryPaths =
@@ -4012,6 +4117,8 @@ export type SeamHttpEndpointQueryPaths =
   | '/workspaces/find_resources'
   | '/workspaces/get'
   | '/workspaces/list'
+  | '/workspaces/customization_profiles/get'
+  | '/workspaces/customization_profiles/list'
 
 export type SeamHttpEndpointPaginatedQueryPaths =
   | '/access_codes/list'
@@ -4144,3 +4251,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/workspaces/create'
   | '/workspaces/reset_sandbox'
   | '/workspaces/update'
+  | '/workspaces/customization_profiles/create'
+  | '/workspaces/customization_profiles/update'
+  | '/workspaces/customization_profiles/upload_images'
