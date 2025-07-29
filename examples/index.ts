@@ -1,7 +1,5 @@
 #!/usr/bin/env tsx
 
-import { env } from 'node:process'
-
 import landlubber, {
   type DefaultContext,
   defaultMiddleware,
@@ -27,17 +25,9 @@ interface ClientContext {
 const commands = [locks, unlock, workspace]
 
 const createAppContext: MiddlewareFunction = async (argv) => {
-  const apiKey = argv['api-key']
-  if (typeof apiKey !== 'string') throw new Error('Missing Seam API key')
-  const seam = SeamHttp.fromApiKey(apiKey)
-  argv['seam'] = seam
+  argv['seam'] = new SeamHttp()
 }
 
 const middleware = [...defaultMiddleware, createAppContext]
 
-await landlubber<Context>(commands, { middleware })
-  .describe('api-key', 'Seam API key')
-  .string('api-key')
-  .default('api-key', env.SEAM_API_KEY, 'SEAM_API_KEY')
-  .demandOption('api-key')
-  .parse()
+await landlubber<Context>(commands, { middleware }).parse()
