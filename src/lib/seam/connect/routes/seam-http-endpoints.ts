@@ -820,9 +820,9 @@ import {
   type WorkspacesCreateOptions,
   type WorkspacesCreateParameters,
   type WorkspacesCreateRequest,
-  type WorkspacesFindResourcesOptions,
-  type WorkspacesFindResourcesParameters,
-  type WorkspacesFindResourcesRequest,
+  type WorkspacesFindAnythingOptions,
+  type WorkspacesFindAnythingParameters,
+  type WorkspacesFindAnythingRequest,
   type WorkspacesGetOptions,
   type WorkspacesGetParameters,
   type WorkspacesGetRequest,
@@ -3869,21 +3869,21 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/find_resources'](): (
-    parameters?: WorkspacesFindResourcesParameters,
-    options?: WorkspacesFindResourcesOptions,
-  ) => WorkspacesFindResourcesRequest {
+  get ['/workspaces/find_anything'](): (
+    parameters?: WorkspacesFindAnythingParameters,
+    options?: WorkspacesFindAnythingOptions,
+  ) => WorkspacesFindAnythingRequest {
     const { client, defaults } = this
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
       )
     }
-    return function workspacesFindResources(
-      ...args: Parameters<SeamHttpWorkspaces['findResources']>
-    ): ReturnType<SeamHttpWorkspaces['findResources']> {
+    return function workspacesFindAnything(
+      ...args: Parameters<SeamHttpWorkspaces['findAnything']>
+    ): ReturnType<SeamHttpWorkspaces['findAnything']> {
       const seam = SeamHttpWorkspaces.fromClient(client, defaults)
-      return seam.findResources(...args)
+      return seam.findAnything(...args)
     }
   }
 
@@ -4134,7 +4134,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/user_identities/enrollment_automations/list'
   | '/webhooks/get'
   | '/webhooks/list'
-  | '/workspaces/find_resources'
+  | '/workspaces/find_anything'
   | '/workspaces/get'
   | '/workspaces/list'
   | '/workspaces/customization_profiles/get'

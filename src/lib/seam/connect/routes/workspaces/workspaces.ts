@@ -189,17 +189,17 @@ export class SeamHttpWorkspaces {
     })
   }
 
-  findResources(
-    parameters?: WorkspacesFindResourcesParameters,
-    options: WorkspacesFindResourcesOptions = {},
-  ): WorkspacesFindResourcesRequest {
+  findAnything(
+    parameters?: WorkspacesFindAnythingParameters,
+    options: WorkspacesFindAnythingOptions = {},
+  ): WorkspacesFindAnythingRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
       throw new Error(
         'Cannot use undocumented API without isUndocumentedApiEnabled',
       )
     }
     return new SeamHttpRequest(this, {
-      pathname: '/workspaces/find_resources',
+      pathname: '/workspaces/find_anything',
       method: 'GET',
       params: parameters,
       responseKey: 'batch',
@@ -282,28 +282,28 @@ export type WorkspacesCreateRequest = SeamHttpRequest<
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesCreateOptions {}
 
-export type WorkspacesFindResourcesParameters =
-  RouteRequestParams<'/workspaces/find_resources'>
+export type WorkspacesFindAnythingParameters =
+  RouteRequestParams<'/workspaces/find_anything'>
 
 /**
- * @deprecated Use WorkspacesFindResourcesParameters instead.
+ * @deprecated Use WorkspacesFindAnythingParameters instead.
  */
-export type WorkspacesFindResourcesParams = WorkspacesFindResourcesParameters
+export type WorkspacesFindAnythingParams = WorkspacesFindAnythingParameters
 
 /**
- * @deprecated Use WorkspacesFindResourcesRequest instead.
+ * @deprecated Use WorkspacesFindAnythingRequest instead.
  */
-export type WorkspacesFindResourcesResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/find_resources'>>
+export type WorkspacesFindAnythingResponse = SetNonNullable<
+  Required<RouteResponse<'/workspaces/find_anything'>>
 >
 
-export type WorkspacesFindResourcesRequest = SeamHttpRequest<
-  WorkspacesFindResourcesResponse,
+export type WorkspacesFindAnythingRequest = SeamHttpRequest<
+  WorkspacesFindAnythingResponse,
   'batch'
 >
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface WorkspacesFindResourcesOptions {}
+export interface WorkspacesFindAnythingOptions {}
 
 export type WorkspacesGetParameters = RouteRequestParams<'/workspaces/get'>
 
