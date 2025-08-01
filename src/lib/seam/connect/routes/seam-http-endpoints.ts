@@ -4144,6 +4144,7 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/access_codes/list'
   | '/access_codes/unmanaged/list'
   | '/acs/credentials/list'
+  | '/acs/entrances/list'
   | '/acs/users/list'
   | '/connect_webviews/list'
   | '/connected_accounts/list'
