@@ -200,8 +200,8 @@ export class SeamHttpWorkspaces {
     }
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/find_anything',
-      method: 'GET',
-      params: parameters,
+      method: 'POST',
+      body: parameters,
       responseKey: 'batch',
       options,
     })
@@ -283,7 +283,7 @@ export type WorkspacesCreateRequest = SeamHttpRequest<
 export interface WorkspacesCreateOptions {}
 
 export type WorkspacesFindAnythingParameters =
-  RouteRequestParams<'/workspaces/find_anything'>
+  RouteRequestBody<'/workspaces/find_anything'>
 
 /**
  * @deprecated Use WorkspacesFindAnythingParameters instead.
