@@ -390,6 +390,9 @@ import {
   type CustomersCreatePortalOptions,
   type CustomersCreatePortalParameters,
   type CustomersCreatePortalRequest,
+  type CustomersDeleteDataOptions,
+  type CustomersDeleteDataParameters,
+  type CustomersDeleteDataRequest,
   type CustomersPushDataOptions,
   type CustomersPushDataParameters,
   type CustomersPushDataRequest,
@@ -2303,6 +2306,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/customers/delete_data'](): (
+    parameters?: CustomersDeleteDataParameters,
+    options?: CustomersDeleteDataOptions,
+  ) => CustomersDeleteDataRequest {
+    const { client, defaults } = this
+    return function customersDeleteData(
+      ...args: Parameters<SeamHttpCustomers['deleteData']>
+    ): ReturnType<SeamHttpCustomers['deleteData']> {
+      const seam = SeamHttpCustomers.fromClient(client, defaults)
+      return seam.deleteData(...args)
+    }
+  }
+
   get ['/customers/push_data'](): (
     parameters?: CustomersPushDataParameters,
     options?: CustomersPushDataOptions,
@@ -4203,6 +4219,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/connected_accounts/sync'
   | '/connected_accounts/update'
   | '/customers/create_portal'
+  | '/customers/delete_data'
   | '/customers/push_data'
   | '/devices/delete'
   | '/devices/update'
