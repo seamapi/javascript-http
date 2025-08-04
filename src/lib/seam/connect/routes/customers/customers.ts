@@ -176,6 +176,19 @@ export class SeamHttpCustomers {
     })
   }
 
+  deleteData(
+    parameters?: CustomersDeleteDataParameters,
+    options: CustomersDeleteDataOptions = {},
+  ): CustomersDeleteDataRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/customers/delete_data',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
   pushData(
     parameters?: CustomersPushDataParameters,
     options: CustomersPushDataOptions = {},
@@ -212,6 +225,26 @@ export type CustomersCreatePortalRequest = SeamHttpRequest<
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CustomersCreatePortalOptions {}
+
+export type CustomersDeleteDataParameters =
+  RouteRequestBody<'/customers/delete_data'>
+
+/**
+ * @deprecated Use CustomersDeleteDataParameters instead.
+ */
+export type CustomersDeleteDataParams = CustomersDeleteDataParameters
+
+/**
+ * @deprecated Use CustomersDeleteDataRequest instead.
+ */
+export type CustomersDeleteDataResponse = SetNonNullable<
+  Required<RouteResponse<'/customers/delete_data'>>
+>
+
+export type CustomersDeleteDataRequest = SeamHttpRequest<void, undefined>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface CustomersDeleteDataOptions {}
 
 export type CustomersPushDataParameters =
   RouteRequestBody<'/customers/push_data'>
