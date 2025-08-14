@@ -429,6 +429,9 @@ import {
   type DevicesSimulateDisconnectOptions,
   type DevicesSimulateDisconnectParameters,
   type DevicesSimulateDisconnectRequest,
+  type DevicesSimulatePaidSubscriptionOptions,
+  type DevicesSimulatePaidSubscriptionParameters,
+  type DevicesSimulatePaidSubscriptionRequest,
   type DevicesSimulateRemoveOptions,
   type DevicesSimulateRemoveParameters,
   type DevicesSimulateRemoveRequest,
@@ -2460,6 +2463,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get ['/devices/simulate/paid_subscription'](): (
+    parameters?: DevicesSimulatePaidSubscriptionParameters,
+    options?: DevicesSimulatePaidSubscriptionOptions,
+  ) => DevicesSimulatePaidSubscriptionRequest {
+    const { client, defaults } = this
+    return function devicesSimulatePaidSubscription(
+      ...args: Parameters<SeamHttpDevicesSimulate['paidSubscription']>
+    ): ReturnType<SeamHttpDevicesSimulate['paidSubscription']> {
+      const seam = SeamHttpDevicesSimulate.fromClient(client, defaults)
+      return seam.paidSubscription(...args)
+    }
+  }
+
   get ['/devices/simulate/remove'](): (
     parameters?: DevicesSimulateRemoveParameters,
     options?: DevicesSimulateRemoveOptions,
@@ -4254,6 +4270,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/devices/simulate/connect_to_hub'
   | '/devices/simulate/disconnect'
   | '/devices/simulate/disconnect_from_hub'
+  | '/devices/simulate/paid_subscription'
   | '/devices/simulate/remove'
   | '/devices/unmanaged/update'
   | '/instant_keys/delete'

@@ -215,6 +215,19 @@ export class SeamHttpDevicesSimulate {
     })
   }
 
+  paidSubscription(
+    parameters?: DevicesSimulatePaidSubscriptionParameters,
+    options: DevicesSimulatePaidSubscriptionOptions = {},
+  ): DevicesSimulatePaidSubscriptionRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/devices/simulate/paid_subscription',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
   remove(
     parameters?: DevicesSimulateRemoveParameters,
     options: DevicesSimulateRemoveOptions = {},
@@ -316,6 +329,30 @@ export type DevicesSimulateDisconnectFromHubRequest = SeamHttpRequest<
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DevicesSimulateDisconnectFromHubOptions {}
+
+export type DevicesSimulatePaidSubscriptionParameters =
+  RouteRequestBody<'/devices/simulate/paid_subscription'>
+
+/**
+ * @deprecated Use DevicesSimulatePaidSubscriptionParameters instead.
+ */
+export type DevicesSimulatePaidSubscriptionBody =
+  DevicesSimulatePaidSubscriptionParameters
+
+/**
+ * @deprecated Use DevicesSimulatePaidSubscriptionRequest instead.
+ */
+export type DevicesSimulatePaidSubscriptionResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/simulate/paid_subscription'>>
+>
+
+export type DevicesSimulatePaidSubscriptionRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DevicesSimulatePaidSubscriptionOptions {}
 
 export type DevicesSimulateRemoveParameters =
   RouteRequestBody<'/devices/simulate/remove'>
