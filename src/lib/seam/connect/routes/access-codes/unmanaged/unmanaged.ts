@@ -250,7 +250,6 @@ export type AccessCodesUnmanagedConvertToManagedRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesUnmanagedConvertToManagedOptions {}
 
 export type AccessCodesUnmanagedDeleteParameters =
@@ -271,7 +270,6 @@ export type AccessCodesUnmanagedDeleteResponse = SetNonNullable<
 
 export type AccessCodesUnmanagedDeleteRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesUnmanagedDeleteOptions {}
 
 export type AccessCodesUnmanagedGetParameters =
@@ -294,7 +292,6 @@ export type AccessCodesUnmanagedGetRequest = SeamHttpRequest<
   'access_code'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesUnmanagedGetOptions {}
 
 export type AccessCodesUnmanagedListParameters =
@@ -317,7 +314,6 @@ export type AccessCodesUnmanagedListRequest = SeamHttpRequest<
   'access_codes'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesUnmanagedListOptions {}
 
 export type AccessCodesUnmanagedUpdateParameters =
@@ -338,5 +334,4 @@ export type AccessCodesUnmanagedUpdateResponse = SetNonNullable<
 
 export type AccessCodesUnmanagedUpdateRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesUnmanagedUpdateOptions {}

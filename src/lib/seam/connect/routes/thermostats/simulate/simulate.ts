@@ -211,7 +211,6 @@ export type ThermostatsSimulateHvacModeAdjustedRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsSimulateHvacModeAdjustedOptions {}
 
 export type ThermostatsSimulateTemperatureReachedParameters =
@@ -235,5 +234,4 @@ export type ThermostatsSimulateTemperatureReachedRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsSimulateTemperatureReachedOptions {}

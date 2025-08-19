@@ -259,7 +259,6 @@ export type DevicesSimulateConnectResponse = SetNonNullable<
 
 export type DevicesSimulateConnectRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DevicesSimulateConnectOptions {}
 
 export type DevicesSimulateConnectToHubParameters =
@@ -283,7 +282,6 @@ export type DevicesSimulateConnectToHubRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DevicesSimulateConnectToHubOptions {}
 
 export type DevicesSimulateDisconnectParameters =
@@ -303,7 +301,6 @@ export type DevicesSimulateDisconnectResponse = SetNonNullable<
 
 export type DevicesSimulateDisconnectRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DevicesSimulateDisconnectOptions {}
 
 export type DevicesSimulateDisconnectFromHubParameters =
@@ -327,7 +324,6 @@ export type DevicesSimulateDisconnectFromHubRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DevicesSimulateDisconnectFromHubOptions {}
 
 export type DevicesSimulatePaidSubscriptionParameters =
@@ -351,7 +347,6 @@ export type DevicesSimulatePaidSubscriptionRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DevicesSimulatePaidSubscriptionOptions {}
 
 export type DevicesSimulateRemoveParameters =
@@ -371,5 +366,4 @@ export type DevicesSimulateRemoveResponse = SetNonNullable<
 
 export type DevicesSimulateRemoveRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DevicesSimulateRemoveOptions {}

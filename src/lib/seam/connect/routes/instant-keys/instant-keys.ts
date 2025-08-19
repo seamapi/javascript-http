@@ -220,7 +220,6 @@ export type InstantKeysDeleteResponse = SetNonNullable<
 
 export type InstantKeysDeleteRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface InstantKeysDeleteOptions {}
 
 export type InstantKeysGetParameters = RouteRequestBody<'/instant_keys/get'>
@@ -242,7 +241,6 @@ export type InstantKeysGetRequest = SeamHttpRequest<
   'instant_key'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface InstantKeysGetOptions {}
 
 export type InstantKeysListParameters = RouteRequestBody<'/instant_keys/list'>
@@ -264,5 +262,4 @@ export type InstantKeysListRequest = SeamHttpRequest<
   'instant_keys'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface InstantKeysListOptions {}

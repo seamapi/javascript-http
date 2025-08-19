@@ -325,7 +325,6 @@ export type AccessCodesCreateRequest = SeamHttpRequest<
   'access_code'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesCreateOptions {}
 
 export type AccessCodesCreateMultipleParameters =
@@ -348,7 +347,6 @@ export type AccessCodesCreateMultipleRequest = SeamHttpRequest<
   'access_codes'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesCreateMultipleOptions {}
 
 export type AccessCodesDeleteParameters =
@@ -368,7 +366,6 @@ export type AccessCodesDeleteResponse = SetNonNullable<
 
 export type AccessCodesDeleteRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesDeleteOptions {}
 
 export type AccessCodesGenerateCodeParameters =
@@ -391,7 +388,6 @@ export type AccessCodesGenerateCodeRequest = SeamHttpRequest<
   'generated_code'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesGenerateCodeOptions {}
 
 export type AccessCodesGetParameters = RouteRequestBody<'/access_codes/get'>
@@ -413,7 +409,6 @@ export type AccessCodesGetRequest = SeamHttpRequest<
   'access_code'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesGetOptions {}
 
 export type AccessCodesListParameters = RouteRequestBody<'/access_codes/list'>
@@ -435,7 +430,6 @@ export type AccessCodesListRequest = SeamHttpRequest<
   'access_codes'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesListOptions {}
 
 export type AccessCodesPullBackupAccessCodeParameters =
@@ -459,7 +453,6 @@ export type AccessCodesPullBackupAccessCodeRequest = SeamHttpRequest<
   'access_code'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesPullBackupAccessCodeOptions {}
 
 export type AccessCodesReportDeviceConstraintsParameters =
@@ -483,7 +476,6 @@ export type AccessCodesReportDeviceConstraintsRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesReportDeviceConstraintsOptions {}
 
 export type AccessCodesUpdateParameters =
@@ -503,7 +495,6 @@ export type AccessCodesUpdateResponse = SetNonNullable<
 
 export type AccessCodesUpdateRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesUpdateOptions {}
 
 export type AccessCodesUpdateMultipleParameters =
@@ -523,5 +514,4 @@ export type AccessCodesUpdateMultipleResponse = SetNonNullable<
 
 export type AccessCodesUpdateMultipleRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessCodesUpdateMultipleOptions {}

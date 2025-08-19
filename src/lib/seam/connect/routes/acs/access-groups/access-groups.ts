@@ -268,7 +268,6 @@ export type AcsAccessGroupsAddUserResponse = SetNonNullable<
 
 export type AcsAccessGroupsAddUserRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsAccessGroupsAddUserOptions {}
 
 export type AcsAccessGroupsGetParameters =
@@ -291,7 +290,6 @@ export type AcsAccessGroupsGetRequest = SeamHttpRequest<
   'acs_access_group'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsAccessGroupsGetOptions {}
 
 export type AcsAccessGroupsListParameters =
@@ -314,7 +312,6 @@ export type AcsAccessGroupsListRequest = SeamHttpRequest<
   'acs_access_groups'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsAccessGroupsListOptions {}
 
 export type AcsAccessGroupsListAccessibleEntrancesParameters =
@@ -338,7 +335,6 @@ export type AcsAccessGroupsListAccessibleEntrancesRequest = SeamHttpRequest<
   'acs_entrances'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsAccessGroupsListAccessibleEntrancesOptions {}
 
 export type AcsAccessGroupsListUsersParameters =
@@ -361,7 +357,6 @@ export type AcsAccessGroupsListUsersRequest = SeamHttpRequest<
   'acs_users'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsAccessGroupsListUsersOptions {}
 
 export type AcsAccessGroupsRemoveUserParameters =
@@ -382,5 +377,4 @@ export type AcsAccessGroupsRemoveUserResponse = SetNonNullable<
 
 export type AcsAccessGroupsRemoveUserRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsAccessGroupsRemoveUserOptions {}

@@ -246,7 +246,6 @@ export type AccessMethodsDeleteResponse = SetNonNullable<
 
 export type AccessMethodsDeleteRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessMethodsDeleteOptions {}
 
 export type AccessMethodsEncodeParameters =
@@ -293,7 +292,6 @@ export type AccessMethodsGetRequest = SeamHttpRequest<
   'access_method'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessMethodsGetOptions {}
 
 export type AccessMethodsGetRelatedParameters =
@@ -316,7 +314,6 @@ export type AccessMethodsGetRelatedRequest = SeamHttpRequest<
   'batch'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessMethodsGetRelatedOptions {}
 
 export type AccessMethodsListParameters =
@@ -339,5 +336,4 @@ export type AccessMethodsListRequest = SeamHttpRequest<
   'access_methods'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessMethodsListOptions {}

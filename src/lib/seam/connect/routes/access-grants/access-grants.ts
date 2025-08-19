@@ -266,7 +266,6 @@ export type AccessGrantsCreateRequest = SeamHttpRequest<
   'access_grant'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessGrantsCreateOptions {}
 
 export type AccessGrantsDeleteParameters =
@@ -286,7 +285,6 @@ export type AccessGrantsDeleteResponse = SetNonNullable<
 
 export type AccessGrantsDeleteRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessGrantsDeleteOptions {}
 
 export type AccessGrantsGetParameters = RouteRequestParams<'/access_grants/get'>
@@ -308,7 +306,6 @@ export type AccessGrantsGetRequest = SeamHttpRequest<
   'access_grant'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessGrantsGetOptions {}
 
 export type AccessGrantsGetRelatedParameters =
@@ -331,7 +328,6 @@ export type AccessGrantsGetRelatedRequest = SeamHttpRequest<
   'batch'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessGrantsGetRelatedOptions {}
 
 export type AccessGrantsListParameters = RouteRequestBody<'/access_grants/list'>
@@ -353,7 +349,6 @@ export type AccessGrantsListRequest = SeamHttpRequest<
   'access_grants'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessGrantsListOptions {}
 
 export type AccessGrantsUpdateParameters =
@@ -373,5 +368,4 @@ export type AccessGrantsUpdateResponse = SetNonNullable<
 
 export type AccessGrantsUpdateRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccessGrantsUpdateOptions {}

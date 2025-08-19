@@ -265,7 +265,6 @@ export type UserIdentitiesEnrollmentAutomationsDeleteRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UserIdentitiesEnrollmentAutomationsDeleteOptions {}
 
 export type UserIdentitiesEnrollmentAutomationsGetParameters =
@@ -289,7 +288,6 @@ export type UserIdentitiesEnrollmentAutomationsGetRequest = SeamHttpRequest<
   'enrollment_automation'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UserIdentitiesEnrollmentAutomationsGetOptions {}
 
 export type UserIdentitiesEnrollmentAutomationsLaunchParameters =
@@ -313,7 +311,6 @@ export type UserIdentitiesEnrollmentAutomationsLaunchRequest = SeamHttpRequest<
   'enrollment_automation'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UserIdentitiesEnrollmentAutomationsLaunchOptions {}
 
 export type UserIdentitiesEnrollmentAutomationsListParameters =
@@ -337,5 +334,4 @@ export type UserIdentitiesEnrollmentAutomationsListRequest = SeamHttpRequest<
   'enrollment_automations'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UserIdentitiesEnrollmentAutomationsListOptions {}

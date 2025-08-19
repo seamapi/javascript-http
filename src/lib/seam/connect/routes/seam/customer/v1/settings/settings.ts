@@ -230,7 +230,6 @@ export type SeamCustomerV1SettingsGetRequest = SeamHttpRequest<
   'business_vertical'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SeamCustomerV1SettingsGetOptions {}
 
 export type SeamCustomerV1SettingsUpdateParameters =
@@ -254,5 +253,4 @@ export type SeamCustomerV1SettingsUpdateRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SeamCustomerV1SettingsUpdateOptions {}

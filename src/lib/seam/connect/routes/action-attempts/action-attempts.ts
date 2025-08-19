@@ -235,5 +235,4 @@ export type ActionAttemptsListRequest = SeamHttpRequest<
   'action_attempts'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ActionAttemptsListOptions {}

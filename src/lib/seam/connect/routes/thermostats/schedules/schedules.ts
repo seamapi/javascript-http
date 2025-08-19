@@ -250,7 +250,6 @@ export type ThermostatsSchedulesCreateRequest = SeamHttpRequest<
   'thermostat_schedule'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsSchedulesCreateOptions {}
 
 export type ThermostatsSchedulesDeleteParameters =
@@ -271,7 +270,6 @@ export type ThermostatsSchedulesDeleteResponse = SetNonNullable<
 
 export type ThermostatsSchedulesDeleteRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsSchedulesDeleteOptions {}
 
 export type ThermostatsSchedulesGetParameters =
@@ -294,7 +292,6 @@ export type ThermostatsSchedulesGetRequest = SeamHttpRequest<
   'thermostat_schedule'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsSchedulesGetOptions {}
 
 export type ThermostatsSchedulesListParameters =
@@ -317,7 +314,6 @@ export type ThermostatsSchedulesListRequest = SeamHttpRequest<
   'thermostat_schedules'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsSchedulesListOptions {}
 
 export type ThermostatsSchedulesUpdateParameters =
@@ -338,5 +334,4 @@ export type ThermostatsSchedulesUpdateResponse = SetNonNullable<
 
 export type ThermostatsSchedulesUpdateRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsSchedulesUpdateOptions {}

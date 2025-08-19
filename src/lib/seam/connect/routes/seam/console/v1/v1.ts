@@ -214,5 +214,4 @@ export type SeamConsoleV1GetResourceLocatorRequest = SeamHttpRequest<
   'resource_locator'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SeamConsoleV1GetResourceLocatorOptions {}

@@ -251,7 +251,6 @@ export type SeamCustomerV1AutomationsDeleteRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SeamCustomerV1AutomationsDeleteOptions {}
 
 export type SeamCustomerV1AutomationsGetParameters =
@@ -275,7 +274,6 @@ export type SeamCustomerV1AutomationsGetRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SeamCustomerV1AutomationsGetOptions {}
 
 export type SeamCustomerV1AutomationsUpdateParameters =
@@ -299,5 +297,4 @@ export type SeamCustomerV1AutomationsUpdateRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SeamCustomerV1AutomationsUpdateOptions {}

@@ -315,7 +315,6 @@ export type SpacesAddAcsEntrancesResponse = SetNonNullable<
 
 export type SpacesAddAcsEntrancesRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesAddAcsEntrancesOptions {}
 
 export type SpacesAddDevicesParameters = RouteRequestBody<'/spaces/add_devices'>
@@ -334,7 +333,6 @@ export type SpacesAddDevicesResponse = SetNonNullable<
 
 export type SpacesAddDevicesRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesAddDevicesOptions {}
 
 export type SpacesCreateParameters = RouteRequestBody<'/spaces/create'>
@@ -353,7 +351,6 @@ export type SpacesCreateResponse = SetNonNullable<
 
 export type SpacesCreateRequest = SeamHttpRequest<SpacesCreateResponse, 'space'>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesCreateOptions {}
 
 export type SpacesDeleteParameters = RouteRequestBody<'/spaces/delete'>
@@ -372,7 +369,6 @@ export type SpacesDeleteResponse = SetNonNullable<
 
 export type SpacesDeleteRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesDeleteOptions {}
 
 export type SpacesGetParameters = RouteRequestParams<'/spaces/get'>
@@ -391,7 +387,6 @@ export type SpacesGetResponse = SetNonNullable<
 
 export type SpacesGetRequest = SeamHttpRequest<SpacesGetResponse, 'space'>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesGetOptions {}
 
 export type SpacesGetRelatedParameters = RouteRequestBody<'/spaces/get_related'>
@@ -413,7 +408,6 @@ export type SpacesGetRelatedRequest = SeamHttpRequest<
   'batch'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesGetRelatedOptions {}
 
 export type SpacesListParameters = RouteRequestBody<'/spaces/list'>
@@ -432,7 +426,6 @@ export type SpacesListResponse = SetNonNullable<
 
 export type SpacesListRequest = SeamHttpRequest<SpacesListResponse, 'spaces'>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesListOptions {}
 
 export type SpacesRemoveAcsEntrancesParameters =
@@ -452,7 +445,6 @@ export type SpacesRemoveAcsEntrancesResponse = SetNonNullable<
 
 export type SpacesRemoveAcsEntrancesRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesRemoveAcsEntrancesOptions {}
 
 export type SpacesRemoveDevicesParameters =
@@ -472,7 +464,6 @@ export type SpacesRemoveDevicesResponse = SetNonNullable<
 
 export type SpacesRemoveDevicesRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesRemoveDevicesOptions {}
 
 export type SpacesUpdateParameters = RouteRequestBody<'/spaces/update'>
@@ -491,5 +482,4 @@ export type SpacesUpdateResponse = SetNonNullable<
 
 export type SpacesUpdateRequest = SeamHttpRequest<SpacesUpdateResponse, 'space'>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SpacesUpdateOptions {}

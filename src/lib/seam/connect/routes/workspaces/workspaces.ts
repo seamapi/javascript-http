@@ -279,7 +279,6 @@ export type WorkspacesCreateRequest = SeamHttpRequest<
   'workspace'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesCreateOptions {}
 
 export type WorkspacesFindAnythingParameters =
@@ -302,7 +301,6 @@ export type WorkspacesFindAnythingRequest = SeamHttpRequest<
   'batch'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesFindAnythingOptions {}
 
 export type WorkspacesGetParameters = RouteRequestParams<'/workspaces/get'>
@@ -324,7 +322,6 @@ export type WorkspacesGetRequest = SeamHttpRequest<
   'workspace'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesGetOptions {}
 
 export type WorkspacesListParameters = RouteRequestParams<'/workspaces/list'>
@@ -346,7 +343,6 @@ export type WorkspacesListRequest = SeamHttpRequest<
   'workspaces'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesListOptions {}
 
 export type WorkspacesResetSandboxParameters =
@@ -390,5 +386,4 @@ export type WorkspacesUpdateResponse = SetNonNullable<
 
 export type WorkspacesUpdateRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesUpdateOptions {}

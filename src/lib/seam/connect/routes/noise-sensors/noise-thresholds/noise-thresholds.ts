@@ -253,7 +253,6 @@ export type NoiseSensorsNoiseThresholdsCreateRequest = SeamHttpRequest<
   'noise_threshold'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface NoiseSensorsNoiseThresholdsCreateOptions {}
 
 export type NoiseSensorsNoiseThresholdsDeleteParameters =
@@ -277,7 +276,6 @@ export type NoiseSensorsNoiseThresholdsDeleteRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface NoiseSensorsNoiseThresholdsDeleteOptions {}
 
 export type NoiseSensorsNoiseThresholdsGetParameters =
@@ -301,7 +299,6 @@ export type NoiseSensorsNoiseThresholdsGetRequest = SeamHttpRequest<
   'noise_threshold'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface NoiseSensorsNoiseThresholdsGetOptions {}
 
 export type NoiseSensorsNoiseThresholdsListParameters =
@@ -325,7 +322,6 @@ export type NoiseSensorsNoiseThresholdsListRequest = SeamHttpRequest<
   'noise_thresholds'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface NoiseSensorsNoiseThresholdsListOptions {}
 
 export type NoiseSensorsNoiseThresholdsUpdateParameters =
@@ -349,5 +345,4 @@ export type NoiseSensorsNoiseThresholdsUpdateRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface NoiseSensorsNoiseThresholdsUpdateOptions {}
