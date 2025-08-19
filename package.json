@@ -77,7 +77,7 @@
     "example:inspect": "tsx --inspect examples",
     "generate": "tsx codegen/smith.ts",
     "postgenerate": "npm run format",
-    "format": "prettier --write --ignore-path .gitignore .",
+    "format": "prettier --write --ignore-path .prettierignore .",
     "preformat": "eslint --fix .",
     "report": "c8 report"
   },
