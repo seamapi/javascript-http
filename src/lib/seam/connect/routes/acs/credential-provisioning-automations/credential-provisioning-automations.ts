@@ -211,5 +211,4 @@ export type AcsCredentialProvisioningAutomationsLaunchRequest = SeamHttpRequest<
   'acs_credential_provisioning_automation'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsCredentialProvisioningAutomationsLaunchOptions {}

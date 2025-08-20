@@ -198,5 +198,4 @@ export type PhonesSimulateCreateSandboxPhoneRequest = SeamHttpRequest<
   'phone'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PhonesSimulateCreateSandboxPhoneOptions {}

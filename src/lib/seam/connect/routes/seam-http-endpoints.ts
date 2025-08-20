@@ -976,7 +976,7 @@ export class SeamHttpEndpoints {
     await clientSessions.get()
   }
 
-  get ['/access_codes/create'](): (
+  get '/access_codes/create'(): (
     parameters?: AccessCodesCreateParameters,
     options?: AccessCodesCreateOptions,
   ) => AccessCodesCreateRequest {
@@ -989,7 +989,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/create_multiple'](): (
+  get '/access_codes/create_multiple'(): (
     parameters?: AccessCodesCreateMultipleParameters,
     options?: AccessCodesCreateMultipleOptions,
   ) => AccessCodesCreateMultipleRequest {
@@ -1002,7 +1002,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/delete'](): (
+  get '/access_codes/delete'(): (
     parameters?: AccessCodesDeleteParameters,
     options?: AccessCodesDeleteOptions,
   ) => AccessCodesDeleteRequest {
@@ -1015,7 +1015,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/generate_code'](): (
+  get '/access_codes/generate_code'(): (
     parameters?: AccessCodesGenerateCodeParameters,
     options?: AccessCodesGenerateCodeOptions,
   ) => AccessCodesGenerateCodeRequest {
@@ -1028,7 +1028,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/get'](): (
+  get '/access_codes/get'(): (
     parameters?: AccessCodesGetParameters,
     options?: AccessCodesGetOptions,
   ) => AccessCodesGetRequest {
@@ -1041,7 +1041,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/list'](): (
+  get '/access_codes/list'(): (
     parameters?: AccessCodesListParameters,
     options?: AccessCodesListOptions,
   ) => AccessCodesListRequest {
@@ -1054,7 +1054,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/pull_backup_access_code'](): (
+  get '/access_codes/pull_backup_access_code'(): (
     parameters?: AccessCodesPullBackupAccessCodeParameters,
     options?: AccessCodesPullBackupAccessCodeOptions,
   ) => AccessCodesPullBackupAccessCodeRequest {
@@ -1067,7 +1067,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/report_device_constraints'](): (
+  get '/access_codes/report_device_constraints'(): (
     parameters?: AccessCodesReportDeviceConstraintsParameters,
     options?: AccessCodesReportDeviceConstraintsOptions,
   ) => AccessCodesReportDeviceConstraintsRequest {
@@ -1080,7 +1080,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/update'](): (
+  get '/access_codes/update'(): (
     parameters?: AccessCodesUpdateParameters,
     options?: AccessCodesUpdateOptions,
   ) => AccessCodesUpdateRequest {
@@ -1093,7 +1093,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/update_multiple'](): (
+  get '/access_codes/update_multiple'(): (
     parameters?: AccessCodesUpdateMultipleParameters,
     options?: AccessCodesUpdateMultipleOptions,
   ) => AccessCodesUpdateMultipleRequest {
@@ -1106,7 +1106,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/simulate/create_unmanaged_access_code'](): (
+  get '/access_codes/simulate/create_unmanaged_access_code'(): (
     parameters?: AccessCodesSimulateCreateUnmanagedAccessCodeParameters,
     options?: AccessCodesSimulateCreateUnmanagedAccessCodeOptions,
   ) => AccessCodesSimulateCreateUnmanagedAccessCodeRequest {
@@ -1121,7 +1121,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/unmanaged/convert_to_managed'](): (
+  get '/access_codes/unmanaged/convert_to_managed'(): (
     parameters?: AccessCodesUnmanagedConvertToManagedParameters,
     options?: AccessCodesUnmanagedConvertToManagedOptions,
   ) => AccessCodesUnmanagedConvertToManagedRequest {
@@ -1134,7 +1134,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/unmanaged/delete'](): (
+  get '/access_codes/unmanaged/delete'(): (
     parameters?: AccessCodesUnmanagedDeleteParameters,
     options?: AccessCodesUnmanagedDeleteOptions,
   ) => AccessCodesUnmanagedDeleteRequest {
@@ -1147,7 +1147,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/unmanaged/get'](): (
+  get '/access_codes/unmanaged/get'(): (
     parameters?: AccessCodesUnmanagedGetParameters,
     options?: AccessCodesUnmanagedGetOptions,
   ) => AccessCodesUnmanagedGetRequest {
@@ -1160,7 +1160,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/unmanaged/list'](): (
+  get '/access_codes/unmanaged/list'(): (
     parameters?: AccessCodesUnmanagedListParameters,
     options?: AccessCodesUnmanagedListOptions,
   ) => AccessCodesUnmanagedListRequest {
@@ -1173,7 +1173,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_codes/unmanaged/update'](): (
+  get '/access_codes/unmanaged/update'(): (
     parameters?: AccessCodesUnmanagedUpdateParameters,
     options?: AccessCodesUnmanagedUpdateOptions,
   ) => AccessCodesUnmanagedUpdateRequest {
@@ -1186,7 +1186,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_grants/create'](): (
+  get '/access_grants/create'(): (
     parameters?: AccessGrantsCreateParameters,
     options?: AccessGrantsCreateOptions,
   ) => AccessGrantsCreateRequest {
@@ -1199,7 +1199,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_grants/delete'](): (
+  get '/access_grants/delete'(): (
     parameters?: AccessGrantsDeleteParameters,
     options?: AccessGrantsDeleteOptions,
   ) => AccessGrantsDeleteRequest {
@@ -1212,7 +1212,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_grants/get'](): (
+  get '/access_grants/get'(): (
     parameters?: AccessGrantsGetParameters,
     options?: AccessGrantsGetOptions,
   ) => AccessGrantsGetRequest {
@@ -1225,7 +1225,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_grants/get_related'](): (
+  get '/access_grants/get_related'(): (
     parameters?: AccessGrantsGetRelatedParameters,
     options?: AccessGrantsGetRelatedOptions,
   ) => AccessGrantsGetRelatedRequest {
@@ -1238,7 +1238,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_grants/list'](): (
+  get '/access_grants/list'(): (
     parameters?: AccessGrantsListParameters,
     options?: AccessGrantsListOptions,
   ) => AccessGrantsListRequest {
@@ -1251,7 +1251,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_grants/update'](): (
+  get '/access_grants/update'(): (
     parameters?: AccessGrantsUpdateParameters,
     options?: AccessGrantsUpdateOptions,
   ) => AccessGrantsUpdateRequest {
@@ -1264,7 +1264,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_methods/delete'](): (
+  get '/access_methods/delete'(): (
     parameters?: AccessMethodsDeleteParameters,
     options?: AccessMethodsDeleteOptions,
   ) => AccessMethodsDeleteRequest {
@@ -1277,7 +1277,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_methods/encode'](): (
+  get '/access_methods/encode'(): (
     parameters?: AccessMethodsEncodeParameters,
     options?: AccessMethodsEncodeOptions,
   ) => AccessMethodsEncodeRequest {
@@ -1290,7 +1290,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_methods/get'](): (
+  get '/access_methods/get'(): (
     parameters?: AccessMethodsGetParameters,
     options?: AccessMethodsGetOptions,
   ) => AccessMethodsGetRequest {
@@ -1303,7 +1303,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_methods/get_related'](): (
+  get '/access_methods/get_related'(): (
     parameters?: AccessMethodsGetRelatedParameters,
     options?: AccessMethodsGetRelatedOptions,
   ) => AccessMethodsGetRelatedRequest {
@@ -1316,7 +1316,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/access_methods/list'](): (
+  get '/access_methods/list'(): (
     parameters?: AccessMethodsListParameters,
     options?: AccessMethodsListOptions,
   ) => AccessMethodsListRequest {
@@ -1329,7 +1329,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/access_groups/add_user'](): (
+  get '/acs/access_groups/add_user'(): (
     parameters?: AcsAccessGroupsAddUserParameters,
     options?: AcsAccessGroupsAddUserOptions,
   ) => AcsAccessGroupsAddUserRequest {
@@ -1342,7 +1342,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/access_groups/get'](): (
+  get '/acs/access_groups/get'(): (
     parameters?: AcsAccessGroupsGetParameters,
     options?: AcsAccessGroupsGetOptions,
   ) => AcsAccessGroupsGetRequest {
@@ -1355,7 +1355,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/access_groups/list'](): (
+  get '/acs/access_groups/list'(): (
     parameters?: AcsAccessGroupsListParameters,
     options?: AcsAccessGroupsListOptions,
   ) => AcsAccessGroupsListRequest {
@@ -1368,7 +1368,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/access_groups/list_accessible_entrances'](): (
+  get '/acs/access_groups/list_accessible_entrances'(): (
     parameters?: AcsAccessGroupsListAccessibleEntrancesParameters,
     options?: AcsAccessGroupsListAccessibleEntrancesOptions,
   ) => AcsAccessGroupsListAccessibleEntrancesRequest {
@@ -1381,7 +1381,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/access_groups/list_users'](): (
+  get '/acs/access_groups/list_users'(): (
     parameters?: AcsAccessGroupsListUsersParameters,
     options?: AcsAccessGroupsListUsersOptions,
   ) => AcsAccessGroupsListUsersRequest {
@@ -1394,7 +1394,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/access_groups/remove_user'](): (
+  get '/acs/access_groups/remove_user'(): (
     parameters?: AcsAccessGroupsRemoveUserParameters,
     options?: AcsAccessGroupsRemoveUserOptions,
   ) => AcsAccessGroupsRemoveUserRequest {
@@ -1407,7 +1407,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/access_groups/unmanaged/get'](): (
+  get '/acs/access_groups/unmanaged/get'(): (
     parameters?: AcsAccessGroupsUnmanagedGetParameters,
     options?: AcsAccessGroupsUnmanagedGetOptions,
   ) => AcsAccessGroupsUnmanagedGetRequest {
@@ -1425,7 +1425,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/access_groups/unmanaged/list'](): (
+  get '/acs/access_groups/unmanaged/list'(): (
     parameters?: AcsAccessGroupsUnmanagedListParameters,
     options?: AcsAccessGroupsUnmanagedListOptions,
   ) => AcsAccessGroupsUnmanagedListRequest {
@@ -1443,7 +1443,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credential_pools/list'](): (
+  get '/acs/credential_pools/list'(): (
     parameters?: AcsCredentialPoolsListParameters,
     options?: AcsCredentialPoolsListOptions,
   ) => AcsCredentialPoolsListRequest {
@@ -1461,7 +1461,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credential_provisioning_automations/launch'](): (
+  get '/acs/credential_provisioning_automations/launch'(): (
     parameters?: AcsCredentialProvisioningAutomationsLaunchParameters,
     options?: AcsCredentialProvisioningAutomationsLaunchOptions,
   ) => AcsCredentialProvisioningAutomationsLaunchRequest {
@@ -1484,7 +1484,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/assign'](): (
+  get '/acs/credentials/assign'(): (
     parameters?: AcsCredentialsAssignParameters,
     options?: AcsCredentialsAssignOptions,
   ) => AcsCredentialsAssignRequest {
@@ -1497,7 +1497,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/create'](): (
+  get '/acs/credentials/create'(): (
     parameters?: AcsCredentialsCreateParameters,
     options?: AcsCredentialsCreateOptions,
   ) => AcsCredentialsCreateRequest {
@@ -1510,7 +1510,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/create_offline_code'](): (
+  get '/acs/credentials/create_offline_code'(): (
     parameters?: AcsCredentialsCreateOfflineCodeParameters,
     options?: AcsCredentialsCreateOfflineCodeOptions,
   ) => AcsCredentialsCreateOfflineCodeRequest {
@@ -1528,7 +1528,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/delete'](): (
+  get '/acs/credentials/delete'(): (
     parameters?: AcsCredentialsDeleteParameters,
     options?: AcsCredentialsDeleteOptions,
   ) => AcsCredentialsDeleteRequest {
@@ -1541,7 +1541,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/get'](): (
+  get '/acs/credentials/get'(): (
     parameters?: AcsCredentialsGetParameters,
     options?: AcsCredentialsGetOptions,
   ) => AcsCredentialsGetRequest {
@@ -1554,7 +1554,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/list'](): (
+  get '/acs/credentials/list'(): (
     parameters?: AcsCredentialsListParameters,
     options?: AcsCredentialsListOptions,
   ) => AcsCredentialsListRequest {
@@ -1567,7 +1567,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/list_accessible_entrances'](): (
+  get '/acs/credentials/list_accessible_entrances'(): (
     parameters?: AcsCredentialsListAccessibleEntrancesParameters,
     options?: AcsCredentialsListAccessibleEntrancesOptions,
   ) => AcsCredentialsListAccessibleEntrancesRequest {
@@ -1580,7 +1580,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/unassign'](): (
+  get '/acs/credentials/unassign'(): (
     parameters?: AcsCredentialsUnassignParameters,
     options?: AcsCredentialsUnassignOptions,
   ) => AcsCredentialsUnassignRequest {
@@ -1593,7 +1593,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/update'](): (
+  get '/acs/credentials/update'(): (
     parameters?: AcsCredentialsUpdateParameters,
     options?: AcsCredentialsUpdateOptions,
   ) => AcsCredentialsUpdateRequest {
@@ -1606,7 +1606,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/unmanaged/get'](): (
+  get '/acs/credentials/unmanaged/get'(): (
     parameters?: AcsCredentialsUnmanagedGetParameters,
     options?: AcsCredentialsUnmanagedGetOptions,
   ) => AcsCredentialsUnmanagedGetRequest {
@@ -1624,7 +1624,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/credentials/unmanaged/list'](): (
+  get '/acs/credentials/unmanaged/list'(): (
     parameters?: AcsCredentialsUnmanagedListParameters,
     options?: AcsCredentialsUnmanagedListOptions,
   ) => AcsCredentialsUnmanagedListRequest {
@@ -1642,7 +1642,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/encoders/encode_credential'](): (
+  get '/acs/encoders/encode_credential'(): (
     parameters?: AcsEncodersEncodeCredentialParameters,
     options?: AcsEncodersEncodeCredentialOptions,
   ) => AcsEncodersEncodeCredentialRequest {
@@ -1655,7 +1655,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/encoders/get'](): (
+  get '/acs/encoders/get'(): (
     parameters?: AcsEncodersGetParameters,
     options?: AcsEncodersGetOptions,
   ) => AcsEncodersGetRequest {
@@ -1668,7 +1668,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/encoders/list'](): (
+  get '/acs/encoders/list'(): (
     parameters?: AcsEncodersListParameters,
     options?: AcsEncodersListOptions,
   ) => AcsEncodersListRequest {
@@ -1681,7 +1681,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/encoders/scan_credential'](): (
+  get '/acs/encoders/scan_credential'(): (
     parameters?: AcsEncodersScanCredentialParameters,
     options?: AcsEncodersScanCredentialOptions,
   ) => AcsEncodersScanCredentialRequest {
@@ -1694,7 +1694,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/encoders/simulate/next_credential_encode_will_fail'](): (
+  get '/acs/encoders/simulate/next_credential_encode_will_fail'(): (
     parameters?: AcsEncodersSimulateNextCredentialEncodeWillFailParameters,
     options?: AcsEncodersSimulateNextCredentialEncodeWillFailOptions,
   ) => AcsEncodersSimulateNextCredentialEncodeWillFailRequest {
@@ -1709,7 +1709,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/encoders/simulate/next_credential_encode_will_succeed'](): (
+  get '/acs/encoders/simulate/next_credential_encode_will_succeed'(): (
     parameters?: AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters,
     options?: AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions,
   ) => AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest {
@@ -1726,7 +1726,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/encoders/simulate/next_credential_scan_will_fail'](): (
+  get '/acs/encoders/simulate/next_credential_scan_will_fail'(): (
     parameters?: AcsEncodersSimulateNextCredentialScanWillFailParameters,
     options?: AcsEncodersSimulateNextCredentialScanWillFailOptions,
   ) => AcsEncodersSimulateNextCredentialScanWillFailRequest {
@@ -1741,7 +1741,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/encoders/simulate/next_credential_scan_will_succeed'](): (
+  get '/acs/encoders/simulate/next_credential_scan_will_succeed'(): (
     parameters?: AcsEncodersSimulateNextCredentialScanWillSucceedParameters,
     options?: AcsEncodersSimulateNextCredentialScanWillSucceedOptions,
   ) => AcsEncodersSimulateNextCredentialScanWillSucceedRequest {
@@ -1758,7 +1758,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/entrances/get'](): (
+  get '/acs/entrances/get'(): (
     parameters?: AcsEntrancesGetParameters,
     options?: AcsEntrancesGetOptions,
   ) => AcsEntrancesGetRequest {
@@ -1771,7 +1771,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/entrances/grant_access'](): (
+  get '/acs/entrances/grant_access'(): (
     parameters?: AcsEntrancesGrantAccessParameters,
     options?: AcsEntrancesGrantAccessOptions,
   ) => AcsEntrancesGrantAccessRequest {
@@ -1784,7 +1784,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/entrances/list'](): (
+  get '/acs/entrances/list'(): (
     parameters?: AcsEntrancesListParameters,
     options?: AcsEntrancesListOptions,
   ) => AcsEntrancesListRequest {
@@ -1797,7 +1797,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/entrances/list_credentials_with_access'](): (
+  get '/acs/entrances/list_credentials_with_access'(): (
     parameters?: AcsEntrancesListCredentialsWithAccessParameters,
     options?: AcsEntrancesListCredentialsWithAccessOptions,
   ) => AcsEntrancesListCredentialsWithAccessRequest {
@@ -1810,7 +1810,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/systems/get'](): (
+  get '/acs/systems/get'(): (
     parameters?: AcsSystemsGetParameters,
     options?: AcsSystemsGetOptions,
   ) => AcsSystemsGetRequest {
@@ -1823,7 +1823,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/systems/list'](): (
+  get '/acs/systems/list'(): (
     parameters?: AcsSystemsListParameters,
     options?: AcsSystemsListOptions,
   ) => AcsSystemsListRequest {
@@ -1836,7 +1836,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/systems/list_compatible_credential_manager_acs_systems'](): (
+  get '/acs/systems/list_compatible_credential_manager_acs_systems'(): (
     parameters?: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
     options?: AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions,
   ) => AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest {
@@ -1853,7 +1853,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/add_to_access_group'](): (
+  get '/acs/users/add_to_access_group'(): (
     parameters?: AcsUsersAddToAccessGroupParameters,
     options?: AcsUsersAddToAccessGroupOptions,
   ) => AcsUsersAddToAccessGroupRequest {
@@ -1866,7 +1866,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/create'](): (
+  get '/acs/users/create'(): (
     parameters?: AcsUsersCreateParameters,
     options?: AcsUsersCreateOptions,
   ) => AcsUsersCreateRequest {
@@ -1879,7 +1879,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/delete'](): (
+  get '/acs/users/delete'(): (
     parameters?: AcsUsersDeleteParameters,
     options?: AcsUsersDeleteOptions,
   ) => AcsUsersDeleteRequest {
@@ -1892,7 +1892,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/get'](): (
+  get '/acs/users/get'(): (
     parameters?: AcsUsersGetParameters,
     options?: AcsUsersGetOptions,
   ) => AcsUsersGetRequest {
@@ -1905,7 +1905,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/list'](): (
+  get '/acs/users/list'(): (
     parameters?: AcsUsersListParameters,
     options?: AcsUsersListOptions,
   ) => AcsUsersListRequest {
@@ -1918,7 +1918,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/list_accessible_entrances'](): (
+  get '/acs/users/list_accessible_entrances'(): (
     parameters?: AcsUsersListAccessibleEntrancesParameters,
     options?: AcsUsersListAccessibleEntrancesOptions,
   ) => AcsUsersListAccessibleEntrancesRequest {
@@ -1931,7 +1931,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/remove_from_access_group'](): (
+  get '/acs/users/remove_from_access_group'(): (
     parameters?: AcsUsersRemoveFromAccessGroupParameters,
     options?: AcsUsersRemoveFromAccessGroupOptions,
   ) => AcsUsersRemoveFromAccessGroupRequest {
@@ -1944,7 +1944,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/revoke_access_to_all_entrances'](): (
+  get '/acs/users/revoke_access_to_all_entrances'(): (
     parameters?: AcsUsersRevokeAccessToAllEntrancesParameters,
     options?: AcsUsersRevokeAccessToAllEntrancesOptions,
   ) => AcsUsersRevokeAccessToAllEntrancesRequest {
@@ -1957,7 +1957,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/suspend'](): (
+  get '/acs/users/suspend'(): (
     parameters?: AcsUsersSuspendParameters,
     options?: AcsUsersSuspendOptions,
   ) => AcsUsersSuspendRequest {
@@ -1970,7 +1970,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/unsuspend'](): (
+  get '/acs/users/unsuspend'(): (
     parameters?: AcsUsersUnsuspendParameters,
     options?: AcsUsersUnsuspendOptions,
   ) => AcsUsersUnsuspendRequest {
@@ -1983,7 +1983,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/update'](): (
+  get '/acs/users/update'(): (
     parameters?: AcsUsersUpdateParameters,
     options?: AcsUsersUpdateOptions,
   ) => AcsUsersUpdateRequest {
@@ -1996,7 +1996,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/unmanaged/get'](): (
+  get '/acs/users/unmanaged/get'(): (
     parameters?: AcsUsersUnmanagedGetParameters,
     options?: AcsUsersUnmanagedGetOptions,
   ) => AcsUsersUnmanagedGetRequest {
@@ -2014,7 +2014,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/acs/users/unmanaged/list'](): (
+  get '/acs/users/unmanaged/list'(): (
     parameters?: AcsUsersUnmanagedListParameters,
     options?: AcsUsersUnmanagedListOptions,
   ) => AcsUsersUnmanagedListRequest {
@@ -2032,7 +2032,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/action_attempts/get'](): (
+  get '/action_attempts/get'(): (
     parameters?: ActionAttemptsGetParameters,
     options?: ActionAttemptsGetOptions,
   ) => ActionAttemptsGetRequest {
@@ -2045,7 +2045,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/action_attempts/list'](): (
+  get '/action_attempts/list'(): (
     parameters?: ActionAttemptsListParameters,
     options?: ActionAttemptsListOptions,
   ) => ActionAttemptsListRequest {
@@ -2058,7 +2058,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/bridges/get'](): (
+  get '/bridges/get'(): (
     parameters?: BridgesGetParameters,
     options?: BridgesGetOptions,
   ) => BridgesGetRequest {
@@ -2076,7 +2076,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/bridges/list'](): (
+  get '/bridges/list'(): (
     parameters?: BridgesListParameters,
     options?: BridgesListOptions,
   ) => BridgesListRequest {
@@ -2094,7 +2094,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/client_sessions/create'](): (
+  get '/client_sessions/create'(): (
     parameters?: ClientSessionsCreateParameters,
     options?: ClientSessionsCreateOptions,
   ) => ClientSessionsCreateRequest {
@@ -2107,7 +2107,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/client_sessions/delete'](): (
+  get '/client_sessions/delete'(): (
     parameters?: ClientSessionsDeleteParameters,
     options?: ClientSessionsDeleteOptions,
   ) => ClientSessionsDeleteRequest {
@@ -2120,7 +2120,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/client_sessions/get'](): (
+  get '/client_sessions/get'(): (
     parameters?: ClientSessionsGetParameters,
     options?: ClientSessionsGetOptions,
   ) => ClientSessionsGetRequest {
@@ -2133,7 +2133,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/client_sessions/get_or_create'](): (
+  get '/client_sessions/get_or_create'(): (
     parameters?: ClientSessionsGetOrCreateParameters,
     options?: ClientSessionsGetOrCreateOptions,
   ) => ClientSessionsGetOrCreateRequest {
@@ -2146,7 +2146,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/client_sessions/grant_access'](): (
+  get '/client_sessions/grant_access'(): (
     parameters?: ClientSessionsGrantAccessParameters,
     options?: ClientSessionsGrantAccessOptions,
   ) => ClientSessionsGrantAccessRequest {
@@ -2159,7 +2159,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/client_sessions/list'](): (
+  get '/client_sessions/list'(): (
     parameters?: ClientSessionsListParameters,
     options?: ClientSessionsListOptions,
   ) => ClientSessionsListRequest {
@@ -2172,7 +2172,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/client_sessions/revoke'](): (
+  get '/client_sessions/revoke'(): (
     parameters?: ClientSessionsRevokeParameters,
     options?: ClientSessionsRevokeOptions,
   ) => ClientSessionsRevokeRequest {
@@ -2185,7 +2185,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/connect_webviews/create'](): (
+  get '/connect_webviews/create'(): (
     parameters?: ConnectWebviewsCreateParameters,
     options?: ConnectWebviewsCreateOptions,
   ) => ConnectWebviewsCreateRequest {
@@ -2198,7 +2198,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/connect_webviews/delete'](): (
+  get '/connect_webviews/delete'(): (
     parameters?: ConnectWebviewsDeleteParameters,
     options?: ConnectWebviewsDeleteOptions,
   ) => ConnectWebviewsDeleteRequest {
@@ -2211,7 +2211,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/connect_webviews/get'](): (
+  get '/connect_webviews/get'(): (
     parameters?: ConnectWebviewsGetParameters,
     options?: ConnectWebviewsGetOptions,
   ) => ConnectWebviewsGetRequest {
@@ -2224,7 +2224,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/connect_webviews/list'](): (
+  get '/connect_webviews/list'(): (
     parameters?: ConnectWebviewsListParameters,
     options?: ConnectWebviewsListOptions,
   ) => ConnectWebviewsListRequest {
@@ -2237,7 +2237,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/connected_accounts/delete'](): (
+  get '/connected_accounts/delete'(): (
     parameters?: ConnectedAccountsDeleteParameters,
     options?: ConnectedAccountsDeleteOptions,
   ) => ConnectedAccountsDeleteRequest {
@@ -2250,7 +2250,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/connected_accounts/get'](): (
+  get '/connected_accounts/get'(): (
     parameters?: ConnectedAccountsGetParameters,
     options?: ConnectedAccountsGetOptions,
   ) => ConnectedAccountsGetRequest {
@@ -2263,7 +2263,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/connected_accounts/list'](): (
+  get '/connected_accounts/list'(): (
     parameters?: ConnectedAccountsListParameters,
     options?: ConnectedAccountsListOptions,
   ) => ConnectedAccountsListRequest {
@@ -2276,7 +2276,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/connected_accounts/sync'](): (
+  get '/connected_accounts/sync'(): (
     parameters?: ConnectedAccountsSyncParameters,
     options?: ConnectedAccountsSyncOptions,
   ) => ConnectedAccountsSyncRequest {
@@ -2289,7 +2289,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/connected_accounts/update'](): (
+  get '/connected_accounts/update'(): (
     parameters?: ConnectedAccountsUpdateParameters,
     options?: ConnectedAccountsUpdateOptions,
   ) => ConnectedAccountsUpdateRequest {
@@ -2302,7 +2302,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/customers/create_portal'](): (
+  get '/customers/create_portal'(): (
     parameters?: CustomersCreatePortalParameters,
     options?: CustomersCreatePortalOptions,
   ) => CustomersCreatePortalRequest {
@@ -2315,7 +2315,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/customers/delete_data'](): (
+  get '/customers/delete_data'(): (
     parameters?: CustomersDeleteDataParameters,
     options?: CustomersDeleteDataOptions,
   ) => CustomersDeleteDataRequest {
@@ -2328,7 +2328,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/customers/push_data'](): (
+  get '/customers/push_data'(): (
     parameters?: CustomersPushDataParameters,
     options?: CustomersPushDataOptions,
   ) => CustomersPushDataRequest {
@@ -2341,7 +2341,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/delete'](): (
+  get '/devices/delete'(): (
     parameters?: DevicesDeleteParameters,
     options?: DevicesDeleteOptions,
   ) => DevicesDeleteRequest {
@@ -2359,7 +2359,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/get'](): (
+  get '/devices/get'(): (
     parameters?: DevicesGetParameters,
     options?: DevicesGetOptions,
   ) => DevicesGetRequest {
@@ -2372,7 +2372,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/list'](): (
+  get '/devices/list'(): (
     parameters?: DevicesListParameters,
     options?: DevicesListOptions,
   ) => DevicesListRequest {
@@ -2385,7 +2385,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/list_device_providers'](): (
+  get '/devices/list_device_providers'(): (
     parameters?: DevicesListDeviceProvidersParameters,
     options?: DevicesListDeviceProvidersOptions,
   ) => DevicesListDeviceProvidersRequest {
@@ -2398,7 +2398,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/update'](): (
+  get '/devices/update'(): (
     parameters?: DevicesUpdateParameters,
     options?: DevicesUpdateOptions,
   ) => DevicesUpdateRequest {
@@ -2411,7 +2411,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/simulate/connect'](): (
+  get '/devices/simulate/connect'(): (
     parameters?: DevicesSimulateConnectParameters,
     options?: DevicesSimulateConnectOptions,
   ) => DevicesSimulateConnectRequest {
@@ -2424,7 +2424,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/simulate/connect_to_hub'](): (
+  get '/devices/simulate/connect_to_hub'(): (
     parameters?: DevicesSimulateConnectToHubParameters,
     options?: DevicesSimulateConnectToHubOptions,
   ) => DevicesSimulateConnectToHubRequest {
@@ -2437,7 +2437,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/simulate/disconnect'](): (
+  get '/devices/simulate/disconnect'(): (
     parameters?: DevicesSimulateDisconnectParameters,
     options?: DevicesSimulateDisconnectOptions,
   ) => DevicesSimulateDisconnectRequest {
@@ -2450,7 +2450,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/simulate/disconnect_from_hub'](): (
+  get '/devices/simulate/disconnect_from_hub'(): (
     parameters?: DevicesSimulateDisconnectFromHubParameters,
     options?: DevicesSimulateDisconnectFromHubOptions,
   ) => DevicesSimulateDisconnectFromHubRequest {
@@ -2463,7 +2463,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/simulate/paid_subscription'](): (
+  get '/devices/simulate/paid_subscription'(): (
     parameters?: DevicesSimulatePaidSubscriptionParameters,
     options?: DevicesSimulatePaidSubscriptionOptions,
   ) => DevicesSimulatePaidSubscriptionRequest {
@@ -2476,7 +2476,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/simulate/remove'](): (
+  get '/devices/simulate/remove'(): (
     parameters?: DevicesSimulateRemoveParameters,
     options?: DevicesSimulateRemoveOptions,
   ) => DevicesSimulateRemoveRequest {
@@ -2489,7 +2489,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/unmanaged/get'](): (
+  get '/devices/unmanaged/get'(): (
     parameters?: DevicesUnmanagedGetParameters,
     options?: DevicesUnmanagedGetOptions,
   ) => DevicesUnmanagedGetRequest {
@@ -2502,7 +2502,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/unmanaged/list'](): (
+  get '/devices/unmanaged/list'(): (
     parameters?: DevicesUnmanagedListParameters,
     options?: DevicesUnmanagedListOptions,
   ) => DevicesUnmanagedListRequest {
@@ -2515,7 +2515,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/devices/unmanaged/update'](): (
+  get '/devices/unmanaged/update'(): (
     parameters?: DevicesUnmanagedUpdateParameters,
     options?: DevicesUnmanagedUpdateOptions,
   ) => DevicesUnmanagedUpdateRequest {
@@ -2528,7 +2528,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/events/get'](): (
+  get '/events/get'(): (
     parameters?: EventsGetParameters,
     options?: EventsGetOptions,
   ) => EventsGetRequest {
@@ -2541,7 +2541,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/events/list'](): (
+  get '/events/list'(): (
     parameters?: EventsListParameters,
     options?: EventsListOptions,
   ) => EventsListRequest {
@@ -2554,7 +2554,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/instant_keys/delete'](): (
+  get '/instant_keys/delete'(): (
     parameters?: InstantKeysDeleteParameters,
     options?: InstantKeysDeleteOptions,
   ) => InstantKeysDeleteRequest {
@@ -2567,7 +2567,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/instant_keys/get'](): (
+  get '/instant_keys/get'(): (
     parameters?: InstantKeysGetParameters,
     options?: InstantKeysGetOptions,
   ) => InstantKeysGetRequest {
@@ -2580,7 +2580,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/instant_keys/list'](): (
+  get '/instant_keys/list'(): (
     parameters?: InstantKeysListParameters,
     options?: InstantKeysListOptions,
   ) => InstantKeysListRequest {
@@ -2593,7 +2593,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/locks/get'](): (
+  get '/locks/get'(): (
     parameters?: LocksGetParameters,
     options?: LocksGetOptions,
   ) => LocksGetRequest {
@@ -2606,7 +2606,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/locks/list'](): (
+  get '/locks/list'(): (
     parameters?: LocksListParameters,
     options?: LocksListOptions,
   ) => LocksListRequest {
@@ -2619,7 +2619,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/locks/lock_door'](): (
+  get '/locks/lock_door'(): (
     parameters?: LocksLockDoorParameters,
     options?: LocksLockDoorOptions,
   ) => LocksLockDoorRequest {
@@ -2632,7 +2632,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/locks/unlock_door'](): (
+  get '/locks/unlock_door'(): (
     parameters?: LocksUnlockDoorParameters,
     options?: LocksUnlockDoorOptions,
   ) => LocksUnlockDoorRequest {
@@ -2645,7 +2645,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/locks/simulate/keypad_code_entry'](): (
+  get '/locks/simulate/keypad_code_entry'(): (
     parameters?: LocksSimulateKeypadCodeEntryParameters,
     options?: LocksSimulateKeypadCodeEntryOptions,
   ) => LocksSimulateKeypadCodeEntryRequest {
@@ -2658,7 +2658,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/locks/simulate/manual_lock_via_keypad'](): (
+  get '/locks/simulate/manual_lock_via_keypad'(): (
     parameters?: LocksSimulateManualLockViaKeypadParameters,
     options?: LocksSimulateManualLockViaKeypadOptions,
   ) => LocksSimulateManualLockViaKeypadRequest {
@@ -2671,7 +2671,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/noise_sensors/list'](): (
+  get '/noise_sensors/list'(): (
     parameters?: NoiseSensorsListParameters,
     options?: NoiseSensorsListOptions,
   ) => NoiseSensorsListRequest {
@@ -2684,7 +2684,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/noise_sensors/noise_thresholds/create'](): (
+  get '/noise_sensors/noise_thresholds/create'(): (
     parameters?: NoiseSensorsNoiseThresholdsCreateParameters,
     options?: NoiseSensorsNoiseThresholdsCreateOptions,
   ) => NoiseSensorsNoiseThresholdsCreateRequest {
@@ -2700,7 +2700,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/noise_sensors/noise_thresholds/delete'](): (
+  get '/noise_sensors/noise_thresholds/delete'(): (
     parameters?: NoiseSensorsNoiseThresholdsDeleteParameters,
     options?: NoiseSensorsNoiseThresholdsDeleteOptions,
   ) => NoiseSensorsNoiseThresholdsDeleteRequest {
@@ -2716,7 +2716,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/noise_sensors/noise_thresholds/get'](): (
+  get '/noise_sensors/noise_thresholds/get'(): (
     parameters?: NoiseSensorsNoiseThresholdsGetParameters,
     options?: NoiseSensorsNoiseThresholdsGetOptions,
   ) => NoiseSensorsNoiseThresholdsGetRequest {
@@ -2732,7 +2732,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/noise_sensors/noise_thresholds/list'](): (
+  get '/noise_sensors/noise_thresholds/list'(): (
     parameters?: NoiseSensorsNoiseThresholdsListParameters,
     options?: NoiseSensorsNoiseThresholdsListOptions,
   ) => NoiseSensorsNoiseThresholdsListRequest {
@@ -2748,7 +2748,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/noise_sensors/noise_thresholds/update'](): (
+  get '/noise_sensors/noise_thresholds/update'(): (
     parameters?: NoiseSensorsNoiseThresholdsUpdateParameters,
     options?: NoiseSensorsNoiseThresholdsUpdateOptions,
   ) => NoiseSensorsNoiseThresholdsUpdateRequest {
@@ -2764,7 +2764,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/noise_sensors/simulate/trigger_noise_threshold'](): (
+  get '/noise_sensors/simulate/trigger_noise_threshold'(): (
     parameters?: NoiseSensorsSimulateTriggerNoiseThresholdParameters,
     options?: NoiseSensorsSimulateTriggerNoiseThresholdOptions,
   ) => NoiseSensorsSimulateTriggerNoiseThresholdRequest {
@@ -2777,7 +2777,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/phones/deactivate'](): (
+  get '/phones/deactivate'(): (
     parameters?: PhonesDeactivateParameters,
     options?: PhonesDeactivateOptions,
   ) => PhonesDeactivateRequest {
@@ -2790,7 +2790,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/phones/get'](): (
+  get '/phones/get'(): (
     parameters?: PhonesGetParameters,
     options?: PhonesGetOptions,
   ) => PhonesGetRequest {
@@ -2803,7 +2803,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/phones/list'](): (
+  get '/phones/list'(): (
     parameters?: PhonesListParameters,
     options?: PhonesListOptions,
   ) => PhonesListRequest {
@@ -2816,7 +2816,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/phones/simulate/create_sandbox_phone'](): (
+  get '/phones/simulate/create_sandbox_phone'(): (
     parameters?: PhonesSimulateCreateSandboxPhoneParameters,
     options?: PhonesSimulateCreateSandboxPhoneOptions,
   ) => PhonesSimulateCreateSandboxPhoneRequest {
@@ -2829,7 +2829,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/console/v1/get_resource_locator'](): (
+  get '/seam/console/v1/get_resource_locator'(): (
     parameters?: SeamConsoleV1GetResourceLocatorParameters,
     options?: SeamConsoleV1GetResourceLocatorOptions,
   ) => SeamConsoleV1GetResourceLocatorRequest {
@@ -2847,7 +2847,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/console/v1/timelines/get'](): (
+  get '/seam/console/v1/timelines/get'(): (
     parameters?: SeamConsoleV1TimelinesGetParameters,
     options?: SeamConsoleV1TimelinesGetOptions,
   ) => SeamConsoleV1TimelinesGetRequest {
@@ -2865,7 +2865,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/customer/v1/automation_runs/list'](): (
+  get '/seam/customer/v1/automation_runs/list'(): (
     parameters?: SeamCustomerV1AutomationRunsListParameters,
     options?: SeamCustomerV1AutomationRunsListOptions,
   ) => SeamCustomerV1AutomationRunsListRequest {
@@ -2886,7 +2886,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/customer/v1/automations/delete'](): (
+  get '/seam/customer/v1/automations/delete'(): (
     parameters?: SeamCustomerV1AutomationsDeleteParameters,
     options?: SeamCustomerV1AutomationsDeleteOptions,
   ) => SeamCustomerV1AutomationsDeleteRequest {
@@ -2907,7 +2907,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/customer/v1/automations/get'](): (
+  get '/seam/customer/v1/automations/get'(): (
     parameters?: SeamCustomerV1AutomationsGetParameters,
     options?: SeamCustomerV1AutomationsGetOptions,
   ) => SeamCustomerV1AutomationsGetRequest {
@@ -2928,7 +2928,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/customer/v1/automations/update'](): (
+  get '/seam/customer/v1/automations/update'(): (
     parameters?: SeamCustomerV1AutomationsUpdateParameters,
     options?: SeamCustomerV1AutomationsUpdateOptions,
   ) => SeamCustomerV1AutomationsUpdateRequest {
@@ -2949,7 +2949,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/customer/v1/events/list'](): (
+  get '/seam/customer/v1/events/list'(): (
     parameters?: SeamCustomerV1EventsListParameters,
     options?: SeamCustomerV1EventsListOptions,
   ) => SeamCustomerV1EventsListRequest {
@@ -2967,7 +2967,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/customer/v1/portals/get'](): (
+  get '/seam/customer/v1/portals/get'(): (
     parameters?: SeamCustomerV1PortalsGetParameters,
     options?: SeamCustomerV1PortalsGetOptions,
   ) => SeamCustomerV1PortalsGetRequest {
@@ -2985,7 +2985,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/customer/v1/settings/get'](): (
+  get '/seam/customer/v1/settings/get'(): (
     parameters?: SeamCustomerV1SettingsGetParameters,
     options?: SeamCustomerV1SettingsGetOptions,
   ) => SeamCustomerV1SettingsGetRequest {
@@ -3003,7 +3003,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/customer/v1/settings/update'](): (
+  get '/seam/customer/v1/settings/update'(): (
     parameters?: SeamCustomerV1SettingsUpdateParameters,
     options?: SeamCustomerV1SettingsUpdateOptions,
   ) => SeamCustomerV1SettingsUpdateRequest {
@@ -3021,7 +3021,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/seam/partner/v1/building_blocks/spaces/auto_map'](): (
+  get '/seam/partner/v1/building_blocks/spaces/auto_map'(): (
     parameters?: SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
     options?: SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
   ) => SeamPartnerV1BuildingBlocksSpacesAutoMapRequest {
@@ -3042,7 +3042,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/spaces/add_acs_entrances'](): (
+  get '/spaces/add_acs_entrances'(): (
     parameters?: SpacesAddAcsEntrancesParameters,
     options?: SpacesAddAcsEntrancesOptions,
   ) => SpacesAddAcsEntrancesRequest {
@@ -3055,7 +3055,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/spaces/add_devices'](): (
+  get '/spaces/add_devices'(): (
     parameters?: SpacesAddDevicesParameters,
     options?: SpacesAddDevicesOptions,
   ) => SpacesAddDevicesRequest {
@@ -3068,7 +3068,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/spaces/create'](): (
+  get '/spaces/create'(): (
     parameters?: SpacesCreateParameters,
     options?: SpacesCreateOptions,
   ) => SpacesCreateRequest {
@@ -3081,7 +3081,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/spaces/delete'](): (
+  get '/spaces/delete'(): (
     parameters?: SpacesDeleteParameters,
     options?: SpacesDeleteOptions,
   ) => SpacesDeleteRequest {
@@ -3094,7 +3094,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/spaces/get'](): (
+  get '/spaces/get'(): (
     parameters?: SpacesGetParameters,
     options?: SpacesGetOptions,
   ) => SpacesGetRequest {
@@ -3107,7 +3107,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/spaces/get_related'](): (
+  get '/spaces/get_related'(): (
     parameters?: SpacesGetRelatedParameters,
     options?: SpacesGetRelatedOptions,
   ) => SpacesGetRelatedRequest {
@@ -3120,7 +3120,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/spaces/list'](): (
+  get '/spaces/list'(): (
     parameters?: SpacesListParameters,
     options?: SpacesListOptions,
   ) => SpacesListRequest {
@@ -3133,7 +3133,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/spaces/remove_acs_entrances'](): (
+  get '/spaces/remove_acs_entrances'(): (
     parameters?: SpacesRemoveAcsEntrancesParameters,
     options?: SpacesRemoveAcsEntrancesOptions,
   ) => SpacesRemoveAcsEntrancesRequest {
@@ -3146,7 +3146,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/spaces/remove_devices'](): (
+  get '/spaces/remove_devices'(): (
     parameters?: SpacesRemoveDevicesParameters,
     options?: SpacesRemoveDevicesOptions,
   ) => SpacesRemoveDevicesRequest {
@@ -3159,7 +3159,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/spaces/update'](): (
+  get '/spaces/update'(): (
     parameters?: SpacesUpdateParameters,
     options?: SpacesUpdateOptions,
   ) => SpacesUpdateRequest {
@@ -3172,7 +3172,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/activate_climate_preset'](): (
+  get '/thermostats/activate_climate_preset'(): (
     parameters?: ThermostatsActivateClimatePresetParameters,
     options?: ThermostatsActivateClimatePresetOptions,
   ) => ThermostatsActivateClimatePresetRequest {
@@ -3185,7 +3185,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/cool'](): (
+  get '/thermostats/cool'(): (
     parameters?: ThermostatsCoolParameters,
     options?: ThermostatsCoolOptions,
   ) => ThermostatsCoolRequest {
@@ -3198,7 +3198,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/create_climate_preset'](): (
+  get '/thermostats/create_climate_preset'(): (
     parameters?: ThermostatsCreateClimatePresetParameters,
     options?: ThermostatsCreateClimatePresetOptions,
   ) => ThermostatsCreateClimatePresetRequest {
@@ -3211,7 +3211,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/delete_climate_preset'](): (
+  get '/thermostats/delete_climate_preset'(): (
     parameters?: ThermostatsDeleteClimatePresetParameters,
     options?: ThermostatsDeleteClimatePresetOptions,
   ) => ThermostatsDeleteClimatePresetRequest {
@@ -3224,7 +3224,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/get'](): (
+  get '/thermostats/get'(): (
     parameters?: ThermostatsGetParameters,
     options?: ThermostatsGetOptions,
   ) => ThermostatsGetRequest {
@@ -3242,7 +3242,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/heat'](): (
+  get '/thermostats/heat'(): (
     parameters?: ThermostatsHeatParameters,
     options?: ThermostatsHeatOptions,
   ) => ThermostatsHeatRequest {
@@ -3255,7 +3255,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/heat_cool'](): (
+  get '/thermostats/heat_cool'(): (
     parameters?: ThermostatsHeatCoolParameters,
     options?: ThermostatsHeatCoolOptions,
   ) => ThermostatsHeatCoolRequest {
@@ -3268,7 +3268,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/list'](): (
+  get '/thermostats/list'(): (
     parameters?: ThermostatsListParameters,
     options?: ThermostatsListOptions,
   ) => ThermostatsListRequest {
@@ -3281,7 +3281,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/off'](): (
+  get '/thermostats/off'(): (
     parameters?: ThermostatsOffParameters,
     options?: ThermostatsOffOptions,
   ) => ThermostatsOffRequest {
@@ -3294,7 +3294,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/set_fallback_climate_preset'](): (
+  get '/thermostats/set_fallback_climate_preset'(): (
     parameters?: ThermostatsSetFallbackClimatePresetParameters,
     options?: ThermostatsSetFallbackClimatePresetOptions,
   ) => ThermostatsSetFallbackClimatePresetRequest {
@@ -3307,7 +3307,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/set_fan_mode'](): (
+  get '/thermostats/set_fan_mode'(): (
     parameters?: ThermostatsSetFanModeParameters,
     options?: ThermostatsSetFanModeOptions,
   ) => ThermostatsSetFanModeRequest {
@@ -3320,7 +3320,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/set_hvac_mode'](): (
+  get '/thermostats/set_hvac_mode'(): (
     parameters?: ThermostatsSetHvacModeParameters,
     options?: ThermostatsSetHvacModeOptions,
   ) => ThermostatsSetHvacModeRequest {
@@ -3333,7 +3333,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/set_temperature_threshold'](): (
+  get '/thermostats/set_temperature_threshold'(): (
     parameters?: ThermostatsSetTemperatureThresholdParameters,
     options?: ThermostatsSetTemperatureThresholdOptions,
   ) => ThermostatsSetTemperatureThresholdRequest {
@@ -3346,7 +3346,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/update_climate_preset'](): (
+  get '/thermostats/update_climate_preset'(): (
     parameters?: ThermostatsUpdateClimatePresetParameters,
     options?: ThermostatsUpdateClimatePresetOptions,
   ) => ThermostatsUpdateClimatePresetRequest {
@@ -3359,7 +3359,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/update_weekly_program'](): (
+  get '/thermostats/update_weekly_program'(): (
     parameters?: ThermostatsUpdateWeeklyProgramParameters,
     options?: ThermostatsUpdateWeeklyProgramOptions,
   ) => ThermostatsUpdateWeeklyProgramRequest {
@@ -3372,7 +3372,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/daily_programs/create'](): (
+  get '/thermostats/daily_programs/create'(): (
     parameters?: ThermostatsDailyProgramsCreateParameters,
     options?: ThermostatsDailyProgramsCreateOptions,
   ) => ThermostatsDailyProgramsCreateRequest {
@@ -3385,7 +3385,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/daily_programs/delete'](): (
+  get '/thermostats/daily_programs/delete'(): (
     parameters?: ThermostatsDailyProgramsDeleteParameters,
     options?: ThermostatsDailyProgramsDeleteOptions,
   ) => ThermostatsDailyProgramsDeleteRequest {
@@ -3398,7 +3398,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/daily_programs/update'](): (
+  get '/thermostats/daily_programs/update'(): (
     parameters?: ThermostatsDailyProgramsUpdateParameters,
     options?: ThermostatsDailyProgramsUpdateOptions,
   ) => ThermostatsDailyProgramsUpdateRequest {
@@ -3411,7 +3411,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/schedules/create'](): (
+  get '/thermostats/schedules/create'(): (
     parameters?: ThermostatsSchedulesCreateParameters,
     options?: ThermostatsSchedulesCreateOptions,
   ) => ThermostatsSchedulesCreateRequest {
@@ -3424,7 +3424,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/schedules/delete'](): (
+  get '/thermostats/schedules/delete'(): (
     parameters?: ThermostatsSchedulesDeleteParameters,
     options?: ThermostatsSchedulesDeleteOptions,
   ) => ThermostatsSchedulesDeleteRequest {
@@ -3437,7 +3437,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/schedules/get'](): (
+  get '/thermostats/schedules/get'(): (
     parameters?: ThermostatsSchedulesGetParameters,
     options?: ThermostatsSchedulesGetOptions,
   ) => ThermostatsSchedulesGetRequest {
@@ -3450,7 +3450,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/schedules/list'](): (
+  get '/thermostats/schedules/list'(): (
     parameters?: ThermostatsSchedulesListParameters,
     options?: ThermostatsSchedulesListOptions,
   ) => ThermostatsSchedulesListRequest {
@@ -3463,7 +3463,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/schedules/update'](): (
+  get '/thermostats/schedules/update'(): (
     parameters?: ThermostatsSchedulesUpdateParameters,
     options?: ThermostatsSchedulesUpdateOptions,
   ) => ThermostatsSchedulesUpdateRequest {
@@ -3476,7 +3476,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/simulate/hvac_mode_adjusted'](): (
+  get '/thermostats/simulate/hvac_mode_adjusted'(): (
     parameters?: ThermostatsSimulateHvacModeAdjustedParameters,
     options?: ThermostatsSimulateHvacModeAdjustedOptions,
   ) => ThermostatsSimulateHvacModeAdjustedRequest {
@@ -3489,7 +3489,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/thermostats/simulate/temperature_reached'](): (
+  get '/thermostats/simulate/temperature_reached'(): (
     parameters?: ThermostatsSimulateTemperatureReachedParameters,
     options?: ThermostatsSimulateTemperatureReachedOptions,
   ) => ThermostatsSimulateTemperatureReachedRequest {
@@ -3502,7 +3502,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/unstable_partner/building_blocks/connect_accounts'](): (
+  get '/unstable_partner/building_blocks/connect_accounts'(): (
     parameters?: UnstablePartnerBuildingBlocksConnectAccountsParameters,
     options?: UnstablePartnerBuildingBlocksConnectAccountsOptions,
   ) => UnstablePartnerBuildingBlocksConnectAccountsRequest {
@@ -3525,7 +3525,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/unstable_partner/building_blocks/generate_magic_link'](): (
+  get '/unstable_partner/building_blocks/generate_magic_link'(): (
     parameters?: UnstablePartnerBuildingBlocksGenerateMagicLinkParameters,
     options?: UnstablePartnerBuildingBlocksGenerateMagicLinkOptions,
   ) => UnstablePartnerBuildingBlocksGenerateMagicLinkRequest {
@@ -3548,7 +3548,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/unstable_partner/building_blocks/manage_devices'](): (
+  get '/unstable_partner/building_blocks/manage_devices'(): (
     parameters?: UnstablePartnerBuildingBlocksManageDevicesParameters,
     options?: UnstablePartnerBuildingBlocksManageDevicesOptions,
   ) => UnstablePartnerBuildingBlocksManageDevicesRequest {
@@ -3571,7 +3571,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/unstable_partner/building_blocks/organize_spaces'](): (
+  get '/unstable_partner/building_blocks/organize_spaces'(): (
     parameters?: UnstablePartnerBuildingBlocksOrganizeSpacesParameters,
     options?: UnstablePartnerBuildingBlocksOrganizeSpacesOptions,
   ) => UnstablePartnerBuildingBlocksOrganizeSpacesRequest {
@@ -3594,7 +3594,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/add_acs_user'](): (
+  get '/user_identities/add_acs_user'(): (
     parameters?: UserIdentitiesAddAcsUserParameters,
     options?: UserIdentitiesAddAcsUserOptions,
   ) => UserIdentitiesAddAcsUserRequest {
@@ -3607,7 +3607,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/create'](): (
+  get '/user_identities/create'(): (
     parameters?: UserIdentitiesCreateParameters,
     options?: UserIdentitiesCreateOptions,
   ) => UserIdentitiesCreateRequest {
@@ -3620,7 +3620,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/delete'](): (
+  get '/user_identities/delete'(): (
     parameters?: UserIdentitiesDeleteParameters,
     options?: UserIdentitiesDeleteOptions,
   ) => UserIdentitiesDeleteRequest {
@@ -3633,7 +3633,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/generate_instant_key'](): (
+  get '/user_identities/generate_instant_key'(): (
     parameters?: UserIdentitiesGenerateInstantKeyParameters,
     options?: UserIdentitiesGenerateInstantKeyOptions,
   ) => UserIdentitiesGenerateInstantKeyRequest {
@@ -3646,7 +3646,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/get'](): (
+  get '/user_identities/get'(): (
     parameters?: UserIdentitiesGetParameters,
     options?: UserIdentitiesGetOptions,
   ) => UserIdentitiesGetRequest {
@@ -3659,7 +3659,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/grant_access_to_device'](): (
+  get '/user_identities/grant_access_to_device'(): (
     parameters?: UserIdentitiesGrantAccessToDeviceParameters,
     options?: UserIdentitiesGrantAccessToDeviceOptions,
   ) => UserIdentitiesGrantAccessToDeviceRequest {
@@ -3672,7 +3672,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/list'](): (
+  get '/user_identities/list'(): (
     parameters?: UserIdentitiesListParameters,
     options?: UserIdentitiesListOptions,
   ) => UserIdentitiesListRequest {
@@ -3685,7 +3685,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/list_accessible_devices'](): (
+  get '/user_identities/list_accessible_devices'(): (
     parameters?: UserIdentitiesListAccessibleDevicesParameters,
     options?: UserIdentitiesListAccessibleDevicesOptions,
   ) => UserIdentitiesListAccessibleDevicesRequest {
@@ -3698,7 +3698,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/list_acs_systems'](): (
+  get '/user_identities/list_acs_systems'(): (
     parameters?: UserIdentitiesListAcsSystemsParameters,
     options?: UserIdentitiesListAcsSystemsOptions,
   ) => UserIdentitiesListAcsSystemsRequest {
@@ -3711,7 +3711,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/list_acs_users'](): (
+  get '/user_identities/list_acs_users'(): (
     parameters?: UserIdentitiesListAcsUsersParameters,
     options?: UserIdentitiesListAcsUsersOptions,
   ) => UserIdentitiesListAcsUsersRequest {
@@ -3724,7 +3724,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/remove_acs_user'](): (
+  get '/user_identities/remove_acs_user'(): (
     parameters?: UserIdentitiesRemoveAcsUserParameters,
     options?: UserIdentitiesRemoveAcsUserOptions,
   ) => UserIdentitiesRemoveAcsUserRequest {
@@ -3737,7 +3737,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/revoke_access_to_device'](): (
+  get '/user_identities/revoke_access_to_device'(): (
     parameters?: UserIdentitiesRevokeAccessToDeviceParameters,
     options?: UserIdentitiesRevokeAccessToDeviceOptions,
   ) => UserIdentitiesRevokeAccessToDeviceRequest {
@@ -3750,7 +3750,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/update'](): (
+  get '/user_identities/update'(): (
     parameters?: UserIdentitiesUpdateParameters,
     options?: UserIdentitiesUpdateOptions,
   ) => UserIdentitiesUpdateRequest {
@@ -3763,7 +3763,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/enrollment_automations/delete'](): (
+  get '/user_identities/enrollment_automations/delete'(): (
     parameters?: UserIdentitiesEnrollmentAutomationsDeleteParameters,
     options?: UserIdentitiesEnrollmentAutomationsDeleteOptions,
   ) => UserIdentitiesEnrollmentAutomationsDeleteRequest {
@@ -3784,7 +3784,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/enrollment_automations/get'](): (
+  get '/user_identities/enrollment_automations/get'(): (
     parameters?: UserIdentitiesEnrollmentAutomationsGetParameters,
     options?: UserIdentitiesEnrollmentAutomationsGetOptions,
   ) => UserIdentitiesEnrollmentAutomationsGetRequest {
@@ -3805,7 +3805,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/enrollment_automations/launch'](): (
+  get '/user_identities/enrollment_automations/launch'(): (
     parameters?: UserIdentitiesEnrollmentAutomationsLaunchParameters,
     options?: UserIdentitiesEnrollmentAutomationsLaunchOptions,
   ) => UserIdentitiesEnrollmentAutomationsLaunchRequest {
@@ -3826,7 +3826,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/user_identities/enrollment_automations/list'](): (
+  get '/user_identities/enrollment_automations/list'(): (
     parameters?: UserIdentitiesEnrollmentAutomationsListParameters,
     options?: UserIdentitiesEnrollmentAutomationsListOptions,
   ) => UserIdentitiesEnrollmentAutomationsListRequest {
@@ -3847,7 +3847,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/webhooks/create'](): (
+  get '/webhooks/create'(): (
     parameters?: WebhooksCreateParameters,
     options?: WebhooksCreateOptions,
   ) => WebhooksCreateRequest {
@@ -3860,7 +3860,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/webhooks/delete'](): (
+  get '/webhooks/delete'(): (
     parameters?: WebhooksDeleteParameters,
     options?: WebhooksDeleteOptions,
   ) => WebhooksDeleteRequest {
@@ -3873,7 +3873,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/webhooks/get'](): (
+  get '/webhooks/get'(): (
     parameters?: WebhooksGetParameters,
     options?: WebhooksGetOptions,
   ) => WebhooksGetRequest {
@@ -3886,7 +3886,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/webhooks/list'](): (
+  get '/webhooks/list'(): (
     parameters?: WebhooksListParameters,
     options?: WebhooksListOptions,
   ) => WebhooksListRequest {
@@ -3899,7 +3899,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/webhooks/update'](): (
+  get '/webhooks/update'(): (
     parameters?: WebhooksUpdateParameters,
     options?: WebhooksUpdateOptions,
   ) => WebhooksUpdateRequest {
@@ -3912,7 +3912,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/create'](): (
+  get '/workspaces/create'(): (
     parameters?: WorkspacesCreateParameters,
     options?: WorkspacesCreateOptions,
   ) => WorkspacesCreateRequest {
@@ -3925,7 +3925,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/find_anything'](): (
+  get '/workspaces/find_anything'(): (
     parameters?: WorkspacesFindAnythingParameters,
     options?: WorkspacesFindAnythingOptions,
   ) => WorkspacesFindAnythingRequest {
@@ -3943,7 +3943,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/get'](): (
+  get '/workspaces/get'(): (
     parameters?: WorkspacesGetParameters,
     options?: WorkspacesGetOptions,
   ) => WorkspacesGetRequest {
@@ -3956,7 +3956,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/list'](): (
+  get '/workspaces/list'(): (
     parameters?: WorkspacesListParameters,
     options?: WorkspacesListOptions,
   ) => WorkspacesListRequest {
@@ -3969,7 +3969,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/reset_sandbox'](): (
+  get '/workspaces/reset_sandbox'(): (
     parameters?: WorkspacesResetSandboxParameters,
     options?: WorkspacesResetSandboxOptions,
   ) => WorkspacesResetSandboxRequest {
@@ -3982,7 +3982,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/update'](): (
+  get '/workspaces/update'(): (
     parameters?: WorkspacesUpdateParameters,
     options?: WorkspacesUpdateOptions,
   ) => WorkspacesUpdateRequest {
@@ -3995,7 +3995,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/customization_profiles/create'](): (
+  get '/workspaces/customization_profiles/create'(): (
     parameters?: WorkspacesCustomizationProfilesCreateParameters,
     options?: WorkspacesCustomizationProfilesCreateOptions,
   ) => WorkspacesCustomizationProfilesCreateRequest {
@@ -4016,7 +4016,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/customization_profiles/get'](): (
+  get '/workspaces/customization_profiles/get'(): (
     parameters?: WorkspacesCustomizationProfilesGetParameters,
     options?: WorkspacesCustomizationProfilesGetOptions,
   ) => WorkspacesCustomizationProfilesGetRequest {
@@ -4037,7 +4037,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/customization_profiles/list'](): (
+  get '/workspaces/customization_profiles/list'(): (
     parameters?: WorkspacesCustomizationProfilesListParameters,
     options?: WorkspacesCustomizationProfilesListOptions,
   ) => WorkspacesCustomizationProfilesListRequest {
@@ -4058,7 +4058,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/customization_profiles/update'](): (
+  get '/workspaces/customization_profiles/update'(): (
     parameters?: WorkspacesCustomizationProfilesUpdateParameters,
     options?: WorkspacesCustomizationProfilesUpdateOptions,
   ) => WorkspacesCustomizationProfilesUpdateRequest {
@@ -4079,7 +4079,7 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get ['/workspaces/customization_profiles/upload_images'](): (
+  get '/workspaces/customization_profiles/upload_images'(): (
     parameters?: WorkspacesCustomizationProfilesUploadImagesParameters,
     options?: WorkspacesCustomizationProfilesUploadImagesOptions,
   ) => WorkspacesCustomizationProfilesUploadImagesRequest {

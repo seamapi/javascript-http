@@ -330,7 +330,6 @@ export type AcsUsersAddToAccessGroupResponse = SetNonNullable<
 
 export type AcsUsersAddToAccessGroupRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersAddToAccessGroupOptions {}
 
 export type AcsUsersCreateParameters = RouteRequestBody<'/acs/users/create'>
@@ -352,7 +351,6 @@ export type AcsUsersCreateRequest = SeamHttpRequest<
   'acs_user'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersCreateOptions {}
 
 export type AcsUsersDeleteParameters = RouteRequestBody<'/acs/users/delete'>
@@ -371,7 +369,6 @@ export type AcsUsersDeleteResponse = SetNonNullable<
 
 export type AcsUsersDeleteRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersDeleteOptions {}
 
 export type AcsUsersGetParameters = RouteRequestBody<'/acs/users/get'>
@@ -393,7 +390,6 @@ export type AcsUsersGetRequest = SeamHttpRequest<
   'acs_user'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersGetOptions {}
 
 export type AcsUsersListParameters = RouteRequestBody<'/acs/users/list'>
@@ -415,7 +411,6 @@ export type AcsUsersListRequest = SeamHttpRequest<
   'acs_users'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersListOptions {}
 
 export type AcsUsersListAccessibleEntrancesParameters =
@@ -439,7 +434,6 @@ export type AcsUsersListAccessibleEntrancesRequest = SeamHttpRequest<
   'acs_entrances'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersListAccessibleEntrancesOptions {}
 
 export type AcsUsersRemoveFromAccessGroupParameters =
@@ -463,7 +457,6 @@ export type AcsUsersRemoveFromAccessGroupRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersRemoveFromAccessGroupOptions {}
 
 export type AcsUsersRevokeAccessToAllEntrancesParameters =
@@ -487,7 +480,6 @@ export type AcsUsersRevokeAccessToAllEntrancesRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersRevokeAccessToAllEntrancesOptions {}
 
 export type AcsUsersSuspendParameters = RouteRequestBody<'/acs/users/suspend'>
@@ -506,7 +498,6 @@ export type AcsUsersSuspendResponse = SetNonNullable<
 
 export type AcsUsersSuspendRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersSuspendOptions {}
 
 export type AcsUsersUnsuspendParameters =
@@ -526,7 +517,6 @@ export type AcsUsersUnsuspendResponse = SetNonNullable<
 
 export type AcsUsersUnsuspendRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersUnsuspendOptions {}
 
 export type AcsUsersUpdateParameters = RouteRequestBody<'/acs/users/update'>
@@ -545,5 +535,4 @@ export type AcsUsersUpdateResponse = SetNonNullable<
 
 export type AcsUsersUpdateRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsUsersUpdateOptions {}

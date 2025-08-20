@@ -207,5 +207,4 @@ export type SeamCustomerV1PortalsGetRequest = SeamHttpRequest<
   'customer_portal'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SeamCustomerV1PortalsGetOptions {}

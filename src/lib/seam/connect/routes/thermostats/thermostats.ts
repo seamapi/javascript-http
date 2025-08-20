@@ -454,7 +454,6 @@ export type ThermostatsCreateClimatePresetRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsCreateClimatePresetOptions {}
 
 export type ThermostatsDeleteClimatePresetParameters =
@@ -478,7 +477,6 @@ export type ThermostatsDeleteClimatePresetRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsDeleteClimatePresetOptions {}
 
 export type ThermostatsGetParameters = RouteRequestBody<'/thermostats/get'>
@@ -500,7 +498,6 @@ export type ThermostatsGetRequest = SeamHttpRequest<
   'thermostat'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsGetOptions {}
 
 export type ThermostatsHeatParameters = RouteRequestBody<'/thermostats/heat'>
@@ -571,7 +568,6 @@ export type ThermostatsListRequest = SeamHttpRequest<
   'devices'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsListOptions {}
 
 export type ThermostatsOffParameters = RouteRequestBody<'/thermostats/off'>
@@ -619,7 +615,6 @@ export type ThermostatsSetFallbackClimatePresetRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsSetFallbackClimatePresetOptions {}
 
 export type ThermostatsSetFanModeParameters =
@@ -693,7 +688,6 @@ export type ThermostatsSetTemperatureThresholdRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsSetTemperatureThresholdOptions {}
 
 export type ThermostatsUpdateClimatePresetParameters =
@@ -717,7 +711,6 @@ export type ThermostatsUpdateClimatePresetRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsUpdateClimatePresetOptions {}
 
 export type ThermostatsUpdateWeeklyProgramParameters =

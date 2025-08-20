@@ -271,7 +271,6 @@ export type AcsEncodersGetRequest = SeamHttpRequest<
   'acs_encoder'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsEncodersGetOptions {}
 
 export type AcsEncodersListParameters = RouteRequestParams<'/acs/encoders/list'>
@@ -293,7 +292,6 @@ export type AcsEncodersListRequest = SeamHttpRequest<
   'acs_encoders'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsEncodersListOptions {}
 
 export type AcsEncodersScanCredentialParameters =

@@ -124,11 +124,12 @@ export const getEndpointLayoutContext = (
 const getResponseContext = (
   endpoint: Endpoint,
 ): Pick<EndpointLayoutContext, 'returnsVoid' | 'responseKey'> => {
-  if (endpoint.response.responseType === 'void')
+  if (endpoint.response.responseType === 'void') {
     return {
       returnsVoid: true,
       responseKey: '',
     }
+  }
   const { responseKey } = endpoint.response
   return {
     returnsVoid: false,

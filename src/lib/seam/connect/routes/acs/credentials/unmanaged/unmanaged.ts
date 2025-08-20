@@ -233,7 +233,6 @@ export type AcsCredentialsUnmanagedGetRequest = SeamHttpRequest<
   'acs_credential'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsCredentialsUnmanagedGetOptions {}
 
 export type AcsCredentialsUnmanagedListParameters =
@@ -257,5 +256,4 @@ export type AcsCredentialsUnmanagedListRequest = SeamHttpRequest<
   'acs_credentials'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsCredentialsUnmanagedListOptions {}

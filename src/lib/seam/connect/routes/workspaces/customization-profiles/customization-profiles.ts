@@ -283,7 +283,6 @@ export type WorkspacesCustomizationProfilesCreateRequest = SeamHttpRequest<
   'customization_profile'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesCustomizationProfilesCreateOptions {}
 
 export type WorkspacesCustomizationProfilesGetParameters =
@@ -307,7 +306,6 @@ export type WorkspacesCustomizationProfilesGetRequest = SeamHttpRequest<
   'customization_profile'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesCustomizationProfilesGetOptions {}
 
 export type WorkspacesCustomizationProfilesListParameters =
@@ -331,7 +329,6 @@ export type WorkspacesCustomizationProfilesListRequest = SeamHttpRequest<
   'customization_profiles'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesCustomizationProfilesListOptions {}
 
 export type WorkspacesCustomizationProfilesUpdateParameters =
@@ -355,7 +352,6 @@ export type WorkspacesCustomizationProfilesUpdateRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesCustomizationProfilesUpdateOptions {}
 
 export type WorkspacesCustomizationProfilesUploadImagesParameters =
@@ -378,5 +374,4 @@ export type WorkspacesCustomizationProfilesUploadImagesResponse =
 export type WorkspacesCustomizationProfilesUploadImagesRequest =
   SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WorkspacesCustomizationProfilesUploadImagesOptions {}

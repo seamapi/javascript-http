@@ -274,7 +274,6 @@ export type ClientSessionsCreateRequest = SeamHttpRequest<
   'client_session'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ClientSessionsCreateOptions {}
 
 export type ClientSessionsDeleteParameters =
@@ -294,7 +293,6 @@ export type ClientSessionsDeleteResponse = SetNonNullable<
 
 export type ClientSessionsDeleteRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ClientSessionsDeleteOptions {}
 
 export type ClientSessionsGetParameters =
@@ -317,7 +315,6 @@ export type ClientSessionsGetRequest = SeamHttpRequest<
   'client_session'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ClientSessionsGetOptions {}
 
 export type ClientSessionsGetOrCreateParameters =
@@ -340,7 +337,6 @@ export type ClientSessionsGetOrCreateRequest = SeamHttpRequest<
   'client_session'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ClientSessionsGetOrCreateOptions {}
 
 export type ClientSessionsGrantAccessParameters =
@@ -360,7 +356,6 @@ export type ClientSessionsGrantAccessResponse = SetNonNullable<
 
 export type ClientSessionsGrantAccessRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ClientSessionsGrantAccessOptions {}
 
 export type ClientSessionsListParameters =
@@ -383,7 +378,6 @@ export type ClientSessionsListRequest = SeamHttpRequest<
   'client_sessions'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ClientSessionsListOptions {}
 
 export type ClientSessionsRevokeParameters =
@@ -403,5 +397,4 @@ export type ClientSessionsRevokeResponse = SetNonNullable<
 
 export type ClientSessionsRevokeRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ClientSessionsRevokeOptions {}

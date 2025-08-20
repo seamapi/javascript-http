@@ -269,7 +269,6 @@ export type UnstablePartnerBuildingBlocksConnectAccountsRequest =
     'magic_link'
   >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UnstablePartnerBuildingBlocksConnectAccountsOptions {}
 
 export type UnstablePartnerBuildingBlocksGenerateMagicLinkParameters =
@@ -297,7 +296,6 @@ export type UnstablePartnerBuildingBlocksGenerateMagicLinkRequest =
     'magic_link'
   >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UnstablePartnerBuildingBlocksGenerateMagicLinkOptions {}
 
 export type UnstablePartnerBuildingBlocksManageDevicesParameters =
@@ -321,7 +319,6 @@ export type UnstablePartnerBuildingBlocksManageDevicesRequest = SeamHttpRequest<
   'magic_link'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UnstablePartnerBuildingBlocksManageDevicesOptions {}
 
 export type UnstablePartnerBuildingBlocksOrganizeSpacesParameters =
@@ -347,5 +344,4 @@ export type UnstablePartnerBuildingBlocksOrganizeSpacesRequest =
     'magic_link'
   >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UnstablePartnerBuildingBlocksOrganizeSpacesOptions {}

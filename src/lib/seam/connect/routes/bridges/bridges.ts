@@ -221,7 +221,6 @@ export type BridgesGetResponse = SetNonNullable<
 
 export type BridgesGetRequest = SeamHttpRequest<BridgesGetResponse, 'bridge'>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface BridgesGetOptions {}
 
 export type BridgesListParameters = RouteRequestBody<'/bridges/list'>
@@ -240,5 +239,4 @@ export type BridgesListResponse = SetNonNullable<
 
 export type BridgesListRequest = SeamHttpRequest<BridgesListResponse, 'bridges'>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface BridgesListOptions {}

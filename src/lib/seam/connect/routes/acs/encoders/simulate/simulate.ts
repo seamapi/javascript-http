@@ -238,7 +238,6 @@ export type AcsEncodersSimulateNextCredentialEncodeWillFailResponse =
 export type AcsEncodersSimulateNextCredentialEncodeWillFailRequest =
   SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsEncodersSimulateNextCredentialEncodeWillFailOptions {}
 
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters =
@@ -263,7 +262,6 @@ export type AcsEncodersSimulateNextCredentialEncodeWillSucceedResponse =
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest =
   SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions {}
 
 export type AcsEncodersSimulateNextCredentialScanWillFailParameters =
@@ -288,7 +286,6 @@ export type AcsEncodersSimulateNextCredentialScanWillFailResponse =
 export type AcsEncodersSimulateNextCredentialScanWillFailRequest =
   SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsEncodersSimulateNextCredentialScanWillFailOptions {}
 
 export type AcsEncodersSimulateNextCredentialScanWillSucceedParameters =
@@ -313,5 +310,4 @@ export type AcsEncodersSimulateNextCredentialScanWillSucceedResponse =
 export type AcsEncodersSimulateNextCredentialScanWillSucceedRequest =
   SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsEncodersSimulateNextCredentialScanWillSucceedOptions {}

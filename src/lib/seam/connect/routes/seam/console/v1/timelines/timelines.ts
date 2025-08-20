@@ -208,5 +208,4 @@ export type SeamConsoleV1TimelinesGetRequest = SeamHttpRequest<
   'timeline'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SeamConsoleV1TimelinesGetOptions {}

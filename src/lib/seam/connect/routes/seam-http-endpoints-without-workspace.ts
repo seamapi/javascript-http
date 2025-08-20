@@ -94,7 +94,7 @@ export class SeamHttpEndpointsWithoutWorkspace {
     return new SeamHttpEndpointsWithoutWorkspace(constructorOptions)
   }
 
-  get ['/workspaces/create'](): (
+  get '/workspaces/create'(): (
     parameters?: WorkspacesCreateParameters,
     options?: WorkspacesCreateOptions,
   ) => WorkspacesCreateRequest {
@@ -107,7 +107,7 @@ export class SeamHttpEndpointsWithoutWorkspace {
     }
   }
 
-  get ['/workspaces/list'](): (
+  get '/workspaces/list'(): (
     parameters?: WorkspacesListParameters,
     options?: WorkspacesListOptions,
   ) => WorkspacesListRequest {

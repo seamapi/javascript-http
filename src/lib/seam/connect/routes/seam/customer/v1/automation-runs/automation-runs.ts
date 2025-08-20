@@ -211,5 +211,4 @@ export type SeamCustomerV1AutomationRunsListRequest = SeamHttpRequest<
   'automation_runs'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SeamCustomerV1AutomationRunsListOptions {}

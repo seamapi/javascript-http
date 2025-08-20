@@ -206,7 +206,6 @@ export type EventsGetResponse = SetNonNullable<
 
 export type EventsGetRequest = SeamHttpRequest<EventsGetResponse, 'event'>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface EventsGetOptions {}
 
 export type EventsListParameters = RouteRequestBody<'/events/list'>
@@ -225,5 +224,4 @@ export type EventsListResponse = SetNonNullable<
 
 export type EventsListRequest = SeamHttpRequest<EventsListResponse, 'events'>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface EventsListOptions {}

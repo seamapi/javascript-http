@@ -227,7 +227,6 @@ export type ThermostatsDailyProgramsCreateRequest = SeamHttpRequest<
   'thermostat_daily_program'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsDailyProgramsCreateOptions {}
 
 export type ThermostatsDailyProgramsDeleteParameters =
@@ -251,7 +250,6 @@ export type ThermostatsDailyProgramsDeleteRequest = SeamHttpRequest<
   undefined
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ThermostatsDailyProgramsDeleteOptions {}
 
 export type ThermostatsDailyProgramsUpdateParameters =

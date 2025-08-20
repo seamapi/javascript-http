@@ -18,6 +18,5 @@ export type {{requestTypeName}} = SeamHttpRequest<{{#if returnsVoid}}void, undef
 {{#if returnsActionAttempt}}
 export type {{optionsTypeName}} = Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 {{else}}
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface {{optionsTypeName}} {}
 {{/if}}

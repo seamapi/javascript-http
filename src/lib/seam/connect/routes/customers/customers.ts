@@ -223,7 +223,6 @@ export type CustomersCreatePortalRequest = SeamHttpRequest<
   'magic_link'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CustomersCreatePortalOptions {}
 
 export type CustomersDeleteDataParameters =
@@ -243,7 +242,6 @@ export type CustomersDeleteDataResponse = SetNonNullable<
 
 export type CustomersDeleteDataRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CustomersDeleteDataOptions {}
 
 export type CustomersPushDataParameters =
@@ -263,5 +261,4 @@ export type CustomersPushDataResponse = SetNonNullable<
 
 export type CustomersPushDataRequest = SeamHttpRequest<void, undefined>
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CustomersPushDataOptions {}

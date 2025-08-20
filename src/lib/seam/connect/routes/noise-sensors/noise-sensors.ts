@@ -210,5 +210,4 @@ export type NoiseSensorsListRequest = SeamHttpRequest<
   'devices'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface NoiseSensorsListOptions {}

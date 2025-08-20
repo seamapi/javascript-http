@@ -229,7 +229,6 @@ export type AcsAccessGroupsUnmanagedGetRequest = SeamHttpRequest<
   'acs_access_group'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsAccessGroupsUnmanagedGetOptions {}
 
 export type AcsAccessGroupsUnmanagedListParameters =
@@ -253,5 +252,4 @@ export type AcsAccessGroupsUnmanagedListRequest = SeamHttpRequest<
   'acs_access_groups'
 >
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AcsAccessGroupsUnmanagedListOptions {}
