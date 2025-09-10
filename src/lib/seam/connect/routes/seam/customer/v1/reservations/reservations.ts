@@ -171,6 +171,24 @@ export class SeamHttpSeamCustomerV1Reservations {
     await clientSessions.get()
   }
 
+  get(
+    parameters?: SeamCustomerV1ReservationsGetParameters,
+    options: SeamCustomerV1ReservationsGetOptions = {},
+  ): SeamCustomerV1ReservationsGetRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/reservations/get',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'reservation',
+      options,
+    })
+  }
+
   list(
     parameters?: SeamCustomerV1ReservationsListParameters,
     options: SeamCustomerV1ReservationsListOptions = {},
@@ -189,6 +207,29 @@ export class SeamHttpSeamCustomerV1Reservations {
     })
   }
 }
+
+export type SeamCustomerV1ReservationsGetParameters =
+  RouteRequestBody<'/seam/customer/v1/reservations/get'>
+
+/**
+ * @deprecated Use SeamCustomerV1ReservationsGetParameters instead.
+ */
+export type SeamCustomerV1ReservationsGetParams =
+  SeamCustomerV1ReservationsGetParameters
+
+/**
+ * @deprecated Use SeamCustomerV1ReservationsGetRequest instead.
+ */
+export type SeamCustomerV1ReservationsGetResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/reservations/get'>>
+>
+
+export type SeamCustomerV1ReservationsGetRequest = SeamHttpRequest<
+  SeamCustomerV1ReservationsGetResponse,
+  'reservation'
+>
+
+export interface SeamCustomerV1ReservationsGetOptions {}
 
 export type SeamCustomerV1ReservationsListParameters =
   RouteRequestBody<'/seam/customer/v1/reservations/list'>
