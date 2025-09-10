@@ -585,6 +585,12 @@ import {
   SeamHttpSeamCustomerV1Portals,
 } from './seam/customer/v1/portals/index.js'
 import {
+  type SeamCustomerV1ReservationsListOptions,
+  type SeamCustomerV1ReservationsListParameters,
+  type SeamCustomerV1ReservationsListRequest,
+  SeamHttpSeamCustomerV1Reservations,
+} from './seam/customer/v1/reservations/index.js'
+import {
   type SeamCustomerV1SettingsGetOptions,
   type SeamCustomerV1SettingsGetParameters,
   type SeamCustomerV1SettingsGetRequest,
@@ -2985,6 +2991,27 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/reservations/list'(): (
+    parameters?: SeamCustomerV1ReservationsListParameters,
+    options?: SeamCustomerV1ReservationsListOptions,
+  ) => SeamCustomerV1ReservationsListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1ReservationsList(
+      ...args: Parameters<SeamHttpSeamCustomerV1Reservations['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1Reservations['list']> {
+      const seam = SeamHttpSeamCustomerV1Reservations.fromClient(
+        client,
+        defaults,
+      )
+      return seam.list(...args)
+    }
+  }
+
   get '/seam/customer/v1/settings/get'(): (
     parameters?: SeamCustomerV1SettingsGetParameters,
     options?: SeamCustomerV1SettingsGetOptions,
@@ -4172,6 +4199,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/automations/get'
   | '/seam/customer/v1/events/list'
   | '/seam/customer/v1/portals/get'
+  | '/seam/customer/v1/reservations/list'
   | '/seam/customer/v1/settings/get'
   | '/seam/partner/v1/building_blocks/spaces/auto_map'
   | '/spaces/get'
@@ -4209,6 +4237,7 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/devices/list'
   | '/seam/console/v1/timelines/get'
   | '/seam/customer/v1/automation_runs/list'
+  | '/seam/customer/v1/reservations/list'
 
 export type SeamHttpEndpointMutationPaths =
   | '/access_codes/create'
