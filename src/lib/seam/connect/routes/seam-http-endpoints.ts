@@ -4260,6 +4260,7 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/connect_webviews/list'
   | '/connected_accounts/list'
   | '/devices/list'
+  | '/devices/unmanaged/list'
   | '/seam/console/v1/timelines/get'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/reservations/list'
