@@ -4,3 +4,4 @@
  */
 
 export * from './access-grants.js'
+export * from './unmanaged/index.js'

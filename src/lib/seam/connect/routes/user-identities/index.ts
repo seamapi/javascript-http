@@ -4,4 +4,5 @@
  */
 
 export * from './enrollment-automations/index.js'
+export * from './unmanaged/index.js'
 export * from './user-identities.js'
