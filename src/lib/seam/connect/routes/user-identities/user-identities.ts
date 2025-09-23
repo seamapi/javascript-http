@@ -41,6 +41,7 @@ import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpUserIdentitiesEnrollmentAutomations } from './enrollment-automations/index.js'
+import { SeamHttpUserIdentitiesUnmanaged } from './unmanaged/index.js'
 
 export class SeamHttpUserIdentities {
   client: Client
@@ -171,6 +172,13 @@ export class SeamHttpUserIdentities {
 
   get enrollmentAutomations(): SeamHttpUserIdentitiesEnrollmentAutomations {
     return SeamHttpUserIdentitiesEnrollmentAutomations.fromClient(
+      this.client,
+      this.defaults,
+    )
+  }
+
+  get unmanaged(): SeamHttpUserIdentitiesUnmanaged {
+    return SeamHttpUserIdentitiesUnmanaged.fromClient(
       this.client,
       this.defaults,
     )

@@ -111,6 +111,15 @@ import {
   SeamHttpAccessGrants,
 } from './access-grants/index.js'
 import {
+  type AccessGrantsUnmanagedGetOptions,
+  type AccessGrantsUnmanagedGetParameters,
+  type AccessGrantsUnmanagedGetRequest,
+  type AccessGrantsUnmanagedListOptions,
+  type AccessGrantsUnmanagedListParameters,
+  type AccessGrantsUnmanagedListRequest,
+  SeamHttpAccessGrantsUnmanaged,
+} from './access-grants/unmanaged/index.js'
+import {
   type AccessMethodsDeleteOptions,
   type AccessMethodsDeleteParameters,
   type AccessMethodsDeleteRequest,
@@ -128,6 +137,15 @@ import {
   type AccessMethodsListRequest,
   SeamHttpAccessMethods,
 } from './access-methods/index.js'
+import {
+  type AccessMethodsUnmanagedGetOptions,
+  type AccessMethodsUnmanagedGetParameters,
+  type AccessMethodsUnmanagedGetRequest,
+  type AccessMethodsUnmanagedListOptions,
+  type AccessMethodsUnmanagedListParameters,
+  type AccessMethodsUnmanagedListRequest,
+  SeamHttpAccessMethodsUnmanaged,
+} from './access-methods/unmanaged/index.js'
 import {
   type AcsAccessGroupsAddUserOptions,
   type AcsAccessGroupsAddUserParameters,
@@ -801,6 +819,15 @@ import {
   type UserIdentitiesUpdateRequest,
 } from './user-identities/index.js'
 import {
+  SeamHttpUserIdentitiesUnmanaged,
+  type UserIdentitiesUnmanagedGetOptions,
+  type UserIdentitiesUnmanagedGetParameters,
+  type UserIdentitiesUnmanagedGetRequest,
+  type UserIdentitiesUnmanagedListOptions,
+  type UserIdentitiesUnmanagedListParameters,
+  type UserIdentitiesUnmanagedListRequest,
+} from './user-identities/unmanaged/index.js'
+import {
   SeamHttpWebhooks,
   type WebhooksCreateOptions,
   type WebhooksCreateParameters,
@@ -1273,6 +1300,32 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/access_grants/unmanaged/get'(): (
+    parameters?: AccessGrantsUnmanagedGetParameters,
+    options?: AccessGrantsUnmanagedGetOptions,
+  ) => AccessGrantsUnmanagedGetRequest {
+    const { client, defaults } = this
+    return function accessGrantsUnmanagedGet(
+      ...args: Parameters<SeamHttpAccessGrantsUnmanaged['get']>
+    ): ReturnType<SeamHttpAccessGrantsUnmanaged['get']> {
+      const seam = SeamHttpAccessGrantsUnmanaged.fromClient(client, defaults)
+      return seam.get(...args)
+    }
+  }
+
+  get '/access_grants/unmanaged/list'(): (
+    parameters?: AccessGrantsUnmanagedListParameters,
+    options?: AccessGrantsUnmanagedListOptions,
+  ) => AccessGrantsUnmanagedListRequest {
+    const { client, defaults } = this
+    return function accessGrantsUnmanagedList(
+      ...args: Parameters<SeamHttpAccessGrantsUnmanaged['list']>
+    ): ReturnType<SeamHttpAccessGrantsUnmanaged['list']> {
+      const seam = SeamHttpAccessGrantsUnmanaged.fromClient(client, defaults)
+      return seam.list(...args)
+    }
+  }
+
   get '/access_methods/delete'(): (
     parameters?: AccessMethodsDeleteParameters,
     options?: AccessMethodsDeleteOptions,
@@ -1334,6 +1387,32 @@ export class SeamHttpEndpoints {
       ...args: Parameters<SeamHttpAccessMethods['list']>
     ): ReturnType<SeamHttpAccessMethods['list']> {
       const seam = SeamHttpAccessMethods.fromClient(client, defaults)
+      return seam.list(...args)
+    }
+  }
+
+  get '/access_methods/unmanaged/get'(): (
+    parameters?: AccessMethodsUnmanagedGetParameters,
+    options?: AccessMethodsUnmanagedGetOptions,
+  ) => AccessMethodsUnmanagedGetRequest {
+    const { client, defaults } = this
+    return function accessMethodsUnmanagedGet(
+      ...args: Parameters<SeamHttpAccessMethodsUnmanaged['get']>
+    ): ReturnType<SeamHttpAccessMethodsUnmanaged['get']> {
+      const seam = SeamHttpAccessMethodsUnmanaged.fromClient(client, defaults)
+      return seam.get(...args)
+    }
+  }
+
+  get '/access_methods/unmanaged/list'(): (
+    parameters?: AccessMethodsUnmanagedListParameters,
+    options?: AccessMethodsUnmanagedListOptions,
+  ) => AccessMethodsUnmanagedListRequest {
+    const { client, defaults } = this
+    return function accessMethodsUnmanagedList(
+      ...args: Parameters<SeamHttpAccessMethodsUnmanaged['list']>
+    ): ReturnType<SeamHttpAccessMethodsUnmanaged['list']> {
+      const seam = SeamHttpAccessMethodsUnmanaged.fromClient(client, defaults)
       return seam.list(...args)
     }
   }
@@ -3898,6 +3977,32 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/user_identities/unmanaged/get'(): (
+    parameters?: UserIdentitiesUnmanagedGetParameters,
+    options?: UserIdentitiesUnmanagedGetOptions,
+  ) => UserIdentitiesUnmanagedGetRequest {
+    const { client, defaults } = this
+    return function userIdentitiesUnmanagedGet(
+      ...args: Parameters<SeamHttpUserIdentitiesUnmanaged['get']>
+    ): ReturnType<SeamHttpUserIdentitiesUnmanaged['get']> {
+      const seam = SeamHttpUserIdentitiesUnmanaged.fromClient(client, defaults)
+      return seam.get(...args)
+    }
+  }
+
+  get '/user_identities/unmanaged/list'(): (
+    parameters?: UserIdentitiesUnmanagedListParameters,
+    options?: UserIdentitiesUnmanagedListOptions,
+  ) => UserIdentitiesUnmanagedListRequest {
+    const { client, defaults } = this
+    return function userIdentitiesUnmanagedList(
+      ...args: Parameters<SeamHttpUserIdentitiesUnmanaged['list']>
+    ): ReturnType<SeamHttpUserIdentitiesUnmanaged['list']> {
+      const seam = SeamHttpUserIdentitiesUnmanaged.fromClient(client, defaults)
+      return seam.list(...args)
+    }
+  }
+
   get '/webhooks/create'(): (
     parameters?: WebhooksCreateParameters,
     options?: WebhooksCreateOptions,
@@ -4163,9 +4268,13 @@ export type SeamHttpEndpointQueryPaths =
   | '/access_grants/get'
   | '/access_grants/get_related'
   | '/access_grants/list'
+  | '/access_grants/unmanaged/get'
+  | '/access_grants/unmanaged/list'
   | '/access_methods/get'
   | '/access_methods/get_related'
   | '/access_methods/list'
+  | '/access_methods/unmanaged/get'
+  | '/access_methods/unmanaged/list'
   | '/acs/access_groups/get'
   | '/acs/access_groups/list'
   | '/acs/access_groups/list_accessible_entrances'
@@ -4242,6 +4351,8 @@ export type SeamHttpEndpointQueryPaths =
   | '/user_identities/list_acs_users'
   | '/user_identities/enrollment_automations/get'
   | '/user_identities/enrollment_automations/list'
+  | '/user_identities/unmanaged/get'
+  | '/user_identities/unmanaged/list'
   | '/webhooks/get'
   | '/webhooks/list'
   | '/workspaces/find_anything'

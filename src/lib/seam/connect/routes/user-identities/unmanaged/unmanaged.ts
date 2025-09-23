@@ -36,9 +36,7 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-import { SeamHttpAccessMethodsUnmanaged } from './unmanaged/index.js'
-
-export class SeamHttpAccessMethods {
+export class SeamHttpUserIdentitiesUnmanaged {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
   readonly ltsVersion = seamApiLtsVersion
@@ -53,23 +51,23 @@ export class SeamHttpAccessMethods {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpAccessMethods {
+  ): SeamHttpUserIdentitiesUnmanaged {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpAccessMethods(constructorOptions)
+    return new SeamHttpUserIdentitiesUnmanaged(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpAccessMethods {
+  ): SeamHttpUserIdentitiesUnmanaged {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpAccessMethods(constructorOptions)
+    return new SeamHttpUserIdentitiesUnmanaged(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -78,24 +76,24 @@ export class SeamHttpAccessMethods {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpAccessMethods {
+  ): SeamHttpUserIdentitiesUnmanaged {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpAccessMethods(constructorOptions)
+    return new SeamHttpUserIdentitiesUnmanaged(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpAccessMethods> {
+  ): Promise<SeamHttpUserIdentitiesUnmanaged> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
       throw new SeamHttpInvalidOptionsError(
-        'The client option cannot be used with SeamHttpAccessMethods.fromPublishableKey',
+        'The client option cannot be used with SeamHttpUserIdentitiesUnmanaged.fromPublishableKey',
       )
     }
     const client = createClient(clientOptions)
@@ -103,7 +101,10 @@ export class SeamHttpAccessMethods {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpAccessMethods.fromClientSessionToken(token, options)
+    return SeamHttpUserIdentitiesUnmanaged.fromClientSessionToken(
+      token,
+      options,
+    )
   }
 
   static fromConsoleSessionToken(
@@ -113,14 +114,14 @@ export class SeamHttpAccessMethods {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpAccessMethods {
+  ): SeamHttpUserIdentitiesUnmanaged {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpAccessMethods(constructorOptions)
+    return new SeamHttpUserIdentitiesUnmanaged(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -130,14 +131,14 @@ export class SeamHttpAccessMethods {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpAccessMethods {
+  ): SeamHttpUserIdentitiesUnmanaged {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpAccessMethods(constructorOptions)
+    return new SeamHttpUserIdentitiesUnmanaged(constructorOptions)
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
@@ -165,181 +166,75 @@ export class SeamHttpAccessMethods {
     await clientSessions.get()
   }
 
-  get unmanaged(): SeamHttpAccessMethodsUnmanaged {
-    return SeamHttpAccessMethodsUnmanaged.fromClient(this.client, this.defaults)
-  }
-
-  delete(
-    parameters?: AccessMethodsDeleteParameters,
-    options: AccessMethodsDeleteOptions = {},
-  ): AccessMethodsDeleteRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/access_methods/delete',
-      method: 'POST',
-      body: parameters,
-      responseKey: undefined,
-      options,
-    })
-  }
-
-  encode(
-    parameters?: AccessMethodsEncodeParameters,
-    options: AccessMethodsEncodeOptions = {},
-  ): AccessMethodsEncodeRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/access_methods/encode',
-      method: 'POST',
-      body: parameters,
-      responseKey: 'action_attempt',
-      options,
-    })
-  }
-
   get(
-    parameters?: AccessMethodsGetParameters,
-    options: AccessMethodsGetOptions = {},
-  ): AccessMethodsGetRequest {
+    parameters?: UserIdentitiesUnmanagedGetParameters,
+    options: UserIdentitiesUnmanagedGetOptions = {},
+  ): UserIdentitiesUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
-      pathname: '/access_methods/get',
+      pathname: '/user_identities/unmanaged/get',
       method: 'POST',
       body: parameters,
-      responseKey: 'access_method',
-      options,
-    })
-  }
-
-  getRelated(
-    parameters?: AccessMethodsGetRelatedParameters,
-    options: AccessMethodsGetRelatedOptions = {},
-  ): AccessMethodsGetRelatedRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/access_methods/get_related',
-      method: 'POST',
-      body: parameters,
-      responseKey: 'batch',
+      responseKey: 'user_identity',
       options,
     })
   }
 
   list(
-    parameters?: AccessMethodsListParameters,
-    options: AccessMethodsListOptions = {},
-  ): AccessMethodsListRequest {
+    parameters?: UserIdentitiesUnmanagedListParameters,
+    options: UserIdentitiesUnmanagedListOptions = {},
+  ): UserIdentitiesUnmanagedListRequest {
     return new SeamHttpRequest(this, {
-      pathname: '/access_methods/list',
+      pathname: '/user_identities/unmanaged/list',
       method: 'POST',
       body: parameters,
-      responseKey: 'access_methods',
+      responseKey: 'user_identities',
       options,
     })
   }
 }
 
-export type AccessMethodsDeleteParameters =
-  RouteRequestBody<'/access_methods/delete'>
+export type UserIdentitiesUnmanagedGetParameters =
+  RouteRequestBody<'/user_identities/unmanaged/get'>
 
 /**
- * @deprecated Use AccessMethodsDeleteParameters instead.
+ * @deprecated Use UserIdentitiesUnmanagedGetParameters instead.
  */
-export type AccessMethodsDeleteParams = AccessMethodsDeleteParameters
+export type UserIdentitiesUnmanagedGetParams =
+  UserIdentitiesUnmanagedGetParameters
 
 /**
- * @deprecated Use AccessMethodsDeleteRequest instead.
+ * @deprecated Use UserIdentitiesUnmanagedGetRequest instead.
  */
-export type AccessMethodsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/delete'>>
+export type UserIdentitiesUnmanagedGetResponse = SetNonNullable<
+  Required<RouteResponse<'/user_identities/unmanaged/get'>>
 >
 
-export type AccessMethodsDeleteRequest = SeamHttpRequest<void, undefined>
+export type UserIdentitiesUnmanagedGetRequest = SeamHttpRequest<
+  UserIdentitiesUnmanagedGetResponse,
+  'user_identity'
+>
 
-export interface AccessMethodsDeleteOptions {}
+export interface UserIdentitiesUnmanagedGetOptions {}
 
-export type AccessMethodsEncodeParameters =
-  RouteRequestBody<'/access_methods/encode'>
+export type UserIdentitiesUnmanagedListParameters =
+  RouteRequestBody<'/user_identities/unmanaged/list'>
 
 /**
- * @deprecated Use AccessMethodsEncodeParameters instead.
+ * @deprecated Use UserIdentitiesUnmanagedListParameters instead.
  */
-export type AccessMethodsEncodeBody = AccessMethodsEncodeParameters
+export type UserIdentitiesUnmanagedListParams =
+  UserIdentitiesUnmanagedListParameters
 
 /**
- * @deprecated Use AccessMethodsEncodeRequest instead.
+ * @deprecated Use UserIdentitiesUnmanagedListRequest instead.
  */
-export type AccessMethodsEncodeResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/encode'>>
+export type UserIdentitiesUnmanagedListResponse = SetNonNullable<
+  Required<RouteResponse<'/user_identities/unmanaged/list'>>
 >
 
-export type AccessMethodsEncodeRequest = SeamHttpRequest<
-  AccessMethodsEncodeResponse,
-  'action_attempt'
+export type UserIdentitiesUnmanagedListRequest = SeamHttpRequest<
+  UserIdentitiesUnmanagedListResponse,
+  'user_identities'
 >
 
-export type AccessMethodsEncodeOptions = Pick<
-  SeamHttpRequestOptions,
-  'waitForActionAttempt'
->
-
-export type AccessMethodsGetParameters = RouteRequestBody<'/access_methods/get'>
-
-/**
- * @deprecated Use AccessMethodsGetParameters instead.
- */
-export type AccessMethodsGetParams = AccessMethodsGetParameters
-
-/**
- * @deprecated Use AccessMethodsGetRequest instead.
- */
-export type AccessMethodsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/get'>>
->
-
-export type AccessMethodsGetRequest = SeamHttpRequest<
-  AccessMethodsGetResponse,
-  'access_method'
->
-
-export interface AccessMethodsGetOptions {}
-
-export type AccessMethodsGetRelatedParameters =
-  RouteRequestBody<'/access_methods/get_related'>
-
-/**
- * @deprecated Use AccessMethodsGetRelatedParameters instead.
- */
-export type AccessMethodsGetRelatedParams = AccessMethodsGetRelatedParameters
-
-/**
- * @deprecated Use AccessMethodsGetRelatedRequest instead.
- */
-export type AccessMethodsGetRelatedResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/get_related'>>
->
-
-export type AccessMethodsGetRelatedRequest = SeamHttpRequest<
-  AccessMethodsGetRelatedResponse,
-  'batch'
->
-
-export interface AccessMethodsGetRelatedOptions {}
-
-export type AccessMethodsListParameters =
-  RouteRequestBody<'/access_methods/list'>
-
-/**
- * @deprecated Use AccessMethodsListParameters instead.
- */
-export type AccessMethodsListParams = AccessMethodsListParameters
-
-/**
- * @deprecated Use AccessMethodsListRequest instead.
- */
-export type AccessMethodsListResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/list'>>
->
-
-export type AccessMethodsListRequest = SeamHttpRequest<
-  AccessMethodsListResponse,
-  'access_methods'
->
-
-export interface AccessMethodsListOptions {}
+export interface UserIdentitiesUnmanagedListOptions {}
