@@ -621,6 +621,12 @@ import {
   SeamHttpSeamCustomerV1Settings,
 } from './seam/customer/v1/settings/index.js'
 import {
+  type SeamCustomerV1SpacesCreateOptions,
+  type SeamCustomerV1SpacesCreateParameters,
+  type SeamCustomerV1SpacesCreateRequest,
+  SeamHttpSeamCustomerV1Spaces,
+} from './seam/customer/v1/spaces/index.js'
+import {
   SeamHttpSeamPartnerV1BuildingBlocksSpaces,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
@@ -3151,6 +3157,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/spaces/create'(): (
+    parameters?: SeamCustomerV1SpacesCreateParameters,
+    options?: SeamCustomerV1SpacesCreateOptions,
+  ) => SeamCustomerV1SpacesCreateRequest {
+    const { client, defaults } = this
+    return function seamCustomerV1SpacesCreate(
+      ...args: Parameters<SeamHttpSeamCustomerV1Spaces['create']>
+    ): ReturnType<SeamHttpSeamCustomerV1Spaces['create']> {
+      const seam = SeamHttpSeamCustomerV1Spaces.fromClient(client, defaults)
+      return seam.create(...args)
+    }
+  }
+
   get '/seam/partner/v1/building_blocks/spaces/auto_map'(): (
     parameters?: SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
     options?: SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
@@ -4453,6 +4472,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/customer/v1/automations/delete'
   | '/seam/customer/v1/automations/update'
   | '/seam/customer/v1/settings/update'
+  | '/seam/customer/v1/spaces/create'
   | '/spaces/add_acs_entrances'
   | '/spaces/add_devices'
   | '/spaces/create'
