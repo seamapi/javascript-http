@@ -225,7 +225,7 @@ export class SeamHttpConnectedAccounts {
   ): ConnectedAccountsUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/update',
-      method: 'POST',
+      method: 'PATCH',
       body: parameters,
       responseKey: undefined,
       options,
