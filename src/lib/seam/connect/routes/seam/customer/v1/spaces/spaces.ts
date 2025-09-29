@@ -175,6 +175,19 @@ export class SeamHttpSeamCustomerV1Spaces {
       options,
     })
   }
+
+  list(
+    parameters?: SeamCustomerV1SpacesListParameters,
+    options: SeamCustomerV1SpacesListOptions = {},
+  ): SeamCustomerV1SpacesListRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/spaces/list',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'spaces',
+      options,
+    })
+  }
 }
 
 export type SeamCustomerV1SpacesCreateParameters =
@@ -199,3 +212,25 @@ export type SeamCustomerV1SpacesCreateRequest = SeamHttpRequest<
 >
 
 export interface SeamCustomerV1SpacesCreateOptions {}
+
+export type SeamCustomerV1SpacesListParameters =
+  RouteRequestBody<'/seam/customer/v1/spaces/list'>
+
+/**
+ * @deprecated Use SeamCustomerV1SpacesListParameters instead.
+ */
+export type SeamCustomerV1SpacesListParams = SeamCustomerV1SpacesListParameters
+
+/**
+ * @deprecated Use SeamCustomerV1SpacesListRequest instead.
+ */
+export type SeamCustomerV1SpacesListResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/spaces/list'>>
+>
+
+export type SeamCustomerV1SpacesListRequest = SeamHttpRequest<
+  SeamCustomerV1SpacesListResponse,
+  'spaces'
+>
+
+export interface SeamCustomerV1SpacesListOptions {}
