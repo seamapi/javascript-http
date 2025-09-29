@@ -624,6 +624,9 @@ import {
   type SeamCustomerV1SpacesCreateOptions,
   type SeamCustomerV1SpacesCreateParameters,
   type SeamCustomerV1SpacesCreateRequest,
+  type SeamCustomerV1SpacesListOptions,
+  type SeamCustomerV1SpacesListParameters,
+  type SeamCustomerV1SpacesListRequest,
   SeamHttpSeamCustomerV1Spaces,
 } from './seam/customer/v1/spaces/index.js'
 import {
@@ -3170,6 +3173,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/spaces/list'(): (
+    parameters?: SeamCustomerV1SpacesListParameters,
+    options?: SeamCustomerV1SpacesListOptions,
+  ) => SeamCustomerV1SpacesListRequest {
+    const { client, defaults } = this
+    return function seamCustomerV1SpacesList(
+      ...args: Parameters<SeamHttpSeamCustomerV1Spaces['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1Spaces['list']> {
+      const seam = SeamHttpSeamCustomerV1Spaces.fromClient(client, defaults)
+      return seam.list(...args)
+    }
+  }
+
   get '/seam/partner/v1/building_blocks/spaces/auto_map'(): (
     parameters?: SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
     options?: SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
@@ -4354,6 +4370,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/reservations/get'
   | '/seam/customer/v1/reservations/list'
   | '/seam/customer/v1/settings/get'
+  | '/seam/customer/v1/spaces/list'
   | '/seam/partner/v1/building_blocks/spaces/auto_map'
   | '/spaces/get'
   | '/spaces/get_related'
