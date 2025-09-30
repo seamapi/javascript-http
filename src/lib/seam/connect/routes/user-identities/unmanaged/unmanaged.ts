@@ -191,6 +191,19 @@ export class SeamHttpUserIdentitiesUnmanaged {
       options,
     })
   }
+
+  update(
+    parameters?: UserIdentitiesUnmanagedUpdateParameters,
+    options: UserIdentitiesUnmanagedUpdateOptions = {},
+  ): UserIdentitiesUnmanagedUpdateRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/user_identities/unmanaged/update',
+      method: 'PATCH',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
 }
 
 export type UserIdentitiesUnmanagedGetParameters =
@@ -238,3 +251,26 @@ export type UserIdentitiesUnmanagedListRequest = SeamHttpRequest<
 >
 
 export interface UserIdentitiesUnmanagedListOptions {}
+
+export type UserIdentitiesUnmanagedUpdateParameters =
+  RouteRequestBody<'/user_identities/unmanaged/update'>
+
+/**
+ * @deprecated Use UserIdentitiesUnmanagedUpdateParameters instead.
+ */
+export type UserIdentitiesUnmanagedUpdateBody =
+  UserIdentitiesUnmanagedUpdateParameters
+
+/**
+ * @deprecated Use UserIdentitiesUnmanagedUpdateRequest instead.
+ */
+export type UserIdentitiesUnmanagedUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/user_identities/unmanaged/update'>>
+>
+
+export type UserIdentitiesUnmanagedUpdateRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+export interface UserIdentitiesUnmanagedUpdateOptions {}

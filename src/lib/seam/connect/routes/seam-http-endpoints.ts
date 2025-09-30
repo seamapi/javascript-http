@@ -120,6 +120,9 @@ import {
   type AccessGrantsUnmanagedListOptions,
   type AccessGrantsUnmanagedListParameters,
   type AccessGrantsUnmanagedListRequest,
+  type AccessGrantsUnmanagedUpdateOptions,
+  type AccessGrantsUnmanagedUpdateParameters,
+  type AccessGrantsUnmanagedUpdateRequest,
   SeamHttpAccessGrantsUnmanaged,
 } from './access-grants/unmanaged/index.js'
 import {
@@ -838,6 +841,9 @@ import {
   type UserIdentitiesUnmanagedListOptions,
   type UserIdentitiesUnmanagedListParameters,
   type UserIdentitiesUnmanagedListRequest,
+  type UserIdentitiesUnmanagedUpdateOptions,
+  type UserIdentitiesUnmanagedUpdateParameters,
+  type UserIdentitiesUnmanagedUpdateRequest,
 } from './user-identities/unmanaged/index.js'
 import {
   SeamHttpWebhooks,
@@ -1348,6 +1354,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAccessGrantsUnmanaged['list']> {
       const seam = SeamHttpAccessGrantsUnmanaged.fromClient(client, defaults)
       return seam.list(...args)
+    }
+  }
+
+  get '/access_grants/unmanaged/update'(): (
+    parameters?: AccessGrantsUnmanagedUpdateParameters,
+    options?: AccessGrantsUnmanagedUpdateOptions,
+  ) => AccessGrantsUnmanagedUpdateRequest {
+    const { client, defaults } = this
+    return function accessGrantsUnmanagedUpdate(
+      ...args: Parameters<SeamHttpAccessGrantsUnmanaged['update']>
+    ): ReturnType<SeamHttpAccessGrantsUnmanaged['update']> {
+      const seam = SeamHttpAccessGrantsUnmanaged.fromClient(client, defaults)
+      return seam.update(...args)
     }
   }
 
@@ -4054,6 +4073,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/user_identities/unmanaged/update'(): (
+    parameters?: UserIdentitiesUnmanagedUpdateParameters,
+    options?: UserIdentitiesUnmanagedUpdateOptions,
+  ) => UserIdentitiesUnmanagedUpdateRequest {
+    const { client, defaults } = this
+    return function userIdentitiesUnmanagedUpdate(
+      ...args: Parameters<SeamHttpUserIdentitiesUnmanaged['update']>
+    ): ReturnType<SeamHttpUserIdentitiesUnmanaged['update']> {
+      const seam = SeamHttpUserIdentitiesUnmanaged.fromClient(client, defaults)
+      return seam.update(...args)
+    }
+  }
+
   get '/webhooks/create'(): (
     parameters?: WebhooksCreateParameters,
     options?: WebhooksCreateOptions,
@@ -4444,6 +4476,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/access_grants/delete'
   | '/access_grants/request_access_methods'
   | '/access_grants/update'
+  | '/access_grants/unmanaged/update'
   | '/access_methods/delete'
   | '/access_methods/encode'
   | '/acs/access_groups/add_user'
@@ -4548,6 +4581,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/user_identities/update'
   | '/user_identities/enrollment_automations/delete'
   | '/user_identities/enrollment_automations/launch'
+  | '/user_identities/unmanaged/update'
   | '/webhooks/create'
   | '/webhooks/delete'
   | '/webhooks/update'

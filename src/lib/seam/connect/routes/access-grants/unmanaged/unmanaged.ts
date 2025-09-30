@@ -188,6 +188,19 @@ export class SeamHttpAccessGrantsUnmanaged {
       options,
     })
   }
+
+  update(
+    parameters?: AccessGrantsUnmanagedUpdateParameters,
+    options: AccessGrantsUnmanagedUpdateOptions = {},
+  ): AccessGrantsUnmanagedUpdateRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/access_grants/unmanaged/update',
+      method: 'PATCH',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
 }
 
 export type AccessGrantsUnmanagedGetParameters =
@@ -234,3 +247,26 @@ export type AccessGrantsUnmanagedListRequest = SeamHttpRequest<
 >
 
 export interface AccessGrantsUnmanagedListOptions {}
+
+export type AccessGrantsUnmanagedUpdateParameters =
+  RouteRequestBody<'/access_grants/unmanaged/update'>
+
+/**
+ * @deprecated Use AccessGrantsUnmanagedUpdateParameters instead.
+ */
+export type AccessGrantsUnmanagedUpdateBody =
+  AccessGrantsUnmanagedUpdateParameters
+
+/**
+ * @deprecated Use AccessGrantsUnmanagedUpdateRequest instead.
+ */
+export type AccessGrantsUnmanagedUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/access_grants/unmanaged/update'>>
+>
+
+export type AccessGrantsUnmanagedUpdateRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+export interface AccessGrantsUnmanagedUpdateOptions {}
