@@ -238,6 +238,19 @@ export class SeamHttpAccessGrants {
     })
   }
 
+  requestAccessMethods(
+    parameters?: AccessGrantsRequestAccessMethodsParameters,
+    options: AccessGrantsRequestAccessMethodsOptions = {},
+  ): AccessGrantsRequestAccessMethodsRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/access_grants/request_access_methods',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'access_grant',
+      options,
+    })
+  }
+
   update(
     parameters?: AccessGrantsUpdateParameters,
     options: AccessGrantsUpdateOptions = {},
@@ -356,6 +369,29 @@ export type AccessGrantsListRequest = SeamHttpRequest<
 >
 
 export interface AccessGrantsListOptions {}
+
+export type AccessGrantsRequestAccessMethodsParameters =
+  RouteRequestBody<'/access_grants/request_access_methods'>
+
+/**
+ * @deprecated Use AccessGrantsRequestAccessMethodsParameters instead.
+ */
+export type AccessGrantsRequestAccessMethodsBody =
+  AccessGrantsRequestAccessMethodsParameters
+
+/**
+ * @deprecated Use AccessGrantsRequestAccessMethodsRequest instead.
+ */
+export type AccessGrantsRequestAccessMethodsResponse = SetNonNullable<
+  Required<RouteResponse<'/access_grants/request_access_methods'>>
+>
+
+export type AccessGrantsRequestAccessMethodsRequest = SeamHttpRequest<
+  AccessGrantsRequestAccessMethodsResponse,
+  'access_grant'
+>
+
+export interface AccessGrantsRequestAccessMethodsOptions {}
 
 export type AccessGrantsUpdateParameters =
   RouteRequestBody<'/access_grants/update'>
