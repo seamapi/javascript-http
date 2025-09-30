@@ -105,6 +105,9 @@ import {
   type AccessGrantsListOptions,
   type AccessGrantsListParameters,
   type AccessGrantsListRequest,
+  type AccessGrantsRequestAccessMethodsOptions,
+  type AccessGrantsRequestAccessMethodsParameters,
+  type AccessGrantsRequestAccessMethodsRequest,
   type AccessGrantsUpdateOptions,
   type AccessGrantsUpdateParameters,
   type AccessGrantsUpdateRequest,
@@ -1293,6 +1296,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAccessGrants['list']> {
       const seam = SeamHttpAccessGrants.fromClient(client, defaults)
       return seam.list(...args)
+    }
+  }
+
+  get '/access_grants/request_access_methods'(): (
+    parameters?: AccessGrantsRequestAccessMethodsParameters,
+    options?: AccessGrantsRequestAccessMethodsOptions,
+  ) => AccessGrantsRequestAccessMethodsRequest {
+    const { client, defaults } = this
+    return function accessGrantsRequestAccessMethods(
+      ...args: Parameters<SeamHttpAccessGrants['requestAccessMethods']>
+    ): ReturnType<SeamHttpAccessGrants['requestAccessMethods']> {
+      const seam = SeamHttpAccessGrants.fromClient(client, defaults)
+      return seam.requestAccessMethods(...args)
     }
   }
 
@@ -4426,6 +4442,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/access_codes/unmanaged/update'
   | '/access_grants/create'
   | '/access_grants/delete'
+  | '/access_grants/request_access_methods'
   | '/access_grants/update'
   | '/access_methods/delete'
   | '/access_methods/encode'
