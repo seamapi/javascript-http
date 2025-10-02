@@ -102,7 +102,7 @@
     "@seamapi/blueprint": "^0.51.1",
     "@seamapi/fake-seam-connect": "^1.77.0",
     "@seamapi/smith": "^0.5.2",
-    "@seamapi/types": "1.595.0",
+    "@seamapi/types": "1.599.0",
     "@swc/core": "^1.11.29",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^22.15.21",
