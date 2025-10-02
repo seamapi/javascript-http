@@ -597,6 +597,15 @@ import {
   SeamHttpSeamCustomerV1Automations,
 } from './seam/customer/v1/automations/index.js'
 import {
+  type SeamCustomerV1ConnectorsCreateOptions,
+  type SeamCustomerV1ConnectorsCreateParameters,
+  type SeamCustomerV1ConnectorsCreateRequest,
+  type SeamCustomerV1ConnectorsSyncOptions,
+  type SeamCustomerV1ConnectorsSyncParameters,
+  type SeamCustomerV1ConnectorsSyncRequest,
+  SeamHttpSeamCustomerV1Connectors,
+} from './seam/customer/v1/connectors/index.js'
+import {
   type SeamCustomerV1EventsListOptions,
   type SeamCustomerV1EventsListParameters,
   type SeamCustomerV1EventsListRequest,
@@ -635,6 +644,12 @@ import {
   type SeamCustomerV1SpacesListRequest,
   SeamHttpSeamCustomerV1Spaces,
 } from './seam/customer/v1/spaces/index.js'
+import {
+  type SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdOptions,
+  type SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdParameters,
+  type SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdRequest,
+  SeamHttpSeamCustomerV1WebhooksConnectorsWorkspaceId,
+} from './seam/customer/v1/webhooks/connectors/workspace-id/index.js'
 import {
   SeamHttpSeamPartnerV1BuildingBlocksSpaces,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
@@ -3081,6 +3096,32 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/connectors/create'(): (
+    parameters?: SeamCustomerV1ConnectorsCreateParameters,
+    options?: SeamCustomerV1ConnectorsCreateOptions,
+  ) => SeamCustomerV1ConnectorsCreateRequest {
+    const { client, defaults } = this
+    return function seamCustomerV1ConnectorsCreate(
+      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['create']>
+    ): ReturnType<SeamHttpSeamCustomerV1Connectors['create']> {
+      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
+      return seam.create(...args)
+    }
+  }
+
+  get '/seam/customer/v1/connectors/sync'(): (
+    parameters?: SeamCustomerV1ConnectorsSyncParameters,
+    options?: SeamCustomerV1ConnectorsSyncOptions,
+  ) => SeamCustomerV1ConnectorsSyncRequest {
+    const { client, defaults } = this
+    return function seamCustomerV1ConnectorsSync(
+      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['sync']>
+    ): ReturnType<SeamHttpSeamCustomerV1Connectors['sync']> {
+      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
+      return seam.sync(...args)
+    }
+  }
+
   get '/seam/customer/v1/events/list'(): (
     parameters?: SeamCustomerV1EventsListParameters,
     options?: SeamCustomerV1EventsListOptions,
@@ -3218,6 +3259,27 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpSeamCustomerV1Spaces['list']> {
       const seam = SeamHttpSeamCustomerV1Spaces.fromClient(client, defaults)
       return seam.list(...args)
+    }
+  }
+
+  get '/seam/customer/v1/webhooks/connectors/[workspace_id]/[connector_id]'(): (
+    parameters?: SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdParameters,
+    options?: SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdOptions,
+  ) => SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdRequest {
+    const { client, defaults } = this
+    return function seamCustomerV1WebhooksConnectorsWorkspaceIdConnectorId(
+      ...args: Parameters<
+        SeamHttpSeamCustomerV1WebhooksConnectorsWorkspaceId['connectorId']
+      >
+    ): ReturnType<
+      SeamHttpSeamCustomerV1WebhooksConnectorsWorkspaceId['connectorId']
+    > {
+      const seam =
+        SeamHttpSeamCustomerV1WebhooksConnectorsWorkspaceId.fromClient(
+          client,
+          defaults,
+        )
+      return seam.connectorId(...args)
     }
   }
 
@@ -4538,8 +4600,11 @@ export type SeamHttpEndpointMutationPaths =
   | '/phones/simulate/create_sandbox_phone'
   | '/seam/customer/v1/automations/delete'
   | '/seam/customer/v1/automations/update'
+  | '/seam/customer/v1/connectors/create'
+  | '/seam/customer/v1/connectors/sync'
   | '/seam/customer/v1/settings/update'
   | '/seam/customer/v1/spaces/create'
+  | '/seam/customer/v1/webhooks/connectors/[workspace_id]/[connector_id]'
   | '/spaces/add_acs_entrances'
   | '/spaces/add_devices'
   | '/spaces/create'
