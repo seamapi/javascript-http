@@ -5,9 +5,11 @@
 
 export * from './automation-runs/index.js'
 export * from './automations/index.js'
+export * from './connectors/index.js'
 export * from './events/index.js'
 export * from './portals/index.js'
 export * from './reservations/index.js'
 export * from './settings/index.js'
 export * from './spaces/index.js'
 export * from './v1.js'
+export * from './webhooks/index.js'
