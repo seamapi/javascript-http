@@ -4521,6 +4521,8 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/seam/console/v1/timelines/get'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/reservations/list'
+  | '/user_identities/list'
+  | '/user_identities/unmanaged/list'
 
 export type SeamHttpEndpointMutationPaths =
   | '/access_codes/create'
