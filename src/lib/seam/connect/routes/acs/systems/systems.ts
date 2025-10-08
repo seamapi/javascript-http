@@ -201,6 +201,19 @@ export class SeamHttpAcsSystems {
       options,
     })
   }
+
+  reportDevices(
+    parameters?: AcsSystemsReportDevicesParameters,
+    options: AcsSystemsReportDevicesOptions = {},
+  ): AcsSystemsReportDevicesRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/acs/systems/report_devices',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
 }
 
 export type AcsSystemsGetParameters = RouteRequestBody<'/acs/systems/get'>
@@ -271,3 +284,22 @@ export type AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest =
   >
 
 export interface AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions {}
+
+export type AcsSystemsReportDevicesParameters =
+  RouteRequestBody<'/acs/systems/report_devices'>
+
+/**
+ * @deprecated Use AcsSystemsReportDevicesParameters instead.
+ */
+export type AcsSystemsReportDevicesBody = AcsSystemsReportDevicesParameters
+
+/**
+ * @deprecated Use AcsSystemsReportDevicesRequest instead.
+ */
+export type AcsSystemsReportDevicesResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/systems/report_devices'>>
+>
+
+export type AcsSystemsReportDevicesRequest = SeamHttpRequest<void, undefined>
+
+export interface AcsSystemsReportDevicesOptions {}
