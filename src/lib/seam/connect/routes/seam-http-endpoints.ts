@@ -288,6 +288,9 @@ import {
   type AcsSystemsListOptions,
   type AcsSystemsListParameters,
   type AcsSystemsListRequest,
+  type AcsSystemsReportDevicesOptions,
+  type AcsSystemsReportDevicesParameters,
+  type AcsSystemsReportDevicesRequest,
   SeamHttpAcsSystems,
 } from './acs/systems/index.js'
 import {
@@ -1997,6 +2000,19 @@ export class SeamHttpEndpoints {
     > {
       const seam = SeamHttpAcsSystems.fromClient(client, defaults)
       return seam.listCompatibleCredentialManagerAcsSystems(...args)
+    }
+  }
+
+  get '/acs/systems/report_devices'(): (
+    parameters?: AcsSystemsReportDevicesParameters,
+    options?: AcsSystemsReportDevicesOptions,
+  ) => AcsSystemsReportDevicesRequest {
+    const { client, defaults } = this
+    return function acsSystemsReportDevices(
+      ...args: Parameters<SeamHttpAcsSystems['reportDevices']>
+    ): ReturnType<SeamHttpAcsSystems['reportDevices']> {
+      const seam = SeamHttpAcsSystems.fromClient(client, defaults)
+      return seam.reportDevices(...args)
     }
   }
 
@@ -4559,6 +4575,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/acs/encoders/simulate/next_credential_scan_will_fail'
   | '/acs/encoders/simulate/next_credential_scan_will_succeed'
   | '/acs/entrances/grant_access'
+  | '/acs/systems/report_devices'
   | '/acs/users/add_to_access_group'
   | '/acs/users/create'
   | '/acs/users/delete'
