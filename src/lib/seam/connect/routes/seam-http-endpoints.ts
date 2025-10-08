@@ -648,6 +648,12 @@ import {
   SeamHttpSeamCustomerV1Spaces,
 } from './seam/customer/v1/spaces/index.js'
 import {
+  type SeamCustomerV1StaffMembersListOptions,
+  type SeamCustomerV1StaffMembersListParameters,
+  type SeamCustomerV1StaffMembersListRequest,
+  SeamHttpSeamCustomerV1StaffMembers,
+} from './seam/customer/v1/staff-members/index.js'
+import {
   type SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdOptions,
   type SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdParameters,
   type SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdRequest,
@@ -3278,6 +3284,27 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/staff_members/list'(): (
+    parameters?: SeamCustomerV1StaffMembersListParameters,
+    options?: SeamCustomerV1StaffMembersListOptions,
+  ) => SeamCustomerV1StaffMembersListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1StaffMembersList(
+      ...args: Parameters<SeamHttpSeamCustomerV1StaffMembers['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1StaffMembers['list']> {
+      const seam = SeamHttpSeamCustomerV1StaffMembers.fromClient(
+        client,
+        defaults,
+      )
+      return seam.list(...args)
+    }
+  }
+
   get '/seam/customer/v1/webhooks/connectors/[workspace_id]/[connector_id]'(): (
     parameters?: SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdParameters,
     options?: SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdOptions,
@@ -4497,6 +4524,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/reservations/list'
   | '/seam/customer/v1/settings/get'
   | '/seam/customer/v1/spaces/list'
+  | '/seam/customer/v1/staff_members/list'
   | '/seam/partner/v1/building_blocks/spaces/auto_map'
   | '/spaces/get'
   | '/spaces/get_related'
@@ -4537,6 +4565,7 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/seam/console/v1/timelines/get'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/reservations/list'
+  | '/seam/customer/v1/staff_members/list'
   | '/user_identities/list'
   | '/user_identities/unmanaged/list'
 
