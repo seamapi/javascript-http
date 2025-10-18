@@ -654,12 +654,6 @@ import {
   SeamHttpSeamCustomerV1StaffMembers,
 } from './seam/customer/v1/staff-members/index.js'
 import {
-  type SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdOptions,
-  type SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdParameters,
-  type SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdRequest,
-  SeamHttpSeamCustomerV1WebhooksConnectorsWorkspaceId,
-} from './seam/customer/v1/webhooks/connectors/workspace-id/index.js'
-import {
   SeamHttpSeamPartnerV1BuildingBlocksSpaces,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
@@ -3305,27 +3299,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get '/seam/customer/v1/webhooks/connectors/[workspace_id]/[connector_id]'(): (
-    parameters?: SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdParameters,
-    options?: SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdOptions,
-  ) => SeamCustomerV1WebhooksConnectorsWorkspaceIdConnectorIdRequest {
-    const { client, defaults } = this
-    return function seamCustomerV1WebhooksConnectorsWorkspaceIdConnectorId(
-      ...args: Parameters<
-        SeamHttpSeamCustomerV1WebhooksConnectorsWorkspaceId['connectorId']
-      >
-    ): ReturnType<
-      SeamHttpSeamCustomerV1WebhooksConnectorsWorkspaceId['connectorId']
-    > {
-      const seam =
-        SeamHttpSeamCustomerV1WebhooksConnectorsWorkspaceId.fromClient(
-          client,
-          defaults,
-        )
-      return seam.connectorId(...args)
-    }
-  }
-
   get '/seam/partner/v1/building_blocks/spaces/auto_map'(): (
     parameters?: SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
     options?: SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
@@ -4652,7 +4625,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/customer/v1/connectors/sync'
   | '/seam/customer/v1/settings/update'
   | '/seam/customer/v1/spaces/create'
-  | '/seam/customer/v1/webhooks/connectors/[workspace_id]/[connector_id]'
   | '/spaces/add_acs_entrances'
   | '/spaces/add_devices'
   | '/spaces/create'
