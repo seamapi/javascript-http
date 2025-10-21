@@ -171,6 +171,24 @@ export class SeamHttpSeamCustomerV1StaffMembers {
     await clientSessions.get()
   }
 
+  get(
+    parameters?: SeamCustomerV1StaffMembersGetParameters,
+    options: SeamCustomerV1StaffMembersGetOptions = {},
+  ): SeamCustomerV1StaffMembersGetRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/staff_members/get',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'staff_member',
+      options,
+    })
+  }
+
   list(
     parameters?: SeamCustomerV1StaffMembersListParameters,
     options: SeamCustomerV1StaffMembersListOptions = {},
@@ -189,6 +207,29 @@ export class SeamHttpSeamCustomerV1StaffMembers {
     })
   }
 }
+
+export type SeamCustomerV1StaffMembersGetParameters =
+  RouteRequestBody<'/seam/customer/v1/staff_members/get'>
+
+/**
+ * @deprecated Use SeamCustomerV1StaffMembersGetParameters instead.
+ */
+export type SeamCustomerV1StaffMembersGetParams =
+  SeamCustomerV1StaffMembersGetParameters
+
+/**
+ * @deprecated Use SeamCustomerV1StaffMembersGetRequest instead.
+ */
+export type SeamCustomerV1StaffMembersGetResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/staff_members/get'>>
+>
+
+export type SeamCustomerV1StaffMembersGetRequest = SeamHttpRequest<
+  SeamCustomerV1StaffMembersGetResponse,
+  'staff_member'
+>
+
+export interface SeamCustomerV1StaffMembersGetOptions {}
 
 export type SeamCustomerV1StaffMembersListParameters =
   RouteRequestBody<'/seam/customer/v1/staff_members/list'>
