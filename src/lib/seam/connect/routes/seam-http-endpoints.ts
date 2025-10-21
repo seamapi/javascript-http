@@ -603,6 +603,9 @@ import {
   type SeamCustomerV1ConnectorsCreateOptions,
   type SeamCustomerV1ConnectorsCreateParameters,
   type SeamCustomerV1ConnectorsCreateRequest,
+  type SeamCustomerV1ConnectorsListOptions,
+  type SeamCustomerV1ConnectorsListParameters,
+  type SeamCustomerV1ConnectorsListRequest,
   type SeamCustomerV1ConnectorsSyncOptions,
   type SeamCustomerV1ConnectorsSyncParameters,
   type SeamCustomerV1ConnectorsSyncRequest,
@@ -3117,11 +3120,34 @@ export class SeamHttpEndpoints {
     options?: SeamCustomerV1ConnectorsCreateOptions,
   ) => SeamCustomerV1ConnectorsCreateRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function seamCustomerV1ConnectorsCreate(
       ...args: Parameters<SeamHttpSeamCustomerV1Connectors['create']>
     ): ReturnType<SeamHttpSeamCustomerV1Connectors['create']> {
       const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
       return seam.create(...args)
+    }
+  }
+
+  get '/seam/customer/v1/connectors/list'(): (
+    parameters?: SeamCustomerV1ConnectorsListParameters,
+    options?: SeamCustomerV1ConnectorsListOptions,
+  ) => SeamCustomerV1ConnectorsListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1ConnectorsList(
+      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1Connectors['list']> {
+      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
+      return seam.list(...args)
     }
   }
 
@@ -4491,6 +4517,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/console/v1/timelines/get'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/automations/get'
+  | '/seam/customer/v1/connectors/list'
   | '/seam/customer/v1/events/list'
   | '/seam/customer/v1/portals/get'
   | '/seam/customer/v1/reservations/get'
