@@ -193,6 +193,24 @@ export class SeamHttpSeamCustomerV1Connectors {
     })
   }
 
+  delete(
+    parameters?: SeamCustomerV1ConnectorsDeleteParameters,
+    options: SeamCustomerV1ConnectorsDeleteOptions = {},
+  ): SeamCustomerV1ConnectorsDeleteRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/connectors/delete',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'connector',
+      options,
+    })
+  }
+
   list(
     parameters?: SeamCustomerV1ConnectorsListParameters,
     options: SeamCustomerV1ConnectorsListOptions = {},
@@ -228,6 +246,24 @@ export class SeamHttpSeamCustomerV1Connectors {
       options,
     })
   }
+
+  update(
+    parameters?: SeamCustomerV1ConnectorsUpdateParameters,
+    options: SeamCustomerV1ConnectorsUpdateOptions = {},
+  ): SeamCustomerV1ConnectorsUpdateRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/connectors/update',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'connector',
+      options,
+    })
+  }
 }
 
 export type SeamCustomerV1ConnectorsCreateParameters =
@@ -252,6 +288,29 @@ export type SeamCustomerV1ConnectorsCreateRequest = SeamHttpRequest<
 >
 
 export interface SeamCustomerV1ConnectorsCreateOptions {}
+
+export type SeamCustomerV1ConnectorsDeleteParameters =
+  RouteRequestBody<'/seam/customer/v1/connectors/delete'>
+
+/**
+ * @deprecated Use SeamCustomerV1ConnectorsDeleteParameters instead.
+ */
+export type SeamCustomerV1ConnectorsDeleteBody =
+  SeamCustomerV1ConnectorsDeleteParameters
+
+/**
+ * @deprecated Use SeamCustomerV1ConnectorsDeleteRequest instead.
+ */
+export type SeamCustomerV1ConnectorsDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/connectors/delete'>>
+>
+
+export type SeamCustomerV1ConnectorsDeleteRequest = SeamHttpRequest<
+  SeamCustomerV1ConnectorsDeleteResponse,
+  'connector'
+>
+
+export interface SeamCustomerV1ConnectorsDeleteOptions {}
 
 export type SeamCustomerV1ConnectorsListParameters =
   RouteRequestParams<'/seam/customer/v1/connectors/list'>
@@ -298,3 +357,26 @@ export type SeamCustomerV1ConnectorsSyncRequest = SeamHttpRequest<
 >
 
 export interface SeamCustomerV1ConnectorsSyncOptions {}
+
+export type SeamCustomerV1ConnectorsUpdateParameters =
+  RouteRequestBody<'/seam/customer/v1/connectors/update'>
+
+/**
+ * @deprecated Use SeamCustomerV1ConnectorsUpdateParameters instead.
+ */
+export type SeamCustomerV1ConnectorsUpdateBody =
+  SeamCustomerV1ConnectorsUpdateParameters
+
+/**
+ * @deprecated Use SeamCustomerV1ConnectorsUpdateRequest instead.
+ */
+export type SeamCustomerV1ConnectorsUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/connectors/update'>>
+>
+
+export type SeamCustomerV1ConnectorsUpdateRequest = SeamHttpRequest<
+  SeamCustomerV1ConnectorsUpdateResponse,
+  'connector'
+>
+
+export interface SeamCustomerV1ConnectorsUpdateOptions {}
