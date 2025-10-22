@@ -3159,6 +3159,11 @@ export class SeamHttpEndpoints {
     options?: SeamCustomerV1ConnectorsSyncOptions,
   ) => SeamCustomerV1ConnectorsSyncRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function seamCustomerV1ConnectorsSync(
       ...args: Parameters<SeamHttpSeamCustomerV1Connectors['sync']>
     ): ReturnType<SeamHttpSeamCustomerV1Connectors['sync']> {
@@ -3286,6 +3291,11 @@ export class SeamHttpEndpoints {
     options?: SeamCustomerV1SpacesCreateOptions,
   ) => SeamCustomerV1SpacesCreateRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function seamCustomerV1SpacesCreate(
       ...args: Parameters<SeamHttpSeamCustomerV1Spaces['create']>
     ): ReturnType<SeamHttpSeamCustomerV1Spaces['create']> {
@@ -3299,6 +3309,11 @@ export class SeamHttpEndpoints {
     options?: SeamCustomerV1SpacesListOptions,
   ) => SeamCustomerV1SpacesListRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function seamCustomerV1SpacesList(
       ...args: Parameters<SeamHttpSeamCustomerV1Spaces['list']>
     ): ReturnType<SeamHttpSeamCustomerV1Spaces['list']> {

@@ -44,6 +44,11 @@ export class SeamHttpSeamCustomerV1Spaces {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
+    if (!options.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     this.client = 'client' in options ? options.client : createClient(options)
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
@@ -167,6 +172,11 @@ export class SeamHttpSeamCustomerV1Spaces {
     parameters?: SeamCustomerV1SpacesCreateParameters,
     options: SeamCustomerV1SpacesCreateOptions = {},
   ): SeamCustomerV1SpacesCreateRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/seam/customer/v1/spaces/create',
       method: 'POST',
@@ -180,6 +190,11 @@ export class SeamHttpSeamCustomerV1Spaces {
     parameters?: SeamCustomerV1SpacesListParameters,
     options: SeamCustomerV1SpacesListOptions = {},
   ): SeamCustomerV1SpacesListRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/seam/customer/v1/spaces/list',
       method: 'POST',
