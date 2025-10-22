@@ -603,12 +603,18 @@ import {
   type SeamCustomerV1ConnectorsCreateOptions,
   type SeamCustomerV1ConnectorsCreateParameters,
   type SeamCustomerV1ConnectorsCreateRequest,
+  type SeamCustomerV1ConnectorsDeleteOptions,
+  type SeamCustomerV1ConnectorsDeleteParameters,
+  type SeamCustomerV1ConnectorsDeleteRequest,
   type SeamCustomerV1ConnectorsListOptions,
   type SeamCustomerV1ConnectorsListParameters,
   type SeamCustomerV1ConnectorsListRequest,
   type SeamCustomerV1ConnectorsSyncOptions,
   type SeamCustomerV1ConnectorsSyncParameters,
   type SeamCustomerV1ConnectorsSyncRequest,
+  type SeamCustomerV1ConnectorsUpdateOptions,
+  type SeamCustomerV1ConnectorsUpdateParameters,
+  type SeamCustomerV1ConnectorsUpdateRequest,
   SeamHttpSeamCustomerV1Connectors,
 } from './seam/customer/v1/connectors/index.js'
 import {
@@ -3136,6 +3142,24 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/connectors/delete'(): (
+    parameters?: SeamCustomerV1ConnectorsDeleteParameters,
+    options?: SeamCustomerV1ConnectorsDeleteOptions,
+  ) => SeamCustomerV1ConnectorsDeleteRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1ConnectorsDelete(
+      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['delete']>
+    ): ReturnType<SeamHttpSeamCustomerV1Connectors['delete']> {
+      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
+      return seam.delete(...args)
+    }
+  }
+
   get '/seam/customer/v1/connectors/list'(): (
     parameters?: SeamCustomerV1ConnectorsListParameters,
     options?: SeamCustomerV1ConnectorsListOptions,
@@ -3169,6 +3193,24 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpSeamCustomerV1Connectors['sync']> {
       const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
       return seam.sync(...args)
+    }
+  }
+
+  get '/seam/customer/v1/connectors/update'(): (
+    parameters?: SeamCustomerV1ConnectorsUpdateParameters,
+    options?: SeamCustomerV1ConnectorsUpdateOptions,
+  ) => SeamCustomerV1ConnectorsUpdateRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1ConnectorsUpdate(
+      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['update']>
+    ): ReturnType<SeamHttpSeamCustomerV1Connectors['update']> {
+      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
+      return seam.update(...args)
     }
   }
 
@@ -4689,7 +4731,9 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/customer/v1/automations/delete'
   | '/seam/customer/v1/automations/update'
   | '/seam/customer/v1/connectors/create'
+  | '/seam/customer/v1/connectors/delete'
   | '/seam/customer/v1/connectors/sync'
+  | '/seam/customer/v1/connectors/update'
   | '/seam/customer/v1/settings/update'
   | '/seam/customer/v1/spaces/create'
   | '/spaces/add_acs_entrances'
