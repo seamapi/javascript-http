@@ -582,6 +582,12 @@ import {
   SeamHttpSeamConsoleV1Timelines,
 } from './seam/console/v1/timelines/index.js'
 import {
+  type SeamCustomerV1AccessGrantsListOptions,
+  type SeamCustomerV1AccessGrantsListParameters,
+  type SeamCustomerV1AccessGrantsListRequest,
+  SeamHttpSeamCustomerV1AccessGrants,
+} from './seam/customer/v1/access-grants/index.js'
+import {
   type SeamCustomerV1AutomationRunsListOptions,
   type SeamCustomerV1AutomationRunsListParameters,
   type SeamCustomerV1AutomationRunsListRequest,
@@ -3040,6 +3046,27 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/access_grants/list'(): (
+    parameters?: SeamCustomerV1AccessGrantsListParameters,
+    options?: SeamCustomerV1AccessGrantsListOptions,
+  ) => SeamCustomerV1AccessGrantsListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1AccessGrantsList(
+      ...args: Parameters<SeamHttpSeamCustomerV1AccessGrants['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1AccessGrants['list']> {
+      const seam = SeamHttpSeamCustomerV1AccessGrants.fromClient(
+        client,
+        defaults,
+      )
+      return seam.list(...args)
+    }
+  }
+
   get '/seam/customer/v1/automation_runs/list'(): (
     parameters?: SeamCustomerV1AutomationRunsListParameters,
     options?: SeamCustomerV1AutomationRunsListOptions,
@@ -4596,6 +4623,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/phones/list'
   | '/seam/console/v1/get_resource_locator'
   | '/seam/console/v1/timelines/get'
+  | '/seam/customer/v1/access_grants/list'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/automations/get'
   | '/seam/customer/v1/connectors/list'
