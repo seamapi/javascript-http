@@ -414,6 +414,12 @@ import {
   SeamHttpConnectedAccounts,
 } from './connected-accounts/index.js'
 import {
+  type ConnectedAccountsSimulateDisconnectOptions,
+  type ConnectedAccountsSimulateDisconnectParameters,
+  type ConnectedAccountsSimulateDisconnectRequest,
+  SeamHttpConnectedAccountsSimulate,
+} from './connected-accounts/simulate/index.js'
+import {
   type CustomersCreatePortalOptions,
   type CustomersCreatePortalParameters,
   type CustomersCreatePortalRequest,
@@ -2483,6 +2489,22 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpConnectedAccounts['update']> {
       const seam = SeamHttpConnectedAccounts.fromClient(client, defaults)
       return seam.update(...args)
+    }
+  }
+
+  get '/connected_accounts/simulate/disconnect'(): (
+    parameters?: ConnectedAccountsSimulateDisconnectParameters,
+    options?: ConnectedAccountsSimulateDisconnectOptions,
+  ) => ConnectedAccountsSimulateDisconnectRequest {
+    const { client, defaults } = this
+    return function connectedAccountsSimulateDisconnect(
+      ...args: Parameters<SeamHttpConnectedAccountsSimulate['disconnect']>
+    ): ReturnType<SeamHttpConnectedAccountsSimulate['disconnect']> {
+      const seam = SeamHttpConnectedAccountsSimulate.fromClient(
+        client,
+        defaults,
+      )
+      return seam.disconnect(...args)
     }
   }
 
@@ -4755,6 +4777,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/connected_accounts/delete'
   | '/connected_accounts/sync'
   | '/connected_accounts/update'
+  | '/connected_accounts/simulate/disconnect'
   | '/customers/create_portal'
   | '/customers/delete_data'
   | '/customers/push_data'
