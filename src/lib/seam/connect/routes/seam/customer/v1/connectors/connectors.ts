@@ -175,6 +175,24 @@ export class SeamHttpSeamCustomerV1Connectors {
     await clientSessions.get()
   }
 
+  connectorTypes(
+    parameters?: SeamCustomerV1ConnectorsConnectorTypesParameters,
+    options: SeamCustomerV1ConnectorsConnectorTypesOptions = {},
+  ): SeamCustomerV1ConnectorsConnectorTypesRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/connectors/connector_types',
+      method: 'GET',
+      params: parameters,
+      responseKey: 'connector_types',
+      options,
+    })
+  }
+
   create(
     parameters?: SeamCustomerV1ConnectorsCreateParameters,
     options: SeamCustomerV1ConnectorsCreateOptions = {},
@@ -265,6 +283,29 @@ export class SeamHttpSeamCustomerV1Connectors {
     })
   }
 }
+
+export type SeamCustomerV1ConnectorsConnectorTypesParameters =
+  RouteRequestParams<'/seam/customer/v1/connectors/connector_types'>
+
+/**
+ * @deprecated Use SeamCustomerV1ConnectorsConnectorTypesParameters instead.
+ */
+export type SeamCustomerV1ConnectorsConnectorTypesParams =
+  SeamCustomerV1ConnectorsConnectorTypesParameters
+
+/**
+ * @deprecated Use SeamCustomerV1ConnectorsConnectorTypesRequest instead.
+ */
+export type SeamCustomerV1ConnectorsConnectorTypesResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/connectors/connector_types'>>
+>
+
+export type SeamCustomerV1ConnectorsConnectorTypesRequest = SeamHttpRequest<
+  SeamCustomerV1ConnectorsConnectorTypesResponse,
+  'connector_types'
+>
+
+export interface SeamCustomerV1ConnectorsConnectorTypesOptions {}
 
 export type SeamCustomerV1ConnectorsCreateParameters =
   RouteRequestBody<'/seam/customer/v1/connectors/create'>

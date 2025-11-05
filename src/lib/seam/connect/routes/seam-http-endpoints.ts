@@ -606,6 +606,9 @@ import {
   SeamHttpSeamCustomerV1Automations,
 } from './seam/customer/v1/automations/index.js'
 import {
+  type SeamCustomerV1ConnectorsConnectorTypesOptions,
+  type SeamCustomerV1ConnectorsConnectorTypesParameters,
+  type SeamCustomerV1ConnectorsConnectorTypesRequest,
   type SeamCustomerV1ConnectorsCreateOptions,
   type SeamCustomerV1ConnectorsCreateParameters,
   type SeamCustomerV1ConnectorsCreateRequest,
@@ -3151,6 +3154,24 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/connectors/connector_types'(): (
+    parameters?: SeamCustomerV1ConnectorsConnectorTypesParameters,
+    options?: SeamCustomerV1ConnectorsConnectorTypesOptions,
+  ) => SeamCustomerV1ConnectorsConnectorTypesRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1ConnectorsConnectorTypes(
+      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['connectorTypes']>
+    ): ReturnType<SeamHttpSeamCustomerV1Connectors['connectorTypes']> {
+      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
+      return seam.connectorTypes(...args)
+    }
+  }
+
   get '/seam/customer/v1/connectors/create'(): (
     parameters?: SeamCustomerV1ConnectorsCreateParameters,
     options?: SeamCustomerV1ConnectorsCreateOptions,
@@ -4626,6 +4647,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/access_grants/list'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/automations/get'
+  | '/seam/customer/v1/connectors/connector_types'
   | '/seam/customer/v1/connectors/list'
   | '/seam/customer/v1/events/list'
   | '/seam/customer/v1/portals/get'
