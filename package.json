@@ -110,7 +110,7 @@
     "c8": "^10.1.2",
     "change-case": "^5.0.2",
     "concurrently": "^9.1.0",
-    "del-cli": "^6.0.0",
+    "del-cli": "^7.0.0",
     "eslint": "^9.31.0",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
