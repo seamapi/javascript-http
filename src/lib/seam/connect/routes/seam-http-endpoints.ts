@@ -669,6 +669,9 @@ import {
   type SeamCustomerV1SpacesListOptions,
   type SeamCustomerV1SpacesListParameters,
   type SeamCustomerV1SpacesListRequest,
+  type SeamCustomerV1SpacesListReservationsOptions,
+  type SeamCustomerV1SpacesListReservationsParameters,
+  type SeamCustomerV1SpacesListReservationsRequest,
   SeamHttpSeamCustomerV1Spaces,
 } from './seam/customer/v1/spaces/index.js'
 import {
@@ -3434,6 +3437,24 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/spaces/list_reservations'(): (
+    parameters?: SeamCustomerV1SpacesListReservationsParameters,
+    options?: SeamCustomerV1SpacesListReservationsOptions,
+  ) => SeamCustomerV1SpacesListReservationsRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1SpacesListReservations(
+      ...args: Parameters<SeamHttpSeamCustomerV1Spaces['listReservations']>
+    ): ReturnType<SeamHttpSeamCustomerV1Spaces['listReservations']> {
+      const seam = SeamHttpSeamCustomerV1Spaces.fromClient(client, defaults)
+      return seam.listReservations(...args)
+    }
+  }
+
   get '/seam/customer/v1/staff_members/get'(): (
     parameters?: SeamCustomerV1StaffMembersGetParameters,
     options?: SeamCustomerV1StaffMembersGetOptions,
@@ -4677,6 +4698,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/reservations/list'
   | '/seam/customer/v1/settings/get'
   | '/seam/customer/v1/spaces/list'
+  | '/seam/customer/v1/spaces/list_reservations'
   | '/seam/customer/v1/staff_members/get'
   | '/seam/customer/v1/staff_members/list'
   | '/seam/partner/v1/building_blocks/spaces/auto_map'
