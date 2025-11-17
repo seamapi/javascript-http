@@ -22,6 +22,12 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 
 import {
+  type SeamCustomerV1ConnectorsAuthorizeOptions,
+  type SeamCustomerV1ConnectorsAuthorizeParameters,
+  type SeamCustomerV1ConnectorsAuthorizeRequest,
+  SeamHttpSeamCustomerV1Connectors,
+} from './seam/customer/v1/connectors/index.js'
+import {
   SeamHttpWorkspaces,
   type WorkspacesCreateOptions,
   type WorkspacesCreateParameters,
@@ -94,6 +100,24 @@ export class SeamHttpEndpointsWithoutWorkspace {
     return new SeamHttpEndpointsWithoutWorkspace(constructorOptions)
   }
 
+  get '/seam/customer/v1/connectors/authorize'(): (
+    parameters?: SeamCustomerV1ConnectorsAuthorizeParameters,
+    options?: SeamCustomerV1ConnectorsAuthorizeOptions,
+  ) => SeamCustomerV1ConnectorsAuthorizeRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1ConnectorsAuthorize(
+      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['authorize']>
+    ): ReturnType<SeamHttpSeamCustomerV1Connectors['authorize']> {
+      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
+      return seam.authorize(...args)
+    }
+  }
+
   get '/workspaces/create'(): (
     parameters?: WorkspacesCreateParameters,
     options?: WorkspacesCreateOptions,
@@ -121,6 +145,8 @@ export class SeamHttpEndpointsWithoutWorkspace {
   }
 }
 
-export type SeamHttpEndpointWithoutWorkspaceQueryPaths = '/workspaces/list'
+export type SeamHttpEndpointWithoutWorkspaceQueryPaths =
+  | '/seam/customer/v1/connectors/authorize'
+  | '/workspaces/list'
 
 export type SeamHttpEndpointWithoutWorkspaceMutationPaths = '/workspaces/create'

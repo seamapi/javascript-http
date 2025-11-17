@@ -175,6 +175,24 @@ export class SeamHttpSeamCustomerV1Connectors {
     await clientSessions.get()
   }
 
+  authorize(
+    parameters?: SeamCustomerV1ConnectorsAuthorizeParameters,
+    options: SeamCustomerV1ConnectorsAuthorizeOptions = {},
+  ): SeamCustomerV1ConnectorsAuthorizeRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/connectors/authorize',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'connector_authorize',
+      options,
+    })
+  }
+
   connectorTypes(
     parameters?: SeamCustomerV1ConnectorsConnectorTypesParameters,
     options: SeamCustomerV1ConnectorsConnectorTypesOptions = {},
@@ -283,6 +301,29 @@ export class SeamHttpSeamCustomerV1Connectors {
     })
   }
 }
+
+export type SeamCustomerV1ConnectorsAuthorizeParameters =
+  RouteRequestBody<'/seam/customer/v1/connectors/authorize'>
+
+/**
+ * @deprecated Use SeamCustomerV1ConnectorsAuthorizeParameters instead.
+ */
+export type SeamCustomerV1ConnectorsAuthorizeParams =
+  SeamCustomerV1ConnectorsAuthorizeParameters
+
+/**
+ * @deprecated Use SeamCustomerV1ConnectorsAuthorizeRequest instead.
+ */
+export type SeamCustomerV1ConnectorsAuthorizeResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/connectors/authorize'>>
+>
+
+export type SeamCustomerV1ConnectorsAuthorizeRequest = SeamHttpRequest<
+  SeamCustomerV1ConnectorsAuthorizeResponse,
+  'connector_authorize'
+>
+
+export interface SeamCustomerV1ConnectorsAuthorizeOptions {}
 
 export type SeamCustomerV1ConnectorsConnectorTypesParameters =
   RouteRequestParams<'/seam/customer/v1/connectors/connector_types'>
