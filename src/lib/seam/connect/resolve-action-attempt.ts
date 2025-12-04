@@ -10,7 +10,7 @@ export interface ResolveActionAttemptOptions {
 export const resolveActionAttempt = async <T extends ActionAttempt>(
   actionAttempt: T,
   actionAttempts: SeamHttpActionAttempts,
-  { timeout = 5000, pollingInterval = 500 }: ResolveActionAttemptOptions,
+  { timeout = 10_000, pollingInterval = 1_000 }: ResolveActionAttemptOptions,
 ): Promise<SucceededActionAttempt<T>> => {
   let timeoutRef
   const timeoutPromise = new Promise<SucceededActionAttempt<T>>(
