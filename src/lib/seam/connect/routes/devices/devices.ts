@@ -231,6 +231,19 @@ export class SeamHttpDevices {
     })
   }
 
+  reportProviderMetadata(
+    parameters?: DevicesReportProviderMetadataParameters,
+    options: DevicesReportProviderMetadataOptions = {},
+  ): DevicesReportProviderMetadataRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/devices/report_provider_metadata',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
   update(
     parameters?: DevicesUpdateParameters,
     options: DevicesUpdateOptions = {},
@@ -321,6 +334,29 @@ export type DevicesListDeviceProvidersRequest = SeamHttpRequest<
 >
 
 export interface DevicesListDeviceProvidersOptions {}
+
+export type DevicesReportProviderMetadataParameters =
+  RouteRequestBody<'/devices/report_provider_metadata'>
+
+/**
+ * @deprecated Use DevicesReportProviderMetadataParameters instead.
+ */
+export type DevicesReportProviderMetadataBody =
+  DevicesReportProviderMetadataParameters
+
+/**
+ * @deprecated Use DevicesReportProviderMetadataRequest instead.
+ */
+export type DevicesReportProviderMetadataResponse = SetNonNullable<
+  Required<RouteResponse<'/devices/report_provider_metadata'>>
+>
+
+export type DevicesReportProviderMetadataRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+export interface DevicesReportProviderMetadataOptions {}
 
 export type DevicesUpdateParameters = RouteRequestBody<'/devices/update'>
 

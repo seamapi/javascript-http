@@ -444,6 +444,9 @@ import {
   type DevicesListOptions,
   type DevicesListParameters,
   type DevicesListRequest,
+  type DevicesReportProviderMetadataOptions,
+  type DevicesReportProviderMetadataParameters,
+  type DevicesReportProviderMetadataRequest,
   type DevicesUpdateOptions,
   type DevicesUpdateParameters,
   type DevicesUpdateRequest,
@@ -2607,6 +2610,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpDevices['listDeviceProviders']> {
       const seam = SeamHttpDevices.fromClient(client, defaults)
       return seam.listDeviceProviders(...args)
+    }
+  }
+
+  get '/devices/report_provider_metadata'(): (
+    parameters?: DevicesReportProviderMetadataParameters,
+    options?: DevicesReportProviderMetadataOptions,
+  ) => DevicesReportProviderMetadataRequest {
+    const { client, defaults } = this
+    return function devicesReportProviderMetadata(
+      ...args: Parameters<SeamHttpDevices['reportProviderMetadata']>
+    ): ReturnType<SeamHttpDevices['reportProviderMetadata']> {
+      const seam = SeamHttpDevices.fromClient(client, defaults)
+      return seam.reportProviderMetadata(...args)
     }
   }
 
@@ -4827,6 +4843,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/customers/delete_data'
   | '/customers/push_data'
   | '/devices/delete'
+  | '/devices/report_provider_metadata'
   | '/devices/update'
   | '/devices/simulate/connect'
   | '/devices/simulate/connect_to_hub'
