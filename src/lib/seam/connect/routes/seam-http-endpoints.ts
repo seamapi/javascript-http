@@ -639,6 +639,12 @@ import {
   SeamHttpSeamCustomerV1Connectors,
 } from './seam/customer/v1/connectors/index.js'
 import {
+  type SeamCustomerV1CustomersListOptions,
+  type SeamCustomerV1CustomersListParameters,
+  type SeamCustomerV1CustomersListRequest,
+  SeamHttpSeamCustomerV1Customers,
+} from './seam/customer/v1/customers/index.js'
+import {
   type SeamCustomerV1EventsListOptions,
   type SeamCustomerV1EventsListParameters,
   type SeamCustomerV1EventsListRequest,
@@ -3324,6 +3330,24 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/customers/list'(): (
+    parameters?: SeamCustomerV1CustomersListParameters,
+    options?: SeamCustomerV1CustomersListOptions,
+  ) => SeamCustomerV1CustomersListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1CustomersList(
+      ...args: Parameters<SeamHttpSeamCustomerV1Customers['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1Customers['list']> {
+      const seam = SeamHttpSeamCustomerV1Customers.fromClient(client, defaults)
+      return seam.list(...args)
+    }
+  }
+
   get '/seam/customer/v1/events/list'(): (
     parameters?: SeamCustomerV1EventsListParameters,
     options?: SeamCustomerV1EventsListOptions,
@@ -4730,6 +4754,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/connectors/authorize'
   | '/seam/customer/v1/connectors/connector_types'
   | '/seam/customer/v1/connectors/list'
+  | '/seam/customer/v1/customers/list'
   | '/seam/customer/v1/events/list'
   | '/seam/customer/v1/portals/get'
   | '/seam/customer/v1/reservations/get'
@@ -4779,6 +4804,7 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/devices/unmanaged/list'
   | '/seam/console/v1/timelines/get'
   | '/seam/customer/v1/automation_runs/list'
+  | '/seam/customer/v1/customers/list'
   | '/seam/customer/v1/reservations/list'
   | '/seam/customer/v1/staff_members/list'
   | '/user_identities/list'
