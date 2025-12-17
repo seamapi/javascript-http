@@ -185,6 +185,19 @@ export class SeamHttpAcsAccessGroups {
     })
   }
 
+  delete(
+    parameters?: AcsAccessGroupsDeleteParameters,
+    options: AcsAccessGroupsDeleteOptions = {},
+  ): AcsAccessGroupsDeleteRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/acs/access_groups/delete',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
   get(
     parameters?: AcsAccessGroupsGetParameters,
     options: AcsAccessGroupsGetOptions = {},
@@ -269,6 +282,25 @@ export type AcsAccessGroupsAddUserResponse = SetNonNullable<
 export type AcsAccessGroupsAddUserRequest = SeamHttpRequest<void, undefined>
 
 export interface AcsAccessGroupsAddUserOptions {}
+
+export type AcsAccessGroupsDeleteParameters =
+  RouteRequestBody<'/acs/access_groups/delete'>
+
+/**
+ * @deprecated Use AcsAccessGroupsDeleteParameters instead.
+ */
+export type AcsAccessGroupsDeleteParams = AcsAccessGroupsDeleteParameters
+
+/**
+ * @deprecated Use AcsAccessGroupsDeleteRequest instead.
+ */
+export type AcsAccessGroupsDeleteResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/access_groups/delete'>>
+>
+
+export type AcsAccessGroupsDeleteRequest = SeamHttpRequest<void, undefined>
+
+export interface AcsAccessGroupsDeleteOptions {}
 
 export type AcsAccessGroupsGetParameters =
   RouteRequestBody<'/acs/access_groups/get'>
