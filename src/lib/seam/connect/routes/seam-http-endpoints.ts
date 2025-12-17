@@ -156,6 +156,9 @@ import {
   type AcsAccessGroupsAddUserOptions,
   type AcsAccessGroupsAddUserParameters,
   type AcsAccessGroupsAddUserRequest,
+  type AcsAccessGroupsDeleteOptions,
+  type AcsAccessGroupsDeleteParameters,
+  type AcsAccessGroupsDeleteRequest,
   type AcsAccessGroupsGetOptions,
   type AcsAccessGroupsGetParameters,
   type AcsAccessGroupsGetRequest,
@@ -1531,6 +1534,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAcsAccessGroups['addUser']> {
       const seam = SeamHttpAcsAccessGroups.fromClient(client, defaults)
       return seam.addUser(...args)
+    }
+  }
+
+  get '/acs/access_groups/delete'(): (
+    parameters?: AcsAccessGroupsDeleteParameters,
+    options?: AcsAccessGroupsDeleteOptions,
+  ) => AcsAccessGroupsDeleteRequest {
+    const { client, defaults } = this
+    return function acsAccessGroupsDelete(
+      ...args: Parameters<SeamHttpAcsAccessGroups['delete']>
+    ): ReturnType<SeamHttpAcsAccessGroups['delete']> {
+      const seam = SeamHttpAcsAccessGroups.fromClient(client, defaults)
+      return seam.delete(...args)
     }
   }
 
@@ -4830,6 +4846,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/access_methods/delete'
   | '/access_methods/encode'
   | '/acs/access_groups/add_user'
+  | '/acs/access_groups/delete'
   | '/acs/access_groups/remove_user'
   | '/acs/credential_provisioning_automations/launch'
   | '/acs/credentials/assign'
