@@ -25,16 +25,13 @@ export interface SeamHttpRequestOptions {
   isUndocumentedApiEnabled?: boolean
 }
 
-export interface SeamHttpFromPublishableKeyOptions
-  extends SeamHttpCommonOptions {}
+export interface SeamHttpFromPublishableKeyOptions extends SeamHttpCommonOptions {}
 
 export interface SeamHttpOptionsFromEnv extends SeamHttpCommonOptions {}
 
-export interface SeamHttpWithoutWorkspaceOptionsFromEnv
-  extends SeamHttpCommonOptions {}
+export interface SeamHttpWithoutWorkspaceOptionsFromEnv extends SeamHttpCommonOptions {}
 
-export interface SeamHttpWithoutWorkspaceOptionsWithClient
-  extends SeamHttpCommonOptions {
+export interface SeamHttpWithoutWorkspaceOptionsWithClient extends SeamHttpCommonOptions {
   client: Client
 }
 
@@ -96,8 +93,7 @@ export const isSeamHttpOptionsWithApiKey = (
   return true
 }
 
-export interface SeamHttpOptionsWithClientSessionToken
-  extends SeamHttpCommonOptions {
+export interface SeamHttpOptionsWithClientSessionToken extends SeamHttpCommonOptions {
   clientSessionToken: string
 }
 
@@ -128,8 +124,7 @@ export const isSeamHttpOptionsWithClientSessionToken = (
   return true
 }
 
-export interface SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken
-  extends SeamHttpCommonOptions {
+export interface SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken extends SeamHttpCommonOptions {
   consoleSessionToken: string
 }
 
@@ -160,8 +155,7 @@ export const isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken = (
   return true
 }
 
-export interface SeamHttpOptionsWithConsoleSessionToken
-  extends SeamHttpCommonOptions {
+export interface SeamHttpOptionsWithConsoleSessionToken extends SeamHttpCommonOptions {
   consoleSessionToken: string
   workspaceId: string
 }
@@ -182,8 +176,7 @@ export const isSeamHttpOptionsWithConsoleSessionToken = (
   return true
 }
 
-export interface SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken
-  extends SeamHttpCommonOptions {
+export interface SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken extends SeamHttpCommonOptions {
   personalAccessToken: string
 }
 
@@ -214,8 +207,7 @@ export const isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken = (
   return true
 }
 
-export interface SeamHttpOptionsWithPersonalAccessToken
-  extends SeamHttpCommonOptions {
+export interface SeamHttpOptionsWithPersonalAccessToken extends SeamHttpCommonOptions {
   personalAccessToken: string
   workspaceId: string
 }

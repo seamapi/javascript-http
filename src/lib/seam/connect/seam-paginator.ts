@@ -20,8 +20,7 @@ interface Pagination {
 export class SeamPaginator<
   const TResponse,
   const TResponseKey extends keyof TResponse,
-> implements AsyncIterable<EnsureReadonlyArray<TResponse[TResponseKey]>>
-{
+> implements AsyncIterable<EnsureReadonlyArray<TResponse[TResponseKey]>> {
   readonly #request: SeamHttpRequest<TResponse, TResponseKey>
   readonly #parent: SeamPaginatorParent
 

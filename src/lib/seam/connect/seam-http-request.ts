@@ -24,11 +24,9 @@ interface SeamHttpRequestConfig<TResponseKey> {
 export class SeamHttpRequest<
   const TResponse,
   const TResponseKey extends keyof TResponse | undefined,
-> implements
-    Promise<
-      TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
-    >
-{
+> implements Promise<
+  TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
+> {
   readonly [Symbol.toStringTag]: string = 'SeamHttpRequest'
 
   readonly #parent: SeamHttpRequestParent
