@@ -645,6 +645,9 @@ import {
   type SeamCustomerV1CustomersListOptions,
   type SeamCustomerV1CustomersListParameters,
   type SeamCustomerV1CustomersListRequest,
+  type SeamCustomerV1CustomersOpenPortalOptions,
+  type SeamCustomerV1CustomersOpenPortalParameters,
+  type SeamCustomerV1CustomersOpenPortalRequest,
   SeamHttpSeamCustomerV1Customers,
 } from './seam/customer/v1/customers/index.js'
 import {
@@ -3364,6 +3367,24 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/customers/open_portal'(): (
+    parameters?: SeamCustomerV1CustomersOpenPortalParameters,
+    options?: SeamCustomerV1CustomersOpenPortalOptions,
+  ) => SeamCustomerV1CustomersOpenPortalRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1CustomersOpenPortal(
+      ...args: Parameters<SeamHttpSeamCustomerV1Customers['openPortal']>
+    ): ReturnType<SeamHttpSeamCustomerV1Customers['openPortal']> {
+      const seam = SeamHttpSeamCustomerV1Customers.fromClient(client, defaults)
+      return seam.openPortal(...args)
+    }
+  }
+
   get '/seam/customer/v1/events/list'(): (
     parameters?: SeamCustomerV1EventsListParameters,
     options?: SeamCustomerV1EventsListOptions,
@@ -4912,6 +4933,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/customer/v1/connectors/delete'
   | '/seam/customer/v1/connectors/sync'
   | '/seam/customer/v1/connectors/update'
+  | '/seam/customer/v1/customers/open_portal'
   | '/seam/customer/v1/settings/update'
   | '/seam/customer/v1/spaces/create'
   | '/spaces/add_acs_entrances'
