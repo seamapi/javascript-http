@@ -188,6 +188,24 @@ export class SeamHttpSeamCustomerV1Customers {
       options,
     })
   }
+
+  openPortal(
+    parameters?: SeamCustomerV1CustomersOpenPortalParameters,
+    options: SeamCustomerV1CustomersOpenPortalOptions = {},
+  ): SeamCustomerV1CustomersOpenPortalRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/customers/open_portal',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'magic_link',
+      options,
+    })
+  }
 }
 
 export type SeamCustomerV1CustomersListParameters =
@@ -212,3 +230,26 @@ export type SeamCustomerV1CustomersListRequest = SeamHttpRequest<
 >
 
 export interface SeamCustomerV1CustomersListOptions {}
+
+export type SeamCustomerV1CustomersOpenPortalParameters =
+  RouteRequestBody<'/seam/customer/v1/customers/open_portal'>
+
+/**
+ * @deprecated Use SeamCustomerV1CustomersOpenPortalParameters instead.
+ */
+export type SeamCustomerV1CustomersOpenPortalBody =
+  SeamCustomerV1CustomersOpenPortalParameters
+
+/**
+ * @deprecated Use SeamCustomerV1CustomersOpenPortalRequest instead.
+ */
+export type SeamCustomerV1CustomersOpenPortalResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/customers/open_portal'>>
+>
+
+export type SeamCustomerV1CustomersOpenPortalRequest = SeamHttpRequest<
+  SeamCustomerV1CustomersOpenPortalResponse,
+  'magic_link'
+>
+
+export interface SeamCustomerV1CustomersOpenPortalOptions {}
