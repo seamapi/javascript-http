@@ -6,3 +6,4 @@
 export * from './console/index.js'
 export * from './customer/index.js'
 export * from './partner/index.js'
+export * from './v1/index.js'
