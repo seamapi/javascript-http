@@ -708,6 +708,12 @@ import {
   type SeamPartnerV1BuildingBlocksSpacesAutoMapRequest,
 } from './seam/partner/v1/building-blocks/spaces/index.js'
 import {
+  SeamHttpSeamV1Customers,
+  type SeamV1CustomersPushDataOptions,
+  type SeamV1CustomersPushDataParameters,
+  type SeamV1CustomersPushDataRequest,
+} from './seam/v1/customers/index.js'
+import {
   SeamHttpSpaces,
   type SpacesAddAcsEntrancesOptions,
   type SpacesAddAcsEntrancesParameters,
@@ -3616,6 +3622,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/v1/customers/push_data'(): (
+    parameters?: SeamV1CustomersPushDataParameters,
+    options?: SeamV1CustomersPushDataOptions,
+  ) => SeamV1CustomersPushDataRequest {
+    const { client, defaults } = this
+    return function seamV1CustomersPushData(
+      ...args: Parameters<SeamHttpSeamV1Customers['pushData']>
+    ): ReturnType<SeamHttpSeamV1Customers['pushData']> {
+      const seam = SeamHttpSeamV1Customers.fromClient(client, defaults)
+      return seam.pushData(...args)
+    }
+  }
+
   get '/spaces/add_acs_entrances'(): (
     parameters?: SpacesAddAcsEntrancesParameters,
     options?: SpacesAddAcsEntrancesOptions,
@@ -4937,6 +4956,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/customer/v1/customers/open_portal'
   | '/seam/customer/v1/settings/update'
   | '/seam/customer/v1/spaces/create'
+  | '/seam/v1/customers/push_data'
   | '/spaces/add_acs_entrances'
   | '/spaces/add_devices'
   | '/spaces/create'
