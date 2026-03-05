@@ -36,6 +36,8 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
+import { SeamHttpCustomersReservations } from './reservations/index.js'
+
 export class SeamHttpCustomers {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
@@ -161,6 +163,10 @@ export class SeamHttpCustomers {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
+  }
+
+  get reservations(): SeamHttpCustomersReservations {
+    return SeamHttpCustomersReservations.fromClient(this.client, this.defaults)
   }
 
   createPortal(

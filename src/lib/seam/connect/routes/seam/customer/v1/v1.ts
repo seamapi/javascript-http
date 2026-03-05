@@ -34,11 +34,13 @@ import type { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
 import { SeamHttpSeamCustomerV1AccessGrants } from './access-grants/index.js'
+import { SeamHttpSeamCustomerV1AccessMethods } from './access-methods/index.js'
 import { SeamHttpSeamCustomerV1AutomationRuns } from './automation-runs/index.js'
 import { SeamHttpSeamCustomerV1Automations } from './automations/index.js'
 import { SeamHttpSeamCustomerV1ConnectorCustomers } from './connector-customers/index.js'
 import { SeamHttpSeamCustomerV1Connectors } from './connectors/index.js'
 import { SeamHttpSeamCustomerV1Customers } from './customers/index.js'
+import { SeamHttpSeamCustomerV1Encoders } from './encoders/index.js'
 import { SeamHttpSeamCustomerV1Events } from './events/index.js'
 import { SeamHttpSeamCustomerV1Portals } from './portals/index.js'
 import { SeamHttpSeamCustomerV1Reservations } from './reservations/index.js'
@@ -54,11 +56,6 @@ export class SeamHttpSeamCustomerV1 {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
-    if (!options.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
     this.client = 'client' in options ? options.client : createClient(options)
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
@@ -185,6 +182,13 @@ export class SeamHttpSeamCustomerV1 {
     )
   }
 
+  get accessMethods(): SeamHttpSeamCustomerV1AccessMethods {
+    return SeamHttpSeamCustomerV1AccessMethods.fromClient(
+      this.client,
+      this.defaults,
+    )
+  }
+
   get automationRuns(): SeamHttpSeamCustomerV1AutomationRuns {
     return SeamHttpSeamCustomerV1AutomationRuns.fromClient(
       this.client,
@@ -218,6 +222,10 @@ export class SeamHttpSeamCustomerV1 {
       this.client,
       this.defaults,
     )
+  }
+
+  get encoders(): SeamHttpSeamCustomerV1Encoders {
+    return SeamHttpSeamCustomerV1Encoders.fromClient(this.client, this.defaults)
   }
 
   get events(): SeamHttpSeamCustomerV1Events {

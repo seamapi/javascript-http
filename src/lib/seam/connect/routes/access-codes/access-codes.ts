@@ -239,6 +239,19 @@ export class SeamHttpAccessCodes {
     })
   }
 
+  getTimeline(
+    parameters?: AccessCodesGetTimelineParameters,
+    options: AccessCodesGetTimelineOptions = {},
+  ): AccessCodesGetTimelineRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/access_codes/get_timeline',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'timeline_events',
+      options,
+    })
+  }
+
   list(
     parameters?: AccessCodesListParameters,
     options: AccessCodesListOptions = {},
@@ -410,6 +423,28 @@ export type AccessCodesGetRequest = SeamHttpRequest<
 >
 
 export interface AccessCodesGetOptions {}
+
+export type AccessCodesGetTimelineParameters =
+  RouteRequestBody<'/access_codes/get_timeline'>
+
+/**
+ * @deprecated Use AccessCodesGetTimelineParameters instead.
+ */
+export type AccessCodesGetTimelineParams = AccessCodesGetTimelineParameters
+
+/**
+ * @deprecated Use AccessCodesGetTimelineRequest instead.
+ */
+export type AccessCodesGetTimelineResponse = SetNonNullable<
+  Required<RouteResponse<'/access_codes/get_timeline'>>
+>
+
+export type AccessCodesGetTimelineRequest = SeamHttpRequest<
+  AccessCodesGetTimelineResponse,
+  'timeline_events'
+>
+
+export interface AccessCodesGetTimelineOptions {}
 
 export type AccessCodesListParameters = RouteRequestBody<'/access_codes/list'>
 

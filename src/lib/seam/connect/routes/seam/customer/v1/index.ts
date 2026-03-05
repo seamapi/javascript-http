@@ -4,11 +4,13 @@
  */
 
 export * from './access-grants/index.js'
+export * from './access-methods/index.js'
 export * from './automation-runs/index.js'
 export * from './automations/index.js'
 export * from './connector-customers/index.js'
 export * from './connectors/index.js'
 export * from './customers/index.js'
+export * from './encoders/index.js'
 export * from './events/index.js'
 export * from './portals/index.js'
 export * from './reservations/index.js'

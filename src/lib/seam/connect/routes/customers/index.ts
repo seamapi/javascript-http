@@ -4,3 +4,4 @@
  */
 
 export * from './customers.js'
+export * from './reservations/index.js'

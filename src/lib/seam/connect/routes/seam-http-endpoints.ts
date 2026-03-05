@@ -48,6 +48,9 @@ import {
   type AccessCodesGetOptions,
   type AccessCodesGetParameters,
   type AccessCodesGetRequest,
+  type AccessCodesGetTimelineOptions,
+  type AccessCodesGetTimelineParameters,
+  type AccessCodesGetTimelineRequest,
   type AccessCodesListOptions,
   type AccessCodesListParameters,
   type AccessCodesListRequest,
@@ -435,6 +438,12 @@ import {
   SeamHttpCustomers,
 } from './customers/index.js'
 import {
+  type CustomersReservationsCreateDeepLinkOptions,
+  type CustomersReservationsCreateDeepLinkParameters,
+  type CustomersReservationsCreateDeepLinkRequest,
+  SeamHttpCustomersReservations,
+} from './customers/reservations/index.js'
+import {
   type DevicesDeleteOptions,
   type DevicesDeleteParameters,
   type DevicesDeleteRequest,
@@ -597,8 +606,17 @@ import {
   type SeamCustomerV1AccessGrantsListOptions,
   type SeamCustomerV1AccessGrantsListParameters,
   type SeamCustomerV1AccessGrantsListRequest,
+  type SeamCustomerV1AccessGrantsUpdateOptions,
+  type SeamCustomerV1AccessGrantsUpdateParameters,
+  type SeamCustomerV1AccessGrantsUpdateRequest,
   SeamHttpSeamCustomerV1AccessGrants,
 } from './seam/customer/v1/access-grants/index.js'
+import {
+  type SeamCustomerV1AccessMethodsEncodeOptions,
+  type SeamCustomerV1AccessMethodsEncodeParameters,
+  type SeamCustomerV1AccessMethodsEncodeRequest,
+  SeamHttpSeamCustomerV1AccessMethods,
+} from './seam/customer/v1/access-methods/index.js'
 import {
   type SeamCustomerV1AutomationRunsListOptions,
   type SeamCustomerV1AutomationRunsListParameters,
@@ -651,11 +669,20 @@ import {
   type SeamCustomerV1CustomersListOptions,
   type SeamCustomerV1CustomersListParameters,
   type SeamCustomerV1CustomersListRequest,
+  type SeamCustomerV1CustomersMeOptions,
+  type SeamCustomerV1CustomersMeParameters,
+  type SeamCustomerV1CustomersMeRequest,
   type SeamCustomerV1CustomersOpenPortalOptions,
   type SeamCustomerV1CustomersOpenPortalParameters,
   type SeamCustomerV1CustomersOpenPortalRequest,
   SeamHttpSeamCustomerV1Customers,
 } from './seam/customer/v1/customers/index.js'
+import {
+  type SeamCustomerV1EncodersListOptions,
+  type SeamCustomerV1EncodersListParameters,
+  type SeamCustomerV1EncodersListRequest,
+  SeamHttpSeamCustomerV1Encoders,
+} from './seam/customer/v1/encoders/index.js'
 import {
   type SeamCustomerV1EventsListOptions,
   type SeamCustomerV1EventsListParameters,
@@ -696,6 +723,9 @@ import {
   type SeamCustomerV1SpacesListReservationsOptions,
   type SeamCustomerV1SpacesListReservationsParameters,
   type SeamCustomerV1SpacesListReservationsRequest,
+  type SeamCustomerV1SpacesPushCommonAreasOptions,
+  type SeamCustomerV1SpacesPushCommonAreasParameters,
+  type SeamCustomerV1SpacesPushCommonAreasRequest,
   SeamHttpSeamCustomerV1Spaces,
 } from './seam/customer/v1/spaces/index.js'
 import {
@@ -713,12 +743,6 @@ import {
   type SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
   type SeamPartnerV1BuildingBlocksSpacesAutoMapRequest,
 } from './seam/partner/v1/building-blocks/spaces/index.js'
-import {
-  SeamHttpSeamV1Customers,
-  type SeamV1CustomersPushDataOptions,
-  type SeamV1CustomersPushDataParameters,
-  type SeamV1CustomersPushDataRequest,
-} from './seam/v1/customers/index.js'
 import {
   SeamHttpSpaces,
   type SpacesAddAcsEntrancesOptions,
@@ -1170,6 +1194,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAccessCodes['get']> {
       const seam = SeamHttpAccessCodes.fromClient(client, defaults)
       return seam.get(...args)
+    }
+  }
+
+  get '/access_codes/get_timeline'(): (
+    parameters?: AccessCodesGetTimelineParameters,
+    options?: AccessCodesGetTimelineOptions,
+  ) => AccessCodesGetTimelineRequest {
+    const { client, defaults } = this
+    return function accessCodesGetTimeline(
+      ...args: Parameters<SeamHttpAccessCodes['getTimeline']>
+    ): ReturnType<SeamHttpAccessCodes['getTimeline']> {
+      const seam = SeamHttpAccessCodes.fromClient(client, defaults)
+      return seam.getTimeline(...args)
     }
   }
 
@@ -2593,6 +2630,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/customers/reservations/create_deep_link'(): (
+    parameters?: CustomersReservationsCreateDeepLinkParameters,
+    options?: CustomersReservationsCreateDeepLinkOptions,
+  ) => CustomersReservationsCreateDeepLinkRequest {
+    const { client, defaults } = this
+    return function customersReservationsCreateDeepLink(
+      ...args: Parameters<SeamHttpCustomersReservations['createDeepLink']>
+    ): ReturnType<SeamHttpCustomersReservations['createDeepLink']> {
+      const seam = SeamHttpCustomersReservations.fromClient(client, defaults)
+      return seam.createDeepLink(...args)
+    }
+  }
+
   get '/devices/delete'(): (
     parameters?: DevicesDeleteParameters,
     options?: DevicesDeleteOptions,
@@ -3151,6 +3201,48 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/access_grants/update'(): (
+    parameters?: SeamCustomerV1AccessGrantsUpdateParameters,
+    options?: SeamCustomerV1AccessGrantsUpdateOptions,
+  ) => SeamCustomerV1AccessGrantsUpdateRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1AccessGrantsUpdate(
+      ...args: Parameters<SeamHttpSeamCustomerV1AccessGrants['update']>
+    ): ReturnType<SeamHttpSeamCustomerV1AccessGrants['update']> {
+      const seam = SeamHttpSeamCustomerV1AccessGrants.fromClient(
+        client,
+        defaults,
+      )
+      return seam.update(...args)
+    }
+  }
+
+  get '/seam/customer/v1/access_methods/encode'(): (
+    parameters?: SeamCustomerV1AccessMethodsEncodeParameters,
+    options?: SeamCustomerV1AccessMethodsEncodeOptions,
+  ) => SeamCustomerV1AccessMethodsEncodeRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1AccessMethodsEncode(
+      ...args: Parameters<SeamHttpSeamCustomerV1AccessMethods['encode']>
+    ): ReturnType<SeamHttpSeamCustomerV1AccessMethods['encode']> {
+      const seam = SeamHttpSeamCustomerV1AccessMethods.fromClient(
+        client,
+        defaults,
+      )
+      return seam.encode(...args)
+    }
+  }
+
   get '/seam/customer/v1/automation_runs/list'(): (
     parameters?: SeamCustomerV1AutomationRunsListParameters,
     options?: SeamCustomerV1AutomationRunsListOptions,
@@ -3400,6 +3492,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/customers/me'(): (
+    parameters?: SeamCustomerV1CustomersMeParameters,
+    options?: SeamCustomerV1CustomersMeOptions,
+  ) => SeamCustomerV1CustomersMeRequest {
+    const { client, defaults } = this
+    return function seamCustomerV1CustomersMe(
+      ...args: Parameters<SeamHttpSeamCustomerV1Customers['me']>
+    ): ReturnType<SeamHttpSeamCustomerV1Customers['me']> {
+      const seam = SeamHttpSeamCustomerV1Customers.fromClient(client, defaults)
+      return seam.me(...args)
+    }
+  }
+
   get '/seam/customer/v1/customers/open_portal'(): (
     parameters?: SeamCustomerV1CustomersOpenPortalParameters,
     options?: SeamCustomerV1CustomersOpenPortalOptions,
@@ -3415,6 +3520,24 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpSeamCustomerV1Customers['openPortal']> {
       const seam = SeamHttpSeamCustomerV1Customers.fromClient(client, defaults)
       return seam.openPortal(...args)
+    }
+  }
+
+  get '/seam/customer/v1/encoders/list'(): (
+    parameters?: SeamCustomerV1EncodersListParameters,
+    options?: SeamCustomerV1EncodersListOptions,
+  ) => SeamCustomerV1EncodersListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1EncodersList(
+      ...args: Parameters<SeamHttpSeamCustomerV1Encoders['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1Encoders['list']> {
+      const seam = SeamHttpSeamCustomerV1Encoders.fromClient(client, defaults)
+      return seam.list(...args)
     }
   }
 
@@ -3586,6 +3709,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/spaces/push_common_areas'(): (
+    parameters?: SeamCustomerV1SpacesPushCommonAreasParameters,
+    options?: SeamCustomerV1SpacesPushCommonAreasOptions,
+  ) => SeamCustomerV1SpacesPushCommonAreasRequest {
+    const { client, defaults } = this
+    return function seamCustomerV1SpacesPushCommonAreas(
+      ...args: Parameters<SeamHttpSeamCustomerV1Spaces['pushCommonAreas']>
+    ): ReturnType<SeamHttpSeamCustomerV1Spaces['pushCommonAreas']> {
+      const seam = SeamHttpSeamCustomerV1Spaces.fromClient(client, defaults)
+      return seam.pushCommonAreas(...args)
+    }
+  }
+
   get '/seam/customer/v1/staff_members/get'(): (
     parameters?: SeamCustomerV1StaffMembersGetParameters,
     options?: SeamCustomerV1StaffMembersGetOptions,
@@ -3646,19 +3782,6 @@ export class SeamHttpEndpoints {
         defaults,
       )
       return seam.autoMap(...args)
-    }
-  }
-
-  get '/seam/v1/customers/push_data'(): (
-    parameters?: SeamV1CustomersPushDataParameters,
-    options?: SeamV1CustomersPushDataOptions,
-  ) => SeamV1CustomersPushDataRequest {
-    const { client, defaults } = this
-    return function seamV1CustomersPushData(
-      ...args: Parameters<SeamHttpSeamV1Customers['pushData']>
-    ): ReturnType<SeamHttpSeamV1Customers['pushData']> {
-      const seam = SeamHttpSeamV1Customers.fromClient(client, defaults)
-      return seam.pushData(...args)
     }
   }
 
@@ -4765,6 +4888,7 @@ export class SeamHttpEndpoints {
 export type SeamHttpEndpointQueryPaths =
   | '/access_codes/generate_code'
   | '/access_codes/get'
+  | '/access_codes/get_timeline'
   | '/access_codes/list'
   | '/access_codes/unmanaged/get'
   | '/access_codes/unmanaged/list'
@@ -4839,6 +4963,8 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/connectors/connector_types'
   | '/seam/customer/v1/connectors/list'
   | '/seam/customer/v1/customers/list'
+  | '/seam/customer/v1/customers/me'
+  | '/seam/customer/v1/encoders/list'
   | '/seam/customer/v1/events/list'
   | '/seam/customer/v1/portals/get'
   | '/seam/customer/v1/reservations/get'
@@ -4887,7 +5013,6 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/connected_accounts/list'
   | '/devices/list'
   | '/devices/unmanaged/list'
-  | '/seam/console/v1/timelines/get'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/customers/list'
   | '/seam/customer/v1/reservations/list'
@@ -4954,6 +5079,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/customers/create_portal'
   | '/customers/delete_data'
   | '/customers/push_data'
+  | '/customers/reservations/create_deep_link'
   | '/devices/delete'
   | '/devices/report_provider_metadata'
   | '/devices/update'
@@ -4975,6 +5101,8 @@ export type SeamHttpEndpointMutationPaths =
   | '/noise_sensors/simulate/trigger_noise_threshold'
   | '/phones/deactivate'
   | '/phones/simulate/create_sandbox_phone'
+  | '/seam/customer/v1/access_grants/update'
+  | '/seam/customer/v1/access_methods/encode'
   | '/seam/customer/v1/automations/delete'
   | '/seam/customer/v1/automations/update'
   | '/seam/customer/v1/connectors/create'
@@ -4984,7 +5112,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/customer/v1/customers/open_portal'
   | '/seam/customer/v1/settings/update'
   | '/seam/customer/v1/spaces/create'
-  | '/seam/v1/customers/push_data'
+  | '/seam/customer/v1/spaces/push_common_areas'
   | '/spaces/add_acs_entrances'
   | '/spaces/add_devices'
   | '/spaces/create'

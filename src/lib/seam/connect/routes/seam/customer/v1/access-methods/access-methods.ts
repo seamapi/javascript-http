@@ -36,7 +36,7 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-export class SeamHttpSeamV1Customers {
+export class SeamHttpSeamCustomerV1AccessMethods {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
   readonly ltsVersion = seamApiLtsVersion
@@ -44,6 +44,11 @@ export class SeamHttpSeamV1Customers {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
+    if (!options.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     this.client = 'client' in options ? options.client : createClient(options)
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
@@ -51,23 +56,23 @@ export class SeamHttpSeamV1Customers {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpSeamV1Customers {
+  ): SeamHttpSeamCustomerV1AccessMethods {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpSeamV1Customers(constructorOptions)
+    return new SeamHttpSeamCustomerV1AccessMethods(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpSeamV1Customers {
+  ): SeamHttpSeamCustomerV1AccessMethods {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpSeamV1Customers(constructorOptions)
+    return new SeamHttpSeamCustomerV1AccessMethods(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -76,24 +81,24 @@ export class SeamHttpSeamV1Customers {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpSeamV1Customers {
+  ): SeamHttpSeamCustomerV1AccessMethods {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpSeamV1Customers(constructorOptions)
+    return new SeamHttpSeamCustomerV1AccessMethods(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpSeamV1Customers> {
+  ): Promise<SeamHttpSeamCustomerV1AccessMethods> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
       throw new SeamHttpInvalidOptionsError(
-        'The client option cannot be used with SeamHttpSeamV1Customers.fromPublishableKey',
+        'The client option cannot be used with SeamHttpSeamCustomerV1AccessMethods.fromPublishableKey',
       )
     }
     const client = createClient(clientOptions)
@@ -101,7 +106,10 @@ export class SeamHttpSeamV1Customers {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpSeamV1Customers.fromClientSessionToken(token, options)
+    return SeamHttpSeamCustomerV1AccessMethods.fromClientSessionToken(
+      token,
+      options,
+    )
   }
 
   static fromConsoleSessionToken(
@@ -111,14 +119,14 @@ export class SeamHttpSeamV1Customers {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpSeamV1Customers {
+  ): SeamHttpSeamCustomerV1AccessMethods {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpSeamV1Customers(constructorOptions)
+    return new SeamHttpSeamCustomerV1AccessMethods(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -128,14 +136,14 @@ export class SeamHttpSeamV1Customers {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpSeamV1Customers {
+  ): SeamHttpSeamCustomerV1AccessMethods {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpSeamV1Customers(constructorOptions)
+    return new SeamHttpSeamCustomerV1AccessMethods(constructorOptions)
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
@@ -163,35 +171,47 @@ export class SeamHttpSeamV1Customers {
     await clientSessions.get()
   }
 
-  pushData(
-    parameters?: SeamV1CustomersPushDataParameters,
-    options: SeamV1CustomersPushDataOptions = {},
-  ): SeamV1CustomersPushDataRequest {
+  encode(
+    parameters?: SeamCustomerV1AccessMethodsEncodeParameters,
+    options: SeamCustomerV1AccessMethodsEncodeOptions = {},
+  ): SeamCustomerV1AccessMethodsEncodeRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
-      pathname: '/seam/v1/customers/push_data',
+      pathname: '/seam/customer/v1/access_methods/encode',
       method: 'POST',
       body: parameters,
-      responseKey: undefined,
+      responseKey: 'action_attempt',
       options,
     })
   }
 }
 
-export type SeamV1CustomersPushDataParameters =
-  RouteRequestBody<'/seam/v1/customers/push_data'>
+export type SeamCustomerV1AccessMethodsEncodeParameters =
+  RouteRequestBody<'/seam/customer/v1/access_methods/encode'>
 
 /**
- * @deprecated Use SeamV1CustomersPushDataParameters instead.
+ * @deprecated Use SeamCustomerV1AccessMethodsEncodeParameters instead.
  */
-export type SeamV1CustomersPushDataBody = SeamV1CustomersPushDataParameters
+export type SeamCustomerV1AccessMethodsEncodeBody =
+  SeamCustomerV1AccessMethodsEncodeParameters
 
 /**
- * @deprecated Use SeamV1CustomersPushDataRequest instead.
+ * @deprecated Use SeamCustomerV1AccessMethodsEncodeRequest instead.
  */
-export type SeamV1CustomersPushDataResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/v1/customers/push_data'>>
+export type SeamCustomerV1AccessMethodsEncodeResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/access_methods/encode'>>
 >
 
-export type SeamV1CustomersPushDataRequest = SeamHttpRequest<void, undefined>
+export type SeamCustomerV1AccessMethodsEncodeRequest = SeamHttpRequest<
+  SeamCustomerV1AccessMethodsEncodeResponse,
+  'action_attempt'
+>
 
-export interface SeamV1CustomersPushDataOptions {}
+export type SeamCustomerV1AccessMethodsEncodeOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>

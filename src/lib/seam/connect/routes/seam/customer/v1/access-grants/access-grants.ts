@@ -188,6 +188,24 @@ export class SeamHttpSeamCustomerV1AccessGrants {
       options,
     })
   }
+
+  update(
+    parameters?: SeamCustomerV1AccessGrantsUpdateParameters,
+    options: SeamCustomerV1AccessGrantsUpdateOptions = {},
+  ): SeamCustomerV1AccessGrantsUpdateRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/access_grants/update',
+      method: 'PATCH',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
 }
 
 export type SeamCustomerV1AccessGrantsListParameters =
@@ -212,3 +230,26 @@ export type SeamCustomerV1AccessGrantsListRequest = SeamHttpRequest<
 >
 
 export interface SeamCustomerV1AccessGrantsListOptions {}
+
+export type SeamCustomerV1AccessGrantsUpdateParameters =
+  RouteRequestBody<'/seam/customer/v1/access_grants/update'>
+
+/**
+ * @deprecated Use SeamCustomerV1AccessGrantsUpdateParameters instead.
+ */
+export type SeamCustomerV1AccessGrantsUpdateBody =
+  SeamCustomerV1AccessGrantsUpdateParameters
+
+/**
+ * @deprecated Use SeamCustomerV1AccessGrantsUpdateRequest instead.
+ */
+export type SeamCustomerV1AccessGrantsUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/access_grants/update'>>
+>
+
+export type SeamCustomerV1AccessGrantsUpdateRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+export interface SeamCustomerV1AccessGrantsUpdateOptions {}
