@@ -36,7 +36,7 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
-export class SeamHttpSeamCustomerV1Spaces {
+export class SeamHttpCustomersReservations {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
   readonly ltsVersion = seamApiLtsVersion
@@ -51,23 +51,23 @@ export class SeamHttpSeamCustomerV1Spaces {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttpSeamCustomerV1Spaces {
+  ): SeamHttpCustomersReservations {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttpSeamCustomerV1Spaces(constructorOptions)
+    return new SeamHttpCustomersReservations(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttpSeamCustomerV1Spaces {
+  ): SeamHttpCustomersReservations {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttpSeamCustomerV1Spaces(constructorOptions)
+    return new SeamHttpCustomersReservations(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -76,24 +76,24 @@ export class SeamHttpSeamCustomerV1Spaces {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttpSeamCustomerV1Spaces {
+  ): SeamHttpCustomersReservations {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttpSeamCustomerV1Spaces(constructorOptions)
+    return new SeamHttpCustomersReservations(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttpSeamCustomerV1Spaces> {
+  ): Promise<SeamHttpCustomersReservations> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
       throw new SeamHttpInvalidOptionsError(
-        'The client option cannot be used with SeamHttpSeamCustomerV1Spaces.fromPublishableKey',
+        'The client option cannot be used with SeamHttpCustomersReservations.fromPublishableKey',
       )
     }
     const client = createClient(clientOptions)
@@ -101,7 +101,7 @@ export class SeamHttpSeamCustomerV1Spaces {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttpSeamCustomerV1Spaces.fromClientSessionToken(token, options)
+    return SeamHttpCustomersReservations.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -111,14 +111,14 @@ export class SeamHttpSeamCustomerV1Spaces {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttpSeamCustomerV1Spaces {
+  ): SeamHttpCustomersReservations {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttpSeamCustomerV1Spaces(constructorOptions)
+    return new SeamHttpCustomersReservations(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -128,14 +128,14 @@ export class SeamHttpSeamCustomerV1Spaces {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttpSeamCustomerV1Spaces {
+  ): SeamHttpCustomersReservations {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttpSeamCustomerV1Spaces(constructorOptions)
+    return new SeamHttpCustomersReservations(constructorOptions)
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
@@ -163,161 +163,39 @@ export class SeamHttpSeamCustomerV1Spaces {
     await clientSessions.get()
   }
 
-  create(
-    parameters?: SeamCustomerV1SpacesCreateParameters,
-    options: SeamCustomerV1SpacesCreateOptions = {},
-  ): SeamCustomerV1SpacesCreateRequest {
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
+  createDeepLink(
+    parameters?: CustomersReservationsCreateDeepLinkParameters,
+    options: CustomersReservationsCreateDeepLinkOptions = {},
+  ): CustomersReservationsCreateDeepLinkRequest {
     return new SeamHttpRequest(this, {
-      pathname: '/seam/customer/v1/spaces/create',
+      pathname: '/customers/reservations/create_deep_link',
       method: 'POST',
       body: parameters,
-      responseKey: 'space',
-      options,
-    })
-  }
-
-  list(
-    parameters?: SeamCustomerV1SpacesListParameters,
-    options: SeamCustomerV1SpacesListOptions = {},
-  ): SeamCustomerV1SpacesListRequest {
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return new SeamHttpRequest(this, {
-      pathname: '/seam/customer/v1/spaces/list',
-      method: 'POST',
-      body: parameters,
-      responseKey: 'spaces',
-      options,
-    })
-  }
-
-  listReservations(
-    parameters?: SeamCustomerV1SpacesListReservationsParameters,
-    options: SeamCustomerV1SpacesListReservationsOptions = {},
-  ): SeamCustomerV1SpacesListReservationsRequest {
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return new SeamHttpRequest(this, {
-      pathname: '/seam/customer/v1/spaces/list_reservations',
-      method: 'POST',
-      body: parameters,
-      responseKey: 'reservations',
-      options,
-    })
-  }
-
-  pushCommonAreas(
-    parameters?: SeamCustomerV1SpacesPushCommonAreasParameters,
-    options: SeamCustomerV1SpacesPushCommonAreasOptions = {},
-  ): SeamCustomerV1SpacesPushCommonAreasRequest {
-    return new SeamHttpRequest(this, {
-      pathname: '/seam/customer/v1/spaces/push_common_areas',
-      method: 'POST',
-      body: parameters,
-      responseKey: undefined,
+      responseKey: 'deep_link',
       options,
     })
   }
 }
 
-export type SeamCustomerV1SpacesCreateParameters =
-  RouteRequestBody<'/seam/customer/v1/spaces/create'>
+export type CustomersReservationsCreateDeepLinkParameters =
+  RouteRequestBody<'/customers/reservations/create_deep_link'>
 
 /**
- * @deprecated Use SeamCustomerV1SpacesCreateParameters instead.
+ * @deprecated Use CustomersReservationsCreateDeepLinkParameters instead.
  */
-export type SeamCustomerV1SpacesCreateBody =
-  SeamCustomerV1SpacesCreateParameters
+export type CustomersReservationsCreateDeepLinkBody =
+  CustomersReservationsCreateDeepLinkParameters
 
 /**
- * @deprecated Use SeamCustomerV1SpacesCreateRequest instead.
+ * @deprecated Use CustomersReservationsCreateDeepLinkRequest instead.
  */
-export type SeamCustomerV1SpacesCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/spaces/create'>>
+export type CustomersReservationsCreateDeepLinkResponse = SetNonNullable<
+  Required<RouteResponse<'/customers/reservations/create_deep_link'>>
 >
 
-export type SeamCustomerV1SpacesCreateRequest = SeamHttpRequest<
-  SeamCustomerV1SpacesCreateResponse,
-  'space'
+export type CustomersReservationsCreateDeepLinkRequest = SeamHttpRequest<
+  CustomersReservationsCreateDeepLinkResponse,
+  'deep_link'
 >
 
-export interface SeamCustomerV1SpacesCreateOptions {}
-
-export type SeamCustomerV1SpacesListParameters =
-  RouteRequestBody<'/seam/customer/v1/spaces/list'>
-
-/**
- * @deprecated Use SeamCustomerV1SpacesListParameters instead.
- */
-export type SeamCustomerV1SpacesListParams = SeamCustomerV1SpacesListParameters
-
-/**
- * @deprecated Use SeamCustomerV1SpacesListRequest instead.
- */
-export type SeamCustomerV1SpacesListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/spaces/list'>>
->
-
-export type SeamCustomerV1SpacesListRequest = SeamHttpRequest<
-  SeamCustomerV1SpacesListResponse,
-  'spaces'
->
-
-export interface SeamCustomerV1SpacesListOptions {}
-
-export type SeamCustomerV1SpacesListReservationsParameters =
-  RouteRequestBody<'/seam/customer/v1/spaces/list_reservations'>
-
-/**
- * @deprecated Use SeamCustomerV1SpacesListReservationsParameters instead.
- */
-export type SeamCustomerV1SpacesListReservationsParams =
-  SeamCustomerV1SpacesListReservationsParameters
-
-/**
- * @deprecated Use SeamCustomerV1SpacesListReservationsRequest instead.
- */
-export type SeamCustomerV1SpacesListReservationsResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/spaces/list_reservations'>>
->
-
-export type SeamCustomerV1SpacesListReservationsRequest = SeamHttpRequest<
-  SeamCustomerV1SpacesListReservationsResponse,
-  'reservations'
->
-
-export interface SeamCustomerV1SpacesListReservationsOptions {}
-
-export type SeamCustomerV1SpacesPushCommonAreasParameters =
-  RouteRequestBody<'/seam/customer/v1/spaces/push_common_areas'>
-
-/**
- * @deprecated Use SeamCustomerV1SpacesPushCommonAreasParameters instead.
- */
-export type SeamCustomerV1SpacesPushCommonAreasBody =
-  SeamCustomerV1SpacesPushCommonAreasParameters
-
-/**
- * @deprecated Use SeamCustomerV1SpacesPushCommonAreasRequest instead.
- */
-export type SeamCustomerV1SpacesPushCommonAreasResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/spaces/push_common_areas'>>
->
-
-export type SeamCustomerV1SpacesPushCommonAreasRequest = SeamHttpRequest<
-  void,
-  undefined
->
-
-export interface SeamCustomerV1SpacesPushCommonAreasOptions {}
+export interface CustomersReservationsCreateDeepLinkOptions {}
