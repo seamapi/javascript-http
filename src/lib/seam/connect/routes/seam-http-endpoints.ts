@@ -714,6 +714,12 @@ import {
   SeamHttpSeamCustomerV1Settings,
 } from './seam/customer/v1/settings/index.js'
 import {
+  type SeamCustomerV1SettingsVerticalResourceAliasesGetOptions,
+  type SeamCustomerV1SettingsVerticalResourceAliasesGetParameters,
+  type SeamCustomerV1SettingsVerticalResourceAliasesGetRequest,
+  SeamHttpSeamCustomerV1SettingsVerticalResourceAliases,
+} from './seam/customer/v1/settings/vertical-resource-aliases/index.js'
+import {
   type SeamCustomerV1SpacesCreateOptions,
   type SeamCustomerV1SpacesCreateParameters,
   type SeamCustomerV1SpacesCreateRequest,
@@ -3655,6 +3661,32 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/settings/vertical_resource_aliases/get'(): (
+    parameters?: SeamCustomerV1SettingsVerticalResourceAliasesGetParameters,
+    options?: SeamCustomerV1SettingsVerticalResourceAliasesGetOptions,
+  ) => SeamCustomerV1SettingsVerticalResourceAliasesGetRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1SettingsVerticalResourceAliasesGet(
+      ...args: Parameters<
+        SeamHttpSeamCustomerV1SettingsVerticalResourceAliases['get']
+      >
+    ): ReturnType<
+      SeamHttpSeamCustomerV1SettingsVerticalResourceAliases['get']
+    > {
+      const seam =
+        SeamHttpSeamCustomerV1SettingsVerticalResourceAliases.fromClient(
+          client,
+          defaults,
+        )
+      return seam.get(...args)
+    }
+  }
+
   get '/seam/customer/v1/spaces/create'(): (
     parameters?: SeamCustomerV1SpacesCreateParameters,
     options?: SeamCustomerV1SpacesCreateOptions,
@@ -4970,6 +5002,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/reservations/get'
   | '/seam/customer/v1/reservations/list'
   | '/seam/customer/v1/settings/get'
+  | '/seam/customer/v1/settings/vertical_resource_aliases/get'
   | '/seam/customer/v1/spaces/list'
   | '/seam/customer/v1/spaces/list_reservations'
   | '/seam/customer/v1/staff_members/get'
