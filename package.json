@@ -120,5 +120,8 @@
     "tsx": "^4.6.2",
     "typedoc": "^0.28.10",
     "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "@seamapi/types": "^1.738.0"
   }
 }
