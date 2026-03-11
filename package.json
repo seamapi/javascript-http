@@ -85,14 +85,6 @@
     "node": ">=22.11.0",
     "npm": ">=10.9.4"
   },
-  "peerDependencies": {
-    "@seamapi/types": "^1.738.0"
-  },
-  "peerDependenciesMeta": {
-    "@seamapi/types": {
-      "optional": true
-    }
-  },
   "dependencies": {
     "@seamapi/url-search-params-serializer": "^3.0.0",
     "axios": "^1.9.0",

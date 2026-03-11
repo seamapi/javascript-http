@@ -1,5 +1,4 @@
-import type { ActionAttempt } from '@seamapi/types/connect'
-
+import type { ActionAttempt } from './action-attempt.js'
 import type { SeamHttpActionAttempts } from './routes/index.js'
 
 export interface ResolveActionAttemptOptions {
