@@ -666,6 +666,15 @@ import {
   SeamHttpSeamCustomerV1Connectors,
 } from './seam/customer/v1/connectors/index.js'
 import {
+  type SeamCustomerV1CustomersAutomationsGetOptions,
+  type SeamCustomerV1CustomersAutomationsGetParameters,
+  type SeamCustomerV1CustomersAutomationsGetRequest,
+  type SeamCustomerV1CustomersAutomationsUpdateOptions,
+  type SeamCustomerV1CustomersAutomationsUpdateParameters,
+  type SeamCustomerV1CustomersAutomationsUpdateRequest,
+  SeamHttpSeamCustomerV1CustomersAutomations,
+} from './seam/customer/v1/customers/automations/index.js'
+import {
   type SeamCustomerV1CustomersListOptions,
   type SeamCustomerV1CustomersListParameters,
   type SeamCustomerV1CustomersListRequest,
@@ -3480,6 +3489,38 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/customers/automations/get'(): (
+    parameters?: SeamCustomerV1CustomersAutomationsGetParameters,
+    options?: SeamCustomerV1CustomersAutomationsGetOptions,
+  ) => SeamCustomerV1CustomersAutomationsGetRequest {
+    const { client, defaults } = this
+    return function seamCustomerV1CustomersAutomationsGet(
+      ...args: Parameters<SeamHttpSeamCustomerV1CustomersAutomations['get']>
+    ): ReturnType<SeamHttpSeamCustomerV1CustomersAutomations['get']> {
+      const seam = SeamHttpSeamCustomerV1CustomersAutomations.fromClient(
+        client,
+        defaults,
+      )
+      return seam.get(...args)
+    }
+  }
+
+  get '/seam/customer/v1/customers/automations/update'(): (
+    parameters?: SeamCustomerV1CustomersAutomationsUpdateParameters,
+    options?: SeamCustomerV1CustomersAutomationsUpdateOptions,
+  ) => SeamCustomerV1CustomersAutomationsUpdateRequest {
+    const { client, defaults } = this
+    return function seamCustomerV1CustomersAutomationsUpdate(
+      ...args: Parameters<SeamHttpSeamCustomerV1CustomersAutomations['update']>
+    ): ReturnType<SeamHttpSeamCustomerV1CustomersAutomations['update']> {
+      const seam = SeamHttpSeamCustomerV1CustomersAutomations.fromClient(
+        client,
+        defaults,
+      )
+      return seam.update(...args)
+    }
+  }
+
   get '/seam/customer/v1/customers/list'(): (
     parameters?: SeamCustomerV1CustomersListParameters,
     options?: SeamCustomerV1CustomersListOptions,
@@ -4994,6 +5035,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/connectors/authorize'
   | '/seam/customer/v1/connectors/connector_types'
   | '/seam/customer/v1/connectors/list'
+  | '/seam/customer/v1/customers/automations/get'
   | '/seam/customer/v1/customers/list'
   | '/seam/customer/v1/customers/me'
   | '/seam/customer/v1/encoders/list'
@@ -5142,6 +5184,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/customer/v1/connectors/delete'
   | '/seam/customer/v1/connectors/sync'
   | '/seam/customer/v1/connectors/update'
+  | '/seam/customer/v1/customers/automations/update'
   | '/seam/customer/v1/customers/open_portal'
   | '/seam/customer/v1/settings/update'
   | '/seam/customer/v1/spaces/create'
