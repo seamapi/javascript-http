@@ -282,6 +282,9 @@ import {
   type AcsEntrancesListOptions,
   type AcsEntrancesListParameters,
   type AcsEntrancesListRequest,
+  type AcsEntrancesUnlockOptions,
+  type AcsEntrancesUnlockParameters,
+  type AcsEntrancesUnlockRequest,
   SeamHttpAcsEntrances,
 } from './acs/entrances/index.js'
 import {
@@ -2082,6 +2085,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAcsEntrances['listCredentialsWithAccess']> {
       const seam = SeamHttpAcsEntrances.fromClient(client, defaults)
       return seam.listCredentialsWithAccess(...args)
+    }
+  }
+
+  get '/acs/entrances/unlock'(): (
+    parameters?: AcsEntrancesUnlockParameters,
+    options?: AcsEntrancesUnlockOptions,
+  ) => AcsEntrancesUnlockRequest {
+    const { client, defaults } = this
+    return function acsEntrancesUnlock(
+      ...args: Parameters<SeamHttpAcsEntrances['unlock']>
+    ): ReturnType<SeamHttpAcsEntrances['unlock']> {
+      const seam = SeamHttpAcsEntrances.fromClient(client, defaults)
+      return seam.unlock(...args)
     }
   }
 
@@ -5131,6 +5147,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/acs/encoders/simulate/next_credential_scan_will_fail'
   | '/acs/encoders/simulate/next_credential_scan_will_succeed'
   | '/acs/entrances/grant_access'
+  | '/acs/entrances/unlock'
   | '/acs/systems/report_devices'
   | '/acs/users/add_to_access_group'
   | '/acs/users/create'

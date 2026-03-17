@@ -214,6 +214,19 @@ export class SeamHttpAcsEntrances {
       options,
     })
   }
+
+  unlock(
+    parameters?: AcsEntrancesUnlockParameters,
+    options: AcsEntrancesUnlockOptions = {},
+  ): AcsEntrancesUnlockRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/acs/entrances/unlock',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'action_attempt',
+      options,
+    })
+  }
 }
 
 export type AcsEntrancesGetParameters = RouteRequestBody<'/acs/entrances/get'>
@@ -299,3 +312,28 @@ export type AcsEntrancesListCredentialsWithAccessRequest = SeamHttpRequest<
 >
 
 export interface AcsEntrancesListCredentialsWithAccessOptions {}
+
+export type AcsEntrancesUnlockParameters =
+  RouteRequestBody<'/acs/entrances/unlock'>
+
+/**
+ * @deprecated Use AcsEntrancesUnlockParameters instead.
+ */
+export type AcsEntrancesUnlockBody = AcsEntrancesUnlockParameters
+
+/**
+ * @deprecated Use AcsEntrancesUnlockRequest instead.
+ */
+export type AcsEntrancesUnlockResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/entrances/unlock'>>
+>
+
+export type AcsEntrancesUnlockRequest = SeamHttpRequest<
+  AcsEntrancesUnlockResponse,
+  'action_attempt'
+>
+
+export type AcsEntrancesUnlockOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
