@@ -206,6 +206,24 @@ export class SeamHttpSeamCustomerV1Reservations {
       options,
     })
   }
+
+  listAccessGrants(
+    parameters?: SeamCustomerV1ReservationsListAccessGrantsParameters,
+    options: SeamCustomerV1ReservationsListAccessGrantsOptions = {},
+  ): SeamCustomerV1ReservationsListAccessGrantsRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/reservations/list_access_grants',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'access_grants',
+      options,
+    })
+  }
 }
 
 export type SeamCustomerV1ReservationsGetParameters =
@@ -253,3 +271,26 @@ export type SeamCustomerV1ReservationsListRequest = SeamHttpRequest<
 >
 
 export interface SeamCustomerV1ReservationsListOptions {}
+
+export type SeamCustomerV1ReservationsListAccessGrantsParameters =
+  RouteRequestBody<'/seam/customer/v1/reservations/list_access_grants'>
+
+/**
+ * @deprecated Use SeamCustomerV1ReservationsListAccessGrantsParameters instead.
+ */
+export type SeamCustomerV1ReservationsListAccessGrantsParams =
+  SeamCustomerV1ReservationsListAccessGrantsParameters
+
+/**
+ * @deprecated Use SeamCustomerV1ReservationsListAccessGrantsRequest instead.
+ */
+export type SeamCustomerV1ReservationsListAccessGrantsResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/reservations/list_access_grants'>>
+>
+
+export type SeamCustomerV1ReservationsListAccessGrantsRequest = SeamHttpRequest<
+  SeamCustomerV1ReservationsListAccessGrantsResponse,
+  'access_grants'
+>
+
+export interface SeamCustomerV1ReservationsListAccessGrantsOptions {}

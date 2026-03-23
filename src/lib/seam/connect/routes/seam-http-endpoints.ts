@@ -711,6 +711,9 @@ import {
   type SeamCustomerV1ReservationsGetOptions,
   type SeamCustomerV1ReservationsGetParameters,
   type SeamCustomerV1ReservationsGetRequest,
+  type SeamCustomerV1ReservationsListAccessGrantsOptions,
+  type SeamCustomerV1ReservationsListAccessGrantsParameters,
+  type SeamCustomerV1ReservationsListAccessGrantsRequest,
   type SeamCustomerV1ReservationsListOptions,
   type SeamCustomerV1ReservationsListParameters,
   type SeamCustomerV1ReservationsListRequest,
@@ -3682,6 +3685,29 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/reservations/list_access_grants'(): (
+    parameters?: SeamCustomerV1ReservationsListAccessGrantsParameters,
+    options?: SeamCustomerV1ReservationsListAccessGrantsOptions,
+  ) => SeamCustomerV1ReservationsListAccessGrantsRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1ReservationsListAccessGrants(
+      ...args: Parameters<
+        SeamHttpSeamCustomerV1Reservations['listAccessGrants']
+      >
+    ): ReturnType<SeamHttpSeamCustomerV1Reservations['listAccessGrants']> {
+      const seam = SeamHttpSeamCustomerV1Reservations.fromClient(
+        client,
+        defaults,
+      )
+      return seam.listAccessGrants(...args)
+    }
+  }
+
   get '/seam/customer/v1/settings/get'(): (
     parameters?: SeamCustomerV1SettingsGetParameters,
     options?: SeamCustomerV1SettingsGetOptions,
@@ -5059,6 +5085,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/portals/get'
   | '/seam/customer/v1/reservations/get'
   | '/seam/customer/v1/reservations/list'
+  | '/seam/customer/v1/reservations/list_access_grants'
   | '/seam/customer/v1/settings/get'
   | '/seam/customer/v1/settings/vertical_resource_aliases/get'
   | '/seam/customer/v1/spaces/list'
