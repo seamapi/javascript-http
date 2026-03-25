@@ -243,6 +243,11 @@ export class SeamHttpAccessCodes {
     parameters?: AccessCodesGetTimelineParameters,
     options: AccessCodesGetTimelineOptions = {},
   ): AccessCodesGetTimelineRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/get_timeline',
       method: 'POST',

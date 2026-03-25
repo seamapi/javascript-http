@@ -169,6 +169,19 @@ export class SeamHttpLocks {
     return SeamHttpLocksSimulate.fromClient(this.client, this.defaults)
   }
 
+  configureAutoLock(
+    parameters?: LocksConfigureAutoLockParameters,
+    options: LocksConfigureAutoLockOptions = {},
+  ): LocksConfigureAutoLockRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/locks/configure_auto_lock',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'action_attempt',
+      options,
+    })
+  }
+
   get(
     parameters?: LocksGetParameters,
     options: LocksGetOptions = {},
@@ -221,6 +234,31 @@ export class SeamHttpLocks {
     })
   }
 }
+
+export type LocksConfigureAutoLockParameters =
+  RouteRequestBody<'/locks/configure_auto_lock'>
+
+/**
+ * @deprecated Use LocksConfigureAutoLockParameters instead.
+ */
+export type LocksConfigureAutoLockBody = LocksConfigureAutoLockParameters
+
+/**
+ * @deprecated Use LocksConfigureAutoLockRequest instead.
+ */
+export type LocksConfigureAutoLockResponse = SetNonNullable<
+  Required<RouteResponse<'/locks/configure_auto_lock'>>
+>
+
+export type LocksConfigureAutoLockRequest = SeamHttpRequest<
+  LocksConfigureAutoLockResponse,
+  'action_attempt'
+>
+
+export type LocksConfigureAutoLockOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type LocksGetParameters = RouteRequestBody<'/locks/get'>
 

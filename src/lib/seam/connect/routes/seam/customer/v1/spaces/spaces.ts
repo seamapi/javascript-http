@@ -44,6 +44,11 @@ export class SeamHttpSeamCustomerV1Spaces {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
+    if (!options.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     this.client = 'client' in options ? options.client : createClient(options)
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
@@ -221,6 +226,11 @@ export class SeamHttpSeamCustomerV1Spaces {
     parameters?: SeamCustomerV1SpacesPushCommonAreasParameters,
     options: SeamCustomerV1SpacesPushCommonAreasOptions = {},
   ): SeamCustomerV1SpacesPushCommonAreasRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/seam/customer/v1/spaces/push_common_areas',
       method: 'POST',

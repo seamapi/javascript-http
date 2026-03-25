@@ -522,6 +522,9 @@ import {
   SeamHttpInstantKeys,
 } from './instant-keys/index.js'
 import {
+  type LocksConfigureAutoLockOptions,
+  type LocksConfigureAutoLockParameters,
+  type LocksConfigureAutoLockRequest,
   type LocksGetOptions,
   type LocksGetParameters,
   type LocksGetRequest,
@@ -1223,6 +1226,11 @@ export class SeamHttpEndpoints {
     options?: AccessCodesGetTimelineOptions,
   ) => AccessCodesGetTimelineRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function accessCodesGetTimeline(
       ...args: Parameters<SeamHttpAccessCodes['getTimeline']>
     ): ReturnType<SeamHttpAccessCodes['getTimeline']> {
@@ -2669,6 +2677,11 @@ export class SeamHttpEndpoints {
     options?: CustomersReservationsCreateDeepLinkOptions,
   ) => CustomersReservationsCreateDeepLinkRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function customersReservationsCreateDeepLink(
       ...args: Parameters<SeamHttpCustomersReservations['createDeepLink']>
     ): ReturnType<SeamHttpCustomersReservations['createDeepLink']> {
@@ -2939,6 +2952,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpInstantKeys['list']> {
       const seam = SeamHttpInstantKeys.fromClient(client, defaults)
       return seam.list(...args)
+    }
+  }
+
+  get '/locks/configure_auto_lock'(): (
+    parameters?: LocksConfigureAutoLockParameters,
+    options?: LocksConfigureAutoLockOptions,
+  ) => LocksConfigureAutoLockRequest {
+    const { client, defaults } = this
+    return function locksConfigureAutoLock(
+      ...args: Parameters<SeamHttpLocks['configureAutoLock']>
+    ): ReturnType<SeamHttpLocks['configureAutoLock']> {
+      const seam = SeamHttpLocks.fromClient(client, defaults)
+      return seam.configureAutoLock(...args)
     }
   }
 
@@ -3513,6 +3539,11 @@ export class SeamHttpEndpoints {
     options?: SeamCustomerV1CustomersAutomationsGetOptions,
   ) => SeamCustomerV1CustomersAutomationsGetRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function seamCustomerV1CustomersAutomationsGet(
       ...args: Parameters<SeamHttpSeamCustomerV1CustomersAutomations['get']>
     ): ReturnType<SeamHttpSeamCustomerV1CustomersAutomations['get']> {
@@ -3529,6 +3560,11 @@ export class SeamHttpEndpoints {
     options?: SeamCustomerV1CustomersAutomationsUpdateOptions,
   ) => SeamCustomerV1CustomersAutomationsUpdateRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function seamCustomerV1CustomersAutomationsUpdate(
       ...args: Parameters<SeamHttpSeamCustomerV1CustomersAutomations['update']>
     ): ReturnType<SeamHttpSeamCustomerV1CustomersAutomations['update']> {
@@ -3563,6 +3599,11 @@ export class SeamHttpEndpoints {
     options?: SeamCustomerV1CustomersMeOptions,
   ) => SeamCustomerV1CustomersMeRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function seamCustomerV1CustomersMe(
       ...args: Parameters<SeamHttpSeamCustomerV1Customers['me']>
     ): ReturnType<SeamHttpSeamCustomerV1Customers['me']> {
@@ -3829,6 +3870,11 @@ export class SeamHttpEndpoints {
     options?: SeamCustomerV1SpacesPushCommonAreasOptions,
   ) => SeamCustomerV1SpacesPushCommonAreasRequest {
     const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return function seamCustomerV1SpacesPushCommonAreas(
       ...args: Parameters<SeamHttpSeamCustomerV1Spaces['pushCommonAreas']>
     ): ReturnType<SeamHttpSeamCustomerV1Spaces['pushCommonAreas']> {
@@ -5211,6 +5257,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/devices/simulate/remove'
   | '/devices/unmanaged/update'
   | '/instant_keys/delete'
+  | '/locks/configure_auto_lock'
   | '/locks/lock_door'
   | '/locks/unlock_door'
   | '/locks/simulate/keypad_code_entry'

@@ -44,6 +44,11 @@ export class SeamHttpCustomersReservations {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
+    if (!options.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     this.client = 'client' in options ? options.client : createClient(options)
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
@@ -167,6 +172,11 @@ export class SeamHttpCustomersReservations {
     parameters?: CustomersReservationsCreateDeepLinkParameters,
     options: CustomersReservationsCreateDeepLinkOptions = {},
   ): CustomersReservationsCreateDeepLinkRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/customers/reservations/create_deep_link',
       method: 'POST',

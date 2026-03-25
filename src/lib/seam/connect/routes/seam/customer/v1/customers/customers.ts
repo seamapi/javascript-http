@@ -50,6 +50,11 @@ export class SeamHttpSeamCustomerV1Customers {
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)
+    if (!options.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     this.client = 'client' in options ? options.client : createClient(options)
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
@@ -201,6 +206,11 @@ export class SeamHttpSeamCustomerV1Customers {
     parameters?: SeamCustomerV1CustomersMeParameters,
     options: SeamCustomerV1CustomersMeOptions = {},
   ): SeamCustomerV1CustomersMeRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
     return new SeamHttpRequest(this, {
       pathname: '/seam/customer/v1/customers/me',
       method: 'GET',
