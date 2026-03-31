@@ -708,6 +708,9 @@ import {
   type SeamCustomerV1PortalsGetOptions,
   type SeamCustomerV1PortalsGetParameters,
   type SeamCustomerV1PortalsGetRequest,
+  type SeamCustomerV1PortalsUpdateOptions,
+  type SeamCustomerV1PortalsUpdateParameters,
+  type SeamCustomerV1PortalsUpdateRequest,
   SeamHttpSeamCustomerV1Portals,
 } from './seam/customer/v1/portals/index.js'
 import {
@@ -3684,6 +3687,24 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/portals/update'(): (
+    parameters?: SeamCustomerV1PortalsUpdateParameters,
+    options?: SeamCustomerV1PortalsUpdateOptions,
+  ) => SeamCustomerV1PortalsUpdateRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1PortalsUpdate(
+      ...args: Parameters<SeamHttpSeamCustomerV1Portals['update']>
+    ): ReturnType<SeamHttpSeamCustomerV1Portals['update']> {
+      const seam = SeamHttpSeamCustomerV1Portals.fromClient(client, defaults)
+      return seam.update(...args)
+    }
+  }
+
   get '/seam/customer/v1/reservations/get'(): (
     parameters?: SeamCustomerV1ReservationsGetParameters,
     options?: SeamCustomerV1ReservationsGetOptions,
@@ -5278,6 +5299,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/customer/v1/connectors/update'
   | '/seam/customer/v1/customers/automations/update'
   | '/seam/customer/v1/customers/open_portal'
+  | '/seam/customer/v1/portals/update'
   | '/seam/customer/v1/settings/update'
   | '/seam/customer/v1/spaces/create'
   | '/seam/customer/v1/spaces/push_common_areas'

@@ -185,6 +185,24 @@ export class SeamHttpSeamCustomerV1Portals {
       options,
     })
   }
+
+  update(
+    parameters?: SeamCustomerV1PortalsUpdateParameters,
+    options: SeamCustomerV1PortalsUpdateOptions = {},
+  ): SeamCustomerV1PortalsUpdateRequest {
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return new SeamHttpRequest(this, {
+      pathname: '/seam/customer/v1/portals/update',
+      method: 'PATCH',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
 }
 
 export type SeamCustomerV1PortalsGetParameters =
@@ -208,3 +226,26 @@ export type SeamCustomerV1PortalsGetRequest = SeamHttpRequest<
 >
 
 export interface SeamCustomerV1PortalsGetOptions {}
+
+export type SeamCustomerV1PortalsUpdateParameters =
+  RouteRequestBody<'/seam/customer/v1/portals/update'>
+
+/**
+ * @deprecated Use SeamCustomerV1PortalsUpdateParameters instead.
+ */
+export type SeamCustomerV1PortalsUpdateBody =
+  SeamCustomerV1PortalsUpdateParameters
+
+/**
+ * @deprecated Use SeamCustomerV1PortalsUpdateRequest instead.
+ */
+export type SeamCustomerV1PortalsUpdateResponse = SetNonNullable<
+  Required<RouteResponse<'/seam/customer/v1/portals/update'>>
+>
+
+export type SeamCustomerV1PortalsUpdateRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+export interface SeamCustomerV1PortalsUpdateOptions {}
