@@ -40,6 +40,8 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
+import { SeamHttpSeamCustomerV1ConnectorsIcal } from './ical/index.js'
+
 export class SeamHttpSeamCustomerV1Connectors {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
@@ -173,6 +175,13 @@ export class SeamHttpSeamCustomerV1Connectors {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
+  }
+
+  get ical(): SeamHttpSeamCustomerV1ConnectorsIcal {
+    return SeamHttpSeamCustomerV1ConnectorsIcal.fromClient(
+      this.client,
+      this.defaults,
+    )
   }
 
   authorize(
