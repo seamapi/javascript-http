@@ -288,6 +288,19 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  listAccessibleEntrances(
+    parameters?: UserIdentitiesListAccessibleEntrancesParameters,
+    options: UserIdentitiesListAccessibleEntrancesOptions = {},
+  ): UserIdentitiesListAccessibleEntrancesRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/user_identities/list_accessible_entrances',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'acs_entrances',
+      options,
+    })
+  }
+
   listAcsSystems(
     parameters?: UserIdentitiesListAcsSystemsParameters,
     options: UserIdentitiesListAcsSystemsOptions = {},
@@ -526,6 +539,29 @@ export type UserIdentitiesListAccessibleDevicesRequest = SeamHttpRequest<
 >
 
 export interface UserIdentitiesListAccessibleDevicesOptions {}
+
+export type UserIdentitiesListAccessibleEntrancesParameters =
+  RouteRequestBody<'/user_identities/list_accessible_entrances'>
+
+/**
+ * @deprecated Use UserIdentitiesListAccessibleEntrancesParameters instead.
+ */
+export type UserIdentitiesListAccessibleEntrancesParams =
+  UserIdentitiesListAccessibleEntrancesParameters
+
+/**
+ * @deprecated Use UserIdentitiesListAccessibleEntrancesRequest instead.
+ */
+export type UserIdentitiesListAccessibleEntrancesResponse = SetNonNullable<
+  Required<RouteResponse<'/user_identities/list_accessible_entrances'>>
+>
+
+export type UserIdentitiesListAccessibleEntrancesRequest = SeamHttpRequest<
+  UserIdentitiesListAccessibleEntrancesResponse,
+  'acs_entrances'
+>
+
+export interface UserIdentitiesListAccessibleEntrancesOptions {}
 
 export type UserIdentitiesListAcsSystemsParameters =
   RouteRequestBody<'/user_identities/list_acs_systems'>

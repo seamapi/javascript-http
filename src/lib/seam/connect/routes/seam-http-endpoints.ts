@@ -952,6 +952,9 @@ import {
   type UserIdentitiesListAccessibleDevicesOptions,
   type UserIdentitiesListAccessibleDevicesParameters,
   type UserIdentitiesListAccessibleDevicesRequest,
+  type UserIdentitiesListAccessibleEntrancesOptions,
+  type UserIdentitiesListAccessibleEntrancesParameters,
+  type UserIdentitiesListAccessibleEntrancesRequest,
   type UserIdentitiesListAcsSystemsOptions,
   type UserIdentitiesListAcsSystemsParameters,
   type UserIdentitiesListAcsSystemsRequest,
@@ -4678,6 +4681,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/user_identities/list_accessible_entrances'(): (
+    parameters?: UserIdentitiesListAccessibleEntrancesParameters,
+    options?: UserIdentitiesListAccessibleEntrancesOptions,
+  ) => UserIdentitiesListAccessibleEntrancesRequest {
+    const { client, defaults } = this
+    return function userIdentitiesListAccessibleEntrances(
+      ...args: Parameters<SeamHttpUserIdentities['listAccessibleEntrances']>
+    ): ReturnType<SeamHttpUserIdentities['listAccessibleEntrances']> {
+      const seam = SeamHttpUserIdentities.fromClient(client, defaults)
+      return seam.listAccessibleEntrances(...args)
+    }
+  }
+
   get '/user_identities/list_acs_systems'(): (
     parameters?: UserIdentitiesListAcsSystemsParameters,
     options?: UserIdentitiesListAcsSystemsOptions,
@@ -5226,6 +5242,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/user_identities/get'
   | '/user_identities/list'
   | '/user_identities/list_accessible_devices'
+  | '/user_identities/list_accessible_entrances'
   | '/user_identities/list_acs_systems'
   | '/user_identities/list_acs_users'
   | '/user_identities/enrollment_automations/get'
