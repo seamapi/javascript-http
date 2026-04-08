@@ -5275,6 +5275,7 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/seam/customer/v1/customers/list'
   | '/seam/customer/v1/reservations/list'
   | '/seam/customer/v1/staff_members/list'
+  | '/spaces/list'
   | '/user_identities/list'
   | '/user_identities/unmanaged/list'
 
