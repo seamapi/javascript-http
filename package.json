@@ -86,7 +86,7 @@
     "npm": ">=10.9.4"
   },
   "peerDependencies": {
-    "@seamapi/types": "^1.783.0"
+    "@seamapi/types": "^1.785.0"
   },
   "peerDependenciesMeta": {
     "@seamapi/types": {
