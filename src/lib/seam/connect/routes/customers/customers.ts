@@ -177,7 +177,7 @@ export class SeamHttpCustomers {
       pathname: '/customers/create_portal',
       method: 'POST',
       body: parameters,
-      responseKey: 'magic_link',
+      responseKey: 'customer_portal',
       options,
     })
   }
@@ -226,7 +226,7 @@ export type CustomersCreatePortalResponse = SetNonNullable<
 
 export type CustomersCreatePortalRequest = SeamHttpRequest<
   CustomersCreatePortalResponse,
-  'magic_link'
+  'customer_portal'
 >
 
 export interface CustomersCreatePortalOptions {}
