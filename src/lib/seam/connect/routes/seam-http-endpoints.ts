@@ -784,6 +784,9 @@ import {
   type SpacesAddAcsEntrancesOptions,
   type SpacesAddAcsEntrancesParameters,
   type SpacesAddAcsEntrancesRequest,
+  type SpacesAddConnectedAccountOptions,
+  type SpacesAddConnectedAccountParameters,
+  type SpacesAddConnectedAccountRequest,
   type SpacesAddDevicesOptions,
   type SpacesAddDevicesParameters,
   type SpacesAddDevicesRequest,
@@ -805,6 +808,9 @@ import {
   type SpacesRemoveAcsEntrancesOptions,
   type SpacesRemoveAcsEntrancesParameters,
   type SpacesRemoveAcsEntrancesRequest,
+  type SpacesRemoveConnectedAccountOptions,
+  type SpacesRemoveConnectedAccountParameters,
+  type SpacesRemoveConnectedAccountRequest,
   type SpacesRemoveDevicesOptions,
   type SpacesRemoveDevicesParameters,
   type SpacesRemoveDevicesRequest,
@@ -4038,6 +4044,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/spaces/add_connected_account'(): (
+    parameters?: SpacesAddConnectedAccountParameters,
+    options?: SpacesAddConnectedAccountOptions,
+  ) => SpacesAddConnectedAccountRequest {
+    const { client, defaults } = this
+    return function spacesAddConnectedAccount(
+      ...args: Parameters<SeamHttpSpaces['addConnectedAccount']>
+    ): ReturnType<SeamHttpSpaces['addConnectedAccount']> {
+      const seam = SeamHttpSpaces.fromClient(client, defaults)
+      return seam.addConnectedAccount(...args)
+    }
+  }
+
   get '/spaces/add_devices'(): (
     parameters?: SpacesAddDevicesParameters,
     options?: SpacesAddDevicesOptions,
@@ -4126,6 +4145,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpSpaces['removeAcsEntrances']> {
       const seam = SeamHttpSpaces.fromClient(client, defaults)
       return seam.removeAcsEntrances(...args)
+    }
+  }
+
+  get '/spaces/remove_connected_account'(): (
+    parameters?: SpacesRemoveConnectedAccountParameters,
+    options?: SpacesRemoveConnectedAccountOptions,
+  ) => SpacesRemoveConnectedAccountRequest {
+    const { client, defaults } = this
+    return function spacesRemoveConnectedAccount(
+      ...args: Parameters<SeamHttpSpaces['removeConnectedAccount']>
+    ): ReturnType<SeamHttpSpaces['removeConnectedAccount']> {
+      const seam = SeamHttpSpaces.fromClient(client, defaults)
+      return seam.removeConnectedAccount(...args)
     }
   }
 
@@ -5379,10 +5411,12 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/customer/v1/spaces/create'
   | '/seam/customer/v1/spaces/push_common_areas'
   | '/spaces/add_acs_entrances'
+  | '/spaces/add_connected_account'
   | '/spaces/add_devices'
   | '/spaces/create'
   | '/spaces/delete'
   | '/spaces/remove_acs_entrances'
+  | '/spaces/remove_connected_account'
   | '/spaces/remove_devices'
   | '/spaces/update'
   | '/thermostats/activate_climate_preset'
