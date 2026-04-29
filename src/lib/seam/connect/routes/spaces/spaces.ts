@@ -180,6 +180,19 @@ export class SeamHttpSpaces {
     })
   }
 
+  addConnectedAccount(
+    parameters?: SpacesAddConnectedAccountParameters,
+    options: SpacesAddConnectedAccountOptions = {},
+  ): SpacesAddConnectedAccountRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/spaces/add_connected_account',
+      method: 'PUT',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
   addDevices(
     parameters?: SpacesAddDevicesParameters,
     options: SpacesAddDevicesOptions = {},
@@ -271,6 +284,19 @@ export class SeamHttpSpaces {
     })
   }
 
+  removeConnectedAccount(
+    parameters?: SpacesRemoveConnectedAccountParameters,
+    options: SpacesRemoveConnectedAccountOptions = {},
+  ): SpacesRemoveConnectedAccountRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/spaces/remove_connected_account',
+      method: 'POST',
+      body: parameters,
+      responseKey: undefined,
+      options,
+    })
+  }
+
   removeDevices(
     parameters?: SpacesRemoveDevicesParameters,
     options: SpacesRemoveDevicesOptions = {},
@@ -316,6 +342,25 @@ export type SpacesAddAcsEntrancesResponse = SetNonNullable<
 export type SpacesAddAcsEntrancesRequest = SeamHttpRequest<void, undefined>
 
 export interface SpacesAddAcsEntrancesOptions {}
+
+export type SpacesAddConnectedAccountParameters =
+  RouteRequestBody<'/spaces/add_connected_account'>
+
+/**
+ * @deprecated Use SpacesAddConnectedAccountParameters instead.
+ */
+export type SpacesAddConnectedAccountBody = SpacesAddConnectedAccountParameters
+
+/**
+ * @deprecated Use SpacesAddConnectedAccountRequest instead.
+ */
+export type SpacesAddConnectedAccountResponse = SetNonNullable<
+  Required<RouteResponse<'/spaces/add_connected_account'>>
+>
+
+export type SpacesAddConnectedAccountRequest = SeamHttpRequest<void, undefined>
+
+export interface SpacesAddConnectedAccountOptions {}
 
 export type SpacesAddDevicesParameters = RouteRequestBody<'/spaces/add_devices'>
 
@@ -446,6 +491,29 @@ export type SpacesRemoveAcsEntrancesResponse = SetNonNullable<
 export type SpacesRemoveAcsEntrancesRequest = SeamHttpRequest<void, undefined>
 
 export interface SpacesRemoveAcsEntrancesOptions {}
+
+export type SpacesRemoveConnectedAccountParameters =
+  RouteRequestBody<'/spaces/remove_connected_account'>
+
+/**
+ * @deprecated Use SpacesRemoveConnectedAccountParameters instead.
+ */
+export type SpacesRemoveConnectedAccountParams =
+  SpacesRemoveConnectedAccountParameters
+
+/**
+ * @deprecated Use SpacesRemoveConnectedAccountRequest instead.
+ */
+export type SpacesRemoveConnectedAccountResponse = SetNonNullable<
+  Required<RouteResponse<'/spaces/remove_connected_account'>>
+>
+
+export type SpacesRemoveConnectedAccountRequest = SeamHttpRequest<
+  void,
+  undefined
+>
+
+export interface SpacesRemoveConnectedAccountOptions {}
 
 export type SpacesRemoveDevicesParameters =
   RouteRequestBody<'/spaces/remove_devices'>
