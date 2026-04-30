@@ -648,9 +648,6 @@ import {
   SeamHttpSeamCustomerV1ConnectorCustomers,
 } from './seam/customer/v1/connector-customers/index.js'
 import {
-  type SeamCustomerV1ConnectorsIcalGenerateConfigOptions,
-  type SeamCustomerV1ConnectorsIcalGenerateConfigParameters,
-  type SeamCustomerV1ConnectorsIcalGenerateConfigRequest,
   type SeamCustomerV1ConnectorsIcalValidateConfigOptions,
   type SeamCustomerV1ConnectorsIcalValidateConfigParameters,
   type SeamCustomerV1ConnectorsIcalValidateConfigRequest,
@@ -3555,29 +3552,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get '/seam/customer/v1/connectors/ical/generate-config'(): (
-    parameters?: SeamCustomerV1ConnectorsIcalGenerateConfigParameters,
-    options?: SeamCustomerV1ConnectorsIcalGenerateConfigOptions,
-  ) => SeamCustomerV1ConnectorsIcalGenerateConfigRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsIcalGenerateConfig(
-      ...args: Parameters<
-        SeamHttpSeamCustomerV1ConnectorsIcal['generateConfig']
-      >
-    ): ReturnType<SeamHttpSeamCustomerV1ConnectorsIcal['generateConfig']> {
-      const seam = SeamHttpSeamCustomerV1ConnectorsIcal.fromClient(
-        client,
-        defaults,
-      )
-      return seam.generateConfig(...args)
-    }
-  }
-
   get '/seam/customer/v1/connectors/ical/validate-config'(): (
     parameters?: SeamCustomerV1ConnectorsIcalValidateConfigParameters,
     options?: SeamCustomerV1ConnectorsIcalValidateConfigOptions,
@@ -5402,7 +5376,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/customer/v1/connectors/delete'
   | '/seam/customer/v1/connectors/sync'
   | '/seam/customer/v1/connectors/update'
-  | '/seam/customer/v1/connectors/ical/generate-config'
   | '/seam/customer/v1/connectors/ical/validate-config'
   | '/seam/customer/v1/customers/automations/update'
   | '/seam/customer/v1/customers/open_portal'
