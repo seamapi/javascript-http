@@ -171,24 +171,6 @@ export class SeamHttpSeamCustomerV1ConnectorsIcal {
     await clientSessions.get()
   }
 
-  generateConfig(
-    parameters?: SeamCustomerV1ConnectorsIcalGenerateConfigParameters,
-    options: SeamCustomerV1ConnectorsIcalGenerateConfigOptions = {},
-  ): SeamCustomerV1ConnectorsIcalGenerateConfigRequest {
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return new SeamHttpRequest(this, {
-      pathname: '/seam/customer/v1/connectors/ical/generate-config',
-      method: 'POST',
-      body: parameters,
-      responseKey: 'generated_config',
-      options,
-    })
-  }
-
   validateConfig(
     parameters?: SeamCustomerV1ConnectorsIcalValidateConfigParameters,
     options: SeamCustomerV1ConnectorsIcalValidateConfigOptions = {},
@@ -207,29 +189,6 @@ export class SeamHttpSeamCustomerV1ConnectorsIcal {
     })
   }
 }
-
-export type SeamCustomerV1ConnectorsIcalGenerateConfigParameters =
-  RouteRequestBody<'/seam/customer/v1/connectors/ical/generate-config'>
-
-/**
- * @deprecated Use SeamCustomerV1ConnectorsIcalGenerateConfigParameters instead.
- */
-export type SeamCustomerV1ConnectorsIcalGenerateConfigBody =
-  SeamCustomerV1ConnectorsIcalGenerateConfigParameters
-
-/**
- * @deprecated Use SeamCustomerV1ConnectorsIcalGenerateConfigRequest instead.
- */
-export type SeamCustomerV1ConnectorsIcalGenerateConfigResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/connectors/ical/generate-config'>>
->
-
-export type SeamCustomerV1ConnectorsIcalGenerateConfigRequest = SeamHttpRequest<
-  SeamCustomerV1ConnectorsIcalGenerateConfigResponse,
-  'generated_config'
->
-
-export interface SeamCustomerV1ConnectorsIcalGenerateConfigOptions {}
 
 export type SeamCustomerV1ConnectorsIcalValidateConfigParameters =
   RouteRequestBody<'/seam/customer/v1/connectors/ical/validate-config'>
