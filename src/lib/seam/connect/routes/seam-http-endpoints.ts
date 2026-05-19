@@ -648,6 +648,12 @@ import {
   SeamHttpSeamCustomerV1ConnectorCustomers,
 } from './seam/customer/v1/connector-customers/index.js'
 import {
+  type SeamCustomerV1ConnectorsExternalSitesListOptions,
+  type SeamCustomerV1ConnectorsExternalSitesListParameters,
+  type SeamCustomerV1ConnectorsExternalSitesListRequest,
+  SeamHttpSeamCustomerV1ConnectorsExternalSites,
+} from './seam/customer/v1/connectors/external-sites/index.js'
+import {
   type SeamCustomerV1ConnectorsIcalValidateConfigOptions,
   type SeamCustomerV1ConnectorsIcalValidateConfigParameters,
   type SeamCustomerV1ConnectorsIcalValidateConfigRequest,
@@ -3552,6 +3558,27 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/customer/v1/connectors/external_sites/list'(): (
+    parameters?: SeamCustomerV1ConnectorsExternalSitesListParameters,
+    options?: SeamCustomerV1ConnectorsExternalSitesListOptions,
+  ) => SeamCustomerV1ConnectorsExternalSitesListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1ConnectorsExternalSitesList(
+      ...args: Parameters<SeamHttpSeamCustomerV1ConnectorsExternalSites['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1ConnectorsExternalSites['list']> {
+      const seam = SeamHttpSeamCustomerV1ConnectorsExternalSites.fromClient(
+        client,
+        defaults,
+      )
+      return seam.list(...args)
+    }
+  }
+
   get '/seam/customer/v1/connectors/ical/validate-config'(): (
     parameters?: SeamCustomerV1ConnectorsIcalValidateConfigParameters,
     options?: SeamCustomerV1ConnectorsIcalValidateConfigOptions,
@@ -5221,6 +5248,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/connectors/authorize'
   | '/seam/customer/v1/connectors/connector_types'
   | '/seam/customer/v1/connectors/list'
+  | '/seam/customer/v1/connectors/external_sites/list'
   | '/seam/customer/v1/customers/automations/get'
   | '/seam/customer/v1/customers/list'
   | '/seam/customer/v1/customers/me'
