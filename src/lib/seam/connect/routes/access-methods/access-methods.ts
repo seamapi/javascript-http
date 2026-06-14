@@ -173,6 +173,19 @@ export class SeamHttpAccessMethods {
     return SeamHttpAccessMethodsUnmanaged.fromClient(this.client, this.defaults)
   }
 
+  assignCard(
+    parameters?: AccessMethodsAssignCardParameters,
+    options: AccessMethodsAssignCardOptions = {},
+  ): AccessMethodsAssignCardRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/access_methods/assign_card',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'action_attempt',
+      options,
+    })
+  }
+
   delete(
     parameters?: AccessMethodsDeleteParameters,
     options: AccessMethodsDeleteOptions = {},
@@ -237,7 +250,45 @@ export class SeamHttpAccessMethods {
       options,
     })
   }
+
+  unlockDoor(
+    parameters?: AccessMethodsUnlockDoorParameters,
+    options: AccessMethodsUnlockDoorOptions = {},
+  ): AccessMethodsUnlockDoorRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/access_methods/unlock_door',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'action_attempt',
+      options,
+    })
+  }
 }
+
+export type AccessMethodsAssignCardParameters =
+  RouteRequestBody<'/access_methods/assign_card'>
+
+/**
+ * @deprecated Use AccessMethodsAssignCardParameters instead.
+ */
+export type AccessMethodsAssignCardBody = AccessMethodsAssignCardParameters
+
+/**
+ * @deprecated Use AccessMethodsAssignCardRequest instead.
+ */
+export type AccessMethodsAssignCardResponse = SetNonNullable<
+  Required<RouteResponse<'/access_methods/assign_card'>>
+>
+
+export type AccessMethodsAssignCardRequest = SeamHttpRequest<
+  AccessMethodsAssignCardResponse,
+  'action_attempt'
+>
+
+export type AccessMethodsAssignCardOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
 
 export type AccessMethodsDeleteParameters =
   RouteRequestParams<'/access_methods/delete'>
@@ -347,3 +398,28 @@ export type AccessMethodsListRequest = SeamHttpRequest<
 >
 
 export interface AccessMethodsListOptions {}
+
+export type AccessMethodsUnlockDoorParameters =
+  RouteRequestBody<'/access_methods/unlock_door'>
+
+/**
+ * @deprecated Use AccessMethodsUnlockDoorParameters instead.
+ */
+export type AccessMethodsUnlockDoorBody = AccessMethodsUnlockDoorParameters
+
+/**
+ * @deprecated Use AccessMethodsUnlockDoorRequest instead.
+ */
+export type AccessMethodsUnlockDoorResponse = SetNonNullable<
+  Required<RouteResponse<'/access_methods/unlock_door'>>
+>
+
+export type AccessMethodsUnlockDoorRequest = SeamHttpRequest<
+  AccessMethodsUnlockDoorResponse,
+  'action_attempt'
+>
+
+export type AccessMethodsUnlockDoorOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
