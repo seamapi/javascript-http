@@ -129,6 +129,9 @@ import {
   SeamHttpAccessGrantsUnmanaged,
 } from './access-grants/unmanaged/index.js'
 import {
+  type AccessMethodsAssignCardOptions,
+  type AccessMethodsAssignCardParameters,
+  type AccessMethodsAssignCardRequest,
   type AccessMethodsDeleteOptions,
   type AccessMethodsDeleteParameters,
   type AccessMethodsDeleteRequest,
@@ -144,6 +147,9 @@ import {
   type AccessMethodsListOptions,
   type AccessMethodsListParameters,
   type AccessMethodsListRequest,
+  type AccessMethodsUnlockDoorOptions,
+  type AccessMethodsUnlockDoorParameters,
+  type AccessMethodsUnlockDoorRequest,
   SeamHttpAccessMethods,
 } from './access-methods/index.js'
 import {
@@ -252,6 +258,9 @@ import {
   type AcsEncodersScanCredentialOptions,
   type AcsEncodersScanCredentialParameters,
   type AcsEncodersScanCredentialRequest,
+  type AcsEncodersScanToAssignCredentialOptions,
+  type AcsEncodersScanToAssignCredentialParameters,
+  type AcsEncodersScanToAssignCredentialRequest,
   SeamHttpAcsEncoders,
 } from './acs/encoders/index.js'
 import {
@@ -647,6 +656,12 @@ import {
   type SeamCustomerV1ConnectorCustomersListRequest,
   SeamHttpSeamCustomerV1ConnectorCustomers,
 } from './seam/customer/v1/connector-customers/index.js'
+import {
+  type SeamCustomerV1ConnectorsExternalSitesListOptions,
+  type SeamCustomerV1ConnectorsExternalSitesListParameters,
+  type SeamCustomerV1ConnectorsExternalSitesListRequest,
+  SeamHttpSeamCustomerV1ConnectorsExternalSites,
+} from './seam/customer/v1/connectors/external-sites/index.js'
 import {
   type SeamCustomerV1ConnectorsIcalValidateConfigOptions,
   type SeamCustomerV1ConnectorsIcalValidateConfigParameters,
@@ -1532,6 +1547,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/access_methods/assign_card'(): (
+    parameters?: AccessMethodsAssignCardParameters,
+    options?: AccessMethodsAssignCardOptions,
+  ) => AccessMethodsAssignCardRequest {
+    const { client, defaults } = this
+    return function accessMethodsAssignCard(
+      ...args: Parameters<SeamHttpAccessMethods['assignCard']>
+    ): ReturnType<SeamHttpAccessMethods['assignCard']> {
+      const seam = SeamHttpAccessMethods.fromClient(client, defaults)
+      return seam.assignCard(...args)
+    }
+  }
+
   get '/access_methods/delete'(): (
     parameters?: AccessMethodsDeleteParameters,
     options?: AccessMethodsDeleteOptions,
@@ -1594,6 +1622,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAccessMethods['list']> {
       const seam = SeamHttpAccessMethods.fromClient(client, defaults)
       return seam.list(...args)
+    }
+  }
+
+  get '/access_methods/unlock_door'(): (
+    parameters?: AccessMethodsUnlockDoorParameters,
+    options?: AccessMethodsUnlockDoorOptions,
+  ) => AccessMethodsUnlockDoorRequest {
+    const { client, defaults } = this
+    return function accessMethodsUnlockDoor(
+      ...args: Parameters<SeamHttpAccessMethods['unlockDoor']>
+    ): ReturnType<SeamHttpAccessMethods['unlockDoor']> {
+      const seam = SeamHttpAccessMethods.fromClient(client, defaults)
+      return seam.unlockDoor(...args)
     }
   }
 
@@ -1998,6 +2039,19 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAcsEncoders['scanCredential']> {
       const seam = SeamHttpAcsEncoders.fromClient(client, defaults)
       return seam.scanCredential(...args)
+    }
+  }
+
+  get '/acs/encoders/scan_to_assign_credential'(): (
+    parameters?: AcsEncodersScanToAssignCredentialParameters,
+    options?: AcsEncodersScanToAssignCredentialOptions,
+  ) => AcsEncodersScanToAssignCredentialRequest {
+    const { client, defaults } = this
+    return function acsEncodersScanToAssignCredential(
+      ...args: Parameters<SeamHttpAcsEncoders['scanToAssignCredential']>
+    ): ReturnType<SeamHttpAcsEncoders['scanToAssignCredential']> {
+      const seam = SeamHttpAcsEncoders.fromClient(client, defaults)
+      return seam.scanToAssignCredential(...args)
     }
   }
 
@@ -3549,6 +3603,27 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpSeamCustomerV1Connectors['update']> {
       const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
       return seam.update(...args)
+    }
+  }
+
+  get '/seam/customer/v1/connectors/external_sites/list'(): (
+    parameters?: SeamCustomerV1ConnectorsExternalSitesListParameters,
+    options?: SeamCustomerV1ConnectorsExternalSitesListOptions,
+  ) => SeamCustomerV1ConnectorsExternalSitesListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamCustomerV1ConnectorsExternalSitesList(
+      ...args: Parameters<SeamHttpSeamCustomerV1ConnectorsExternalSites['list']>
+    ): ReturnType<SeamHttpSeamCustomerV1ConnectorsExternalSites['list']> {
+      const seam = SeamHttpSeamCustomerV1ConnectorsExternalSites.fromClient(
+        client,
+        defaults,
+      )
+      return seam.list(...args)
     }
   }
 
@@ -5221,6 +5296,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/customer/v1/connectors/authorize'
   | '/seam/customer/v1/connectors/connector_types'
   | '/seam/customer/v1/connectors/list'
+  | '/seam/customer/v1/connectors/external_sites/list'
   | '/seam/customer/v1/customers/automations/get'
   | '/seam/customer/v1/customers/list'
   | '/seam/customer/v1/customers/me'
@@ -5302,8 +5378,10 @@ export type SeamHttpEndpointMutationPaths =
   | '/access_grants/request_access_methods'
   | '/access_grants/update'
   | '/access_grants/unmanaged/update'
+  | '/access_methods/assign_card'
   | '/access_methods/delete'
   | '/access_methods/encode'
+  | '/access_methods/unlock_door'
   | '/acs/access_groups/add_user'
   | '/acs/access_groups/delete'
   | '/acs/access_groups/remove_user'
@@ -5316,6 +5394,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/acs/credentials/update'
   | '/acs/encoders/encode_credential'
   | '/acs/encoders/scan_credential'
+  | '/acs/encoders/scan_to_assign_credential'
   | '/acs/encoders/simulate/next_credential_encode_will_fail'
   | '/acs/encoders/simulate/next_credential_encode_will_succeed'
   | '/acs/encoders/simulate/next_credential_scan_will_fail'
