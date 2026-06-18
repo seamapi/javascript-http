@@ -224,6 +224,19 @@ export class SeamHttpAcsEncoders {
       options,
     })
   }
+
+  scanToAssignCredential(
+    parameters?: AcsEncodersScanToAssignCredentialParameters,
+    options: AcsEncodersScanToAssignCredentialOptions = {},
+  ): AcsEncodersScanToAssignCredentialRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/acs/encoders/scan_to_assign_credential',
+      method: 'POST',
+      body: parameters,
+      responseKey: 'action_attempt',
+      options,
+    })
+  }
 }
 
 export type AcsEncodersEncodeCredentialParameters =
@@ -315,6 +328,32 @@ export type AcsEncodersScanCredentialRequest = SeamHttpRequest<
 >
 
 export type AcsEncodersScanCredentialOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
+
+export type AcsEncodersScanToAssignCredentialParameters =
+  RouteRequestBody<'/acs/encoders/scan_to_assign_credential'>
+
+/**
+ * @deprecated Use AcsEncodersScanToAssignCredentialParameters instead.
+ */
+export type AcsEncodersScanToAssignCredentialBody =
+  AcsEncodersScanToAssignCredentialParameters
+
+/**
+ * @deprecated Use AcsEncodersScanToAssignCredentialRequest instead.
+ */
+export type AcsEncodersScanToAssignCredentialResponse = SetNonNullable<
+  Required<RouteResponse<'/acs/encoders/scan_to_assign_credential'>>
+>
+
+export type AcsEncodersScanToAssignCredentialRequest = SeamHttpRequest<
+  AcsEncodersScanToAssignCredentialResponse,
+  'action_attempt'
+>
+
+export type AcsEncodersScanToAssignCredentialOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
