@@ -13,5 +13,5 @@ test('SeamHttp: getOpenapiSchema returns data', async (t) => {
   nock(endpoint).get('/openapi.json').reply(200, openapi)
 
   const data = await getOpenapiSchema(endpoint)
-  t.truthy(data.info.title)
+  t.deepEqual(data, openapi)
 })
