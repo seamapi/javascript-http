@@ -648,6 +648,15 @@ import {
   SeamHttpSeamConsoleV1Timelines,
 } from './seam/console/v1/timelines/index.js'
 import {
+  type SeamConsoleV1WorkspaceFeatureFlagsListOptions,
+  type SeamConsoleV1WorkspaceFeatureFlagsListParameters,
+  type SeamConsoleV1WorkspaceFeatureFlagsListRequest,
+  type SeamConsoleV1WorkspaceFeatureFlagsUpdateOptions,
+  type SeamConsoleV1WorkspaceFeatureFlagsUpdateParameters,
+  type SeamConsoleV1WorkspaceFeatureFlagsUpdateRequest,
+  SeamHttpSeamConsoleV1WorkspaceFeatureFlags,
+} from './seam/console/v1/workspace/feature-flags/index.js'
+import {
   type SeamCustomerV1AccessGrantsListOptions,
   type SeamCustomerV1AccessGrantsListParameters,
   type SeamCustomerV1AccessGrantsListRequest,
@@ -3510,6 +3519,48 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/console/v1/workspace/feature_flags/list'(): (
+    parameters?: SeamConsoleV1WorkspaceFeatureFlagsListParameters,
+    options?: SeamConsoleV1WorkspaceFeatureFlagsListOptions,
+  ) => SeamConsoleV1WorkspaceFeatureFlagsListRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamConsoleV1WorkspaceFeatureFlagsList(
+      ...args: Parameters<SeamHttpSeamConsoleV1WorkspaceFeatureFlags['list']>
+    ): ReturnType<SeamHttpSeamConsoleV1WorkspaceFeatureFlags['list']> {
+      const seam = SeamHttpSeamConsoleV1WorkspaceFeatureFlags.fromClient(
+        client,
+        defaults,
+      )
+      return seam.list(...args)
+    }
+  }
+
+  get '/seam/console/v1/workspace/feature_flags/update'(): (
+    parameters?: SeamConsoleV1WorkspaceFeatureFlagsUpdateParameters,
+    options?: SeamConsoleV1WorkspaceFeatureFlagsUpdateOptions,
+  ) => SeamConsoleV1WorkspaceFeatureFlagsUpdateRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamConsoleV1WorkspaceFeatureFlagsUpdate(
+      ...args: Parameters<SeamHttpSeamConsoleV1WorkspaceFeatureFlags['update']>
+    ): ReturnType<SeamHttpSeamConsoleV1WorkspaceFeatureFlags['update']> {
+      const seam = SeamHttpSeamConsoleV1WorkspaceFeatureFlags.fromClient(
+        client,
+        defaults,
+      )
+      return seam.update(...args)
+    }
+  }
+
   get '/seam/customer/v1/access_grants/list'(): (
     parameters?: SeamCustomerV1AccessGrantsListParameters,
     options?: SeamCustomerV1AccessGrantsListOptions,
@@ -5491,6 +5542,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/seam/console/v1/lynx_migration/list_property_reservations'
   | '/seam/console/v1/sites/list'
   | '/seam/console/v1/timelines/get'
+  | '/seam/console/v1/workspace/feature_flags/list'
   | '/seam/customer/v1/access_grants/list'
   | '/seam/customer/v1/automation_runs/list'
   | '/seam/customer/v1/automations/get'
@@ -5653,6 +5705,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/seam/console/v1/sites/create'
   | '/seam/console/v1/sites/delete'
   | '/seam/console/v1/sites/update'
+  | '/seam/console/v1/workspace/feature_flags/update'
   | '/seam/customer/v1/access_grants/update'
   | '/seam/customer/v1/access_methods/encode'
   | '/seam/customer/v1/automations/delete'
