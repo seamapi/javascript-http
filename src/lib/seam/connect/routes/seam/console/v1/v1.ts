@@ -36,6 +36,7 @@ import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 import type { SetNonNullable } from 'lib/types.js'
 
+import { SeamHttpSeamConsoleV1LynxMigration } from './lynx-migration/index.js'
 import { SeamHttpSeamConsoleV1Sites } from './sites/index.js'
 import { SeamHttpSeamConsoleV1Timelines } from './timelines/index.js'
 
@@ -169,6 +170,13 @@ export class SeamHttpSeamConsoleV1 {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
+  }
+
+  get lynxMigration(): SeamHttpSeamConsoleV1LynxMigration {
+    return SeamHttpSeamConsoleV1LynxMigration.fromClient(
+      this.client,
+      this.defaults,
+    )
   }
 
   get sites(): SeamHttpSeamConsoleV1Sites {

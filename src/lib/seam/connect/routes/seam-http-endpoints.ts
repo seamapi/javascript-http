@@ -612,6 +612,21 @@ import {
   SeamHttpSeamConsoleV1,
 } from './seam/console/v1/index.js'
 import {
+  type SeamConsoleV1LynxMigrationGetPropertyMigrationStatusOptions,
+  type SeamConsoleV1LynxMigrationGetPropertyMigrationStatusParameters,
+  type SeamConsoleV1LynxMigrationGetPropertyMigrationStatusRequest,
+  type SeamConsoleV1LynxMigrationGetReservationMigrationStatusOptions,
+  type SeamConsoleV1LynxMigrationGetReservationMigrationStatusParameters,
+  type SeamConsoleV1LynxMigrationGetReservationMigrationStatusRequest,
+  type SeamConsoleV1LynxMigrationListPropertyReservationsOptions,
+  type SeamConsoleV1LynxMigrationListPropertyReservationsParameters,
+  type SeamConsoleV1LynxMigrationListPropertyReservationsRequest,
+  type SeamConsoleV1LynxMigrationMigratePropertyOptions,
+  type SeamConsoleV1LynxMigrationMigratePropertyParameters,
+  type SeamConsoleV1LynxMigrationMigratePropertyRequest,
+  SeamHttpSeamConsoleV1LynxMigration,
+} from './seam/console/v1/lynx-migration/index.js'
+import {
   type SeamConsoleV1SitesCreateOptions,
   type SeamConsoleV1SitesCreateParameters,
   type SeamConsoleV1SitesCreateRequest,
@@ -3309,6 +3324,102 @@ export class SeamHttpEndpoints {
     }
   }
 
+  get '/seam/console/v1/lynx_migration/get_property_migration_status'(): (
+    parameters?: SeamConsoleV1LynxMigrationGetPropertyMigrationStatusParameters,
+    options?: SeamConsoleV1LynxMigrationGetPropertyMigrationStatusOptions,
+  ) => SeamConsoleV1LynxMigrationGetPropertyMigrationStatusRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamConsoleV1LynxMigrationGetPropertyMigrationStatus(
+      ...args: Parameters<
+        SeamHttpSeamConsoleV1LynxMigration['getPropertyMigrationStatus']
+      >
+    ): ReturnType<
+      SeamHttpSeamConsoleV1LynxMigration['getPropertyMigrationStatus']
+    > {
+      const seam = SeamHttpSeamConsoleV1LynxMigration.fromClient(
+        client,
+        defaults,
+      )
+      return seam.getPropertyMigrationStatus(...args)
+    }
+  }
+
+  get '/seam/console/v1/lynx_migration/get_reservation_migration_status'(): (
+    parameters?: SeamConsoleV1LynxMigrationGetReservationMigrationStatusParameters,
+    options?: SeamConsoleV1LynxMigrationGetReservationMigrationStatusOptions,
+  ) => SeamConsoleV1LynxMigrationGetReservationMigrationStatusRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamConsoleV1LynxMigrationGetReservationMigrationStatus(
+      ...args: Parameters<
+        SeamHttpSeamConsoleV1LynxMigration['getReservationMigrationStatus']
+      >
+    ): ReturnType<
+      SeamHttpSeamConsoleV1LynxMigration['getReservationMigrationStatus']
+    > {
+      const seam = SeamHttpSeamConsoleV1LynxMigration.fromClient(
+        client,
+        defaults,
+      )
+      return seam.getReservationMigrationStatus(...args)
+    }
+  }
+
+  get '/seam/console/v1/lynx_migration/list_property_reservations'(): (
+    parameters?: SeamConsoleV1LynxMigrationListPropertyReservationsParameters,
+    options?: SeamConsoleV1LynxMigrationListPropertyReservationsOptions,
+  ) => SeamConsoleV1LynxMigrationListPropertyReservationsRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamConsoleV1LynxMigrationListPropertyReservations(
+      ...args: Parameters<
+        SeamHttpSeamConsoleV1LynxMigration['listPropertyReservations']
+      >
+    ): ReturnType<
+      SeamHttpSeamConsoleV1LynxMigration['listPropertyReservations']
+    > {
+      const seam = SeamHttpSeamConsoleV1LynxMigration.fromClient(
+        client,
+        defaults,
+      )
+      return seam.listPropertyReservations(...args)
+    }
+  }
+
+  get '/seam/console/v1/lynx_migration/migrate_property'(): (
+    parameters?: SeamConsoleV1LynxMigrationMigratePropertyParameters,
+    options?: SeamConsoleV1LynxMigrationMigratePropertyOptions,
+  ) => SeamConsoleV1LynxMigrationMigratePropertyRequest {
+    const { client, defaults } = this
+    if (!this.defaults.isUndocumentedApiEnabled) {
+      throw new Error(
+        'Cannot use undocumented API without isUndocumentedApiEnabled',
+      )
+    }
+    return function seamConsoleV1LynxMigrationMigrateProperty(
+      ...args: Parameters<SeamHttpSeamConsoleV1LynxMigration['migrateProperty']>
+    ): ReturnType<SeamHttpSeamConsoleV1LynxMigration['migrateProperty']> {
+      const seam = SeamHttpSeamConsoleV1LynxMigration.fromClient(
+        client,
+        defaults,
+      )
+      return seam.migrateProperty(...args)
+    }
+  }
+
   get '/seam/console/v1/sites/create'(): (
     parameters?: SeamConsoleV1SitesCreateParameters,
     options?: SeamConsoleV1SitesCreateOptions,
@@ -5375,6 +5486,9 @@ export type SeamHttpEndpointQueryPaths =
   | '/phones/get'
   | '/phones/list'
   | '/seam/console/v1/get_resource_locator'
+  | '/seam/console/v1/lynx_migration/get_property_migration_status'
+  | '/seam/console/v1/lynx_migration/get_reservation_migration_status'
+  | '/seam/console/v1/lynx_migration/list_property_reservations'
   | '/seam/console/v1/sites/list'
   | '/seam/console/v1/timelines/get'
   | '/seam/customer/v1/access_grants/list'
@@ -5535,6 +5649,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/noise_sensors/simulate/trigger_noise_threshold'
   | '/phones/deactivate'
   | '/phones/simulate/create_sandbox_phone'
+  | '/seam/console/v1/lynx_migration/migrate_property'
   | '/seam/console/v1/sites/create'
   | '/seam/console/v1/sites/delete'
   | '/seam/console/v1/sites/update'
