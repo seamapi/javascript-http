@@ -1229,7 +1229,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/create'(): (
-    parameters?: AccessCodesCreateParameters,
+    parameters: AccessCodesCreateParameters,
     options?: AccessCodesCreateOptions,
   ) => AccessCodesCreateRequest {
     const { client, defaults } = this
@@ -1242,7 +1242,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/create_multiple'(): (
-    parameters?: AccessCodesCreateMultipleParameters,
+    parameters: AccessCodesCreateMultipleParameters,
     options?: AccessCodesCreateMultipleOptions,
   ) => AccessCodesCreateMultipleRequest {
     const { client, defaults } = this
@@ -1255,7 +1255,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/delete'(): (
-    parameters?: AccessCodesDeleteParameters,
+    parameters: AccessCodesDeleteParameters,
     options?: AccessCodesDeleteOptions,
   ) => AccessCodesDeleteRequest {
     const { client, defaults } = this
@@ -1268,7 +1268,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/generate_code'(): (
-    parameters?: AccessCodesGenerateCodeParameters,
+    parameters: AccessCodesGenerateCodeParameters,
     options?: AccessCodesGenerateCodeOptions,
   ) => AccessCodesGenerateCodeRequest {
     const { client, defaults } = this
@@ -1294,7 +1294,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/get_timeline'(): (
-    parameters?: AccessCodesGetTimelineParameters,
+    parameters: AccessCodesGetTimelineParameters,
     options?: AccessCodesGetTimelineOptions,
   ) => AccessCodesGetTimelineRequest {
     const { client, defaults } = this
@@ -1325,7 +1325,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/pull_backup_access_code'(): (
-    parameters?: AccessCodesPullBackupAccessCodeParameters,
+    parameters: AccessCodesPullBackupAccessCodeParameters,
     options?: AccessCodesPullBackupAccessCodeOptions,
   ) => AccessCodesPullBackupAccessCodeRequest {
     const { client, defaults } = this
@@ -1338,7 +1338,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/report_device_constraints'(): (
-    parameters?: AccessCodesReportDeviceConstraintsParameters,
+    parameters: AccessCodesReportDeviceConstraintsParameters,
     options?: AccessCodesReportDeviceConstraintsOptions,
   ) => AccessCodesReportDeviceConstraintsRequest {
     const { client, defaults } = this
@@ -1351,7 +1351,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/update'(): (
-    parameters?: AccessCodesUpdateParameters,
+    parameters: AccessCodesUpdateParameters,
     options?: AccessCodesUpdateOptions,
   ) => AccessCodesUpdateRequest {
     const { client, defaults } = this
@@ -1364,7 +1364,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/update_multiple'(): (
-    parameters?: AccessCodesUpdateMultipleParameters,
+    parameters: AccessCodesUpdateMultipleParameters,
     options?: AccessCodesUpdateMultipleOptions,
   ) => AccessCodesUpdateMultipleRequest {
     const { client, defaults } = this
@@ -1377,7 +1377,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/simulate/create_unmanaged_access_code'(): (
-    parameters?: AccessCodesSimulateCreateUnmanagedAccessCodeParameters,
+    parameters: AccessCodesSimulateCreateUnmanagedAccessCodeParameters,
     options?: AccessCodesSimulateCreateUnmanagedAccessCodeOptions,
   ) => AccessCodesSimulateCreateUnmanagedAccessCodeRequest {
     const { client, defaults } = this
@@ -1392,7 +1392,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/unmanaged/convert_to_managed'(): (
-    parameters?: AccessCodesUnmanagedConvertToManagedParameters,
+    parameters: AccessCodesUnmanagedConvertToManagedParameters,
     options?: AccessCodesUnmanagedConvertToManagedOptions,
   ) => AccessCodesUnmanagedConvertToManagedRequest {
     const { client, defaults } = this
@@ -1405,7 +1405,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/unmanaged/delete'(): (
-    parameters?: AccessCodesUnmanagedDeleteParameters,
+    parameters: AccessCodesUnmanagedDeleteParameters,
     options?: AccessCodesUnmanagedDeleteOptions,
   ) => AccessCodesUnmanagedDeleteRequest {
     const { client, defaults } = this
@@ -1431,7 +1431,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/unmanaged/list'(): (
-    parameters?: AccessCodesUnmanagedListParameters,
+    parameters: AccessCodesUnmanagedListParameters,
     options?: AccessCodesUnmanagedListOptions,
   ) => AccessCodesUnmanagedListRequest {
     const { client, defaults } = this
@@ -1444,7 +1444,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_codes/unmanaged/update'(): (
-    parameters?: AccessCodesUnmanagedUpdateParameters,
+    parameters: AccessCodesUnmanagedUpdateParameters,
     options?: AccessCodesUnmanagedUpdateOptions,
   ) => AccessCodesUnmanagedUpdateRequest {
     const { client, defaults } = this
@@ -1457,7 +1457,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_grants/create'(): (
-    parameters?: AccessGrantsCreateParameters,
+    parameters: AccessGrantsCreateParameters,
     options?: AccessGrantsCreateOptions,
   ) => AccessGrantsCreateRequest {
     const { client, defaults } = this
@@ -1470,7 +1470,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_grants/delete'(): (
-    parameters?: AccessGrantsDeleteParameters,
+    parameters: AccessGrantsDeleteParameters,
     options?: AccessGrantsDeleteOptions,
   ) => AccessGrantsDeleteRequest {
     const { client, defaults } = this
@@ -1522,7 +1522,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_grants/request_access_methods'(): (
-    parameters?: AccessGrantsRequestAccessMethodsParameters,
+    parameters: AccessGrantsRequestAccessMethodsParameters,
     options?: AccessGrantsRequestAccessMethodsOptions,
   ) => AccessGrantsRequestAccessMethodsRequest {
     const { client, defaults } = this
@@ -1548,7 +1548,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_grants/unmanaged/get'(): (
-    parameters?: AccessGrantsUnmanagedGetParameters,
+    parameters: AccessGrantsUnmanagedGetParameters,
     options?: AccessGrantsUnmanagedGetOptions,
   ) => AccessGrantsUnmanagedGetRequest {
     const { client, defaults } = this
@@ -1574,7 +1574,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_grants/unmanaged/update'(): (
-    parameters?: AccessGrantsUnmanagedUpdateParameters,
+    parameters: AccessGrantsUnmanagedUpdateParameters,
     options?: AccessGrantsUnmanagedUpdateOptions,
   ) => AccessGrantsUnmanagedUpdateRequest {
     const { client, defaults } = this
@@ -1587,7 +1587,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_methods/assign_card'(): (
-    parameters?: AccessMethodsAssignCardParameters,
+    parameters: AccessMethodsAssignCardParameters,
     options?: AccessMethodsAssignCardOptions,
   ) => AccessMethodsAssignCardRequest {
     const { client, defaults } = this
@@ -1613,7 +1613,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_methods/encode'(): (
-    parameters?: AccessMethodsEncodeParameters,
+    parameters: AccessMethodsEncodeParameters,
     options?: AccessMethodsEncodeOptions,
   ) => AccessMethodsEncodeRequest {
     const { client, defaults } = this
@@ -1626,7 +1626,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_methods/get'(): (
-    parameters?: AccessMethodsGetParameters,
+    parameters: AccessMethodsGetParameters,
     options?: AccessMethodsGetOptions,
   ) => AccessMethodsGetRequest {
     const { client, defaults } = this
@@ -1639,7 +1639,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_methods/get_related'(): (
-    parameters?: AccessMethodsGetRelatedParameters,
+    parameters: AccessMethodsGetRelatedParameters,
     options?: AccessMethodsGetRelatedOptions,
   ) => AccessMethodsGetRelatedRequest {
     const { client, defaults } = this
@@ -1665,7 +1665,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_methods/unlock_door'(): (
-    parameters?: AccessMethodsUnlockDoorParameters,
+    parameters: AccessMethodsUnlockDoorParameters,
     options?: AccessMethodsUnlockDoorOptions,
   ) => AccessMethodsUnlockDoorRequest {
     const { client, defaults } = this
@@ -1678,7 +1678,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_methods/unmanaged/get'(): (
-    parameters?: AccessMethodsUnmanagedGetParameters,
+    parameters: AccessMethodsUnmanagedGetParameters,
     options?: AccessMethodsUnmanagedGetOptions,
   ) => AccessMethodsUnmanagedGetRequest {
     const { client, defaults } = this
@@ -1691,7 +1691,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/access_methods/unmanaged/list'(): (
-    parameters?: AccessMethodsUnmanagedListParameters,
+    parameters: AccessMethodsUnmanagedListParameters,
     options?: AccessMethodsUnmanagedListOptions,
   ) => AccessMethodsUnmanagedListRequest {
     const { client, defaults } = this
@@ -1704,7 +1704,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/access_groups/add_user'(): (
-    parameters?: AcsAccessGroupsAddUserParameters,
+    parameters: AcsAccessGroupsAddUserParameters,
     options?: AcsAccessGroupsAddUserOptions,
   ) => AcsAccessGroupsAddUserRequest {
     const { client, defaults } = this
@@ -1717,7 +1717,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/access_groups/delete'(): (
-    parameters?: AcsAccessGroupsDeleteParameters,
+    parameters: AcsAccessGroupsDeleteParameters,
     options?: AcsAccessGroupsDeleteOptions,
   ) => AcsAccessGroupsDeleteRequest {
     const { client, defaults } = this
@@ -1730,7 +1730,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/access_groups/get'(): (
-    parameters?: AcsAccessGroupsGetParameters,
+    parameters: AcsAccessGroupsGetParameters,
     options?: AcsAccessGroupsGetOptions,
   ) => AcsAccessGroupsGetRequest {
     const { client, defaults } = this
@@ -1756,7 +1756,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/access_groups/list_accessible_entrances'(): (
-    parameters?: AcsAccessGroupsListAccessibleEntrancesParameters,
+    parameters: AcsAccessGroupsListAccessibleEntrancesParameters,
     options?: AcsAccessGroupsListAccessibleEntrancesOptions,
   ) => AcsAccessGroupsListAccessibleEntrancesRequest {
     const { client, defaults } = this
@@ -1769,7 +1769,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/access_groups/list_users'(): (
-    parameters?: AcsAccessGroupsListUsersParameters,
+    parameters: AcsAccessGroupsListUsersParameters,
     options?: AcsAccessGroupsListUsersOptions,
   ) => AcsAccessGroupsListUsersRequest {
     const { client, defaults } = this
@@ -1782,7 +1782,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/access_groups/remove_user'(): (
-    parameters?: AcsAccessGroupsRemoveUserParameters,
+    parameters: AcsAccessGroupsRemoveUserParameters,
     options?: AcsAccessGroupsRemoveUserOptions,
   ) => AcsAccessGroupsRemoveUserRequest {
     const { client, defaults } = this
@@ -1795,7 +1795,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/access_groups/unmanaged/get'(): (
-    parameters?: AcsAccessGroupsUnmanagedGetParameters,
+    parameters: AcsAccessGroupsUnmanagedGetParameters,
     options?: AcsAccessGroupsUnmanagedGetOptions,
   ) => AcsAccessGroupsUnmanagedGetRequest {
     const { client, defaults } = this
@@ -1831,7 +1831,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credential_pools/list'(): (
-    parameters?: AcsCredentialPoolsListParameters,
+    parameters: AcsCredentialPoolsListParameters,
     options?: AcsCredentialPoolsListOptions,
   ) => AcsCredentialPoolsListRequest {
     const { client, defaults } = this
@@ -1849,7 +1849,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credential_provisioning_automations/launch'(): (
-    parameters?: AcsCredentialProvisioningAutomationsLaunchParameters,
+    parameters: AcsCredentialProvisioningAutomationsLaunchParameters,
     options?: AcsCredentialProvisioningAutomationsLaunchOptions,
   ) => AcsCredentialProvisioningAutomationsLaunchRequest {
     const { client, defaults } = this
@@ -1872,7 +1872,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credentials/assign'(): (
-    parameters?: AcsCredentialsAssignParameters,
+    parameters: AcsCredentialsAssignParameters,
     options?: AcsCredentialsAssignOptions,
   ) => AcsCredentialsAssignRequest {
     const { client, defaults } = this
@@ -1885,7 +1885,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credentials/create'(): (
-    parameters?: AcsCredentialsCreateParameters,
+    parameters: AcsCredentialsCreateParameters,
     options?: AcsCredentialsCreateOptions,
   ) => AcsCredentialsCreateRequest {
     const { client, defaults } = this
@@ -1898,7 +1898,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credentials/create_offline_code'(): (
-    parameters?: AcsCredentialsCreateOfflineCodeParameters,
+    parameters: AcsCredentialsCreateOfflineCodeParameters,
     options?: AcsCredentialsCreateOfflineCodeOptions,
   ) => AcsCredentialsCreateOfflineCodeRequest {
     const { client, defaults } = this
@@ -1916,7 +1916,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credentials/delete'(): (
-    parameters?: AcsCredentialsDeleteParameters,
+    parameters: AcsCredentialsDeleteParameters,
     options?: AcsCredentialsDeleteOptions,
   ) => AcsCredentialsDeleteRequest {
     const { client, defaults } = this
@@ -1929,7 +1929,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credentials/get'(): (
-    parameters?: AcsCredentialsGetParameters,
+    parameters: AcsCredentialsGetParameters,
     options?: AcsCredentialsGetOptions,
   ) => AcsCredentialsGetRequest {
     const { client, defaults } = this
@@ -1955,7 +1955,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credentials/list_accessible_entrances'(): (
-    parameters?: AcsCredentialsListAccessibleEntrancesParameters,
+    parameters: AcsCredentialsListAccessibleEntrancesParameters,
     options?: AcsCredentialsListAccessibleEntrancesOptions,
   ) => AcsCredentialsListAccessibleEntrancesRequest {
     const { client, defaults } = this
@@ -1968,7 +1968,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credentials/unassign'(): (
-    parameters?: AcsCredentialsUnassignParameters,
+    parameters: AcsCredentialsUnassignParameters,
     options?: AcsCredentialsUnassignOptions,
   ) => AcsCredentialsUnassignRequest {
     const { client, defaults } = this
@@ -1981,7 +1981,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credentials/update'(): (
-    parameters?: AcsCredentialsUpdateParameters,
+    parameters: AcsCredentialsUpdateParameters,
     options?: AcsCredentialsUpdateOptions,
   ) => AcsCredentialsUpdateRequest {
     const { client, defaults } = this
@@ -1994,7 +1994,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/credentials/unmanaged/get'(): (
-    parameters?: AcsCredentialsUnmanagedGetParameters,
+    parameters: AcsCredentialsUnmanagedGetParameters,
     options?: AcsCredentialsUnmanagedGetOptions,
   ) => AcsCredentialsUnmanagedGetRequest {
     const { client, defaults } = this
@@ -2030,7 +2030,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/encoders/encode_credential'(): (
-    parameters?: AcsEncodersEncodeCredentialParameters,
+    parameters: AcsEncodersEncodeCredentialParameters,
     options?: AcsEncodersEncodeCredentialOptions,
   ) => AcsEncodersEncodeCredentialRequest {
     const { client, defaults } = this
@@ -2043,7 +2043,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/encoders/get'(): (
-    parameters?: AcsEncodersGetParameters,
+    parameters: AcsEncodersGetParameters,
     options?: AcsEncodersGetOptions,
   ) => AcsEncodersGetRequest {
     const { client, defaults } = this
@@ -2069,7 +2069,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/encoders/scan_credential'(): (
-    parameters?: AcsEncodersScanCredentialParameters,
+    parameters: AcsEncodersScanCredentialParameters,
     options?: AcsEncodersScanCredentialOptions,
   ) => AcsEncodersScanCredentialRequest {
     const { client, defaults } = this
@@ -2082,7 +2082,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/encoders/scan_to_assign_credential'(): (
-    parameters?: AcsEncodersScanToAssignCredentialParameters,
+    parameters: AcsEncodersScanToAssignCredentialParameters,
     options?: AcsEncodersScanToAssignCredentialOptions,
   ) => AcsEncodersScanToAssignCredentialRequest {
     const { client, defaults } = this
@@ -2095,7 +2095,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/encoders/simulate/next_credential_encode_will_fail'(): (
-    parameters?: AcsEncodersSimulateNextCredentialEncodeWillFailParameters,
+    parameters: AcsEncodersSimulateNextCredentialEncodeWillFailParameters,
     options?: AcsEncodersSimulateNextCredentialEncodeWillFailOptions,
   ) => AcsEncodersSimulateNextCredentialEncodeWillFailRequest {
     const { client, defaults } = this
@@ -2110,7 +2110,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/encoders/simulate/next_credential_encode_will_succeed'(): (
-    parameters?: AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters,
+    parameters: AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters,
     options?: AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions,
   ) => AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest {
     const { client, defaults } = this
@@ -2127,7 +2127,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/encoders/simulate/next_credential_scan_will_fail'(): (
-    parameters?: AcsEncodersSimulateNextCredentialScanWillFailParameters,
+    parameters: AcsEncodersSimulateNextCredentialScanWillFailParameters,
     options?: AcsEncodersSimulateNextCredentialScanWillFailOptions,
   ) => AcsEncodersSimulateNextCredentialScanWillFailRequest {
     const { client, defaults } = this
@@ -2142,7 +2142,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/encoders/simulate/next_credential_scan_will_succeed'(): (
-    parameters?: AcsEncodersSimulateNextCredentialScanWillSucceedParameters,
+    parameters: AcsEncodersSimulateNextCredentialScanWillSucceedParameters,
     options?: AcsEncodersSimulateNextCredentialScanWillSucceedOptions,
   ) => AcsEncodersSimulateNextCredentialScanWillSucceedRequest {
     const { client, defaults } = this
@@ -2159,7 +2159,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/entrances/get'(): (
-    parameters?: AcsEntrancesGetParameters,
+    parameters: AcsEntrancesGetParameters,
     options?: AcsEntrancesGetOptions,
   ) => AcsEntrancesGetRequest {
     const { client, defaults } = this
@@ -2172,7 +2172,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/entrances/grant_access'(): (
-    parameters?: AcsEntrancesGrantAccessParameters,
+    parameters: AcsEntrancesGrantAccessParameters,
     options?: AcsEntrancesGrantAccessOptions,
   ) => AcsEntrancesGrantAccessRequest {
     const { client, defaults } = this
@@ -2198,7 +2198,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/entrances/list_credentials_with_access'(): (
-    parameters?: AcsEntrancesListCredentialsWithAccessParameters,
+    parameters: AcsEntrancesListCredentialsWithAccessParameters,
     options?: AcsEntrancesListCredentialsWithAccessOptions,
   ) => AcsEntrancesListCredentialsWithAccessRequest {
     const { client, defaults } = this
@@ -2211,7 +2211,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/entrances/unlock'(): (
-    parameters?: AcsEntrancesUnlockParameters,
+    parameters: AcsEntrancesUnlockParameters,
     options?: AcsEntrancesUnlockOptions,
   ) => AcsEntrancesUnlockRequest {
     const { client, defaults } = this
@@ -2224,7 +2224,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/systems/get'(): (
-    parameters?: AcsSystemsGetParameters,
+    parameters: AcsSystemsGetParameters,
     options?: AcsSystemsGetOptions,
   ) => AcsSystemsGetRequest {
     const { client, defaults } = this
@@ -2250,7 +2250,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/systems/list_compatible_credential_manager_acs_systems'(): (
-    parameters?: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
+    parameters: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
     options?: AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions,
   ) => AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest {
     const { client, defaults } = this
@@ -2267,7 +2267,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/systems/report_devices'(): (
-    parameters?: AcsSystemsReportDevicesParameters,
+    parameters: AcsSystemsReportDevicesParameters,
     options?: AcsSystemsReportDevicesOptions,
   ) => AcsSystemsReportDevicesRequest {
     const { client, defaults } = this
@@ -2280,7 +2280,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/users/add_to_access_group'(): (
-    parameters?: AcsUsersAddToAccessGroupParameters,
+    parameters: AcsUsersAddToAccessGroupParameters,
     options?: AcsUsersAddToAccessGroupOptions,
   ) => AcsUsersAddToAccessGroupRequest {
     const { client, defaults } = this
@@ -2293,7 +2293,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/users/create'(): (
-    parameters?: AcsUsersCreateParameters,
+    parameters: AcsUsersCreateParameters,
     options?: AcsUsersCreateOptions,
   ) => AcsUsersCreateRequest {
     const { client, defaults } = this
@@ -2358,7 +2358,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/users/remove_from_access_group'(): (
-    parameters?: AcsUsersRemoveFromAccessGroupParameters,
+    parameters: AcsUsersRemoveFromAccessGroupParameters,
     options?: AcsUsersRemoveFromAccessGroupOptions,
   ) => AcsUsersRemoveFromAccessGroupRequest {
     const { client, defaults } = this
@@ -2423,7 +2423,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/acs/users/unmanaged/get'(): (
-    parameters?: AcsUsersUnmanagedGetParameters,
+    parameters: AcsUsersUnmanagedGetParameters,
     options?: AcsUsersUnmanagedGetOptions,
   ) => AcsUsersUnmanagedGetRequest {
     const { client, defaults } = this
@@ -2459,7 +2459,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/action_attempts/get'(): (
-    parameters?: ActionAttemptsGetParameters,
+    parameters: ActionAttemptsGetParameters,
     options?: ActionAttemptsGetOptions,
   ) => ActionAttemptsGetRequest {
     const { client, defaults } = this
@@ -2485,7 +2485,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/bridges/get'(): (
-    parameters?: BridgesGetParameters,
+    parameters: BridgesGetParameters,
     options?: BridgesGetOptions,
   ) => BridgesGetRequest {
     const { client, defaults } = this
@@ -2534,7 +2534,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/client_sessions/delete'(): (
-    parameters?: ClientSessionsDeleteParameters,
+    parameters: ClientSessionsDeleteParameters,
     options?: ClientSessionsDeleteOptions,
   ) => ClientSessionsDeleteRequest {
     const { client, defaults } = this
@@ -2599,7 +2599,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/client_sessions/revoke'(): (
-    parameters?: ClientSessionsRevokeParameters,
+    parameters: ClientSessionsRevokeParameters,
     options?: ClientSessionsRevokeOptions,
   ) => ClientSessionsRevokeRequest {
     const { client, defaults } = this
@@ -2625,7 +2625,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/connect_webviews/delete'(): (
-    parameters?: ConnectWebviewsDeleteParameters,
+    parameters: ConnectWebviewsDeleteParameters,
     options?: ConnectWebviewsDeleteOptions,
   ) => ConnectWebviewsDeleteRequest {
     const { client, defaults } = this
@@ -2638,7 +2638,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/connect_webviews/get'(): (
-    parameters?: ConnectWebviewsGetParameters,
+    parameters: ConnectWebviewsGetParameters,
     options?: ConnectWebviewsGetOptions,
   ) => ConnectWebviewsGetRequest {
     const { client, defaults } = this
@@ -2664,7 +2664,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/connected_accounts/delete'(): (
-    parameters?: ConnectedAccountsDeleteParameters,
+    parameters: ConnectedAccountsDeleteParameters,
     options?: ConnectedAccountsDeleteOptions,
   ) => ConnectedAccountsDeleteRequest {
     const { client, defaults } = this
@@ -2703,7 +2703,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/connected_accounts/sync'(): (
-    parameters?: ConnectedAccountsSyncParameters,
+    parameters: ConnectedAccountsSyncParameters,
     options?: ConnectedAccountsSyncOptions,
   ) => ConnectedAccountsSyncRequest {
     const { client, defaults } = this
@@ -2716,7 +2716,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/connected_accounts/update'(): (
-    parameters?: ConnectedAccountsUpdateParameters,
+    parameters: ConnectedAccountsUpdateParameters,
     options?: ConnectedAccountsUpdateOptions,
   ) => ConnectedAccountsUpdateRequest {
     const { client, defaults } = this
@@ -2729,7 +2729,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/connected_accounts/simulate/disconnect'(): (
-    parameters?: ConnectedAccountsSimulateDisconnectParameters,
+    parameters: ConnectedAccountsSimulateDisconnectParameters,
     options?: ConnectedAccountsSimulateDisconnectOptions,
   ) => ConnectedAccountsSimulateDisconnectRequest {
     const { client, defaults } = this
@@ -2771,7 +2771,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/customers/push_data'(): (
-    parameters?: CustomersPushDataParameters,
+    parameters: CustomersPushDataParameters,
     options?: CustomersPushDataOptions,
   ) => CustomersPushDataRequest {
     const { client, defaults } = this
@@ -2784,7 +2784,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/customers/reservations/create_deep_link'(): (
-    parameters?: CustomersReservationsCreateDeepLinkParameters,
+    parameters: CustomersReservationsCreateDeepLinkParameters,
     options?: CustomersReservationsCreateDeepLinkOptions,
   ) => CustomersReservationsCreateDeepLinkRequest {
     const { client, defaults } = this
@@ -2802,7 +2802,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/devices/delete'(): (
-    parameters?: DevicesDeleteParameters,
+    parameters: DevicesDeleteParameters,
     options?: DevicesDeleteOptions,
   ) => DevicesDeleteRequest {
     const { client, defaults } = this
@@ -2859,7 +2859,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/devices/report_provider_metadata'(): (
-    parameters?: DevicesReportProviderMetadataParameters,
+    parameters: DevicesReportProviderMetadataParameters,
     options?: DevicesReportProviderMetadataOptions,
   ) => DevicesReportProviderMetadataRequest {
     const { client, defaults } = this
@@ -2872,7 +2872,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/devices/update'(): (
-    parameters?: DevicesUpdateParameters,
+    parameters: DevicesUpdateParameters,
     options?: DevicesUpdateOptions,
   ) => DevicesUpdateRequest {
     const { client, defaults } = this
@@ -2885,7 +2885,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/devices/simulate/connect'(): (
-    parameters?: DevicesSimulateConnectParameters,
+    parameters: DevicesSimulateConnectParameters,
     options?: DevicesSimulateConnectOptions,
   ) => DevicesSimulateConnectRequest {
     const { client, defaults } = this
@@ -2898,7 +2898,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/devices/simulate/connect_to_hub'(): (
-    parameters?: DevicesSimulateConnectToHubParameters,
+    parameters: DevicesSimulateConnectToHubParameters,
     options?: DevicesSimulateConnectToHubOptions,
   ) => DevicesSimulateConnectToHubRequest {
     const { client, defaults } = this
@@ -2911,7 +2911,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/devices/simulate/disconnect'(): (
-    parameters?: DevicesSimulateDisconnectParameters,
+    parameters: DevicesSimulateDisconnectParameters,
     options?: DevicesSimulateDisconnectOptions,
   ) => DevicesSimulateDisconnectRequest {
     const { client, defaults } = this
@@ -2924,7 +2924,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/devices/simulate/disconnect_from_hub'(): (
-    parameters?: DevicesSimulateDisconnectFromHubParameters,
+    parameters: DevicesSimulateDisconnectFromHubParameters,
     options?: DevicesSimulateDisconnectFromHubOptions,
   ) => DevicesSimulateDisconnectFromHubRequest {
     const { client, defaults } = this
@@ -2937,7 +2937,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/devices/simulate/paid_subscription'(): (
-    parameters?: DevicesSimulatePaidSubscriptionParameters,
+    parameters: DevicesSimulatePaidSubscriptionParameters,
     options?: DevicesSimulatePaidSubscriptionOptions,
   ) => DevicesSimulatePaidSubscriptionRequest {
     const { client, defaults } = this
@@ -2950,7 +2950,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/devices/simulate/remove'(): (
-    parameters?: DevicesSimulateRemoveParameters,
+    parameters: DevicesSimulateRemoveParameters,
     options?: DevicesSimulateRemoveOptions,
   ) => DevicesSimulateRemoveRequest {
     const { client, defaults } = this
@@ -2989,7 +2989,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/devices/unmanaged/update'(): (
-    parameters?: DevicesUnmanagedUpdateParameters,
+    parameters: DevicesUnmanagedUpdateParameters,
     options?: DevicesUnmanagedUpdateOptions,
   ) => DevicesUnmanagedUpdateRequest {
     const { client, defaults } = this
@@ -3028,7 +3028,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/instant_keys/delete'(): (
-    parameters?: InstantKeysDeleteParameters,
+    parameters: InstantKeysDeleteParameters,
     options?: InstantKeysDeleteOptions,
   ) => InstantKeysDeleteRequest {
     const { client, defaults } = this
@@ -3067,7 +3067,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/locks/configure_auto_lock'(): (
-    parameters?: LocksConfigureAutoLockParameters,
+    parameters: LocksConfigureAutoLockParameters,
     options?: LocksConfigureAutoLockOptions,
   ) => LocksConfigureAutoLockRequest {
     const { client, defaults } = this
@@ -3106,7 +3106,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/locks/lock_door'(): (
-    parameters?: LocksLockDoorParameters,
+    parameters: LocksLockDoorParameters,
     options?: LocksLockDoorOptions,
   ) => LocksLockDoorRequest {
     const { client, defaults } = this
@@ -3119,7 +3119,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/locks/unlock_door'(): (
-    parameters?: LocksUnlockDoorParameters,
+    parameters: LocksUnlockDoorParameters,
     options?: LocksUnlockDoorOptions,
   ) => LocksUnlockDoorRequest {
     const { client, defaults } = this
@@ -3132,7 +3132,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/locks/simulate/keypad_code_entry'(): (
-    parameters?: LocksSimulateKeypadCodeEntryParameters,
+    parameters: LocksSimulateKeypadCodeEntryParameters,
     options?: LocksSimulateKeypadCodeEntryOptions,
   ) => LocksSimulateKeypadCodeEntryRequest {
     const { client, defaults } = this
@@ -3145,7 +3145,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/locks/simulate/manual_lock_via_keypad'(): (
-    parameters?: LocksSimulateManualLockViaKeypadParameters,
+    parameters: LocksSimulateManualLockViaKeypadParameters,
     options?: LocksSimulateManualLockViaKeypadOptions,
   ) => LocksSimulateManualLockViaKeypadRequest {
     const { client, defaults } = this
@@ -3171,7 +3171,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/noise_sensors/noise_thresholds/create'(): (
-    parameters?: NoiseSensorsNoiseThresholdsCreateParameters,
+    parameters: NoiseSensorsNoiseThresholdsCreateParameters,
     options?: NoiseSensorsNoiseThresholdsCreateOptions,
   ) => NoiseSensorsNoiseThresholdsCreateRequest {
     const { client, defaults } = this
@@ -3187,7 +3187,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/noise_sensors/noise_thresholds/delete'(): (
-    parameters?: NoiseSensorsNoiseThresholdsDeleteParameters,
+    parameters: NoiseSensorsNoiseThresholdsDeleteParameters,
     options?: NoiseSensorsNoiseThresholdsDeleteOptions,
   ) => NoiseSensorsNoiseThresholdsDeleteRequest {
     const { client, defaults } = this
@@ -3203,7 +3203,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/noise_sensors/noise_thresholds/get'(): (
-    parameters?: NoiseSensorsNoiseThresholdsGetParameters,
+    parameters: NoiseSensorsNoiseThresholdsGetParameters,
     options?: NoiseSensorsNoiseThresholdsGetOptions,
   ) => NoiseSensorsNoiseThresholdsGetRequest {
     const { client, defaults } = this
@@ -3219,7 +3219,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/noise_sensors/noise_thresholds/list'(): (
-    parameters?: NoiseSensorsNoiseThresholdsListParameters,
+    parameters: NoiseSensorsNoiseThresholdsListParameters,
     options?: NoiseSensorsNoiseThresholdsListOptions,
   ) => NoiseSensorsNoiseThresholdsListRequest {
     const { client, defaults } = this
@@ -3235,7 +3235,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/noise_sensors/noise_thresholds/update'(): (
-    parameters?: NoiseSensorsNoiseThresholdsUpdateParameters,
+    parameters: NoiseSensorsNoiseThresholdsUpdateParameters,
     options?: NoiseSensorsNoiseThresholdsUpdateOptions,
   ) => NoiseSensorsNoiseThresholdsUpdateRequest {
     const { client, defaults } = this
@@ -3251,7 +3251,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/noise_sensors/simulate/trigger_noise_threshold'(): (
-    parameters?: NoiseSensorsSimulateTriggerNoiseThresholdParameters,
+    parameters: NoiseSensorsSimulateTriggerNoiseThresholdParameters,
     options?: NoiseSensorsSimulateTriggerNoiseThresholdOptions,
   ) => NoiseSensorsSimulateTriggerNoiseThresholdRequest {
     const { client, defaults } = this
@@ -3264,7 +3264,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/phones/deactivate'(): (
-    parameters?: PhonesDeactivateParameters,
+    parameters: PhonesDeactivateParameters,
     options?: PhonesDeactivateOptions,
   ) => PhonesDeactivateRequest {
     const { client, defaults } = this
@@ -3277,7 +3277,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/phones/get'(): (
-    parameters?: PhonesGetParameters,
+    parameters: PhonesGetParameters,
     options?: PhonesGetOptions,
   ) => PhonesGetRequest {
     const { client, defaults } = this
@@ -3303,7 +3303,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/phones/simulate/create_sandbox_phone'(): (
-    parameters?: PhonesSimulateCreateSandboxPhoneParameters,
+    parameters: PhonesSimulateCreateSandboxPhoneParameters,
     options?: PhonesSimulateCreateSandboxPhoneOptions,
   ) => PhonesSimulateCreateSandboxPhoneRequest {
     const { client, defaults } = this
@@ -3334,7 +3334,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/console/v1/lynx_migration/get_property_migration_status'(): (
-    parameters?: SeamConsoleV1LynxMigrationGetPropertyMigrationStatusParameters,
+    parameters: SeamConsoleV1LynxMigrationGetPropertyMigrationStatusParameters,
     options?: SeamConsoleV1LynxMigrationGetPropertyMigrationStatusOptions,
   ) => SeamConsoleV1LynxMigrationGetPropertyMigrationStatusRequest {
     const { client, defaults } = this
@@ -3359,7 +3359,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/console/v1/lynx_migration/get_reservation_migration_status'(): (
-    parameters?: SeamConsoleV1LynxMigrationGetReservationMigrationStatusParameters,
+    parameters: SeamConsoleV1LynxMigrationGetReservationMigrationStatusParameters,
     options?: SeamConsoleV1LynxMigrationGetReservationMigrationStatusOptions,
   ) => SeamConsoleV1LynxMigrationGetReservationMigrationStatusRequest {
     const { client, defaults } = this
@@ -3384,7 +3384,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/console/v1/lynx_migration/list_property_reservations'(): (
-    parameters?: SeamConsoleV1LynxMigrationListPropertyReservationsParameters,
+    parameters: SeamConsoleV1LynxMigrationListPropertyReservationsParameters,
     options?: SeamConsoleV1LynxMigrationListPropertyReservationsOptions,
   ) => SeamConsoleV1LynxMigrationListPropertyReservationsRequest {
     const { client, defaults } = this
@@ -3409,7 +3409,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/console/v1/lynx_migration/migrate_property'(): (
-    parameters?: SeamConsoleV1LynxMigrationMigratePropertyParameters,
+    parameters: SeamConsoleV1LynxMigrationMigratePropertyParameters,
     options?: SeamConsoleV1LynxMigrationMigratePropertyOptions,
   ) => SeamConsoleV1LynxMigrationMigratePropertyRequest {
     const { client, defaults } = this
@@ -3430,7 +3430,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/console/v1/sites/create'(): (
-    parameters?: SeamConsoleV1SitesCreateParameters,
+    parameters: SeamConsoleV1SitesCreateParameters,
     options?: SeamConsoleV1SitesCreateOptions,
   ) => SeamConsoleV1SitesCreateRequest {
     const { client, defaults } = this
@@ -3448,7 +3448,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/console/v1/sites/delete'(): (
-    parameters?: SeamConsoleV1SitesDeleteParameters,
+    parameters: SeamConsoleV1SitesDeleteParameters,
     options?: SeamConsoleV1SitesDeleteOptions,
   ) => SeamConsoleV1SitesDeleteRequest {
     const { client, defaults } = this
@@ -3484,7 +3484,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/console/v1/sites/update'(): (
-    parameters?: SeamConsoleV1SitesUpdateParameters,
+    parameters: SeamConsoleV1SitesUpdateParameters,
     options?: SeamConsoleV1SitesUpdateOptions,
   ) => SeamConsoleV1SitesUpdateRequest {
     const { client, defaults } = this
@@ -3502,7 +3502,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/console/v1/timelines/get'(): (
-    parameters?: SeamConsoleV1TimelinesGetParameters,
+    parameters: SeamConsoleV1TimelinesGetParameters,
     options?: SeamConsoleV1TimelinesGetOptions,
   ) => SeamConsoleV1TimelinesGetRequest {
     const { client, defaults } = this
@@ -3541,7 +3541,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/console/v1/workspace/feature_flags/update'(): (
-    parameters?: SeamConsoleV1WorkspaceFeatureFlagsUpdateParameters,
+    parameters: SeamConsoleV1WorkspaceFeatureFlagsUpdateParameters,
     options?: SeamConsoleV1WorkspaceFeatureFlagsUpdateOptions,
   ) => SeamConsoleV1WorkspaceFeatureFlagsUpdateRequest {
     const { client, defaults } = this
@@ -3583,7 +3583,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/access_grants/update'(): (
-    parameters?: SeamCustomerV1AccessGrantsUpdateParameters,
+    parameters: SeamCustomerV1AccessGrantsUpdateParameters,
     options?: SeamCustomerV1AccessGrantsUpdateOptions,
   ) => SeamCustomerV1AccessGrantsUpdateRequest {
     const { client, defaults } = this
@@ -3604,7 +3604,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/access_methods/encode'(): (
-    parameters?: SeamCustomerV1AccessMethodsEncodeParameters,
+    parameters: SeamCustomerV1AccessMethodsEncodeParameters,
     options?: SeamCustomerV1AccessMethodsEncodeOptions,
   ) => SeamCustomerV1AccessMethodsEncodeRequest {
     const { client, defaults } = this
@@ -3730,7 +3730,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/connectors/authorize'(): (
-    parameters?: SeamCustomerV1ConnectorsAuthorizeParameters,
+    parameters: SeamCustomerV1ConnectorsAuthorizeParameters,
     options?: SeamCustomerV1ConnectorsAuthorizeOptions,
   ) => SeamCustomerV1ConnectorsAuthorizeRequest {
     const { client, defaults } = this
@@ -3766,7 +3766,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/connectors/create'(): (
-    parameters?: SeamCustomerV1ConnectorsCreateParameters,
+    parameters: SeamCustomerV1ConnectorsCreateParameters,
     options?: SeamCustomerV1ConnectorsCreateOptions,
   ) => SeamCustomerV1ConnectorsCreateRequest {
     const { client, defaults } = this
@@ -3784,7 +3784,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/connectors/delete'(): (
-    parameters?: SeamCustomerV1ConnectorsDeleteParameters,
+    parameters: SeamCustomerV1ConnectorsDeleteParameters,
     options?: SeamCustomerV1ConnectorsDeleteOptions,
   ) => SeamCustomerV1ConnectorsDeleteRequest {
     const { client, defaults } = this
@@ -3820,7 +3820,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/connectors/sync'(): (
-    parameters?: SeamCustomerV1ConnectorsSyncParameters,
+    parameters: SeamCustomerV1ConnectorsSyncParameters,
     options?: SeamCustomerV1ConnectorsSyncOptions,
   ) => SeamCustomerV1ConnectorsSyncRequest {
     const { client, defaults } = this
@@ -3838,7 +3838,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/connectors/update'(): (
-    parameters?: SeamCustomerV1ConnectorsUpdateParameters,
+    parameters: SeamCustomerV1ConnectorsUpdateParameters,
     options?: SeamCustomerV1ConnectorsUpdateOptions,
   ) => SeamCustomerV1ConnectorsUpdateRequest {
     const { client, defaults } = this
@@ -3856,7 +3856,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/connectors/external_sites/list'(): (
-    parameters?: SeamCustomerV1ConnectorsExternalSitesListParameters,
+    parameters: SeamCustomerV1ConnectorsExternalSitesListParameters,
     options?: SeamCustomerV1ConnectorsExternalSitesListOptions,
   ) => SeamCustomerV1ConnectorsExternalSitesListRequest {
     const { client, defaults } = this
@@ -3877,7 +3877,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/connectors/ical/validate-config'(): (
-    parameters?: SeamCustomerV1ConnectorsIcalValidateConfigParameters,
+    parameters: SeamCustomerV1ConnectorsIcalValidateConfigParameters,
     options?: SeamCustomerV1ConnectorsIcalValidateConfigOptions,
   ) => SeamCustomerV1ConnectorsIcalValidateConfigRequest {
     const { client, defaults } = this
@@ -3978,7 +3978,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/customers/open_portal'(): (
-    parameters?: SeamCustomerV1CustomersOpenPortalParameters,
+    parameters: SeamCustomerV1CustomersOpenPortalParameters,
     options?: SeamCustomerV1CustomersOpenPortalOptions,
   ) => SeamCustomerV1CustomersOpenPortalRequest {
     const { client, defaults } = this
@@ -4014,7 +4014,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/events/list'(): (
-    parameters?: SeamCustomerV1EventsListParameters,
+    parameters: SeamCustomerV1EventsListParameters,
     options?: SeamCustomerV1EventsListOptions,
   ) => SeamCustomerV1EventsListRequest {
     const { client, defaults } = this
@@ -4032,7 +4032,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/portals/get'(): (
-    parameters?: SeamCustomerV1PortalsGetParameters,
+    parameters: SeamCustomerV1PortalsGetParameters,
     options?: SeamCustomerV1PortalsGetOptions,
   ) => SeamCustomerV1PortalsGetRequest {
     const { client, defaults } = this
@@ -4050,7 +4050,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/portals/update'(): (
-    parameters?: SeamCustomerV1PortalsUpdateParameters,
+    parameters: SeamCustomerV1PortalsUpdateParameters,
     options?: SeamCustomerV1PortalsUpdateOptions,
   ) => SeamCustomerV1PortalsUpdateRequest {
     const { client, defaults } = this
@@ -4110,7 +4110,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/reservations/list_access_grants'(): (
-    parameters?: SeamCustomerV1ReservationsListAccessGrantsParameters,
+    parameters: SeamCustomerV1ReservationsListAccessGrantsParameters,
     options?: SeamCustomerV1ReservationsListAccessGrantsOptions,
   ) => SeamCustomerV1ReservationsListAccessGrantsRequest {
     const { client, defaults } = this
@@ -4195,7 +4195,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/spaces/create'(): (
-    parameters?: SeamCustomerV1SpacesCreateParameters,
+    parameters: SeamCustomerV1SpacesCreateParameters,
     options?: SeamCustomerV1SpacesCreateOptions,
   ) => SeamCustomerV1SpacesCreateRequest {
     const { client, defaults } = this
@@ -4231,7 +4231,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/spaces/list_reservations'(): (
-    parameters?: SeamCustomerV1SpacesListReservationsParameters,
+    parameters: SeamCustomerV1SpacesListReservationsParameters,
     options?: SeamCustomerV1SpacesListReservationsOptions,
   ) => SeamCustomerV1SpacesListReservationsRequest {
     const { client, defaults } = this
@@ -4267,7 +4267,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/seam/customer/v1/staff_members/get'(): (
-    parameters?: SeamCustomerV1StaffMembersGetParameters,
+    parameters: SeamCustomerV1StaffMembersGetParameters,
     options?: SeamCustomerV1StaffMembersGetOptions,
   ) => SeamCustomerV1StaffMembersGetRequest {
     const { client, defaults } = this
@@ -4330,7 +4330,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/spaces/add_acs_entrances'(): (
-    parameters?: SpacesAddAcsEntrancesParameters,
+    parameters: SpacesAddAcsEntrancesParameters,
     options?: SpacesAddAcsEntrancesOptions,
   ) => SpacesAddAcsEntrancesRequest {
     const { client, defaults } = this
@@ -4343,7 +4343,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/spaces/add_connected_account'(): (
-    parameters?: SpacesAddConnectedAccountParameters,
+    parameters: SpacesAddConnectedAccountParameters,
     options?: SpacesAddConnectedAccountOptions,
   ) => SpacesAddConnectedAccountRequest {
     const { client, defaults } = this
@@ -4356,7 +4356,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/spaces/add_devices'(): (
-    parameters?: SpacesAddDevicesParameters,
+    parameters: SpacesAddDevicesParameters,
     options?: SpacesAddDevicesOptions,
   ) => SpacesAddDevicesRequest {
     const { client, defaults } = this
@@ -4369,7 +4369,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/spaces/create'(): (
-    parameters?: SpacesCreateParameters,
+    parameters: SpacesCreateParameters,
     options?: SpacesCreateOptions,
   ) => SpacesCreateRequest {
     const { client, defaults } = this
@@ -4382,7 +4382,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/spaces/delete'(): (
-    parameters?: SpacesDeleteParameters,
+    parameters: SpacesDeleteParameters,
     options?: SpacesDeleteOptions,
   ) => SpacesDeleteRequest {
     const { client, defaults } = this
@@ -4434,7 +4434,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/spaces/remove_acs_entrances'(): (
-    parameters?: SpacesRemoveAcsEntrancesParameters,
+    parameters: SpacesRemoveAcsEntrancesParameters,
     options?: SpacesRemoveAcsEntrancesOptions,
   ) => SpacesRemoveAcsEntrancesRequest {
     const { client, defaults } = this
@@ -4447,7 +4447,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/spaces/remove_connected_account'(): (
-    parameters?: SpacesRemoveConnectedAccountParameters,
+    parameters: SpacesRemoveConnectedAccountParameters,
     options?: SpacesRemoveConnectedAccountOptions,
   ) => SpacesRemoveConnectedAccountRequest {
     const { client, defaults } = this
@@ -4460,7 +4460,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/spaces/remove_devices'(): (
-    parameters?: SpacesRemoveDevicesParameters,
+    parameters: SpacesRemoveDevicesParameters,
     options?: SpacesRemoveDevicesOptions,
   ) => SpacesRemoveDevicesRequest {
     const { client, defaults } = this
@@ -4486,7 +4486,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/activate_climate_preset'(): (
-    parameters?: ThermostatsActivateClimatePresetParameters,
+    parameters: ThermostatsActivateClimatePresetParameters,
     options?: ThermostatsActivateClimatePresetOptions,
   ) => ThermostatsActivateClimatePresetRequest {
     const { client, defaults } = this
@@ -4499,7 +4499,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/cool'(): (
-    parameters?: ThermostatsCoolParameters,
+    parameters: ThermostatsCoolParameters,
     options?: ThermostatsCoolOptions,
   ) => ThermostatsCoolRequest {
     const { client, defaults } = this
@@ -4512,7 +4512,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/create_climate_preset'(): (
-    parameters?: ThermostatsCreateClimatePresetParameters,
+    parameters: ThermostatsCreateClimatePresetParameters,
     options?: ThermostatsCreateClimatePresetOptions,
   ) => ThermostatsCreateClimatePresetRequest {
     const { client, defaults } = this
@@ -4525,7 +4525,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/delete_climate_preset'(): (
-    parameters?: ThermostatsDeleteClimatePresetParameters,
+    parameters: ThermostatsDeleteClimatePresetParameters,
     options?: ThermostatsDeleteClimatePresetOptions,
   ) => ThermostatsDeleteClimatePresetRequest {
     const { client, defaults } = this
@@ -4556,7 +4556,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/heat'(): (
-    parameters?: ThermostatsHeatParameters,
+    parameters: ThermostatsHeatParameters,
     options?: ThermostatsHeatOptions,
   ) => ThermostatsHeatRequest {
     const { client, defaults } = this
@@ -4569,7 +4569,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/heat_cool'(): (
-    parameters?: ThermostatsHeatCoolParameters,
+    parameters: ThermostatsHeatCoolParameters,
     options?: ThermostatsHeatCoolOptions,
   ) => ThermostatsHeatCoolRequest {
     const { client, defaults } = this
@@ -4595,7 +4595,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/off'(): (
-    parameters?: ThermostatsOffParameters,
+    parameters: ThermostatsOffParameters,
     options?: ThermostatsOffOptions,
   ) => ThermostatsOffRequest {
     const { client, defaults } = this
@@ -4608,7 +4608,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/set_fallback_climate_preset'(): (
-    parameters?: ThermostatsSetFallbackClimatePresetParameters,
+    parameters: ThermostatsSetFallbackClimatePresetParameters,
     options?: ThermostatsSetFallbackClimatePresetOptions,
   ) => ThermostatsSetFallbackClimatePresetRequest {
     const { client, defaults } = this
@@ -4621,7 +4621,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/set_fan_mode'(): (
-    parameters?: ThermostatsSetFanModeParameters,
+    parameters: ThermostatsSetFanModeParameters,
     options?: ThermostatsSetFanModeOptions,
   ) => ThermostatsSetFanModeRequest {
     const { client, defaults } = this
@@ -4634,7 +4634,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/set_hvac_mode'(): (
-    parameters?: ThermostatsSetHvacModeParameters,
+    parameters: ThermostatsSetHvacModeParameters,
     options?: ThermostatsSetHvacModeOptions,
   ) => ThermostatsSetHvacModeRequest {
     const { client, defaults } = this
@@ -4647,7 +4647,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/set_temperature_threshold'(): (
-    parameters?: ThermostatsSetTemperatureThresholdParameters,
+    parameters: ThermostatsSetTemperatureThresholdParameters,
     options?: ThermostatsSetTemperatureThresholdOptions,
   ) => ThermostatsSetTemperatureThresholdRequest {
     const { client, defaults } = this
@@ -4660,7 +4660,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/update_climate_preset'(): (
-    parameters?: ThermostatsUpdateClimatePresetParameters,
+    parameters: ThermostatsUpdateClimatePresetParameters,
     options?: ThermostatsUpdateClimatePresetOptions,
   ) => ThermostatsUpdateClimatePresetRequest {
     const { client, defaults } = this
@@ -4673,7 +4673,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/update_weekly_program'(): (
-    parameters?: ThermostatsUpdateWeeklyProgramParameters,
+    parameters: ThermostatsUpdateWeeklyProgramParameters,
     options?: ThermostatsUpdateWeeklyProgramOptions,
   ) => ThermostatsUpdateWeeklyProgramRequest {
     const { client, defaults } = this
@@ -4686,7 +4686,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/daily_programs/create'(): (
-    parameters?: ThermostatsDailyProgramsCreateParameters,
+    parameters: ThermostatsDailyProgramsCreateParameters,
     options?: ThermostatsDailyProgramsCreateOptions,
   ) => ThermostatsDailyProgramsCreateRequest {
     const { client, defaults } = this
@@ -4699,7 +4699,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/daily_programs/delete'(): (
-    parameters?: ThermostatsDailyProgramsDeleteParameters,
+    parameters: ThermostatsDailyProgramsDeleteParameters,
     options?: ThermostatsDailyProgramsDeleteOptions,
   ) => ThermostatsDailyProgramsDeleteRequest {
     const { client, defaults } = this
@@ -4712,7 +4712,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/daily_programs/update'(): (
-    parameters?: ThermostatsDailyProgramsUpdateParameters,
+    parameters: ThermostatsDailyProgramsUpdateParameters,
     options?: ThermostatsDailyProgramsUpdateOptions,
   ) => ThermostatsDailyProgramsUpdateRequest {
     const { client, defaults } = this
@@ -4725,7 +4725,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/schedules/create'(): (
-    parameters?: ThermostatsSchedulesCreateParameters,
+    parameters: ThermostatsSchedulesCreateParameters,
     options?: ThermostatsSchedulesCreateOptions,
   ) => ThermostatsSchedulesCreateRequest {
     const { client, defaults } = this
@@ -4738,7 +4738,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/schedules/delete'(): (
-    parameters?: ThermostatsSchedulesDeleteParameters,
+    parameters: ThermostatsSchedulesDeleteParameters,
     options?: ThermostatsSchedulesDeleteOptions,
   ) => ThermostatsSchedulesDeleteRequest {
     const { client, defaults } = this
@@ -4751,7 +4751,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/schedules/get'(): (
-    parameters?: ThermostatsSchedulesGetParameters,
+    parameters: ThermostatsSchedulesGetParameters,
     options?: ThermostatsSchedulesGetOptions,
   ) => ThermostatsSchedulesGetRequest {
     const { client, defaults } = this
@@ -4764,7 +4764,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/schedules/list'(): (
-    parameters?: ThermostatsSchedulesListParameters,
+    parameters: ThermostatsSchedulesListParameters,
     options?: ThermostatsSchedulesListOptions,
   ) => ThermostatsSchedulesListRequest {
     const { client, defaults } = this
@@ -4777,7 +4777,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/schedules/update'(): (
-    parameters?: ThermostatsSchedulesUpdateParameters,
+    parameters: ThermostatsSchedulesUpdateParameters,
     options?: ThermostatsSchedulesUpdateOptions,
   ) => ThermostatsSchedulesUpdateRequest {
     const { client, defaults } = this
@@ -4790,7 +4790,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/simulate/hvac_mode_adjusted'(): (
-    parameters?: ThermostatsSimulateHvacModeAdjustedParameters,
+    parameters: ThermostatsSimulateHvacModeAdjustedParameters,
     options?: ThermostatsSimulateHvacModeAdjustedOptions,
   ) => ThermostatsSimulateHvacModeAdjustedRequest {
     const { client, defaults } = this
@@ -4803,7 +4803,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/thermostats/simulate/temperature_reached'(): (
-    parameters?: ThermostatsSimulateTemperatureReachedParameters,
+    parameters: ThermostatsSimulateTemperatureReachedParameters,
     options?: ThermostatsSimulateTemperatureReachedOptions,
   ) => ThermostatsSimulateTemperatureReachedRequest {
     const { client, defaults } = this
@@ -4816,7 +4816,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/unstable_partner/building_blocks/connect_accounts'(): (
-    parameters?: UnstablePartnerBuildingBlocksConnectAccountsParameters,
+    parameters: UnstablePartnerBuildingBlocksConnectAccountsParameters,
     options?: UnstablePartnerBuildingBlocksConnectAccountsOptions,
   ) => UnstablePartnerBuildingBlocksConnectAccountsRequest {
     const { client, defaults } = this
@@ -4839,7 +4839,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/unstable_partner/building_blocks/generate_magic_link'(): (
-    parameters?: UnstablePartnerBuildingBlocksGenerateMagicLinkParameters,
+    parameters: UnstablePartnerBuildingBlocksGenerateMagicLinkParameters,
     options?: UnstablePartnerBuildingBlocksGenerateMagicLinkOptions,
   ) => UnstablePartnerBuildingBlocksGenerateMagicLinkRequest {
     const { client, defaults } = this
@@ -4862,7 +4862,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/unstable_partner/building_blocks/manage_devices'(): (
-    parameters?: UnstablePartnerBuildingBlocksManageDevicesParameters,
+    parameters: UnstablePartnerBuildingBlocksManageDevicesParameters,
     options?: UnstablePartnerBuildingBlocksManageDevicesOptions,
   ) => UnstablePartnerBuildingBlocksManageDevicesRequest {
     const { client, defaults } = this
@@ -4885,7 +4885,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/unstable_partner/building_blocks/organize_spaces'(): (
-    parameters?: UnstablePartnerBuildingBlocksOrganizeSpacesParameters,
+    parameters: UnstablePartnerBuildingBlocksOrganizeSpacesParameters,
     options?: UnstablePartnerBuildingBlocksOrganizeSpacesOptions,
   ) => UnstablePartnerBuildingBlocksOrganizeSpacesRequest {
     const { client, defaults } = this
@@ -4908,7 +4908,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/add_acs_user'(): (
-    parameters?: UserIdentitiesAddAcsUserParameters,
+    parameters: UserIdentitiesAddAcsUserParameters,
     options?: UserIdentitiesAddAcsUserOptions,
   ) => UserIdentitiesAddAcsUserRequest {
     const { client, defaults } = this
@@ -4934,7 +4934,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/delete'(): (
-    parameters?: UserIdentitiesDeleteParameters,
+    parameters: UserIdentitiesDeleteParameters,
     options?: UserIdentitiesDeleteOptions,
   ) => UserIdentitiesDeleteRequest {
     const { client, defaults } = this
@@ -4947,7 +4947,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/generate_instant_key'(): (
-    parameters?: UserIdentitiesGenerateInstantKeyParameters,
+    parameters: UserIdentitiesGenerateInstantKeyParameters,
     options?: UserIdentitiesGenerateInstantKeyOptions,
   ) => UserIdentitiesGenerateInstantKeyRequest {
     const { client, defaults } = this
@@ -4973,7 +4973,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/grant_access_to_device'(): (
-    parameters?: UserIdentitiesGrantAccessToDeviceParameters,
+    parameters: UserIdentitiesGrantAccessToDeviceParameters,
     options?: UserIdentitiesGrantAccessToDeviceOptions,
   ) => UserIdentitiesGrantAccessToDeviceRequest {
     const { client, defaults } = this
@@ -4999,7 +4999,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/list_accessible_devices'(): (
-    parameters?: UserIdentitiesListAccessibleDevicesParameters,
+    parameters: UserIdentitiesListAccessibleDevicesParameters,
     options?: UserIdentitiesListAccessibleDevicesOptions,
   ) => UserIdentitiesListAccessibleDevicesRequest {
     const { client, defaults } = this
@@ -5012,7 +5012,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/list_accessible_entrances'(): (
-    parameters?: UserIdentitiesListAccessibleEntrancesParameters,
+    parameters: UserIdentitiesListAccessibleEntrancesParameters,
     options?: UserIdentitiesListAccessibleEntrancesOptions,
   ) => UserIdentitiesListAccessibleEntrancesRequest {
     const { client, defaults } = this
@@ -5025,7 +5025,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/list_acs_systems'(): (
-    parameters?: UserIdentitiesListAcsSystemsParameters,
+    parameters: UserIdentitiesListAcsSystemsParameters,
     options?: UserIdentitiesListAcsSystemsOptions,
   ) => UserIdentitiesListAcsSystemsRequest {
     const { client, defaults } = this
@@ -5038,7 +5038,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/list_acs_users'(): (
-    parameters?: UserIdentitiesListAcsUsersParameters,
+    parameters: UserIdentitiesListAcsUsersParameters,
     options?: UserIdentitiesListAcsUsersOptions,
   ) => UserIdentitiesListAcsUsersRequest {
     const { client, defaults } = this
@@ -5051,7 +5051,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/remove_acs_user'(): (
-    parameters?: UserIdentitiesRemoveAcsUserParameters,
+    parameters: UserIdentitiesRemoveAcsUserParameters,
     options?: UserIdentitiesRemoveAcsUserOptions,
   ) => UserIdentitiesRemoveAcsUserRequest {
     const { client, defaults } = this
@@ -5064,7 +5064,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/revoke_access_to_device'(): (
-    parameters?: UserIdentitiesRevokeAccessToDeviceParameters,
+    parameters: UserIdentitiesRevokeAccessToDeviceParameters,
     options?: UserIdentitiesRevokeAccessToDeviceOptions,
   ) => UserIdentitiesRevokeAccessToDeviceRequest {
     const { client, defaults } = this
@@ -5077,7 +5077,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/update'(): (
-    parameters?: UserIdentitiesUpdateParameters,
+    parameters: UserIdentitiesUpdateParameters,
     options?: UserIdentitiesUpdateOptions,
   ) => UserIdentitiesUpdateRequest {
     const { client, defaults } = this
@@ -5090,7 +5090,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/enrollment_automations/delete'(): (
-    parameters?: UserIdentitiesEnrollmentAutomationsDeleteParameters,
+    parameters: UserIdentitiesEnrollmentAutomationsDeleteParameters,
     options?: UserIdentitiesEnrollmentAutomationsDeleteOptions,
   ) => UserIdentitiesEnrollmentAutomationsDeleteRequest {
     const { client, defaults } = this
@@ -5111,7 +5111,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/enrollment_automations/get'(): (
-    parameters?: UserIdentitiesEnrollmentAutomationsGetParameters,
+    parameters: UserIdentitiesEnrollmentAutomationsGetParameters,
     options?: UserIdentitiesEnrollmentAutomationsGetOptions,
   ) => UserIdentitiesEnrollmentAutomationsGetRequest {
     const { client, defaults } = this
@@ -5132,7 +5132,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/enrollment_automations/launch'(): (
-    parameters?: UserIdentitiesEnrollmentAutomationsLaunchParameters,
+    parameters: UserIdentitiesEnrollmentAutomationsLaunchParameters,
     options?: UserIdentitiesEnrollmentAutomationsLaunchOptions,
   ) => UserIdentitiesEnrollmentAutomationsLaunchRequest {
     const { client, defaults } = this
@@ -5153,7 +5153,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/enrollment_automations/list'(): (
-    parameters?: UserIdentitiesEnrollmentAutomationsListParameters,
+    parameters: UserIdentitiesEnrollmentAutomationsListParameters,
     options?: UserIdentitiesEnrollmentAutomationsListOptions,
   ) => UserIdentitiesEnrollmentAutomationsListRequest {
     const { client, defaults } = this
@@ -5174,7 +5174,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/unmanaged/get'(): (
-    parameters?: UserIdentitiesUnmanagedGetParameters,
+    parameters: UserIdentitiesUnmanagedGetParameters,
     options?: UserIdentitiesUnmanagedGetOptions,
   ) => UserIdentitiesUnmanagedGetRequest {
     const { client, defaults } = this
@@ -5200,7 +5200,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/user_identities/unmanaged/update'(): (
-    parameters?: UserIdentitiesUnmanagedUpdateParameters,
+    parameters: UserIdentitiesUnmanagedUpdateParameters,
     options?: UserIdentitiesUnmanagedUpdateOptions,
   ) => UserIdentitiesUnmanagedUpdateRequest {
     const { client, defaults } = this
@@ -5213,7 +5213,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/webhooks/create'(): (
-    parameters?: WebhooksCreateParameters,
+    parameters: WebhooksCreateParameters,
     options?: WebhooksCreateOptions,
   ) => WebhooksCreateRequest {
     const { client, defaults } = this
@@ -5226,7 +5226,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/webhooks/delete'(): (
-    parameters?: WebhooksDeleteParameters,
+    parameters: WebhooksDeleteParameters,
     options?: WebhooksDeleteOptions,
   ) => WebhooksDeleteRequest {
     const { client, defaults } = this
@@ -5239,7 +5239,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/webhooks/get'(): (
-    parameters?: WebhooksGetParameters,
+    parameters: WebhooksGetParameters,
     options?: WebhooksGetOptions,
   ) => WebhooksGetRequest {
     const { client, defaults } = this
@@ -5265,7 +5265,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/webhooks/update'(): (
-    parameters?: WebhooksUpdateParameters,
+    parameters: WebhooksUpdateParameters,
     options?: WebhooksUpdateOptions,
   ) => WebhooksUpdateRequest {
     const { client, defaults } = this
@@ -5278,7 +5278,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/workspaces/create'(): (
-    parameters?: WorkspacesCreateParameters,
+    parameters: WorkspacesCreateParameters,
     options?: WorkspacesCreateOptions,
   ) => WorkspacesCreateRequest {
     const { client, defaults } = this
@@ -5291,7 +5291,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/workspaces/find_anything'(): (
-    parameters?: WorkspacesFindAnythingParameters,
+    parameters: WorkspacesFindAnythingParameters,
     options?: WorkspacesFindAnythingOptions,
   ) => WorkspacesFindAnythingRequest {
     const { client, defaults } = this
@@ -5382,7 +5382,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/workspaces/customization_profiles/get'(): (
-    parameters?: WorkspacesCustomizationProfilesGetParameters,
+    parameters: WorkspacesCustomizationProfilesGetParameters,
     options?: WorkspacesCustomizationProfilesGetOptions,
   ) => WorkspacesCustomizationProfilesGetRequest {
     const { client, defaults } = this
@@ -5424,7 +5424,7 @@ export class SeamHttpEndpoints {
   }
 
   get '/workspaces/customization_profiles/update'(): (
-    parameters?: WorkspacesCustomizationProfilesUpdateParameters,
+    parameters: WorkspacesCustomizationProfilesUpdateParameters,
     options?: WorkspacesCustomizationProfilesUpdateOptions,
   ) => WorkspacesCustomizationProfilesUpdateRequest {
     const { client, defaults } = this

@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpNoiseSensorsNoiseThresholds } from './noise-thresholds/index.js'
 import { SeamHttpNoiseSensorsSimulate } from './simulate/index.js'
@@ -201,9 +200,7 @@ export type NoiseSensorsListParams = NoiseSensorsListParameters
 /**
  * @deprecated Use NoiseSensorsListRequest instead.
  */
-export type NoiseSensorsListResponse = SetNonNullable<
-  Required<RouteResponse<'/noise_sensors/list'>>
->
+export type NoiseSensorsListResponse = RouteResponse<'/noise_sensors/list'>
 
 export type NoiseSensorsListRequest = SeamHttpRequest<
   NoiseSensorsListResponse,

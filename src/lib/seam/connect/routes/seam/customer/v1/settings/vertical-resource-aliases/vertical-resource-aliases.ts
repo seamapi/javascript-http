@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1SettingsVerticalResourceAliases {
   client: Client
@@ -213,11 +212,7 @@ export type SeamCustomerV1SettingsVerticalResourceAliasesGetParams =
  * @deprecated Use SeamCustomerV1SettingsVerticalResourceAliasesGetRequest instead.
  */
 export type SeamCustomerV1SettingsVerticalResourceAliasesGetResponse =
-  SetNonNullable<
-    Required<
-      RouteResponse<'/seam/customer/v1/settings/vertical_resource_aliases/get'>
-    >
-  >
+  RouteResponse<'/seam/customer/v1/settings/vertical_resource_aliases/get'>
 
 export type SeamCustomerV1SettingsVerticalResourceAliasesGetRequest =
   SeamHttpRequest<

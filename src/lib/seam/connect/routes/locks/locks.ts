@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpLocksSimulate } from './simulate/index.js'
 
@@ -170,7 +169,7 @@ export class SeamHttpLocks {
   }
 
   configureAutoLock(
-    parameters?: LocksConfigureAutoLockParameters,
+    parameters: LocksConfigureAutoLockParameters,
     options: LocksConfigureAutoLockOptions = {},
   ): LocksConfigureAutoLockRequest {
     return new SeamHttpRequest(this, {
@@ -209,7 +208,7 @@ export class SeamHttpLocks {
   }
 
   lockDoor(
-    parameters?: LocksLockDoorParameters,
+    parameters: LocksLockDoorParameters,
     options: LocksLockDoorOptions = {},
   ): LocksLockDoorRequest {
     return new SeamHttpRequest(this, {
@@ -222,7 +221,7 @@ export class SeamHttpLocks {
   }
 
   unlockDoor(
-    parameters?: LocksUnlockDoorParameters,
+    parameters: LocksUnlockDoorParameters,
     options: LocksUnlockDoorOptions = {},
   ): LocksUnlockDoorRequest {
     return new SeamHttpRequest(this, {
@@ -246,9 +245,8 @@ export type LocksConfigureAutoLockBody = LocksConfigureAutoLockParameters
 /**
  * @deprecated Use LocksConfigureAutoLockRequest instead.
  */
-export type LocksConfigureAutoLockResponse = SetNonNullable<
-  Required<RouteResponse<'/locks/configure_auto_lock'>>
->
+export type LocksConfigureAutoLockResponse =
+  RouteResponse<'/locks/configure_auto_lock'>
 
 export type LocksConfigureAutoLockRequest = SeamHttpRequest<
   LocksConfigureAutoLockResponse,
@@ -270,9 +268,7 @@ export type LocksGetParams = LocksGetParameters
 /**
  * @deprecated Use LocksGetRequest instead.
  */
-export type LocksGetResponse = SetNonNullable<
-  Required<RouteResponse<'/locks/get'>>
->
+export type LocksGetResponse = RouteResponse<'/locks/get'>
 
 export type LocksGetRequest = SeamHttpRequest<LocksGetResponse, 'device'>
 
@@ -288,9 +284,7 @@ export type LocksListParams = LocksListParameters
 /**
  * @deprecated Use LocksListRequest instead.
  */
-export type LocksListResponse = SetNonNullable<
-  Required<RouteResponse<'/locks/list'>>
->
+export type LocksListResponse = RouteResponse<'/locks/list'>
 
 export type LocksListRequest = SeamHttpRequest<LocksListResponse, 'devices'>
 
@@ -306,9 +300,7 @@ export type LocksLockDoorBody = LocksLockDoorParameters
 /**
  * @deprecated Use LocksLockDoorRequest instead.
  */
-export type LocksLockDoorResponse = SetNonNullable<
-  Required<RouteResponse<'/locks/lock_door'>>
->
+export type LocksLockDoorResponse = RouteResponse<'/locks/lock_door'>
 
 export type LocksLockDoorRequest = SeamHttpRequest<
   LocksLockDoorResponse,
@@ -330,9 +322,7 @@ export type LocksUnlockDoorBody = LocksUnlockDoorParameters
 /**
  * @deprecated Use LocksUnlockDoorRequest instead.
  */
-export type LocksUnlockDoorResponse = SetNonNullable<
-  Required<RouteResponse<'/locks/unlock_door'>>
->
+export type LocksUnlockDoorResponse = RouteResponse<'/locks/unlock_door'>
 
 export type LocksUnlockDoorRequest = SeamHttpRequest<
   LocksUnlockDoorResponse,

@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1Encoders {
   client: Client
@@ -199,9 +198,8 @@ export type SeamCustomerV1EncodersListParams =
 /**
  * @deprecated Use SeamCustomerV1EncodersListRequest instead.
  */
-export type SeamCustomerV1EncodersListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/encoders/list'>>
->
+export type SeamCustomerV1EncodersListResponse =
+  RouteResponse<'/seam/customer/v1/encoders/list'>
 
 export type SeamCustomerV1EncodersListRequest = SeamHttpRequest<
   SeamCustomerV1EncodersListResponse,

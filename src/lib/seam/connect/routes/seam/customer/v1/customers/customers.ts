@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpSeamCustomerV1CustomersAutomations } from './automations/index.js'
 
@@ -221,7 +220,7 @@ export class SeamHttpSeamCustomerV1Customers {
   }
 
   openPortal(
-    parameters?: SeamCustomerV1CustomersOpenPortalParameters,
+    parameters: SeamCustomerV1CustomersOpenPortalParameters,
     options: SeamCustomerV1CustomersOpenPortalOptions = {},
   ): SeamCustomerV1CustomersOpenPortalRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -251,9 +250,8 @@ export type SeamCustomerV1CustomersListParams =
 /**
  * @deprecated Use SeamCustomerV1CustomersListRequest instead.
  */
-export type SeamCustomerV1CustomersListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/customers/list'>>
->
+export type SeamCustomerV1CustomersListResponse =
+  RouteResponse<'/seam/customer/v1/customers/list'>
 
 export type SeamCustomerV1CustomersListRequest = SeamHttpRequest<
   SeamCustomerV1CustomersListResponse,
@@ -274,9 +272,8 @@ export type SeamCustomerV1CustomersMeParams =
 /**
  * @deprecated Use SeamCustomerV1CustomersMeRequest instead.
  */
-export type SeamCustomerV1CustomersMeResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/customers/me'>>
->
+export type SeamCustomerV1CustomersMeResponse =
+  RouteResponse<'/seam/customer/v1/customers/me'>
 
 export type SeamCustomerV1CustomersMeRequest = SeamHttpRequest<void, undefined>
 
@@ -294,9 +291,8 @@ export type SeamCustomerV1CustomersOpenPortalBody =
 /**
  * @deprecated Use SeamCustomerV1CustomersOpenPortalRequest instead.
  */
-export type SeamCustomerV1CustomersOpenPortalResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/customers/open_portal'>>
->
+export type SeamCustomerV1CustomersOpenPortalResponse =
+  RouteResponse<'/seam/customer/v1/customers/open_portal'>
 
 export type SeamCustomerV1CustomersOpenPortalRequest = SeamHttpRequest<
   SeamCustomerV1CustomersOpenPortalResponse,

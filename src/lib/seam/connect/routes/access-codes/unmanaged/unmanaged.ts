@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpAccessCodesUnmanaged {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   convertToManaged(
-    parameters?: AccessCodesUnmanagedConvertToManagedParameters,
+    parameters: AccessCodesUnmanagedConvertToManagedParameters,
     options: AccessCodesUnmanagedConvertToManagedOptions = {},
   ): AccessCodesUnmanagedConvertToManagedRequest {
     return new SeamHttpRequest(this, {
@@ -177,7 +176,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   delete(
-    parameters?: AccessCodesUnmanagedDeleteParameters,
+    parameters: AccessCodesUnmanagedDeleteParameters,
     options: AccessCodesUnmanagedDeleteOptions = {},
   ): AccessCodesUnmanagedDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -203,7 +202,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   list(
-    parameters?: AccessCodesUnmanagedListParameters,
+    parameters: AccessCodesUnmanagedListParameters,
     options: AccessCodesUnmanagedListOptions = {},
   ): AccessCodesUnmanagedListRequest {
     return new SeamHttpRequest(this, {
@@ -216,7 +215,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   update(
-    parameters?: AccessCodesUnmanagedUpdateParameters,
+    parameters: AccessCodesUnmanagedUpdateParameters,
     options: AccessCodesUnmanagedUpdateOptions = {},
   ): AccessCodesUnmanagedUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -241,9 +240,8 @@ export type AccessCodesUnmanagedConvertToManagedBody =
 /**
  * @deprecated Use AccessCodesUnmanagedConvertToManagedRequest instead.
  */
-export type AccessCodesUnmanagedConvertToManagedResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/unmanaged/convert_to_managed'>>
->
+export type AccessCodesUnmanagedConvertToManagedResponse =
+  RouteResponse<'/access_codes/unmanaged/convert_to_managed'>
 
 export type AccessCodesUnmanagedConvertToManagedRequest = SeamHttpRequest<
   void,
@@ -264,9 +262,8 @@ export type AccessCodesUnmanagedDeleteParams =
 /**
  * @deprecated Use AccessCodesUnmanagedDeleteRequest instead.
  */
-export type AccessCodesUnmanagedDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/unmanaged/delete'>>
->
+export type AccessCodesUnmanagedDeleteResponse =
+  RouteResponse<'/access_codes/unmanaged/delete'>
 
 export type AccessCodesUnmanagedDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -283,9 +280,8 @@ export type AccessCodesUnmanagedGetParams = AccessCodesUnmanagedGetParameters
 /**
  * @deprecated Use AccessCodesUnmanagedGetRequest instead.
  */
-export type AccessCodesUnmanagedGetResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/unmanaged/get'>>
->
+export type AccessCodesUnmanagedGetResponse =
+  RouteResponse<'/access_codes/unmanaged/get'>
 
 export type AccessCodesUnmanagedGetRequest = SeamHttpRequest<
   AccessCodesUnmanagedGetResponse,
@@ -305,9 +301,8 @@ export type AccessCodesUnmanagedListParams = AccessCodesUnmanagedListParameters
 /**
  * @deprecated Use AccessCodesUnmanagedListRequest instead.
  */
-export type AccessCodesUnmanagedListResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/unmanaged/list'>>
->
+export type AccessCodesUnmanagedListResponse =
+  RouteResponse<'/access_codes/unmanaged/list'>
 
 export type AccessCodesUnmanagedListRequest = SeamHttpRequest<
   AccessCodesUnmanagedListResponse,
@@ -328,9 +323,8 @@ export type AccessCodesUnmanagedUpdateBody =
 /**
  * @deprecated Use AccessCodesUnmanagedUpdateRequest instead.
  */
-export type AccessCodesUnmanagedUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/unmanaged/update'>>
->
+export type AccessCodesUnmanagedUpdateResponse =
+  RouteResponse<'/access_codes/unmanaged/update'>
 
 export type AccessCodesUnmanagedUpdateRequest = SeamHttpRequest<void, undefined>
 

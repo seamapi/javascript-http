@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpAccessMethodsUnmanaged } from './unmanaged/index.js'
 
@@ -174,7 +173,7 @@ export class SeamHttpAccessMethods {
   }
 
   assignCard(
-    parameters?: AccessMethodsAssignCardParameters,
+    parameters: AccessMethodsAssignCardParameters,
     options: AccessMethodsAssignCardOptions = {},
   ): AccessMethodsAssignCardRequest {
     return new SeamHttpRequest(this, {
@@ -200,7 +199,7 @@ export class SeamHttpAccessMethods {
   }
 
   encode(
-    parameters?: AccessMethodsEncodeParameters,
+    parameters: AccessMethodsEncodeParameters,
     options: AccessMethodsEncodeOptions = {},
   ): AccessMethodsEncodeRequest {
     return new SeamHttpRequest(this, {
@@ -213,7 +212,7 @@ export class SeamHttpAccessMethods {
   }
 
   get(
-    parameters?: AccessMethodsGetParameters,
+    parameters: AccessMethodsGetParameters,
     options: AccessMethodsGetOptions = {},
   ): AccessMethodsGetRequest {
     return new SeamHttpRequest(this, {
@@ -226,7 +225,7 @@ export class SeamHttpAccessMethods {
   }
 
   getRelated(
-    parameters?: AccessMethodsGetRelatedParameters,
+    parameters: AccessMethodsGetRelatedParameters,
     options: AccessMethodsGetRelatedOptions = {},
   ): AccessMethodsGetRelatedRequest {
     return new SeamHttpRequest(this, {
@@ -252,7 +251,7 @@ export class SeamHttpAccessMethods {
   }
 
   unlockDoor(
-    parameters?: AccessMethodsUnlockDoorParameters,
+    parameters: AccessMethodsUnlockDoorParameters,
     options: AccessMethodsUnlockDoorOptions = {},
   ): AccessMethodsUnlockDoorRequest {
     return new SeamHttpRequest(this, {
@@ -276,9 +275,8 @@ export type AccessMethodsAssignCardBody = AccessMethodsAssignCardParameters
 /**
  * @deprecated Use AccessMethodsAssignCardRequest instead.
  */
-export type AccessMethodsAssignCardResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/assign_card'>>
->
+export type AccessMethodsAssignCardResponse =
+  RouteResponse<'/access_methods/assign_card'>
 
 export type AccessMethodsAssignCardRequest = SeamHttpRequest<
   AccessMethodsAssignCardResponse,
@@ -301,9 +299,8 @@ export type AccessMethodsDeleteParams = AccessMethodsDeleteParameters
 /**
  * @deprecated Use AccessMethodsDeleteRequest instead.
  */
-export type AccessMethodsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/delete'>>
->
+export type AccessMethodsDeleteResponse =
+  RouteResponse<'/access_methods/delete'>
 
 export type AccessMethodsDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -320,9 +317,8 @@ export type AccessMethodsEncodeBody = AccessMethodsEncodeParameters
 /**
  * @deprecated Use AccessMethodsEncodeRequest instead.
  */
-export type AccessMethodsEncodeResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/encode'>>
->
+export type AccessMethodsEncodeResponse =
+  RouteResponse<'/access_methods/encode'>
 
 export type AccessMethodsEncodeRequest = SeamHttpRequest<
   AccessMethodsEncodeResponse,
@@ -344,9 +340,7 @@ export type AccessMethodsGetParams = AccessMethodsGetParameters
 /**
  * @deprecated Use AccessMethodsGetRequest instead.
  */
-export type AccessMethodsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/get'>>
->
+export type AccessMethodsGetResponse = RouteResponse<'/access_methods/get'>
 
 export type AccessMethodsGetRequest = SeamHttpRequest<
   AccessMethodsGetResponse,
@@ -366,9 +360,8 @@ export type AccessMethodsGetRelatedParams = AccessMethodsGetRelatedParameters
 /**
  * @deprecated Use AccessMethodsGetRelatedRequest instead.
  */
-export type AccessMethodsGetRelatedResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/get_related'>>
->
+export type AccessMethodsGetRelatedResponse =
+  RouteResponse<'/access_methods/get_related'>
 
 export type AccessMethodsGetRelatedRequest = SeamHttpRequest<
   AccessMethodsGetRelatedResponse,
@@ -388,9 +381,7 @@ export type AccessMethodsListParams = AccessMethodsListParameters
 /**
  * @deprecated Use AccessMethodsListRequest instead.
  */
-export type AccessMethodsListResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/list'>>
->
+export type AccessMethodsListResponse = RouteResponse<'/access_methods/list'>
 
 export type AccessMethodsListRequest = SeamHttpRequest<
   AccessMethodsListResponse,
@@ -410,9 +401,8 @@ export type AccessMethodsUnlockDoorBody = AccessMethodsUnlockDoorParameters
 /**
  * @deprecated Use AccessMethodsUnlockDoorRequest instead.
  */
-export type AccessMethodsUnlockDoorResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/unlock_door'>>
->
+export type AccessMethodsUnlockDoorResponse =
+  RouteResponse<'/access_methods/unlock_door'>
 
 export type AccessMethodsUnlockDoorRequest = SeamHttpRequest<
   AccessMethodsUnlockDoorResponse,

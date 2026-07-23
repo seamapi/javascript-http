@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpNoiseSensorsSimulate {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpNoiseSensorsSimulate {
   }
 
   triggerNoiseThreshold(
-    parameters?: NoiseSensorsSimulateTriggerNoiseThresholdParameters,
+    parameters: NoiseSensorsSimulateTriggerNoiseThresholdParameters,
     options: NoiseSensorsSimulateTriggerNoiseThresholdOptions = {},
   ): NoiseSensorsSimulateTriggerNoiseThresholdRequest {
     return new SeamHttpRequest(this, {
@@ -189,9 +188,8 @@ export type NoiseSensorsSimulateTriggerNoiseThresholdBody =
 /**
  * @deprecated Use NoiseSensorsSimulateTriggerNoiseThresholdRequest instead.
  */
-export type NoiseSensorsSimulateTriggerNoiseThresholdResponse = SetNonNullable<
-  Required<RouteResponse<'/noise_sensors/simulate/trigger_noise_threshold'>>
->
+export type NoiseSensorsSimulateTriggerNoiseThresholdResponse =
+  RouteResponse<'/noise_sensors/simulate/trigger_noise_threshold'>
 
 export type NoiseSensorsSimulateTriggerNoiseThresholdRequest = SeamHttpRequest<
   void,

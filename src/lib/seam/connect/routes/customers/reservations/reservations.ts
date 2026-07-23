@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpCustomersReservations {
   client: Client
@@ -169,7 +168,7 @@ export class SeamHttpCustomersReservations {
   }
 
   createDeepLink(
-    parameters?: CustomersReservationsCreateDeepLinkParameters,
+    parameters: CustomersReservationsCreateDeepLinkParameters,
     options: CustomersReservationsCreateDeepLinkOptions = {},
   ): CustomersReservationsCreateDeepLinkRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -199,9 +198,8 @@ export type CustomersReservationsCreateDeepLinkBody =
 /**
  * @deprecated Use CustomersReservationsCreateDeepLinkRequest instead.
  */
-export type CustomersReservationsCreateDeepLinkResponse = SetNonNullable<
-  Required<RouteResponse<'/customers/reservations/create_deep_link'>>
->
+export type CustomersReservationsCreateDeepLinkResponse =
+  RouteResponse<'/customers/reservations/create_deep_link'>
 
 export type CustomersReservationsCreateDeepLinkRequest = SeamHttpRequest<
   CustomersReservationsCreateDeepLinkResponse,

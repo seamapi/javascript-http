@@ -128,7 +128,7 @@ export class SeamHttpEndpointsWithoutWorkspace {
   }
 
   get '/seam/customer/v1/connectors/authorize'(): (
-    parameters?: SeamCustomerV1ConnectorsAuthorizeParameters,
+    parameters: SeamCustomerV1ConnectorsAuthorizeParameters,
     options?: SeamCustomerV1ConnectorsAuthorizeOptions,
   ) => SeamCustomerV1ConnectorsAuthorizeRequest {
     const { client, defaults } = this
@@ -146,7 +146,7 @@ export class SeamHttpEndpointsWithoutWorkspace {
   }
 
   get '/workspaces/create'(): (
-    parameters?: WorkspacesCreateParameters,
+    parameters: WorkspacesCreateParameters,
     options?: WorkspacesCreateOptions,
   ) => WorkspacesCreateRequest {
     const { client, defaults } = this

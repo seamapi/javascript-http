@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpAcsCredentialPools {
   client: Client
@@ -169,7 +168,7 @@ export class SeamHttpAcsCredentialPools {
   }
 
   list(
-    parameters?: AcsCredentialPoolsListParameters,
+    parameters: AcsCredentialPoolsListParameters,
     options: AcsCredentialPoolsListOptions = {},
   ): AcsCredentialPoolsListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -198,9 +197,8 @@ export type AcsCredentialPoolsListParams = AcsCredentialPoolsListParameters
 /**
  * @deprecated Use AcsCredentialPoolsListRequest instead.
  */
-export type AcsCredentialPoolsListResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credential_pools/list'>>
->
+export type AcsCredentialPoolsListResponse =
+  RouteResponse<'/acs/credential_pools/list'>
 
 export type AcsCredentialPoolsListRequest = SeamHttpRequest<
   AcsCredentialPoolsListResponse,

@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpDevicesSimulate } from './simulate/index.js'
 import { SeamHttpDevicesUnmanaged } from './unmanaged/index.js'
@@ -175,7 +174,7 @@ export class SeamHttpDevices {
   }
 
   delete(
-    parameters?: DevicesDeleteParameters,
+    parameters: DevicesDeleteParameters,
     options: DevicesDeleteOptions = {},
   ): DevicesDeleteRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -232,7 +231,7 @@ export class SeamHttpDevices {
   }
 
   reportProviderMetadata(
-    parameters?: DevicesReportProviderMetadataParameters,
+    parameters: DevicesReportProviderMetadataParameters,
     options: DevicesReportProviderMetadataOptions = {},
   ): DevicesReportProviderMetadataRequest {
     return new SeamHttpRequest(this, {
@@ -245,7 +244,7 @@ export class SeamHttpDevices {
   }
 
   update(
-    parameters?: DevicesUpdateParameters,
+    parameters: DevicesUpdateParameters,
     options: DevicesUpdateOptions = {},
   ): DevicesUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -268,9 +267,7 @@ export type DevicesDeleteParams = DevicesDeleteParameters
 /**
  * @deprecated Use DevicesDeleteRequest instead.
  */
-export type DevicesDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/delete'>>
->
+export type DevicesDeleteResponse = RouteResponse<'/devices/delete'>
 
 export type DevicesDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -286,9 +283,7 @@ export type DevicesGetParams = DevicesGetParameters
 /**
  * @deprecated Use DevicesGetRequest instead.
  */
-export type DevicesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/get'>>
->
+export type DevicesGetResponse = RouteResponse<'/devices/get'>
 
 export type DevicesGetRequest = SeamHttpRequest<DevicesGetResponse, 'device'>
 
@@ -304,9 +299,7 @@ export type DevicesListParams = DevicesListParameters
 /**
  * @deprecated Use DevicesListRequest instead.
  */
-export type DevicesListResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/list'>>
->
+export type DevicesListResponse = RouteResponse<'/devices/list'>
 
 export type DevicesListRequest = SeamHttpRequest<DevicesListResponse, 'devices'>
 
@@ -324,9 +317,8 @@ export type DevicesListDeviceProvidersParams =
 /**
  * @deprecated Use DevicesListDeviceProvidersRequest instead.
  */
-export type DevicesListDeviceProvidersResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/list_device_providers'>>
->
+export type DevicesListDeviceProvidersResponse =
+  RouteResponse<'/devices/list_device_providers'>
 
 export type DevicesListDeviceProvidersRequest = SeamHttpRequest<
   DevicesListDeviceProvidersResponse,
@@ -347,9 +339,8 @@ export type DevicesReportProviderMetadataBody =
 /**
  * @deprecated Use DevicesReportProviderMetadataRequest instead.
  */
-export type DevicesReportProviderMetadataResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/report_provider_metadata'>>
->
+export type DevicesReportProviderMetadataResponse =
+  RouteResponse<'/devices/report_provider_metadata'>
 
 export type DevicesReportProviderMetadataRequest = SeamHttpRequest<
   void,
@@ -368,9 +359,7 @@ export type DevicesUpdateBody = DevicesUpdateParameters
 /**
  * @deprecated Use DevicesUpdateRequest instead.
  */
-export type DevicesUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/update'>>
->
+export type DevicesUpdateResponse = RouteResponse<'/devices/update'>
 
 export type DevicesUpdateRequest = SeamHttpRequest<void, undefined>
 
