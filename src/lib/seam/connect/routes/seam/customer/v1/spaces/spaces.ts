@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1Spaces {
   client: Client
@@ -169,7 +168,7 @@ export class SeamHttpSeamCustomerV1Spaces {
   }
 
   create(
-    parameters?: SeamCustomerV1SpacesCreateParameters,
+    parameters: SeamCustomerV1SpacesCreateParameters,
     options: SeamCustomerV1SpacesCreateOptions = {},
   ): SeamCustomerV1SpacesCreateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -205,7 +204,7 @@ export class SeamHttpSeamCustomerV1Spaces {
   }
 
   listReservations(
-    parameters?: SeamCustomerV1SpacesListReservationsParameters,
+    parameters: SeamCustomerV1SpacesListReservationsParameters,
     options: SeamCustomerV1SpacesListReservationsOptions = {},
   ): SeamCustomerV1SpacesListReservationsRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -253,9 +252,8 @@ export type SeamCustomerV1SpacesCreateBody =
 /**
  * @deprecated Use SeamCustomerV1SpacesCreateRequest instead.
  */
-export type SeamCustomerV1SpacesCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/spaces/create'>>
->
+export type SeamCustomerV1SpacesCreateResponse =
+  RouteResponse<'/seam/customer/v1/spaces/create'>
 
 export type SeamCustomerV1SpacesCreateRequest = SeamHttpRequest<
   SeamCustomerV1SpacesCreateResponse,
@@ -275,9 +273,8 @@ export type SeamCustomerV1SpacesListParams = SeamCustomerV1SpacesListParameters
 /**
  * @deprecated Use SeamCustomerV1SpacesListRequest instead.
  */
-export type SeamCustomerV1SpacesListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/spaces/list'>>
->
+export type SeamCustomerV1SpacesListResponse =
+  RouteResponse<'/seam/customer/v1/spaces/list'>
 
 export type SeamCustomerV1SpacesListRequest = SeamHttpRequest<
   SeamCustomerV1SpacesListResponse,
@@ -298,9 +295,8 @@ export type SeamCustomerV1SpacesListReservationsParams =
 /**
  * @deprecated Use SeamCustomerV1SpacesListReservationsRequest instead.
  */
-export type SeamCustomerV1SpacesListReservationsResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/spaces/list_reservations'>>
->
+export type SeamCustomerV1SpacesListReservationsResponse =
+  RouteResponse<'/seam/customer/v1/spaces/list_reservations'>
 
 export type SeamCustomerV1SpacesListReservationsRequest = SeamHttpRequest<
   SeamCustomerV1SpacesListReservationsResponse,
@@ -321,9 +317,8 @@ export type SeamCustomerV1SpacesPushCommonAreasBody =
 /**
  * @deprecated Use SeamCustomerV1SpacesPushCommonAreasRequest instead.
  */
-export type SeamCustomerV1SpacesPushCommonAreasResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/spaces/push_common_areas'>>
->
+export type SeamCustomerV1SpacesPushCommonAreasResponse =
+  RouteResponse<'/seam/customer/v1/spaces/push_common_areas'>
 
 export type SeamCustomerV1SpacesPushCommonAreasRequest = SeamHttpRequest<
   void,

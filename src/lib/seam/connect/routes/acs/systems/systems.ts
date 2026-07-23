@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpAcsSystems {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpAcsSystems {
   }
 
   get(
-    parameters?: AcsSystemsGetParameters,
+    parameters: AcsSystemsGetParameters,
     options: AcsSystemsGetOptions = {},
   ): AcsSystemsGetRequest {
     return new SeamHttpRequest(this, {
@@ -190,7 +189,7 @@ export class SeamHttpAcsSystems {
   }
 
   listCompatibleCredentialManagerAcsSystems(
-    parameters?: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
+    parameters: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
     options: AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = {},
   ): AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest {
     return new SeamHttpRequest(this, {
@@ -203,7 +202,7 @@ export class SeamHttpAcsSystems {
   }
 
   reportDevices(
-    parameters?: AcsSystemsReportDevicesParameters,
+    parameters: AcsSystemsReportDevicesParameters,
     options: AcsSystemsReportDevicesOptions = {},
   ): AcsSystemsReportDevicesRequest {
     return new SeamHttpRequest(this, {
@@ -226,9 +225,7 @@ export type AcsSystemsGetParams = AcsSystemsGetParameters
 /**
  * @deprecated Use AcsSystemsGetRequest instead.
  */
-export type AcsSystemsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/systems/get'>>
->
+export type AcsSystemsGetResponse = RouteResponse<'/acs/systems/get'>
 
 export type AcsSystemsGetRequest = SeamHttpRequest<
   AcsSystemsGetResponse,
@@ -247,9 +244,7 @@ export type AcsSystemsListParams = AcsSystemsListParameters
 /**
  * @deprecated Use AcsSystemsListRequest instead.
  */
-export type AcsSystemsListResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/systems/list'>>
->
+export type AcsSystemsListResponse = RouteResponse<'/acs/systems/list'>
 
 export type AcsSystemsListRequest = SeamHttpRequest<
   AcsSystemsListResponse,
@@ -271,11 +266,7 @@ export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParams =
  * @deprecated Use AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest instead.
  */
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse =
-  SetNonNullable<
-    Required<
-      RouteResponse<'/acs/systems/list_compatible_credential_manager_acs_systems'>
-    >
-  >
+  RouteResponse<'/acs/systems/list_compatible_credential_manager_acs_systems'>
 
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest =
   SeamHttpRequest<
@@ -296,9 +287,8 @@ export type AcsSystemsReportDevicesBody = AcsSystemsReportDevicesParameters
 /**
  * @deprecated Use AcsSystemsReportDevicesRequest instead.
  */
-export type AcsSystemsReportDevicesResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/systems/report_devices'>>
->
+export type AcsSystemsReportDevicesResponse =
+  RouteResponse<'/acs/systems/report_devices'>
 
 export type AcsSystemsReportDevicesRequest = SeamHttpRequest<void, undefined>
 

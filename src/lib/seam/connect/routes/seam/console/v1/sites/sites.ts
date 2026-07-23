@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamConsoleV1Sites {
   client: Client
@@ -169,7 +168,7 @@ export class SeamHttpSeamConsoleV1Sites {
   }
 
   create(
-    parameters?: SeamConsoleV1SitesCreateParameters,
+    parameters: SeamConsoleV1SitesCreateParameters,
     options: SeamConsoleV1SitesCreateOptions = {},
   ): SeamConsoleV1SitesCreateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -187,7 +186,7 @@ export class SeamHttpSeamConsoleV1Sites {
   }
 
   delete(
-    parameters?: SeamConsoleV1SitesDeleteParameters,
+    parameters: SeamConsoleV1SitesDeleteParameters,
     options: SeamConsoleV1SitesDeleteOptions = {},
   ): SeamConsoleV1SitesDeleteRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -223,7 +222,7 @@ export class SeamHttpSeamConsoleV1Sites {
   }
 
   update(
-    parameters?: SeamConsoleV1SitesUpdateParameters,
+    parameters: SeamConsoleV1SitesUpdateParameters,
     options: SeamConsoleV1SitesUpdateOptions = {},
   ): SeamConsoleV1SitesUpdateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -252,9 +251,8 @@ export type SeamConsoleV1SitesCreateBody = SeamConsoleV1SitesCreateParameters
 /**
  * @deprecated Use SeamConsoleV1SitesCreateRequest instead.
  */
-export type SeamConsoleV1SitesCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/console/v1/sites/create'>>
->
+export type SeamConsoleV1SitesCreateResponse =
+  RouteResponse<'/seam/console/v1/sites/create'>
 
 export type SeamConsoleV1SitesCreateRequest = SeamHttpRequest<
   SeamConsoleV1SitesCreateResponse,
@@ -274,9 +272,8 @@ export type SeamConsoleV1SitesDeleteParams = SeamConsoleV1SitesDeleteParameters
 /**
  * @deprecated Use SeamConsoleV1SitesDeleteRequest instead.
  */
-export type SeamConsoleV1SitesDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/console/v1/sites/delete'>>
->
+export type SeamConsoleV1SitesDeleteResponse =
+  RouteResponse<'/seam/console/v1/sites/delete'>
 
 export type SeamConsoleV1SitesDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -293,9 +290,8 @@ export type SeamConsoleV1SitesListParams = SeamConsoleV1SitesListParameters
 /**
  * @deprecated Use SeamConsoleV1SitesListRequest instead.
  */
-export type SeamConsoleV1SitesListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/console/v1/sites/list'>>
->
+export type SeamConsoleV1SitesListResponse =
+  RouteResponse<'/seam/console/v1/sites/list'>
 
 export type SeamConsoleV1SitesListRequest = SeamHttpRequest<
   SeamConsoleV1SitesListResponse,
@@ -315,9 +311,8 @@ export type SeamConsoleV1SitesUpdateBody = SeamConsoleV1SitesUpdateParameters
 /**
  * @deprecated Use SeamConsoleV1SitesUpdateRequest instead.
  */
-export type SeamConsoleV1SitesUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/console/v1/sites/update'>>
->
+export type SeamConsoleV1SitesUpdateResponse =
+  RouteResponse<'/seam/console/v1/sites/update'>
 
 export type SeamConsoleV1SitesUpdateRequest = SeamHttpRequest<
   SeamConsoleV1SitesUpdateResponse,

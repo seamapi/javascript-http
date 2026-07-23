@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamConsoleV1LynxMigration {
   client: Client
@@ -172,7 +171,7 @@ export class SeamHttpSeamConsoleV1LynxMigration {
   }
 
   getPropertyMigrationStatus(
-    parameters?: SeamConsoleV1LynxMigrationGetPropertyMigrationStatusParameters,
+    parameters: SeamConsoleV1LynxMigrationGetPropertyMigrationStatusParameters,
     options: SeamConsoleV1LynxMigrationGetPropertyMigrationStatusOptions = {},
   ): SeamConsoleV1LynxMigrationGetPropertyMigrationStatusRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -190,7 +189,7 @@ export class SeamHttpSeamConsoleV1LynxMigration {
   }
 
   getReservationMigrationStatus(
-    parameters?: SeamConsoleV1LynxMigrationGetReservationMigrationStatusParameters,
+    parameters: SeamConsoleV1LynxMigrationGetReservationMigrationStatusParameters,
     options: SeamConsoleV1LynxMigrationGetReservationMigrationStatusOptions = {},
   ): SeamConsoleV1LynxMigrationGetReservationMigrationStatusRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -209,7 +208,7 @@ export class SeamHttpSeamConsoleV1LynxMigration {
   }
 
   listPropertyReservations(
-    parameters?: SeamConsoleV1LynxMigrationListPropertyReservationsParameters,
+    parameters: SeamConsoleV1LynxMigrationListPropertyReservationsParameters,
     options: SeamConsoleV1LynxMigrationListPropertyReservationsOptions = {},
   ): SeamConsoleV1LynxMigrationListPropertyReservationsRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -227,7 +226,7 @@ export class SeamHttpSeamConsoleV1LynxMigration {
   }
 
   migrateProperty(
-    parameters?: SeamConsoleV1LynxMigrationMigratePropertyParameters,
+    parameters: SeamConsoleV1LynxMigrationMigratePropertyParameters,
     options: SeamConsoleV1LynxMigrationMigratePropertyOptions = {},
   ): SeamConsoleV1LynxMigrationMigratePropertyRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -258,11 +257,7 @@ export type SeamConsoleV1LynxMigrationGetPropertyMigrationStatusParams =
  * @deprecated Use SeamConsoleV1LynxMigrationGetPropertyMigrationStatusRequest instead.
  */
 export type SeamConsoleV1LynxMigrationGetPropertyMigrationStatusResponse =
-  SetNonNullable<
-    Required<
-      RouteResponse<'/seam/console/v1/lynx_migration/get_property_migration_status'>
-    >
-  >
+  RouteResponse<'/seam/console/v1/lynx_migration/get_property_migration_status'>
 
 export type SeamConsoleV1LynxMigrationGetPropertyMigrationStatusRequest =
   SeamHttpRequest<
@@ -285,11 +280,7 @@ export type SeamConsoleV1LynxMigrationGetReservationMigrationStatusParams =
  * @deprecated Use SeamConsoleV1LynxMigrationGetReservationMigrationStatusRequest instead.
  */
 export type SeamConsoleV1LynxMigrationGetReservationMigrationStatusResponse =
-  SetNonNullable<
-    Required<
-      RouteResponse<'/seam/console/v1/lynx_migration/get_reservation_migration_status'>
-    >
-  >
+  RouteResponse<'/seam/console/v1/lynx_migration/get_reservation_migration_status'>
 
 export type SeamConsoleV1LynxMigrationGetReservationMigrationStatusRequest =
   SeamHttpRequest<
@@ -312,11 +303,7 @@ export type SeamConsoleV1LynxMigrationListPropertyReservationsParams =
  * @deprecated Use SeamConsoleV1LynxMigrationListPropertyReservationsRequest instead.
  */
 export type SeamConsoleV1LynxMigrationListPropertyReservationsResponse =
-  SetNonNullable<
-    Required<
-      RouteResponse<'/seam/console/v1/lynx_migration/list_property_reservations'>
-    >
-  >
+  RouteResponse<'/seam/console/v1/lynx_migration/list_property_reservations'>
 
 export type SeamConsoleV1LynxMigrationListPropertyReservationsRequest =
   SeamHttpRequest<
@@ -338,9 +325,8 @@ export type SeamConsoleV1LynxMigrationMigratePropertyBody =
 /**
  * @deprecated Use SeamConsoleV1LynxMigrationMigratePropertyRequest instead.
  */
-export type SeamConsoleV1LynxMigrationMigratePropertyResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/console/v1/lynx_migration/migrate_property'>>
->
+export type SeamConsoleV1LynxMigrationMigratePropertyResponse =
+  RouteResponse<'/seam/console/v1/lynx_migration/migrate_property'>
 
 export type SeamConsoleV1LynxMigrationMigratePropertyRequest = SeamHttpRequest<
   SeamConsoleV1LynxMigrationMigratePropertyResponse,

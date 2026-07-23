@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1AccessMethods {
   client: Client
@@ -172,7 +171,7 @@ export class SeamHttpSeamCustomerV1AccessMethods {
   }
 
   encode(
-    parameters?: SeamCustomerV1AccessMethodsEncodeParameters,
+    parameters: SeamCustomerV1AccessMethodsEncodeParameters,
     options: SeamCustomerV1AccessMethodsEncodeOptions = {},
   ): SeamCustomerV1AccessMethodsEncodeRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -202,9 +201,8 @@ export type SeamCustomerV1AccessMethodsEncodeBody =
 /**
  * @deprecated Use SeamCustomerV1AccessMethodsEncodeRequest instead.
  */
-export type SeamCustomerV1AccessMethodsEncodeResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/access_methods/encode'>>
->
+export type SeamCustomerV1AccessMethodsEncodeResponse =
+  RouteResponse<'/seam/customer/v1/access_methods/encode'>
 
 export type SeamCustomerV1AccessMethodsEncodeRequest = SeamHttpRequest<
   SeamCustomerV1AccessMethodsEncodeResponse,

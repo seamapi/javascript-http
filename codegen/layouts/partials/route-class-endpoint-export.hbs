@@ -8,9 +8,7 @@ export type {{legacyRequestTypeName}} = {{parametersTypeName}}
 /**
  * @deprecated Use {{requestTypeName}} instead.
  */
-export type {{responseTypeName}} = SetNonNullable<
-  Required<RouteResponse<'{{path}}'>>
->
+export type {{responseTypeName}} = RouteResponse<'{{path}}'>
 
 export type {{requestTypeName}} = SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
 

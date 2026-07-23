@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpConnectedAccountsSimulate } from './simulate/index.js'
 
@@ -177,7 +176,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   delete(
-    parameters?: ConnectedAccountsDeleteParameters,
+    parameters: ConnectedAccountsDeleteParameters,
     options: ConnectedAccountsDeleteOptions = {},
   ): ConnectedAccountsDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -216,7 +215,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   sync(
-    parameters?: ConnectedAccountsSyncParameters,
+    parameters: ConnectedAccountsSyncParameters,
     options: ConnectedAccountsSyncOptions = {},
   ): ConnectedAccountsSyncRequest {
     return new SeamHttpRequest(this, {
@@ -229,7 +228,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   update(
-    parameters?: ConnectedAccountsUpdateParameters,
+    parameters: ConnectedAccountsUpdateParameters,
     options: ConnectedAccountsUpdateOptions = {},
   ): ConnectedAccountsUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -253,9 +252,8 @@ export type ConnectedAccountsDeleteParams = ConnectedAccountsDeleteParameters
 /**
  * @deprecated Use ConnectedAccountsDeleteRequest instead.
  */
-export type ConnectedAccountsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/connected_accounts/delete'>>
->
+export type ConnectedAccountsDeleteResponse =
+  RouteResponse<'/connected_accounts/delete'>
 
 export type ConnectedAccountsDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -272,9 +270,8 @@ export type ConnectedAccountsGetParams = ConnectedAccountsGetParameters
 /**
  * @deprecated Use ConnectedAccountsGetRequest instead.
  */
-export type ConnectedAccountsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/connected_accounts/get'>>
->
+export type ConnectedAccountsGetResponse =
+  RouteResponse<'/connected_accounts/get'>
 
 export type ConnectedAccountsGetRequest = SeamHttpRequest<
   ConnectedAccountsGetResponse,
@@ -294,9 +291,8 @@ export type ConnectedAccountsListParams = ConnectedAccountsListParameters
 /**
  * @deprecated Use ConnectedAccountsListRequest instead.
  */
-export type ConnectedAccountsListResponse = SetNonNullable<
-  Required<RouteResponse<'/connected_accounts/list'>>
->
+export type ConnectedAccountsListResponse =
+  RouteResponse<'/connected_accounts/list'>
 
 export type ConnectedAccountsListRequest = SeamHttpRequest<
   ConnectedAccountsListResponse,
@@ -316,9 +312,8 @@ export type ConnectedAccountsSyncBody = ConnectedAccountsSyncParameters
 /**
  * @deprecated Use ConnectedAccountsSyncRequest instead.
  */
-export type ConnectedAccountsSyncResponse = SetNonNullable<
-  Required<RouteResponse<'/connected_accounts/sync'>>
->
+export type ConnectedAccountsSyncResponse =
+  RouteResponse<'/connected_accounts/sync'>
 
 export type ConnectedAccountsSyncRequest = SeamHttpRequest<void, undefined>
 
@@ -335,9 +330,8 @@ export type ConnectedAccountsUpdateBody = ConnectedAccountsUpdateParameters
 /**
  * @deprecated Use ConnectedAccountsUpdateRequest instead.
  */
-export type ConnectedAccountsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/connected_accounts/update'>>
->
+export type ConnectedAccountsUpdateResponse =
+  RouteResponse<'/connected_accounts/update'>
 
 export type ConnectedAccountsUpdateRequest = SeamHttpRequest<void, undefined>
 

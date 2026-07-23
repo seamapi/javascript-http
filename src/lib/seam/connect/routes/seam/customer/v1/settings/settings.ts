@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpSeamCustomerV1SettingsVerticalResourceAliases } from './vertical-resource-aliases/index.js'
 
@@ -230,9 +229,8 @@ export type SeamCustomerV1SettingsGetParams =
 /**
  * @deprecated Use SeamCustomerV1SettingsGetRequest instead.
  */
-export type SeamCustomerV1SettingsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/settings/get'>>
->
+export type SeamCustomerV1SettingsGetResponse =
+  RouteResponse<'/seam/customer/v1/settings/get'>
 
 export type SeamCustomerV1SettingsGetRequest = SeamHttpRequest<
   SeamCustomerV1SettingsGetResponse,
@@ -253,9 +251,8 @@ export type SeamCustomerV1SettingsUpdateBody =
 /**
  * @deprecated Use SeamCustomerV1SettingsUpdateRequest instead.
  */
-export type SeamCustomerV1SettingsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/settings/update'>>
->
+export type SeamCustomerV1SettingsUpdateResponse =
+  RouteResponse<'/seam/customer/v1/settings/update'>
 
 export type SeamCustomerV1SettingsUpdateRequest = SeamHttpRequest<
   void,

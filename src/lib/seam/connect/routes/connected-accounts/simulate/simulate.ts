@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpConnectedAccountsSimulate {
   client: Client
@@ -167,7 +166,7 @@ export class SeamHttpConnectedAccountsSimulate {
   }
 
   disconnect(
-    parameters?: ConnectedAccountsSimulateDisconnectParameters,
+    parameters: ConnectedAccountsSimulateDisconnectParameters,
     options: ConnectedAccountsSimulateDisconnectOptions = {},
   ): ConnectedAccountsSimulateDisconnectRequest {
     return new SeamHttpRequest(this, {
@@ -192,9 +191,8 @@ export type ConnectedAccountsSimulateDisconnectBody =
 /**
  * @deprecated Use ConnectedAccountsSimulateDisconnectRequest instead.
  */
-export type ConnectedAccountsSimulateDisconnectResponse = SetNonNullable<
-  Required<RouteResponse<'/connected_accounts/simulate/disconnect'>>
->
+export type ConnectedAccountsSimulateDisconnectResponse =
+  RouteResponse<'/connected_accounts/simulate/disconnect'>
 
 export type ConnectedAccountsSimulateDisconnectRequest = SeamHttpRequest<
   void,

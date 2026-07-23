@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpWorkspacesCustomizationProfiles } from './customization-profiles/index.js'
 
@@ -177,7 +176,7 @@ export class SeamHttpWorkspaces {
   }
 
   create(
-    parameters?: WorkspacesCreateParameters,
+    parameters: WorkspacesCreateParameters,
     options: WorkspacesCreateOptions = {},
   ): WorkspacesCreateRequest {
     return new SeamHttpRequest(this, {
@@ -190,7 +189,7 @@ export class SeamHttpWorkspaces {
   }
 
   findAnything(
-    parameters?: WorkspacesFindAnythingParameters,
+    parameters: WorkspacesFindAnythingParameters,
     options: WorkspacesFindAnythingOptions = {},
   ): WorkspacesFindAnythingRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -270,9 +269,7 @@ export type WorkspacesCreateBody = WorkspacesCreateParameters
 /**
  * @deprecated Use WorkspacesCreateRequest instead.
  */
-export type WorkspacesCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/create'>>
->
+export type WorkspacesCreateResponse = RouteResponse<'/workspaces/create'>
 
 export type WorkspacesCreateRequest = SeamHttpRequest<
   WorkspacesCreateResponse,
@@ -292,9 +289,8 @@ export type WorkspacesFindAnythingParams = WorkspacesFindAnythingParameters
 /**
  * @deprecated Use WorkspacesFindAnythingRequest instead.
  */
-export type WorkspacesFindAnythingResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/find_anything'>>
->
+export type WorkspacesFindAnythingResponse =
+  RouteResponse<'/workspaces/find_anything'>
 
 export type WorkspacesFindAnythingRequest = SeamHttpRequest<
   WorkspacesFindAnythingResponse,
@@ -313,9 +309,7 @@ export type WorkspacesGetParams = WorkspacesGetParameters
 /**
  * @deprecated Use WorkspacesGetRequest instead.
  */
-export type WorkspacesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/get'>>
->
+export type WorkspacesGetResponse = RouteResponse<'/workspaces/get'>
 
 export type WorkspacesGetRequest = SeamHttpRequest<
   WorkspacesGetResponse,
@@ -334,9 +328,7 @@ export type WorkspacesListParams = WorkspacesListParameters
 /**
  * @deprecated Use WorkspacesListRequest instead.
  */
-export type WorkspacesListResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/list'>>
->
+export type WorkspacesListResponse = RouteResponse<'/workspaces/list'>
 
 export type WorkspacesListRequest = SeamHttpRequest<
   WorkspacesListResponse,
@@ -356,9 +348,8 @@ export type WorkspacesResetSandboxBody = WorkspacesResetSandboxParameters
 /**
  * @deprecated Use WorkspacesResetSandboxRequest instead.
  */
-export type WorkspacesResetSandboxResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/reset_sandbox'>>
->
+export type WorkspacesResetSandboxResponse =
+  RouteResponse<'/workspaces/reset_sandbox'>
 
 export type WorkspacesResetSandboxRequest = SeamHttpRequest<
   WorkspacesResetSandboxResponse,
@@ -380,9 +371,7 @@ export type WorkspacesUpdateBody = WorkspacesUpdateParameters
 /**
  * @deprecated Use WorkspacesUpdateRequest instead.
  */
-export type WorkspacesUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/update'>>
->
+export type WorkspacesUpdateResponse = RouteResponse<'/workspaces/update'>
 
 export type WorkspacesUpdateRequest = SeamHttpRequest<void, undefined>
 

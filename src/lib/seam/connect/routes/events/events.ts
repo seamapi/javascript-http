@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpEvents {
   client: Client
@@ -200,9 +199,7 @@ export type EventsGetParams = EventsGetParameters
 /**
  * @deprecated Use EventsGetRequest instead.
  */
-export type EventsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/events/get'>>
->
+export type EventsGetResponse = RouteResponse<'/events/get'>
 
 export type EventsGetRequest = SeamHttpRequest<EventsGetResponse, 'event'>
 
@@ -218,9 +215,7 @@ export type EventsListParams = EventsListParameters
 /**
  * @deprecated Use EventsListRequest instead.
  */
-export type EventsListResponse = SetNonNullable<
-  Required<RouteResponse<'/events/list'>>
->
+export type EventsListResponse = RouteResponse<'/events/list'>
 
 export type EventsListRequest = SeamHttpRequest<EventsListResponse, 'events'>
 

@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpConnectWebviews {
   client: Client
@@ -177,7 +176,7 @@ export class SeamHttpConnectWebviews {
   }
 
   delete(
-    parameters?: ConnectWebviewsDeleteParameters,
+    parameters: ConnectWebviewsDeleteParameters,
     options: ConnectWebviewsDeleteOptions = {},
   ): ConnectWebviewsDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -190,7 +189,7 @@ export class SeamHttpConnectWebviews {
   }
 
   get(
-    parameters?: ConnectWebviewsGetParameters,
+    parameters: ConnectWebviewsGetParameters,
     options: ConnectWebviewsGetOptions = {},
   ): ConnectWebviewsGetRequest {
     return new SeamHttpRequest(this, {
@@ -227,9 +226,8 @@ export type ConnectWebviewsCreateBody = ConnectWebviewsCreateParameters
 /**
  * @deprecated Use ConnectWebviewsCreateRequest instead.
  */
-export type ConnectWebviewsCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/connect_webviews/create'>>
->
+export type ConnectWebviewsCreateResponse =
+  RouteResponse<'/connect_webviews/create'>
 
 export type ConnectWebviewsCreateRequest = SeamHttpRequest<
   ConnectWebviewsCreateResponse,
@@ -249,9 +247,8 @@ export type ConnectWebviewsDeleteParams = ConnectWebviewsDeleteParameters
 /**
  * @deprecated Use ConnectWebviewsDeleteRequest instead.
  */
-export type ConnectWebviewsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/connect_webviews/delete'>>
->
+export type ConnectWebviewsDeleteResponse =
+  RouteResponse<'/connect_webviews/delete'>
 
 export type ConnectWebviewsDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -268,9 +265,7 @@ export type ConnectWebviewsGetParams = ConnectWebviewsGetParameters
 /**
  * @deprecated Use ConnectWebviewsGetRequest instead.
  */
-export type ConnectWebviewsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/connect_webviews/get'>>
->
+export type ConnectWebviewsGetResponse = RouteResponse<'/connect_webviews/get'>
 
 export type ConnectWebviewsGetRequest = SeamHttpRequest<
   ConnectWebviewsGetResponse,
@@ -290,9 +285,8 @@ export type ConnectWebviewsListParams = ConnectWebviewsListParameters
 /**
  * @deprecated Use ConnectWebviewsListRequest instead.
  */
-export type ConnectWebviewsListResponse = SetNonNullable<
-  Required<RouteResponse<'/connect_webviews/list'>>
->
+export type ConnectWebviewsListResponse =
+  RouteResponse<'/connect_webviews/list'>
 
 export type ConnectWebviewsListRequest = SeamHttpRequest<
   ConnectWebviewsListResponse,

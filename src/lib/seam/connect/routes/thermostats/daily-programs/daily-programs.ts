@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpThermostatsDailyPrograms {
   client: Client
@@ -167,7 +166,7 @@ export class SeamHttpThermostatsDailyPrograms {
   }
 
   create(
-    parameters?: ThermostatsDailyProgramsCreateParameters,
+    parameters: ThermostatsDailyProgramsCreateParameters,
     options: ThermostatsDailyProgramsCreateOptions = {},
   ): ThermostatsDailyProgramsCreateRequest {
     return new SeamHttpRequest(this, {
@@ -180,7 +179,7 @@ export class SeamHttpThermostatsDailyPrograms {
   }
 
   delete(
-    parameters?: ThermostatsDailyProgramsDeleteParameters,
+    parameters: ThermostatsDailyProgramsDeleteParameters,
     options: ThermostatsDailyProgramsDeleteOptions = {},
   ): ThermostatsDailyProgramsDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -193,7 +192,7 @@ export class SeamHttpThermostatsDailyPrograms {
   }
 
   update(
-    parameters?: ThermostatsDailyProgramsUpdateParameters,
+    parameters: ThermostatsDailyProgramsUpdateParameters,
     options: ThermostatsDailyProgramsUpdateOptions = {},
   ): ThermostatsDailyProgramsUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -218,9 +217,8 @@ export type ThermostatsDailyProgramsCreateBody =
 /**
  * @deprecated Use ThermostatsDailyProgramsCreateRequest instead.
  */
-export type ThermostatsDailyProgramsCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/thermostats/daily_programs/create'>>
->
+export type ThermostatsDailyProgramsCreateResponse =
+  RouteResponse<'/thermostats/daily_programs/create'>
 
 export type ThermostatsDailyProgramsCreateRequest = SeamHttpRequest<
   ThermostatsDailyProgramsCreateResponse,
@@ -241,9 +239,8 @@ export type ThermostatsDailyProgramsDeleteParams =
 /**
  * @deprecated Use ThermostatsDailyProgramsDeleteRequest instead.
  */
-export type ThermostatsDailyProgramsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/thermostats/daily_programs/delete'>>
->
+export type ThermostatsDailyProgramsDeleteResponse =
+  RouteResponse<'/thermostats/daily_programs/delete'>
 
 export type ThermostatsDailyProgramsDeleteRequest = SeamHttpRequest<
   void,
@@ -264,9 +261,8 @@ export type ThermostatsDailyProgramsUpdateBody =
 /**
  * @deprecated Use ThermostatsDailyProgramsUpdateRequest instead.
  */
-export type ThermostatsDailyProgramsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/thermostats/daily_programs/update'>>
->
+export type ThermostatsDailyProgramsUpdateResponse =
+  RouteResponse<'/thermostats/daily_programs/update'>
 
 export type ThermostatsDailyProgramsUpdateRequest = SeamHttpRequest<
   ThermostatsDailyProgramsUpdateResponse,

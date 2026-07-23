@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpDevicesUnmanaged {
   client: Client
@@ -190,7 +189,7 @@ export class SeamHttpDevicesUnmanaged {
   }
 
   update(
-    parameters?: DevicesUnmanagedUpdateParameters,
+    parameters: DevicesUnmanagedUpdateParameters,
     options: DevicesUnmanagedUpdateOptions = {},
   ): DevicesUnmanagedUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -214,9 +213,8 @@ export type DevicesUnmanagedGetParams = DevicesUnmanagedGetParameters
 /**
  * @deprecated Use DevicesUnmanagedGetRequest instead.
  */
-export type DevicesUnmanagedGetResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/unmanaged/get'>>
->
+export type DevicesUnmanagedGetResponse =
+  RouteResponse<'/devices/unmanaged/get'>
 
 export type DevicesUnmanagedGetRequest = SeamHttpRequest<
   DevicesUnmanagedGetResponse,
@@ -236,9 +234,8 @@ export type DevicesUnmanagedListParams = DevicesUnmanagedListParameters
 /**
  * @deprecated Use DevicesUnmanagedListRequest instead.
  */
-export type DevicesUnmanagedListResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/unmanaged/list'>>
->
+export type DevicesUnmanagedListResponse =
+  RouteResponse<'/devices/unmanaged/list'>
 
 export type DevicesUnmanagedListRequest = SeamHttpRequest<
   DevicesUnmanagedListResponse,
@@ -258,9 +255,8 @@ export type DevicesUnmanagedUpdateBody = DevicesUnmanagedUpdateParameters
 /**
  * @deprecated Use DevicesUnmanagedUpdateRequest instead.
  */
-export type DevicesUnmanagedUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/unmanaged/update'>>
->
+export type DevicesUnmanagedUpdateResponse =
+  RouteResponse<'/devices/unmanaged/update'>
 
 export type DevicesUnmanagedUpdateRequest = SeamHttpRequest<void, undefined>
 

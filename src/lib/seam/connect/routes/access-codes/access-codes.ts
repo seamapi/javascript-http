@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpAccessCodesSimulate } from './simulate/index.js'
 import { SeamHttpAccessCodesUnmanaged } from './unmanaged/index.js'
@@ -175,7 +174,7 @@ export class SeamHttpAccessCodes {
   }
 
   create(
-    parameters?: AccessCodesCreateParameters,
+    parameters: AccessCodesCreateParameters,
     options: AccessCodesCreateOptions = {},
   ): AccessCodesCreateRequest {
     return new SeamHttpRequest(this, {
@@ -188,7 +187,7 @@ export class SeamHttpAccessCodes {
   }
 
   createMultiple(
-    parameters?: AccessCodesCreateMultipleParameters,
+    parameters: AccessCodesCreateMultipleParameters,
     options: AccessCodesCreateMultipleOptions = {},
   ): AccessCodesCreateMultipleRequest {
     return new SeamHttpRequest(this, {
@@ -201,7 +200,7 @@ export class SeamHttpAccessCodes {
   }
 
   delete(
-    parameters?: AccessCodesDeleteParameters,
+    parameters: AccessCodesDeleteParameters,
     options: AccessCodesDeleteOptions = {},
   ): AccessCodesDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -214,7 +213,7 @@ export class SeamHttpAccessCodes {
   }
 
   generateCode(
-    parameters?: AccessCodesGenerateCodeParameters,
+    parameters: AccessCodesGenerateCodeParameters,
     options: AccessCodesGenerateCodeOptions = {},
   ): AccessCodesGenerateCodeRequest {
     return new SeamHttpRequest(this, {
@@ -240,7 +239,7 @@ export class SeamHttpAccessCodes {
   }
 
   getTimeline(
-    parameters?: AccessCodesGetTimelineParameters,
+    parameters: AccessCodesGetTimelineParameters,
     options: AccessCodesGetTimelineOptions = {},
   ): AccessCodesGetTimelineRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -271,7 +270,7 @@ export class SeamHttpAccessCodes {
   }
 
   pullBackupAccessCode(
-    parameters?: AccessCodesPullBackupAccessCodeParameters,
+    parameters: AccessCodesPullBackupAccessCodeParameters,
     options: AccessCodesPullBackupAccessCodeOptions = {},
   ): AccessCodesPullBackupAccessCodeRequest {
     return new SeamHttpRequest(this, {
@@ -284,7 +283,7 @@ export class SeamHttpAccessCodes {
   }
 
   reportDeviceConstraints(
-    parameters?: AccessCodesReportDeviceConstraintsParameters,
+    parameters: AccessCodesReportDeviceConstraintsParameters,
     options: AccessCodesReportDeviceConstraintsOptions = {},
   ): AccessCodesReportDeviceConstraintsRequest {
     return new SeamHttpRequest(this, {
@@ -297,7 +296,7 @@ export class SeamHttpAccessCodes {
   }
 
   update(
-    parameters?: AccessCodesUpdateParameters,
+    parameters: AccessCodesUpdateParameters,
     options: AccessCodesUpdateOptions = {},
   ): AccessCodesUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -310,7 +309,7 @@ export class SeamHttpAccessCodes {
   }
 
   updateMultiple(
-    parameters?: AccessCodesUpdateMultipleParameters,
+    parameters: AccessCodesUpdateMultipleParameters,
     options: AccessCodesUpdateMultipleOptions = {},
   ): AccessCodesUpdateMultipleRequest {
     return new SeamHttpRequest(this, {
@@ -334,9 +333,7 @@ export type AccessCodesCreateBody = AccessCodesCreateParameters
 /**
  * @deprecated Use AccessCodesCreateRequest instead.
  */
-export type AccessCodesCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/create'>>
->
+export type AccessCodesCreateResponse = RouteResponse<'/access_codes/create'>
 
 export type AccessCodesCreateRequest = SeamHttpRequest<
   AccessCodesCreateResponse,
@@ -356,9 +353,8 @@ export type AccessCodesCreateMultipleBody = AccessCodesCreateMultipleParameters
 /**
  * @deprecated Use AccessCodesCreateMultipleRequest instead.
  */
-export type AccessCodesCreateMultipleResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/create_multiple'>>
->
+export type AccessCodesCreateMultipleResponse =
+  RouteResponse<'/access_codes/create_multiple'>
 
 export type AccessCodesCreateMultipleRequest = SeamHttpRequest<
   AccessCodesCreateMultipleResponse,
@@ -378,9 +374,7 @@ export type AccessCodesDeleteParams = AccessCodesDeleteParameters
 /**
  * @deprecated Use AccessCodesDeleteRequest instead.
  */
-export type AccessCodesDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/delete'>>
->
+export type AccessCodesDeleteResponse = RouteResponse<'/access_codes/delete'>
 
 export type AccessCodesDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -397,9 +391,8 @@ export type AccessCodesGenerateCodeParams = AccessCodesGenerateCodeParameters
 /**
  * @deprecated Use AccessCodesGenerateCodeRequest instead.
  */
-export type AccessCodesGenerateCodeResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/generate_code'>>
->
+export type AccessCodesGenerateCodeResponse =
+  RouteResponse<'/access_codes/generate_code'>
 
 export type AccessCodesGenerateCodeRequest = SeamHttpRequest<
   AccessCodesGenerateCodeResponse,
@@ -418,9 +411,7 @@ export type AccessCodesGetParams = AccessCodesGetParameters
 /**
  * @deprecated Use AccessCodesGetRequest instead.
  */
-export type AccessCodesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/get'>>
->
+export type AccessCodesGetResponse = RouteResponse<'/access_codes/get'>
 
 export type AccessCodesGetRequest = SeamHttpRequest<
   AccessCodesGetResponse,
@@ -440,9 +431,8 @@ export type AccessCodesGetTimelineParams = AccessCodesGetTimelineParameters
 /**
  * @deprecated Use AccessCodesGetTimelineRequest instead.
  */
-export type AccessCodesGetTimelineResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/get_timeline'>>
->
+export type AccessCodesGetTimelineResponse =
+  RouteResponse<'/access_codes/get_timeline'>
 
 export type AccessCodesGetTimelineRequest = SeamHttpRequest<
   AccessCodesGetTimelineResponse,
@@ -461,9 +451,7 @@ export type AccessCodesListParams = AccessCodesListParameters
 /**
  * @deprecated Use AccessCodesListRequest instead.
  */
-export type AccessCodesListResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/list'>>
->
+export type AccessCodesListResponse = RouteResponse<'/access_codes/list'>
 
 export type AccessCodesListRequest = SeamHttpRequest<
   AccessCodesListResponse,
@@ -484,9 +472,8 @@ export type AccessCodesPullBackupAccessCodeBody =
 /**
  * @deprecated Use AccessCodesPullBackupAccessCodeRequest instead.
  */
-export type AccessCodesPullBackupAccessCodeResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/pull_backup_access_code'>>
->
+export type AccessCodesPullBackupAccessCodeResponse =
+  RouteResponse<'/access_codes/pull_backup_access_code'>
 
 export type AccessCodesPullBackupAccessCodeRequest = SeamHttpRequest<
   AccessCodesPullBackupAccessCodeResponse,
@@ -507,9 +494,8 @@ export type AccessCodesReportDeviceConstraintsBody =
 /**
  * @deprecated Use AccessCodesReportDeviceConstraintsRequest instead.
  */
-export type AccessCodesReportDeviceConstraintsResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/report_device_constraints'>>
->
+export type AccessCodesReportDeviceConstraintsResponse =
+  RouteResponse<'/access_codes/report_device_constraints'>
 
 export type AccessCodesReportDeviceConstraintsRequest = SeamHttpRequest<
   void,
@@ -529,9 +515,7 @@ export type AccessCodesUpdateBody = AccessCodesUpdateParameters
 /**
  * @deprecated Use AccessCodesUpdateRequest instead.
  */
-export type AccessCodesUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/update'>>
->
+export type AccessCodesUpdateResponse = RouteResponse<'/access_codes/update'>
 
 export type AccessCodesUpdateRequest = SeamHttpRequest<void, undefined>
 
@@ -548,9 +532,8 @@ export type AccessCodesUpdateMultipleBody = AccessCodesUpdateMultipleParameters
 /**
  * @deprecated Use AccessCodesUpdateMultipleRequest instead.
  */
-export type AccessCodesUpdateMultipleResponse = SetNonNullable<
-  Required<RouteResponse<'/access_codes/update_multiple'>>
->
+export type AccessCodesUpdateMultipleResponse =
+  RouteResponse<'/access_codes/update_multiple'>
 
 export type AccessCodesUpdateMultipleRequest = SeamHttpRequest<void, undefined>
 

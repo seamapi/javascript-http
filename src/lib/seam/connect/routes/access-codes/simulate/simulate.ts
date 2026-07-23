@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpAccessCodesSimulate {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpAccessCodesSimulate {
   }
 
   createUnmanagedAccessCode(
-    parameters?: AccessCodesSimulateCreateUnmanagedAccessCodeParameters,
+    parameters: AccessCodesSimulateCreateUnmanagedAccessCodeParameters,
     options: AccessCodesSimulateCreateUnmanagedAccessCodeOptions = {},
   ): AccessCodesSimulateCreateUnmanagedAccessCodeRequest {
     return new SeamHttpRequest(this, {
@@ -190,11 +189,7 @@ export type AccessCodesSimulateCreateUnmanagedAccessCodeBody =
  * @deprecated Use AccessCodesSimulateCreateUnmanagedAccessCodeRequest instead.
  */
 export type AccessCodesSimulateCreateUnmanagedAccessCodeResponse =
-  SetNonNullable<
-    Required<
-      RouteResponse<'/access_codes/simulate/create_unmanaged_access_code'>
-    >
-  >
+  RouteResponse<'/access_codes/simulate/create_unmanaged_access_code'>
 
 export type AccessCodesSimulateCreateUnmanagedAccessCodeRequest =
   SeamHttpRequest<

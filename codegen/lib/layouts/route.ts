@@ -113,9 +113,9 @@ export const getEndpointLayoutContext = (
     responseTypeName: `${prefix}Response`,
     optionsTypeName: `${prefix}Options`,
     requestTypeName: `${prefix}Request`,
-    // UPSTREAM: Needs support in blueprint, fallback to true for now.
-    // https://github.com/seamapi/blueprint/issues/205
-    isOptionalParamsOk: true,
+    isOptionalParamsOk: endpoint.request.parameters.every(
+      (parameter) => !parameter.isRequired,
+    ),
     isUndocumented: endpoint.isUndocumented,
     ...getResponseContext(endpoint),
   }

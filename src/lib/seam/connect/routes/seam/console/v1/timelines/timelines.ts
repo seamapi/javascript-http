@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamConsoleV1Timelines {
   client: Client
@@ -169,7 +168,7 @@ export class SeamHttpSeamConsoleV1Timelines {
   }
 
   get(
-    parameters?: SeamConsoleV1TimelinesGetParameters,
+    parameters: SeamConsoleV1TimelinesGetParameters,
     options: SeamConsoleV1TimelinesGetOptions = {},
   ): SeamConsoleV1TimelinesGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -199,9 +198,8 @@ export type SeamConsoleV1TimelinesGetParams =
 /**
  * @deprecated Use SeamConsoleV1TimelinesGetRequest instead.
  */
-export type SeamConsoleV1TimelinesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/console/v1/timelines/get'>>
->
+export type SeamConsoleV1TimelinesGetResponse =
+  RouteResponse<'/seam/console/v1/timelines/get'>
 
 export type SeamConsoleV1TimelinesGetRequest = SeamHttpRequest<
   SeamConsoleV1TimelinesGetResponse,

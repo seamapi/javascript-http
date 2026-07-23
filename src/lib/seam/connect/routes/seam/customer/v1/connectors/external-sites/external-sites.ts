@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1ConnectorsExternalSites {
   client: Client
@@ -172,7 +171,7 @@ export class SeamHttpSeamCustomerV1ConnectorsExternalSites {
   }
 
   list(
-    parameters?: SeamCustomerV1ConnectorsExternalSitesListParameters,
+    parameters: SeamCustomerV1ConnectorsExternalSitesListParameters,
     options: SeamCustomerV1ConnectorsExternalSitesListOptions = {},
   ): SeamCustomerV1ConnectorsExternalSitesListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -202,9 +201,8 @@ export type SeamCustomerV1ConnectorsExternalSitesListParams =
 /**
  * @deprecated Use SeamCustomerV1ConnectorsExternalSitesListRequest instead.
  */
-export type SeamCustomerV1ConnectorsExternalSitesListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/connectors/external_sites/list'>>
->
+export type SeamCustomerV1ConnectorsExternalSitesListResponse =
+  RouteResponse<'/seam/customer/v1/connectors/external_sites/list'>
 
 export type SeamCustomerV1ConnectorsExternalSitesListRequest = SeamHttpRequest<
   SeamCustomerV1ConnectorsExternalSitesListResponse,
