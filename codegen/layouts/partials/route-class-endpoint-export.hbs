@@ -1,4 +1,4 @@
-export type {{parametersTypeName}} = RouteRequest{{requestFormatSuffix}}<'{{path}}'>
+export type {{parametersTypeName}} = {{#if isUndocumented}}RouteRequest{{requestFormatSuffix}}<'{{path}}'>{{else}}{{parametersType}}{{/if}}
 
 /**
  * @deprecated Use {{parametersTypeName}} instead.
@@ -8,7 +8,7 @@ export type {{legacyRequestTypeName}} = {{parametersTypeName}}
 /**
  * @deprecated Use {{requestTypeName}} instead.
  */
-export type {{responseTypeName}} = RouteResponse<'{{path}}'>
+export type {{responseTypeName}} = {{#if usesLegacyResponseType}}RouteResponse<'{{path}}'>{{else}}{{responseType}}{{/if}}
 
 export type {{requestTypeName}} = SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
 

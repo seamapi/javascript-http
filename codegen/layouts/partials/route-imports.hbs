@@ -1,9 +1,18 @@
 import { seamApiLtsVersion } from 'lib/lts-version.js'
+{{#if hasLegacyTypes}}
 import type {
   RouteRequestBody,
   RouteRequestParams,
   RouteResponse,
 } from '@seamapi/types/connect'
+{{/if}}
+{{#if resourceTypeNames.length}}
+import type {
+{{#each resourceTypeNames}}
+  {{.}},
+{{/each}}
+} from 'lib/seam/connect/routes/blueprint-resources.js'
+{{/if}}
 
 import {
   getAuthHeadersForClientSessionToken,

@@ -1,4 +1,12 @@
-import type { Endpoint, Namespace, Route } from '@seamapi/blueprint'
+import type {
+  Blueprint,
+  Endpoint,
+  Namespace,
+  Parameter,
+  Property,
+  Resource,
+  Route,
+} from '@seamapi/blueprint'
 import type { Method } from 'axios'
 import { camelCase, kebabCase, pascalCase } from 'change-case'
 
@@ -8,6 +16,8 @@ export interface RouteLayoutContext {
   endpoints: EndpointLayoutContext[]
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
+  hasLegacyTypes: boolean
+  resourceTypeNames: string[]
 }
 
 export interface RouteIndexLayoutContext {
@@ -32,6 +42,9 @@ export interface EndpointLayoutContext {
   returnsVoid: boolean
   isOptionalParamsOk: boolean
   isUndocumented: boolean
+  usesLegacyResponseType: boolean
+  parametersType: string
+  responseType: string
 }
 
 export interface SubrouteLayoutContext {
@@ -49,6 +62,33 @@ export const setRouteLayoutContext = (
   file.isUndocumented = node?.isUndocumented ?? false
   file.skipClientSessionImport =
     node == null || node?.path === '/client_sessions'
+  file.hasLegacyTypes =
+    node != null && 'endpoints' in node
+      ? node.endpoints.some(
+          (endpoint) =>
+            endpoint.isUndocumented ||
+            (endpoint.response.responseType === 'resource' &&
+              endpoint.response.resourceType === 'action_attempt'),
+        )
+      : false
+  file.resourceTypeNames =
+    node != null && 'endpoints' in node
+      ? [
+          ...new Set(
+            node.endpoints.flatMap((endpoint) => {
+              if (
+                endpoint.isUndocumented ||
+                endpoint.response.responseType === 'void' ||
+                (endpoint.response.responseType === 'resource' &&
+                  endpoint.response.resourceType === 'action_attempt')
+              ) {
+                return []
+              }
+              return [getResourceTypeName(endpoint.response.resourceType)]
+            }),
+          ),
+        ]
+      : []
 
   file.endpoints = []
   if (node != null && 'endpoints' in node) {
@@ -117,8 +157,117 @@ export const getEndpointLayoutContext = (
       (parameter) => !parameter.isRequired,
     ),
     isUndocumented: endpoint.isUndocumented,
+    usesLegacyResponseType: endpoint.isUndocumented || returnsActionAttempt,
+    parametersType: renderObject(endpoint.request.parameters, renderParameter),
+    responseType: renderResponse(endpoint),
     ...getResponseContext(endpoint),
   }
+}
+
+const renderResponse = (endpoint: Endpoint): string => {
+  const { response } = endpoint
+  if (response.responseType === 'void') return 'void'
+
+  const { resourceType, responseKey, responseType } = response
+  const resource = getResourceTypeName(resourceType)
+  const value =
+    responseType === 'resource_list' ? `Array<${resource}>` : resource
+  return `{ ${JSON.stringify(responseKey)}: ${value} }`
+}
+
+const renderResource = (resource: Resource): string =>
+  renderObject(resource.properties, renderProperty)
+
+export const getResourceTypeName = (resourceType: string): string =>
+  `${pascalCase(resourceType)}Resource`
+
+export const renderBlueprintResources = (blueprint: Blueprint): string => {
+  const resources = [
+    ...blueprint.resources,
+    ...blueprint.events,
+    ...blueprint.actionAttempts,
+  ]
+  const resourceTypes = [
+    ...new Set(resources.map(({ resourceType }) => resourceType)),
+  ]
+  return [
+    `export type UnknownResource = Record<string, unknown>`,
+    ...resourceTypes.map((resourceType) => {
+      const type = resources
+        .filter((resource) => resource.resourceType === resourceType)
+        .map(renderResource)
+        .join(' | ')
+      return `export type ${getResourceTypeName(resourceType)} = ${type || 'Record<string, unknown>'}`
+    }),
+  ].join('\n\n')
+}
+
+const renderObject = <T extends { name: string }>(
+  members: T[],
+  render: (member: T) => string,
+): string =>
+  `{ ${members
+    .map((member) => {
+      const isOptional =
+        ('isRequired' in member && !member.isRequired) ||
+        ('isOptional' in member && member.isOptional)
+      return `${JSON.stringify(member.name)}${isOptional ? '?' : ''}: ${render(member)}${isOptional ? ' | undefined' : ''}`
+    })
+    .join('; ')} }`
+
+const renderParameter = (parameter: Parameter): string => {
+  if (parameter.format === 'object') {
+    return renderObject(parameter.parameters, renderParameter)
+  }
+  if (parameter.format === 'list') {
+    if (parameter.itemFormat === 'object') {
+      return `Array<${renderObject(parameter.itemParameters, renderParameter)}>`
+    }
+    if (parameter.itemFormat === 'discriminated_object') {
+      return `Array<${parameter.variants
+        .map(({ parameters }) => renderObject(parameters, renderParameter))
+        .join(' | ')}>`
+    }
+    return `Array<${renderScalar(parameter.itemFormat, parameter)}>`
+  }
+  return renderScalar(parameter.format, parameter)
+}
+
+const renderProperty = (property: Property): string => {
+  let type: string
+  if (property.format === 'object') {
+    type = renderObject(property.properties, renderProperty)
+  } else if (property.format === 'list') {
+    if (property.itemFormat === 'object') {
+      type = `Array<${renderObject(property.itemProperties, renderProperty)}>`
+    } else if (property.itemFormat === 'discriminated_object') {
+      type = `Array<${property.variants
+        .map(({ properties }) => renderObject(properties, renderProperty))
+        .join(' | ')}>`
+    } else {
+      type = `Array<${renderScalar(property.itemFormat, property)}>`
+    }
+  } else {
+    type = renderScalar(property.format, property)
+  }
+  return property.isNullable ? `${type} | null` : type
+}
+
+const renderScalar = (format: string, value: unknown): string => {
+  if (format === 'boolean') return 'boolean'
+  if (format === 'number') return 'number'
+  if (format === 'record') return 'Record<string, unknown>'
+  if (format === 'enum') {
+    const enumValue = value as {
+      values?: Array<{ name: string }>
+      itemEnumValues?: Array<{ name: string }>
+    }
+    const values = enumValue.values ?? enumValue.itemEnumValues ?? []
+    return values.length === 0
+      ? 'string'
+      : values.map(({ name }) => JSON.stringify(name)).join(' | ')
+  }
+  return 'string'
 }
 
 const getResponseContext = (
