@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import type { DeviceResource } from 'lib/seam/connect/resources/device.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -382,8 +383,11 @@ export class SeamHttpThermostats {
   }
 }
 
-export type ThermostatsActivateClimatePresetParameters =
-  RouteRequestBody<'/thermostats/activate_climate_preset'>
+export type ThermostatsActivateClimatePresetParameters = {
+  climate_preset_key: string
+
+  device_id: string
+}
 
 /**
  * @deprecated Use ThermostatsActivateClimatePresetParameters instead.
@@ -407,7 +411,13 @@ export type ThermostatsActivateClimatePresetOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type ThermostatsCoolParameters = RouteRequestBody<'/thermostats/cool'>
+export type ThermostatsCoolParameters = {
+  cooling_set_point_celsius?: number | undefined
+  cooling_set_point_fahrenheit?: number | undefined
+  device_id: string
+
+  sync?: boolean | undefined
+}
 
 /**
  * @deprecated Use ThermostatsCoolParameters instead.
@@ -429,8 +439,35 @@ export type ThermostatsCoolOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type ThermostatsCreateClimatePresetParameters =
-  RouteRequestBody<'/thermostats/create_climate_preset'>
+export type ThermostatsCreateClimatePresetParameters = {
+  climate_preset_key: string
+
+  climate_preset_mode?:
+    | 'home'
+    | 'away'
+    | 'wake'
+    | 'sleep'
+    | 'occupied'
+    | 'unoccupied'
+    | undefined
+  cooling_set_point_celsius?: number | undefined
+  cooling_set_point_fahrenheit?: number | undefined
+  device_id: string
+
+  ecobee_metadata?:
+    | {
+        climate_ref?: string | undefined
+        is_optimized?: boolean | undefined
+        owner?: 'user' | 'system' | undefined
+      }
+    | undefined
+  fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
+  heating_set_point_celsius?: number | undefined
+  heating_set_point_fahrenheit?: number | undefined
+  hvac_mode_setting?: 'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
+  manual_override_allowed?: boolean | undefined
+  name?: string | undefined
+}
 
 /**
  * @deprecated Use ThermostatsCreateClimatePresetParameters instead.
@@ -441,8 +478,7 @@ export type ThermostatsCreateClimatePresetBody =
 /**
  * @deprecated Use ThermostatsCreateClimatePresetRequest instead.
  */
-export type ThermostatsCreateClimatePresetResponse =
-  RouteResponse<'/thermostats/create_climate_preset'>
+export type ThermostatsCreateClimatePresetResponse = void
 
 export type ThermostatsCreateClimatePresetRequest = SeamHttpRequest<
   void,
@@ -451,8 +487,11 @@ export type ThermostatsCreateClimatePresetRequest = SeamHttpRequest<
 
 export interface ThermostatsCreateClimatePresetOptions {}
 
-export type ThermostatsDeleteClimatePresetParameters =
-  RouteRequestBody<'/thermostats/delete_climate_preset'>
+export type ThermostatsDeleteClimatePresetParameters = {
+  climate_preset_key: string
+
+  device_id: string
+}
 
 /**
  * @deprecated Use ThermostatsDeleteClimatePresetParameters instead.
@@ -463,8 +502,7 @@ export type ThermostatsDeleteClimatePresetParams =
 /**
  * @deprecated Use ThermostatsDeleteClimatePresetRequest instead.
  */
-export type ThermostatsDeleteClimatePresetResponse =
-  RouteResponse<'/thermostats/delete_climate_preset'>
+export type ThermostatsDeleteClimatePresetResponse = void
 
 export type ThermostatsDeleteClimatePresetRequest = SeamHttpRequest<
   void,
@@ -492,7 +530,13 @@ export type ThermostatsGetRequest = SeamHttpRequest<
 
 export interface ThermostatsGetOptions {}
 
-export type ThermostatsHeatParameters = RouteRequestBody<'/thermostats/heat'>
+export type ThermostatsHeatParameters = {
+  device_id: string
+
+  heating_set_point_celsius?: number | undefined
+  heating_set_point_fahrenheit?: number | undefined
+  sync?: boolean | undefined
+}
 
 /**
  * @deprecated Use ThermostatsHeatParameters instead.
@@ -514,8 +558,15 @@ export type ThermostatsHeatOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type ThermostatsHeatCoolParameters =
-  RouteRequestBody<'/thermostats/heat_cool'>
+export type ThermostatsHeatCoolParameters = {
+  cooling_set_point_celsius?: number | undefined
+  cooling_set_point_fahrenheit?: number | undefined
+  device_id: string
+
+  heating_set_point_celsius?: number | undefined
+  heating_set_point_fahrenheit?: number | undefined
+  sync?: boolean | undefined
+}
 
 /**
  * @deprecated Use ThermostatsHeatCoolParameters instead.
@@ -538,7 +589,95 @@ export type ThermostatsHeatCoolOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type ThermostatsListParameters = RouteRequestBody<'/thermostats/list'>
+export type ThermostatsListParameters = {
+  connect_webview_id?: string | undefined
+  connected_account_id?: string | undefined
+  connected_account_ids?: Array<string> | undefined
+  created_before?: string | undefined
+  custom_metadata_has?: Record<string, unknown> | undefined
+  customer_key?: string | undefined
+  device_ids?: Array<string> | undefined
+  device_type?:
+    | 'ecobee_thermostat'
+    | 'nest_thermostat'
+    | 'honeywell_resideo_thermostat'
+    | 'tado_thermostat'
+    | 'sensi_thermostat'
+    | 'smartthings_thermostat'
+    | undefined
+  device_types?:
+    | Array<
+        | 'ecobee_thermostat'
+        | 'nest_thermostat'
+        | 'honeywell_resideo_thermostat'
+        | 'tado_thermostat'
+        | 'sensi_thermostat'
+        | 'smartthings_thermostat'
+      >
+    | undefined
+  exclude_if?:
+    | Array<
+        | 'can_remotely_unlock'
+        | 'can_remotely_lock'
+        | 'can_program_offline_access_codes'
+        | 'can_program_online_access_codes'
+        | 'can_hvac_heat'
+        | 'can_hvac_cool'
+        | 'can_hvac_heat_cool'
+        | 'can_turn_off_hvac'
+        | 'can_simulate_removal'
+        | 'can_simulate_connection'
+        | 'can_simulate_disconnection'
+        | 'can_unlock_with_code'
+        | 'can_run_thermostat_programs'
+        | 'can_program_thermostat_programs_as_weekday_weekend'
+        | 'can_program_thermostat_programs_as_different_each_day'
+        | 'can_program_thermostat_programs_as_same_each_day'
+        | 'can_simulate_hub_connection'
+        | 'can_simulate_hub_disconnection'
+        | 'can_simulate_paid_subscription'
+        | 'can_configure_auto_lock'
+      >
+    | undefined
+  include_if?:
+    | Array<
+        | 'can_remotely_unlock'
+        | 'can_remotely_lock'
+        | 'can_program_offline_access_codes'
+        | 'can_program_online_access_codes'
+        | 'can_hvac_heat'
+        | 'can_hvac_cool'
+        | 'can_hvac_heat_cool'
+        | 'can_turn_off_hvac'
+        | 'can_simulate_removal'
+        | 'can_simulate_connection'
+        | 'can_simulate_disconnection'
+        | 'can_unlock_with_code'
+        | 'can_run_thermostat_programs'
+        | 'can_program_thermostat_programs_as_weekday_weekend'
+        | 'can_program_thermostat_programs_as_different_each_day'
+        | 'can_program_thermostat_programs_as_same_each_day'
+        | 'can_simulate_hub_connection'
+        | 'can_simulate_hub_disconnection'
+        | 'can_simulate_paid_subscription'
+        | 'can_configure_auto_lock'
+      >
+    | undefined
+  limit?: number | undefined
+  manufacturer?:
+    | 'ecobee'
+    | 'honeywell_resideo'
+    | 'nest'
+    | 'sensi'
+    | 'smartthings'
+    | 'tado'
+    | undefined
+  page_cursor?: string | undefined
+  search?: string | undefined
+  space_id?: string | undefined
+  unstable_location_id?: string | undefined
+  user_identifier_key?: string | undefined
+}
 
 /**
  * @deprecated Use ThermostatsListParameters instead.
@@ -548,7 +687,7 @@ export type ThermostatsListParams = ThermostatsListParameters
 /**
  * @deprecated Use ThermostatsListRequest instead.
  */
-export type ThermostatsListResponse = RouteResponse<'/thermostats/list'>
+export type ThermostatsListResponse = { devices: Array<DeviceResource> }
 
 export type ThermostatsListRequest = SeamHttpRequest<
   ThermostatsListResponse,
@@ -557,7 +696,11 @@ export type ThermostatsListRequest = SeamHttpRequest<
 
 export interface ThermostatsListOptions {}
 
-export type ThermostatsOffParameters = RouteRequestBody<'/thermostats/off'>
+export type ThermostatsOffParameters = {
+  device_id: string
+
+  sync?: boolean | undefined
+}
 
 /**
  * @deprecated Use ThermostatsOffParameters instead.
@@ -579,8 +722,11 @@ export type ThermostatsOffOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type ThermostatsSetFallbackClimatePresetParameters =
-  RouteRequestBody<'/thermostats/set_fallback_climate_preset'>
+export type ThermostatsSetFallbackClimatePresetParameters = {
+  climate_preset_key: string
+
+  device_id: string
+}
 
 /**
  * @deprecated Use ThermostatsSetFallbackClimatePresetParameters instead.
@@ -591,8 +737,7 @@ export type ThermostatsSetFallbackClimatePresetBody =
 /**
  * @deprecated Use ThermostatsSetFallbackClimatePresetRequest instead.
  */
-export type ThermostatsSetFallbackClimatePresetResponse =
-  RouteResponse<'/thermostats/set_fallback_climate_preset'>
+export type ThermostatsSetFallbackClimatePresetResponse = void
 
 export type ThermostatsSetFallbackClimatePresetRequest = SeamHttpRequest<
   void,
@@ -601,8 +746,13 @@ export type ThermostatsSetFallbackClimatePresetRequest = SeamHttpRequest<
 
 export interface ThermostatsSetFallbackClimatePresetOptions {}
 
-export type ThermostatsSetFanModeParameters =
-  RouteRequestBody<'/thermostats/set_fan_mode'>
+export type ThermostatsSetFanModeParameters = {
+  device_id: string
+
+  fan_mode?: 'auto' | 'on' | 'circulate' | undefined
+  fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
+  sync?: boolean | undefined
+}
 
 /**
  * @deprecated Use ThermostatsSetFanModeParameters instead.
@@ -625,8 +775,16 @@ export type ThermostatsSetFanModeOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type ThermostatsSetHvacModeParameters =
-  RouteRequestBody<'/thermostats/set_hvac_mode'>
+export type ThermostatsSetHvacModeParameters = {
+  device_id: string
+
+  hvac_mode_setting: 'off' | 'cool' | 'heat' | 'heat_cool' | 'eco'
+
+  cooling_set_point_celsius?: number | undefined
+  cooling_set_point_fahrenheit?: number | undefined
+  heating_set_point_celsius?: number | undefined
+  heating_set_point_fahrenheit?: number | undefined
+}
 
 /**
  * @deprecated Use ThermostatsSetHvacModeParameters instead.
@@ -649,8 +807,14 @@ export type ThermostatsSetHvacModeOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type ThermostatsSetTemperatureThresholdParameters =
-  RouteRequestBody<'/thermostats/set_temperature_threshold'>
+export type ThermostatsSetTemperatureThresholdParameters = {
+  device_id: string
+
+  lower_limit_celsius?: number | undefined
+  lower_limit_fahrenheit?: number | undefined
+  upper_limit_celsius?: number | undefined
+  upper_limit_fahrenheit?: number | undefined
+}
 
 /**
  * @deprecated Use ThermostatsSetTemperatureThresholdParameters instead.
@@ -661,8 +825,7 @@ export type ThermostatsSetTemperatureThresholdBody =
 /**
  * @deprecated Use ThermostatsSetTemperatureThresholdRequest instead.
  */
-export type ThermostatsSetTemperatureThresholdResponse =
-  RouteResponse<'/thermostats/set_temperature_threshold'>
+export type ThermostatsSetTemperatureThresholdResponse = void
 
 export type ThermostatsSetTemperatureThresholdRequest = SeamHttpRequest<
   void,
@@ -671,8 +834,35 @@ export type ThermostatsSetTemperatureThresholdRequest = SeamHttpRequest<
 
 export interface ThermostatsSetTemperatureThresholdOptions {}
 
-export type ThermostatsUpdateClimatePresetParameters =
-  RouteRequestBody<'/thermostats/update_climate_preset'>
+export type ThermostatsUpdateClimatePresetParameters = {
+  climate_preset_key: string
+
+  climate_preset_mode?:
+    | 'home'
+    | 'away'
+    | 'wake'
+    | 'sleep'
+    | 'occupied'
+    | 'unoccupied'
+    | undefined
+  cooling_set_point_celsius?: number | undefined
+  cooling_set_point_fahrenheit?: number | undefined
+  device_id: string
+
+  ecobee_metadata?:
+    | {
+        climate_ref?: string | undefined
+        is_optimized?: boolean | undefined
+        owner?: 'user' | 'system' | undefined
+      }
+    | undefined
+  fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
+  heating_set_point_celsius?: number | undefined
+  heating_set_point_fahrenheit?: number | undefined
+  hvac_mode_setting?: 'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
+  manual_override_allowed?: boolean | undefined
+  name?: string | undefined
+}
 
 /**
  * @deprecated Use ThermostatsUpdateClimatePresetParameters instead.
@@ -683,8 +873,7 @@ export type ThermostatsUpdateClimatePresetBody =
 /**
  * @deprecated Use ThermostatsUpdateClimatePresetRequest instead.
  */
-export type ThermostatsUpdateClimatePresetResponse =
-  RouteResponse<'/thermostats/update_climate_preset'>
+export type ThermostatsUpdateClimatePresetResponse = void
 
 export type ThermostatsUpdateClimatePresetRequest = SeamHttpRequest<
   void,
@@ -693,8 +882,17 @@ export type ThermostatsUpdateClimatePresetRequest = SeamHttpRequest<
 
 export interface ThermostatsUpdateClimatePresetOptions {}
 
-export type ThermostatsUpdateWeeklyProgramParameters =
-  RouteRequestBody<'/thermostats/update_weekly_program'>
+export type ThermostatsUpdateWeeklyProgramParameters = {
+  device_id: string
+
+  friday_program_id?: string | undefined
+  monday_program_id?: string | undefined
+  saturday_program_id?: string | undefined
+  sunday_program_id?: string | undefined
+  thursday_program_id?: string | undefined
+  tuesday_program_id?: string | undefined
+  wednesday_program_id?: string | undefined
+}
 
 /**
  * @deprecated Use ThermostatsUpdateWeeklyProgramParameters instead.

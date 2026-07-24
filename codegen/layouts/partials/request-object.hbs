@@ -1,0 +1,5 @@
+{
+{{#each parameters}}
+  {{json name}}{{#unless isRequired}}?{{/unless}}: {{> request-parameter-type }}{{#unless isRequired}} | undefined{{/unless}}
+{{/each}}
+}

@@ -1,0 +1,7 @@
+{{#if (eq format "object")}}
+{{> request-object parameters=parameters}}
+{{else if (eq format "list")}}
+Array<{{> request-list-item-type }}>
+{{else}}
+{{> request-scalar-type}}
+{{/if}}

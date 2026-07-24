@@ -31,6 +31,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import type { AccessCodeResource } from 'lib/seam/connect/resources/access-code.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -322,8 +323,26 @@ export class SeamHttpAccessCodes {
   }
 }
 
-export type AccessCodesCreateParameters =
-  RouteRequestBody<'/access_codes/create'>
+export type AccessCodesCreateParameters = {
+  allow_external_modification?: boolean | undefined
+  attempt_for_offline_device?: boolean | undefined
+  code?: string | undefined
+  common_code_key?: string | undefined
+  device_id: string
+
+  ends_at?: string | undefined
+  is_external_modification_allowed?: boolean | undefined
+  is_offline_access_code?: boolean | undefined
+  is_one_time_use?: boolean | undefined
+  max_time_rounding?: '1hour' | '1day' | '1h' | '1d' | undefined
+  name?: string | undefined
+  prefer_native_scheduling?: boolean | undefined
+  preferred_code_length?: number | undefined
+  starts_at?: string | undefined
+  sync?: boolean | undefined
+  use_backup_access_code_pool?: boolean | undefined
+  use_offline_access_code?: boolean | undefined
+}
 
 /**
  * @deprecated Use AccessCodesCreateParameters instead.
@@ -333,7 +352,7 @@ export type AccessCodesCreateBody = AccessCodesCreateParameters
 /**
  * @deprecated Use AccessCodesCreateRequest instead.
  */
-export type AccessCodesCreateResponse = RouteResponse<'/access_codes/create'>
+export type AccessCodesCreateResponse = { access_code: AccessCodeResource }
 
 export type AccessCodesCreateRequest = SeamHttpRequest<
   AccessCodesCreateResponse,
@@ -342,8 +361,24 @@ export type AccessCodesCreateRequest = SeamHttpRequest<
 
 export interface AccessCodesCreateOptions {}
 
-export type AccessCodesCreateMultipleParameters =
-  RouteRequestBody<'/access_codes/create_multiple'>
+export type AccessCodesCreateMultipleParameters = {
+  allow_external_modification?: boolean | undefined
+  attempt_for_offline_device?: boolean | undefined
+  behavior_when_code_cannot_be_shared?:
+    | 'throw'
+    | 'create_random_code'
+    | undefined
+  code?: string | undefined
+  device_ids: Array<string>
+
+  ends_at?: string | undefined
+  is_external_modification_allowed?: boolean | undefined
+  name?: string | undefined
+  prefer_native_scheduling?: boolean | undefined
+  preferred_code_length?: number | undefined
+  starts_at?: string | undefined
+  use_backup_access_code_pool?: boolean | undefined
+}
 
 /**
  * @deprecated Use AccessCodesCreateMultipleParameters instead.
@@ -353,8 +388,9 @@ export type AccessCodesCreateMultipleBody = AccessCodesCreateMultipleParameters
 /**
  * @deprecated Use AccessCodesCreateMultipleRequest instead.
  */
-export type AccessCodesCreateMultipleResponse =
-  RouteResponse<'/access_codes/create_multiple'>
+export type AccessCodesCreateMultipleResponse = {
+  access_codes: Array<AccessCodeResource>
+}
 
 export type AccessCodesCreateMultipleRequest = SeamHttpRequest<
   AccessCodesCreateMultipleResponse,
@@ -363,8 +399,12 @@ export type AccessCodesCreateMultipleRequest = SeamHttpRequest<
 
 export interface AccessCodesCreateMultipleOptions {}
 
-export type AccessCodesDeleteParameters =
-  RouteRequestBody<'/access_codes/delete'>
+export type AccessCodesDeleteParameters = {
+  access_code_id: string
+
+  device_id?: string | undefined
+  sync?: boolean | undefined
+}
 
 /**
  * @deprecated Use AccessCodesDeleteParameters instead.
@@ -374,14 +414,15 @@ export type AccessCodesDeleteParams = AccessCodesDeleteParameters
 /**
  * @deprecated Use AccessCodesDeleteRequest instead.
  */
-export type AccessCodesDeleteResponse = RouteResponse<'/access_codes/delete'>
+export type AccessCodesDeleteResponse = void
 
 export type AccessCodesDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface AccessCodesDeleteOptions {}
 
-export type AccessCodesGenerateCodeParameters =
-  RouteRequestBody<'/access_codes/generate_code'>
+export type AccessCodesGenerateCodeParameters = {
+  device_id: string
+}
 
 /**
  * @deprecated Use AccessCodesGenerateCodeParameters instead.
@@ -391,8 +432,9 @@ export type AccessCodesGenerateCodeParams = AccessCodesGenerateCodeParameters
 /**
  * @deprecated Use AccessCodesGenerateCodeRequest instead.
  */
-export type AccessCodesGenerateCodeResponse =
-  RouteResponse<'/access_codes/generate_code'>
+export type AccessCodesGenerateCodeResponse = {
+  generated_code: AccessCodeResource
+}
 
 export type AccessCodesGenerateCodeRequest = SeamHttpRequest<
   AccessCodesGenerateCodeResponse,
@@ -401,7 +443,11 @@ export type AccessCodesGenerateCodeRequest = SeamHttpRequest<
 
 export interface AccessCodesGenerateCodeOptions {}
 
-export type AccessCodesGetParameters = RouteRequestBody<'/access_codes/get'>
+export type AccessCodesGetParameters = {
+  access_code_id?: string | undefined
+  code?: string | undefined
+  device_id?: string | undefined
+}
 
 /**
  * @deprecated Use AccessCodesGetParameters instead.
@@ -411,7 +457,7 @@ export type AccessCodesGetParams = AccessCodesGetParameters
 /**
  * @deprecated Use AccessCodesGetRequest instead.
  */
-export type AccessCodesGetResponse = RouteResponse<'/access_codes/get'>
+export type AccessCodesGetResponse = { access_code: AccessCodeResource }
 
 export type AccessCodesGetRequest = SeamHttpRequest<
   AccessCodesGetResponse,
@@ -441,7 +487,18 @@ export type AccessCodesGetTimelineRequest = SeamHttpRequest<
 
 export interface AccessCodesGetTimelineOptions {}
 
-export type AccessCodesListParameters = RouteRequestBody<'/access_codes/list'>
+export type AccessCodesListParameters = {
+  access_code_ids?: Array<string> | undefined
+  access_grant_id?: string | undefined
+  access_grant_key?: string | undefined
+  access_method_id?: string | undefined
+  customer_key?: string | undefined
+  device_id?: string | undefined
+  limit?: number | undefined
+  page_cursor?: string | undefined
+  search?: string | undefined
+  user_identifier_key?: string | undefined
+}
 
 /**
  * @deprecated Use AccessCodesListParameters instead.
@@ -451,7 +508,9 @@ export type AccessCodesListParams = AccessCodesListParameters
 /**
  * @deprecated Use AccessCodesListRequest instead.
  */
-export type AccessCodesListResponse = RouteResponse<'/access_codes/list'>
+export type AccessCodesListResponse = {
+  access_codes: Array<AccessCodeResource>
+}
 
 export type AccessCodesListRequest = SeamHttpRequest<
   AccessCodesListResponse,
@@ -460,8 +519,9 @@ export type AccessCodesListRequest = SeamHttpRequest<
 
 export interface AccessCodesListOptions {}
 
-export type AccessCodesPullBackupAccessCodeParameters =
-  RouteRequestBody<'/access_codes/pull_backup_access_code'>
+export type AccessCodesPullBackupAccessCodeParameters = {
+  access_code_id: string
+}
 
 /**
  * @deprecated Use AccessCodesPullBackupAccessCodeParameters instead.
@@ -472,8 +532,9 @@ export type AccessCodesPullBackupAccessCodeBody =
 /**
  * @deprecated Use AccessCodesPullBackupAccessCodeRequest instead.
  */
-export type AccessCodesPullBackupAccessCodeResponse =
-  RouteResponse<'/access_codes/pull_backup_access_code'>
+export type AccessCodesPullBackupAccessCodeResponse = {
+  access_code: AccessCodeResource
+}
 
 export type AccessCodesPullBackupAccessCodeRequest = SeamHttpRequest<
   AccessCodesPullBackupAccessCodeResponse,
@@ -482,8 +543,13 @@ export type AccessCodesPullBackupAccessCodeRequest = SeamHttpRequest<
 
 export interface AccessCodesPullBackupAccessCodeOptions {}
 
-export type AccessCodesReportDeviceConstraintsParameters =
-  RouteRequestBody<'/access_codes/report_device_constraints'>
+export type AccessCodesReportDeviceConstraintsParameters = {
+  device_id: string
+
+  max_code_length?: number | undefined
+  min_code_length?: number | undefined
+  supported_code_lengths?: Array<number> | undefined
+}
 
 /**
  * @deprecated Use AccessCodesReportDeviceConstraintsParameters instead.
@@ -494,8 +560,7 @@ export type AccessCodesReportDeviceConstraintsBody =
 /**
  * @deprecated Use AccessCodesReportDeviceConstraintsRequest instead.
  */
-export type AccessCodesReportDeviceConstraintsResponse =
-  RouteResponse<'/access_codes/report_device_constraints'>
+export type AccessCodesReportDeviceConstraintsResponse = void
 
 export type AccessCodesReportDeviceConstraintsRequest = SeamHttpRequest<
   void,
@@ -504,8 +569,28 @@ export type AccessCodesReportDeviceConstraintsRequest = SeamHttpRequest<
 
 export interface AccessCodesReportDeviceConstraintsOptions {}
 
-export type AccessCodesUpdateParameters =
-  RouteRequestBody<'/access_codes/update'>
+export type AccessCodesUpdateParameters = {
+  access_code_id: string
+
+  allow_external_modification?: boolean | undefined
+  attempt_for_offline_device?: boolean | undefined
+  code?: string | undefined
+  device_id?: string | undefined
+  ends_at?: string | undefined
+  is_external_modification_allowed?: boolean | undefined
+  is_managed?: boolean | undefined
+  is_offline_access_code?: boolean | undefined
+  is_one_time_use?: boolean | undefined
+  max_time_rounding?: '1hour' | '1day' | '1h' | '1d' | undefined
+  name?: string | undefined
+  prefer_native_scheduling?: boolean | undefined
+  preferred_code_length?: number | undefined
+  starts_at?: string | undefined
+  sync?: boolean | undefined
+  type?: 'ongoing' | 'time_bound' | undefined
+  use_backup_access_code_pool?: boolean | undefined
+  use_offline_access_code?: boolean | undefined
+}
 
 /**
  * @deprecated Use AccessCodesUpdateParameters instead.
@@ -515,14 +600,19 @@ export type AccessCodesUpdateBody = AccessCodesUpdateParameters
 /**
  * @deprecated Use AccessCodesUpdateRequest instead.
  */
-export type AccessCodesUpdateResponse = RouteResponse<'/access_codes/update'>
+export type AccessCodesUpdateResponse = void
 
 export type AccessCodesUpdateRequest = SeamHttpRequest<void, undefined>
 
 export interface AccessCodesUpdateOptions {}
 
-export type AccessCodesUpdateMultipleParameters =
-  RouteRequestBody<'/access_codes/update_multiple'>
+export type AccessCodesUpdateMultipleParameters = {
+  common_code_key: string
+
+  ends_at?: string | undefined
+  name?: string | undefined
+  starts_at?: string | undefined
+}
 
 /**
  * @deprecated Use AccessCodesUpdateMultipleParameters instead.
@@ -532,8 +622,7 @@ export type AccessCodesUpdateMultipleBody = AccessCodesUpdateMultipleParameters
 /**
  * @deprecated Use AccessCodesUpdateMultipleRequest instead.
  */
-export type AccessCodesUpdateMultipleResponse =
-  RouteResponse<'/access_codes/update_multiple'>
+export type AccessCodesUpdateMultipleResponse = void
 
 export type AccessCodesUpdateMultipleRequest = SeamHttpRequest<void, undefined>
 

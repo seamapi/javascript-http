@@ -7,6 +7,11 @@ import {
   setEndpointsLayoutContext,
 } from './layouts/endpoints.js'
 import {
+  getResourceLayoutContexts,
+  type ResourceIndexLayoutContext,
+  type ResourceLayoutContext,
+} from './layouts/resources.js'
+import {
   type RouteIndexLayoutContext,
   type RouteLayoutContext,
   setRouteLayoutContext,
@@ -19,9 +24,12 @@ interface Metadata {
 
 type File = RouteLayoutContext &
   RouteIndexLayoutContext &
-  EndpointsLayoutContext & { layout: string }
+  EndpointsLayoutContext &
+  ResourceLayoutContext &
+  ResourceIndexLayoutContext & { layout: string }
 
 const rootPath = 'src/lib/seam/connect/routes'
+const resourcesPath = 'src/lib/seam/connect/resources'
 
 const supportedAuthMethods: SeamAuthMethod[] = [
   'api_key',
@@ -89,6 +97,22 @@ export const connect = (
     withoutWorkspace: true,
   })
   routeIndexes['']?.add('seam-http-endpoints-without-workspace.js')
+
+  const resourceContexts = getResourceLayoutContexts(blueprint)
+  for (const resource of resourceContexts) {
+    const resourceFile = {
+      contents: Buffer.from('\n'),
+      layout: 'resource.hbs',
+      ...resource,
+    }
+    files[`${resourcesPath}/${resource.fileName}`] = resourceFile
+  }
+  const resourceIndexFile = {
+    contents: Buffer.from('\n'),
+    layout: 'resource-index.hbs',
+    resources: resourceContexts,
+  }
+  files[`${resourcesPath}/index.ts`] = resourceIndexFile
 
   for (const node of nodes) {
     const path = toFilePath(node.path)

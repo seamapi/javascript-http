@@ -1,0 +1,5 @@
+{
+{{#each properties}}
+  {{json name}}{{#if isOptional}}?{{/if}}: {{> resource-property-type }}{{#if isNullable}} | null{{/if}}{{#if isOptional}} | undefined{{/if}}
+{{/each}}
+}

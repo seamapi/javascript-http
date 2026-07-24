@@ -1,6 +1,8 @@
-import type { Endpoint, Namespace, Route } from '@seamapi/blueprint'
+import type { Endpoint, Namespace, Parameter, Route } from '@seamapi/blueprint'
 import type { Method } from 'axios'
 import { camelCase, kebabCase, pascalCase } from 'change-case'
+
+import { getResourceTypeName } from './resources.js'
 
 export interface RouteLayoutContext {
   className: string
@@ -8,6 +10,8 @@ export interface RouteLayoutContext {
   endpoints: EndpointLayoutContext[]
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
+  hasLegacyTypes: boolean
+  resourceTypeImports: ResourceTypeImport[]
 }
 
 export interface RouteIndexLayoutContext {
@@ -32,12 +36,21 @@ export interface EndpointLayoutContext {
   returnsVoid: boolean
   isOptionalParamsOk: boolean
   isUndocumented: boolean
+  usesLegacyResponseType: boolean
+  parameters: Parameter[]
+  responseIsList: boolean
+  responseResourceTypeName: string
 }
 
 export interface SubrouteLayoutContext {
   methodName: string
   className: string
   fileName: string
+}
+
+interface ResourceTypeImport {
+  fileName: string
+  typeName: string
 }
 
 export const setRouteLayoutContext = (
@@ -49,6 +62,36 @@ export const setRouteLayoutContext = (
   file.isUndocumented = node?.isUndocumented ?? false
   file.skipClientSessionImport =
     node == null || node?.path === '/client_sessions'
+  file.hasLegacyTypes =
+    node != null && 'endpoints' in node
+      ? node.endpoints.some(
+          (endpoint) =>
+            endpoint.isUndocumented ||
+            (endpoint.response.responseType === 'resource' &&
+              endpoint.response.resourceType === 'action_attempt'),
+        )
+      : false
+  file.resourceTypeImports =
+    node != null && 'endpoints' in node
+      ? [
+          ...new Set(
+            node.endpoints.flatMap((endpoint) => {
+              if (
+                endpoint.isUndocumented ||
+                endpoint.response.responseType === 'void' ||
+                (endpoint.response.responseType === 'resource' &&
+                  endpoint.response.resourceType === 'action_attempt')
+              ) {
+                return []
+              }
+              return [endpoint.response.resourceType]
+            }),
+          ),
+        ].map((resourceType) => ({
+          fileName: `${kebabCase(resourceType)}.js`,
+          typeName: getResourceTypeName(resourceType),
+        }))
+      : []
 
   file.endpoints = []
   if (node != null && 'endpoints' in node) {
@@ -117,6 +160,13 @@ export const getEndpointLayoutContext = (
       (parameter) => !parameter.isRequired,
     ),
     isUndocumented: endpoint.isUndocumented,
+    usesLegacyResponseType: endpoint.isUndocumented || returnsActionAttempt,
+    parameters: endpoint.request.parameters,
+    responseIsList: endpoint.response.responseType === 'resource_list',
+    responseResourceTypeName:
+      endpoint.response.responseType === 'void'
+        ? ''
+        : getResourceTypeName(endpoint.response.resourceType),
     ...getResponseContext(endpoint),
   }
 }
