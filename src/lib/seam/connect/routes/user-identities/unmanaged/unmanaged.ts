@@ -204,7 +204,9 @@ export class SeamHttpUserIdentitiesUnmanaged {
   }
 }
 
-export type UserIdentitiesUnmanagedGetParameters = { user_identity_id: string }
+export type UserIdentitiesUnmanagedGetParameters = {
+  user_identity_id: string
+}
 
 /**
  * @deprecated Use UserIdentitiesUnmanagedGetParameters instead.
@@ -255,7 +257,9 @@ export interface UserIdentitiesUnmanagedListOptions {}
 
 export type UserIdentitiesUnmanagedUpdateParameters = {
   is_managed: boolean
+
   user_identity_id: string
+
   user_identity_key?: string | undefined
 }
 

@@ -214,7 +214,9 @@ export class SeamHttpAcsSystems {
   }
 }
 
-export type AcsSystemsGetParameters = { acs_system_id: string }
+export type AcsSystemsGetParameters = {
+  acs_system_id: string
+}
 
 /**
  * @deprecated Use AcsSystemsGetParameters instead.
@@ -284,7 +286,11 @@ export interface AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions {}
 export type AcsSystemsReportDevicesParameters = {
   acs_encoders?:
     | Array<{
-        hotek_metadata?: { encoder_number?: string | undefined } | undefined
+        hotek_metadata?:
+          | {
+              encoder_number?: string | undefined
+            }
+          | undefined
         is_removed?: boolean | undefined
       }>
     | undefined

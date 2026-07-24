@@ -238,6 +238,7 @@ export class SeamHttpLocks {
 export type LocksConfigureAutoLockParameters = {
   auto_lock_delay_seconds?: number | undefined
   auto_lock_enabled: boolean
+
   device_id: string
 }
 
@@ -458,6 +459,7 @@ export interface LocksListOptions {}
 
 export type LocksLockDoorParameters = {
   device_id: string
+
   sync?: boolean | undefined
 }
 
@@ -483,6 +485,7 @@ export type LocksLockDoorOptions = Pick<
 
 export type LocksUnlockDoorParameters = {
   device_id: string
+
   sync?: boolean | undefined
 }
 

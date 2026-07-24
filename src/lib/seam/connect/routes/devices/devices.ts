@@ -1878,9 +1878,14 @@ export type DevicesUpdateParameters = {
   backup_access_code_pool_enabled?: boolean | undefined
   custom_metadata?: Record<string, unknown> | undefined
   device_id: string
+
   is_managed?: boolean | undefined
   name?: string | undefined
-  properties?: { name?: string | undefined } | undefined
+  properties?:
+    | {
+        name?: string | undefined
+      }
+    | undefined
 }
 
 /**

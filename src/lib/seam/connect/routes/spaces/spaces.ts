@@ -321,6 +321,7 @@ export class SeamHttpSpaces {
 
 export type SpacesAddAcsEntrancesParameters = {
   acs_entrance_ids: Array<string>
+
   space_id: string
 }
 
@@ -340,6 +341,7 @@ export interface SpacesAddAcsEntrancesOptions {}
 
 export type SpacesAddConnectedAccountParameters = {
   connected_account_id: string
+
   space_id: string
 }
 
@@ -359,6 +361,7 @@ export interface SpacesAddConnectedAccountOptions {}
 
 export type SpacesAddDevicesParameters = {
   device_ids: Array<string>
+
   space_id: string
 }
 
@@ -390,6 +393,7 @@ export type SpacesCreateParameters = {
   customer_key?: string | undefined
   device_ids?: Array<string> | undefined
   name: string
+
   space_key?: string | undefined
 }
 
@@ -407,7 +411,9 @@ export type SpacesCreateRequest = SeamHttpRequest<SpacesCreateResponse, 'space'>
 
 export interface SpacesCreateOptions {}
 
-export type SpacesDeleteParameters = { space_id: string }
+export type SpacesDeleteParameters = {
+  space_id: string
+}
 
 /**
  * @deprecated Use SpacesDeleteParameters instead.
@@ -511,6 +517,7 @@ export interface SpacesListOptions {}
 
 export type SpacesRemoveAcsEntrancesParameters = {
   acs_entrance_ids: Array<string>
+
   space_id: string
 }
 
@@ -530,6 +537,7 @@ export interface SpacesRemoveAcsEntrancesOptions {}
 
 export type SpacesRemoveConnectedAccountParameters = {
   connected_account_id: string
+
   space_id: string
 }
 
@@ -553,6 +561,7 @@ export interface SpacesRemoveConnectedAccountOptions {}
 
 export type SpacesRemoveDevicesParameters = {
   device_ids: Array<string>
+
   space_id: string
 }
 

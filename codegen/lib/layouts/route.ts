@@ -37,8 +37,9 @@ export interface EndpointLayoutContext {
   isOptionalParamsOk: boolean
   isUndocumented: boolean
   usesLegacyResponseType: boolean
-  parametersType: string
-  responseType: string
+  parameters: Parameter[]
+  responseIsList: boolean
+  responseResourceTypeName: string
 }
 
 export interface SubrouteLayoutContext {
@@ -160,69 +161,14 @@ export const getEndpointLayoutContext = (
     ),
     isUndocumented: endpoint.isUndocumented,
     usesLegacyResponseType: endpoint.isUndocumented || returnsActionAttempt,
-    parametersType: renderObject(endpoint.request.parameters, renderParameter),
-    responseType: renderResponse(endpoint),
+    parameters: endpoint.request.parameters,
+    responseIsList: endpoint.response.responseType === 'resource_list',
+    responseResourceTypeName:
+      endpoint.response.responseType === 'void'
+        ? ''
+        : getResourceTypeName(endpoint.response.resourceType),
     ...getResponseContext(endpoint),
   }
-}
-
-const renderResponse = (endpoint: Endpoint): string => {
-  const { response } = endpoint
-  if (response.responseType === 'void') return 'void'
-
-  const { resourceType, responseKey, responseType } = response
-  const resource = getResourceTypeName(resourceType)
-  const value =
-    responseType === 'resource_list' ? `Array<${resource}>` : resource
-  return `{ ${JSON.stringify(responseKey)}: ${value} }`
-}
-
-const renderObject = <T extends { name: string }>(
-  members: T[],
-  render: (member: T) => string,
-): string =>
-  `{ ${members
-    .map((member) => {
-      const isOptional =
-        ('isRequired' in member && !member.isRequired) ||
-        ('isOptional' in member && member.isOptional)
-      return `${JSON.stringify(member.name)}${isOptional ? '?' : ''}: ${render(member)}${isOptional ? ' | undefined' : ''}`
-    })
-    .join('; ')} }`
-
-const renderParameter = (parameter: Parameter): string => {
-  if (parameter.format === 'object') {
-    return renderObject(parameter.parameters, renderParameter)
-  }
-  if (parameter.format === 'list') {
-    if (parameter.itemFormat === 'object') {
-      return `Array<${renderObject(parameter.itemParameters, renderParameter)}>`
-    }
-    if (parameter.itemFormat === 'discriminated_object') {
-      return `Array<${parameter.variants
-        .map(({ parameters }) => renderObject(parameters, renderParameter))
-        .join(' | ')}>`
-    }
-    return `Array<${renderScalar(parameter.itemFormat, parameter)}>`
-  }
-  return renderScalar(parameter.format, parameter)
-}
-
-const renderScalar = (format: string, value: unknown): string => {
-  if (format === 'boolean') return 'boolean'
-  if (format === 'number') return 'number'
-  if (format === 'record') return 'Record<string, unknown>'
-  if (format === 'enum') {
-    const enumValue = value as {
-      values?: Array<{ name: string }>
-      itemEnumValues?: Array<{ name: string }>
-    }
-    const values = enumValue.values ?? enumValue.itemEnumValues ?? []
-    return values.length === 0
-      ? 'string'
-      : values.map(({ name }) => JSON.stringify(name)).join(' | ')
-  }
-  return 'string'
 }
 
 const getResponseContext = (

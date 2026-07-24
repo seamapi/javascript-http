@@ -368,6 +368,7 @@ export class SeamHttpUserIdentities {
 
 export type UserIdentitiesAddAcsUserParameters = {
   acs_user_id: string
+
   user_identity_id?: string | undefined
   user_identity_key?: string | undefined
 }
@@ -413,7 +414,9 @@ export type UserIdentitiesCreateRequest = SeamHttpRequest<
 
 export interface UserIdentitiesCreateOptions {}
 
-export type UserIdentitiesDeleteParameters = { user_identity_id: string }
+export type UserIdentitiesDeleteParameters = {
+  user_identity_id: string
+}
 
 /**
  * @deprecated Use UserIdentitiesDeleteParameters instead.
@@ -479,6 +482,7 @@ export interface UserIdentitiesGetOptions {}
 
 export type UserIdentitiesGrantAccessToDeviceParameters = {
   device_id: string
+
   user_identity_id: string
 }
 
@@ -600,7 +604,9 @@ export type UserIdentitiesListAcsSystemsRequest = SeamHttpRequest<
 
 export interface UserIdentitiesListAcsSystemsOptions {}
 
-export type UserIdentitiesListAcsUsersParameters = { user_identity_id: string }
+export type UserIdentitiesListAcsUsersParameters = {
+  user_identity_id: string
+}
 
 /**
  * @deprecated Use UserIdentitiesListAcsUsersParameters instead.
@@ -624,6 +630,7 @@ export interface UserIdentitiesListAcsUsersOptions {}
 
 export type UserIdentitiesRemoveAcsUserParameters = {
   acs_user_id: string
+
   user_identity_id: string
 }
 
@@ -647,6 +654,7 @@ export interface UserIdentitiesRemoveAcsUserOptions {}
 
 export type UserIdentitiesRevokeAccessToDeviceParameters = {
   device_id: string
+
   user_identity_id: string
 }
 
@@ -673,6 +681,7 @@ export type UserIdentitiesUpdateParameters = {
   full_name?: string | undefined
   phone_number?: string | undefined
   user_identity_id: string
+
   user_identity_key?: string | undefined
 }
 

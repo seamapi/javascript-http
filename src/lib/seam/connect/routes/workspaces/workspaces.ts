@@ -269,6 +269,7 @@ export type WorkspacesCreateParameters = {
     | undefined
   is_sandbox?: boolean | undefined
   name: string
+
   organization_id?: string | undefined
   webview_logo_shape?: 'circle' | 'square' | undefined
   webview_primary_button_color?: string | undefined

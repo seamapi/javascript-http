@@ -190,7 +190,9 @@ export class SeamHttpActionAttempts {
   }
 }
 
-export type ActionAttemptsGetParameters = { action_attempt_id: string }
+export type ActionAttemptsGetParameters = {
+  action_attempt_id: string
+}
 
 /**
  * @deprecated Use ActionAttemptsGetParameters instead.

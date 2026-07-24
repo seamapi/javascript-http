@@ -188,7 +188,9 @@ export class SeamHttpAccessMethodsUnmanaged {
   }
 }
 
-export type AccessMethodsUnmanagedGetParameters = { access_method_id: string }
+export type AccessMethodsUnmanagedGetParameters = {
+  access_method_id: string
+}
 
 /**
  * @deprecated Use AccessMethodsUnmanagedGetParameters instead.
@@ -212,6 +214,7 @@ export interface AccessMethodsUnmanagedGetOptions {}
 
 export type AccessMethodsUnmanagedListParameters = {
   access_grant_id: string
+
   acs_entrance_id?: string | undefined
   device_id?: string | undefined
   space_id?: string | undefined

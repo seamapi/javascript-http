@@ -189,7 +189,9 @@ export class SeamHttpThermostatsSimulate {
 
 export type ThermostatsSimulateHvacModeAdjustedParameters = {
   device_id: string
+
   hvac_mode: 'off' | 'cool' | 'heat' | 'heat_cool'
+
   cooling_set_point_celsius?: number | undefined
   cooling_set_point_fahrenheit?: number | undefined
   heating_set_point_celsius?: number | undefined
@@ -216,6 +218,7 @@ export interface ThermostatsSimulateHvacModeAdjustedOptions {}
 
 export type ThermostatsSimulateTemperatureReachedParameters = {
   device_id: string
+
   temperature_celsius?: number | undefined
   temperature_fahrenheit?: number | undefined
 }

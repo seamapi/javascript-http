@@ -191,6 +191,7 @@ export class SeamHttpLocksSimulate {
 
 export type LocksSimulateKeypadCodeEntryParameters = {
   code: string
+
   device_id: string
 }
 
@@ -216,7 +217,9 @@ export type LocksSimulateKeypadCodeEntryOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type LocksSimulateManualLockViaKeypadParameters = { device_id: string }
+export type LocksSimulateManualLockViaKeypadParameters = {
+  device_id: string
+}
 
 /**
  * @deprecated Use LocksSimulateManualLockViaKeypadParameters instead.

@@ -177,7 +177,9 @@ export class SeamHttpAccessCodesSimulate {
 
 export type AccessCodesSimulateCreateUnmanagedAccessCodeParameters = {
   code: string
+
   device_id: string
+
   name: string
 }
 

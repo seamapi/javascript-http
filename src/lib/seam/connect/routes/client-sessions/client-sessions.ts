@@ -282,7 +282,9 @@ export type ClientSessionsCreateRequest = SeamHttpRequest<
 
 export interface ClientSessionsCreateOptions {}
 
-export type ClientSessionsDeleteParameters = { client_session_id: string }
+export type ClientSessionsDeleteParameters = {
+  client_session_id: string
+}
 
 /**
  * @deprecated Use ClientSessionsDeleteParameters instead.
@@ -400,7 +402,9 @@ export type ClientSessionsListRequest = SeamHttpRequest<
 
 export interface ClientSessionsListOptions {}
 
-export type ClientSessionsRevokeParameters = { client_session_id: string }
+export type ClientSessionsRevokeParameters = {
+  client_session_id: string
+}
 
 /**
  * @deprecated Use ClientSessionsRevokeParameters instead.

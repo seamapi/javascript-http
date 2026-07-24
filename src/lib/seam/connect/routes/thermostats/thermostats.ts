@@ -385,6 +385,7 @@ export class SeamHttpThermostats {
 
 export type ThermostatsActivateClimatePresetParameters = {
   climate_preset_key: string
+
   device_id: string
 }
 
@@ -414,6 +415,7 @@ export type ThermostatsCoolParameters = {
   cooling_set_point_celsius?: number | undefined
   cooling_set_point_fahrenheit?: number | undefined
   device_id: string
+
   sync?: boolean | undefined
 }
 
@@ -439,6 +441,7 @@ export type ThermostatsCoolOptions = Pick<
 
 export type ThermostatsCreateClimatePresetParameters = {
   climate_preset_key: string
+
   climate_preset_mode?:
     | 'home'
     | 'away'
@@ -450,6 +453,7 @@ export type ThermostatsCreateClimatePresetParameters = {
   cooling_set_point_celsius?: number | undefined
   cooling_set_point_fahrenheit?: number | undefined
   device_id: string
+
   ecobee_metadata?:
     | {
         climate_ref?: string | undefined
@@ -485,6 +489,7 @@ export interface ThermostatsCreateClimatePresetOptions {}
 
 export type ThermostatsDeleteClimatePresetParameters = {
   climate_preset_key: string
+
   device_id: string
 }
 
@@ -527,6 +532,7 @@ export interface ThermostatsGetOptions {}
 
 export type ThermostatsHeatParameters = {
   device_id: string
+
   heating_set_point_celsius?: number | undefined
   heating_set_point_fahrenheit?: number | undefined
   sync?: boolean | undefined
@@ -556,6 +562,7 @@ export type ThermostatsHeatCoolParameters = {
   cooling_set_point_celsius?: number | undefined
   cooling_set_point_fahrenheit?: number | undefined
   device_id: string
+
   heating_set_point_celsius?: number | undefined
   heating_set_point_fahrenheit?: number | undefined
   sync?: boolean | undefined
@@ -691,6 +698,7 @@ export interface ThermostatsListOptions {}
 
 export type ThermostatsOffParameters = {
   device_id: string
+
   sync?: boolean | undefined
 }
 
@@ -716,6 +724,7 @@ export type ThermostatsOffOptions = Pick<
 
 export type ThermostatsSetFallbackClimatePresetParameters = {
   climate_preset_key: string
+
   device_id: string
 }
 
@@ -739,6 +748,7 @@ export interface ThermostatsSetFallbackClimatePresetOptions {}
 
 export type ThermostatsSetFanModeParameters = {
   device_id: string
+
   fan_mode?: 'auto' | 'on' | 'circulate' | undefined
   fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
   sync?: boolean | undefined
@@ -767,7 +777,9 @@ export type ThermostatsSetFanModeOptions = Pick<
 
 export type ThermostatsSetHvacModeParameters = {
   device_id: string
+
   hvac_mode_setting: 'off' | 'cool' | 'heat' | 'heat_cool' | 'eco'
+
   cooling_set_point_celsius?: number | undefined
   cooling_set_point_fahrenheit?: number | undefined
   heating_set_point_celsius?: number | undefined
@@ -797,6 +809,7 @@ export type ThermostatsSetHvacModeOptions = Pick<
 
 export type ThermostatsSetTemperatureThresholdParameters = {
   device_id: string
+
   lower_limit_celsius?: number | undefined
   lower_limit_fahrenheit?: number | undefined
   upper_limit_celsius?: number | undefined
@@ -823,6 +836,7 @@ export interface ThermostatsSetTemperatureThresholdOptions {}
 
 export type ThermostatsUpdateClimatePresetParameters = {
   climate_preset_key: string
+
   climate_preset_mode?:
     | 'home'
     | 'away'
@@ -834,6 +848,7 @@ export type ThermostatsUpdateClimatePresetParameters = {
   cooling_set_point_celsius?: number | undefined
   cooling_set_point_fahrenheit?: number | undefined
   device_id: string
+
   ecobee_metadata?:
     | {
         climate_ref?: string | undefined
@@ -869,6 +884,7 @@ export interface ThermostatsUpdateClimatePresetOptions {}
 
 export type ThermostatsUpdateWeeklyProgramParameters = {
   device_id: string
+
   friday_program_id?: string | undefined
   monday_program_id?: string | undefined
   saturday_program_id?: string | undefined

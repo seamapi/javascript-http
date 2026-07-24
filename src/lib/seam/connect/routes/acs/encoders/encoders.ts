@@ -263,7 +263,9 @@ export type AcsEncodersEncodeCredentialOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type AcsEncodersGetParameters = { acs_encoder_id: string }
+export type AcsEncodersGetParameters = {
+  acs_encoder_id: string
+}
 
 /**
  * @deprecated Use AcsEncodersGetParameters instead.
@@ -311,7 +313,12 @@ export interface AcsEncodersListOptions {}
 
 export type AcsEncodersScanCredentialParameters = {
   acs_encoder_id: string
-  salto_ks_metadata?: { detect_new_tags?: boolean | undefined } | undefined
+
+  salto_ks_metadata?:
+    | {
+        detect_new_tags?: boolean | undefined
+      }
+    | undefined
 }
 
 /**
@@ -337,8 +344,13 @@ export type AcsEncodersScanCredentialOptions = Pick<
 
 export type AcsEncodersScanToAssignCredentialParameters = {
   acs_encoder_id: string
+
   acs_user_id?: string | undefined
-  salto_ks_metadata?: { detect_new_tags?: boolean | undefined } | undefined
+  salto_ks_metadata?:
+    | {
+        detect_new_tags?: boolean | undefined
+      }
+    | undefined
   user_identity_id?: string | undefined
 }
 

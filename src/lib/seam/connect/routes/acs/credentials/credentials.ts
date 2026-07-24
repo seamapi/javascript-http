@@ -298,6 +298,7 @@ export class SeamHttpAcsCredentials {
 
 export type AcsCredentialsAssignParameters = {
   acs_credential_id: string
+
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
@@ -318,6 +319,7 @@ export interface AcsCredentialsAssignOptions {}
 
 export type AcsCredentialsCreateParameters = {
   access_method: 'code' | 'card' | 'mobile_key' | 'cloud_key'
+
   acs_system_id?: string | undefined
   acs_user_id?: string | undefined
   allowed_acs_entrance_ids?: Array<string> | undefined
@@ -333,7 +335,10 @@ export type AcsCredentialsCreateParameters = {
   credential_manager_acs_system_id?: string | undefined
   ends_at?: string | undefined
   hotek_metadata?:
-    | { auto_join?: boolean | undefined; override?: boolean | undefined }
+    | {
+        auto_join?: boolean | undefined
+        override?: boolean | undefined
+      }
     | undefined
   is_multi_phone_sync_credential?: boolean | undefined
   salto_space_metadata?:
@@ -398,7 +403,9 @@ export type AcsCredentialsCreateOfflineCodeRequest = SeamHttpRequest<
 
 export interface AcsCredentialsCreateOfflineCodeOptions {}
 
-export type AcsCredentialsDeleteParameters = { acs_credential_id: string }
+export type AcsCredentialsDeleteParameters = {
+  acs_credential_id: string
+}
 
 /**
  * @deprecated Use AcsCredentialsDeleteParameters instead.
@@ -414,7 +421,9 @@ export type AcsCredentialsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface AcsCredentialsDeleteOptions {}
 
-export type AcsCredentialsGetParameters = { acs_credential_id: string }
+export type AcsCredentialsGetParameters = {
+  acs_credential_id: string
+}
 
 /**
  * @deprecated Use AcsCredentialsGetParameters instead.
@@ -491,6 +500,7 @@ export interface AcsCredentialsListAccessibleEntrancesOptions {}
 
 export type AcsCredentialsUnassignParameters = {
   acs_credential_id: string
+
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
@@ -511,6 +521,7 @@ export interface AcsCredentialsUnassignOptions {}
 
 export type AcsCredentialsUpdateParameters = {
   acs_credential_id: string
+
   code?: string | undefined
   ends_at?: string | undefined
 }

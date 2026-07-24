@@ -207,7 +207,9 @@ export class SeamHttpPhones {
   }
 }
 
-export type PhonesDeactivateParameters = { device_id: string }
+export type PhonesDeactivateParameters = {
+  device_id: string
+}
 
 /**
  * @deprecated Use PhonesDeactivateParameters instead.
@@ -223,7 +225,9 @@ export type PhonesDeactivateRequest = SeamHttpRequest<void, undefined>
 
 export interface PhonesDeactivateOptions {}
 
-export type PhonesGetParameters = { device_id: string }
+export type PhonesGetParameters = {
+  device_id: string
+}
 
 /**
  * @deprecated Use PhonesGetParameters instead.

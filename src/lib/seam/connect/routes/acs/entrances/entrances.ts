@@ -230,7 +230,9 @@ export class SeamHttpAcsEntrances {
   }
 }
 
-export type AcsEntrancesGetParameters = { acs_entrance_id: string }
+export type AcsEntrancesGetParameters = {
+  acs_entrance_id: string
+}
 
 /**
  * @deprecated Use AcsEntrancesGetParameters instead.
@@ -251,6 +253,7 @@ export interface AcsEntrancesGetOptions {}
 
 export type AcsEntrancesGrantAccessParameters = {
   acs_entrance_id: string
+
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
@@ -303,6 +306,7 @@ export interface AcsEntrancesListOptions {}
 
 export type AcsEntrancesListCredentialsWithAccessParameters = {
   acs_entrance_id: string
+
   include_if?: Array<'visionline_metadata.is_valid'> | undefined
 }
 
@@ -328,6 +332,7 @@ export interface AcsEntrancesListCredentialsWithAccessOptions {}
 
 export type AcsEntrancesUnlockParameters = {
   acs_credential_id: string
+
   acs_entrance_id: string
 }
 

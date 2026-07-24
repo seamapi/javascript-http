@@ -330,7 +330,9 @@ export type ConnectWebviewsCreateRequest = SeamHttpRequest<
 
 export interface ConnectWebviewsCreateOptions {}
 
-export type ConnectWebviewsDeleteParameters = { connect_webview_id: string }
+export type ConnectWebviewsDeleteParameters = {
+  connect_webview_id: string
+}
 
 /**
  * @deprecated Use ConnectWebviewsDeleteParameters instead.
@@ -346,7 +348,9 @@ export type ConnectWebviewsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface ConnectWebviewsDeleteOptions {}
 
-export type ConnectWebviewsGetParameters = { connect_webview_id: string }
+export type ConnectWebviewsGetParameters = {
+  connect_webview_id: string
+}
 
 /**
  * @deprecated Use ConnectWebviewsGetParameters instead.

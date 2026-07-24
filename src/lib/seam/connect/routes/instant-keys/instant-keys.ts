@@ -201,7 +201,9 @@ export class SeamHttpInstantKeys {
   }
 }
 
-export type InstantKeysDeleteParameters = { instant_key_id: string }
+export type InstantKeysDeleteParameters = {
+  instant_key_id: string
+}
 
 /**
  * @deprecated Use InstantKeysDeleteParameters instead.

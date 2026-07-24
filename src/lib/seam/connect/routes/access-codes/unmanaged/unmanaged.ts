@@ -229,6 +229,7 @@ export class SeamHttpAccessCodesUnmanaged {
 
 export type AccessCodesUnmanagedConvertToManagedParameters = {
   access_code_id: string
+
   allow_external_modification?: boolean | undefined
   force?: boolean | undefined
   is_external_modification_allowed?: boolean | undefined
@@ -255,6 +256,7 @@ export interface AccessCodesUnmanagedConvertToManagedOptions {}
 
 export type AccessCodesUnmanagedDeleteParameters = {
   access_code_id: string
+
   sync?: boolean | undefined
 }
 
@@ -300,6 +302,7 @@ export interface AccessCodesUnmanagedGetOptions {}
 
 export type AccessCodesUnmanagedListParameters = {
   device_id: string
+
   limit?: number | undefined
   page_cursor?: string | undefined
   search?: string | undefined
@@ -327,6 +330,7 @@ export interface AccessCodesUnmanagedListOptions {}
 
 export type AccessCodesUnmanagedUpdateParameters = {
   access_code_id: string
+
   allow_external_modification?: boolean | undefined
   force?: boolean | undefined
   is_external_modification_allowed?: boolean | undefined

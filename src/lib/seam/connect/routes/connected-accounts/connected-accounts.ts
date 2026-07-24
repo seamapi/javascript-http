@@ -238,6 +238,7 @@ export class SeamHttpConnectedAccounts {
 
 export type ConnectedAccountsDeleteParameters = {
   connected_account_id: string
+
   sync?: boolean | undefined
 }
 
@@ -308,7 +309,9 @@ export type ConnectedAccountsListRequest = SeamHttpRequest<
 
 export interface ConnectedAccountsListOptions {}
 
-export type ConnectedAccountsSyncParameters = { connected_account_id: string }
+export type ConnectedAccountsSyncParameters = {
+  connected_account_id: string
+}
 
 /**
  * @deprecated Use ConnectedAccountsSyncParameters instead.
@@ -332,6 +335,7 @@ export type ConnectedAccountsUpdateParameters = {
     | undefined
   automatically_manage_new_devices?: boolean | undefined
   connected_account_id: string
+
   custom_metadata?: Record<string, unknown> | undefined
   customer_key?: string | undefined
   display_name?: string | undefined

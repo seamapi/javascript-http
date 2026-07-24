@@ -263,8 +263,16 @@ export type CustomersCreatePortalParameters = {
               exclude_staff_management?: boolean | undefined
             }
           | undefined
-        manage_devices?: { exclude?: boolean | undefined } | undefined
-        organize?: { exclude?: boolean | undefined } | undefined
+        manage_devices?:
+          | {
+              exclude?: boolean | undefined
+            }
+          | undefined
+        organize?:
+          | {
+              exclude?: boolean | undefined
+            }
+          | undefined
       }
     | undefined
   is_embedded?: boolean | undefined
@@ -435,7 +443,10 @@ export type CustomersCreatePortalParameters = {
             }>
           | undefined
         sites?:
-          | Array<{ name?: string | undefined; site_key?: string | undefined }>
+          | Array<{
+              name?: string | undefined
+              site_key?: string | undefined
+            }>
           | undefined
         spaces?:
           | Array<{
@@ -613,7 +624,10 @@ export type CustomersPushDataParameters = {
       }>
     | undefined
   buildings?:
-    | Array<{ building_key?: string | undefined; name?: string | undefined }>
+    | Array<{
+        building_key?: string | undefined
+        name?: string | undefined
+      }>
     | undefined
   common_areas?:
     | Array<{
@@ -623,8 +637,12 @@ export type CustomersPushDataParameters = {
       }>
     | undefined
   customer_key: string
+
   facilities?:
-    | Array<{ facility_key?: string | undefined; name?: string | undefined }>
+    | Array<{
+        facility_key?: string | undefined
+        name?: string | undefined
+      }>
     | undefined
   guests?:
     | Array<{
@@ -635,10 +653,16 @@ export type CustomersPushDataParameters = {
       }>
     | undefined
   listings?:
-    | Array<{ listing_key?: string | undefined; name?: string | undefined }>
+    | Array<{
+        listing_key?: string | undefined
+        name?: string | undefined
+      }>
     | undefined
   properties?:
-    | Array<{ name?: string | undefined; property_key?: string | undefined }>
+    | Array<{
+        name?: string | undefined
+        property_key?: string | undefined
+      }>
     | undefined
   property_listings?:
     | Array<{
@@ -686,7 +710,10 @@ export type CustomersPushDataParameters = {
       }>
     | undefined
   sites?:
-    | Array<{ name?: string | undefined; site_key?: string | undefined }>
+    | Array<{
+        name?: string | undefined
+        site_key?: string | undefined
+      }>
     | undefined
   spaces?:
     | Array<{
@@ -700,7 +727,10 @@ export type CustomersPushDataParameters = {
           | undefined
         duration_minutes?: number | undefined
         geolocation?:
-          | { latitude?: number | undefined; longitude?: number | undefined }
+          | {
+              latitude?: number | undefined
+              longitude?: number | undefined
+            }
           | undefined
         name?: string | undefined
         parent_site_key?: string | undefined

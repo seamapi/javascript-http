@@ -208,7 +208,9 @@ export class SeamHttpThermostatsDailyPrograms {
 
 export type ThermostatsDailyProgramsCreateParameters = {
   device_id: string
+
   name: string
+
   periods: Array<{
     climate_preset_key?: string | undefined
     starts_at_time?: string | undefined
@@ -259,10 +261,12 @@ export interface ThermostatsDailyProgramsDeleteOptions {}
 
 export type ThermostatsDailyProgramsUpdateParameters = {
   name: string
+
   periods: Array<{
     climate_preset_key?: string | undefined
     starts_at_time?: string | undefined
   }>
+
   thermostat_daily_program_id: string
 }
 

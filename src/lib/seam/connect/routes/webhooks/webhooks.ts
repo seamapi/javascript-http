@@ -249,7 +249,9 @@ export type WebhooksCreateRequest = SeamHttpRequest<
 
 export interface WebhooksCreateOptions {}
 
-export type WebhooksDeleteParameters = { webhook_id: string }
+export type WebhooksDeleteParameters = {
+  webhook_id: string
+}
 
 /**
  * @deprecated Use WebhooksDeleteParameters instead.
@@ -265,7 +267,9 @@ export type WebhooksDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface WebhooksDeleteOptions {}
 
-export type WebhooksGetParameters = { webhook_id: string }
+export type WebhooksGetParameters = {
+  webhook_id: string
+}
 
 /**
  * @deprecated Use WebhooksGetParameters instead.
@@ -302,6 +306,7 @@ export interface WebhooksListOptions {}
 
 export type WebhooksUpdateParameters = {
   event_types: Array<string>
+
   webhook_id: string
 }
 

@@ -215,6 +215,7 @@ export class SeamHttpAcsEncodersSimulate {
 
 export type AcsEncodersSimulateNextCredentialEncodeWillFailParameters = {
   acs_encoder_id: string
+
   error_code?:
     | 'no_credential_on_encoder'
     | 'encoding_interrupted'
@@ -242,6 +243,7 @@ export interface AcsEncodersSimulateNextCredentialEncodeWillFailOptions {}
 
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters = {
   acs_encoder_id: string
+
   scenario?: 'credential_is_issued' | undefined
 }
 
@@ -263,6 +265,7 @@ export interface AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions {}
 
 export type AcsEncodersSimulateNextCredentialScanWillFailParameters = {
   acs_encoder_id: string
+
   error_code?:
     | 'no_credential_on_encoder'
     | 'uncategorized_error'
@@ -290,6 +293,7 @@ export interface AcsEncodersSimulateNextCredentialScanWillFailOptions {}
 export type AcsEncodersSimulateNextCredentialScanWillSucceedParameters = {
   acs_credential_id_on_seam?: string | undefined
   acs_encoder_id: string
+
   scenario?:
     | 'credential_exists_on_seam'
     | 'credential_on_encoder_needs_update'

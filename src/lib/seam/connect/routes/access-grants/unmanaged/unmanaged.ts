@@ -201,7 +201,9 @@ export class SeamHttpAccessGrantsUnmanaged {
   }
 }
 
-export type AccessGrantsUnmanagedGetParameters = { access_grant_id: string }
+export type AccessGrantsUnmanagedGetParameters = {
+  access_grant_id: string
+}
 
 /**
  * @deprecated Use AccessGrantsUnmanagedGetParameters instead.
@@ -251,6 +253,7 @@ export interface AccessGrantsUnmanagedListOptions {}
 
 export type AccessGrantsUnmanagedUpdateParameters = {
   access_grant_id: string
+
   access_grant_key?: string | undefined
   is_managed: boolean
 }

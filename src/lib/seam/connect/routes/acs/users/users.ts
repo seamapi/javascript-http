@@ -314,6 +314,7 @@ export class SeamHttpAcsUsers {
 
 export type AcsUsersAddToAccessGroupParameters = {
   acs_access_group_id: string
+
   acs_user_id: string
 }
 
@@ -333,13 +334,18 @@ export interface AcsUsersAddToAccessGroupOptions {}
 
 export type AcsUsersCreateParameters = {
   access_schedule?:
-    | { ends_at?: string | undefined; starts_at?: string | undefined }
+    | {
+        ends_at?: string | undefined
+        starts_at?: string | undefined
+      }
     | undefined
   acs_access_group_ids?: Array<string> | undefined
   acs_system_id: string
+
   email?: string | undefined
   email_address?: string | undefined
   full_name: string
+
   phone_number?: string | undefined
   user_identity_id?: string | undefined
 }
@@ -460,6 +466,7 @@ export interface AcsUsersListAccessibleEntrancesOptions {}
 
 export type AcsUsersRemoveFromAccessGroupParameters = {
   acs_access_group_id: string
+
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
@@ -548,7 +555,10 @@ export interface AcsUsersUnsuspendOptions {}
 
 export type AcsUsersUpdateParameters = {
   access_schedule?:
-    | { ends_at?: string | undefined; starts_at?: string | undefined }
+    | {
+        ends_at?: string | undefined
+        starts_at?: string | undefined
+      }
     | undefined
   acs_system_id?: string | undefined
   acs_user_id?: string | undefined

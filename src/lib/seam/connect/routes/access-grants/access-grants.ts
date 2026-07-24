@@ -289,6 +289,7 @@ export type AccessGrantsCreateParameters = {
     instant_key_max_use_count?: number | undefined
     mode?: 'code' | 'card' | 'mobile_key' | 'cloud_key' | undefined
   }>
+
   reservation_key?: string | undefined
   space_ids?: Array<string> | undefined
   space_keys?: Array<string> | undefined
@@ -312,7 +313,9 @@ export type AccessGrantsCreateRequest = SeamHttpRequest<
 
 export interface AccessGrantsCreateOptions {}
 
-export type AccessGrantsDeleteParameters = { access_grant_id: string }
+export type AccessGrantsDeleteParameters = {
+  access_grant_id: string
+}
 
 /**
  * @deprecated Use AccessGrantsDeleteParameters instead.
@@ -433,6 +436,7 @@ export interface AccessGrantsListOptions {}
 
 export type AccessGrantsRequestAccessMethodsParameters = {
   access_grant_id: string
+
   requested_access_methods: Array<{
     code?: string | undefined
     instant_key_max_use_count?: number | undefined

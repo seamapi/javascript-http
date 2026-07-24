@@ -449,6 +449,7 @@ export interface DevicesUnmanagedListOptions {}
 export type DevicesUnmanagedUpdateParameters = {
   custom_metadata?: Record<string, unknown> | undefined
   device_id: string
+
   is_managed?: boolean | undefined
 }
 

@@ -264,6 +264,7 @@ export class SeamHttpAccessMethods {
 
 export type AccessMethodsAssignCardParameters = {
   access_method_id: string
+
   card_number: string
 }
 
@@ -310,6 +311,7 @@ export interface AccessMethodsDeleteOptions {}
 
 export type AccessMethodsEncodeParameters = {
   access_method_id: string
+
   acs_encoder_id: string
 }
 
@@ -334,7 +336,9 @@ export type AccessMethodsEncodeOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type AccessMethodsGetParameters = { access_method_id: string }
+export type AccessMethodsGetParameters = {
+  access_method_id: string
+}
 
 /**
  * @deprecated Use AccessMethodsGetParameters instead.
@@ -355,6 +359,7 @@ export interface AccessMethodsGetOptions {}
 
 export type AccessMethodsGetRelatedParameters = {
   access_method_ids: Array<string>
+
   exclude?:
     | Array<
         | 'spaces'
@@ -428,6 +433,7 @@ export interface AccessMethodsListOptions {}
 
 export type AccessMethodsUnlockDoorParameters = {
   access_method_id: string
+
   acs_entrance_id: string
 }
 

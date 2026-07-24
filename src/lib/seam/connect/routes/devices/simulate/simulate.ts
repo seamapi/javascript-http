@@ -239,7 +239,9 @@ export class SeamHttpDevicesSimulate {
   }
 }
 
-export type DevicesSimulateConnectParameters = { device_id: string }
+export type DevicesSimulateConnectParameters = {
+  device_id: string
+}
 
 /**
  * @deprecated Use DevicesSimulateConnectParameters instead.
@@ -255,7 +257,9 @@ export type DevicesSimulateConnectRequest = SeamHttpRequest<void, undefined>
 
 export interface DevicesSimulateConnectOptions {}
 
-export type DevicesSimulateConnectToHubParameters = { device_id: string }
+export type DevicesSimulateConnectToHubParameters = {
+  device_id: string
+}
 
 /**
  * @deprecated Use DevicesSimulateConnectToHubParameters instead.
@@ -275,7 +279,9 @@ export type DevicesSimulateConnectToHubRequest = SeamHttpRequest<
 
 export interface DevicesSimulateConnectToHubOptions {}
 
-export type DevicesSimulateDisconnectParameters = { device_id: string }
+export type DevicesSimulateDisconnectParameters = {
+  device_id: string
+}
 
 /**
  * @deprecated Use DevicesSimulateDisconnectParameters instead.
@@ -291,7 +297,9 @@ export type DevicesSimulateDisconnectRequest = SeamHttpRequest<void, undefined>
 
 export interface DevicesSimulateDisconnectOptions {}
 
-export type DevicesSimulateDisconnectFromHubParameters = { device_id: string }
+export type DevicesSimulateDisconnectFromHubParameters = {
+  device_id: string
+}
 
 /**
  * @deprecated Use DevicesSimulateDisconnectFromHubParameters instead.
@@ -313,6 +321,7 @@ export interface DevicesSimulateDisconnectFromHubOptions {}
 
 export type DevicesSimulatePaidSubscriptionParameters = {
   device_id: string
+
   is_expired: boolean
 }
 
@@ -334,7 +343,9 @@ export type DevicesSimulatePaidSubscriptionRequest = SeamHttpRequest<
 
 export interface DevicesSimulatePaidSubscriptionOptions {}
 
-export type DevicesSimulateRemoveParameters = { device_id: string }
+export type DevicesSimulateRemoveParameters = {
+  device_id: string
+}
 
 /**
  * @deprecated Use DevicesSimulateRemoveParameters instead.

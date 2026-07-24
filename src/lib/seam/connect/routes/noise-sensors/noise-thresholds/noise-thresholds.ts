@@ -232,11 +232,14 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
 
 export type NoiseSensorsNoiseThresholdsCreateParameters = {
   device_id: string
+
   ends_daily_at: string
+
   name?: string | undefined
   noise_threshold_decibels?: number | undefined
   noise_threshold_nrs?: number | undefined
   starts_daily_at: string
+
   sync?: boolean | undefined
 }
 
@@ -262,7 +265,9 @@ export interface NoiseSensorsNoiseThresholdsCreateOptions {}
 
 export type NoiseSensorsNoiseThresholdsDeleteParameters = {
   device_id: string
+
   noise_threshold_id: string
+
   sync?: boolean | undefined
 }
 
@@ -310,6 +315,7 @@ export interface NoiseSensorsNoiseThresholdsGetOptions {}
 
 export type NoiseSensorsNoiseThresholdsListParameters = {
   device_id: string
+
   is_programmed?: boolean | undefined
 }
 
@@ -335,10 +341,12 @@ export interface NoiseSensorsNoiseThresholdsListOptions {}
 
 export type NoiseSensorsNoiseThresholdsUpdateParameters = {
   device_id: string
+
   ends_daily_at?: string | undefined
   name?: string | undefined
   noise_threshold_decibels?: number | undefined
   noise_threshold_id: string
+
   noise_threshold_nrs?: number | undefined
   starts_daily_at?: string | undefined
   sync?: boolean | undefined

@@ -1,0 +1,7 @@
+{{#if (eq format "object")}}
+{{> resource-object properties=properties}}
+{{else if (eq format "list")}}
+Array<{{> resource-list-item-type }}>
+{{else}}
+{{> resource-scalar-type}}
+{{/if}}

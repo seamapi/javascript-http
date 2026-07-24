@@ -229,8 +229,11 @@ export class SeamHttpThermostatsSchedules {
 
 export type ThermostatsSchedulesCreateParameters = {
   climate_preset_key: string
+
   device_id: string
+
   ends_at: string
+
   is_override_allowed?: boolean | undefined
   max_override_period_minutes?: number | undefined
   name?: string | undefined
@@ -301,6 +304,7 @@ export interface ThermostatsSchedulesGetOptions {}
 
 export type ThermostatsSchedulesListParameters = {
   device_id: string
+
   user_identifier_key?: string | undefined
 }
 

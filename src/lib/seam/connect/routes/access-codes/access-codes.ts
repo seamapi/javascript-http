@@ -329,6 +329,7 @@ export type AccessCodesCreateParameters = {
   code?: string | undefined
   common_code_key?: string | undefined
   device_id: string
+
   ends_at?: string | undefined
   is_external_modification_allowed?: boolean | undefined
   is_offline_access_code?: boolean | undefined
@@ -369,6 +370,7 @@ export type AccessCodesCreateMultipleParameters = {
     | undefined
   code?: string | undefined
   device_ids: Array<string>
+
   ends_at?: string | undefined
   is_external_modification_allowed?: boolean | undefined
   name?: string | undefined
@@ -399,6 +401,7 @@ export interface AccessCodesCreateMultipleOptions {}
 
 export type AccessCodesDeleteParameters = {
   access_code_id: string
+
   device_id?: string | undefined
   sync?: boolean | undefined
 }
@@ -417,7 +420,9 @@ export type AccessCodesDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface AccessCodesDeleteOptions {}
 
-export type AccessCodesGenerateCodeParameters = { device_id: string }
+export type AccessCodesGenerateCodeParameters = {
+  device_id: string
+}
 
 /**
  * @deprecated Use AccessCodesGenerateCodeParameters instead.
@@ -540,6 +545,7 @@ export interface AccessCodesPullBackupAccessCodeOptions {}
 
 export type AccessCodesReportDeviceConstraintsParameters = {
   device_id: string
+
   max_code_length?: number | undefined
   min_code_length?: number | undefined
   supported_code_lengths?: Array<number> | undefined
@@ -565,6 +571,7 @@ export interface AccessCodesReportDeviceConstraintsOptions {}
 
 export type AccessCodesUpdateParameters = {
   access_code_id: string
+
   allow_external_modification?: boolean | undefined
   attempt_for_offline_device?: boolean | undefined
   code?: string | undefined
@@ -601,6 +608,7 @@ export interface AccessCodesUpdateOptions {}
 
 export type AccessCodesUpdateMultipleParameters = {
   common_code_key: string
+
   ends_at?: string | undefined
   name?: string | undefined
   starts_at?: string | undefined

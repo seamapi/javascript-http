@@ -266,6 +266,7 @@ export class SeamHttpAcsAccessGroups {
 
 export type AcsAccessGroupsAddUserParameters = {
   acs_access_group_id: string
+
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
@@ -284,7 +285,9 @@ export type AcsAccessGroupsAddUserRequest = SeamHttpRequest<void, undefined>
 
 export interface AcsAccessGroupsAddUserOptions {}
 
-export type AcsAccessGroupsDeleteParameters = { acs_access_group_id: string }
+export type AcsAccessGroupsDeleteParameters = {
+  acs_access_group_id: string
+}
 
 /**
  * @deprecated Use AcsAccessGroupsDeleteParameters instead.
@@ -300,7 +303,9 @@ export type AcsAccessGroupsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface AcsAccessGroupsDeleteOptions {}
 
-export type AcsAccessGroupsGetParameters = { acs_access_group_id: string }
+export type AcsAccessGroupsGetParameters = {
+  acs_access_group_id: string
+}
 
 /**
  * @deprecated Use AcsAccessGroupsGetParameters instead.
@@ -371,7 +376,9 @@ export type AcsAccessGroupsListAccessibleEntrancesRequest = SeamHttpRequest<
 
 export interface AcsAccessGroupsListAccessibleEntrancesOptions {}
 
-export type AcsAccessGroupsListUsersParameters = { acs_access_group_id: string }
+export type AcsAccessGroupsListUsersParameters = {
+  acs_access_group_id: string
+}
 
 /**
  * @deprecated Use AcsAccessGroupsListUsersParameters instead.
@@ -394,6 +401,7 @@ export interface AcsAccessGroupsListUsersOptions {}
 
 export type AcsAccessGroupsRemoveUserParameters = {
   acs_access_group_id: string
+
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
