@@ -320,6 +320,7 @@ export type LocksListParameters = {
     | 'keyincode_lock'
     | 'omnitec_lock'
     | 'kisi_lock'
+    | 'aqara_lock'
     | undefined
   device_types?:
     | Array<
@@ -352,6 +353,7 @@ export type LocksListParameters = {
         | 'keyincode_lock'
         | 'omnitec_lock'
         | 'kisi_lock'
+        | 'aqara_lock'
       >
     | undefined
   exclude_if?:
@@ -430,6 +432,7 @@ export type LocksListParameters = {
     | 'tedee'
     | 'keyincode'
     | 'akiles'
+    | 'aqara'
     | 'korelock'
     | 'smartthings'
     | 'ultraloq'
