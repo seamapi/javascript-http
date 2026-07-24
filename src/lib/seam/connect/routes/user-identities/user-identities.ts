@@ -29,14 +29,12 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type {
-  AcsEntranceResource,
-  AcsSystemResource,
-  AcsUserResource,
-  DeviceResource,
-  InstantKeyResource,
-  UserIdentityResource,
-} from 'lib/seam/connect/routes/blueprint-resources.js'
+import type { AcsEntranceResource } from 'lib/seam/connect/resources/acs-entrance.js'
+import type { AcsSystemResource } from 'lib/seam/connect/resources/acs-system.js'
+import type { AcsUserResource } from 'lib/seam/connect/resources/acs-user.js'
+import type { DeviceResource } from 'lib/seam/connect/resources/device.js'
+import type { InstantKeyResource } from 'lib/seam/connect/resources/instant-key.js'
+import type { UserIdentityResource } from 'lib/seam/connect/resources/user-identity.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'

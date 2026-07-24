@@ -17,7 +17,7 @@ export interface RouteLayoutContext {
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
   hasLegacyTypes: boolean
-  resourceTypeNames: string[]
+  resourceTypeImports: ResourceTypeImport[]
 }
 
 export interface RouteIndexLayoutContext {
@@ -53,6 +53,11 @@ export interface SubrouteLayoutContext {
   fileName: string
 }
 
+interface ResourceTypeImport {
+  fileName: string
+  typeName: string
+}
+
 export const setRouteLayoutContext = (
   file: Partial<RouteLayoutContext>,
   node: Route | Namespace | null,
@@ -71,7 +76,7 @@ export const setRouteLayoutContext = (
               endpoint.response.resourceType === 'action_attempt'),
         )
       : false
-  file.resourceTypeNames =
+  file.resourceTypeImports =
     node != null && 'endpoints' in node
       ? [
           ...new Set(
@@ -84,10 +89,13 @@ export const setRouteLayoutContext = (
               ) {
                 return []
               }
-              return [getResourceTypeName(endpoint.response.resourceType)]
+              return [endpoint.response.resourceType]
             }),
           ),
-        ]
+        ].map((resourceType) => ({
+          fileName: `${kebabCase(resourceType)}.js`,
+          typeName: getResourceTypeName(resourceType),
+        }))
       : []
 
   file.endpoints = []
@@ -181,7 +189,9 @@ const renderResource = (resource: Resource): string =>
 export const getResourceTypeName = (resourceType: string): string =>
   `${pascalCase(resourceType)}Resource`
 
-export const renderBlueprintResources = (blueprint: Blueprint): string => {
+export const renderBlueprintResources = (
+  blueprint: Blueprint,
+): Array<{ fileName: string; typeName: string; type: string }> => {
   const resources = [
     ...blueprint.resources,
     ...blueprint.events,
@@ -190,16 +200,24 @@ export const renderBlueprintResources = (blueprint: Blueprint): string => {
   const resourceTypes = [
     ...new Set(resources.map(({ resourceType }) => resourceType)),
   ]
-  return [
-    `export type UnknownResource = Record<string, unknown>`,
-    ...resourceTypes.map((resourceType) => {
-      const type = resources
-        .filter((resource) => resource.resourceType === resourceType)
-        .map(renderResource)
-        .join(' | ')
-      return `export type ${getResourceTypeName(resourceType)} = ${type || 'Record<string, unknown>'}`
-    }),
-  ].join('\n\n')
+  return ['unknown', ...resourceTypes].map((resourceType) => {
+    if (resourceType === 'unknown') {
+      return {
+        fileName: 'unknown.ts',
+        typeName: 'UnknownResource',
+        type: 'Record<string, unknown>',
+      }
+    }
+    const type = resources
+      .filter((resource) => resource.resourceType === resourceType)
+      .map(renderResource)
+      .join(' | ')
+    return {
+      fileName: `${kebabCase(resourceType)}.ts`,
+      typeName: getResourceTypeName(resourceType),
+      type: type || 'Record<string, unknown>',
+    }
+  })
 }
 
 const renderObject = <T extends { name: string }>(

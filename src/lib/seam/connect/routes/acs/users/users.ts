@@ -29,10 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type {
-  AcsEntranceResource,
-  AcsUserResource,
-} from 'lib/seam/connect/routes/blueprint-resources.js'
+import type { AcsEntranceResource } from 'lib/seam/connect/resources/acs-entrance.js'
+import type { AcsUserResource } from 'lib/seam/connect/resources/acs-user.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'

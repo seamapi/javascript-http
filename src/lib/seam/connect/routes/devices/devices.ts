@@ -31,10 +31,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type {
-  DeviceProviderResource,
-  DeviceResource,
-} from 'lib/seam/connect/routes/blueprint-resources.js'
+import type { DeviceResource } from 'lib/seam/connect/resources/device.js'
+import type { DeviceProviderResource } from 'lib/seam/connect/resources/device-provider.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'

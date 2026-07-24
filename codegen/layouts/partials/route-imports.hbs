@@ -6,13 +6,9 @@ import type {
   RouteResponse,
 } from '@seamapi/types/connect'
 {{/if}}
-{{#if resourceTypeNames.length}}
-import type {
-{{#each resourceTypeNames}}
-  {{.}},
+{{#each resourceTypeImports}}
+import type { {{typeName}} } from 'lib/seam/connect/resources/{{fileName}}'
 {{/each}}
-} from 'lib/seam/connect/routes/blueprint-resources.js'
-{{/if}}
 
 import {
   getAuthHeadersForClientSessionToken,

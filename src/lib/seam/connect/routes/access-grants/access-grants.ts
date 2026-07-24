@@ -29,10 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type {
-  AccessGrantResource,
-  UnknownResource,
-} from 'lib/seam/connect/routes/blueprint-resources.js'
+import type { AccessGrantResource } from 'lib/seam/connect/resources/access-grant.js'
+import type { UnknownResource } from 'lib/seam/connect/resources/unknown.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'

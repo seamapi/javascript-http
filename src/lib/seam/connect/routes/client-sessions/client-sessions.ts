@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ClientSessionResource } from 'lib/seam/connect/routes/blueprint-resources.js'
+import type { ClientSessionResource } from 'lib/seam/connect/resources/client-session.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
