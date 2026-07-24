@@ -284,6 +284,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'acuity_scheduling'
         | 'omnitec'
         | 'kisi'
+        | 'aqara'
         | 'yale_access'
         | 'hid_cm'
         | 'google_nest'

@@ -89,6 +89,7 @@ export type DeviceResource = {
     | 'keyincode_lock'
     | 'omnitec_lock'
     | 'kisi_lock'
+    | 'aqara_lock'
     | 'keynest_key'
     | 'noiseaware_activity_zone'
     | 'minut_sensor'
@@ -312,6 +313,18 @@ export type DeviceResource = {
           gadget_id?: string | undefined
           gadget_name?: string | undefined
           product_name?: string | undefined
+        }
+      | undefined
+    aqara_metadata?:
+      | {
+          device_name?: string | undefined
+          did?: string | undefined
+          firmware_version?: string | null | undefined
+          model?: string | undefined
+          model_type?: number | undefined
+          parent_did?: string | undefined
+          position_id?: string | null | undefined
+          time_zone?: string | null | undefined
         }
       | undefined
     assa_abloy_vostio_metadata?:

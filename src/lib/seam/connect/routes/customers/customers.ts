@@ -220,7 +220,8 @@ export type CustomersCreatePortalParameters = {
   deep_link?:
     | {
         resource_key?: string | undefined
-        resource_type?: 'reservation' | 'space' | undefined
+        resource_type?: 'reservation' | 'space' | 'device' | undefined
+        resource_id?: string | undefined
       }
     | undefined
   exclude_locale_picker?: boolean | undefined

@@ -71,6 +71,7 @@ export type UnmanagedDeviceResource = {
     | 'keyincode_lock'
     | 'omnitec_lock'
     | 'kisi_lock'
+    | 'aqara_lock'
     | 'keynest_key'
     | 'noiseaware_activity_zone'
     | 'minut_sensor'

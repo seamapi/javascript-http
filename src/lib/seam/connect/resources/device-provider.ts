@@ -87,6 +87,7 @@ export type DeviceProviderResource = {
     | 'acuity_scheduling'
     | 'omnitec'
     | 'kisi'
+    | 'aqara'
 
   display_name: string
 
