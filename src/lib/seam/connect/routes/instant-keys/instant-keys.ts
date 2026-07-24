@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpInstantKeys {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpInstantKeys {
   }
 
   delete(
-    parameters?: InstantKeysDeleteParameters,
+    parameters: InstantKeysDeleteParameters,
     options: InstantKeysDeleteOptions = {},
   ): InstantKeysDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -214,9 +213,7 @@ export type InstantKeysDeleteParams = InstantKeysDeleteParameters
 /**
  * @deprecated Use InstantKeysDeleteRequest instead.
  */
-export type InstantKeysDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/instant_keys/delete'>>
->
+export type InstantKeysDeleteResponse = RouteResponse<'/instant_keys/delete'>
 
 export type InstantKeysDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -232,9 +229,7 @@ export type InstantKeysGetParams = InstantKeysGetParameters
 /**
  * @deprecated Use InstantKeysGetRequest instead.
  */
-export type InstantKeysGetResponse = SetNonNullable<
-  Required<RouteResponse<'/instant_keys/get'>>
->
+export type InstantKeysGetResponse = RouteResponse<'/instant_keys/get'>
 
 export type InstantKeysGetRequest = SeamHttpRequest<
   InstantKeysGetResponse,
@@ -253,9 +248,7 @@ export type InstantKeysListParams = InstantKeysListParameters
 /**
  * @deprecated Use InstantKeysListRequest instead.
  */
-export type InstantKeysListResponse = SetNonNullable<
-  Required<RouteResponse<'/instant_keys/list'>>
->
+export type InstantKeysListResponse = RouteResponse<'/instant_keys/list'>
 
 export type InstantKeysListRequest = SeamHttpRequest<
   InstantKeysListResponse,

@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1StaffMembers {
   client: Client
@@ -172,7 +171,7 @@ export class SeamHttpSeamCustomerV1StaffMembers {
   }
 
   get(
-    parameters?: SeamCustomerV1StaffMembersGetParameters,
+    parameters: SeamCustomerV1StaffMembersGetParameters,
     options: SeamCustomerV1StaffMembersGetOptions = {},
   ): SeamCustomerV1StaffMembersGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -220,9 +219,8 @@ export type SeamCustomerV1StaffMembersGetParams =
 /**
  * @deprecated Use SeamCustomerV1StaffMembersGetRequest instead.
  */
-export type SeamCustomerV1StaffMembersGetResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/staff_members/get'>>
->
+export type SeamCustomerV1StaffMembersGetResponse =
+  RouteResponse<'/seam/customer/v1/staff_members/get'>
 
 export type SeamCustomerV1StaffMembersGetRequest = SeamHttpRequest<
   SeamCustomerV1StaffMembersGetResponse,
@@ -243,9 +241,8 @@ export type SeamCustomerV1StaffMembersListParams =
 /**
  * @deprecated Use SeamCustomerV1StaffMembersListRequest instead.
  */
-export type SeamCustomerV1StaffMembersListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/staff_members/list'>>
->
+export type SeamCustomerV1StaffMembersListResponse =
+  RouteResponse<'/seam/customer/v1/staff_members/list'>
 
 export type SeamCustomerV1StaffMembersListRequest = SeamHttpRequest<
   SeamCustomerV1StaffMembersListResponse,

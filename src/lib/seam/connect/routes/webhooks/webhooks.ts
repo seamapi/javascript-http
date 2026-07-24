@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpWebhooks {
   client: Client
@@ -168,7 +167,7 @@ export class SeamHttpWebhooks {
   }
 
   create(
-    parameters?: WebhooksCreateParameters,
+    parameters: WebhooksCreateParameters,
     options: WebhooksCreateOptions = {},
   ): WebhooksCreateRequest {
     return new SeamHttpRequest(this, {
@@ -181,7 +180,7 @@ export class SeamHttpWebhooks {
   }
 
   delete(
-    parameters?: WebhooksDeleteParameters,
+    parameters: WebhooksDeleteParameters,
     options: WebhooksDeleteOptions = {},
   ): WebhooksDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -194,7 +193,7 @@ export class SeamHttpWebhooks {
   }
 
   get(
-    parameters?: WebhooksGetParameters,
+    parameters: WebhooksGetParameters,
     options: WebhooksGetOptions = {},
   ): WebhooksGetRequest {
     return new SeamHttpRequest(this, {
@@ -220,7 +219,7 @@ export class SeamHttpWebhooks {
   }
 
   update(
-    parameters?: WebhooksUpdateParameters,
+    parameters: WebhooksUpdateParameters,
     options: WebhooksUpdateOptions = {},
   ): WebhooksUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -243,9 +242,7 @@ export type WebhooksCreateBody = WebhooksCreateParameters
 /**
  * @deprecated Use WebhooksCreateRequest instead.
  */
-export type WebhooksCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/webhooks/create'>>
->
+export type WebhooksCreateResponse = RouteResponse<'/webhooks/create'>
 
 export type WebhooksCreateRequest = SeamHttpRequest<
   WebhooksCreateResponse,
@@ -264,9 +261,7 @@ export type WebhooksDeleteParams = WebhooksDeleteParameters
 /**
  * @deprecated Use WebhooksDeleteRequest instead.
  */
-export type WebhooksDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/webhooks/delete'>>
->
+export type WebhooksDeleteResponse = RouteResponse<'/webhooks/delete'>
 
 export type WebhooksDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -282,9 +277,7 @@ export type WebhooksGetParams = WebhooksGetParameters
 /**
  * @deprecated Use WebhooksGetRequest instead.
  */
-export type WebhooksGetResponse = SetNonNullable<
-  Required<RouteResponse<'/webhooks/get'>>
->
+export type WebhooksGetResponse = RouteResponse<'/webhooks/get'>
 
 export type WebhooksGetRequest = SeamHttpRequest<WebhooksGetResponse, 'webhook'>
 
@@ -300,9 +293,7 @@ export type WebhooksListParams = WebhooksListParameters
 /**
  * @deprecated Use WebhooksListRequest instead.
  */
-export type WebhooksListResponse = SetNonNullable<
-  Required<RouteResponse<'/webhooks/list'>>
->
+export type WebhooksListResponse = RouteResponse<'/webhooks/list'>
 
 export type WebhooksListRequest = SeamHttpRequest<
   WebhooksListResponse,
@@ -321,9 +312,7 @@ export type WebhooksUpdateBody = WebhooksUpdateParameters
 /**
  * @deprecated Use WebhooksUpdateRequest instead.
  */
-export type WebhooksUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/webhooks/update'>>
->
+export type WebhooksUpdateResponse = RouteResponse<'/webhooks/update'>
 
 export type WebhooksUpdateRequest = SeamHttpRequest<void, undefined>
 

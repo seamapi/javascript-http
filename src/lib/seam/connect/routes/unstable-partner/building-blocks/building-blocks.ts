@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpUnstablePartnerBuildingBlocks {
   client: Client
@@ -172,7 +171,7 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
   }
 
   connectAccounts(
-    parameters?: UnstablePartnerBuildingBlocksConnectAccountsParameters,
+    parameters: UnstablePartnerBuildingBlocksConnectAccountsParameters,
     options: UnstablePartnerBuildingBlocksConnectAccountsOptions = {},
   ): UnstablePartnerBuildingBlocksConnectAccountsRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -190,7 +189,7 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
   }
 
   generateMagicLink(
-    parameters?: UnstablePartnerBuildingBlocksGenerateMagicLinkParameters,
+    parameters: UnstablePartnerBuildingBlocksGenerateMagicLinkParameters,
     options: UnstablePartnerBuildingBlocksGenerateMagicLinkOptions = {},
   ): UnstablePartnerBuildingBlocksGenerateMagicLinkRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -208,7 +207,7 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
   }
 
   manageDevices(
-    parameters?: UnstablePartnerBuildingBlocksManageDevicesParameters,
+    parameters: UnstablePartnerBuildingBlocksManageDevicesParameters,
     options: UnstablePartnerBuildingBlocksManageDevicesOptions = {},
   ): UnstablePartnerBuildingBlocksManageDevicesRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -226,7 +225,7 @@ export class SeamHttpUnstablePartnerBuildingBlocks {
   }
 
   organizeSpaces(
-    parameters?: UnstablePartnerBuildingBlocksOrganizeSpacesParameters,
+    parameters: UnstablePartnerBuildingBlocksOrganizeSpacesParameters,
     options: UnstablePartnerBuildingBlocksOrganizeSpacesOptions = {},
   ): UnstablePartnerBuildingBlocksOrganizeSpacesRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -257,11 +256,7 @@ export type UnstablePartnerBuildingBlocksConnectAccountsBody =
  * @deprecated Use UnstablePartnerBuildingBlocksConnectAccountsRequest instead.
  */
 export type UnstablePartnerBuildingBlocksConnectAccountsResponse =
-  SetNonNullable<
-    Required<
-      RouteResponse<'/unstable_partner/building_blocks/connect_accounts'>
-    >
-  >
+  RouteResponse<'/unstable_partner/building_blocks/connect_accounts'>
 
 export type UnstablePartnerBuildingBlocksConnectAccountsRequest =
   SeamHttpRequest<
@@ -284,11 +279,7 @@ export type UnstablePartnerBuildingBlocksGenerateMagicLinkParams =
  * @deprecated Use UnstablePartnerBuildingBlocksGenerateMagicLinkRequest instead.
  */
 export type UnstablePartnerBuildingBlocksGenerateMagicLinkResponse =
-  SetNonNullable<
-    Required<
-      RouteResponse<'/unstable_partner/building_blocks/generate_magic_link'>
-    >
-  >
+  RouteResponse<'/unstable_partner/building_blocks/generate_magic_link'>
 
 export type UnstablePartnerBuildingBlocksGenerateMagicLinkRequest =
   SeamHttpRequest<
@@ -310,9 +301,8 @@ export type UnstablePartnerBuildingBlocksManageDevicesBody =
 /**
  * @deprecated Use UnstablePartnerBuildingBlocksManageDevicesRequest instead.
  */
-export type UnstablePartnerBuildingBlocksManageDevicesResponse = SetNonNullable<
-  Required<RouteResponse<'/unstable_partner/building_blocks/manage_devices'>>
->
+export type UnstablePartnerBuildingBlocksManageDevicesResponse =
+  RouteResponse<'/unstable_partner/building_blocks/manage_devices'>
 
 export type UnstablePartnerBuildingBlocksManageDevicesRequest = SeamHttpRequest<
   UnstablePartnerBuildingBlocksManageDevicesResponse,
@@ -334,9 +324,7 @@ export type UnstablePartnerBuildingBlocksOrganizeSpacesBody =
  * @deprecated Use UnstablePartnerBuildingBlocksOrganizeSpacesRequest instead.
  */
 export type UnstablePartnerBuildingBlocksOrganizeSpacesResponse =
-  SetNonNullable<
-    Required<RouteResponse<'/unstable_partner/building_blocks/organize_spaces'>>
-  >
+  RouteResponse<'/unstable_partner/building_blocks/organize_spaces'>
 
 export type UnstablePartnerBuildingBlocksOrganizeSpacesRequest =
   SeamHttpRequest<

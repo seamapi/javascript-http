@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1Events {
   client: Client
@@ -169,7 +168,7 @@ export class SeamHttpSeamCustomerV1Events {
   }
 
   list(
-    parameters?: SeamCustomerV1EventsListParameters,
+    parameters: SeamCustomerV1EventsListParameters,
     options: SeamCustomerV1EventsListOptions = {},
   ): SeamCustomerV1EventsListRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -198,9 +197,8 @@ export type SeamCustomerV1EventsListParams = SeamCustomerV1EventsListParameters
 /**
  * @deprecated Use SeamCustomerV1EventsListRequest instead.
  */
-export type SeamCustomerV1EventsListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/events/list'>>
->
+export type SeamCustomerV1EventsListResponse =
+  RouteResponse<'/seam/customer/v1/events/list'>
 
 export type SeamCustomerV1EventsListRequest = SeamHttpRequest<
   SeamCustomerV1EventsListResponse,

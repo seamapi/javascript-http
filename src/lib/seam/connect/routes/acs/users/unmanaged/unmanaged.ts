@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpAcsUsersUnmanaged {
   client: Client
@@ -169,7 +168,7 @@ export class SeamHttpAcsUsersUnmanaged {
   }
 
   get(
-    parameters?: AcsUsersUnmanagedGetParameters,
+    parameters: AcsUsersUnmanagedGetParameters,
     options: AcsUsersUnmanagedGetOptions = {},
   ): AcsUsersUnmanagedGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -216,9 +215,8 @@ export type AcsUsersUnmanagedGetParams = AcsUsersUnmanagedGetParameters
 /**
  * @deprecated Use AcsUsersUnmanagedGetRequest instead.
  */
-export type AcsUsersUnmanagedGetResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/unmanaged/get'>>
->
+export type AcsUsersUnmanagedGetResponse =
+  RouteResponse<'/acs/users/unmanaged/get'>
 
 export type AcsUsersUnmanagedGetRequest = SeamHttpRequest<
   AcsUsersUnmanagedGetResponse,
@@ -238,9 +236,8 @@ export type AcsUsersUnmanagedListParams = AcsUsersUnmanagedListParameters
 /**
  * @deprecated Use AcsUsersUnmanagedListRequest instead.
  */
-export type AcsUsersUnmanagedListResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/unmanaged/list'>>
->
+export type AcsUsersUnmanagedListResponse =
+  RouteResponse<'/acs/users/unmanaged/list'>
 
 export type AcsUsersUnmanagedListRequest = SeamHttpRequest<
   AcsUsersUnmanagedListResponse,

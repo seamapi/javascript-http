@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpPhonesSimulate {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpPhonesSimulate {
   }
 
   createSandboxPhone(
-    parameters?: PhonesSimulateCreateSandboxPhoneParameters,
+    parameters: PhonesSimulateCreateSandboxPhoneParameters,
     options: PhonesSimulateCreateSandboxPhoneOptions = {},
   ): PhonesSimulateCreateSandboxPhoneRequest {
     return new SeamHttpRequest(this, {
@@ -189,9 +188,8 @@ export type PhonesSimulateCreateSandboxPhoneBody =
 /**
  * @deprecated Use PhonesSimulateCreateSandboxPhoneRequest instead.
  */
-export type PhonesSimulateCreateSandboxPhoneResponse = SetNonNullable<
-  Required<RouteResponse<'/phones/simulate/create_sandbox_phone'>>
->
+export type PhonesSimulateCreateSandboxPhoneResponse =
+  RouteResponse<'/phones/simulate/create_sandbox_phone'>
 
 export type PhonesSimulateCreateSandboxPhoneRequest = SeamHttpRequest<
   PhonesSimulateCreateSandboxPhoneResponse,

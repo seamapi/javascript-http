@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1ConnectorsIcal {
   client: Client
@@ -172,7 +171,7 @@ export class SeamHttpSeamCustomerV1ConnectorsIcal {
   }
 
   validateConfig(
-    parameters?: SeamCustomerV1ConnectorsIcalValidateConfigParameters,
+    parameters: SeamCustomerV1ConnectorsIcalValidateConfigParameters,
     options: SeamCustomerV1ConnectorsIcalValidateConfigOptions = {},
   ): SeamCustomerV1ConnectorsIcalValidateConfigRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -202,9 +201,8 @@ export type SeamCustomerV1ConnectorsIcalValidateConfigBody =
 /**
  * @deprecated Use SeamCustomerV1ConnectorsIcalValidateConfigRequest instead.
  */
-export type SeamCustomerV1ConnectorsIcalValidateConfigResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/connectors/ical/validate-config'>>
->
+export type SeamCustomerV1ConnectorsIcalValidateConfigResponse =
+  RouteResponse<'/seam/customer/v1/connectors/ical/validate-config'>
 
 export type SeamCustomerV1ConnectorsIcalValidateConfigRequest = SeamHttpRequest<
   SeamCustomerV1ConnectorsIcalValidateConfigResponse,

@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1CustomersAutomations {
   client: Client
@@ -224,9 +223,8 @@ export type SeamCustomerV1CustomersAutomationsGetParams =
 /**
  * @deprecated Use SeamCustomerV1CustomersAutomationsGetRequest instead.
  */
-export type SeamCustomerV1CustomersAutomationsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/customers/automations/get'>>
->
+export type SeamCustomerV1CustomersAutomationsGetResponse =
+  RouteResponse<'/seam/customer/v1/customers/automations/get'>
 
 export type SeamCustomerV1CustomersAutomationsGetRequest = SeamHttpRequest<
   SeamCustomerV1CustomersAutomationsGetResponse,
@@ -247,9 +245,8 @@ export type SeamCustomerV1CustomersAutomationsUpdateBody =
 /**
  * @deprecated Use SeamCustomerV1CustomersAutomationsUpdateRequest instead.
  */
-export type SeamCustomerV1CustomersAutomationsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/customers/automations/update'>>
->
+export type SeamCustomerV1CustomersAutomationsUpdateResponse =
+  RouteResponse<'/seam/customer/v1/customers/automations/update'>
 
 export type SeamCustomerV1CustomersAutomationsUpdateRequest = SeamHttpRequest<
   void,

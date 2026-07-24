@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpAcsUsersUnmanaged } from './unmanaged/index.js'
 
@@ -170,7 +169,7 @@ export class SeamHttpAcsUsers {
   }
 
   addToAccessGroup(
-    parameters?: AcsUsersAddToAccessGroupParameters,
+    parameters: AcsUsersAddToAccessGroupParameters,
     options: AcsUsersAddToAccessGroupOptions = {},
   ): AcsUsersAddToAccessGroupRequest {
     return new SeamHttpRequest(this, {
@@ -183,7 +182,7 @@ export class SeamHttpAcsUsers {
   }
 
   create(
-    parameters?: AcsUsersCreateParameters,
+    parameters: AcsUsersCreateParameters,
     options: AcsUsersCreateOptions = {},
   ): AcsUsersCreateRequest {
     return new SeamHttpRequest(this, {
@@ -248,7 +247,7 @@ export class SeamHttpAcsUsers {
   }
 
   removeFromAccessGroup(
-    parameters?: AcsUsersRemoveFromAccessGroupParameters,
+    parameters: AcsUsersRemoveFromAccessGroupParameters,
     options: AcsUsersRemoveFromAccessGroupOptions = {},
   ): AcsUsersRemoveFromAccessGroupRequest {
     return new SeamHttpRequest(this, {
@@ -324,9 +323,8 @@ export type AcsUsersAddToAccessGroupBody = AcsUsersAddToAccessGroupParameters
 /**
  * @deprecated Use AcsUsersAddToAccessGroupRequest instead.
  */
-export type AcsUsersAddToAccessGroupResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/add_to_access_group'>>
->
+export type AcsUsersAddToAccessGroupResponse =
+  RouteResponse<'/acs/users/add_to_access_group'>
 
 export type AcsUsersAddToAccessGroupRequest = SeamHttpRequest<void, undefined>
 
@@ -342,9 +340,7 @@ export type AcsUsersCreateBody = AcsUsersCreateParameters
 /**
  * @deprecated Use AcsUsersCreateRequest instead.
  */
-export type AcsUsersCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/create'>>
->
+export type AcsUsersCreateResponse = RouteResponse<'/acs/users/create'>
 
 export type AcsUsersCreateRequest = SeamHttpRequest<
   AcsUsersCreateResponse,
@@ -363,9 +359,7 @@ export type AcsUsersDeleteParams = AcsUsersDeleteParameters
 /**
  * @deprecated Use AcsUsersDeleteRequest instead.
  */
-export type AcsUsersDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/delete'>>
->
+export type AcsUsersDeleteResponse = RouteResponse<'/acs/users/delete'>
 
 export type AcsUsersDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -381,9 +375,7 @@ export type AcsUsersGetParams = AcsUsersGetParameters
 /**
  * @deprecated Use AcsUsersGetRequest instead.
  */
-export type AcsUsersGetResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/get'>>
->
+export type AcsUsersGetResponse = RouteResponse<'/acs/users/get'>
 
 export type AcsUsersGetRequest = SeamHttpRequest<
   AcsUsersGetResponse,
@@ -402,9 +394,7 @@ export type AcsUsersListParams = AcsUsersListParameters
 /**
  * @deprecated Use AcsUsersListRequest instead.
  */
-export type AcsUsersListResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/list'>>
->
+export type AcsUsersListResponse = RouteResponse<'/acs/users/list'>
 
 export type AcsUsersListRequest = SeamHttpRequest<
   AcsUsersListResponse,
@@ -425,9 +415,8 @@ export type AcsUsersListAccessibleEntrancesParams =
 /**
  * @deprecated Use AcsUsersListAccessibleEntrancesRequest instead.
  */
-export type AcsUsersListAccessibleEntrancesResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/list_accessible_entrances'>>
->
+export type AcsUsersListAccessibleEntrancesResponse =
+  RouteResponse<'/acs/users/list_accessible_entrances'>
 
 export type AcsUsersListAccessibleEntrancesRequest = SeamHttpRequest<
   AcsUsersListAccessibleEntrancesResponse,
@@ -448,9 +437,8 @@ export type AcsUsersRemoveFromAccessGroupParams =
 /**
  * @deprecated Use AcsUsersRemoveFromAccessGroupRequest instead.
  */
-export type AcsUsersRemoveFromAccessGroupResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/remove_from_access_group'>>
->
+export type AcsUsersRemoveFromAccessGroupResponse =
+  RouteResponse<'/acs/users/remove_from_access_group'>
 
 export type AcsUsersRemoveFromAccessGroupRequest = SeamHttpRequest<
   void,
@@ -471,9 +459,8 @@ export type AcsUsersRevokeAccessToAllEntrancesBody =
 /**
  * @deprecated Use AcsUsersRevokeAccessToAllEntrancesRequest instead.
  */
-export type AcsUsersRevokeAccessToAllEntrancesResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/revoke_access_to_all_entrances'>>
->
+export type AcsUsersRevokeAccessToAllEntrancesResponse =
+  RouteResponse<'/acs/users/revoke_access_to_all_entrances'>
 
 export type AcsUsersRevokeAccessToAllEntrancesRequest = SeamHttpRequest<
   void,
@@ -492,9 +479,7 @@ export type AcsUsersSuspendBody = AcsUsersSuspendParameters
 /**
  * @deprecated Use AcsUsersSuspendRequest instead.
  */
-export type AcsUsersSuspendResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/suspend'>>
->
+export type AcsUsersSuspendResponse = RouteResponse<'/acs/users/suspend'>
 
 export type AcsUsersSuspendRequest = SeamHttpRequest<void, undefined>
 
@@ -511,9 +496,7 @@ export type AcsUsersUnsuspendBody = AcsUsersUnsuspendParameters
 /**
  * @deprecated Use AcsUsersUnsuspendRequest instead.
  */
-export type AcsUsersUnsuspendResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/unsuspend'>>
->
+export type AcsUsersUnsuspendResponse = RouteResponse<'/acs/users/unsuspend'>
 
 export type AcsUsersUnsuspendRequest = SeamHttpRequest<void, undefined>
 
@@ -529,9 +512,7 @@ export type AcsUsersUpdateBody = AcsUsersUpdateParameters
 /**
  * @deprecated Use AcsUsersUpdateRequest instead.
  */
-export type AcsUsersUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/users/update'>>
->
+export type AcsUsersUpdateResponse = RouteResponse<'/acs/users/update'>
 
 export type AcsUsersUpdateRequest = SeamHttpRequest<void, undefined>
 

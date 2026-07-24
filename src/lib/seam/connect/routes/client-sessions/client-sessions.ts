@@ -33,7 +33,6 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpClientSessions {
   client: Client
@@ -176,7 +175,7 @@ export class SeamHttpClientSessions {
   }
 
   delete(
-    parameters?: ClientSessionsDeleteParameters,
+    parameters: ClientSessionsDeleteParameters,
     options: ClientSessionsDeleteOptions = {},
   ): ClientSessionsDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -241,7 +240,7 @@ export class SeamHttpClientSessions {
   }
 
   revoke(
-    parameters?: ClientSessionsRevokeParameters,
+    parameters: ClientSessionsRevokeParameters,
     options: ClientSessionsRevokeOptions = {},
   ): ClientSessionsRevokeRequest {
     return new SeamHttpRequest(this, {
@@ -265,9 +264,8 @@ export type ClientSessionsCreateBody = ClientSessionsCreateParameters
 /**
  * @deprecated Use ClientSessionsCreateRequest instead.
  */
-export type ClientSessionsCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/create'>>
->
+export type ClientSessionsCreateResponse =
+  RouteResponse<'/client_sessions/create'>
 
 export type ClientSessionsCreateRequest = SeamHttpRequest<
   ClientSessionsCreateResponse,
@@ -287,9 +285,8 @@ export type ClientSessionsDeleteParams = ClientSessionsDeleteParameters
 /**
  * @deprecated Use ClientSessionsDeleteRequest instead.
  */
-export type ClientSessionsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/delete'>>
->
+export type ClientSessionsDeleteResponse =
+  RouteResponse<'/client_sessions/delete'>
 
 export type ClientSessionsDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -306,9 +303,7 @@ export type ClientSessionsGetParams = ClientSessionsGetParameters
 /**
  * @deprecated Use ClientSessionsGetRequest instead.
  */
-export type ClientSessionsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/get'>>
->
+export type ClientSessionsGetResponse = RouteResponse<'/client_sessions/get'>
 
 export type ClientSessionsGetRequest = SeamHttpRequest<
   ClientSessionsGetResponse,
@@ -328,9 +323,8 @@ export type ClientSessionsGetOrCreateBody = ClientSessionsGetOrCreateParameters
 /**
  * @deprecated Use ClientSessionsGetOrCreateRequest instead.
  */
-export type ClientSessionsGetOrCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/get_or_create'>>
->
+export type ClientSessionsGetOrCreateResponse =
+  RouteResponse<'/client_sessions/get_or_create'>
 
 export type ClientSessionsGetOrCreateRequest = SeamHttpRequest<
   ClientSessionsGetOrCreateResponse,
@@ -350,9 +344,8 @@ export type ClientSessionsGrantAccessBody = ClientSessionsGrantAccessParameters
 /**
  * @deprecated Use ClientSessionsGrantAccessRequest instead.
  */
-export type ClientSessionsGrantAccessResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/grant_access'>>
->
+export type ClientSessionsGrantAccessResponse =
+  RouteResponse<'/client_sessions/grant_access'>
 
 export type ClientSessionsGrantAccessRequest = SeamHttpRequest<void, undefined>
 
@@ -369,9 +362,7 @@ export type ClientSessionsListParams = ClientSessionsListParameters
 /**
  * @deprecated Use ClientSessionsListRequest instead.
  */
-export type ClientSessionsListResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/list'>>
->
+export type ClientSessionsListResponse = RouteResponse<'/client_sessions/list'>
 
 export type ClientSessionsListRequest = SeamHttpRequest<
   ClientSessionsListResponse,
@@ -391,9 +382,8 @@ export type ClientSessionsRevokeBody = ClientSessionsRevokeParameters
 /**
  * @deprecated Use ClientSessionsRevokeRequest instead.
  */
-export type ClientSessionsRevokeResponse = SetNonNullable<
-  Required<RouteResponse<'/client_sessions/revoke'>>
->
+export type ClientSessionsRevokeResponse =
+  RouteResponse<'/client_sessions/revoke'>
 
 export type ClientSessionsRevokeRequest = SeamHttpRequest<void, undefined>
 

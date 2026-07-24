@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpAccessGrantsUnmanaged } from './unmanaged/index.js'
 
@@ -174,7 +173,7 @@ export class SeamHttpAccessGrants {
   }
 
   create(
-    parameters?: AccessGrantsCreateParameters,
+    parameters: AccessGrantsCreateParameters,
     options: AccessGrantsCreateOptions = {},
   ): AccessGrantsCreateRequest {
     return new SeamHttpRequest(this, {
@@ -187,7 +186,7 @@ export class SeamHttpAccessGrants {
   }
 
   delete(
-    parameters?: AccessGrantsDeleteParameters,
+    parameters: AccessGrantsDeleteParameters,
     options: AccessGrantsDeleteOptions = {},
   ): AccessGrantsDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -239,7 +238,7 @@ export class SeamHttpAccessGrants {
   }
 
   requestAccessMethods(
-    parameters?: AccessGrantsRequestAccessMethodsParameters,
+    parameters: AccessGrantsRequestAccessMethodsParameters,
     options: AccessGrantsRequestAccessMethodsOptions = {},
   ): AccessGrantsRequestAccessMethodsRequest {
     return new SeamHttpRequest(this, {
@@ -276,9 +275,7 @@ export type AccessGrantsCreateBody = AccessGrantsCreateParameters
 /**
  * @deprecated Use AccessGrantsCreateRequest instead.
  */
-export type AccessGrantsCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/access_grants/create'>>
->
+export type AccessGrantsCreateResponse = RouteResponse<'/access_grants/create'>
 
 export type AccessGrantsCreateRequest = SeamHttpRequest<
   AccessGrantsCreateResponse,
@@ -298,9 +295,7 @@ export type AccessGrantsDeleteParams = AccessGrantsDeleteParameters
 /**
  * @deprecated Use AccessGrantsDeleteRequest instead.
  */
-export type AccessGrantsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/access_grants/delete'>>
->
+export type AccessGrantsDeleteResponse = RouteResponse<'/access_grants/delete'>
 
 export type AccessGrantsDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -316,9 +311,7 @@ export type AccessGrantsGetParams = AccessGrantsGetParameters
 /**
  * @deprecated Use AccessGrantsGetRequest instead.
  */
-export type AccessGrantsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/access_grants/get'>>
->
+export type AccessGrantsGetResponse = RouteResponse<'/access_grants/get'>
 
 export type AccessGrantsGetRequest = SeamHttpRequest<
   AccessGrantsGetResponse,
@@ -338,9 +331,8 @@ export type AccessGrantsGetRelatedParams = AccessGrantsGetRelatedParameters
 /**
  * @deprecated Use AccessGrantsGetRelatedRequest instead.
  */
-export type AccessGrantsGetRelatedResponse = SetNonNullable<
-  Required<RouteResponse<'/access_grants/get_related'>>
->
+export type AccessGrantsGetRelatedResponse =
+  RouteResponse<'/access_grants/get_related'>
 
 export type AccessGrantsGetRelatedRequest = SeamHttpRequest<
   AccessGrantsGetRelatedResponse,
@@ -359,9 +351,7 @@ export type AccessGrantsListParams = AccessGrantsListParameters
 /**
  * @deprecated Use AccessGrantsListRequest instead.
  */
-export type AccessGrantsListResponse = SetNonNullable<
-  Required<RouteResponse<'/access_grants/list'>>
->
+export type AccessGrantsListResponse = RouteResponse<'/access_grants/list'>
 
 export type AccessGrantsListRequest = SeamHttpRequest<
   AccessGrantsListResponse,
@@ -382,9 +372,8 @@ export type AccessGrantsRequestAccessMethodsBody =
 /**
  * @deprecated Use AccessGrantsRequestAccessMethodsRequest instead.
  */
-export type AccessGrantsRequestAccessMethodsResponse = SetNonNullable<
-  Required<RouteResponse<'/access_grants/request_access_methods'>>
->
+export type AccessGrantsRequestAccessMethodsResponse =
+  RouteResponse<'/access_grants/request_access_methods'>
 
 export type AccessGrantsRequestAccessMethodsRequest = SeamHttpRequest<
   AccessGrantsRequestAccessMethodsResponse,
@@ -404,9 +393,7 @@ export type AccessGrantsUpdateBody = AccessGrantsUpdateParameters
 /**
  * @deprecated Use AccessGrantsUpdateRequest instead.
  */
-export type AccessGrantsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/access_grants/update'>>
->
+export type AccessGrantsUpdateResponse = RouteResponse<'/access_grants/update'>
 
 export type AccessGrantsUpdateRequest = SeamHttpRequest<void, undefined>
 

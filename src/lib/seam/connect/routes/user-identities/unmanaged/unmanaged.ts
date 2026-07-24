@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpUserIdentitiesUnmanaged {
   client: Client
@@ -167,7 +166,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
   }
 
   get(
-    parameters?: UserIdentitiesUnmanagedGetParameters,
+    parameters: UserIdentitiesUnmanagedGetParameters,
     options: UserIdentitiesUnmanagedGetOptions = {},
   ): UserIdentitiesUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
@@ -193,7 +192,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
   }
 
   update(
-    parameters?: UserIdentitiesUnmanagedUpdateParameters,
+    parameters: UserIdentitiesUnmanagedUpdateParameters,
     options: UserIdentitiesUnmanagedUpdateOptions = {},
   ): UserIdentitiesUnmanagedUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -218,9 +217,8 @@ export type UserIdentitiesUnmanagedGetParams =
 /**
  * @deprecated Use UserIdentitiesUnmanagedGetRequest instead.
  */
-export type UserIdentitiesUnmanagedGetResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/unmanaged/get'>>
->
+export type UserIdentitiesUnmanagedGetResponse =
+  RouteResponse<'/user_identities/unmanaged/get'>
 
 export type UserIdentitiesUnmanagedGetRequest = SeamHttpRequest<
   UserIdentitiesUnmanagedGetResponse,
@@ -241,9 +239,8 @@ export type UserIdentitiesUnmanagedListParams =
 /**
  * @deprecated Use UserIdentitiesUnmanagedListRequest instead.
  */
-export type UserIdentitiesUnmanagedListResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/unmanaged/list'>>
->
+export type UserIdentitiesUnmanagedListResponse =
+  RouteResponse<'/user_identities/unmanaged/list'>
 
 export type UserIdentitiesUnmanagedListRequest = SeamHttpRequest<
   UserIdentitiesUnmanagedListResponse,
@@ -264,9 +261,8 @@ export type UserIdentitiesUnmanagedUpdateBody =
 /**
  * @deprecated Use UserIdentitiesUnmanagedUpdateRequest instead.
  */
-export type UserIdentitiesUnmanagedUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/unmanaged/update'>>
->
+export type UserIdentitiesUnmanagedUpdateResponse =
+  RouteResponse<'/user_identities/unmanaged/update'>
 
 export type UserIdentitiesUnmanagedUpdateRequest = SeamHttpRequest<
   void,

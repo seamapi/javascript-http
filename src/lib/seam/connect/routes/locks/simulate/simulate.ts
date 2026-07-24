@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpLocksSimulate {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpLocksSimulate {
   }
 
   keypadCodeEntry(
-    parameters?: LocksSimulateKeypadCodeEntryParameters,
+    parameters: LocksSimulateKeypadCodeEntryParameters,
     options: LocksSimulateKeypadCodeEntryOptions = {},
   ): LocksSimulateKeypadCodeEntryRequest {
     return new SeamHttpRequest(this, {
@@ -177,7 +176,7 @@ export class SeamHttpLocksSimulate {
   }
 
   manualLockViaKeypad(
-    parameters?: LocksSimulateManualLockViaKeypadParameters,
+    parameters: LocksSimulateManualLockViaKeypadParameters,
     options: LocksSimulateManualLockViaKeypadOptions = {},
   ): LocksSimulateManualLockViaKeypadRequest {
     return new SeamHttpRequest(this, {
@@ -202,9 +201,8 @@ export type LocksSimulateKeypadCodeEntryBody =
 /**
  * @deprecated Use LocksSimulateKeypadCodeEntryRequest instead.
  */
-export type LocksSimulateKeypadCodeEntryResponse = SetNonNullable<
-  Required<RouteResponse<'/locks/simulate/keypad_code_entry'>>
->
+export type LocksSimulateKeypadCodeEntryResponse =
+  RouteResponse<'/locks/simulate/keypad_code_entry'>
 
 export type LocksSimulateKeypadCodeEntryRequest = SeamHttpRequest<
   LocksSimulateKeypadCodeEntryResponse,
@@ -228,9 +226,8 @@ export type LocksSimulateManualLockViaKeypadBody =
 /**
  * @deprecated Use LocksSimulateManualLockViaKeypadRequest instead.
  */
-export type LocksSimulateManualLockViaKeypadResponse = SetNonNullable<
-  Required<RouteResponse<'/locks/simulate/manual_lock_via_keypad'>>
->
+export type LocksSimulateManualLockViaKeypadResponse =
+  RouteResponse<'/locks/simulate/manual_lock_via_keypad'>
 
 export type LocksSimulateManualLockViaKeypadRequest = SeamHttpRequest<
   LocksSimulateManualLockViaKeypadResponse,

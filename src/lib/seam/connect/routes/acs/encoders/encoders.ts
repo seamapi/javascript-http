@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpAcsEncodersSimulate } from './simulate/index.js'
 
@@ -174,7 +173,7 @@ export class SeamHttpAcsEncoders {
   }
 
   encodeCredential(
-    parameters?: AcsEncodersEncodeCredentialParameters,
+    parameters: AcsEncodersEncodeCredentialParameters,
     options: AcsEncodersEncodeCredentialOptions = {},
   ): AcsEncodersEncodeCredentialRequest {
     return new SeamHttpRequest(this, {
@@ -187,7 +186,7 @@ export class SeamHttpAcsEncoders {
   }
 
   get(
-    parameters?: AcsEncodersGetParameters,
+    parameters: AcsEncodersGetParameters,
     options: AcsEncodersGetOptions = {},
   ): AcsEncodersGetRequest {
     return new SeamHttpRequest(this, {
@@ -213,7 +212,7 @@ export class SeamHttpAcsEncoders {
   }
 
   scanCredential(
-    parameters?: AcsEncodersScanCredentialParameters,
+    parameters: AcsEncodersScanCredentialParameters,
     options: AcsEncodersScanCredentialOptions = {},
   ): AcsEncodersScanCredentialRequest {
     return new SeamHttpRequest(this, {
@@ -226,7 +225,7 @@ export class SeamHttpAcsEncoders {
   }
 
   scanToAssignCredential(
-    parameters?: AcsEncodersScanToAssignCredentialParameters,
+    parameters: AcsEncodersScanToAssignCredentialParameters,
     options: AcsEncodersScanToAssignCredentialOptions = {},
   ): AcsEncodersScanToAssignCredentialRequest {
     return new SeamHttpRequest(this, {
@@ -251,9 +250,8 @@ export type AcsEncodersEncodeCredentialBody =
 /**
  * @deprecated Use AcsEncodersEncodeCredentialRequest instead.
  */
-export type AcsEncodersEncodeCredentialResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/encode_credential'>>
->
+export type AcsEncodersEncodeCredentialResponse =
+  RouteResponse<'/acs/encoders/encode_credential'>
 
 export type AcsEncodersEncodeCredentialRequest = SeamHttpRequest<
   AcsEncodersEncodeCredentialResponse,
@@ -275,9 +273,7 @@ export type AcsEncodersGetParams = AcsEncodersGetParameters
 /**
  * @deprecated Use AcsEncodersGetRequest instead.
  */
-export type AcsEncodersGetResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/get'>>
->
+export type AcsEncodersGetResponse = RouteResponse<'/acs/encoders/get'>
 
 export type AcsEncodersGetRequest = SeamHttpRequest<
   AcsEncodersGetResponse,
@@ -296,9 +292,7 @@ export type AcsEncodersListParams = AcsEncodersListParameters
 /**
  * @deprecated Use AcsEncodersListRequest instead.
  */
-export type AcsEncodersListResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/list'>>
->
+export type AcsEncodersListResponse = RouteResponse<'/acs/encoders/list'>
 
 export type AcsEncodersListRequest = SeamHttpRequest<
   AcsEncodersListResponse,
@@ -318,9 +312,8 @@ export type AcsEncodersScanCredentialBody = AcsEncodersScanCredentialParameters
 /**
  * @deprecated Use AcsEncodersScanCredentialRequest instead.
  */
-export type AcsEncodersScanCredentialResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/scan_credential'>>
->
+export type AcsEncodersScanCredentialResponse =
+  RouteResponse<'/acs/encoders/scan_credential'>
 
 export type AcsEncodersScanCredentialRequest = SeamHttpRequest<
   AcsEncodersScanCredentialResponse,
@@ -344,9 +337,8 @@ export type AcsEncodersScanToAssignCredentialBody =
 /**
  * @deprecated Use AcsEncodersScanToAssignCredentialRequest instead.
  */
-export type AcsEncodersScanToAssignCredentialResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/encoders/scan_to_assign_credential'>>
->
+export type AcsEncodersScanToAssignCredentialResponse =
+  RouteResponse<'/acs/encoders/scan_to_assign_credential'>
 
 export type AcsEncodersScanToAssignCredentialRequest = SeamHttpRequest<
   AcsEncodersScanToAssignCredentialResponse,

@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpUserIdentitiesEnrollmentAutomations } from './enrollment-automations/index.js'
 import { SeamHttpUserIdentitiesUnmanaged } from './unmanaged/index.js'
@@ -185,7 +184,7 @@ export class SeamHttpUserIdentities {
   }
 
   addAcsUser(
-    parameters?: UserIdentitiesAddAcsUserParameters,
+    parameters: UserIdentitiesAddAcsUserParameters,
     options: UserIdentitiesAddAcsUserOptions = {},
   ): UserIdentitiesAddAcsUserRequest {
     return new SeamHttpRequest(this, {
@@ -211,7 +210,7 @@ export class SeamHttpUserIdentities {
   }
 
   delete(
-    parameters?: UserIdentitiesDeleteParameters,
+    parameters: UserIdentitiesDeleteParameters,
     options: UserIdentitiesDeleteOptions = {},
   ): UserIdentitiesDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -224,7 +223,7 @@ export class SeamHttpUserIdentities {
   }
 
   generateInstantKey(
-    parameters?: UserIdentitiesGenerateInstantKeyParameters,
+    parameters: UserIdentitiesGenerateInstantKeyParameters,
     options: UserIdentitiesGenerateInstantKeyOptions = {},
   ): UserIdentitiesGenerateInstantKeyRequest {
     return new SeamHttpRequest(this, {
@@ -250,7 +249,7 @@ export class SeamHttpUserIdentities {
   }
 
   grantAccessToDevice(
-    parameters?: UserIdentitiesGrantAccessToDeviceParameters,
+    parameters: UserIdentitiesGrantAccessToDeviceParameters,
     options: UserIdentitiesGrantAccessToDeviceOptions = {},
   ): UserIdentitiesGrantAccessToDeviceRequest {
     return new SeamHttpRequest(this, {
@@ -276,7 +275,7 @@ export class SeamHttpUserIdentities {
   }
 
   listAccessibleDevices(
-    parameters?: UserIdentitiesListAccessibleDevicesParameters,
+    parameters: UserIdentitiesListAccessibleDevicesParameters,
     options: UserIdentitiesListAccessibleDevicesOptions = {},
   ): UserIdentitiesListAccessibleDevicesRequest {
     return new SeamHttpRequest(this, {
@@ -289,7 +288,7 @@ export class SeamHttpUserIdentities {
   }
 
   listAccessibleEntrances(
-    parameters?: UserIdentitiesListAccessibleEntrancesParameters,
+    parameters: UserIdentitiesListAccessibleEntrancesParameters,
     options: UserIdentitiesListAccessibleEntrancesOptions = {},
   ): UserIdentitiesListAccessibleEntrancesRequest {
     return new SeamHttpRequest(this, {
@@ -302,7 +301,7 @@ export class SeamHttpUserIdentities {
   }
 
   listAcsSystems(
-    parameters?: UserIdentitiesListAcsSystemsParameters,
+    parameters: UserIdentitiesListAcsSystemsParameters,
     options: UserIdentitiesListAcsSystemsOptions = {},
   ): UserIdentitiesListAcsSystemsRequest {
     return new SeamHttpRequest(this, {
@@ -315,7 +314,7 @@ export class SeamHttpUserIdentities {
   }
 
   listAcsUsers(
-    parameters?: UserIdentitiesListAcsUsersParameters,
+    parameters: UserIdentitiesListAcsUsersParameters,
     options: UserIdentitiesListAcsUsersOptions = {},
   ): UserIdentitiesListAcsUsersRequest {
     return new SeamHttpRequest(this, {
@@ -328,7 +327,7 @@ export class SeamHttpUserIdentities {
   }
 
   removeAcsUser(
-    parameters?: UserIdentitiesRemoveAcsUserParameters,
+    parameters: UserIdentitiesRemoveAcsUserParameters,
     options: UserIdentitiesRemoveAcsUserOptions = {},
   ): UserIdentitiesRemoveAcsUserRequest {
     return new SeamHttpRequest(this, {
@@ -341,7 +340,7 @@ export class SeamHttpUserIdentities {
   }
 
   revokeAccessToDevice(
-    parameters?: UserIdentitiesRevokeAccessToDeviceParameters,
+    parameters: UserIdentitiesRevokeAccessToDeviceParameters,
     options: UserIdentitiesRevokeAccessToDeviceOptions = {},
   ): UserIdentitiesRevokeAccessToDeviceRequest {
     return new SeamHttpRequest(this, {
@@ -354,7 +353,7 @@ export class SeamHttpUserIdentities {
   }
 
   update(
-    parameters?: UserIdentitiesUpdateParameters,
+    parameters: UserIdentitiesUpdateParameters,
     options: UserIdentitiesUpdateOptions = {},
   ): UserIdentitiesUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -378,9 +377,8 @@ export type UserIdentitiesAddAcsUserBody = UserIdentitiesAddAcsUserParameters
 /**
  * @deprecated Use UserIdentitiesAddAcsUserRequest instead.
  */
-export type UserIdentitiesAddAcsUserResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/add_acs_user'>>
->
+export type UserIdentitiesAddAcsUserResponse =
+  RouteResponse<'/user_identities/add_acs_user'>
 
 export type UserIdentitiesAddAcsUserRequest = SeamHttpRequest<void, undefined>
 
@@ -397,9 +395,8 @@ export type UserIdentitiesCreateBody = UserIdentitiesCreateParameters
 /**
  * @deprecated Use UserIdentitiesCreateRequest instead.
  */
-export type UserIdentitiesCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/create'>>
->
+export type UserIdentitiesCreateResponse =
+  RouteResponse<'/user_identities/create'>
 
 export type UserIdentitiesCreateRequest = SeamHttpRequest<
   UserIdentitiesCreateResponse,
@@ -419,9 +416,8 @@ export type UserIdentitiesDeleteParams = UserIdentitiesDeleteParameters
 /**
  * @deprecated Use UserIdentitiesDeleteRequest instead.
  */
-export type UserIdentitiesDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/delete'>>
->
+export type UserIdentitiesDeleteResponse =
+  RouteResponse<'/user_identities/delete'>
 
 export type UserIdentitiesDeleteRequest = SeamHttpRequest<void, undefined>
 
@@ -439,9 +435,8 @@ export type UserIdentitiesGenerateInstantKeyBody =
 /**
  * @deprecated Use UserIdentitiesGenerateInstantKeyRequest instead.
  */
-export type UserIdentitiesGenerateInstantKeyResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/generate_instant_key'>>
->
+export type UserIdentitiesGenerateInstantKeyResponse =
+  RouteResponse<'/user_identities/generate_instant_key'>
 
 export type UserIdentitiesGenerateInstantKeyRequest = SeamHttpRequest<
   UserIdentitiesGenerateInstantKeyResponse,
@@ -461,9 +456,7 @@ export type UserIdentitiesGetParams = UserIdentitiesGetParameters
 /**
  * @deprecated Use UserIdentitiesGetRequest instead.
  */
-export type UserIdentitiesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/get'>>
->
+export type UserIdentitiesGetResponse = RouteResponse<'/user_identities/get'>
 
 export type UserIdentitiesGetRequest = SeamHttpRequest<
   UserIdentitiesGetResponse,
@@ -484,9 +477,8 @@ export type UserIdentitiesGrantAccessToDeviceBody =
 /**
  * @deprecated Use UserIdentitiesGrantAccessToDeviceRequest instead.
  */
-export type UserIdentitiesGrantAccessToDeviceResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/grant_access_to_device'>>
->
+export type UserIdentitiesGrantAccessToDeviceResponse =
+  RouteResponse<'/user_identities/grant_access_to_device'>
 
 export type UserIdentitiesGrantAccessToDeviceRequest = SeamHttpRequest<
   void,
@@ -506,9 +498,7 @@ export type UserIdentitiesListParams = UserIdentitiesListParameters
 /**
  * @deprecated Use UserIdentitiesListRequest instead.
  */
-export type UserIdentitiesListResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/list'>>
->
+export type UserIdentitiesListResponse = RouteResponse<'/user_identities/list'>
 
 export type UserIdentitiesListRequest = SeamHttpRequest<
   UserIdentitiesListResponse,
@@ -529,9 +519,8 @@ export type UserIdentitiesListAccessibleDevicesParams =
 /**
  * @deprecated Use UserIdentitiesListAccessibleDevicesRequest instead.
  */
-export type UserIdentitiesListAccessibleDevicesResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/list_accessible_devices'>>
->
+export type UserIdentitiesListAccessibleDevicesResponse =
+  RouteResponse<'/user_identities/list_accessible_devices'>
 
 export type UserIdentitiesListAccessibleDevicesRequest = SeamHttpRequest<
   UserIdentitiesListAccessibleDevicesResponse,
@@ -552,9 +541,8 @@ export type UserIdentitiesListAccessibleEntrancesParams =
 /**
  * @deprecated Use UserIdentitiesListAccessibleEntrancesRequest instead.
  */
-export type UserIdentitiesListAccessibleEntrancesResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/list_accessible_entrances'>>
->
+export type UserIdentitiesListAccessibleEntrancesResponse =
+  RouteResponse<'/user_identities/list_accessible_entrances'>
 
 export type UserIdentitiesListAccessibleEntrancesRequest = SeamHttpRequest<
   UserIdentitiesListAccessibleEntrancesResponse,
@@ -575,9 +563,8 @@ export type UserIdentitiesListAcsSystemsParams =
 /**
  * @deprecated Use UserIdentitiesListAcsSystemsRequest instead.
  */
-export type UserIdentitiesListAcsSystemsResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/list_acs_systems'>>
->
+export type UserIdentitiesListAcsSystemsResponse =
+  RouteResponse<'/user_identities/list_acs_systems'>
 
 export type UserIdentitiesListAcsSystemsRequest = SeamHttpRequest<
   UserIdentitiesListAcsSystemsResponse,
@@ -598,9 +585,8 @@ export type UserIdentitiesListAcsUsersParams =
 /**
  * @deprecated Use UserIdentitiesListAcsUsersRequest instead.
  */
-export type UserIdentitiesListAcsUsersResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/list_acs_users'>>
->
+export type UserIdentitiesListAcsUsersResponse =
+  RouteResponse<'/user_identities/list_acs_users'>
 
 export type UserIdentitiesListAcsUsersRequest = SeamHttpRequest<
   UserIdentitiesListAcsUsersResponse,
@@ -621,9 +607,8 @@ export type UserIdentitiesRemoveAcsUserParams =
 /**
  * @deprecated Use UserIdentitiesRemoveAcsUserRequest instead.
  */
-export type UserIdentitiesRemoveAcsUserResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/remove_acs_user'>>
->
+export type UserIdentitiesRemoveAcsUserResponse =
+  RouteResponse<'/user_identities/remove_acs_user'>
 
 export type UserIdentitiesRemoveAcsUserRequest = SeamHttpRequest<
   void,
@@ -644,9 +629,8 @@ export type UserIdentitiesRevokeAccessToDeviceParams =
 /**
  * @deprecated Use UserIdentitiesRevokeAccessToDeviceRequest instead.
  */
-export type UserIdentitiesRevokeAccessToDeviceResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/revoke_access_to_device'>>
->
+export type UserIdentitiesRevokeAccessToDeviceResponse =
+  RouteResponse<'/user_identities/revoke_access_to_device'>
 
 export type UserIdentitiesRevokeAccessToDeviceRequest = SeamHttpRequest<
   void,
@@ -666,9 +650,8 @@ export type UserIdentitiesUpdateBody = UserIdentitiesUpdateParameters
 /**
  * @deprecated Use UserIdentitiesUpdateRequest instead.
  */
-export type UserIdentitiesUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/user_identities/update'>>
->
+export type UserIdentitiesUpdateResponse =
+  RouteResponse<'/user_identities/update'>
 
 export type UserIdentitiesUpdateRequest = SeamHttpRequest<void, undefined>
 

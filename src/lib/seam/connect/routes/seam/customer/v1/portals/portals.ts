@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1Portals {
   client: Client
@@ -169,7 +168,7 @@ export class SeamHttpSeamCustomerV1Portals {
   }
 
   get(
-    parameters?: SeamCustomerV1PortalsGetParameters,
+    parameters: SeamCustomerV1PortalsGetParameters,
     options: SeamCustomerV1PortalsGetOptions = {},
   ): SeamCustomerV1PortalsGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -187,7 +186,7 @@ export class SeamHttpSeamCustomerV1Portals {
   }
 
   update(
-    parameters?: SeamCustomerV1PortalsUpdateParameters,
+    parameters: SeamCustomerV1PortalsUpdateParameters,
     options: SeamCustomerV1PortalsUpdateOptions = {},
   ): SeamCustomerV1PortalsUpdateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -216,9 +215,8 @@ export type SeamCustomerV1PortalsGetParams = SeamCustomerV1PortalsGetParameters
 /**
  * @deprecated Use SeamCustomerV1PortalsGetRequest instead.
  */
-export type SeamCustomerV1PortalsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/portals/get'>>
->
+export type SeamCustomerV1PortalsGetResponse =
+  RouteResponse<'/seam/customer/v1/portals/get'>
 
 export type SeamCustomerV1PortalsGetRequest = SeamHttpRequest<
   SeamCustomerV1PortalsGetResponse,
@@ -239,9 +237,8 @@ export type SeamCustomerV1PortalsUpdateBody =
 /**
  * @deprecated Use SeamCustomerV1PortalsUpdateRequest instead.
  */
-export type SeamCustomerV1PortalsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/portals/update'>>
->
+export type SeamCustomerV1PortalsUpdateResponse =
+  RouteResponse<'/seam/customer/v1/portals/update'>
 
 export type SeamCustomerV1PortalsUpdateRequest = SeamHttpRequest<
   void,

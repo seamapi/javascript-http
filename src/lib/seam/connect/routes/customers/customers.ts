@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpCustomersReservations } from './reservations/index.js'
 
@@ -196,7 +195,7 @@ export class SeamHttpCustomers {
   }
 
   pushData(
-    parameters?: CustomersPushDataParameters,
+    parameters: CustomersPushDataParameters,
     options: CustomersPushDataOptions = {},
   ): CustomersPushDataRequest {
     return new SeamHttpRequest(this, {
@@ -220,9 +219,8 @@ export type CustomersCreatePortalBody = CustomersCreatePortalParameters
 /**
  * @deprecated Use CustomersCreatePortalRequest instead.
  */
-export type CustomersCreatePortalResponse = SetNonNullable<
-  Required<RouteResponse<'/customers/create_portal'>>
->
+export type CustomersCreatePortalResponse =
+  RouteResponse<'/customers/create_portal'>
 
 export type CustomersCreatePortalRequest = SeamHttpRequest<
   CustomersCreatePortalResponse,
@@ -242,9 +240,8 @@ export type CustomersDeleteDataParams = CustomersDeleteDataParameters
 /**
  * @deprecated Use CustomersDeleteDataRequest instead.
  */
-export type CustomersDeleteDataResponse = SetNonNullable<
-  Required<RouteResponse<'/customers/delete_data'>>
->
+export type CustomersDeleteDataResponse =
+  RouteResponse<'/customers/delete_data'>
 
 export type CustomersDeleteDataRequest = SeamHttpRequest<void, undefined>
 
@@ -261,9 +258,7 @@ export type CustomersPushDataBody = CustomersPushDataParameters
 /**
  * @deprecated Use CustomersPushDataRequest instead.
  */
-export type CustomersPushDataResponse = SetNonNullable<
-  Required<RouteResponse<'/customers/push_data'>>
->
+export type CustomersPushDataResponse = RouteResponse<'/customers/push_data'>
 
 export type CustomersPushDataRequest = SeamHttpRequest<void, undefined>
 

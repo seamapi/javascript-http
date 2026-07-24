@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpPhonesSimulate } from './simulate/index.js'
 
@@ -170,7 +169,7 @@ export class SeamHttpPhones {
   }
 
   deactivate(
-    parameters?: PhonesDeactivateParameters,
+    parameters: PhonesDeactivateParameters,
     options: PhonesDeactivateOptions = {},
   ): PhonesDeactivateRequest {
     return new SeamHttpRequest(this, {
@@ -183,7 +182,7 @@ export class SeamHttpPhones {
   }
 
   get(
-    parameters?: PhonesGetParameters,
+    parameters: PhonesGetParameters,
     options: PhonesGetOptions = {},
   ): PhonesGetRequest {
     return new SeamHttpRequest(this, {
@@ -219,9 +218,7 @@ export type PhonesDeactivateParams = PhonesDeactivateParameters
 /**
  * @deprecated Use PhonesDeactivateRequest instead.
  */
-export type PhonesDeactivateResponse = SetNonNullable<
-  Required<RouteResponse<'/phones/deactivate'>>
->
+export type PhonesDeactivateResponse = RouteResponse<'/phones/deactivate'>
 
 export type PhonesDeactivateRequest = SeamHttpRequest<void, undefined>
 
@@ -237,9 +234,7 @@ export type PhonesGetParams = PhonesGetParameters
 /**
  * @deprecated Use PhonesGetRequest instead.
  */
-export type PhonesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/phones/get'>>
->
+export type PhonesGetResponse = RouteResponse<'/phones/get'>
 
 export type PhonesGetRequest = SeamHttpRequest<PhonesGetResponse, 'phone'>
 
@@ -255,9 +250,7 @@ export type PhonesListParams = PhonesListParameters
 /**
  * @deprecated Use PhonesListRequest instead.
  */
-export type PhonesListResponse = SetNonNullable<
-  Required<RouteResponse<'/phones/list'>>
->
+export type PhonesListResponse = RouteResponse<'/phones/list'>
 
 export type PhonesListRequest = SeamHttpRequest<PhonesListResponse, 'phones'>
 

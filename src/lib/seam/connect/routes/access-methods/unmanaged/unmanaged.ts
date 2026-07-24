@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpAccessMethodsUnmanaged {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpAccessMethodsUnmanaged {
   }
 
   get(
-    parameters?: AccessMethodsUnmanagedGetParameters,
+    parameters: AccessMethodsUnmanagedGetParameters,
     options: AccessMethodsUnmanagedGetOptions = {},
   ): AccessMethodsUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
@@ -177,7 +176,7 @@ export class SeamHttpAccessMethodsUnmanaged {
   }
 
   list(
-    parameters?: AccessMethodsUnmanagedListParameters,
+    parameters: AccessMethodsUnmanagedListParameters,
     options: AccessMethodsUnmanagedListOptions = {},
   ): AccessMethodsUnmanagedListRequest {
     return new SeamHttpRequest(this, {
@@ -202,9 +201,8 @@ export type AccessMethodsUnmanagedGetParams =
 /**
  * @deprecated Use AccessMethodsUnmanagedGetRequest instead.
  */
-export type AccessMethodsUnmanagedGetResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/unmanaged/get'>>
->
+export type AccessMethodsUnmanagedGetResponse =
+  RouteResponse<'/access_methods/unmanaged/get'>
 
 export type AccessMethodsUnmanagedGetRequest = SeamHttpRequest<
   AccessMethodsUnmanagedGetResponse,
@@ -225,9 +223,8 @@ export type AccessMethodsUnmanagedListParams =
 /**
  * @deprecated Use AccessMethodsUnmanagedListRequest instead.
  */
-export type AccessMethodsUnmanagedListResponse = SetNonNullable<
-  Required<RouteResponse<'/access_methods/unmanaged/list'>>
->
+export type AccessMethodsUnmanagedListResponse =
+  RouteResponse<'/access_methods/unmanaged/list'>
 
 export type AccessMethodsUnmanagedListRequest = SeamHttpRequest<
   AccessMethodsUnmanagedListResponse,

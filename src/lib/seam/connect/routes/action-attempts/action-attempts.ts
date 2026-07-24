@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpActionAttempts {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpActionAttempts {
   }
 
   get(
-    parameters?: ActionAttemptsGetParameters,
+    parameters: ActionAttemptsGetParameters,
     options: ActionAttemptsGetOptions = {},
   ): ActionAttemptsGetRequest {
     return new SeamHttpRequest(this, {
@@ -201,9 +200,7 @@ export type ActionAttemptsGetParams = ActionAttemptsGetParameters
 /**
  * @deprecated Use ActionAttemptsGetRequest instead.
  */
-export type ActionAttemptsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/action_attempts/get'>>
->
+export type ActionAttemptsGetResponse = RouteResponse<'/action_attempts/get'>
 
 export type ActionAttemptsGetRequest = SeamHttpRequest<
   ActionAttemptsGetResponse,
@@ -226,9 +223,7 @@ export type ActionAttemptsListParams = ActionAttemptsListParameters
 /**
  * @deprecated Use ActionAttemptsListRequest instead.
  */
-export type ActionAttemptsListResponse = SetNonNullable<
-  Required<RouteResponse<'/action_attempts/list'>>
->
+export type ActionAttemptsListResponse = RouteResponse<'/action_attempts/list'>
 
 export type ActionAttemptsListRequest = SeamHttpRequest<
   ActionAttemptsListResponse,

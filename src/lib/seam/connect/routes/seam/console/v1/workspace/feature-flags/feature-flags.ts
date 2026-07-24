@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamConsoleV1WorkspaceFeatureFlags {
   client: Client
@@ -194,7 +193,7 @@ export class SeamHttpSeamConsoleV1WorkspaceFeatureFlags {
   }
 
   update(
-    parameters?: SeamConsoleV1WorkspaceFeatureFlagsUpdateParameters,
+    parameters: SeamConsoleV1WorkspaceFeatureFlagsUpdateParameters,
     options: SeamConsoleV1WorkspaceFeatureFlagsUpdateOptions = {},
   ): SeamConsoleV1WorkspaceFeatureFlagsUpdateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -224,9 +223,8 @@ export type SeamConsoleV1WorkspaceFeatureFlagsListParams =
 /**
  * @deprecated Use SeamConsoleV1WorkspaceFeatureFlagsListRequest instead.
  */
-export type SeamConsoleV1WorkspaceFeatureFlagsListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/console/v1/workspace/feature_flags/list'>>
->
+export type SeamConsoleV1WorkspaceFeatureFlagsListResponse =
+  RouteResponse<'/seam/console/v1/workspace/feature_flags/list'>
 
 export type SeamConsoleV1WorkspaceFeatureFlagsListRequest = SeamHttpRequest<
   SeamConsoleV1WorkspaceFeatureFlagsListResponse,
@@ -247,9 +245,8 @@ export type SeamConsoleV1WorkspaceFeatureFlagsUpdateBody =
 /**
  * @deprecated Use SeamConsoleV1WorkspaceFeatureFlagsUpdateRequest instead.
  */
-export type SeamConsoleV1WorkspaceFeatureFlagsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/console/v1/workspace/feature_flags/update'>>
->
+export type SeamConsoleV1WorkspaceFeatureFlagsUpdateResponse =
+  RouteResponse<'/seam/console/v1/workspace/feature_flags/update'>
 
 export type SeamConsoleV1WorkspaceFeatureFlagsUpdateRequest = SeamHttpRequest<
   SeamConsoleV1WorkspaceFeatureFlagsUpdateResponse,

@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1AccessGrants {
   client: Client
@@ -190,7 +189,7 @@ export class SeamHttpSeamCustomerV1AccessGrants {
   }
 
   update(
-    parameters?: SeamCustomerV1AccessGrantsUpdateParameters,
+    parameters: SeamCustomerV1AccessGrantsUpdateParameters,
     options: SeamCustomerV1AccessGrantsUpdateOptions = {},
   ): SeamCustomerV1AccessGrantsUpdateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -220,9 +219,8 @@ export type SeamCustomerV1AccessGrantsListParams =
 /**
  * @deprecated Use SeamCustomerV1AccessGrantsListRequest instead.
  */
-export type SeamCustomerV1AccessGrantsListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/access_grants/list'>>
->
+export type SeamCustomerV1AccessGrantsListResponse =
+  RouteResponse<'/seam/customer/v1/access_grants/list'>
 
 export type SeamCustomerV1AccessGrantsListRequest = SeamHttpRequest<
   SeamCustomerV1AccessGrantsListResponse,
@@ -243,9 +241,8 @@ export type SeamCustomerV1AccessGrantsUpdateBody =
 /**
  * @deprecated Use SeamCustomerV1AccessGrantsUpdateRequest instead.
  */
-export type SeamCustomerV1AccessGrantsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/access_grants/update'>>
->
+export type SeamCustomerV1AccessGrantsUpdateResponse =
+  RouteResponse<'/seam/customer/v1/access_grants/update'>
 
 export type SeamCustomerV1AccessGrantsUpdateRequest = SeamHttpRequest<
   void,

@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpNoiseSensorsNoiseThresholds {
   client: Client
@@ -167,7 +166,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   create(
-    parameters?: NoiseSensorsNoiseThresholdsCreateParameters,
+    parameters: NoiseSensorsNoiseThresholdsCreateParameters,
     options: NoiseSensorsNoiseThresholdsCreateOptions = {},
   ): NoiseSensorsNoiseThresholdsCreateRequest {
     return new SeamHttpRequest(this, {
@@ -180,7 +179,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   delete(
-    parameters?: NoiseSensorsNoiseThresholdsDeleteParameters,
+    parameters: NoiseSensorsNoiseThresholdsDeleteParameters,
     options: NoiseSensorsNoiseThresholdsDeleteOptions = {},
   ): NoiseSensorsNoiseThresholdsDeleteRequest {
     return new SeamHttpRequest(this, {
@@ -193,7 +192,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   get(
-    parameters?: NoiseSensorsNoiseThresholdsGetParameters,
+    parameters: NoiseSensorsNoiseThresholdsGetParameters,
     options: NoiseSensorsNoiseThresholdsGetOptions = {},
   ): NoiseSensorsNoiseThresholdsGetRequest {
     return new SeamHttpRequest(this, {
@@ -206,7 +205,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   list(
-    parameters?: NoiseSensorsNoiseThresholdsListParameters,
+    parameters: NoiseSensorsNoiseThresholdsListParameters,
     options: NoiseSensorsNoiseThresholdsListOptions = {},
   ): NoiseSensorsNoiseThresholdsListRequest {
     return new SeamHttpRequest(this, {
@@ -219,7 +218,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   update(
-    parameters?: NoiseSensorsNoiseThresholdsUpdateParameters,
+    parameters: NoiseSensorsNoiseThresholdsUpdateParameters,
     options: NoiseSensorsNoiseThresholdsUpdateOptions = {},
   ): NoiseSensorsNoiseThresholdsUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -244,9 +243,8 @@ export type NoiseSensorsNoiseThresholdsCreateBody =
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsCreateRequest instead.
  */
-export type NoiseSensorsNoiseThresholdsCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/noise_sensors/noise_thresholds/create'>>
->
+export type NoiseSensorsNoiseThresholdsCreateResponse =
+  RouteResponse<'/noise_sensors/noise_thresholds/create'>
 
 export type NoiseSensorsNoiseThresholdsCreateRequest = SeamHttpRequest<
   NoiseSensorsNoiseThresholdsCreateResponse,
@@ -267,9 +265,8 @@ export type NoiseSensorsNoiseThresholdsDeleteParams =
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsDeleteRequest instead.
  */
-export type NoiseSensorsNoiseThresholdsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/noise_sensors/noise_thresholds/delete'>>
->
+export type NoiseSensorsNoiseThresholdsDeleteResponse =
+  RouteResponse<'/noise_sensors/noise_thresholds/delete'>
 
 export type NoiseSensorsNoiseThresholdsDeleteRequest = SeamHttpRequest<
   void,
@@ -290,9 +287,8 @@ export type NoiseSensorsNoiseThresholdsGetParams =
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsGetRequest instead.
  */
-export type NoiseSensorsNoiseThresholdsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/noise_sensors/noise_thresholds/get'>>
->
+export type NoiseSensorsNoiseThresholdsGetResponse =
+  RouteResponse<'/noise_sensors/noise_thresholds/get'>
 
 export type NoiseSensorsNoiseThresholdsGetRequest = SeamHttpRequest<
   NoiseSensorsNoiseThresholdsGetResponse,
@@ -313,9 +309,8 @@ export type NoiseSensorsNoiseThresholdsListParams =
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsListRequest instead.
  */
-export type NoiseSensorsNoiseThresholdsListResponse = SetNonNullable<
-  Required<RouteResponse<'/noise_sensors/noise_thresholds/list'>>
->
+export type NoiseSensorsNoiseThresholdsListResponse =
+  RouteResponse<'/noise_sensors/noise_thresholds/list'>
 
 export type NoiseSensorsNoiseThresholdsListRequest = SeamHttpRequest<
   NoiseSensorsNoiseThresholdsListResponse,
@@ -336,9 +331,8 @@ export type NoiseSensorsNoiseThresholdsUpdateBody =
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsUpdateRequest instead.
  */
-export type NoiseSensorsNoiseThresholdsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/noise_sensors/noise_thresholds/update'>>
->
+export type NoiseSensorsNoiseThresholdsUpdateResponse =
+  RouteResponse<'/noise_sensors/noise_thresholds/update'>
 
 export type NoiseSensorsNoiseThresholdsUpdateRequest = SeamHttpRequest<
   void,

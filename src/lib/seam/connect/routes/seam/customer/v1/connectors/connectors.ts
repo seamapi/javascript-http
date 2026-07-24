@@ -38,7 +38,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpSeamCustomerV1ConnectorsExternalSites } from './external-sites/index.js'
 import { SeamHttpSeamCustomerV1ConnectorsIcal } from './ical/index.js'
@@ -193,7 +192,7 @@ export class SeamHttpSeamCustomerV1Connectors {
   }
 
   authorize(
-    parameters?: SeamCustomerV1ConnectorsAuthorizeParameters,
+    parameters: SeamCustomerV1ConnectorsAuthorizeParameters,
     options: SeamCustomerV1ConnectorsAuthorizeOptions = {},
   ): SeamCustomerV1ConnectorsAuthorizeRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -229,7 +228,7 @@ export class SeamHttpSeamCustomerV1Connectors {
   }
 
   create(
-    parameters?: SeamCustomerV1ConnectorsCreateParameters,
+    parameters: SeamCustomerV1ConnectorsCreateParameters,
     options: SeamCustomerV1ConnectorsCreateOptions = {},
   ): SeamCustomerV1ConnectorsCreateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -247,7 +246,7 @@ export class SeamHttpSeamCustomerV1Connectors {
   }
 
   delete(
-    parameters?: SeamCustomerV1ConnectorsDeleteParameters,
+    parameters: SeamCustomerV1ConnectorsDeleteParameters,
     options: SeamCustomerV1ConnectorsDeleteOptions = {},
   ): SeamCustomerV1ConnectorsDeleteRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -283,7 +282,7 @@ export class SeamHttpSeamCustomerV1Connectors {
   }
 
   sync(
-    parameters?: SeamCustomerV1ConnectorsSyncParameters,
+    parameters: SeamCustomerV1ConnectorsSyncParameters,
     options: SeamCustomerV1ConnectorsSyncOptions = {},
   ): SeamCustomerV1ConnectorsSyncRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -301,7 +300,7 @@ export class SeamHttpSeamCustomerV1Connectors {
   }
 
   update(
-    parameters?: SeamCustomerV1ConnectorsUpdateParameters,
+    parameters: SeamCustomerV1ConnectorsUpdateParameters,
     options: SeamCustomerV1ConnectorsUpdateOptions = {},
   ): SeamCustomerV1ConnectorsUpdateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -331,9 +330,8 @@ export type SeamCustomerV1ConnectorsAuthorizeParams =
 /**
  * @deprecated Use SeamCustomerV1ConnectorsAuthorizeRequest instead.
  */
-export type SeamCustomerV1ConnectorsAuthorizeResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/connectors/authorize'>>
->
+export type SeamCustomerV1ConnectorsAuthorizeResponse =
+  RouteResponse<'/seam/customer/v1/connectors/authorize'>
 
 export type SeamCustomerV1ConnectorsAuthorizeRequest = SeamHttpRequest<
   SeamCustomerV1ConnectorsAuthorizeResponse,
@@ -354,9 +352,8 @@ export type SeamCustomerV1ConnectorsConnectorTypesParams =
 /**
  * @deprecated Use SeamCustomerV1ConnectorsConnectorTypesRequest instead.
  */
-export type SeamCustomerV1ConnectorsConnectorTypesResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/connectors/connector_types'>>
->
+export type SeamCustomerV1ConnectorsConnectorTypesResponse =
+  RouteResponse<'/seam/customer/v1/connectors/connector_types'>
 
 export type SeamCustomerV1ConnectorsConnectorTypesRequest = SeamHttpRequest<
   SeamCustomerV1ConnectorsConnectorTypesResponse,
@@ -377,9 +374,8 @@ export type SeamCustomerV1ConnectorsCreateBody =
 /**
  * @deprecated Use SeamCustomerV1ConnectorsCreateRequest instead.
  */
-export type SeamCustomerV1ConnectorsCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/connectors/create'>>
->
+export type SeamCustomerV1ConnectorsCreateResponse =
+  RouteResponse<'/seam/customer/v1/connectors/create'>
 
 export type SeamCustomerV1ConnectorsCreateRequest = SeamHttpRequest<
   SeamCustomerV1ConnectorsCreateResponse,
@@ -400,9 +396,8 @@ export type SeamCustomerV1ConnectorsDeleteBody =
 /**
  * @deprecated Use SeamCustomerV1ConnectorsDeleteRequest instead.
  */
-export type SeamCustomerV1ConnectorsDeleteResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/connectors/delete'>>
->
+export type SeamCustomerV1ConnectorsDeleteResponse =
+  RouteResponse<'/seam/customer/v1/connectors/delete'>
 
 export type SeamCustomerV1ConnectorsDeleteRequest = SeamHttpRequest<
   SeamCustomerV1ConnectorsDeleteResponse,
@@ -423,9 +418,8 @@ export type SeamCustomerV1ConnectorsListParams =
 /**
  * @deprecated Use SeamCustomerV1ConnectorsListRequest instead.
  */
-export type SeamCustomerV1ConnectorsListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/connectors/list'>>
->
+export type SeamCustomerV1ConnectorsListResponse =
+  RouteResponse<'/seam/customer/v1/connectors/list'>
 
 export type SeamCustomerV1ConnectorsListRequest = SeamHttpRequest<
   SeamCustomerV1ConnectorsListResponse,
@@ -446,9 +440,8 @@ export type SeamCustomerV1ConnectorsSyncBody =
 /**
  * @deprecated Use SeamCustomerV1ConnectorsSyncRequest instead.
  */
-export type SeamCustomerV1ConnectorsSyncResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/connectors/sync'>>
->
+export type SeamCustomerV1ConnectorsSyncResponse =
+  RouteResponse<'/seam/customer/v1/connectors/sync'>
 
 export type SeamCustomerV1ConnectorsSyncRequest = SeamHttpRequest<
   SeamCustomerV1ConnectorsSyncResponse,
@@ -469,9 +462,8 @@ export type SeamCustomerV1ConnectorsUpdateBody =
 /**
  * @deprecated Use SeamCustomerV1ConnectorsUpdateRequest instead.
  */
-export type SeamCustomerV1ConnectorsUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/connectors/update'>>
->
+export type SeamCustomerV1ConnectorsUpdateResponse =
+  RouteResponse<'/seam/customer/v1/connectors/update'>
 
 export type SeamCustomerV1ConnectorsUpdateRequest = SeamHttpRequest<
   SeamCustomerV1ConnectorsUpdateResponse,

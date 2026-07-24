@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 import { SeamHttpSeamConsoleV1LynxMigration } from './lynx-migration/index.js'
 import { SeamHttpSeamConsoleV1Sites } from './sites/index.js'
@@ -218,9 +217,8 @@ export type SeamConsoleV1GetResourceLocatorParams =
 /**
  * @deprecated Use SeamConsoleV1GetResourceLocatorRequest instead.
  */
-export type SeamConsoleV1GetResourceLocatorResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/console/v1/get_resource_locator'>>
->
+export type SeamConsoleV1GetResourceLocatorResponse =
+  RouteResponse<'/seam/console/v1/get_resource_locator'>
 
 export type SeamConsoleV1GetResourceLocatorRequest = SeamHttpRequest<
   SeamConsoleV1GetResourceLocatorResponse,

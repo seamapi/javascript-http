@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpWorkspacesCustomizationProfiles {
   client: Client
@@ -190,7 +189,7 @@ export class SeamHttpWorkspacesCustomizationProfiles {
   }
 
   get(
-    parameters?: WorkspacesCustomizationProfilesGetParameters,
+    parameters: WorkspacesCustomizationProfilesGetParameters,
     options: WorkspacesCustomizationProfilesGetOptions = {},
   ): WorkspacesCustomizationProfilesGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -226,7 +225,7 @@ export class SeamHttpWorkspacesCustomizationProfiles {
   }
 
   update(
-    parameters?: WorkspacesCustomizationProfilesUpdateParameters,
+    parameters: WorkspacesCustomizationProfilesUpdateParameters,
     options: WorkspacesCustomizationProfilesUpdateOptions = {},
   ): WorkspacesCustomizationProfilesUpdateRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -274,9 +273,8 @@ export type WorkspacesCustomizationProfilesCreateBody =
 /**
  * @deprecated Use WorkspacesCustomizationProfilesCreateRequest instead.
  */
-export type WorkspacesCustomizationProfilesCreateResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/customization_profiles/create'>>
->
+export type WorkspacesCustomizationProfilesCreateResponse =
+  RouteResponse<'/workspaces/customization_profiles/create'>
 
 export type WorkspacesCustomizationProfilesCreateRequest = SeamHttpRequest<
   WorkspacesCustomizationProfilesCreateResponse,
@@ -297,9 +295,8 @@ export type WorkspacesCustomizationProfilesGetParams =
 /**
  * @deprecated Use WorkspacesCustomizationProfilesGetRequest instead.
  */
-export type WorkspacesCustomizationProfilesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/customization_profiles/get'>>
->
+export type WorkspacesCustomizationProfilesGetResponse =
+  RouteResponse<'/workspaces/customization_profiles/get'>
 
 export type WorkspacesCustomizationProfilesGetRequest = SeamHttpRequest<
   WorkspacesCustomizationProfilesGetResponse,
@@ -320,9 +317,8 @@ export type WorkspacesCustomizationProfilesListParams =
 /**
  * @deprecated Use WorkspacesCustomizationProfilesListRequest instead.
  */
-export type WorkspacesCustomizationProfilesListResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/customization_profiles/list'>>
->
+export type WorkspacesCustomizationProfilesListResponse =
+  RouteResponse<'/workspaces/customization_profiles/list'>
 
 export type WorkspacesCustomizationProfilesListRequest = SeamHttpRequest<
   WorkspacesCustomizationProfilesListResponse,
@@ -343,9 +339,8 @@ export type WorkspacesCustomizationProfilesUpdateBody =
 /**
  * @deprecated Use WorkspacesCustomizationProfilesUpdateRequest instead.
  */
-export type WorkspacesCustomizationProfilesUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/workspaces/customization_profiles/update'>>
->
+export type WorkspacesCustomizationProfilesUpdateResponse =
+  RouteResponse<'/workspaces/customization_profiles/update'>
 
 export type WorkspacesCustomizationProfilesUpdateRequest = SeamHttpRequest<
   void,
@@ -367,9 +362,7 @@ export type WorkspacesCustomizationProfilesUploadImagesBody =
  * @deprecated Use WorkspacesCustomizationProfilesUploadImagesRequest instead.
  */
 export type WorkspacesCustomizationProfilesUploadImagesResponse =
-  SetNonNullable<
-    Required<RouteResponse<'/workspaces/customization_profiles/upload_images'>>
-  >
+  RouteResponse<'/workspaces/customization_profiles/upload_images'>
 
 export type WorkspacesCustomizationProfilesUploadImagesRequest =
   SeamHttpRequest<void, undefined>

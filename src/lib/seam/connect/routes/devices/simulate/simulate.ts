@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpDevicesSimulate {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpDevicesSimulate {
   }
 
   connect(
-    parameters?: DevicesSimulateConnectParameters,
+    parameters: DevicesSimulateConnectParameters,
     options: DevicesSimulateConnectOptions = {},
   ): DevicesSimulateConnectRequest {
     return new SeamHttpRequest(this, {
@@ -177,7 +176,7 @@ export class SeamHttpDevicesSimulate {
   }
 
   connectToHub(
-    parameters?: DevicesSimulateConnectToHubParameters,
+    parameters: DevicesSimulateConnectToHubParameters,
     options: DevicesSimulateConnectToHubOptions = {},
   ): DevicesSimulateConnectToHubRequest {
     return new SeamHttpRequest(this, {
@@ -190,7 +189,7 @@ export class SeamHttpDevicesSimulate {
   }
 
   disconnect(
-    parameters?: DevicesSimulateDisconnectParameters,
+    parameters: DevicesSimulateDisconnectParameters,
     options: DevicesSimulateDisconnectOptions = {},
   ): DevicesSimulateDisconnectRequest {
     return new SeamHttpRequest(this, {
@@ -203,7 +202,7 @@ export class SeamHttpDevicesSimulate {
   }
 
   disconnectFromHub(
-    parameters?: DevicesSimulateDisconnectFromHubParameters,
+    parameters: DevicesSimulateDisconnectFromHubParameters,
     options: DevicesSimulateDisconnectFromHubOptions = {},
   ): DevicesSimulateDisconnectFromHubRequest {
     return new SeamHttpRequest(this, {
@@ -216,7 +215,7 @@ export class SeamHttpDevicesSimulate {
   }
 
   paidSubscription(
-    parameters?: DevicesSimulatePaidSubscriptionParameters,
+    parameters: DevicesSimulatePaidSubscriptionParameters,
     options: DevicesSimulatePaidSubscriptionOptions = {},
   ): DevicesSimulatePaidSubscriptionRequest {
     return new SeamHttpRequest(this, {
@@ -229,7 +228,7 @@ export class SeamHttpDevicesSimulate {
   }
 
   remove(
-    parameters?: DevicesSimulateRemoveParameters,
+    parameters: DevicesSimulateRemoveParameters,
     options: DevicesSimulateRemoveOptions = {},
   ): DevicesSimulateRemoveRequest {
     return new SeamHttpRequest(this, {
@@ -253,9 +252,8 @@ export type DevicesSimulateConnectBody = DevicesSimulateConnectParameters
 /**
  * @deprecated Use DevicesSimulateConnectRequest instead.
  */
-export type DevicesSimulateConnectResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/simulate/connect'>>
->
+export type DevicesSimulateConnectResponse =
+  RouteResponse<'/devices/simulate/connect'>
 
 export type DevicesSimulateConnectRequest = SeamHttpRequest<void, undefined>
 
@@ -273,9 +271,8 @@ export type DevicesSimulateConnectToHubBody =
 /**
  * @deprecated Use DevicesSimulateConnectToHubRequest instead.
  */
-export type DevicesSimulateConnectToHubResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/simulate/connect_to_hub'>>
->
+export type DevicesSimulateConnectToHubResponse =
+  RouteResponse<'/devices/simulate/connect_to_hub'>
 
 export type DevicesSimulateConnectToHubRequest = SeamHttpRequest<
   void,
@@ -295,9 +292,8 @@ export type DevicesSimulateDisconnectBody = DevicesSimulateDisconnectParameters
 /**
  * @deprecated Use DevicesSimulateDisconnectRequest instead.
  */
-export type DevicesSimulateDisconnectResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/simulate/disconnect'>>
->
+export type DevicesSimulateDisconnectResponse =
+  RouteResponse<'/devices/simulate/disconnect'>
 
 export type DevicesSimulateDisconnectRequest = SeamHttpRequest<void, undefined>
 
@@ -315,9 +311,8 @@ export type DevicesSimulateDisconnectFromHubBody =
 /**
  * @deprecated Use DevicesSimulateDisconnectFromHubRequest instead.
  */
-export type DevicesSimulateDisconnectFromHubResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/simulate/disconnect_from_hub'>>
->
+export type DevicesSimulateDisconnectFromHubResponse =
+  RouteResponse<'/devices/simulate/disconnect_from_hub'>
 
 export type DevicesSimulateDisconnectFromHubRequest = SeamHttpRequest<
   void,
@@ -338,9 +333,8 @@ export type DevicesSimulatePaidSubscriptionBody =
 /**
  * @deprecated Use DevicesSimulatePaidSubscriptionRequest instead.
  */
-export type DevicesSimulatePaidSubscriptionResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/simulate/paid_subscription'>>
->
+export type DevicesSimulatePaidSubscriptionResponse =
+  RouteResponse<'/devices/simulate/paid_subscription'>
 
 export type DevicesSimulatePaidSubscriptionRequest = SeamHttpRequest<
   void,
@@ -360,9 +354,8 @@ export type DevicesSimulateRemoveBody = DevicesSimulateRemoveParameters
 /**
  * @deprecated Use DevicesSimulateRemoveRequest instead.
  */
-export type DevicesSimulateRemoveResponse = SetNonNullable<
-  Required<RouteResponse<'/devices/simulate/remove'>>
->
+export type DevicesSimulateRemoveResponse =
+  RouteResponse<'/devices/simulate/remove'>
 
 export type DevicesSimulateRemoveRequest = SeamHttpRequest<void, undefined>
 

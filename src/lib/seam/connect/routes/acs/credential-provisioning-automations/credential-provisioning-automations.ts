@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpAcsCredentialProvisioningAutomations {
   client: Client
@@ -172,7 +171,7 @@ export class SeamHttpAcsCredentialProvisioningAutomations {
   }
 
   launch(
-    parameters?: AcsCredentialProvisioningAutomationsLaunchParameters,
+    parameters: AcsCredentialProvisioningAutomationsLaunchParameters,
     options: AcsCredentialProvisioningAutomationsLaunchOptions = {},
   ): AcsCredentialProvisioningAutomationsLaunchRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -202,9 +201,8 @@ export type AcsCredentialProvisioningAutomationsLaunchBody =
 /**
  * @deprecated Use AcsCredentialProvisioningAutomationsLaunchRequest instead.
  */
-export type AcsCredentialProvisioningAutomationsLaunchResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/credential_provisioning_automations/launch'>>
->
+export type AcsCredentialProvisioningAutomationsLaunchResponse =
+  RouteResponse<'/acs/credential_provisioning_automations/launch'>
 
 export type AcsCredentialProvisioningAutomationsLaunchRequest = SeamHttpRequest<
   AcsCredentialProvisioningAutomationsLaunchResponse,

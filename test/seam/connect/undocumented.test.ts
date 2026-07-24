@@ -27,7 +27,7 @@ test('SeamHttp: must use isUndocumentedApiEnabled to use undocumented endpoint',
   t.truthy(seam.devices)
   await t.throwsAsync(
     async () => {
-      await seam.devices.delete()
+      await seam.devices.delete({ device_id: seed.august_device_1 })
     },
     {
       message: /Cannot use undocumented/,

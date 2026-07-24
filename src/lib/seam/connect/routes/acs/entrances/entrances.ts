@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpAcsEntrances {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpAcsEntrances {
   }
 
   get(
-    parameters?: AcsEntrancesGetParameters,
+    parameters: AcsEntrancesGetParameters,
     options: AcsEntrancesGetOptions = {},
   ): AcsEntrancesGetRequest {
     return new SeamHttpRequest(this, {
@@ -177,7 +176,7 @@ export class SeamHttpAcsEntrances {
   }
 
   grantAccess(
-    parameters?: AcsEntrancesGrantAccessParameters,
+    parameters: AcsEntrancesGrantAccessParameters,
     options: AcsEntrancesGrantAccessOptions = {},
   ): AcsEntrancesGrantAccessRequest {
     return new SeamHttpRequest(this, {
@@ -203,7 +202,7 @@ export class SeamHttpAcsEntrances {
   }
 
   listCredentialsWithAccess(
-    parameters?: AcsEntrancesListCredentialsWithAccessParameters,
+    parameters: AcsEntrancesListCredentialsWithAccessParameters,
     options: AcsEntrancesListCredentialsWithAccessOptions = {},
   ): AcsEntrancesListCredentialsWithAccessRequest {
     return new SeamHttpRequest(this, {
@@ -216,7 +215,7 @@ export class SeamHttpAcsEntrances {
   }
 
   unlock(
-    parameters?: AcsEntrancesUnlockParameters,
+    parameters: AcsEntrancesUnlockParameters,
     options: AcsEntrancesUnlockOptions = {},
   ): AcsEntrancesUnlockRequest {
     return new SeamHttpRequest(this, {
@@ -239,9 +238,7 @@ export type AcsEntrancesGetParams = AcsEntrancesGetParameters
 /**
  * @deprecated Use AcsEntrancesGetRequest instead.
  */
-export type AcsEntrancesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/entrances/get'>>
->
+export type AcsEntrancesGetResponse = RouteResponse<'/acs/entrances/get'>
 
 export type AcsEntrancesGetRequest = SeamHttpRequest<
   AcsEntrancesGetResponse,
@@ -261,9 +258,8 @@ export type AcsEntrancesGrantAccessBody = AcsEntrancesGrantAccessParameters
 /**
  * @deprecated Use AcsEntrancesGrantAccessRequest instead.
  */
-export type AcsEntrancesGrantAccessResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/entrances/grant_access'>>
->
+export type AcsEntrancesGrantAccessResponse =
+  RouteResponse<'/acs/entrances/grant_access'>
 
 export type AcsEntrancesGrantAccessRequest = SeamHttpRequest<void, undefined>
 
@@ -279,9 +275,7 @@ export type AcsEntrancesListParams = AcsEntrancesListParameters
 /**
  * @deprecated Use AcsEntrancesListRequest instead.
  */
-export type AcsEntrancesListResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/entrances/list'>>
->
+export type AcsEntrancesListResponse = RouteResponse<'/acs/entrances/list'>
 
 export type AcsEntrancesListRequest = SeamHttpRequest<
   AcsEntrancesListResponse,
@@ -302,9 +296,8 @@ export type AcsEntrancesListCredentialsWithAccessParams =
 /**
  * @deprecated Use AcsEntrancesListCredentialsWithAccessRequest instead.
  */
-export type AcsEntrancesListCredentialsWithAccessResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/entrances/list_credentials_with_access'>>
->
+export type AcsEntrancesListCredentialsWithAccessResponse =
+  RouteResponse<'/acs/entrances/list_credentials_with_access'>
 
 export type AcsEntrancesListCredentialsWithAccessRequest = SeamHttpRequest<
   AcsEntrancesListCredentialsWithAccessResponse,
@@ -324,9 +317,7 @@ export type AcsEntrancesUnlockBody = AcsEntrancesUnlockParameters
 /**
  * @deprecated Use AcsEntrancesUnlockRequest instead.
  */
-export type AcsEntrancesUnlockResponse = SetNonNullable<
-  Required<RouteResponse<'/acs/entrances/unlock'>>
->
+export type AcsEntrancesUnlockResponse = RouteResponse<'/acs/entrances/unlock'>
 
 export type AcsEntrancesUnlockRequest = SeamHttpRequest<
   AcsEntrancesUnlockResponse,

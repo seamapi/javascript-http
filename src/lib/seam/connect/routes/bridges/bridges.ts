@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpBridges {
   client: Client
@@ -169,7 +168,7 @@ export class SeamHttpBridges {
   }
 
   get(
-    parameters?: BridgesGetParameters,
+    parameters: BridgesGetParameters,
     options: BridgesGetOptions = {},
   ): BridgesGetRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -215,9 +214,7 @@ export type BridgesGetParams = BridgesGetParameters
 /**
  * @deprecated Use BridgesGetRequest instead.
  */
-export type BridgesGetResponse = SetNonNullable<
-  Required<RouteResponse<'/bridges/get'>>
->
+export type BridgesGetResponse = RouteResponse<'/bridges/get'>
 
 export type BridgesGetRequest = SeamHttpRequest<BridgesGetResponse, 'bridge'>
 
@@ -233,9 +230,7 @@ export type BridgesListParams = BridgesListParameters
 /**
  * @deprecated Use BridgesListRequest instead.
  */
-export type BridgesListResponse = SetNonNullable<
-  Required<RouteResponse<'/bridges/list'>>
->
+export type BridgesListResponse = RouteResponse<'/bridges/list'>
 
 export type BridgesListRequest = SeamHttpRequest<BridgesListResponse, 'bridges'>
 

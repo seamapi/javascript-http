@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpAccessGrantsUnmanaged {
   client: Client
@@ -164,7 +163,7 @@ export class SeamHttpAccessGrantsUnmanaged {
   }
 
   get(
-    parameters?: AccessGrantsUnmanagedGetParameters,
+    parameters: AccessGrantsUnmanagedGetParameters,
     options: AccessGrantsUnmanagedGetOptions = {},
   ): AccessGrantsUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
@@ -190,7 +189,7 @@ export class SeamHttpAccessGrantsUnmanaged {
   }
 
   update(
-    parameters?: AccessGrantsUnmanagedUpdateParameters,
+    parameters: AccessGrantsUnmanagedUpdateParameters,
     options: AccessGrantsUnmanagedUpdateOptions = {},
   ): AccessGrantsUnmanagedUpdateRequest {
     return new SeamHttpRequest(this, {
@@ -214,9 +213,8 @@ export type AccessGrantsUnmanagedGetParams = AccessGrantsUnmanagedGetParameters
 /**
  * @deprecated Use AccessGrantsUnmanagedGetRequest instead.
  */
-export type AccessGrantsUnmanagedGetResponse = SetNonNullable<
-  Required<RouteResponse<'/access_grants/unmanaged/get'>>
->
+export type AccessGrantsUnmanagedGetResponse =
+  RouteResponse<'/access_grants/unmanaged/get'>
 
 export type AccessGrantsUnmanagedGetRequest = SeamHttpRequest<
   AccessGrantsUnmanagedGetResponse,
@@ -237,9 +235,8 @@ export type AccessGrantsUnmanagedListParams =
 /**
  * @deprecated Use AccessGrantsUnmanagedListRequest instead.
  */
-export type AccessGrantsUnmanagedListResponse = SetNonNullable<
-  Required<RouteResponse<'/access_grants/unmanaged/list'>>
->
+export type AccessGrantsUnmanagedListResponse =
+  RouteResponse<'/access_grants/unmanaged/list'>
 
 export type AccessGrantsUnmanagedListRequest = SeamHttpRequest<
   AccessGrantsUnmanagedListResponse,
@@ -260,9 +257,8 @@ export type AccessGrantsUnmanagedUpdateBody =
 /**
  * @deprecated Use AccessGrantsUnmanagedUpdateRequest instead.
  */
-export type AccessGrantsUnmanagedUpdateResponse = SetNonNullable<
-  Required<RouteResponse<'/access_grants/unmanaged/update'>>
->
+export type AccessGrantsUnmanagedUpdateResponse =
+  RouteResponse<'/access_grants/unmanaged/update'>
 
 export type AccessGrantsUnmanagedUpdateRequest = SeamHttpRequest<
   void,

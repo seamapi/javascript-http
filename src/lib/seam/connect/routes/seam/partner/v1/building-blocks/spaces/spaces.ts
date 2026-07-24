@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamPartnerV1BuildingBlocksSpaces {
   client: Client
@@ -202,9 +201,8 @@ export type SeamPartnerV1BuildingBlocksSpacesAutoMapParams =
 /**
  * @deprecated Use SeamPartnerV1BuildingBlocksSpacesAutoMapRequest instead.
  */
-export type SeamPartnerV1BuildingBlocksSpacesAutoMapResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/partner/v1/building_blocks/spaces/auto_map'>>
->
+export type SeamPartnerV1BuildingBlocksSpacesAutoMapResponse =
+  RouteResponse<'/seam/partner/v1/building_blocks/spaces/auto_map'>
 
 export type SeamPartnerV1BuildingBlocksSpacesAutoMapRequest = SeamHttpRequest<
   SeamPartnerV1BuildingBlocksSpacesAutoMapResponse,

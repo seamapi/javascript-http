@@ -34,7 +34,6 @@ import {
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-import type { SetNonNullable } from 'lib/types.js'
 
 export class SeamHttpSeamCustomerV1Reservations {
   client: Client
@@ -208,7 +207,7 @@ export class SeamHttpSeamCustomerV1Reservations {
   }
 
   listAccessGrants(
-    parameters?: SeamCustomerV1ReservationsListAccessGrantsParameters,
+    parameters: SeamCustomerV1ReservationsListAccessGrantsParameters,
     options: SeamCustomerV1ReservationsListAccessGrantsOptions = {},
   ): SeamCustomerV1ReservationsListAccessGrantsRequest {
     if (!this.defaults.isUndocumentedApiEnabled) {
@@ -238,9 +237,8 @@ export type SeamCustomerV1ReservationsGetParams =
 /**
  * @deprecated Use SeamCustomerV1ReservationsGetRequest instead.
  */
-export type SeamCustomerV1ReservationsGetResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/reservations/get'>>
->
+export type SeamCustomerV1ReservationsGetResponse =
+  RouteResponse<'/seam/customer/v1/reservations/get'>
 
 export type SeamCustomerV1ReservationsGetRequest = SeamHttpRequest<
   SeamCustomerV1ReservationsGetResponse,
@@ -261,9 +259,8 @@ export type SeamCustomerV1ReservationsListParams =
 /**
  * @deprecated Use SeamCustomerV1ReservationsListRequest instead.
  */
-export type SeamCustomerV1ReservationsListResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/reservations/list'>>
->
+export type SeamCustomerV1ReservationsListResponse =
+  RouteResponse<'/seam/customer/v1/reservations/list'>
 
 export type SeamCustomerV1ReservationsListRequest = SeamHttpRequest<
   SeamCustomerV1ReservationsListResponse,
@@ -284,9 +281,8 @@ export type SeamCustomerV1ReservationsListAccessGrantsParams =
 /**
  * @deprecated Use SeamCustomerV1ReservationsListAccessGrantsRequest instead.
  */
-export type SeamCustomerV1ReservationsListAccessGrantsResponse = SetNonNullable<
-  Required<RouteResponse<'/seam/customer/v1/reservations/list_access_grants'>>
->
+export type SeamCustomerV1ReservationsListAccessGrantsResponse =
+  RouteResponse<'/seam/customer/v1/reservations/list_access_grants'>
 
 export type SeamCustomerV1ReservationsListAccessGrantsRequest = SeamHttpRequest<
   SeamCustomerV1ReservationsListAccessGrantsResponse,
