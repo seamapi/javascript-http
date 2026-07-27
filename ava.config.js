@@ -8,7 +8,6 @@ export default () => {
   delete env.SEAM_WORKSPACE_ID
 
   return {
-    ignoredByWatcher: ['tmp/**/*'],
     files: ['**/*.test.ts', '!package/**/*'],
     ignoreChanges: {
       watchMode: ['tmp/**/*'],
