@@ -8,6 +8,19 @@ export type AcsEntranceResource = {
 
   acs_system_id: string
 
+  akiles_metadata?:
+    | {
+        actions?:
+          | Array<{
+              id?: string | undefined
+              name?: string | undefined
+            }>
+          | undefined
+        gadget_id?: string | undefined
+        site_id?: string | undefined
+        site_name?: string | undefined
+      }
+    | undefined
   assa_abloy_vostio_metadata?:
     | {
         door_name?: string | undefined

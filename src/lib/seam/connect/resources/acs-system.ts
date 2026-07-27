@@ -92,6 +92,7 @@ export type AcsSystemResource = {
     | 'assa_abloy_vostio_credential_service'
     | 'hotek_site'
     | 'kisi_organization'
+    | 'akiles_organization'
     | undefined
   external_type_display_name?: string | undefined
   image_alt_text: string
@@ -123,6 +124,7 @@ export type AcsSystemResource = {
     | 'assa_abloy_vostio_credential_service'
     | 'hotek_site'
     | 'kisi_organization'
+    | 'akiles_organization'
     | undefined
   system_type_display_name?: string | undefined
   visionline_metadata?:
