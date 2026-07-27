@@ -5,7 +5,6 @@ export interface ResourceLayoutContext {
   fileName: string
   typeName: string
   resources: Resource[]
-  isUnknown: boolean
 }
 
 export interface ResourceIndexLayoutContext {
@@ -27,20 +26,11 @@ export const getResourceLayoutContexts = (
     ...new Set(resources.map(({ resourceType }) => resourceType)),
   ]
 
-  return [
-    {
-      fileName: 'unknown.ts',
-      typeName: getResourceTypeName('unknown'),
-      resources: [],
-      isUnknown: true,
-    },
-    ...resourceTypes.map((resourceType) => ({
-      fileName: `${kebabCase(resourceType)}.ts`,
-      typeName: getResourceTypeName(resourceType),
-      resources: resources.filter(
-        (resource) => resource.resourceType === resourceType,
-      ),
-      isUnknown: false,
-    })),
-  ]
+  return resourceTypes.map((resourceType) => ({
+    fileName: `${kebabCase(resourceType)}.ts`,
+    typeName: getResourceTypeName(resourceType),
+    resources: resources.filter(
+      (resource) => resource.resourceType === resourceType,
+    ),
+  }))
 }

@@ -60,7 +60,12 @@ export const setRouteLayoutContext = (
       ? [
           ...new Set(
             node.endpoints.flatMap((endpoint) => {
-              if (endpoint.response.responseType === 'void') return []
+              if (
+                endpoint.response.responseType === 'void' ||
+                endpoint.response.resourceType === 'unknown'
+              ) {
+                return []
+              }
               return [endpoint.response.resourceType]
             }),
           ),
@@ -131,7 +136,9 @@ export const getEndpointLayoutContext = (
     responseResourceTypeName:
       endpoint.response.responseType === 'void'
         ? ''
-        : getResourceTypeName(endpoint.response.resourceType),
+        : endpoint.response.resourceType === 'unknown'
+          ? 'unknown'
+          : getResourceTypeName(endpoint.response.resourceType),
     ...getResponseContext(endpoint),
   }
 }
