@@ -31,7 +31,6 @@
       "lib/*": ["./src/lib/*"]
     }
   },
-<<<<<<< HEAD
   "files": ["src/index.ts", "src/connect.ts"],
   "include": [
     "src/**/*",
@@ -39,20 +38,6 @@
     "examples/**/*",
     "codegen/**/*",
     "eslint.config.ts",
-    "tsup.config.ts",
     "prepack.ts"
   ]
-||||||| bd27d6a
-  "files": ["src/index.ts"],
-  "include": [
-    "src/**/*",
-    "test/**/*",
-    "examples/**/*",
-    "eslint.config.ts",
-    "tsup.config.ts"
-  ]
-=======
-  "files": ["src/index.ts"],
-  "include": ["src/**/*", "test/**/*", "examples/**/*", "eslint.config.ts"]
->>>>>>> upstream/public
 }
