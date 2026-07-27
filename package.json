@@ -7,24 +7,12 @@
   "types": "index.d.ts",
   "exports": {
     ".": {
-      "import": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      }
+      "types": "./index.d.ts",
+      "import": "./index.js"
     },
     "./connect": {
-      "import": {
-        "types": "./connect.d.ts",
-        "default": "./connect.js"
-      },
-      "require": {
-        "types": "./dist/connect.d.cts",
-        "default": "./dist/connect.cjs"
-      }
+      "types": "./connect.d.ts",
+      "import": "./connect.js"
     }
   },
   "module": "index.js",
@@ -47,10 +35,9 @@
     "connect.js",
     "connect.js.map",
     "connect.d.ts",
-    "dist",
     "lib",
     "src",
-    "dist",
+    "!test",
     "!**/*.test.ts"
   ],
   "scripts": {
@@ -58,7 +45,6 @@
     "prebuild": "concurrently --raw --group 'tsx src/index.ts' 'tsx src/connect.ts'",
     "postbuild": "concurrently --raw --group 'node ./index.js' 'node ./connect.js'",
     "build:entrypoints": "npm run build:ts",
-    "postbuild:entrypoints": "tsup",
     "build:ts": "tsc --project tsconfig.build.json",
     "prebuild:ts": "del 'index.*' 'connect.*' lib",
     "postbuild:ts": "tsc-alias --project tsconfig.build.json",
@@ -85,6 +71,16 @@
     "node": ">=22.11.0",
     "npm": ">=10.9.4"
   },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^24.11.0 || ^22.11.0"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": "^11.16.0 || ^10.9.4"
+    }
+  },
   "peerDependencies": {
     "@seamapi/types": "^1.982.0"
   },
@@ -103,11 +99,10 @@
     "@seamapi/fake-seam-connect": "^1.77.0",
     "@seamapi/smith": "^1.0.0",
     "@seamapi/types": "1.982.0",
-    "@swc/core": "^1.11.29",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^24.10.9",
-    "ava": "^5.0.1",
-    "c8": "^10.1.2",
+    "ava": "^8.0.1",
+    "c8": "^12.0.0",
     "change-case": "^5.0.2",
     "concurrently": "^9.1.0",
     "del-cli": "^7.0.0",
@@ -119,14 +114,13 @@
     "jiti": "^2.4.2",
     "jsonwebtoken": "^9.0.2",
     "landlubber": "^2.0.0",
-    "neostandard": "^0.12.2",
+    "neostandard": "^0.13.0",
     "nock": "^14.0.5",
     "node-fetch": "^3.3.2",
     "prettier": "^3.0.0",
     "tsc-alias": "^1.8.2",
-    "tsup": "^8.0.1",
     "tsx": "^4.6.2",
     "typedoc": "^0.28.10",
-    "typescript": "^5.8.3"
+    "typescript": "^6.0.3"
   }
 }

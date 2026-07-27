@@ -6,9 +6,8 @@
     "skipLibCheck": true,
     "strict": true,
     "module": "nodenext",
-    "esModuleInterop": true,
     "moduleDetection": "force",
-    "target": "es2023",
+    "target": "es2025",
     "jsx": "react-jsx",
     "sourceMap": true,
     "newLine": "lf",
@@ -24,7 +23,7 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
+    "types": ["node"],
     "paths": {
       "@seamapi/http": ["./src/index.ts"],
       "@seamapi/http/connect": ["./src/connect.ts"],
@@ -32,6 +31,7 @@
       "lib/*": ["./src/lib/*"]
     }
   },
+<<<<<<< HEAD
   "files": ["src/index.ts", "src/connect.ts"],
   "include": [
     "src/**/*",
@@ -42,4 +42,17 @@
     "tsup.config.ts",
     "prepack.ts"
   ]
+||||||| bd27d6a
+  "files": ["src/index.ts"],
+  "include": [
+    "src/**/*",
+    "test/**/*",
+    "examples/**/*",
+    "eslint.config.ts",
+    "tsup.config.ts"
+  ]
+=======
+  "files": ["src/index.ts"],
+  "include": ["src/**/*", "test/**/*", "examples/**/*", "eslint.config.ts"]
+>>>>>>> upstream/public
 }

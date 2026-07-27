@@ -10,9 +10,10 @@ export default () => {
   return {
     ignoredByWatcher: ['tmp/**/*'],
     files: ['**/*.test.ts', '!package/**/*'],
-    extensions: {
-      ts: 'commonjs',
+    ignoreChanges: {
+      watchMode: ['tmp/**/*'],
     },
+    extensions: ['ts'],
     nodeArguments: ['--import=tsx'],
   }
 }
