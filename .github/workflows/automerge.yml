@@ -31,6 +31,7 @@ jobs:
         with:
           files: |
             src/lib/seam/connect/routes/**
+            src/lib/seam/connect/resources/**
   merge:
     name: Merge
     runs-on: ubuntu-latest
