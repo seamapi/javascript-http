@@ -217,12 +217,6 @@ export type ThermostatsDailyProgramsCreateParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsDailyProgramsCreateParameters instead.
- */
-export type ThermostatsDailyProgramsCreateBody =
-  ThermostatsDailyProgramsCreateParameters
-
-/**
  * @deprecated Use ThermostatsDailyProgramsCreateRequest instead.
  */
 export type ThermostatsDailyProgramsCreateResponse = {
@@ -239,12 +233,6 @@ export interface ThermostatsDailyProgramsCreateOptions {}
 export type ThermostatsDailyProgramsDeleteParameters = {
   thermostat_daily_program_id: string
 }
-
-/**
- * @deprecated Use ThermostatsDailyProgramsDeleteParameters instead.
- */
-export type ThermostatsDailyProgramsDeleteParams =
-  ThermostatsDailyProgramsDeleteParameters
 
 /**
  * @deprecated Use ThermostatsDailyProgramsDeleteRequest instead.
@@ -268,12 +256,6 @@ export type ThermostatsDailyProgramsUpdateParameters = {
 
   thermostat_daily_program_id: string
 }
-
-/**
- * @deprecated Use ThermostatsDailyProgramsUpdateParameters instead.
- */
-export type ThermostatsDailyProgramsUpdateBody =
-  ThermostatsDailyProgramsUpdateParameters
 
 /**
  * @deprecated Use ThermostatsDailyProgramsUpdateRequest instead.

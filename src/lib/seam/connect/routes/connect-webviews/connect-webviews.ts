@@ -312,11 +312,6 @@ export type ConnectWebviewsCreateParameters = {
 }
 
 /**
- * @deprecated Use ConnectWebviewsCreateParameters instead.
- */
-export type ConnectWebviewsCreateBody = ConnectWebviewsCreateParameters
-
-/**
  * @deprecated Use ConnectWebviewsCreateRequest instead.
  */
 export type ConnectWebviewsCreateResponse = {
@@ -335,11 +330,6 @@ export type ConnectWebviewsDeleteParameters = {
 }
 
 /**
- * @deprecated Use ConnectWebviewsDeleteParameters instead.
- */
-export type ConnectWebviewsDeleteParams = ConnectWebviewsDeleteParameters
-
-/**
  * @deprecated Use ConnectWebviewsDeleteRequest instead.
  */
 export type ConnectWebviewsDeleteResponse = void
@@ -351,11 +341,6 @@ export interface ConnectWebviewsDeleteOptions {}
 export type ConnectWebviewsGetParameters = {
   connect_webview_id: string
 }
-
-/**
- * @deprecated Use ConnectWebviewsGetParameters instead.
- */
-export type ConnectWebviewsGetParams = ConnectWebviewsGetParameters
 
 /**
  * @deprecated Use ConnectWebviewsGetRequest instead.
@@ -379,11 +364,6 @@ export type ConnectWebviewsListParameters = {
   search?: string | undefined
   user_identifier_key?: string | undefined
 }
-
-/**
- * @deprecated Use ConnectWebviewsListParameters instead.
- */
-export type ConnectWebviewsListParams = ConnectWebviewsListParameters
 
 /**
  * @deprecated Use ConnectWebviewsListRequest instead.

@@ -195,11 +195,6 @@ export type EventsGetParameters = {
 }
 
 /**
- * @deprecated Use EventsGetParameters instead.
- */
-export type EventsGetParams = EventsGetParameters
-
-/**
  * @deprecated Use EventsGetRequest instead.
  */
 export type EventsGetResponse = { event: EventResource }
@@ -460,11 +455,6 @@ export type EventsListParameters = {
   unstable_offset?: number | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use EventsListParameters instead.
- */
-export type EventsListParams = EventsListParameters
 
 /**
  * @deprecated Use EventsListRequest instead.

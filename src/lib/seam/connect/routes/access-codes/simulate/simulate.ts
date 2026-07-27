@@ -184,12 +184,6 @@ export type AccessCodesSimulateCreateUnmanagedAccessCodeParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesSimulateCreateUnmanagedAccessCodeParameters instead.
- */
-export type AccessCodesSimulateCreateUnmanagedAccessCodeBody =
-  AccessCodesSimulateCreateUnmanagedAccessCodeParameters
-
-/**
  * @deprecated Use AccessCodesSimulateCreateUnmanagedAccessCodeRequest instead.
  */
 export type AccessCodesSimulateCreateUnmanagedAccessCodeResponse = {

@@ -207,11 +207,6 @@ export type DevicesUnmanagedGetParameters = {
 }
 
 /**
- * @deprecated Use DevicesUnmanagedGetParameters instead.
- */
-export type DevicesUnmanagedGetParams = DevicesUnmanagedGetParameters
-
-/**
  * @deprecated Use DevicesUnmanagedGetRequest instead.
  */
 export type DevicesUnmanagedGetResponse = { device: UnmanagedDeviceResource }
@@ -383,11 +378,6 @@ export type DevicesUnmanagedListParameters = {
 }
 
 /**
- * @deprecated Use DevicesUnmanagedListParameters instead.
- */
-export type DevicesUnmanagedListParams = DevicesUnmanagedListParameters
-
-/**
  * @deprecated Use DevicesUnmanagedListRequest instead.
  */
 export type DevicesUnmanagedListResponse = {
@@ -407,11 +397,6 @@ export type DevicesUnmanagedUpdateParameters = {
 
   is_managed?: boolean | undefined
 }
-
-/**
- * @deprecated Use DevicesUnmanagedUpdateParameters instead.
- */
-export type DevicesUnmanagedUpdateBody = DevicesUnmanagedUpdateParameters
 
 /**
  * @deprecated Use DevicesUnmanagedUpdateRequest instead.

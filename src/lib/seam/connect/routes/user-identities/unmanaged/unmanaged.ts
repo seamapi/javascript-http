@@ -209,12 +209,6 @@ export type UserIdentitiesUnmanagedGetParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesUnmanagedGetParameters instead.
- */
-export type UserIdentitiesUnmanagedGetParams =
-  UserIdentitiesUnmanagedGetParameters
-
-/**
  * @deprecated Use UserIdentitiesUnmanagedGetRequest instead.
  */
 export type UserIdentitiesUnmanagedGetResponse = {
@@ -234,12 +228,6 @@ export type UserIdentitiesUnmanagedListParameters = {
   page_cursor?: string | undefined
   search?: string | undefined
 }
-
-/**
- * @deprecated Use UserIdentitiesUnmanagedListParameters instead.
- */
-export type UserIdentitiesUnmanagedListParams =
-  UserIdentitiesUnmanagedListParameters
 
 /**
  * @deprecated Use UserIdentitiesUnmanagedListRequest instead.
@@ -262,12 +250,6 @@ export type UserIdentitiesUnmanagedUpdateParameters = {
 
   user_identity_key?: string | undefined
 }
-
-/**
- * @deprecated Use UserIdentitiesUnmanagedUpdateParameters instead.
- */
-export type UserIdentitiesUnmanagedUpdateBody =
-  UserIdentitiesUnmanagedUpdateParameters
 
 /**
  * @deprecated Use UserIdentitiesUnmanagedUpdateRequest instead.

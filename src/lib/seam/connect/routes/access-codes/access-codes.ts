@@ -324,11 +324,6 @@ export type AccessCodesCreateParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesCreateParameters instead.
- */
-export type AccessCodesCreateBody = AccessCodesCreateParameters
-
-/**
  * @deprecated Use AccessCodesCreateRequest instead.
  */
 export type AccessCodesCreateResponse = { access_code: AccessCodeResource }
@@ -358,11 +353,6 @@ export type AccessCodesCreateMultipleParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesCreateMultipleParameters instead.
- */
-export type AccessCodesCreateMultipleBody = AccessCodesCreateMultipleParameters
-
-/**
  * @deprecated Use AccessCodesCreateMultipleRequest instead.
  */
 export type AccessCodesCreateMultipleResponse = {
@@ -383,11 +373,6 @@ export type AccessCodesDeleteParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesDeleteParameters instead.
- */
-export type AccessCodesDeleteParams = AccessCodesDeleteParameters
-
-/**
  * @deprecated Use AccessCodesDeleteRequest instead.
  */
 export type AccessCodesDeleteResponse = void
@@ -399,11 +384,6 @@ export interface AccessCodesDeleteOptions {}
 export type AccessCodesGenerateCodeParameters = {
   device_id: string
 }
-
-/**
- * @deprecated Use AccessCodesGenerateCodeParameters instead.
- */
-export type AccessCodesGenerateCodeParams = AccessCodesGenerateCodeParameters
 
 /**
  * @deprecated Use AccessCodesGenerateCodeRequest instead.
@@ -424,11 +404,6 @@ export type AccessCodesGetParameters = {
   code?: string | undefined
   device_id?: string | undefined
 }
-
-/**
- * @deprecated Use AccessCodesGetParameters instead.
- */
-export type AccessCodesGetParams = AccessCodesGetParameters
 
 /**
  * @deprecated Use AccessCodesGetRequest instead.
@@ -456,11 +431,6 @@ export type AccessCodesListParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesListParameters instead.
- */
-export type AccessCodesListParams = AccessCodesListParameters
-
-/**
  * @deprecated Use AccessCodesListRequest instead.
  */
 export type AccessCodesListResponse = {
@@ -477,12 +447,6 @@ export interface AccessCodesListOptions {}
 export type AccessCodesPullBackupAccessCodeParameters = {
   access_code_id: string
 }
-
-/**
- * @deprecated Use AccessCodesPullBackupAccessCodeParameters instead.
- */
-export type AccessCodesPullBackupAccessCodeBody =
-  AccessCodesPullBackupAccessCodeParameters
 
 /**
  * @deprecated Use AccessCodesPullBackupAccessCodeRequest instead.
@@ -505,12 +469,6 @@ export type AccessCodesReportDeviceConstraintsParameters = {
   min_code_length?: number | undefined
   supported_code_lengths?: Array<number> | undefined
 }
-
-/**
- * @deprecated Use AccessCodesReportDeviceConstraintsParameters instead.
- */
-export type AccessCodesReportDeviceConstraintsBody =
-  AccessCodesReportDeviceConstraintsParameters
 
 /**
  * @deprecated Use AccessCodesReportDeviceConstraintsRequest instead.
@@ -547,11 +505,6 @@ export type AccessCodesUpdateParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesUpdateParameters instead.
- */
-export type AccessCodesUpdateBody = AccessCodesUpdateParameters
-
-/**
  * @deprecated Use AccessCodesUpdateRequest instead.
  */
 export type AccessCodesUpdateResponse = void
@@ -567,11 +520,6 @@ export type AccessCodesUpdateMultipleParameters = {
   name?: string | undefined
   starts_at?: string | undefined
 }
-
-/**
- * @deprecated Use AccessCodesUpdateMultipleParameters instead.
- */
-export type AccessCodesUpdateMultipleBody = AccessCodesUpdateMultipleParameters
 
 /**
  * @deprecated Use AccessCodesUpdateMultipleRequest instead.

@@ -242,11 +242,6 @@ export type LocksConfigureAutoLockParameters = {
 }
 
 /**
- * @deprecated Use LocksConfigureAutoLockParameters instead.
- */
-export type LocksConfigureAutoLockBody = LocksConfigureAutoLockParameters
-
-/**
  * @deprecated Use LocksConfigureAutoLockRequest instead.
  */
 export type LocksConfigureAutoLockResponse = {
@@ -267,11 +262,6 @@ export type LocksGetParameters = {
   device_id?: string | undefined
   name?: string | undefined
 }
-
-/**
- * @deprecated Use LocksGetParameters instead.
- */
-export type LocksGetParams = LocksGetParameters
 
 /**
  * @deprecated Use LocksGetRequest instead.
@@ -399,11 +389,6 @@ export type LocksListParameters = {
 }
 
 /**
- * @deprecated Use LocksListParameters instead.
- */
-export type LocksListParams = LocksListParameters
-
-/**
  * @deprecated Use LocksListRequest instead.
  */
 export type LocksListResponse = { devices: Array<DeviceResource> }
@@ -415,11 +400,6 @@ export interface LocksListOptions {}
 export type LocksLockDoorParameters = {
   device_id: string
 }
-
-/**
- * @deprecated Use LocksLockDoorParameters instead.
- */
-export type LocksLockDoorBody = LocksLockDoorParameters
 
 /**
  * @deprecated Use LocksLockDoorRequest instead.
@@ -439,11 +419,6 @@ export type LocksLockDoorOptions = Pick<
 export type LocksUnlockDoorParameters = {
   device_id: string
 }
-
-/**
- * @deprecated Use LocksUnlockDoorParameters instead.
- */
-export type LocksUnlockDoorBody = LocksUnlockDoorParameters
 
 /**
  * @deprecated Use LocksUnlockDoorRequest instead.

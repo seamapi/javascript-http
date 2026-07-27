@@ -326,11 +326,6 @@ export type SpacesAddAcsEntrancesParameters = {
 }
 
 /**
- * @deprecated Use SpacesAddAcsEntrancesParameters instead.
- */
-export type SpacesAddAcsEntrancesBody = SpacesAddAcsEntrancesParameters
-
-/**
  * @deprecated Use SpacesAddAcsEntrancesRequest instead.
  */
 export type SpacesAddAcsEntrancesResponse = void
@@ -346,11 +341,6 @@ export type SpacesAddConnectedAccountParameters = {
 }
 
 /**
- * @deprecated Use SpacesAddConnectedAccountParameters instead.
- */
-export type SpacesAddConnectedAccountBody = SpacesAddConnectedAccountParameters
-
-/**
  * @deprecated Use SpacesAddConnectedAccountRequest instead.
  */
 export type SpacesAddConnectedAccountResponse = void
@@ -364,11 +354,6 @@ export type SpacesAddDevicesParameters = {
 
   space_id: string
 }
-
-/**
- * @deprecated Use SpacesAddDevicesParameters instead.
- */
-export type SpacesAddDevicesBody = SpacesAddDevicesParameters
 
 /**
  * @deprecated Use SpacesAddDevicesRequest instead.
@@ -398,11 +383,6 @@ export type SpacesCreateParameters = {
 }
 
 /**
- * @deprecated Use SpacesCreateParameters instead.
- */
-export type SpacesCreateBody = SpacesCreateParameters
-
-/**
  * @deprecated Use SpacesCreateRequest instead.
  */
 export type SpacesCreateResponse = { space: SpaceResource }
@@ -414,11 +394,6 @@ export interface SpacesCreateOptions {}
 export type SpacesDeleteParameters = {
   space_id: string
 }
-
-/**
- * @deprecated Use SpacesDeleteParameters instead.
- */
-export type SpacesDeleteParams = SpacesDeleteParameters
 
 /**
  * @deprecated Use SpacesDeleteRequest instead.
@@ -433,11 +408,6 @@ export type SpacesGetParameters = {
   space_id?: string | undefined
   space_key?: string | undefined
 }
-
-/**
- * @deprecated Use SpacesGetParameters instead.
- */
-export type SpacesGetParams = SpacesGetParameters
 
 /**
  * @deprecated Use SpacesGetRequest instead.
@@ -474,11 +444,6 @@ export type SpacesGetRelatedParameters = {
 }
 
 /**
- * @deprecated Use SpacesGetRelatedParameters instead.
- */
-export type SpacesGetRelatedParams = SpacesGetRelatedParameters
-
-/**
  * @deprecated Use SpacesGetRelatedRequest instead.
  */
 export type SpacesGetRelatedResponse = { batch: UnknownResource }
@@ -499,11 +464,6 @@ export type SpacesListParameters = {
 }
 
 /**
- * @deprecated Use SpacesListParameters instead.
- */
-export type SpacesListParams = SpacesListParameters
-
-/**
  * @deprecated Use SpacesListRequest instead.
  */
 export type SpacesListResponse = { spaces: Array<SpaceResource> }
@@ -519,11 +479,6 @@ export type SpacesRemoveAcsEntrancesParameters = {
 }
 
 /**
- * @deprecated Use SpacesRemoveAcsEntrancesParameters instead.
- */
-export type SpacesRemoveAcsEntrancesParams = SpacesRemoveAcsEntrancesParameters
-
-/**
  * @deprecated Use SpacesRemoveAcsEntrancesRequest instead.
  */
 export type SpacesRemoveAcsEntrancesResponse = void
@@ -537,12 +492,6 @@ export type SpacesRemoveConnectedAccountParameters = {
 
   space_id: string
 }
-
-/**
- * @deprecated Use SpacesRemoveConnectedAccountParameters instead.
- */
-export type SpacesRemoveConnectedAccountParams =
-  SpacesRemoveConnectedAccountParameters
 
 /**
  * @deprecated Use SpacesRemoveConnectedAccountRequest instead.
@@ -561,11 +510,6 @@ export type SpacesRemoveDevicesParameters = {
 
   space_id: string
 }
-
-/**
- * @deprecated Use SpacesRemoveDevicesParameters instead.
- */
-export type SpacesRemoveDevicesParams = SpacesRemoveDevicesParameters
 
 /**
  * @deprecated Use SpacesRemoveDevicesRequest instead.
@@ -591,11 +535,6 @@ export type SpacesUpdateParameters = {
   space_id?: string | undefined
   space_key?: string | undefined
 }
-
-/**
- * @deprecated Use SpacesUpdateParameters instead.
- */
-export type SpacesUpdateBody = SpacesUpdateParameters
 
 /**
  * @deprecated Use SpacesUpdateRequest instead.

@@ -244,11 +244,6 @@ export type DevicesSimulateConnectParameters = {
 }
 
 /**
- * @deprecated Use DevicesSimulateConnectParameters instead.
- */
-export type DevicesSimulateConnectBody = DevicesSimulateConnectParameters
-
-/**
  * @deprecated Use DevicesSimulateConnectRequest instead.
  */
 export type DevicesSimulateConnectResponse = void
@@ -260,12 +255,6 @@ export interface DevicesSimulateConnectOptions {}
 export type DevicesSimulateConnectToHubParameters = {
   device_id: string
 }
-
-/**
- * @deprecated Use DevicesSimulateConnectToHubParameters instead.
- */
-export type DevicesSimulateConnectToHubBody =
-  DevicesSimulateConnectToHubParameters
 
 /**
  * @deprecated Use DevicesSimulateConnectToHubRequest instead.
@@ -284,11 +273,6 @@ export type DevicesSimulateDisconnectParameters = {
 }
 
 /**
- * @deprecated Use DevicesSimulateDisconnectParameters instead.
- */
-export type DevicesSimulateDisconnectBody = DevicesSimulateDisconnectParameters
-
-/**
  * @deprecated Use DevicesSimulateDisconnectRequest instead.
  */
 export type DevicesSimulateDisconnectResponse = void
@@ -300,12 +284,6 @@ export interface DevicesSimulateDisconnectOptions {}
 export type DevicesSimulateDisconnectFromHubParameters = {
   device_id: string
 }
-
-/**
- * @deprecated Use DevicesSimulateDisconnectFromHubParameters instead.
- */
-export type DevicesSimulateDisconnectFromHubBody =
-  DevicesSimulateDisconnectFromHubParameters
 
 /**
  * @deprecated Use DevicesSimulateDisconnectFromHubRequest instead.
@@ -326,12 +304,6 @@ export type DevicesSimulatePaidSubscriptionParameters = {
 }
 
 /**
- * @deprecated Use DevicesSimulatePaidSubscriptionParameters instead.
- */
-export type DevicesSimulatePaidSubscriptionBody =
-  DevicesSimulatePaidSubscriptionParameters
-
-/**
  * @deprecated Use DevicesSimulatePaidSubscriptionRequest instead.
  */
 export type DevicesSimulatePaidSubscriptionResponse = void
@@ -346,11 +318,6 @@ export interface DevicesSimulatePaidSubscriptionOptions {}
 export type DevicesSimulateRemoveParameters = {
   device_id: string
 }
-
-/**
- * @deprecated Use DevicesSimulateRemoveParameters instead.
- */
-export type DevicesSimulateRemoveBody = DevicesSimulateRemoveParameters
 
 /**
  * @deprecated Use DevicesSimulateRemoveRequest instead.

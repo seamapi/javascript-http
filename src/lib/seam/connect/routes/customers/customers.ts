@@ -518,11 +518,6 @@ export type CustomersCreatePortalParameters = {
 }
 
 /**
- * @deprecated Use CustomersCreatePortalParameters instead.
- */
-export type CustomersCreatePortalBody = CustomersCreatePortalParameters
-
-/**
  * @deprecated Use CustomersCreatePortalRequest instead.
  */
 export type CustomersCreatePortalResponse = {
@@ -557,11 +552,6 @@ export type CustomersDeleteDataParameters = {
   user_identity_keys?: Array<string> | undefined
   user_keys?: Array<string> | undefined
 }
-
-/**
- * @deprecated Use CustomersDeleteDataParameters instead.
- */
-export type CustomersDeleteDataParams = CustomersDeleteDataParameters
 
 /**
  * @deprecated Use CustomersDeleteDataRequest instead.
@@ -781,11 +771,6 @@ export type CustomersPushDataParameters = {
       }>
     | undefined
 }
-
-/**
- * @deprecated Use CustomersPushDataParameters instead.
- */
-export type CustomersPushDataBody = CustomersPushDataParameters
 
 /**
  * @deprecated Use CustomersPushDataRequest instead.

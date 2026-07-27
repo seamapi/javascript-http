@@ -245,11 +245,6 @@ export type DevicesGetParameters = {
 }
 
 /**
- * @deprecated Use DevicesGetParameters instead.
- */
-export type DevicesGetParams = DevicesGetParameters
-
-/**
  * @deprecated Use DevicesGetRequest instead.
  */
 export type DevicesGetResponse = { device: DeviceResource }
@@ -418,11 +413,6 @@ export type DevicesListParameters = {
 }
 
 /**
- * @deprecated Use DevicesListParameters instead.
- */
-export type DevicesListParams = DevicesListParameters
-
-/**
  * @deprecated Use DevicesListRequest instead.
  */
 export type DevicesListResponse = { devices: Array<DeviceResource> }
@@ -443,12 +433,6 @@ export type DevicesListDeviceProvidersParameters = {
     | 'connectors'
     | undefined
 }
-
-/**
- * @deprecated Use DevicesListDeviceProvidersParameters instead.
- */
-export type DevicesListDeviceProvidersParams =
-  DevicesListDeviceProvidersParameters
 
 /**
  * @deprecated Use DevicesListDeviceProvidersRequest instead.
@@ -1776,12 +1760,6 @@ export type DevicesReportProviderMetadataParameters = {
 }
 
 /**
- * @deprecated Use DevicesReportProviderMetadataParameters instead.
- */
-export type DevicesReportProviderMetadataBody =
-  DevicesReportProviderMetadataParameters
-
-/**
  * @deprecated Use DevicesReportProviderMetadataRequest instead.
  */
 export type DevicesReportProviderMetadataResponse = void
@@ -1806,11 +1784,6 @@ export type DevicesUpdateParameters = {
       }
     | undefined
 }
-
-/**
- * @deprecated Use DevicesUpdateParameters instead.
- */
-export type DevicesUpdateBody = DevicesUpdateParameters
 
 /**
  * @deprecated Use DevicesUpdateRequest instead.

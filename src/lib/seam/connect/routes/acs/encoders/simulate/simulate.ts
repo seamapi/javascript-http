@@ -226,12 +226,6 @@ export type AcsEncodersSimulateNextCredentialEncodeWillFailParameters = {
 }
 
 /**
- * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillFailParameters instead.
- */
-export type AcsEncodersSimulateNextCredentialEncodeWillFailBody =
-  AcsEncodersSimulateNextCredentialEncodeWillFailParameters
-
-/**
  * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillFailRequest instead.
  */
 export type AcsEncodersSimulateNextCredentialEncodeWillFailResponse = void
@@ -246,12 +240,6 @@ export type AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters = {
 
   scenario?: 'credential_is_issued' | undefined
 }
-
-/**
- * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters instead.
- */
-export type AcsEncodersSimulateNextCredentialEncodeWillSucceedBody =
-  AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters
 
 /**
  * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest instead.
@@ -275,12 +263,6 @@ export type AcsEncodersSimulateNextCredentialScanWillFailParameters = {
 }
 
 /**
- * @deprecated Use AcsEncodersSimulateNextCredentialScanWillFailParameters instead.
- */
-export type AcsEncodersSimulateNextCredentialScanWillFailBody =
-  AcsEncodersSimulateNextCredentialScanWillFailParameters
-
-/**
  * @deprecated Use AcsEncodersSimulateNextCredentialScanWillFailRequest instead.
  */
 export type AcsEncodersSimulateNextCredentialScanWillFailResponse = void
@@ -301,12 +283,6 @@ export type AcsEncodersSimulateNextCredentialScanWillSucceedParameters = {
     | 'credential_on_encoder_is_empty'
     | undefined
 }
-
-/**
- * @deprecated Use AcsEncodersSimulateNextCredentialScanWillSucceedParameters instead.
- */
-export type AcsEncodersSimulateNextCredentialScanWillSucceedBody =
-  AcsEncodersSimulateNextCredentialScanWillSucceedParameters
 
 /**
  * @deprecated Use AcsEncodersSimulateNextCredentialScanWillSucceedRequest instead.

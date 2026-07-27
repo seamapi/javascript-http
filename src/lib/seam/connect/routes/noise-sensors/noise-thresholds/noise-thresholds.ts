@@ -242,12 +242,6 @@ export type NoiseSensorsNoiseThresholdsCreateParameters = {
 }
 
 /**
- * @deprecated Use NoiseSensorsNoiseThresholdsCreateParameters instead.
- */
-export type NoiseSensorsNoiseThresholdsCreateBody =
-  NoiseSensorsNoiseThresholdsCreateParameters
-
-/**
  * @deprecated Use NoiseSensorsNoiseThresholdsCreateRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsCreateResponse = {
@@ -268,12 +262,6 @@ export type NoiseSensorsNoiseThresholdsDeleteParameters = {
 }
 
 /**
- * @deprecated Use NoiseSensorsNoiseThresholdsDeleteParameters instead.
- */
-export type NoiseSensorsNoiseThresholdsDeleteParams =
-  NoiseSensorsNoiseThresholdsDeleteParameters
-
-/**
  * @deprecated Use NoiseSensorsNoiseThresholdsDeleteRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsDeleteResponse = void
@@ -288,12 +276,6 @@ export interface NoiseSensorsNoiseThresholdsDeleteOptions {}
 export type NoiseSensorsNoiseThresholdsGetParameters = {
   noise_threshold_id: string
 }
-
-/**
- * @deprecated Use NoiseSensorsNoiseThresholdsGetParameters instead.
- */
-export type NoiseSensorsNoiseThresholdsGetParams =
-  NoiseSensorsNoiseThresholdsGetParameters
 
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsGetRequest instead.
@@ -312,12 +294,6 @@ export interface NoiseSensorsNoiseThresholdsGetOptions {}
 export type NoiseSensorsNoiseThresholdsListParameters = {
   device_id: string
 }
-
-/**
- * @deprecated Use NoiseSensorsNoiseThresholdsListParameters instead.
- */
-export type NoiseSensorsNoiseThresholdsListParams =
-  NoiseSensorsNoiseThresholdsListParameters
 
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsListRequest instead.
@@ -344,12 +320,6 @@ export type NoiseSensorsNoiseThresholdsUpdateParameters = {
   noise_threshold_nrs?: number | undefined
   starts_daily_at?: string | undefined
 }
-
-/**
- * @deprecated Use NoiseSensorsNoiseThresholdsUpdateParameters instead.
- */
-export type NoiseSensorsNoiseThresholdsUpdateBody =
-  NoiseSensorsNoiseThresholdsUpdateParameters
 
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsUpdateRequest instead.

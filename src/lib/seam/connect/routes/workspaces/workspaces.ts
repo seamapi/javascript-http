@@ -250,11 +250,6 @@ export type WorkspacesCreateParameters = {
 }
 
 /**
- * @deprecated Use WorkspacesCreateParameters instead.
- */
-export type WorkspacesCreateBody = WorkspacesCreateParameters
-
-/**
  * @deprecated Use WorkspacesCreateRequest instead.
  */
 export type WorkspacesCreateResponse = { workspace: WorkspaceResource }
@@ -267,11 +262,6 @@ export type WorkspacesCreateRequest = SeamHttpRequest<
 export interface WorkspacesCreateOptions {}
 
 export type WorkspacesGetParameters = {}
-
-/**
- * @deprecated Use WorkspacesGetParameters instead.
- */
-export type WorkspacesGetParams = WorkspacesGetParameters
 
 /**
  * @deprecated Use WorkspacesGetRequest instead.
@@ -288,11 +278,6 @@ export interface WorkspacesGetOptions {}
 export type WorkspacesListParameters = {}
 
 /**
- * @deprecated Use WorkspacesListParameters instead.
- */
-export type WorkspacesListParams = WorkspacesListParameters
-
-/**
  * @deprecated Use WorkspacesListRequest instead.
  */
 export type WorkspacesListResponse = { workspaces: Array<WorkspaceResource> }
@@ -305,11 +290,6 @@ export type WorkspacesListRequest = SeamHttpRequest<
 export interface WorkspacesListOptions {}
 
 export type WorkspacesResetSandboxParameters = {}
-
-/**
- * @deprecated Use WorkspacesResetSandboxParameters instead.
- */
-export type WorkspacesResetSandboxBody = WorkspacesResetSandboxParameters
 
 /**
  * @deprecated Use WorkspacesResetSandboxRequest instead.
@@ -343,11 +323,6 @@ export type WorkspacesUpdateParameters = {
   name?: string | undefined
   organization_id?: string | undefined
 }
-
-/**
- * @deprecated Use WorkspacesUpdateParameters instead.
- */
-export type WorkspacesUpdateBody = WorkspacesUpdateParameters
 
 /**
  * @deprecated Use WorkspacesUpdateRequest instead.

@@ -264,11 +264,6 @@ export type ClientSessionsCreateParameters = {
 }
 
 /**
- * @deprecated Use ClientSessionsCreateParameters instead.
- */
-export type ClientSessionsCreateBody = ClientSessionsCreateParameters
-
-/**
  * @deprecated Use ClientSessionsCreateRequest instead.
  */
 export type ClientSessionsCreateResponse = {
@@ -287,11 +282,6 @@ export type ClientSessionsDeleteParameters = {
 }
 
 /**
- * @deprecated Use ClientSessionsDeleteParameters instead.
- */
-export type ClientSessionsDeleteParams = ClientSessionsDeleteParameters
-
-/**
  * @deprecated Use ClientSessionsDeleteRequest instead.
  */
 export type ClientSessionsDeleteResponse = void
@@ -304,11 +294,6 @@ export type ClientSessionsGetParameters = {
   client_session_id?: string | undefined
   user_identifier_key?: string | undefined
 }
-
-/**
- * @deprecated Use ClientSessionsGetParameters instead.
- */
-export type ClientSessionsGetParams = ClientSessionsGetParameters
 
 /**
  * @deprecated Use ClientSessionsGetRequest instead.
@@ -334,11 +319,6 @@ export type ClientSessionsGetOrCreateParameters = {
 }
 
 /**
- * @deprecated Use ClientSessionsGetOrCreateParameters instead.
- */
-export type ClientSessionsGetOrCreateBody = ClientSessionsGetOrCreateParameters
-
-/**
  * @deprecated Use ClientSessionsGetOrCreateRequest instead.
  */
 export type ClientSessionsGetOrCreateResponse = {
@@ -362,11 +342,6 @@ export type ClientSessionsGrantAccessParameters = {
 }
 
 /**
- * @deprecated Use ClientSessionsGrantAccessParameters instead.
- */
-export type ClientSessionsGrantAccessBody = ClientSessionsGrantAccessParameters
-
-/**
  * @deprecated Use ClientSessionsGrantAccessRequest instead.
  */
 export type ClientSessionsGrantAccessResponse = void
@@ -382,11 +357,6 @@ export type ClientSessionsListParameters = {
   user_identity_id?: string | undefined
   without_user_identifier_key?: boolean | undefined
 }
-
-/**
- * @deprecated Use ClientSessionsListParameters instead.
- */
-export type ClientSessionsListParams = ClientSessionsListParameters
 
 /**
  * @deprecated Use ClientSessionsListRequest instead.
@@ -405,11 +375,6 @@ export interface ClientSessionsListOptions {}
 export type ClientSessionsRevokeParameters = {
   client_session_id: string
 }
-
-/**
- * @deprecated Use ClientSessionsRevokeParameters instead.
- */
-export type ClientSessionsRevokeBody = ClientSessionsRevokeParameters
 
 /**
  * @deprecated Use ClientSessionsRevokeRequest instead.

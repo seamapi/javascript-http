@@ -263,11 +263,6 @@ export type AcsAccessGroupsAddUserParameters = {
 }
 
 /**
- * @deprecated Use AcsAccessGroupsAddUserParameters instead.
- */
-export type AcsAccessGroupsAddUserBody = AcsAccessGroupsAddUserParameters
-
-/**
  * @deprecated Use AcsAccessGroupsAddUserRequest instead.
  */
 export type AcsAccessGroupsAddUserResponse = void
@@ -281,11 +276,6 @@ export type AcsAccessGroupsDeleteParameters = {
 }
 
 /**
- * @deprecated Use AcsAccessGroupsDeleteParameters instead.
- */
-export type AcsAccessGroupsDeleteParams = AcsAccessGroupsDeleteParameters
-
-/**
  * @deprecated Use AcsAccessGroupsDeleteRequest instead.
  */
 export type AcsAccessGroupsDeleteResponse = void
@@ -297,11 +287,6 @@ export interface AcsAccessGroupsDeleteOptions {}
 export type AcsAccessGroupsGetParameters = {
   acs_access_group_id: string
 }
-
-/**
- * @deprecated Use AcsAccessGroupsGetParameters instead.
- */
-export type AcsAccessGroupsGetParams = AcsAccessGroupsGetParameters
 
 /**
  * @deprecated Use AcsAccessGroupsGetRequest instead.
@@ -325,11 +310,6 @@ export type AcsAccessGroupsListParameters = {
 }
 
 /**
- * @deprecated Use AcsAccessGroupsListParameters instead.
- */
-export type AcsAccessGroupsListParams = AcsAccessGroupsListParameters
-
-/**
  * @deprecated Use AcsAccessGroupsListRequest instead.
  */
 export type AcsAccessGroupsListResponse = {
@@ -348,12 +328,6 @@ export type AcsAccessGroupsListAccessibleEntrancesParameters = {
 }
 
 /**
- * @deprecated Use AcsAccessGroupsListAccessibleEntrancesParameters instead.
- */
-export type AcsAccessGroupsListAccessibleEntrancesParams =
-  AcsAccessGroupsListAccessibleEntrancesParameters
-
-/**
  * @deprecated Use AcsAccessGroupsListAccessibleEntrancesRequest instead.
  */
 export type AcsAccessGroupsListAccessibleEntrancesResponse = {
@@ -370,11 +344,6 @@ export interface AcsAccessGroupsListAccessibleEntrancesOptions {}
 export type AcsAccessGroupsListUsersParameters = {
   acs_access_group_id: string
 }
-
-/**
- * @deprecated Use AcsAccessGroupsListUsersParameters instead.
- */
-export type AcsAccessGroupsListUsersParams = AcsAccessGroupsListUsersParameters
 
 /**
  * @deprecated Use AcsAccessGroupsListUsersRequest instead.
@@ -396,12 +365,6 @@ export type AcsAccessGroupsRemoveUserParameters = {
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsAccessGroupsRemoveUserParameters instead.
- */
-export type AcsAccessGroupsRemoveUserParams =
-  AcsAccessGroupsRemoveUserParameters
 
 /**
  * @deprecated Use AcsAccessGroupsRemoveUserRequest instead.

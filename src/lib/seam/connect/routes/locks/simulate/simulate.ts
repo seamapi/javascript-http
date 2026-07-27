@@ -195,12 +195,6 @@ export type LocksSimulateKeypadCodeEntryParameters = {
 }
 
 /**
- * @deprecated Use LocksSimulateKeypadCodeEntryParameters instead.
- */
-export type LocksSimulateKeypadCodeEntryBody =
-  LocksSimulateKeypadCodeEntryParameters
-
-/**
  * @deprecated Use LocksSimulateKeypadCodeEntryRequest instead.
  */
 export type LocksSimulateKeypadCodeEntryResponse = {
@@ -220,12 +214,6 @@ export type LocksSimulateKeypadCodeEntryOptions = Pick<
 export type LocksSimulateManualLockViaKeypadParameters = {
   device_id: string
 }
-
-/**
- * @deprecated Use LocksSimulateManualLockViaKeypadParameters instead.
- */
-export type LocksSimulateManualLockViaKeypadBody =
-  LocksSimulateManualLockViaKeypadParameters
 
 /**
  * @deprecated Use LocksSimulateManualLockViaKeypadRequest instead.

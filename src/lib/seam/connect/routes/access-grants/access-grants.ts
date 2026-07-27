@@ -297,11 +297,6 @@ export type AccessGrantsCreateParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsCreateParameters instead.
- */
-export type AccessGrantsCreateBody = AccessGrantsCreateParameters
-
-/**
  * @deprecated Use AccessGrantsCreateRequest instead.
  */
 export type AccessGrantsCreateResponse = { access_grant: AccessGrantResource }
@@ -318,11 +313,6 @@ export type AccessGrantsDeleteParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsDeleteParameters instead.
- */
-export type AccessGrantsDeleteParams = AccessGrantsDeleteParameters
-
-/**
  * @deprecated Use AccessGrantsDeleteRequest instead.
  */
 export type AccessGrantsDeleteResponse = void
@@ -335,11 +325,6 @@ export type AccessGrantsGetParameters = {
   access_grant_id?: string | undefined
   access_grant_key?: string | undefined
 }
-
-/**
- * @deprecated Use AccessGrantsGetParameters instead.
- */
-export type AccessGrantsGetParams = AccessGrantsGetParameters
 
 /**
  * @deprecated Use AccessGrantsGetRequest instead.
@@ -383,11 +368,6 @@ export type AccessGrantsGetRelatedParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsGetRelatedParameters instead.
- */
-export type AccessGrantsGetRelatedParams = AccessGrantsGetRelatedParameters
-
-/**
  * @deprecated Use AccessGrantsGetRelatedRequest instead.
  */
 export type AccessGrantsGetRelatedResponse = { batch: UnknownResource }
@@ -416,11 +396,6 @@ export type AccessGrantsListParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsListParameters instead.
- */
-export type AccessGrantsListParams = AccessGrantsListParameters
-
-/**
  * @deprecated Use AccessGrantsListRequest instead.
  */
 export type AccessGrantsListResponse = {
@@ -445,12 +420,6 @@ export type AccessGrantsRequestAccessMethodsParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsRequestAccessMethodsParameters instead.
- */
-export type AccessGrantsRequestAccessMethodsBody =
-  AccessGrantsRequestAccessMethodsParameters
-
-/**
  * @deprecated Use AccessGrantsRequestAccessMethodsRequest instead.
  */
 export type AccessGrantsRequestAccessMethodsResponse = {
@@ -471,11 +440,6 @@ export type AccessGrantsUpdateParameters = {
   name?: string | undefined
   starts_at?: string | undefined
 }
-
-/**
- * @deprecated Use AccessGrantsUpdateParameters instead.
- */
-export type AccessGrantsUpdateBody = AccessGrantsUpdateParameters
 
 /**
  * @deprecated Use AccessGrantsUpdateRequest instead.

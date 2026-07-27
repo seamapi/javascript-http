@@ -219,11 +219,6 @@ export type AcsSystemsGetParameters = {
 }
 
 /**
- * @deprecated Use AcsSystemsGetParameters instead.
- */
-export type AcsSystemsGetParams = AcsSystemsGetParameters
-
-/**
  * @deprecated Use AcsSystemsGetRequest instead.
  */
 export type AcsSystemsGetResponse = { acs_system: AcsSystemResource }
@@ -242,11 +237,6 @@ export type AcsSystemsListParameters = {
 }
 
 /**
- * @deprecated Use AcsSystemsListParameters instead.
- */
-export type AcsSystemsListParams = AcsSystemsListParameters
-
-/**
  * @deprecated Use AcsSystemsListRequest instead.
  */
 export type AcsSystemsListResponse = { acs_systems: Array<AcsSystemResource> }
@@ -261,12 +251,6 @@ export interface AcsSystemsListOptions {}
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters = {
   acs_system_id: string
 }
-
-/**
- * @deprecated Use AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters instead.
- */
-export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParams =
-  AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters
 
 /**
  * @deprecated Use AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest instead.
@@ -308,11 +292,6 @@ export type AcsSystemsReportDevicesParameters = {
     | undefined
   acs_system_id: string
 }
-
-/**
- * @deprecated Use AcsSystemsReportDevicesParameters instead.
- */
-export type AcsSystemsReportDevicesBody = AcsSystemsReportDevicesParameters
 
 /**
  * @deprecated Use AcsSystemsReportDevicesRequest instead.

@@ -275,11 +275,6 @@ export type AcsCredentialsAssignParameters = {
 }
 
 /**
- * @deprecated Use AcsCredentialsAssignParameters instead.
- */
-export type AcsCredentialsAssignBody = AcsCredentialsAssignParameters
-
-/**
  * @deprecated Use AcsCredentialsAssignRequest instead.
  */
 export type AcsCredentialsAssignResponse = void
@@ -325,11 +320,6 @@ export type AcsCredentialsCreateParameters = {
 }
 
 /**
- * @deprecated Use AcsCredentialsCreateParameters instead.
- */
-export type AcsCredentialsCreateBody = AcsCredentialsCreateParameters
-
-/**
  * @deprecated Use AcsCredentialsCreateRequest instead.
  */
 export type AcsCredentialsCreateResponse = {
@@ -348,11 +338,6 @@ export type AcsCredentialsDeleteParameters = {
 }
 
 /**
- * @deprecated Use AcsCredentialsDeleteParameters instead.
- */
-export type AcsCredentialsDeleteParams = AcsCredentialsDeleteParameters
-
-/**
  * @deprecated Use AcsCredentialsDeleteRequest instead.
  */
 export type AcsCredentialsDeleteResponse = void
@@ -364,11 +349,6 @@ export interface AcsCredentialsDeleteOptions {}
 export type AcsCredentialsGetParameters = {
   acs_credential_id: string
 }
-
-/**
- * @deprecated Use AcsCredentialsGetParameters instead.
- */
-export type AcsCredentialsGetParams = AcsCredentialsGetParameters
 
 /**
  * @deprecated Use AcsCredentialsGetRequest instead.
@@ -396,11 +376,6 @@ export type AcsCredentialsListParameters = {
 }
 
 /**
- * @deprecated Use AcsCredentialsListParameters instead.
- */
-export type AcsCredentialsListParams = AcsCredentialsListParameters
-
-/**
  * @deprecated Use AcsCredentialsListRequest instead.
  */
 export type AcsCredentialsListResponse = {
@@ -417,12 +392,6 @@ export interface AcsCredentialsListOptions {}
 export type AcsCredentialsListAccessibleEntrancesParameters = {
   acs_credential_id: string
 }
-
-/**
- * @deprecated Use AcsCredentialsListAccessibleEntrancesParameters instead.
- */
-export type AcsCredentialsListAccessibleEntrancesParams =
-  AcsCredentialsListAccessibleEntrancesParameters
 
 /**
  * @deprecated Use AcsCredentialsListAccessibleEntrancesRequest instead.
@@ -446,11 +415,6 @@ export type AcsCredentialsUnassignParameters = {
 }
 
 /**
- * @deprecated Use AcsCredentialsUnassignParameters instead.
- */
-export type AcsCredentialsUnassignBody = AcsCredentialsUnassignParameters
-
-/**
  * @deprecated Use AcsCredentialsUnassignRequest instead.
  */
 export type AcsCredentialsUnassignResponse = void
@@ -465,11 +429,6 @@ export type AcsCredentialsUpdateParameters = {
   code?: string | undefined
   ends_at?: string | undefined
 }
-
-/**
- * @deprecated Use AcsCredentialsUpdateParameters instead.
- */
-export type AcsCredentialsUpdateBody = AcsCredentialsUpdateParameters
 
 /**
  * @deprecated Use AcsCredentialsUpdateRequest instead.

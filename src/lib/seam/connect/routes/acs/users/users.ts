@@ -313,11 +313,6 @@ export type AcsUsersAddToAccessGroupParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersAddToAccessGroupParameters instead.
- */
-export type AcsUsersAddToAccessGroupBody = AcsUsersAddToAccessGroupParameters
-
-/**
  * @deprecated Use AcsUsersAddToAccessGroupRequest instead.
  */
 export type AcsUsersAddToAccessGroupResponse = void
@@ -345,11 +340,6 @@ export type AcsUsersCreateParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersCreateParameters instead.
- */
-export type AcsUsersCreateBody = AcsUsersCreateParameters
-
-/**
  * @deprecated Use AcsUsersCreateRequest instead.
  */
 export type AcsUsersCreateResponse = { acs_user: AcsUserResource }
@@ -368,11 +358,6 @@ export type AcsUsersDeleteParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersDeleteParameters instead.
- */
-export type AcsUsersDeleteParams = AcsUsersDeleteParameters
-
-/**
  * @deprecated Use AcsUsersDeleteRequest instead.
  */
 export type AcsUsersDeleteResponse = void
@@ -386,11 +371,6 @@ export type AcsUsersGetParameters = {
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsUsersGetParameters instead.
- */
-export type AcsUsersGetParams = AcsUsersGetParameters
 
 /**
  * @deprecated Use AcsUsersGetRequest instead.
@@ -416,11 +396,6 @@ export type AcsUsersListParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersListParameters instead.
- */
-export type AcsUsersListParams = AcsUsersListParameters
-
-/**
  * @deprecated Use AcsUsersListRequest instead.
  */
 export type AcsUsersListResponse = { acs_users: Array<AcsUserResource> }
@@ -437,12 +412,6 @@ export type AcsUsersListAccessibleEntrancesParameters = {
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsUsersListAccessibleEntrancesParameters instead.
- */
-export type AcsUsersListAccessibleEntrancesParams =
-  AcsUsersListAccessibleEntrancesParameters
 
 /**
  * @deprecated Use AcsUsersListAccessibleEntrancesRequest instead.
@@ -466,12 +435,6 @@ export type AcsUsersRemoveFromAccessGroupParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersRemoveFromAccessGroupParameters instead.
- */
-export type AcsUsersRemoveFromAccessGroupParams =
-  AcsUsersRemoveFromAccessGroupParameters
-
-/**
  * @deprecated Use AcsUsersRemoveFromAccessGroupRequest instead.
  */
 export type AcsUsersRemoveFromAccessGroupResponse = void
@@ -488,12 +451,6 @@ export type AcsUsersRevokeAccessToAllEntrancesParameters = {
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsUsersRevokeAccessToAllEntrancesParameters instead.
- */
-export type AcsUsersRevokeAccessToAllEntrancesBody =
-  AcsUsersRevokeAccessToAllEntrancesParameters
 
 /**
  * @deprecated Use AcsUsersRevokeAccessToAllEntrancesRequest instead.
@@ -514,11 +471,6 @@ export type AcsUsersSuspendParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersSuspendParameters instead.
- */
-export type AcsUsersSuspendBody = AcsUsersSuspendParameters
-
-/**
  * @deprecated Use AcsUsersSuspendRequest instead.
  */
 export type AcsUsersSuspendResponse = void
@@ -532,11 +484,6 @@ export type AcsUsersUnsuspendParameters = {
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsUsersUnsuspendParameters instead.
- */
-export type AcsUsersUnsuspendBody = AcsUsersUnsuspendParameters
 
 /**
  * @deprecated Use AcsUsersUnsuspendRequest instead.
@@ -563,11 +510,6 @@ export type AcsUsersUpdateParameters = {
   phone_number?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsUsersUpdateParameters instead.
- */
-export type AcsUsersUpdateBody = AcsUsersUpdateParameters
 
 /**
  * @deprecated Use AcsUsersUpdateRequest instead.

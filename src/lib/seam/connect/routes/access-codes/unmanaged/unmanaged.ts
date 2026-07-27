@@ -236,12 +236,6 @@ export type AccessCodesUnmanagedConvertToManagedParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesUnmanagedConvertToManagedParameters instead.
- */
-export type AccessCodesUnmanagedConvertToManagedBody =
-  AccessCodesUnmanagedConvertToManagedParameters
-
-/**
  * @deprecated Use AccessCodesUnmanagedConvertToManagedRequest instead.
  */
 export type AccessCodesUnmanagedConvertToManagedResponse = void
@@ -258,12 +252,6 @@ export type AccessCodesUnmanagedDeleteParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesUnmanagedDeleteParameters instead.
- */
-export type AccessCodesUnmanagedDeleteParams =
-  AccessCodesUnmanagedDeleteParameters
-
-/**
  * @deprecated Use AccessCodesUnmanagedDeleteRequest instead.
  */
 export type AccessCodesUnmanagedDeleteResponse = void
@@ -277,11 +265,6 @@ export type AccessCodesUnmanagedGetParameters = {
   code?: string | undefined
   device_id?: string | undefined
 }
-
-/**
- * @deprecated Use AccessCodesUnmanagedGetParameters instead.
- */
-export type AccessCodesUnmanagedGetParams = AccessCodesUnmanagedGetParameters
 
 /**
  * @deprecated Use AccessCodesUnmanagedGetRequest instead.
@@ -307,11 +290,6 @@ export type AccessCodesUnmanagedListParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesUnmanagedListParameters instead.
- */
-export type AccessCodesUnmanagedListParams = AccessCodesUnmanagedListParameters
-
-/**
  * @deprecated Use AccessCodesUnmanagedListRequest instead.
  */
 export type AccessCodesUnmanagedListResponse = {
@@ -333,12 +311,6 @@ export type AccessCodesUnmanagedUpdateParameters = {
   is_external_modification_allowed?: boolean | undefined
   is_managed: boolean
 }
-
-/**
- * @deprecated Use AccessCodesUnmanagedUpdateParameters instead.
- */
-export type AccessCodesUnmanagedUpdateBody =
-  AccessCodesUnmanagedUpdateParameters
 
 /**
  * @deprecated Use AccessCodesUnmanagedUpdateRequest instead.

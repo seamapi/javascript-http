@@ -179,12 +179,6 @@ export type NoiseSensorsSimulateTriggerNoiseThresholdParameters = {
 }
 
 /**
- * @deprecated Use NoiseSensorsSimulateTriggerNoiseThresholdParameters instead.
- */
-export type NoiseSensorsSimulateTriggerNoiseThresholdBody =
-  NoiseSensorsSimulateTriggerNoiseThresholdParameters
-
-/**
  * @deprecated Use NoiseSensorsSimulateTriggerNoiseThresholdRequest instead.
  */
 export type NoiseSensorsSimulateTriggerNoiseThresholdResponse = void

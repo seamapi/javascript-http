@@ -241,12 +241,6 @@ export type ThermostatsSchedulesCreateParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsSchedulesCreateParameters instead.
- */
-export type ThermostatsSchedulesCreateBody =
-  ThermostatsSchedulesCreateParameters
-
-/**
  * @deprecated Use ThermostatsSchedulesCreateRequest instead.
  */
 export type ThermostatsSchedulesCreateResponse = {
@@ -265,12 +259,6 @@ export type ThermostatsSchedulesDeleteParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsSchedulesDeleteParameters instead.
- */
-export type ThermostatsSchedulesDeleteParams =
-  ThermostatsSchedulesDeleteParameters
-
-/**
  * @deprecated Use ThermostatsSchedulesDeleteRequest instead.
  */
 export type ThermostatsSchedulesDeleteResponse = void
@@ -282,11 +270,6 @@ export interface ThermostatsSchedulesDeleteOptions {}
 export type ThermostatsSchedulesGetParameters = {
   thermostat_schedule_id: string
 }
-
-/**
- * @deprecated Use ThermostatsSchedulesGetParameters instead.
- */
-export type ThermostatsSchedulesGetParams = ThermostatsSchedulesGetParameters
 
 /**
  * @deprecated Use ThermostatsSchedulesGetRequest instead.
@@ -307,11 +290,6 @@ export type ThermostatsSchedulesListParameters = {
 
   user_identifier_key?: string | undefined
 }
-
-/**
- * @deprecated Use ThermostatsSchedulesListParameters instead.
- */
-export type ThermostatsSchedulesListParams = ThermostatsSchedulesListParameters
 
 /**
  * @deprecated Use ThermostatsSchedulesListRequest instead.
@@ -336,12 +314,6 @@ export type ThermostatsSchedulesUpdateParameters = {
   starts_at?: string | undefined
   thermostat_schedule_id: string
 }
-
-/**
- * @deprecated Use ThermostatsSchedulesUpdateParameters instead.
- */
-export type ThermostatsSchedulesUpdateBody =
-  ThermostatsSchedulesUpdateParameters
 
 /**
  * @deprecated Use ThermostatsSchedulesUpdateRequest instead.

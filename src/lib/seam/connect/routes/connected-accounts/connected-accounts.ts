@@ -241,11 +241,6 @@ export type ConnectedAccountsDeleteParameters = {
 }
 
 /**
- * @deprecated Use ConnectedAccountsDeleteParameters instead.
- */
-export type ConnectedAccountsDeleteParams = ConnectedAccountsDeleteParameters
-
-/**
  * @deprecated Use ConnectedAccountsDeleteRequest instead.
  */
 export type ConnectedAccountsDeleteResponse = void
@@ -258,11 +253,6 @@ export type ConnectedAccountsGetParameters = {
   connected_account_id?: string | undefined
   email?: string | undefined
 }
-
-/**
- * @deprecated Use ConnectedAccountsGetParameters instead.
- */
-export type ConnectedAccountsGetParams = ConnectedAccountsGetParameters
 
 /**
  * @deprecated Use ConnectedAccountsGetRequest instead.
@@ -289,11 +279,6 @@ export type ConnectedAccountsListParameters = {
 }
 
 /**
- * @deprecated Use ConnectedAccountsListParameters instead.
- */
-export type ConnectedAccountsListParams = ConnectedAccountsListParameters
-
-/**
  * @deprecated Use ConnectedAccountsListRequest instead.
  */
 export type ConnectedAccountsListResponse = {
@@ -310,11 +295,6 @@ export interface ConnectedAccountsListOptions {}
 export type ConnectedAccountsSyncParameters = {
   connected_account_id: string
 }
-
-/**
- * @deprecated Use ConnectedAccountsSyncParameters instead.
- */
-export type ConnectedAccountsSyncBody = ConnectedAccountsSyncParameters
 
 /**
  * @deprecated Use ConnectedAccountsSyncRequest instead.
@@ -338,11 +318,6 @@ export type ConnectedAccountsUpdateParameters = {
   customer_key?: string | undefined
   display_name?: string | undefined
 }
-
-/**
- * @deprecated Use ConnectedAccountsUpdateParameters instead.
- */
-export type ConnectedAccountsUpdateBody = ConnectedAccountsUpdateParameters
 
 /**
  * @deprecated Use ConnectedAccountsUpdateRequest instead.

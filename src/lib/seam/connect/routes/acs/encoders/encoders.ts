@@ -241,12 +241,6 @@ export type AcsEncodersEncodeCredentialParameters = {
 }
 
 /**
- * @deprecated Use AcsEncodersEncodeCredentialParameters instead.
- */
-export type AcsEncodersEncodeCredentialBody =
-  AcsEncodersEncodeCredentialParameters
-
-/**
  * @deprecated Use AcsEncodersEncodeCredentialRequest instead.
  */
 export type AcsEncodersEncodeCredentialResponse = {
@@ -268,11 +262,6 @@ export type AcsEncodersGetParameters = {
 }
 
 /**
- * @deprecated Use AcsEncodersGetParameters instead.
- */
-export type AcsEncodersGetParams = AcsEncodersGetParameters
-
-/**
  * @deprecated Use AcsEncodersGetRequest instead.
  */
 export type AcsEncodersGetResponse = { acs_encoder: AcsEncoderResource }
@@ -291,11 +280,6 @@ export type AcsEncodersListParameters = {
   limit?: number | undefined
   page_cursor?: string | undefined
 }
-
-/**
- * @deprecated Use AcsEncodersListParameters instead.
- */
-export type AcsEncodersListParams = AcsEncodersListParameters
 
 /**
  * @deprecated Use AcsEncodersListRequest instead.
@@ -320,11 +304,6 @@ export type AcsEncodersScanCredentialParameters = {
       }
     | undefined
 }
-
-/**
- * @deprecated Use AcsEncodersScanCredentialParameters instead.
- */
-export type AcsEncodersScanCredentialBody = AcsEncodersScanCredentialParameters
 
 /**
  * @deprecated Use AcsEncodersScanCredentialRequest instead.
@@ -354,12 +333,6 @@ export type AcsEncodersScanToAssignCredentialParameters = {
     | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsEncodersScanToAssignCredentialParameters instead.
- */
-export type AcsEncodersScanToAssignCredentialBody =
-  AcsEncodersScanToAssignCredentialParameters
 
 /**
  * @deprecated Use AcsEncodersScanToAssignCredentialRequest instead.

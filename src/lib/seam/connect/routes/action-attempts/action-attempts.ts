@@ -193,11 +193,6 @@ export type ActionAttemptsGetParameters = {
 }
 
 /**
- * @deprecated Use ActionAttemptsGetParameters instead.
- */
-export type ActionAttemptsGetParams = ActionAttemptsGetParameters
-
-/**
  * @deprecated Use ActionAttemptsGetRequest instead.
  */
 export type ActionAttemptsGetResponse = {
@@ -220,11 +215,6 @@ export type ActionAttemptsListParameters = {
   limit?: number | undefined
   page_cursor?: string | undefined
 }
-
-/**
- * @deprecated Use ActionAttemptsListParameters instead.
- */
-export type ActionAttemptsListParams = ActionAttemptsListParameters
 
 /**
  * @deprecated Use ActionAttemptsListRequest instead.

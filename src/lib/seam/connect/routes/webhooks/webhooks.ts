@@ -233,11 +233,6 @@ export type WebhooksCreateParameters = {
 }
 
 /**
- * @deprecated Use WebhooksCreateParameters instead.
- */
-export type WebhooksCreateBody = WebhooksCreateParameters
-
-/**
  * @deprecated Use WebhooksCreateRequest instead.
  */
 export type WebhooksCreateResponse = { webhook: WebhookResource }
@@ -254,11 +249,6 @@ export type WebhooksDeleteParameters = {
 }
 
 /**
- * @deprecated Use WebhooksDeleteParameters instead.
- */
-export type WebhooksDeleteParams = WebhooksDeleteParameters
-
-/**
  * @deprecated Use WebhooksDeleteRequest instead.
  */
 export type WebhooksDeleteResponse = void
@@ -272,11 +262,6 @@ export type WebhooksGetParameters = {
 }
 
 /**
- * @deprecated Use WebhooksGetParameters instead.
- */
-export type WebhooksGetParams = WebhooksGetParameters
-
-/**
  * @deprecated Use WebhooksGetRequest instead.
  */
 export type WebhooksGetResponse = { webhook: WebhookResource }
@@ -286,11 +271,6 @@ export type WebhooksGetRequest = SeamHttpRequest<WebhooksGetResponse, 'webhook'>
 export interface WebhooksGetOptions {}
 
 export type WebhooksListParameters = {}
-
-/**
- * @deprecated Use WebhooksListParameters instead.
- */
-export type WebhooksListParams = WebhooksListParameters
 
 /**
  * @deprecated Use WebhooksListRequest instead.
@@ -309,11 +289,6 @@ export type WebhooksUpdateParameters = {
 
   webhook_id: string
 }
-
-/**
- * @deprecated Use WebhooksUpdateParameters instead.
- */
-export type WebhooksUpdateBody = WebhooksUpdateParameters
 
 /**
  * @deprecated Use WebhooksUpdateRequest instead.

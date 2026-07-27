@@ -366,11 +366,6 @@ export type UserIdentitiesAddAcsUserParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesAddAcsUserParameters instead.
- */
-export type UserIdentitiesAddAcsUserBody = UserIdentitiesAddAcsUserParameters
-
-/**
  * @deprecated Use UserIdentitiesAddAcsUserRequest instead.
  */
 export type UserIdentitiesAddAcsUserResponse = void
@@ -386,11 +381,6 @@ export type UserIdentitiesCreateParameters = {
   phone_number?: string | undefined
   user_identity_key?: string | undefined
 }
-
-/**
- * @deprecated Use UserIdentitiesCreateParameters instead.
- */
-export type UserIdentitiesCreateBody = UserIdentitiesCreateParameters
 
 /**
  * @deprecated Use UserIdentitiesCreateRequest instead.
@@ -411,11 +401,6 @@ export type UserIdentitiesDeleteParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesDeleteParameters instead.
- */
-export type UserIdentitiesDeleteParams = UserIdentitiesDeleteParameters
-
-/**
  * @deprecated Use UserIdentitiesDeleteRequest instead.
  */
 export type UserIdentitiesDeleteResponse = void
@@ -429,12 +414,6 @@ export type UserIdentitiesGenerateInstantKeyParameters = {
   max_use_count?: number | undefined
   user_identity_id: string
 }
-
-/**
- * @deprecated Use UserIdentitiesGenerateInstantKeyParameters instead.
- */
-export type UserIdentitiesGenerateInstantKeyBody =
-  UserIdentitiesGenerateInstantKeyParameters
 
 /**
  * @deprecated Use UserIdentitiesGenerateInstantKeyRequest instead.
@@ -456,11 +435,6 @@ export type UserIdentitiesGetParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesGetParameters instead.
- */
-export type UserIdentitiesGetParams = UserIdentitiesGetParameters
-
-/**
  * @deprecated Use UserIdentitiesGetRequest instead.
  */
 export type UserIdentitiesGetResponse = { user_identity: UserIdentityResource }
@@ -477,12 +451,6 @@ export type UserIdentitiesGrantAccessToDeviceParameters = {
 
   user_identity_id: string
 }
-
-/**
- * @deprecated Use UserIdentitiesGrantAccessToDeviceParameters instead.
- */
-export type UserIdentitiesGrantAccessToDeviceBody =
-  UserIdentitiesGrantAccessToDeviceParameters
 
 /**
  * @deprecated Use UserIdentitiesGrantAccessToDeviceRequest instead.
@@ -506,11 +474,6 @@ export type UserIdentitiesListParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesListParameters instead.
- */
-export type UserIdentitiesListParams = UserIdentitiesListParameters
-
-/**
  * @deprecated Use UserIdentitiesListRequest instead.
  */
 export type UserIdentitiesListResponse = {
@@ -527,12 +490,6 @@ export interface UserIdentitiesListOptions {}
 export type UserIdentitiesListAccessibleDevicesParameters = {
   user_identity_id: string
 }
-
-/**
- * @deprecated Use UserIdentitiesListAccessibleDevicesParameters instead.
- */
-export type UserIdentitiesListAccessibleDevicesParams =
-  UserIdentitiesListAccessibleDevicesParameters
 
 /**
  * @deprecated Use UserIdentitiesListAccessibleDevicesRequest instead.
@@ -553,12 +510,6 @@ export type UserIdentitiesListAccessibleEntrancesParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesListAccessibleEntrancesParameters instead.
- */
-export type UserIdentitiesListAccessibleEntrancesParams =
-  UserIdentitiesListAccessibleEntrancesParameters
-
-/**
  * @deprecated Use UserIdentitiesListAccessibleEntrancesRequest instead.
  */
 export type UserIdentitiesListAccessibleEntrancesResponse = {
@@ -577,12 +528,6 @@ export type UserIdentitiesListAcsSystemsParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesListAcsSystemsParameters instead.
- */
-export type UserIdentitiesListAcsSystemsParams =
-  UserIdentitiesListAcsSystemsParameters
-
-/**
  * @deprecated Use UserIdentitiesListAcsSystemsRequest instead.
  */
 export type UserIdentitiesListAcsSystemsResponse = {
@@ -599,12 +544,6 @@ export interface UserIdentitiesListAcsSystemsOptions {}
 export type UserIdentitiesListAcsUsersParameters = {
   user_identity_id: string
 }
-
-/**
- * @deprecated Use UserIdentitiesListAcsUsersParameters instead.
- */
-export type UserIdentitiesListAcsUsersParams =
-  UserIdentitiesListAcsUsersParameters
 
 /**
  * @deprecated Use UserIdentitiesListAcsUsersRequest instead.
@@ -627,12 +566,6 @@ export type UserIdentitiesRemoveAcsUserParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesRemoveAcsUserParameters instead.
- */
-export type UserIdentitiesRemoveAcsUserParams =
-  UserIdentitiesRemoveAcsUserParameters
-
-/**
  * @deprecated Use UserIdentitiesRemoveAcsUserRequest instead.
  */
 export type UserIdentitiesRemoveAcsUserResponse = void
@@ -649,12 +582,6 @@ export type UserIdentitiesRevokeAccessToDeviceParameters = {
 
   user_identity_id: string
 }
-
-/**
- * @deprecated Use UserIdentitiesRevokeAccessToDeviceParameters instead.
- */
-export type UserIdentitiesRevokeAccessToDeviceParams =
-  UserIdentitiesRevokeAccessToDeviceParameters
 
 /**
  * @deprecated Use UserIdentitiesRevokeAccessToDeviceRequest instead.
@@ -676,11 +603,6 @@ export type UserIdentitiesUpdateParameters = {
 
   user_identity_key?: string | undefined
 }
-
-/**
- * @deprecated Use UserIdentitiesUpdateParameters instead.
- */
-export type UserIdentitiesUpdateBody = UserIdentitiesUpdateParameters
 
 /**
  * @deprecated Use UserIdentitiesUpdateRequest instead.

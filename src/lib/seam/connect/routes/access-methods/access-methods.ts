@@ -268,11 +268,6 @@ export type AccessMethodsAssignCardParameters = {
 }
 
 /**
- * @deprecated Use AccessMethodsAssignCardParameters instead.
- */
-export type AccessMethodsAssignCardBody = AccessMethodsAssignCardParameters
-
-/**
  * @deprecated Use AccessMethodsAssignCardRequest instead.
  */
 export type AccessMethodsAssignCardResponse = {
@@ -296,11 +291,6 @@ export type AccessMethodsDeleteParameters = {
 }
 
 /**
- * @deprecated Use AccessMethodsDeleteParameters instead.
- */
-export type AccessMethodsDeleteParams = AccessMethodsDeleteParameters
-
-/**
  * @deprecated Use AccessMethodsDeleteRequest instead.
  */
 export type AccessMethodsDeleteResponse = void
@@ -314,11 +304,6 @@ export type AccessMethodsEncodeParameters = {
 
   acs_encoder_id: string
 }
-
-/**
- * @deprecated Use AccessMethodsEncodeParameters instead.
- */
-export type AccessMethodsEncodeBody = AccessMethodsEncodeParameters
 
 /**
  * @deprecated Use AccessMethodsEncodeRequest instead.
@@ -340,11 +325,6 @@ export type AccessMethodsEncodeOptions = Pick<
 export type AccessMethodsGetParameters = {
   access_method_id: string
 }
-
-/**
- * @deprecated Use AccessMethodsGetParameters instead.
- */
-export type AccessMethodsGetParams = AccessMethodsGetParameters
 
 /**
  * @deprecated Use AccessMethodsGetRequest instead.
@@ -388,11 +368,6 @@ export type AccessMethodsGetRelatedParameters = {
 }
 
 /**
- * @deprecated Use AccessMethodsGetRelatedParameters instead.
- */
-export type AccessMethodsGetRelatedParams = AccessMethodsGetRelatedParameters
-
-/**
  * @deprecated Use AccessMethodsGetRelatedRequest instead.
  */
 export type AccessMethodsGetRelatedResponse = { batch: UnknownResource }
@@ -416,11 +391,6 @@ export type AccessMethodsListParameters = {
 }
 
 /**
- * @deprecated Use AccessMethodsListParameters instead.
- */
-export type AccessMethodsListParams = AccessMethodsListParameters
-
-/**
  * @deprecated Use AccessMethodsListRequest instead.
  */
 export type AccessMethodsListResponse = {
@@ -439,11 +409,6 @@ export type AccessMethodsUnlockDoorParameters = {
 
   acs_entrance_id: string
 }
-
-/**
- * @deprecated Use AccessMethodsUnlockDoorParameters instead.
- */
-export type AccessMethodsUnlockDoorBody = AccessMethodsUnlockDoorParameters
 
 /**
  * @deprecated Use AccessMethodsUnlockDoorRequest instead.

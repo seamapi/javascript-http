@@ -206,11 +206,6 @@ export type AccessGrantsUnmanagedGetParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsUnmanagedGetParameters instead.
- */
-export type AccessGrantsUnmanagedGetParams = AccessGrantsUnmanagedGetParameters
-
-/**
  * @deprecated Use AccessGrantsUnmanagedGetRequest instead.
  */
 export type AccessGrantsUnmanagedGetResponse = { access_grant: UnknownResource }
@@ -232,12 +227,6 @@ export type AccessGrantsUnmanagedListParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsUnmanagedListParameters instead.
- */
-export type AccessGrantsUnmanagedListParams =
-  AccessGrantsUnmanagedListParameters
-
-/**
  * @deprecated Use AccessGrantsUnmanagedListRequest instead.
  */
 export type AccessGrantsUnmanagedListResponse = {
@@ -257,12 +246,6 @@ export type AccessGrantsUnmanagedUpdateParameters = {
   access_grant_key?: string | undefined
   is_managed: boolean
 }
-
-/**
- * @deprecated Use AccessGrantsUnmanagedUpdateParameters instead.
- */
-export type AccessGrantsUnmanagedUpdateBody =
-  AccessGrantsUnmanagedUpdateParameters
 
 /**
  * @deprecated Use AccessGrantsUnmanagedUpdateRequest instead.

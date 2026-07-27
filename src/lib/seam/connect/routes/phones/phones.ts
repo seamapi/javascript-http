@@ -212,11 +212,6 @@ export type PhonesDeactivateParameters = {
 }
 
 /**
- * @deprecated Use PhonesDeactivateParameters instead.
- */
-export type PhonesDeactivateParams = PhonesDeactivateParameters
-
-/**
  * @deprecated Use PhonesDeactivateRequest instead.
  */
 export type PhonesDeactivateResponse = void
@@ -228,11 +223,6 @@ export interface PhonesDeactivateOptions {}
 export type PhonesGetParameters = {
   device_id: string
 }
-
-/**
- * @deprecated Use PhonesGetParameters instead.
- */
-export type PhonesGetParams = PhonesGetParameters
 
 /**
  * @deprecated Use PhonesGetRequest instead.
@@ -247,11 +237,6 @@ export type PhonesListParameters = {
   acs_credential_id?: string | undefined
   owner_user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use PhonesListParameters instead.
- */
-export type PhonesListParams = PhonesListParameters
 
 /**
  * @deprecated Use PhonesListRequest instead.

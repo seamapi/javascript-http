@@ -206,11 +206,6 @@ export type InstantKeysDeleteParameters = {
 }
 
 /**
- * @deprecated Use InstantKeysDeleteParameters instead.
- */
-export type InstantKeysDeleteParams = InstantKeysDeleteParameters
-
-/**
  * @deprecated Use InstantKeysDeleteRequest instead.
  */
 export type InstantKeysDeleteResponse = void
@@ -223,11 +218,6 @@ export type InstantKeysGetParameters = {
   instant_key_id?: string | undefined
   instant_key_url?: string | undefined
 }
-
-/**
- * @deprecated Use InstantKeysGetParameters instead.
- */
-export type InstantKeysGetParams = InstantKeysGetParameters
 
 /**
  * @deprecated Use InstantKeysGetRequest instead.
@@ -244,11 +234,6 @@ export interface InstantKeysGetOptions {}
 export type InstantKeysListParameters = {
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use InstantKeysListParameters instead.
- */
-export type InstantKeysListParams = InstantKeysListParameters
 
 /**
  * @deprecated Use InstantKeysListRequest instead.

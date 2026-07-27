@@ -209,11 +209,6 @@ export type NoiseSensorsListParameters = {
 }
 
 /**
- * @deprecated Use NoiseSensorsListParameters instead.
- */
-export type NoiseSensorsListParams = NoiseSensorsListParameters
-
-/**
  * @deprecated Use NoiseSensorsListRequest instead.
  */
 export type NoiseSensorsListResponse = { devices: Array<DeviceResource> }

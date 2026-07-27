@@ -199,12 +199,6 @@ export type PhonesSimulateCreateSandboxPhoneParameters = {
 }
 
 /**
- * @deprecated Use PhonesSimulateCreateSandboxPhoneParameters instead.
- */
-export type PhonesSimulateCreateSandboxPhoneBody =
-  PhonesSimulateCreateSandboxPhoneParameters
-
-/**
  * @deprecated Use PhonesSimulateCreateSandboxPhoneRequest instead.
  */
 export type PhonesSimulateCreateSandboxPhoneResponse = { phone: PhoneResource }

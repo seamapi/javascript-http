@@ -234,11 +234,6 @@ export type AcsEntrancesGetParameters = {
 }
 
 /**
- * @deprecated Use AcsEntrancesGetParameters instead.
- */
-export type AcsEntrancesGetParams = AcsEntrancesGetParameters
-
-/**
  * @deprecated Use AcsEntrancesGetRequest instead.
  */
 export type AcsEntrancesGetResponse = { acs_entrance: AcsEntranceResource }
@@ -256,11 +251,6 @@ export type AcsEntrancesGrantAccessParameters = {
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsEntrancesGrantAccessParameters instead.
- */
-export type AcsEntrancesGrantAccessBody = AcsEntrancesGrantAccessParameters
 
 /**
  * @deprecated Use AcsEntrancesGrantAccessRequest instead.
@@ -286,11 +276,6 @@ export type AcsEntrancesListParameters = {
 }
 
 /**
- * @deprecated Use AcsEntrancesListParameters instead.
- */
-export type AcsEntrancesListParams = AcsEntrancesListParameters
-
-/**
  * @deprecated Use AcsEntrancesListRequest instead.
  */
 export type AcsEntrancesListResponse = {
@@ -311,12 +296,6 @@ export type AcsEntrancesListCredentialsWithAccessParameters = {
 }
 
 /**
- * @deprecated Use AcsEntrancesListCredentialsWithAccessParameters instead.
- */
-export type AcsEntrancesListCredentialsWithAccessParams =
-  AcsEntrancesListCredentialsWithAccessParameters
-
-/**
  * @deprecated Use AcsEntrancesListCredentialsWithAccessRequest instead.
  */
 export type AcsEntrancesListCredentialsWithAccessResponse = {
@@ -335,11 +314,6 @@ export type AcsEntrancesUnlockParameters = {
 
   acs_entrance_id: string
 }
-
-/**
- * @deprecated Use AcsEntrancesUnlockParameters instead.
- */
-export type AcsEntrancesUnlockBody = AcsEntrancesUnlockParameters
 
 /**
  * @deprecated Use AcsEntrancesUnlockRequest instead.

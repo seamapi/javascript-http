@@ -193,12 +193,6 @@ export type AccessMethodsUnmanagedGetParameters = {
 }
 
 /**
- * @deprecated Use AccessMethodsUnmanagedGetParameters instead.
- */
-export type AccessMethodsUnmanagedGetParams =
-  AccessMethodsUnmanagedGetParameters
-
-/**
  * @deprecated Use AccessMethodsUnmanagedGetRequest instead.
  */
 export type AccessMethodsUnmanagedGetResponse = {
@@ -219,12 +213,6 @@ export type AccessMethodsUnmanagedListParameters = {
   device_id?: string | undefined
   space_id?: string | undefined
 }
-
-/**
- * @deprecated Use AccessMethodsUnmanagedListParameters instead.
- */
-export type AccessMethodsUnmanagedListParams =
-  AccessMethodsUnmanagedListParameters
 
 /**
  * @deprecated Use AccessMethodsUnmanagedListRequest instead.

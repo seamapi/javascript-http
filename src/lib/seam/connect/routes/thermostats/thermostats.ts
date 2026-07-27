@@ -371,12 +371,6 @@ export type ThermostatsActivateClimatePresetParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsActivateClimatePresetParameters instead.
- */
-export type ThermostatsActivateClimatePresetBody =
-  ThermostatsActivateClimatePresetParameters
-
-/**
  * @deprecated Use ThermostatsActivateClimatePresetRequest instead.
  */
 export type ThermostatsActivateClimatePresetResponse = {
@@ -398,11 +392,6 @@ export type ThermostatsCoolParameters = {
   cooling_set_point_fahrenheit?: number | undefined
   device_id: string
 }
-
-/**
- * @deprecated Use ThermostatsCoolParameters instead.
- */
-export type ThermostatsCoolBody = ThermostatsCoolParameters
 
 /**
  * @deprecated Use ThermostatsCoolRequest instead.
@@ -444,12 +433,6 @@ export type ThermostatsCreateClimatePresetParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsCreateClimatePresetParameters instead.
- */
-export type ThermostatsCreateClimatePresetBody =
-  ThermostatsCreateClimatePresetParameters
-
-/**
  * @deprecated Use ThermostatsCreateClimatePresetRequest instead.
  */
 export type ThermostatsCreateClimatePresetResponse = void
@@ -466,12 +449,6 @@ export type ThermostatsDeleteClimatePresetParameters = {
 
   device_id: string
 }
-
-/**
- * @deprecated Use ThermostatsDeleteClimatePresetParameters instead.
- */
-export type ThermostatsDeleteClimatePresetParams =
-  ThermostatsDeleteClimatePresetParameters
 
 /**
  * @deprecated Use ThermostatsDeleteClimatePresetRequest instead.
@@ -491,11 +468,6 @@ export type ThermostatsHeatParameters = {
   heating_set_point_celsius?: number | undefined
   heating_set_point_fahrenheit?: number | undefined
 }
-
-/**
- * @deprecated Use ThermostatsHeatParameters instead.
- */
-export type ThermostatsHeatBody = ThermostatsHeatParameters
 
 /**
  * @deprecated Use ThermostatsHeatRequest instead.
@@ -520,11 +492,6 @@ export type ThermostatsHeatCoolParameters = {
   heating_set_point_celsius?: number | undefined
   heating_set_point_fahrenheit?: number | undefined
 }
-
-/**
- * @deprecated Use ThermostatsHeatCoolParameters instead.
- */
-export type ThermostatsHeatCoolBody = ThermostatsHeatCoolParameters
 
 /**
  * @deprecated Use ThermostatsHeatCoolRequest instead.
@@ -586,11 +553,6 @@ export type ThermostatsListParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsListParameters instead.
- */
-export type ThermostatsListParams = ThermostatsListParameters
-
-/**
  * @deprecated Use ThermostatsListRequest instead.
  */
 export type ThermostatsListResponse = { devices: Array<DeviceResource> }
@@ -605,11 +567,6 @@ export interface ThermostatsListOptions {}
 export type ThermostatsOffParameters = {
   device_id: string
 }
-
-/**
- * @deprecated Use ThermostatsOffParameters instead.
- */
-export type ThermostatsOffBody = ThermostatsOffParameters
 
 /**
  * @deprecated Use ThermostatsOffRequest instead.
@@ -633,12 +590,6 @@ export type ThermostatsSetFallbackClimatePresetParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsSetFallbackClimatePresetParameters instead.
- */
-export type ThermostatsSetFallbackClimatePresetBody =
-  ThermostatsSetFallbackClimatePresetParameters
-
-/**
  * @deprecated Use ThermostatsSetFallbackClimatePresetRequest instead.
  */
 export type ThermostatsSetFallbackClimatePresetResponse = void
@@ -656,11 +607,6 @@ export type ThermostatsSetFanModeParameters = {
   fan_mode?: 'auto' | 'on' | 'circulate' | undefined
   fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
 }
-
-/**
- * @deprecated Use ThermostatsSetFanModeParameters instead.
- */
-export type ThermostatsSetFanModeBody = ThermostatsSetFanModeParameters
 
 /**
  * @deprecated Use ThermostatsSetFanModeRequest instead.
@@ -691,11 +637,6 @@ export type ThermostatsSetHvacModeParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsSetHvacModeParameters instead.
- */
-export type ThermostatsSetHvacModeBody = ThermostatsSetHvacModeParameters
-
-/**
  * @deprecated Use ThermostatsSetHvacModeRequest instead.
  */
 export type ThermostatsSetHvacModeResponse = {
@@ -720,12 +661,6 @@ export type ThermostatsSetTemperatureThresholdParameters = {
   upper_limit_celsius?: number | undefined
   upper_limit_fahrenheit?: number | undefined
 }
-
-/**
- * @deprecated Use ThermostatsSetTemperatureThresholdParameters instead.
- */
-export type ThermostatsSetTemperatureThresholdBody =
-  ThermostatsSetTemperatureThresholdParameters
 
 /**
  * @deprecated Use ThermostatsSetTemperatureThresholdRequest instead.
@@ -764,12 +699,6 @@ export type ThermostatsUpdateClimatePresetParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsUpdateClimatePresetParameters instead.
- */
-export type ThermostatsUpdateClimatePresetBody =
-  ThermostatsUpdateClimatePresetParameters
-
-/**
  * @deprecated Use ThermostatsUpdateClimatePresetRequest instead.
  */
 export type ThermostatsUpdateClimatePresetResponse = void
@@ -792,12 +721,6 @@ export type ThermostatsUpdateWeeklyProgramParameters = {
   tuesday_program_id?: string | undefined
   wednesday_program_id?: string | undefined
 }
-
-/**
- * @deprecated Use ThermostatsUpdateWeeklyProgramParameters instead.
- */
-export type ThermostatsUpdateWeeklyProgramBody =
-  ThermostatsUpdateWeeklyProgramParameters
 
 /**
  * @deprecated Use ThermostatsUpdateWeeklyProgramRequest instead.
