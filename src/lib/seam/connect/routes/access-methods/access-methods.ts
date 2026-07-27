@@ -409,6 +409,8 @@ export type AccessMethodsListParameters = {
   access_grant_key?: string | undefined
   acs_entrance_id?: string | undefined
   device_id?: string | undefined
+  limit?: number | undefined
+  page_cursor?: string | undefined
   space_id?: string | undefined
 }
 
