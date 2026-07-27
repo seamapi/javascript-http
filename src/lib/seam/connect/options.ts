@@ -22,7 +22,6 @@ interface SeamHttpCommonOptions extends ClientOptions, SeamHttpRequestOptions {
 
 export interface SeamHttpRequestOptions {
   waitForActionAttempt?: boolean | ResolveActionAttemptOptions
-  isUndocumentedApiEnabled?: boolean
 }
 
 export interface SeamHttpFromPublishableKeyOptions extends SeamHttpCommonOptions {}

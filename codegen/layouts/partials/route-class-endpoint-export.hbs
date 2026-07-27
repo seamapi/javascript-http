@@ -1,4 +1,4 @@
-export type {{parametersTypeName}} = {{#if isUndocumented}}RouteRequest{{requestFormatSuffix}}<'{{path}}'>{{else}}{{> request-object parameters=parameters}}{{/if}}
+export type {{parametersTypeName}} = {{> request-object parameters=parameters}}
 
 /**
  * @deprecated Use {{parametersTypeName}} instead.

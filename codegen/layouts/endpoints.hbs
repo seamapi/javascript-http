@@ -26,11 +26,6 @@ export class {{className}} {
   get['{{path}}'](): {{> endpont-method-signature isFnType=true }}
   {
   const { client, defaults } = this
-  {{#if isUndocumented}}
-  if (!this.defaults.isUndocumentedApiEnabled) {
-    throw new Error('Cannot use undocumented API without isUndocumentedApiEnabled')
-  }
-  {{/if}}
   return function {{functionName}} (...args: Parameters<{{className}}['{{methodName}}']>): ReturnType<{{className}}['{{methodName}}']>
     {
       const seam = {{className}}.fromClient(client, defaults)

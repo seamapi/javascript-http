@@ -64,7 +64,6 @@ const getNormalizedOptions = (
       : apiKeyOrOptions
 
   const requestOptions = {
-    isUndocumentedApiEnabled: options.isUndocumentedApiEnabled ?? false,
     waitForActionAttempt: options.waitForActionAttempt ?? true,
   }
 
@@ -182,7 +181,6 @@ export const isSeamHttpRequestOption = (
   key: string,
 ): key is keyof SeamHttpRequestOptions => {
   const keys: Record<keyof SeamHttpRequestOptions, true> = {
-    isUndocumentedApiEnabled: true,
     waitForActionAttempt: true,
   }
   return Object.keys(keys).includes(key)

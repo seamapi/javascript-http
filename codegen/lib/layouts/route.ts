@@ -6,7 +6,6 @@ import { getResourceTypeName } from './resources.js'
 
 export interface RouteLayoutContext {
   className: string
-  isUndocumented: boolean
   endpoints: EndpointLayoutContext[]
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
@@ -29,13 +28,11 @@ export interface EndpointLayoutContext {
   parametersTypeName: string
   legacyRequestTypeName: string
   responseTypeName: string
-  requestFormatSuffix: string
   optionsTypeName: string
   requestTypeName: string
   returnsActionAttempt: boolean
   returnsVoid: boolean
   isOptionalParamsOk: boolean
-  isUndocumented: boolean
   usesLegacyResponseType: boolean
   parameters: Parameter[]
   responseIsList: boolean
@@ -59,16 +56,14 @@ export const setRouteLayoutContext = (
   nodes: Array<Route | Namespace>,
 ): void => {
   file.className = getClassName(node?.path ?? null)
-  file.isUndocumented = node?.isUndocumented ?? false
   file.skipClientSessionImport =
     node == null || node?.path === '/client_sessions'
   file.hasLegacyTypes =
     node != null && 'endpoints' in node
       ? node.endpoints.some(
           (endpoint) =>
-            endpoint.isUndocumented ||
-            (endpoint.response.responseType === 'resource' &&
-              endpoint.response.resourceType === 'action_attempt'),
+            endpoint.response.responseType === 'resource' &&
+            endpoint.response.resourceType === 'action_attempt',
         )
       : false
   file.resourceTypeImports =
@@ -77,7 +72,6 @@ export const setRouteLayoutContext = (
           ...new Set(
             node.endpoints.flatMap((endpoint) => {
               if (
-                endpoint.isUndocumented ||
                 endpoint.response.responseType === 'void' ||
                 (endpoint.response.responseType === 'resource' &&
                   endpoint.response.resourceType === 'action_attempt')
@@ -107,7 +101,7 @@ export const setRouteLayoutContext = (
 }
 
 const getSubrouteLayoutContext = (
-  route: Pick<Route, 'path' | 'name' | 'isUndocumented'>,
+  route: Pick<Route, 'path' | 'name'>,
 ): SubrouteLayoutContext => {
   return {
     fileName: `${kebabCase(route.name)}/index.js`,
@@ -134,8 +128,6 @@ export const getEndpointLayoutContext = (
     ? 'params'
     : 'body'
 
-  const requestFormatSuffix = pascalCase(requestFormat)
-
   const returnsActionAttempt =
     endpoint.response.responseType === 'resource' &&
     endpoint.response.resourceType === 'action_attempt'
@@ -149,7 +141,6 @@ export const getEndpointLayoutContext = (
     method: endpoint.request.preferredMethod,
     className: getClassName(route.path),
     requestFormat,
-    requestFormatSuffix,
     returnsActionAttempt,
     parametersTypeName: `${prefix}Parameters`,
     legacyRequestTypeName: `${prefix}${pascalCase(legacyMethodParamName)}`,
@@ -159,8 +150,7 @@ export const getEndpointLayoutContext = (
     isOptionalParamsOk: endpoint.request.parameters.every(
       (parameter) => !parameter.isRequired,
     ),
-    isUndocumented: endpoint.isUndocumented,
-    usesLegacyResponseType: endpoint.isUndocumented || returnsActionAttempt,
+    usesLegacyResponseType: returnsActionAttempt,
     parameters: endpoint.request.parameters,
     responseIsList: endpoint.response.responseType === 'resource_list',
     responseResourceTypeName:
