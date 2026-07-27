@@ -14,6 +14,7 @@ export type UnmanagedAcsAccessGroupResource = {
     | 'dormakaba_ambiance_access_group'
     | 'avigilon_alta_group'
     | 'kisi_access_group'
+    | 'akiles_member_group'
 
   access_group_type_display_name: string
 
@@ -51,6 +52,7 @@ export type UnmanagedAcsAccessGroupResource = {
     | 'dormakaba_ambiance_access_group'
     | 'avigilon_alta_group'
     | 'kisi_access_group'
+    | 'akiles_member_group'
 
   external_type_display_name: string
 
