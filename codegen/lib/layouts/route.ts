@@ -9,7 +9,6 @@ export interface RouteLayoutContext {
   endpoints: EndpointLayoutContext[]
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
-  hasLegacyTypes: boolean
   resourceTypeImports: ResourceTypeImport[]
 }
 
@@ -33,7 +32,6 @@ export interface EndpointLayoutContext {
   returnsActionAttempt: boolean
   returnsVoid: boolean
   isOptionalParamsOk: boolean
-  usesLegacyResponseType: boolean
   parameters: Parameter[]
   responseIsList: boolean
   responseResourceTypeName: string
@@ -58,26 +56,12 @@ export const setRouteLayoutContext = (
   file.className = getClassName(node?.path ?? null)
   file.skipClientSessionImport =
     node == null || node?.path === '/client_sessions'
-  file.hasLegacyTypes =
-    node != null && 'endpoints' in node
-      ? node.endpoints.some(
-          (endpoint) =>
-            endpoint.response.responseType === 'resource' &&
-            endpoint.response.resourceType === 'action_attempt',
-        )
-      : false
   file.resourceTypeImports =
     node != null && 'endpoints' in node
       ? [
           ...new Set(
             node.endpoints.flatMap((endpoint) => {
-              if (
-                endpoint.response.responseType === 'void' ||
-                (endpoint.response.responseType === 'resource' &&
-                  endpoint.response.resourceType === 'action_attempt')
-              ) {
-                return []
-              }
+              if (endpoint.response.responseType === 'void') return []
               return [endpoint.response.resourceType]
             }),
           ),
@@ -150,7 +134,6 @@ export const getEndpointLayoutContext = (
     isOptionalParamsOk: endpoint.request.parameters.every(
       (parameter) => !parameter.isRequired,
     ),
-    usesLegacyResponseType: returnsActionAttempt,
     parameters: endpoint.request.parameters,
     responseIsList: endpoint.response.responseType === 'resource_list',
     responseResourceTypeName:

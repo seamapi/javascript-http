@@ -8,7 +8,7 @@ export type {{legacyRequestTypeName}} = {{parametersTypeName}}
 /**
  * @deprecated Use {{requestTypeName}} instead.
  */
-export type {{responseTypeName}} = {{#if usesLegacyResponseType}}RouteResponse<'{{path}}'>{{else if returnsVoid}}void{{else}}{ {{json responseKey}}: {{#if responseIsList}}Array<{{responseResourceTypeName}}>{{else}}{{responseResourceTypeName}}{{/if}} }{{/if}}
+export type {{responseTypeName}} = {{#if returnsVoid}}void{{else}}{ {{json responseKey}}: {{#if responseIsList}}Array<{{responseResourceTypeName}}>{{else}}{{responseResourceTypeName}}{{/if}} }{{/if}}
 
 export type {{requestTypeName}} = SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
 

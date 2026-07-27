@@ -1,7 +1,4 @@
 import { seamApiLtsVersion } from 'lib/lts-version.js'
-{{#if hasLegacyTypes}}
-import type { RouteResponse } from '@seamapi/types/connect'
-{{/if}}
 {{#each resourceTypeImports}}
 import type { {{typeName}} } from 'lib/seam/connect/resources/{{fileName}}'
 {{/each}}
