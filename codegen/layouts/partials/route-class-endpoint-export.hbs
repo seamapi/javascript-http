@@ -1,11 +1,6 @@
 export type {{parametersTypeName}} = {{> request-object parameters=parameters}}
 
 /**
- * @deprecated Use {{parametersTypeName}} instead.
- */
-export type {{legacyRequestTypeName}} = {{parametersTypeName}}
-
-/**
  * @deprecated Use {{requestTypeName}} instead.
  */
 export type {{responseTypeName}} = {{#if returnsVoid}}void{{else}}{ {{json responseKey}}: {{#if responseIsList}}Array<{{responseResourceTypeName}}>{{else}}{{responseResourceTypeName}}{{/if}} }{{/if}}

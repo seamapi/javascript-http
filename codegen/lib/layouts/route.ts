@@ -25,7 +25,6 @@ export interface EndpointLayoutContext {
   responseKey: string
   requestFormat: 'params' | 'body'
   parametersTypeName: string
-  legacyRequestTypeName: string
   responseTypeName: string
   optionsTypeName: string
   requestTypeName: string
@@ -100,12 +99,6 @@ export const getEndpointLayoutContext = (
 ): EndpointLayoutContext => {
   const prefix = pascalCase([route.path.split('/'), endpoint.name].join('_'))
 
-  const legacyMethodParamName = ['GET', 'DELETE'].includes(
-    endpoint.request.semanticMethod,
-  )
-    ? 'params'
-    : 'body'
-
   const requestFormat = ['GET', 'DELETE'].includes(
     endpoint.request.preferredMethod,
   )
@@ -127,7 +120,6 @@ export const getEndpointLayoutContext = (
     requestFormat,
     returnsActionAttempt,
     parametersTypeName: `${prefix}Parameters`,
-    legacyRequestTypeName: `${prefix}${pascalCase(legacyMethodParamName)}`,
     responseTypeName: `${prefix}Response`,
     optionsTypeName: `${prefix}Options`,
     requestTypeName: `${prefix}Request`,
