@@ -24,11 +24,9 @@ interface SeamHttpRequestConfig<TResponseKey> {
 export class SeamHttpRequest<
   const TResponse,
   const TResponseKey extends keyof TResponse | undefined,
-> implements
-    Promise<
-      TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
-    >
-{
+> implements Promise<
+  TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
+> {
   readonly [Symbol.toStringTag]: string = 'SeamHttpRequest'
 
   readonly #parent: SeamHttpRequestParent
@@ -153,9 +151,7 @@ export class SeamHttpRequest<
 
   async catch<TResult = never>(
     onrejected?:
-      | ((reason: unknown) => TResult | PromiseLike<TResult>)
-      | null
-      | undefined,
+      ((reason: unknown) => TResult | PromiseLike<TResult>) | null | undefined,
   ): Promise<
     | (TResponseKey extends keyof TResponse
         ? TResponse[TResponseKey]

@@ -145,10 +145,7 @@ export type PhoneSessionResource = {
                 | Array<{
                     visionline_door_profile_id?: string | undefined
                     visionline_door_profile_type?:
-                      | 'BLE'
-                      | 'commonDoor'
-                      | 'touch'
-                      | undefined
+                      'BLE' | 'commonDoor' | 'touch' | undefined
                   }>
                 | undefined
             }
@@ -293,8 +290,7 @@ export type PhoneSessionResource = {
       message: string
 
       warning_code:
-        | 'being_deleted'
-        | 'acs_user_profile_does_not_match_user_identity'
+        'being_deleted' | 'acs_user_profile_does_not_match_user_identity'
     }>
 
     workspace_id: string

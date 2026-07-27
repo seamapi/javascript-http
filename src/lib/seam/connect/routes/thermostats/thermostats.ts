@@ -443,13 +443,7 @@ export type ThermostatsCreateClimatePresetParameters = {
   climate_preset_key: string
 
   climate_preset_mode?:
-    | 'home'
-    | 'away'
-    | 'wake'
-    | 'sleep'
-    | 'occupied'
-    | 'unoccupied'
-    | undefined
+    'home' | 'away' | 'wake' | 'sleep' | 'occupied' | 'unoccupied' | undefined
   cooling_set_point_celsius?: number | undefined
   cooling_set_point_fahrenheit?: number | undefined
   device_id: string
@@ -838,13 +832,7 @@ export type ThermostatsUpdateClimatePresetParameters = {
   climate_preset_key: string
 
   climate_preset_mode?:
-    | 'home'
-    | 'away'
-    | 'wake'
-    | 'sleep'
-    | 'occupied'
-    | 'unoccupied'
-    | undefined
+    'home' | 'away' | 'wake' | 'sleep' | 'occupied' | 'unoccupied' | undefined
   cooling_set_point_celsius?: number | undefined
   cooling_set_point_fahrenheit?: number | undefined
   device_id: string

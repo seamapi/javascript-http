@@ -26,11 +26,7 @@ export type AcsEntranceResource = {
         door_name?: string | undefined
         door_number?: number | undefined
         door_type?:
-          | 'CommonDoor'
-          | 'EntranceDoor'
-          | 'GuestDoor'
-          | 'Elevator'
-          | undefined
+          'CommonDoor' | 'EntranceDoor' | 'GuestDoor' | 'Elevator' | undefined
         pms_id?: string | undefined
         stand_open?: boolean | undefined
       }
@@ -136,10 +132,7 @@ export type AcsEntranceResource = {
           | Array<{
               visionline_door_profile_id?: string | undefined
               visionline_door_profile_type?:
-                | 'BLE'
-                | 'commonDoor'
-                | 'touch'
-                | undefined
+                'BLE' | 'commonDoor' | 'touch' | undefined
             }>
           | undefined
       }

@@ -705,8 +705,7 @@ export type DeviceResource = {
         }
       | undefined
     _experimental_supported_code_from_access_codes_lengths?:
-      | Array<number>
-      | undefined
+      Array<number> | undefined
     auto_lock_delay_seconds?: number | undefined
     auto_lock_enabled?: boolean | undefined
     backup_access_code_pool_enabled?: boolean | undefined
@@ -851,12 +850,7 @@ export type DeviceResource = {
           heating_set_point_celsius?: number | undefined
           heating_set_point_fahrenheit?: number | undefined
           hvac_mode_setting?:
-            | 'off'
-            | 'heat'
-            | 'cool'
-            | 'heat_cool'
-            | 'eco'
-            | undefined
+            'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
           manual_override_allowed: boolean
 
           name?: string | null | undefined
@@ -864,8 +858,7 @@ export type DeviceResource = {
       | undefined
     available_fan_mode_settings?: Array<'auto' | 'on' | 'circulate'> | undefined
     available_hvac_mode_settings?:
-      | Array<'off' | 'heat' | 'cool' | 'heat_cool' | 'eco'>
-      | undefined
+      Array<'off' | 'heat' | 'cool' | 'heat_cool' | 'eco'> | undefined
     current_climate_setting?:
       | {
           can_delete?: boolean | undefined
@@ -894,12 +887,7 @@ export type DeviceResource = {
           heating_set_point_celsius?: number | undefined
           heating_set_point_fahrenheit?: number | undefined
           hvac_mode_setting?:
-            | 'off'
-            | 'heat'
-            | 'cool'
-            | 'heat_cool'
-            | 'eco'
-            | undefined
+            'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
           manual_override_allowed?: boolean | undefined
           name?: string | null | undefined
         }
@@ -932,12 +920,7 @@ export type DeviceResource = {
           heating_set_point_celsius?: number | undefined
           heating_set_point_fahrenheit?: number | undefined
           hvac_mode_setting?:
-            | 'off'
-            | 'heat'
-            | 'cool'
-            | 'heat_cool'
-            | 'eco'
-            | undefined
+            'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
           manual_override_allowed?: boolean | undefined
           name?: string | null | undefined
         }
@@ -954,8 +937,7 @@ export type DeviceResource = {
     max_heating_set_point_fahrenheit?: number | undefined
     max_thermostat_daily_program_periods_per_day?: number | undefined
     max_unique_climate_presets_per_thermostat_weekly_program?:
-      | number
-      | undefined
+      number | undefined
     min_cooling_set_point_celsius?: number | undefined
     min_cooling_set_point_fahrenheit?: number | undefined
     min_heating_cooling_delta_celsius?: number | undefined

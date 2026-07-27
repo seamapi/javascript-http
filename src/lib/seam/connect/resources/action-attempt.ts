@@ -133,18 +133,14 @@ export type ActionAttemptResource =
           external_type_display_name?: string | undefined
           is_issued?: boolean | undefined
           is_latest_desired_state_synced_with_provider?:
-            | boolean
-            | null
-            | undefined
+            boolean | null | undefined
           is_managed: boolean
 
           is_multi_phone_sync_credential?: boolean | undefined
           is_one_time_use?: boolean | undefined
           issued_at?: string | null | undefined
           latest_desired_state_synced_with_provider_at?:
-            | string
-            | null
-            | undefined
+            string | null | undefined
           parent_acs_credential_id?: string | undefined
           starts_at?: string | undefined
           user_identity_id?: string | undefined
@@ -263,9 +259,7 @@ export type ActionAttemptResource =
         external_type_display_name?: string | undefined
         is_issued?: boolean | undefined
         is_latest_desired_state_synced_with_provider?:
-          | boolean
-          | null
-          | undefined
+          boolean | null | undefined
         is_managed: boolean
 
         is_multi_phone_sync_credential?: boolean | undefined
@@ -374,9 +368,7 @@ export type ActionAttemptResource =
         external_type_display_name?: string | undefined
         is_issued?: boolean | undefined
         is_latest_desired_state_synced_with_provider?:
-          | boolean
-          | null
-          | undefined
+          boolean | null | undefined
         is_managed: boolean
 
         is_multi_phone_sync_credential?: boolean | undefined
@@ -470,9 +462,7 @@ export type ActionAttemptResource =
           message: string
 
           mutation_code:
-            | 'provisioning_access'
-            | 'revoking_access'
-            | 'updating_access_times'
+            'provisioning_access' | 'revoking_access' | 'updating_access_times'
 
           to: {
             ends_at: string | null

@@ -365,9 +365,7 @@ export type AccessCodesCreateMultipleParameters = {
   allow_external_modification?: boolean | undefined
   attempt_for_offline_device?: boolean | undefined
   behavior_when_code_cannot_be_shared?:
-    | 'throw'
-    | 'create_random_code'
-    | undefined
+    'throw' | 'create_random_code' | undefined
   code?: string | undefined
   device_ids: Array<string>
 

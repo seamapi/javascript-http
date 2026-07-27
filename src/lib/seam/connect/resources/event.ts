@@ -1859,9 +1859,7 @@ export type EventResource =
       }>
 
       error_code:
-        | 'account_disconnected'
-        | 'hub_disconnected'
-        | 'device_disconnected'
+        'account_disconnected' | 'hub_disconnected' | 'device_disconnected'
 
       event_description?: string | undefined
       event_id: string
@@ -1915,9 +1913,7 @@ export type EventResource =
       }>
 
       error_code:
-        | 'account_disconnected'
-        | 'hub_disconnected'
-        | 'device_disconnected'
+        'account_disconnected' | 'hub_disconnected' | 'device_disconnected'
 
       event_description?: string | undefined
       event_id: string
@@ -2483,12 +2479,7 @@ export type EventResource =
       heating_set_point_celsius?: number | undefined
       heating_set_point_fahrenheit?: number | undefined
       hvac_mode_setting?:
-        | 'off'
-        | 'heat'
-        | 'cool'
-        | 'heat_cool'
-        | 'eco'
-        | undefined
+        'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
       method: 'seam' | 'external'
 
       occurred_at: string
