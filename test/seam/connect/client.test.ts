@@ -3,7 +3,7 @@ import { getTestServer } from 'fixtures/seam/connect/api.js'
 
 import {
   type DevicesGetResponse,
-  type DevicesListParams,
+  type DevicesListParameters,
   type DevicesListResponse,
   SeamHttp,
   SeamHttpWithoutWorkspace,
@@ -55,7 +55,7 @@ test('SeamHttp: client serializes array params', async (t) => {
   const seam = new SeamHttp({
     client: SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint }).client,
   })
-  const params: DevicesListParams = {
+  const params: DevicesListParameters = {
     device_ids: [seed.august_device_1],
   }
   const {
