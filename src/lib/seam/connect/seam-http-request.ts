@@ -1,10 +1,10 @@
-import type { ActionAttempt } from '@seamapi/types/connect'
 import { serializeUrlSearchParams } from '@seamapi/url-search-params-serializer'
 import type { Method } from 'axios'
 
 import type { Client } from './client.js'
 import type { SeamHttpRequestOptions } from './options.js'
 import { resolveActionAttempt } from './resolve-action-attempt.js'
+import type { ActionAttemptResource } from './resources/action-attempt.js'
 import { SeamHttpActionAttempts } from './routes/index.js'
 
 interface SeamHttpRequestParent {
@@ -102,7 +102,7 @@ export class SeamHttpRequest<
 
       if (waitForActionAttempt !== false) {
         const actionAttempt = await resolveActionAttempt(
-          data as unknown as ActionAttempt,
+          data as unknown as ActionAttemptResource,
           SeamHttpActionAttempts.fromClient(this.#parent.client, {
             ...this.#parent.defaults,
             waitForActionAttempt: false,

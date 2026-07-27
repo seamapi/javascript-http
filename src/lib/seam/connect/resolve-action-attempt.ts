@@ -1,5 +1,4 @@
-import type { ActionAttempt } from '@seamapi/types/connect'
-
+import type { ActionAttemptResource } from './resources/action-attempt.js'
 import type { SeamHttpActionAttempts } from './routes/index.js'
 
 export interface ResolveActionAttemptOptions {
@@ -7,7 +6,7 @@ export interface ResolveActionAttemptOptions {
   pollingInterval?: number
 }
 
-export const resolveActionAttempt = async <T extends ActionAttempt>(
+export const resolveActionAttempt = async <T extends ActionAttemptResource>(
   actionAttempt: T,
   actionAttempts: SeamHttpActionAttempts,
   { timeout = 10_000, pollingInterval = 1_000 }: ResolveActionAttemptOptions,
@@ -31,7 +30,7 @@ export const resolveActionAttempt = async <T extends ActionAttempt>(
   }
 }
 
-const pollActionAttempt = async <T extends ActionAttempt>(
+const pollActionAttempt = async <T extends ActionAttemptResource>(
   actionAttempt: T,
   actionAttempts: SeamHttpActionAttempts,
   options: Pick<ResolveActionAttemptOptions, 'pollingInterval'>,
@@ -57,13 +56,15 @@ const pollActionAttempt = async <T extends ActionAttempt>(
   )
 }
 
-export const isSeamActionAttemptError = <T extends ActionAttempt>(
+export const isSeamActionAttemptError = <T extends ActionAttemptResource>(
   error: unknown,
 ): error is SeamActionAttemptError<T> => {
   return error instanceof SeamActionAttemptError
 }
 
-export class SeamActionAttemptError<T extends ActionAttempt> extends Error {
+export class SeamActionAttemptError<
+  T extends ActionAttemptResource,
+> extends Error {
   actionAttempt: T
 
   constructor(message: string, actionAttempt: T) {
@@ -73,14 +74,14 @@ export class SeamActionAttemptError<T extends ActionAttempt> extends Error {
   }
 }
 
-export const isSeamActionAttemptFailedError = <T extends ActionAttempt>(
+export const isSeamActionAttemptFailedError = <T extends ActionAttemptResource>(
   error: unknown,
 ): error is SeamActionAttemptFailedError<T> => {
   return error instanceof SeamActionAttemptFailedError
 }
 
 export class SeamActionAttemptFailedError<
-  T extends ActionAttempt,
+  T extends ActionAttemptResource,
 > extends SeamActionAttemptError<T> {
   code: string
 
@@ -91,14 +92,16 @@ export class SeamActionAttemptFailedError<
   }
 }
 
-export const isSeamActionAttemptTimeoutError = <T extends ActionAttempt>(
+export const isSeamActionAttemptTimeoutError = <
+  T extends ActionAttemptResource,
+>(
   error: unknown,
 ): error is SeamActionAttemptTimeoutError<T> => {
   return error instanceof SeamActionAttemptTimeoutError
 }
 
 export class SeamActionAttemptTimeoutError<
-  T extends ActionAttempt,
+  T extends ActionAttemptResource,
 > extends SeamActionAttemptError<T> {
   constructor(actionAttempt: T, timeout: number) {
     super(
@@ -109,21 +112,19 @@ export class SeamActionAttemptTimeoutError<
   }
 }
 
-const isSuccessfulActionAttempt = <T extends ActionAttempt>(
+const isSuccessfulActionAttempt = <T extends ActionAttemptResource>(
   actionAttempt: T,
 ): actionAttempt is SucceededActionAttempt<T> =>
   actionAttempt.status === 'success'
 
-const isFailedActionAttempt = <T extends ActionAttempt>(
+const isFailedActionAttempt = <T extends ActionAttemptResource>(
   actionAttempt: T,
 ): actionAttempt is FailedActionAttempt<T> => actionAttempt.status === 'error'
 
-export type SucceededActionAttempt<T extends ActionAttempt> = Extract<
-  T,
-  { status: 'success' }
->
+export type SucceededActionAttempt<T extends ActionAttemptResource> = T & {
+  status: 'success'
+}
 
-export type FailedActionAttempt<T extends ActionAttempt> = Extract<
-  T,
-  { status: 'error' }
->
+export type FailedActionAttempt<T extends ActionAttemptResource> = T & {
+  status: 'error'
+}
