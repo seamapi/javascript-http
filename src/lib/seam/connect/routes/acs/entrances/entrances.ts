@@ -273,6 +273,7 @@ export type AcsEntrancesGrantAccessRequest = SeamHttpRequest<void, undefined>
 export interface AcsEntrancesGrantAccessOptions {}
 
 export type AcsEntrancesListParameters = {
+  access_method_id?: string | undefined
   acs_credential_id?: string | undefined
   acs_entrance_ids?: Array<string> | undefined
   acs_system_id?: string | undefined
