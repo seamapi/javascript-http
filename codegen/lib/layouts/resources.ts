@@ -13,7 +13,7 @@ export interface ResourceIndexLayoutContext {
 }
 
 export const getResourceTypeName = (resourceType: string): string =>
-  `${pascalCase(resourceType)}Resource`
+  resourceType === 'event' ? 'SeamEvent' : pascalCase(resourceType)
 
 export const getResourceLayoutContexts = (
   blueprint: Blueprint,
@@ -30,7 +30,7 @@ export const getResourceLayoutContexts = (
   return [
     {
       fileName: 'unknown.ts',
-      typeName: 'UnknownResource',
+      typeName: getResourceTypeName('unknown'),
       resources: [],
       isUnknown: true,
     },

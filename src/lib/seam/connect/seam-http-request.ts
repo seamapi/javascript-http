@@ -4,7 +4,7 @@ import type { Method } from 'axios'
 import type { Client } from './client.js'
 import type { SeamHttpRequestOptions } from './options.js'
 import { resolveActionAttempt } from './resolve-action-attempt.js'
-import type { ActionAttemptResource } from './resources/action-attempt.js'
+import type { ActionAttempt } from './resources/action-attempt.js'
 import { SeamHttpActionAttempts } from './routes/index.js'
 
 interface SeamHttpRequestParent {
@@ -102,7 +102,7 @@ export class SeamHttpRequest<
 
       if (waitForActionAttempt !== false) {
         const actionAttempt = await resolveActionAttempt(
-          data as unknown as ActionAttemptResource,
+          data as unknown as ActionAttempt,
           SeamHttpActionAttempts.fromClient(this.#parent.client, {
             ...this.#parent.defaults,
             waitForActionAttempt: false,
