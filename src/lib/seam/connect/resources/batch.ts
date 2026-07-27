@@ -17,7 +17,6 @@ export type BatchResource = {
   client_sessions?: Record<string, unknown> | undefined
   connect_webviews?: Record<string, unknown> | undefined
   connected_accounts?: Record<string, unknown> | undefined
-  customization_profiles?: Record<string, unknown> | undefined
   devices?: Record<string, unknown> | undefined
   events?: Record<string, unknown> | undefined
   instant_keys?: Record<string, unknown> | undefined
@@ -26,9 +25,6 @@ export type BatchResource = {
   thermostat_daily_programs?: Record<string, unknown> | undefined
   thermostat_schedules?: Record<string, unknown> | undefined
   unmanaged_access_codes?: Record<string, unknown> | undefined
-  unmanaged_acs_access_groups?: Record<string, unknown> | undefined
-  unmanaged_acs_credentials?: Record<string, unknown> | undefined
-  unmanaged_acs_users?: Record<string, unknown> | undefined
   unmanaged_devices?: Record<string, unknown> | undefined
   user_identities?: Record<string, unknown> | undefined
   workspaces?: Record<string, unknown> | undefined

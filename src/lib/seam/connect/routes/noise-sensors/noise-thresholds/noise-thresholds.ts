@@ -239,8 +239,6 @@ export type NoiseSensorsNoiseThresholdsCreateParameters = {
   noise_threshold_decibels?: number | undefined
   noise_threshold_nrs?: number | undefined
   starts_daily_at: string
-
-  sync?: boolean | undefined
 }
 
 /**
@@ -267,8 +265,6 @@ export type NoiseSensorsNoiseThresholdsDeleteParameters = {
   device_id: string
 
   noise_threshold_id: string
-
-  sync?: boolean | undefined
 }
 
 /**
@@ -315,8 +311,6 @@ export interface NoiseSensorsNoiseThresholdsGetOptions {}
 
 export type NoiseSensorsNoiseThresholdsListParameters = {
   device_id: string
-
-  is_programmed?: boolean | undefined
 }
 
 /**
@@ -349,7 +343,6 @@ export type NoiseSensorsNoiseThresholdsUpdateParameters = {
 
   noise_threshold_nrs?: number | undefined
   starts_daily_at?: string | undefined
-  sync?: boolean | undefined
 }
 
 /**

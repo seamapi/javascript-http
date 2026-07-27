@@ -296,7 +296,6 @@ export type ConnectWebviewsCreateParameters = {
   custom_redirect_failure_url?: string | undefined
   custom_redirect_url?: string | undefined
   customer_key?: string | undefined
-  device_selection_mode?: 'none' | 'single' | 'multiple' | undefined
   excluded_providers?: Array<string> | undefined
   provider_category?:
     | 'stable'

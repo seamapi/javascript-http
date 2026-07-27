@@ -704,8 +704,6 @@ export type DeviceResource = {
           product_type?: string | undefined
         }
       | undefined
-    _experimental_supported_code_from_access_codes_lengths?:
-      Array<number> | undefined
     auto_lock_delay_seconds?: number | undefined
     auto_lock_enabled?: boolean | undefined
     backup_access_code_pool_enabled?: boolean | undefined

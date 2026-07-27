@@ -356,54 +356,6 @@ export type LocksListParameters = {
         | 'aqara_lock'
       >
     | undefined
-  exclude_if?:
-    | Array<
-        | 'can_remotely_unlock'
-        | 'can_remotely_lock'
-        | 'can_program_offline_access_codes'
-        | 'can_program_online_access_codes'
-        | 'can_hvac_heat'
-        | 'can_hvac_cool'
-        | 'can_hvac_heat_cool'
-        | 'can_turn_off_hvac'
-        | 'can_simulate_removal'
-        | 'can_simulate_connection'
-        | 'can_simulate_disconnection'
-        | 'can_unlock_with_code'
-        | 'can_run_thermostat_programs'
-        | 'can_program_thermostat_programs_as_weekday_weekend'
-        | 'can_program_thermostat_programs_as_different_each_day'
-        | 'can_program_thermostat_programs_as_same_each_day'
-        | 'can_simulate_hub_connection'
-        | 'can_simulate_hub_disconnection'
-        | 'can_simulate_paid_subscription'
-        | 'can_configure_auto_lock'
-      >
-    | undefined
-  include_if?:
-    | Array<
-        | 'can_remotely_unlock'
-        | 'can_remotely_lock'
-        | 'can_program_offline_access_codes'
-        | 'can_program_online_access_codes'
-        | 'can_hvac_heat'
-        | 'can_hvac_cool'
-        | 'can_hvac_heat_cool'
-        | 'can_turn_off_hvac'
-        | 'can_simulate_removal'
-        | 'can_simulate_connection'
-        | 'can_simulate_disconnection'
-        | 'can_unlock_with_code'
-        | 'can_run_thermostat_programs'
-        | 'can_program_thermostat_programs_as_weekday_weekend'
-        | 'can_program_thermostat_programs_as_different_each_day'
-        | 'can_program_thermostat_programs_as_same_each_day'
-        | 'can_simulate_hub_connection'
-        | 'can_simulate_hub_disconnection'
-        | 'can_simulate_paid_subscription'
-        | 'can_configure_auto_lock'
-      >
-    | undefined
   limit?: number | undefined
   manufacturer?:
     | 'akuvox'
@@ -462,8 +414,6 @@ export interface LocksListOptions {}
 
 export type LocksLockDoorParameters = {
   device_id: string
-
-  sync?: boolean | undefined
 }
 
 /**
@@ -488,8 +438,6 @@ export type LocksLockDoorOptions = Pick<
 
 export type LocksUnlockDoorParameters = {
   device_id: string
-
-  sync?: boolean | undefined
 }
 
 /**

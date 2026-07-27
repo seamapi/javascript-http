@@ -491,12 +491,9 @@ export type SpacesGetRelatedRequest = SeamHttpRequest<
 export interface SpacesGetRelatedOptions {}
 
 export type SpacesListParameters = {
-  connected_account_id?: string | undefined
   customer_key?: string | undefined
   limit?: number | undefined
   page_cursor?: string | undefined
-  parent_space_id?: string | undefined
-  parent_space_key?: string | undefined
   search?: string | undefined
   space_key?: string | undefined
 }
@@ -591,8 +588,6 @@ export type SpacesUpdateParameters = {
     | undefined
   device_ids?: Array<string> | undefined
   name?: string | undefined
-  parent_space_id?: string | undefined
-  parent_space_key?: string | undefined
   space_id?: string | undefined
   space_key?: string | undefined
 }

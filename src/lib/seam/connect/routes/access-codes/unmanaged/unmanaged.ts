@@ -233,7 +233,6 @@ export type AccessCodesUnmanagedConvertToManagedParameters = {
   allow_external_modification?: boolean | undefined
   force?: boolean | undefined
   is_external_modification_allowed?: boolean | undefined
-  sync?: boolean | undefined
 }
 
 /**
@@ -256,8 +255,6 @@ export interface AccessCodesUnmanagedConvertToManagedOptions {}
 
 export type AccessCodesUnmanagedDeleteParameters = {
   access_code_id: string
-
-  sync?: boolean | undefined
 }
 
 /**

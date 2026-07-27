@@ -35,8 +35,6 @@ import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
-import { SeamHttpAcsUsersUnmanaged } from './unmanaged/index.js'
-
 export class SeamHttpAcsUsers {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
@@ -162,10 +160,6 @@ export class SeamHttpAcsUsers {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
-  }
-
-  get unmanaged(): SeamHttpAcsUsersUnmanaged {
-    return SeamHttpAcsUsersUnmanaged.fromClient(this.client, this.defaults)
   }
 
   addToAccessGroup(

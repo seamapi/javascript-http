@@ -31,8 +31,6 @@ export type SpaceResource = {
     | undefined
   name: string
 
-  parent_space_id?: string | undefined
-  parent_space_key?: string | undefined
   space_id: string
 
   space_key?: string | undefined

@@ -2657,20 +2657,6 @@ export type EventResource =
   | {
       created_at: string
 
-      enrollment_automation_id: string
-
-      event_description?: string | undefined
-      event_id: string
-
-      event_type: 'enrollment_automation.deleted'
-
-      occurred_at: string
-
-      workspace_id: string
-    }
-  | {
-      created_at: string
-
       device_custom_metadata?: Record<string, unknown> | undefined
       device_id: string
 

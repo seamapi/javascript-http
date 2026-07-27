@@ -39,7 +39,6 @@ import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
-import { SeamHttpUserIdentitiesEnrollmentAutomations } from './enrollment-automations/index.js'
 import { SeamHttpUserIdentitiesUnmanaged } from './unmanaged/index.js'
 
 export class SeamHttpUserIdentities {
@@ -167,13 +166,6 @@ export class SeamHttpUserIdentities {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
-  }
-
-  get enrollmentAutomations(): SeamHttpUserIdentitiesEnrollmentAutomations {
-    return SeamHttpUserIdentitiesEnrollmentAutomations.fromClient(
-      this.client,
-      this.defaults,
-    )
   }
 
   get unmanaged(): SeamHttpUserIdentitiesUnmanaged {

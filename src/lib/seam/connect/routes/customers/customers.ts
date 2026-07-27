@@ -34,8 +34,6 @@ import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
-import { SeamHttpCustomersReservations } from './reservations/index.js'
-
 export class SeamHttpCustomers {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
@@ -163,10 +161,6 @@ export class SeamHttpCustomers {
     await clientSessions.get()
   }
 
-  get reservations(): SeamHttpCustomersReservations {
-    return SeamHttpCustomersReservations.fromClient(this.client, this.defaults)
-  }
-
   createPortal(
     parameters?: CustomersCreatePortalParameters,
     options: CustomersCreatePortalOptions = {},
@@ -208,7 +202,6 @@ export class SeamHttpCustomers {
 }
 
 export type CustomersCreatePortalParameters = {
-  _dev?: boolean | undefined
   customer_resources_filters?:
     | Array<{
         field?: string | undefined

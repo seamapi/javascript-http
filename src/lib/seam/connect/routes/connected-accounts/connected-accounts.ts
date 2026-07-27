@@ -238,8 +238,6 @@ export class SeamHttpConnectedAccounts {
 
 export type ConnectedAccountsDeleteParameters = {
   connected_account_id: string
-
-  sync?: boolean | undefined
 }
 
 /**

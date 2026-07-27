@@ -22,18 +22,6 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 
 import {
-  type SeamConsoleV1WorkspaceFeatureFlagsListOptions,
-  type SeamConsoleV1WorkspaceFeatureFlagsListParameters,
-  type SeamConsoleV1WorkspaceFeatureFlagsListRequest,
-  SeamHttpSeamConsoleV1WorkspaceFeatureFlags,
-} from './seam/console/v1/workspace/feature-flags/index.js'
-import {
-  type SeamCustomerV1ConnectorsAuthorizeOptions,
-  type SeamCustomerV1ConnectorsAuthorizeParameters,
-  type SeamCustomerV1ConnectorsAuthorizeRequest,
-  SeamHttpSeamCustomerV1Connectors,
-} from './seam/customer/v1/connectors/index.js'
-import {
   SeamHttpWorkspaces,
   type WorkspacesCreateOptions,
   type WorkspacesCreateParameters,
@@ -106,45 +94,6 @@ export class SeamHttpEndpointsWithoutWorkspace {
     return new SeamHttpEndpointsWithoutWorkspace(constructorOptions)
   }
 
-  get '/seam/console/v1/workspace/feature_flags/list'(): (
-    parameters?: SeamConsoleV1WorkspaceFeatureFlagsListParameters,
-    options?: SeamConsoleV1WorkspaceFeatureFlagsListOptions,
-  ) => SeamConsoleV1WorkspaceFeatureFlagsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1WorkspaceFeatureFlagsList(
-      ...args: Parameters<SeamHttpSeamConsoleV1WorkspaceFeatureFlags['list']>
-    ): ReturnType<SeamHttpSeamConsoleV1WorkspaceFeatureFlags['list']> {
-      const seam = SeamHttpSeamConsoleV1WorkspaceFeatureFlags.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connectors/authorize'(): (
-    parameters: SeamCustomerV1ConnectorsAuthorizeParameters,
-    options?: SeamCustomerV1ConnectorsAuthorizeOptions,
-  ) => SeamCustomerV1ConnectorsAuthorizeRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsAuthorize(
-      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['authorize']>
-    ): ReturnType<SeamHttpSeamCustomerV1Connectors['authorize']> {
-      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
-      return seam.authorize(...args)
-    }
-  }
-
   get '/workspaces/create'(): (
     parameters: WorkspacesCreateParameters,
     options?: WorkspacesCreateOptions,
@@ -172,9 +121,6 @@ export class SeamHttpEndpointsWithoutWorkspace {
   }
 }
 
-export type SeamHttpEndpointWithoutWorkspaceQueryPaths =
-  | '/seam/console/v1/workspace/feature_flags/list'
-  | '/seam/customer/v1/connectors/authorize'
-  | '/workspaces/list'
+export type SeamHttpEndpointWithoutWorkspaceQueryPaths = '/workspaces/list'
 
 export type SeamHttpEndpointWithoutWorkspaceMutationPaths = '/workspaces/create'

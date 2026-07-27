@@ -8,11 +8,7 @@ export type ConnectWebviewResource = {
     'lock' | 'thermostat' | 'noise_sensor' | 'access_control' | 'camera'
   >
 
-  accepted_devices: Array<string>
-
   accepted_providers: Array<string>
-
-  any_device_allowed: boolean
 
   any_provider_allowed: boolean
 

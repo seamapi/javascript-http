@@ -84,7 +84,6 @@ export type AcsUserResource = {
   is_managed: boolean
 
   is_suspended?: boolean | undefined
-  last_successful_sync_at: string | null
   pending_mutations?:
     | Array<
         | {
