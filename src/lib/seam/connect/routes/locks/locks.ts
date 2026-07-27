@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ActionAttemptResource } from 'lib/seam/connect/resources/action-attempt.js'
-import type { DeviceResource } from 'lib/seam/connect/resources/device.js'
+import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
+import type { Device } from 'lib/seam/connect/resources/device.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -244,9 +244,7 @@ export type LocksConfigureAutoLockParameters = {
 /**
  * @deprecated Use LocksConfigureAutoLockRequest instead.
  */
-export type LocksConfigureAutoLockResponse = {
-  action_attempt: ActionAttemptResource
-}
+export type LocksConfigureAutoLockResponse = { action_attempt: ActionAttempt }
 
 export type LocksConfigureAutoLockRequest = SeamHttpRequest<
   LocksConfigureAutoLockResponse,
@@ -266,7 +264,7 @@ export type LocksGetParameters = {
 /**
  * @deprecated Use LocksGetRequest instead.
  */
-export type LocksGetResponse = { device: DeviceResource }
+export type LocksGetResponse = { device: Device }
 
 export type LocksGetRequest = SeamHttpRequest<LocksGetResponse, 'device'>
 
@@ -391,7 +389,7 @@ export type LocksListParameters = {
 /**
  * @deprecated Use LocksListRequest instead.
  */
-export type LocksListResponse = { devices: Array<DeviceResource> }
+export type LocksListResponse = { devices: Array<Device> }
 
 export type LocksListRequest = SeamHttpRequest<LocksListResponse, 'devices'>
 
@@ -404,7 +402,7 @@ export type LocksLockDoorParameters = {
 /**
  * @deprecated Use LocksLockDoorRequest instead.
  */
-export type LocksLockDoorResponse = { action_attempt: ActionAttemptResource }
+export type LocksLockDoorResponse = { action_attempt: ActionAttempt }
 
 export type LocksLockDoorRequest = SeamHttpRequest<
   LocksLockDoorResponse,
@@ -423,7 +421,7 @@ export type LocksUnlockDoorParameters = {
 /**
  * @deprecated Use LocksUnlockDoorRequest instead.
  */
-export type LocksUnlockDoorResponse = { action_attempt: ActionAttemptResource }
+export type LocksUnlockDoorResponse = { action_attempt: ActionAttempt }
 
 export type LocksUnlockDoorRequest = SeamHttpRequest<
   LocksUnlockDoorResponse,

@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AcsEntranceResource } from 'lib/seam/connect/resources/acs-entrance.js'
-import type { AcsUserResource } from 'lib/seam/connect/resources/acs-user.js'
+import type { AcsEntrance } from 'lib/seam/connect/resources/acs-entrance.js'
+import type { AcsUser } from 'lib/seam/connect/resources/acs-user.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -342,7 +342,7 @@ export type AcsUsersCreateParameters = {
 /**
  * @deprecated Use AcsUsersCreateRequest instead.
  */
-export type AcsUsersCreateResponse = { acs_user: AcsUserResource }
+export type AcsUsersCreateResponse = { acs_user: AcsUser }
 
 export type AcsUsersCreateRequest = SeamHttpRequest<
   AcsUsersCreateResponse,
@@ -375,7 +375,7 @@ export type AcsUsersGetParameters = {
 /**
  * @deprecated Use AcsUsersGetRequest instead.
  */
-export type AcsUsersGetResponse = { acs_user: AcsUserResource }
+export type AcsUsersGetResponse = { acs_user: AcsUser }
 
 export type AcsUsersGetRequest = SeamHttpRequest<
   AcsUsersGetResponse,
@@ -398,7 +398,7 @@ export type AcsUsersListParameters = {
 /**
  * @deprecated Use AcsUsersListRequest instead.
  */
-export type AcsUsersListResponse = { acs_users: Array<AcsUserResource> }
+export type AcsUsersListResponse = { acs_users: Array<AcsUser> }
 
 export type AcsUsersListRequest = SeamHttpRequest<
   AcsUsersListResponse,
@@ -417,7 +417,7 @@ export type AcsUsersListAccessibleEntrancesParameters = {
  * @deprecated Use AcsUsersListAccessibleEntrancesRequest instead.
  */
 export type AcsUsersListAccessibleEntrancesResponse = {
-  acs_entrances: Array<AcsEntranceResource>
+  acs_entrances: Array<AcsEntrance>
 }
 
 export type AcsUsersListAccessibleEntrancesRequest = SeamHttpRequest<

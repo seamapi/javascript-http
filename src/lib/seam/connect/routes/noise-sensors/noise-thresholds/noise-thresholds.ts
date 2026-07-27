@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { NoiseThresholdResource } from 'lib/seam/connect/resources/noise-threshold.js'
+import type { NoiseThreshold } from 'lib/seam/connect/resources/noise-threshold.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -245,7 +245,7 @@ export type NoiseSensorsNoiseThresholdsCreateParameters = {
  * @deprecated Use NoiseSensorsNoiseThresholdsCreateRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsCreateResponse = {
-  noise_threshold: NoiseThresholdResource
+  noise_threshold: NoiseThreshold
 }
 
 export type NoiseSensorsNoiseThresholdsCreateRequest = SeamHttpRequest<
@@ -281,7 +281,7 @@ export type NoiseSensorsNoiseThresholdsGetParameters = {
  * @deprecated Use NoiseSensorsNoiseThresholdsGetRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsGetResponse = {
-  noise_threshold: NoiseThresholdResource
+  noise_threshold: NoiseThreshold
 }
 
 export type NoiseSensorsNoiseThresholdsGetRequest = SeamHttpRequest<
@@ -299,7 +299,7 @@ export type NoiseSensorsNoiseThresholdsListParameters = {
  * @deprecated Use NoiseSensorsNoiseThresholdsListRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsListResponse = {
-  noise_thresholds: Array<NoiseThresholdResource>
+  noise_thresholds: Array<NoiseThreshold>
 }
 
 export type NoiseSensorsNoiseThresholdsListRequest = SeamHttpRequest<

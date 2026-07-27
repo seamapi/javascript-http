@@ -29,9 +29,9 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AcsAccessGroupResource } from 'lib/seam/connect/resources/acs-access-group.js'
-import type { AcsEntranceResource } from 'lib/seam/connect/resources/acs-entrance.js'
-import type { AcsUserResource } from 'lib/seam/connect/resources/acs-user.js'
+import type { AcsAccessGroup } from 'lib/seam/connect/resources/acs-access-group.js'
+import type { AcsEntrance } from 'lib/seam/connect/resources/acs-entrance.js'
+import type { AcsUser } from 'lib/seam/connect/resources/acs-user.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -291,9 +291,7 @@ export type AcsAccessGroupsGetParameters = {
 /**
  * @deprecated Use AcsAccessGroupsGetRequest instead.
  */
-export type AcsAccessGroupsGetResponse = {
-  acs_access_group: AcsAccessGroupResource
-}
+export type AcsAccessGroupsGetResponse = { acs_access_group: AcsAccessGroup }
 
 export type AcsAccessGroupsGetRequest = SeamHttpRequest<
   AcsAccessGroupsGetResponse,
@@ -313,7 +311,7 @@ export type AcsAccessGroupsListParameters = {
  * @deprecated Use AcsAccessGroupsListRequest instead.
  */
 export type AcsAccessGroupsListResponse = {
-  acs_access_groups: Array<AcsAccessGroupResource>
+  acs_access_groups: Array<AcsAccessGroup>
 }
 
 export type AcsAccessGroupsListRequest = SeamHttpRequest<
@@ -331,7 +329,7 @@ export type AcsAccessGroupsListAccessibleEntrancesParameters = {
  * @deprecated Use AcsAccessGroupsListAccessibleEntrancesRequest instead.
  */
 export type AcsAccessGroupsListAccessibleEntrancesResponse = {
-  acs_entrances: Array<AcsEntranceResource>
+  acs_entrances: Array<AcsEntrance>
 }
 
 export type AcsAccessGroupsListAccessibleEntrancesRequest = SeamHttpRequest<
@@ -348,9 +346,7 @@ export type AcsAccessGroupsListUsersParameters = {
 /**
  * @deprecated Use AcsAccessGroupsListUsersRequest instead.
  */
-export type AcsAccessGroupsListUsersResponse = {
-  acs_users: Array<AcsUserResource>
-}
+export type AcsAccessGroupsListUsersResponse = { acs_users: Array<AcsUser> }
 
 export type AcsAccessGroupsListUsersRequest = SeamHttpRequest<
   AcsAccessGroupsListUsersResponse,

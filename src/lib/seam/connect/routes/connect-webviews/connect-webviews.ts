@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ConnectWebviewResource } from 'lib/seam/connect/resources/connect-webview.js'
+import type { ConnectWebview } from 'lib/seam/connect/resources/connect-webview.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -314,9 +314,7 @@ export type ConnectWebviewsCreateParameters = {
 /**
  * @deprecated Use ConnectWebviewsCreateRequest instead.
  */
-export type ConnectWebviewsCreateResponse = {
-  connect_webview: ConnectWebviewResource
-}
+export type ConnectWebviewsCreateResponse = { connect_webview: ConnectWebview }
 
 export type ConnectWebviewsCreateRequest = SeamHttpRequest<
   ConnectWebviewsCreateResponse,
@@ -345,9 +343,7 @@ export type ConnectWebviewsGetParameters = {
 /**
  * @deprecated Use ConnectWebviewsGetRequest instead.
  */
-export type ConnectWebviewsGetResponse = {
-  connect_webview: ConnectWebviewResource
-}
+export type ConnectWebviewsGetResponse = { connect_webview: ConnectWebview }
 
 export type ConnectWebviewsGetRequest = SeamHttpRequest<
   ConnectWebviewsGetResponse,
@@ -369,7 +365,7 @@ export type ConnectWebviewsListParameters = {
  * @deprecated Use ConnectWebviewsListRequest instead.
  */
 export type ConnectWebviewsListResponse = {
-  connect_webviews: Array<ConnectWebviewResource>
+  connect_webviews: Array<ConnectWebview>
 }
 
 export type ConnectWebviewsListRequest = SeamHttpRequest<

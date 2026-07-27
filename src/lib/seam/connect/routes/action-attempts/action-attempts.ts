@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ActionAttemptResource } from 'lib/seam/connect/resources/action-attempt.js'
+import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -195,9 +195,7 @@ export type ActionAttemptsGetParameters = {
 /**
  * @deprecated Use ActionAttemptsGetRequest instead.
  */
-export type ActionAttemptsGetResponse = {
-  action_attempt: ActionAttemptResource
-}
+export type ActionAttemptsGetResponse = { action_attempt: ActionAttempt }
 
 export type ActionAttemptsGetRequest = SeamHttpRequest<
   ActionAttemptsGetResponse,
@@ -220,7 +218,7 @@ export type ActionAttemptsListParameters = {
  * @deprecated Use ActionAttemptsListRequest instead.
  */
 export type ActionAttemptsListResponse = {
-  action_attempts: Array<ActionAttemptResource>
+  action_attempts: Array<ActionAttempt>
 }
 
 export type ActionAttemptsListRequest = SeamHttpRequest<

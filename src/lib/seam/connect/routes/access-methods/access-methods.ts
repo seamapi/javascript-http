@@ -29,9 +29,9 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AccessMethodResource } from 'lib/seam/connect/resources/access-method.js'
-import type { ActionAttemptResource } from 'lib/seam/connect/resources/action-attempt.js'
-import type { UnknownResource } from 'lib/seam/connect/resources/unknown.js'
+import type { AccessMethod } from 'lib/seam/connect/resources/access-method.js'
+import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
+import type { Unknown } from 'lib/seam/connect/resources/unknown.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -270,9 +270,7 @@ export type AccessMethodsAssignCardParameters = {
 /**
  * @deprecated Use AccessMethodsAssignCardRequest instead.
  */
-export type AccessMethodsAssignCardResponse = {
-  action_attempt: ActionAttemptResource
-}
+export type AccessMethodsAssignCardResponse = { action_attempt: ActionAttempt }
 
 export type AccessMethodsAssignCardRequest = SeamHttpRequest<
   AccessMethodsAssignCardResponse,
@@ -308,9 +306,7 @@ export type AccessMethodsEncodeParameters = {
 /**
  * @deprecated Use AccessMethodsEncodeRequest instead.
  */
-export type AccessMethodsEncodeResponse = {
-  action_attempt: ActionAttemptResource
-}
+export type AccessMethodsEncodeResponse = { action_attempt: ActionAttempt }
 
 export type AccessMethodsEncodeRequest = SeamHttpRequest<
   AccessMethodsEncodeResponse,
@@ -329,7 +325,7 @@ export type AccessMethodsGetParameters = {
 /**
  * @deprecated Use AccessMethodsGetRequest instead.
  */
-export type AccessMethodsGetResponse = { access_method: AccessMethodResource }
+export type AccessMethodsGetResponse = { access_method: AccessMethod }
 
 export type AccessMethodsGetRequest = SeamHttpRequest<
   AccessMethodsGetResponse,
@@ -370,7 +366,7 @@ export type AccessMethodsGetRelatedParameters = {
 /**
  * @deprecated Use AccessMethodsGetRelatedRequest instead.
  */
-export type AccessMethodsGetRelatedResponse = { batch: UnknownResource }
+export type AccessMethodsGetRelatedResponse = { batch: Unknown }
 
 export type AccessMethodsGetRelatedRequest = SeamHttpRequest<
   AccessMethodsGetRelatedResponse,
@@ -393,9 +389,7 @@ export type AccessMethodsListParameters = {
 /**
  * @deprecated Use AccessMethodsListRequest instead.
  */
-export type AccessMethodsListResponse = {
-  access_methods: Array<AccessMethodResource>
-}
+export type AccessMethodsListResponse = { access_methods: Array<AccessMethod> }
 
 export type AccessMethodsListRequest = SeamHttpRequest<
   AccessMethodsListResponse,
@@ -413,9 +407,7 @@ export type AccessMethodsUnlockDoorParameters = {
 /**
  * @deprecated Use AccessMethodsUnlockDoorRequest instead.
  */
-export type AccessMethodsUnlockDoorResponse = {
-  action_attempt: ActionAttemptResource
-}
+export type AccessMethodsUnlockDoorResponse = { action_attempt: ActionAttempt }
 
 export type AccessMethodsUnlockDoorRequest = SeamHttpRequest<
   AccessMethodsUnlockDoorResponse,

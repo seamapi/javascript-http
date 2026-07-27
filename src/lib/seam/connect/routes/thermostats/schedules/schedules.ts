@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ThermostatScheduleResource } from 'lib/seam/connect/resources/thermostat-schedule.js'
+import type { ThermostatSchedule } from 'lib/seam/connect/resources/thermostat-schedule.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -244,7 +244,7 @@ export type ThermostatsSchedulesCreateParameters = {
  * @deprecated Use ThermostatsSchedulesCreateRequest instead.
  */
 export type ThermostatsSchedulesCreateResponse = {
-  thermostat_schedule: ThermostatScheduleResource
+  thermostat_schedule: ThermostatSchedule
 }
 
 export type ThermostatsSchedulesCreateRequest = SeamHttpRequest<
@@ -275,7 +275,7 @@ export type ThermostatsSchedulesGetParameters = {
  * @deprecated Use ThermostatsSchedulesGetRequest instead.
  */
 export type ThermostatsSchedulesGetResponse = {
-  thermostat_schedule: ThermostatScheduleResource
+  thermostat_schedule: ThermostatSchedule
 }
 
 export type ThermostatsSchedulesGetRequest = SeamHttpRequest<
@@ -295,7 +295,7 @@ export type ThermostatsSchedulesListParameters = {
  * @deprecated Use ThermostatsSchedulesListRequest instead.
  */
 export type ThermostatsSchedulesListResponse = {
-  thermostat_schedules: Array<ThermostatScheduleResource>
+  thermostat_schedules: Array<ThermostatSchedule>
 }
 
 export type ThermostatsSchedulesListRequest = SeamHttpRequest<

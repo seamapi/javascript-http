@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { DeviceResource } from 'lib/seam/connect/resources/device.js'
-import type { DeviceProviderResource } from 'lib/seam/connect/resources/device-provider.js'
+import type { Device } from 'lib/seam/connect/resources/device.js'
+import type { DeviceProvider } from 'lib/seam/connect/resources/device-provider.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -247,7 +247,7 @@ export type DevicesGetParameters = {
 /**
  * @deprecated Use DevicesGetRequest instead.
  */
-export type DevicesGetResponse = { device: DeviceResource }
+export type DevicesGetResponse = { device: Device }
 
 export type DevicesGetRequest = SeamHttpRequest<DevicesGetResponse, 'device'>
 
@@ -415,7 +415,7 @@ export type DevicesListParameters = {
 /**
  * @deprecated Use DevicesListRequest instead.
  */
-export type DevicesListResponse = { devices: Array<DeviceResource> }
+export type DevicesListResponse = { devices: Array<Device> }
 
 export type DevicesListRequest = SeamHttpRequest<DevicesListResponse, 'devices'>
 
@@ -438,7 +438,7 @@ export type DevicesListDeviceProvidersParameters = {
  * @deprecated Use DevicesListDeviceProvidersRequest instead.
  */
 export type DevicesListDeviceProvidersResponse = {
-  device_providers: Array<DeviceProviderResource>
+  device_providers: Array<DeviceProvider>
 }
 
 export type DevicesListDeviceProvidersRequest = SeamHttpRequest<

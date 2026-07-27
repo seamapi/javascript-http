@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AccessCodeResource } from 'lib/seam/connect/resources/access-code.js'
+import type { AccessCode } from 'lib/seam/connect/resources/access-code.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -326,7 +326,7 @@ export type AccessCodesCreateParameters = {
 /**
  * @deprecated Use AccessCodesCreateRequest instead.
  */
-export type AccessCodesCreateResponse = { access_code: AccessCodeResource }
+export type AccessCodesCreateResponse = { access_code: AccessCode }
 
 export type AccessCodesCreateRequest = SeamHttpRequest<
   AccessCodesCreateResponse,
@@ -356,7 +356,7 @@ export type AccessCodesCreateMultipleParameters = {
  * @deprecated Use AccessCodesCreateMultipleRequest instead.
  */
 export type AccessCodesCreateMultipleResponse = {
-  access_codes: Array<AccessCodeResource>
+  access_codes: Array<AccessCode>
 }
 
 export type AccessCodesCreateMultipleRequest = SeamHttpRequest<
@@ -388,9 +388,7 @@ export type AccessCodesGenerateCodeParameters = {
 /**
  * @deprecated Use AccessCodesGenerateCodeRequest instead.
  */
-export type AccessCodesGenerateCodeResponse = {
-  generated_code: AccessCodeResource
-}
+export type AccessCodesGenerateCodeResponse = { generated_code: AccessCode }
 
 export type AccessCodesGenerateCodeRequest = SeamHttpRequest<
   AccessCodesGenerateCodeResponse,
@@ -408,7 +406,7 @@ export type AccessCodesGetParameters = {
 /**
  * @deprecated Use AccessCodesGetRequest instead.
  */
-export type AccessCodesGetResponse = { access_code: AccessCodeResource }
+export type AccessCodesGetResponse = { access_code: AccessCode }
 
 export type AccessCodesGetRequest = SeamHttpRequest<
   AccessCodesGetResponse,
@@ -433,9 +431,7 @@ export type AccessCodesListParameters = {
 /**
  * @deprecated Use AccessCodesListRequest instead.
  */
-export type AccessCodesListResponse = {
-  access_codes: Array<AccessCodeResource>
-}
+export type AccessCodesListResponse = { access_codes: Array<AccessCode> }
 
 export type AccessCodesListRequest = SeamHttpRequest<
   AccessCodesListResponse,
@@ -452,7 +448,7 @@ export type AccessCodesPullBackupAccessCodeParameters = {
  * @deprecated Use AccessCodesPullBackupAccessCodeRequest instead.
  */
 export type AccessCodesPullBackupAccessCodeResponse = {
-  access_code: AccessCodeResource
+  access_code: AccessCode
 }
 
 export type AccessCodesPullBackupAccessCodeRequest = SeamHttpRequest<

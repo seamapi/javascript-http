@@ -29,12 +29,12 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AcsEntranceResource } from 'lib/seam/connect/resources/acs-entrance.js'
-import type { AcsSystemResource } from 'lib/seam/connect/resources/acs-system.js'
-import type { AcsUserResource } from 'lib/seam/connect/resources/acs-user.js'
-import type { DeviceResource } from 'lib/seam/connect/resources/device.js'
-import type { InstantKeyResource } from 'lib/seam/connect/resources/instant-key.js'
-import type { UserIdentityResource } from 'lib/seam/connect/resources/user-identity.js'
+import type { AcsEntrance } from 'lib/seam/connect/resources/acs-entrance.js'
+import type { AcsSystem } from 'lib/seam/connect/resources/acs-system.js'
+import type { AcsUser } from 'lib/seam/connect/resources/acs-user.js'
+import type { Device } from 'lib/seam/connect/resources/device.js'
+import type { InstantKey } from 'lib/seam/connect/resources/instant-key.js'
+import type { UserIdentity } from 'lib/seam/connect/resources/user-identity.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -385,9 +385,7 @@ export type UserIdentitiesCreateParameters = {
 /**
  * @deprecated Use UserIdentitiesCreateRequest instead.
  */
-export type UserIdentitiesCreateResponse = {
-  user_identity: UserIdentityResource
-}
+export type UserIdentitiesCreateResponse = { user_identity: UserIdentity }
 
 export type UserIdentitiesCreateRequest = SeamHttpRequest<
   UserIdentitiesCreateResponse,
@@ -419,7 +417,7 @@ export type UserIdentitiesGenerateInstantKeyParameters = {
  * @deprecated Use UserIdentitiesGenerateInstantKeyRequest instead.
  */
 export type UserIdentitiesGenerateInstantKeyResponse = {
-  instant_key: InstantKeyResource
+  instant_key: InstantKey
 }
 
 export type UserIdentitiesGenerateInstantKeyRequest = SeamHttpRequest<
@@ -437,7 +435,7 @@ export type UserIdentitiesGetParameters = {
 /**
  * @deprecated Use UserIdentitiesGetRequest instead.
  */
-export type UserIdentitiesGetResponse = { user_identity: UserIdentityResource }
+export type UserIdentitiesGetResponse = { user_identity: UserIdentity }
 
 export type UserIdentitiesGetRequest = SeamHttpRequest<
   UserIdentitiesGetResponse,
@@ -477,7 +475,7 @@ export type UserIdentitiesListParameters = {
  * @deprecated Use UserIdentitiesListRequest instead.
  */
 export type UserIdentitiesListResponse = {
-  user_identities: Array<UserIdentityResource>
+  user_identities: Array<UserIdentity>
 }
 
 export type UserIdentitiesListRequest = SeamHttpRequest<
@@ -495,7 +493,7 @@ export type UserIdentitiesListAccessibleDevicesParameters = {
  * @deprecated Use UserIdentitiesListAccessibleDevicesRequest instead.
  */
 export type UserIdentitiesListAccessibleDevicesResponse = {
-  devices: Array<DeviceResource>
+  devices: Array<Device>
 }
 
 export type UserIdentitiesListAccessibleDevicesRequest = SeamHttpRequest<
@@ -513,7 +511,7 @@ export type UserIdentitiesListAccessibleEntrancesParameters = {
  * @deprecated Use UserIdentitiesListAccessibleEntrancesRequest instead.
  */
 export type UserIdentitiesListAccessibleEntrancesResponse = {
-  acs_entrances: Array<AcsEntranceResource>
+  acs_entrances: Array<AcsEntrance>
 }
 
 export type UserIdentitiesListAccessibleEntrancesRequest = SeamHttpRequest<
@@ -531,7 +529,7 @@ export type UserIdentitiesListAcsSystemsParameters = {
  * @deprecated Use UserIdentitiesListAcsSystemsRequest instead.
  */
 export type UserIdentitiesListAcsSystemsResponse = {
-  acs_systems: Array<AcsSystemResource>
+  acs_systems: Array<AcsSystem>
 }
 
 export type UserIdentitiesListAcsSystemsRequest = SeamHttpRequest<
@@ -548,9 +546,7 @@ export type UserIdentitiesListAcsUsersParameters = {
 /**
  * @deprecated Use UserIdentitiesListAcsUsersRequest instead.
  */
-export type UserIdentitiesListAcsUsersResponse = {
-  acs_users: Array<AcsUserResource>
-}
+export type UserIdentitiesListAcsUsersResponse = { acs_users: Array<AcsUser> }
 
 export type UserIdentitiesListAcsUsersRequest = SeamHttpRequest<
   UserIdentitiesListAcsUsersResponse,

@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { PhoneResource } from 'lib/seam/connect/resources/phone.js'
+import type { Phone } from 'lib/seam/connect/resources/phone.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -227,7 +227,7 @@ export type PhonesGetParameters = {
 /**
  * @deprecated Use PhonesGetRequest instead.
  */
-export type PhonesGetResponse = { phone: PhoneResource }
+export type PhonesGetResponse = { phone: Phone }
 
 export type PhonesGetRequest = SeamHttpRequest<PhonesGetResponse, 'phone'>
 
@@ -241,7 +241,7 @@ export type PhonesListParameters = {
 /**
  * @deprecated Use PhonesListRequest instead.
  */
-export type PhonesListResponse = { phones: Array<PhoneResource> }
+export type PhonesListResponse = { phones: Array<Phone> }
 
 export type PhonesListRequest = SeamHttpRequest<PhonesListResponse, 'phones'>
 

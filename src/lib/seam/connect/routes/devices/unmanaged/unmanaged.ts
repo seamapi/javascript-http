@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { UnmanagedDeviceResource } from 'lib/seam/connect/resources/unmanaged-device.js'
+import type { UnmanagedDevice } from 'lib/seam/connect/resources/unmanaged-device.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -209,7 +209,7 @@ export type DevicesUnmanagedGetParameters = {
 /**
  * @deprecated Use DevicesUnmanagedGetRequest instead.
  */
-export type DevicesUnmanagedGetResponse = { device: UnmanagedDeviceResource }
+export type DevicesUnmanagedGetResponse = { device: UnmanagedDevice }
 
 export type DevicesUnmanagedGetRequest = SeamHttpRequest<
   DevicesUnmanagedGetResponse,
@@ -380,9 +380,7 @@ export type DevicesUnmanagedListParameters = {
 /**
  * @deprecated Use DevicesUnmanagedListRequest instead.
  */
-export type DevicesUnmanagedListResponse = {
-  devices: Array<UnmanagedDeviceResource>
-}
+export type DevicesUnmanagedListResponse = { devices: Array<UnmanagedDevice> }
 
 export type DevicesUnmanagedListRequest = SeamHttpRequest<
   DevicesUnmanagedListResponse,

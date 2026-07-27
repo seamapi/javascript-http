@@ -29,9 +29,9 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AcsCredentialResource } from 'lib/seam/connect/resources/acs-credential.js'
-import type { AcsEntranceResource } from 'lib/seam/connect/resources/acs-entrance.js'
-import type { ActionAttemptResource } from 'lib/seam/connect/resources/action-attempt.js'
+import type { AcsCredential } from 'lib/seam/connect/resources/acs-credential.js'
+import type { AcsEntrance } from 'lib/seam/connect/resources/acs-entrance.js'
+import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -236,7 +236,7 @@ export type AcsEntrancesGetParameters = {
 /**
  * @deprecated Use AcsEntrancesGetRequest instead.
  */
-export type AcsEntrancesGetResponse = { acs_entrance: AcsEntranceResource }
+export type AcsEntrancesGetResponse = { acs_entrance: AcsEntrance }
 
 export type AcsEntrancesGetRequest = SeamHttpRequest<
   AcsEntrancesGetResponse,
@@ -278,9 +278,7 @@ export type AcsEntrancesListParameters = {
 /**
  * @deprecated Use AcsEntrancesListRequest instead.
  */
-export type AcsEntrancesListResponse = {
-  acs_entrances: Array<AcsEntranceResource>
-}
+export type AcsEntrancesListResponse = { acs_entrances: Array<AcsEntrance> }
 
 export type AcsEntrancesListRequest = SeamHttpRequest<
   AcsEntrancesListResponse,
@@ -299,7 +297,7 @@ export type AcsEntrancesListCredentialsWithAccessParameters = {
  * @deprecated Use AcsEntrancesListCredentialsWithAccessRequest instead.
  */
 export type AcsEntrancesListCredentialsWithAccessResponse = {
-  acs_credentials: Array<AcsCredentialResource>
+  acs_credentials: Array<AcsCredential>
 }
 
 export type AcsEntrancesListCredentialsWithAccessRequest = SeamHttpRequest<
@@ -318,9 +316,7 @@ export type AcsEntrancesUnlockParameters = {
 /**
  * @deprecated Use AcsEntrancesUnlockRequest instead.
  */
-export type AcsEntrancesUnlockResponse = {
-  action_attempt: ActionAttemptResource
-}
+export type AcsEntrancesUnlockResponse = { action_attempt: ActionAttempt }
 
 export type AcsEntrancesUnlockRequest = SeamHttpRequest<
   AcsEntrancesUnlockResponse,

@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { InstantKeyResource } from 'lib/seam/connect/resources/instant-key.js'
+import type { InstantKey } from 'lib/seam/connect/resources/instant-key.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -222,7 +222,7 @@ export type InstantKeysGetParameters = {
 /**
  * @deprecated Use InstantKeysGetRequest instead.
  */
-export type InstantKeysGetResponse = { instant_key: InstantKeyResource }
+export type InstantKeysGetResponse = { instant_key: InstantKey }
 
 export type InstantKeysGetRequest = SeamHttpRequest<
   InstantKeysGetResponse,
@@ -238,9 +238,7 @@ export type InstantKeysListParameters = {
 /**
  * @deprecated Use InstantKeysListRequest instead.
  */
-export type InstantKeysListResponse = {
-  instant_keys: Array<InstantKeyResource>
-}
+export type InstantKeysListResponse = { instant_keys: Array<InstantKey> }
 
 export type InstantKeysListRequest = SeamHttpRequest<
   InstantKeysListResponse,

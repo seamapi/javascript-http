@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AcsCredentialResource } from 'lib/seam/connect/resources/acs-credential.js'
-import type { AcsEntranceResource } from 'lib/seam/connect/resources/acs-entrance.js'
+import type { AcsCredential } from 'lib/seam/connect/resources/acs-credential.js'
+import type { AcsEntrance } from 'lib/seam/connect/resources/acs-entrance.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -322,9 +322,7 @@ export type AcsCredentialsCreateParameters = {
 /**
  * @deprecated Use AcsCredentialsCreateRequest instead.
  */
-export type AcsCredentialsCreateResponse = {
-  acs_credential: AcsCredentialResource
-}
+export type AcsCredentialsCreateResponse = { acs_credential: AcsCredential }
 
 export type AcsCredentialsCreateRequest = SeamHttpRequest<
   AcsCredentialsCreateResponse,
@@ -353,9 +351,7 @@ export type AcsCredentialsGetParameters = {
 /**
  * @deprecated Use AcsCredentialsGetRequest instead.
  */
-export type AcsCredentialsGetResponse = {
-  acs_credential: AcsCredentialResource
-}
+export type AcsCredentialsGetResponse = { acs_credential: AcsCredential }
 
 export type AcsCredentialsGetRequest = SeamHttpRequest<
   AcsCredentialsGetResponse,
@@ -379,7 +375,7 @@ export type AcsCredentialsListParameters = {
  * @deprecated Use AcsCredentialsListRequest instead.
  */
 export type AcsCredentialsListResponse = {
-  acs_credentials: Array<AcsCredentialResource>
+  acs_credentials: Array<AcsCredential>
 }
 
 export type AcsCredentialsListRequest = SeamHttpRequest<
@@ -397,7 +393,7 @@ export type AcsCredentialsListAccessibleEntrancesParameters = {
  * @deprecated Use AcsCredentialsListAccessibleEntrancesRequest instead.
  */
 export type AcsCredentialsListAccessibleEntrancesResponse = {
-  acs_entrances: Array<AcsEntranceResource>
+  acs_entrances: Array<AcsEntrance>
 }
 
 export type AcsCredentialsListAccessibleEntrancesRequest = SeamHttpRequest<

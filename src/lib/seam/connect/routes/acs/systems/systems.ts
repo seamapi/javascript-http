@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AcsSystemResource } from 'lib/seam/connect/resources/acs-system.js'
+import type { AcsSystem } from 'lib/seam/connect/resources/acs-system.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -221,7 +221,7 @@ export type AcsSystemsGetParameters = {
 /**
  * @deprecated Use AcsSystemsGetRequest instead.
  */
-export type AcsSystemsGetResponse = { acs_system: AcsSystemResource }
+export type AcsSystemsGetResponse = { acs_system: AcsSystem }
 
 export type AcsSystemsGetRequest = SeamHttpRequest<
   AcsSystemsGetResponse,
@@ -239,7 +239,7 @@ export type AcsSystemsListParameters = {
 /**
  * @deprecated Use AcsSystemsListRequest instead.
  */
-export type AcsSystemsListResponse = { acs_systems: Array<AcsSystemResource> }
+export type AcsSystemsListResponse = { acs_systems: Array<AcsSystem> }
 
 export type AcsSystemsListRequest = SeamHttpRequest<
   AcsSystemsListResponse,
@@ -256,7 +256,7 @@ export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters = {
  * @deprecated Use AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest instead.
  */
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse = {
-  acs_systems: Array<AcsSystemResource>
+  acs_systems: Array<AcsSystem>
 }
 
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest =

@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { SpaceResource } from 'lib/seam/connect/resources/space.js'
-import type { UnknownResource } from 'lib/seam/connect/resources/unknown.js'
+import type { Space } from 'lib/seam/connect/resources/space.js'
+import type { Unknown } from 'lib/seam/connect/resources/unknown.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -385,7 +385,7 @@ export type SpacesCreateParameters = {
 /**
  * @deprecated Use SpacesCreateRequest instead.
  */
-export type SpacesCreateResponse = { space: SpaceResource }
+export type SpacesCreateResponse = { space: Space }
 
 export type SpacesCreateRequest = SeamHttpRequest<SpacesCreateResponse, 'space'>
 
@@ -412,7 +412,7 @@ export type SpacesGetParameters = {
 /**
  * @deprecated Use SpacesGetRequest instead.
  */
-export type SpacesGetResponse = { space: SpaceResource }
+export type SpacesGetResponse = { space: Space }
 
 export type SpacesGetRequest = SeamHttpRequest<SpacesGetResponse, 'space'>
 
@@ -446,7 +446,7 @@ export type SpacesGetRelatedParameters = {
 /**
  * @deprecated Use SpacesGetRelatedRequest instead.
  */
-export type SpacesGetRelatedResponse = { batch: UnknownResource }
+export type SpacesGetRelatedResponse = { batch: Unknown }
 
 export type SpacesGetRelatedRequest = SeamHttpRequest<
   SpacesGetRelatedResponse,
@@ -466,7 +466,7 @@ export type SpacesListParameters = {
 /**
  * @deprecated Use SpacesListRequest instead.
  */
-export type SpacesListResponse = { spaces: Array<SpaceResource> }
+export type SpacesListResponse = { spaces: Array<Space> }
 
 export type SpacesListRequest = SeamHttpRequest<SpacesListResponse, 'spaces'>
 
@@ -539,7 +539,7 @@ export type SpacesUpdateParameters = {
 /**
  * @deprecated Use SpacesUpdateRequest instead.
  */
-export type SpacesUpdateResponse = { space: SpaceResource }
+export type SpacesUpdateResponse = { space: Space }
 
 export type SpacesUpdateRequest = SeamHttpRequest<SpacesUpdateResponse, 'space'>
 

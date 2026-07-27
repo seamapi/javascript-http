@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AcsEncoderResource } from 'lib/seam/connect/resources/acs-encoder.js'
-import type { ActionAttemptResource } from 'lib/seam/connect/resources/action-attempt.js'
+import type { AcsEncoder } from 'lib/seam/connect/resources/acs-encoder.js'
+import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -244,7 +244,7 @@ export type AcsEncodersEncodeCredentialParameters = {
  * @deprecated Use AcsEncodersEncodeCredentialRequest instead.
  */
 export type AcsEncodersEncodeCredentialResponse = {
-  action_attempt: ActionAttemptResource
+  action_attempt: ActionAttempt
 }
 
 export type AcsEncodersEncodeCredentialRequest = SeamHttpRequest<
@@ -264,7 +264,7 @@ export type AcsEncodersGetParameters = {
 /**
  * @deprecated Use AcsEncodersGetRequest instead.
  */
-export type AcsEncodersGetResponse = { acs_encoder: AcsEncoderResource }
+export type AcsEncodersGetResponse = { acs_encoder: AcsEncoder }
 
 export type AcsEncodersGetRequest = SeamHttpRequest<
   AcsEncodersGetResponse,
@@ -284,9 +284,7 @@ export type AcsEncodersListParameters = {
 /**
  * @deprecated Use AcsEncodersListRequest instead.
  */
-export type AcsEncodersListResponse = {
-  acs_encoders: Array<AcsEncoderResource>
-}
+export type AcsEncodersListResponse = { acs_encoders: Array<AcsEncoder> }
 
 export type AcsEncodersListRequest = SeamHttpRequest<
   AcsEncodersListResponse,
@@ -309,7 +307,7 @@ export type AcsEncodersScanCredentialParameters = {
  * @deprecated Use AcsEncodersScanCredentialRequest instead.
  */
 export type AcsEncodersScanCredentialResponse = {
-  action_attempt: ActionAttemptResource
+  action_attempt: ActionAttempt
 }
 
 export type AcsEncodersScanCredentialRequest = SeamHttpRequest<
@@ -338,7 +336,7 @@ export type AcsEncodersScanToAssignCredentialParameters = {
  * @deprecated Use AcsEncodersScanToAssignCredentialRequest instead.
  */
 export type AcsEncodersScanToAssignCredentialResponse = {
-  action_attempt: ActionAttemptResource
+  action_attempt: ActionAttempt
 }
 
 export type AcsEncodersScanToAssignCredentialRequest = SeamHttpRequest<

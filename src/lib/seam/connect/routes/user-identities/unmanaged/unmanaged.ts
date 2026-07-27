@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { UnknownResource } from 'lib/seam/connect/resources/unknown.js'
+import type { Unknown } from 'lib/seam/connect/resources/unknown.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -211,9 +211,7 @@ export type UserIdentitiesUnmanagedGetParameters = {
 /**
  * @deprecated Use UserIdentitiesUnmanagedGetRequest instead.
  */
-export type UserIdentitiesUnmanagedGetResponse = {
-  user_identity: UnknownResource
-}
+export type UserIdentitiesUnmanagedGetResponse = { user_identity: Unknown }
 
 export type UserIdentitiesUnmanagedGetRequest = SeamHttpRequest<
   UserIdentitiesUnmanagedGetResponse,
@@ -233,7 +231,7 @@ export type UserIdentitiesUnmanagedListParameters = {
  * @deprecated Use UserIdentitiesUnmanagedListRequest instead.
  */
 export type UserIdentitiesUnmanagedListResponse = {
-  user_identities: Array<UnknownResource>
+  user_identities: Array<Unknown>
 }
 
 export type UserIdentitiesUnmanagedListRequest = SeamHttpRequest<

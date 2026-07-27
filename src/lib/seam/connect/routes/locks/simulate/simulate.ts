@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ActionAttemptResource } from 'lib/seam/connect/resources/action-attempt.js'
+import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -198,7 +198,7 @@ export type LocksSimulateKeypadCodeEntryParameters = {
  * @deprecated Use LocksSimulateKeypadCodeEntryRequest instead.
  */
 export type LocksSimulateKeypadCodeEntryResponse = {
-  action_attempt: ActionAttemptResource
+  action_attempt: ActionAttempt
 }
 
 export type LocksSimulateKeypadCodeEntryRequest = SeamHttpRequest<
@@ -219,7 +219,7 @@ export type LocksSimulateManualLockViaKeypadParameters = {
  * @deprecated Use LocksSimulateManualLockViaKeypadRequest instead.
  */
 export type LocksSimulateManualLockViaKeypadResponse = {
-  action_attempt: ActionAttemptResource
+  action_attempt: ActionAttempt
 }
 
 export type LocksSimulateManualLockViaKeypadRequest = SeamHttpRequest<

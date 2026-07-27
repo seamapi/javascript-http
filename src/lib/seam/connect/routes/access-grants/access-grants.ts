@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AccessGrantResource } from 'lib/seam/connect/resources/access-grant.js'
-import type { UnknownResource } from 'lib/seam/connect/resources/unknown.js'
+import type { AccessGrant } from 'lib/seam/connect/resources/access-grant.js'
+import type { Unknown } from 'lib/seam/connect/resources/unknown.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -299,7 +299,7 @@ export type AccessGrantsCreateParameters = {
 /**
  * @deprecated Use AccessGrantsCreateRequest instead.
  */
-export type AccessGrantsCreateResponse = { access_grant: AccessGrantResource }
+export type AccessGrantsCreateResponse = { access_grant: AccessGrant }
 
 export type AccessGrantsCreateRequest = SeamHttpRequest<
   AccessGrantsCreateResponse,
@@ -329,7 +329,7 @@ export type AccessGrantsGetParameters = {
 /**
  * @deprecated Use AccessGrantsGetRequest instead.
  */
-export type AccessGrantsGetResponse = { access_grant: AccessGrantResource }
+export type AccessGrantsGetResponse = { access_grant: AccessGrant }
 
 export type AccessGrantsGetRequest = SeamHttpRequest<
   AccessGrantsGetResponse,
@@ -370,7 +370,7 @@ export type AccessGrantsGetRelatedParameters = {
 /**
  * @deprecated Use AccessGrantsGetRelatedRequest instead.
  */
-export type AccessGrantsGetRelatedResponse = { batch: UnknownResource }
+export type AccessGrantsGetRelatedResponse = { batch: Unknown }
 
 export type AccessGrantsGetRelatedRequest = SeamHttpRequest<
   AccessGrantsGetRelatedResponse,
@@ -398,9 +398,7 @@ export type AccessGrantsListParameters = {
 /**
  * @deprecated Use AccessGrantsListRequest instead.
  */
-export type AccessGrantsListResponse = {
-  access_grants: Array<AccessGrantResource>
-}
+export type AccessGrantsListResponse = { access_grants: Array<AccessGrant> }
 
 export type AccessGrantsListRequest = SeamHttpRequest<
   AccessGrantsListResponse,
@@ -423,7 +421,7 @@ export type AccessGrantsRequestAccessMethodsParameters = {
  * @deprecated Use AccessGrantsRequestAccessMethodsRequest instead.
  */
 export type AccessGrantsRequestAccessMethodsResponse = {
-  access_grant: AccessGrantResource
+  access_grant: AccessGrant
 }
 
 export type AccessGrantsRequestAccessMethodsRequest = SeamHttpRequest<

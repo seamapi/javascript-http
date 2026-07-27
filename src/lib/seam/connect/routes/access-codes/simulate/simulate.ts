@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { UnmanagedAccessCodeResource } from 'lib/seam/connect/resources/unmanaged-access-code.js'
+import type { UnmanagedAccessCode } from 'lib/seam/connect/resources/unmanaged-access-code.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -187,7 +187,7 @@ export type AccessCodesSimulateCreateUnmanagedAccessCodeParameters = {
  * @deprecated Use AccessCodesSimulateCreateUnmanagedAccessCodeRequest instead.
  */
 export type AccessCodesSimulateCreateUnmanagedAccessCodeResponse = {
-  access_code: UnmanagedAccessCodeResource
+  access_code: UnmanagedAccessCode
 }
 
 export type AccessCodesSimulateCreateUnmanagedAccessCodeRequest =

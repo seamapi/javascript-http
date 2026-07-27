@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ConnectedAccountResource } from 'lib/seam/connect/resources/connected-account.js'
+import type { ConnectedAccount } from 'lib/seam/connect/resources/connected-account.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -258,7 +258,7 @@ export type ConnectedAccountsGetParameters = {
  * @deprecated Use ConnectedAccountsGetRequest instead.
  */
 export type ConnectedAccountsGetResponse = {
-  connected_account: ConnectedAccountResource
+  connected_account: ConnectedAccount
 }
 
 export type ConnectedAccountsGetRequest = SeamHttpRequest<
@@ -282,7 +282,7 @@ export type ConnectedAccountsListParameters = {
  * @deprecated Use ConnectedAccountsListRequest instead.
  */
 export type ConnectedAccountsListResponse = {
-  connected_accounts: Array<ConnectedAccountResource>
+  connected_accounts: Array<ConnectedAccount>
 }
 
 export type ConnectedAccountsListRequest = SeamHttpRequest<

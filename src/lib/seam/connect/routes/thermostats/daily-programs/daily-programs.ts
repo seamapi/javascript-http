@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ActionAttemptResource } from 'lib/seam/connect/resources/action-attempt.js'
-import type { ThermostatDailyProgramResource } from 'lib/seam/connect/resources/thermostat-daily-program.js'
+import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
+import type { ThermostatDailyProgram } from 'lib/seam/connect/resources/thermostat-daily-program.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -220,7 +220,7 @@ export type ThermostatsDailyProgramsCreateParameters = {
  * @deprecated Use ThermostatsDailyProgramsCreateRequest instead.
  */
 export type ThermostatsDailyProgramsCreateResponse = {
-  thermostat_daily_program: ThermostatDailyProgramResource
+  thermostat_daily_program: ThermostatDailyProgram
 }
 
 export type ThermostatsDailyProgramsCreateRequest = SeamHttpRequest<
@@ -261,7 +261,7 @@ export type ThermostatsDailyProgramsUpdateParameters = {
  * @deprecated Use ThermostatsDailyProgramsUpdateRequest instead.
  */
 export type ThermostatsDailyProgramsUpdateResponse = {
-  action_attempt: ActionAttemptResource
+  action_attempt: ActionAttempt
 }
 
 export type ThermostatsDailyProgramsUpdateRequest = SeamHttpRequest<

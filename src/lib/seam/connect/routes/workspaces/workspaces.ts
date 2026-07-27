@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ActionAttemptResource } from 'lib/seam/connect/resources/action-attempt.js'
-import type { WorkspaceResource } from 'lib/seam/connect/resources/workspace.js'
+import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
+import type { Workspace } from 'lib/seam/connect/resources/workspace.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -252,7 +252,7 @@ export type WorkspacesCreateParameters = {
 /**
  * @deprecated Use WorkspacesCreateRequest instead.
  */
-export type WorkspacesCreateResponse = { workspace: WorkspaceResource }
+export type WorkspacesCreateResponse = { workspace: Workspace }
 
 export type WorkspacesCreateRequest = SeamHttpRequest<
   WorkspacesCreateResponse,
@@ -266,7 +266,7 @@ export type WorkspacesGetParameters = {}
 /**
  * @deprecated Use WorkspacesGetRequest instead.
  */
-export type WorkspacesGetResponse = { workspace: WorkspaceResource }
+export type WorkspacesGetResponse = { workspace: Workspace }
 
 export type WorkspacesGetRequest = SeamHttpRequest<
   WorkspacesGetResponse,
@@ -280,7 +280,7 @@ export type WorkspacesListParameters = {}
 /**
  * @deprecated Use WorkspacesListRequest instead.
  */
-export type WorkspacesListResponse = { workspaces: Array<WorkspaceResource> }
+export type WorkspacesListResponse = { workspaces: Array<Workspace> }
 
 export type WorkspacesListRequest = SeamHttpRequest<
   WorkspacesListResponse,
@@ -294,9 +294,7 @@ export type WorkspacesResetSandboxParameters = {}
 /**
  * @deprecated Use WorkspacesResetSandboxRequest instead.
  */
-export type WorkspacesResetSandboxResponse = {
-  action_attempt: ActionAttemptResource
-}
+export type WorkspacesResetSandboxResponse = { action_attempt: ActionAttempt }
 
 export type WorkspacesResetSandboxRequest = SeamHttpRequest<
   WorkspacesResetSandboxResponse,

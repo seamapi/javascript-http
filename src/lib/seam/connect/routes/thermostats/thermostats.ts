@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ActionAttemptResource } from 'lib/seam/connect/resources/action-attempt.js'
-import type { DeviceResource } from 'lib/seam/connect/resources/device.js'
+import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
+import type { Device } from 'lib/seam/connect/resources/device.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -374,7 +374,7 @@ export type ThermostatsActivateClimatePresetParameters = {
  * @deprecated Use ThermostatsActivateClimatePresetRequest instead.
  */
 export type ThermostatsActivateClimatePresetResponse = {
-  action_attempt: ActionAttemptResource
+  action_attempt: ActionAttempt
 }
 
 export type ThermostatsActivateClimatePresetRequest = SeamHttpRequest<
@@ -396,7 +396,7 @@ export type ThermostatsCoolParameters = {
 /**
  * @deprecated Use ThermostatsCoolRequest instead.
  */
-export type ThermostatsCoolResponse = { action_attempt: ActionAttemptResource }
+export type ThermostatsCoolResponse = { action_attempt: ActionAttempt }
 
 export type ThermostatsCoolRequest = SeamHttpRequest<
   ThermostatsCoolResponse,
@@ -472,7 +472,7 @@ export type ThermostatsHeatParameters = {
 /**
  * @deprecated Use ThermostatsHeatRequest instead.
  */
-export type ThermostatsHeatResponse = { action_attempt: ActionAttemptResource }
+export type ThermostatsHeatResponse = { action_attempt: ActionAttempt }
 
 export type ThermostatsHeatRequest = SeamHttpRequest<
   ThermostatsHeatResponse,
@@ -496,9 +496,7 @@ export type ThermostatsHeatCoolParameters = {
 /**
  * @deprecated Use ThermostatsHeatCoolRequest instead.
  */
-export type ThermostatsHeatCoolResponse = {
-  action_attempt: ActionAttemptResource
-}
+export type ThermostatsHeatCoolResponse = { action_attempt: ActionAttempt }
 
 export type ThermostatsHeatCoolRequest = SeamHttpRequest<
   ThermostatsHeatCoolResponse,
@@ -555,7 +553,7 @@ export type ThermostatsListParameters = {
 /**
  * @deprecated Use ThermostatsListRequest instead.
  */
-export type ThermostatsListResponse = { devices: Array<DeviceResource> }
+export type ThermostatsListResponse = { devices: Array<Device> }
 
 export type ThermostatsListRequest = SeamHttpRequest<
   ThermostatsListResponse,
@@ -571,7 +569,7 @@ export type ThermostatsOffParameters = {
 /**
  * @deprecated Use ThermostatsOffRequest instead.
  */
-export type ThermostatsOffResponse = { action_attempt: ActionAttemptResource }
+export type ThermostatsOffResponse = { action_attempt: ActionAttempt }
 
 export type ThermostatsOffRequest = SeamHttpRequest<
   ThermostatsOffResponse,
@@ -611,9 +609,7 @@ export type ThermostatsSetFanModeParameters = {
 /**
  * @deprecated Use ThermostatsSetFanModeRequest instead.
  */
-export type ThermostatsSetFanModeResponse = {
-  action_attempt: ActionAttemptResource
-}
+export type ThermostatsSetFanModeResponse = { action_attempt: ActionAttempt }
 
 export type ThermostatsSetFanModeRequest = SeamHttpRequest<
   ThermostatsSetFanModeResponse,
@@ -639,9 +635,7 @@ export type ThermostatsSetHvacModeParameters = {
 /**
  * @deprecated Use ThermostatsSetHvacModeRequest instead.
  */
-export type ThermostatsSetHvacModeResponse = {
-  action_attempt: ActionAttemptResource
-}
+export type ThermostatsSetHvacModeResponse = { action_attempt: ActionAttempt }
 
 export type ThermostatsSetHvacModeRequest = SeamHttpRequest<
   ThermostatsSetHvacModeResponse,
@@ -726,7 +720,7 @@ export type ThermostatsUpdateWeeklyProgramParameters = {
  * @deprecated Use ThermostatsUpdateWeeklyProgramRequest instead.
  */
 export type ThermostatsUpdateWeeklyProgramResponse = {
-  action_attempt: ActionAttemptResource
+  action_attempt: ActionAttempt
 }
 
 export type ThermostatsUpdateWeeklyProgramRequest = SeamHttpRequest<

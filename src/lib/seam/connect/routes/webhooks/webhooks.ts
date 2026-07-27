@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { WebhookResource } from 'lib/seam/connect/resources/webhook.js'
+import type { Webhook } from 'lib/seam/connect/resources/webhook.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -235,7 +235,7 @@ export type WebhooksCreateParameters = {
 /**
  * @deprecated Use WebhooksCreateRequest instead.
  */
-export type WebhooksCreateResponse = { webhook: WebhookResource }
+export type WebhooksCreateResponse = { webhook: Webhook }
 
 export type WebhooksCreateRequest = SeamHttpRequest<
   WebhooksCreateResponse,
@@ -264,7 +264,7 @@ export type WebhooksGetParameters = {
 /**
  * @deprecated Use WebhooksGetRequest instead.
  */
-export type WebhooksGetResponse = { webhook: WebhookResource }
+export type WebhooksGetResponse = { webhook: Webhook }
 
 export type WebhooksGetRequest = SeamHttpRequest<WebhooksGetResponse, 'webhook'>
 
@@ -275,7 +275,7 @@ export type WebhooksListParameters = {}
 /**
  * @deprecated Use WebhooksListRequest instead.
  */
-export type WebhooksListResponse = { webhooks: Array<WebhookResource> }
+export type WebhooksListResponse = { webhooks: Array<Webhook> }
 
 export type WebhooksListRequest = SeamHttpRequest<
   WebhooksListResponse,
