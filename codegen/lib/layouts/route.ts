@@ -6,11 +6,9 @@ import { getResourceTypeName } from './resources.js'
 
 export interface RouteLayoutContext {
   className: string
-  isUndocumented: boolean
   endpoints: EndpointLayoutContext[]
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
-  hasLegacyTypes: boolean
   resourceTypeImports: ResourceTypeImport[]
 }
 
@@ -27,16 +25,12 @@ export interface EndpointLayoutContext {
   responseKey: string
   requestFormat: 'params' | 'body'
   parametersTypeName: string
-  legacyRequestTypeName: string
   responseTypeName: string
-  requestFormatSuffix: string
   optionsTypeName: string
   requestTypeName: string
   returnsActionAttempt: boolean
   returnsVoid: boolean
   isOptionalParamsOk: boolean
-  isUndocumented: boolean
-  usesLegacyResponseType: boolean
   parameters: Parameter[]
   responseIsList: boolean
   responseResourceTypeName: string
@@ -59,34 +53,12 @@ export const setRouteLayoutContext = (
   nodes: Array<Route | Namespace>,
 ): void => {
   file.className = getClassName(node?.path ?? null)
-  file.isUndocumented = node?.isUndocumented ?? false
   file.skipClientSessionImport =
     node == null || node?.path === '/client_sessions'
-  file.hasLegacyTypes =
-    node != null && 'endpoints' in node
-      ? node.endpoints.some(
-          (endpoint) =>
-            endpoint.isUndocumented ||
-            (endpoint.response.responseType === 'resource' &&
-              endpoint.response.resourceType === 'action_attempt'),
-        )
-      : false
   file.resourceTypeImports =
     node != null && 'endpoints' in node
       ? [
-          ...new Set(
-            node.endpoints.flatMap((endpoint) => {
-              if (
-                endpoint.isUndocumented ||
-                endpoint.response.responseType === 'void' ||
-                (endpoint.response.responseType === 'resource' &&
-                  endpoint.response.resourceType === 'action_attempt')
-              ) {
-                return []
-              }
-              return [endpoint.response.resourceType]
-            }),
-          ),
+          ...new Set(node.endpoints.flatMap(getEndpointResponseResourceTypes)),
         ].map((resourceType) => ({
           fileName: `${kebabCase(resourceType)}.js`,
           typeName: getResourceTypeName(resourceType),
@@ -107,7 +79,7 @@ export const setRouteLayoutContext = (
 }
 
 const getSubrouteLayoutContext = (
-  route: Pick<Route, 'path' | 'name' | 'isUndocumented'>,
+  route: Pick<Route, 'path' | 'name'>,
 ): SubrouteLayoutContext => {
   return {
     fileName: `${kebabCase(route.name)}/index.js`,
@@ -122,19 +94,23 @@ export const getEndpointLayoutContext = (
 ): EndpointLayoutContext => {
   const prefix = pascalCase([route.path.split('/'), endpoint.name].join('_'))
 
-  const legacyMethodParamName = ['GET', 'DELETE'].includes(
-    endpoint.request.semanticMethod,
-  )
-    ? 'params'
-    : 'body'
+  const batchResourceKeys = getBatchResourceKeys(endpoint)
+
+  if (
+    endpoint.response.responseType !== 'void' &&
+    endpoint.response.resourceType === 'unknown' &&
+    batchResourceKeys.length === 0
+  ) {
+    throw new Error(
+      `Cannot generate ${endpoint.path}: response resource type is unknown`,
+    )
+  }
 
   const requestFormat = ['GET', 'DELETE'].includes(
     endpoint.request.preferredMethod,
   )
     ? 'params'
     : 'body'
-
-  const requestFormatSuffix = pascalCase(requestFormat)
 
   const returnsActionAttempt =
     endpoint.response.responseType === 'resource' &&
@@ -149,26 +125,40 @@ export const getEndpointLayoutContext = (
     method: endpoint.request.preferredMethod,
     className: getClassName(route.path),
     requestFormat,
-    requestFormatSuffix,
     returnsActionAttempt,
     parametersTypeName: `${prefix}Parameters`,
-    legacyRequestTypeName: `${prefix}${pascalCase(legacyMethodParamName)}`,
     responseTypeName: `${prefix}Response`,
     optionsTypeName: `${prefix}Options`,
     requestTypeName: `${prefix}Request`,
     isOptionalParamsOk: endpoint.request.parameters.every(
       (parameter) => !parameter.isRequired,
     ),
-    isUndocumented: endpoint.isUndocumented,
-    usesLegacyResponseType: endpoint.isUndocumented || returnsActionAttempt,
     parameters: endpoint.request.parameters,
     responseIsList: endpoint.response.responseType === 'resource_list',
     responseResourceTypeName:
       endpoint.response.responseType === 'void'
         ? ''
-        : getResourceTypeName(endpoint.response.resourceType),
+        : batchResourceKeys.length > 0
+          ? `Batch<${batchResourceKeys.map((key) => `'${key}'`).join(' | ')}>`
+          : getResourceTypeName(endpoint.response.resourceType),
     ...getResponseContext(endpoint),
   }
+}
+
+const getEndpointResponseResourceTypes = (endpoint: Endpoint): string[] => {
+  if (endpoint.response.responseType === 'void') return []
+  if (endpoint.response.responseType === 'resource') {
+    const { batchResourceTypes } = endpoint.response
+    if (batchResourceTypes != null) return ['batch']
+  }
+  return [endpoint.response.resourceType]
+}
+
+const getBatchResourceKeys = (endpoint: Endpoint): string[] => {
+  if (endpoint.response.responseType !== 'resource') return []
+  return (
+    endpoint.response.batchResourceTypes?.map(({ batchKey }) => batchKey) ?? []
+  )
 }
 
 const getResponseContext = (

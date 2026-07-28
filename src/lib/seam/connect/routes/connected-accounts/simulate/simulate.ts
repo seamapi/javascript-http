@@ -182,12 +182,6 @@ export type ConnectedAccountsSimulateDisconnectParameters = {
 }
 
 /**
- * @deprecated Use ConnectedAccountsSimulateDisconnectParameters instead.
- */
-export type ConnectedAccountsSimulateDisconnectBody =
-  ConnectedAccountsSimulateDisconnectParameters
-
-/**
  * @deprecated Use ConnectedAccountsSimulateDisconnectRequest instead.
  */
 export type ConnectedAccountsSimulateDisconnectResponse = void

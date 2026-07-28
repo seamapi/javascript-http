@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { UnknownResource } from 'lib/seam/connect/resources/unknown.js'
+import type { UnmanagedAccessMethod } from 'lib/seam/connect/resources/unmanaged-access-method.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -193,16 +193,10 @@ export type AccessMethodsUnmanagedGetParameters = {
 }
 
 /**
- * @deprecated Use AccessMethodsUnmanagedGetParameters instead.
- */
-export type AccessMethodsUnmanagedGetParams =
-  AccessMethodsUnmanagedGetParameters
-
-/**
  * @deprecated Use AccessMethodsUnmanagedGetRequest instead.
  */
 export type AccessMethodsUnmanagedGetResponse = {
-  access_method: UnknownResource
+  access_method: UnmanagedAccessMethod
 }
 
 export type AccessMethodsUnmanagedGetRequest = SeamHttpRequest<
@@ -221,16 +215,10 @@ export type AccessMethodsUnmanagedListParameters = {
 }
 
 /**
- * @deprecated Use AccessMethodsUnmanagedListParameters instead.
- */
-export type AccessMethodsUnmanagedListParams =
-  AccessMethodsUnmanagedListParameters
-
-/**
  * @deprecated Use AccessMethodsUnmanagedListRequest instead.
  */
 export type AccessMethodsUnmanagedListResponse = {
-  access_methods: Array<UnknownResource>
+  access_methods: Array<UnmanagedAccessMethod>
 }
 
 export type AccessMethodsUnmanagedListRequest = SeamHttpRequest<

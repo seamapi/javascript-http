@@ -29,17 +29,16 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AcsEntranceResource } from 'lib/seam/connect/resources/acs-entrance.js'
-import type { AcsSystemResource } from 'lib/seam/connect/resources/acs-system.js'
-import type { AcsUserResource } from 'lib/seam/connect/resources/acs-user.js'
-import type { DeviceResource } from 'lib/seam/connect/resources/device.js'
-import type { InstantKeyResource } from 'lib/seam/connect/resources/instant-key.js'
-import type { UserIdentityResource } from 'lib/seam/connect/resources/user-identity.js'
+import type { AcsEntrance } from 'lib/seam/connect/resources/acs-entrance.js'
+import type { AcsSystem } from 'lib/seam/connect/resources/acs-system.js'
+import type { AcsUser } from 'lib/seam/connect/resources/acs-user.js'
+import type { Device } from 'lib/seam/connect/resources/device.js'
+import type { InstantKey } from 'lib/seam/connect/resources/instant-key.js'
+import type { UserIdentity } from 'lib/seam/connect/resources/user-identity.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
-import { SeamHttpUserIdentitiesEnrollmentAutomations } from './enrollment-automations/index.js'
 import { SeamHttpUserIdentitiesUnmanaged } from './unmanaged/index.js'
 
 export class SeamHttpUserIdentities {
@@ -167,13 +166,6 @@ export class SeamHttpUserIdentities {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
-  }
-
-  get enrollmentAutomations(): SeamHttpUserIdentitiesEnrollmentAutomations {
-    return SeamHttpUserIdentitiesEnrollmentAutomations.fromClient(
-      this.client,
-      this.defaults,
-    )
   }
 
   get unmanaged(): SeamHttpUserIdentitiesUnmanaged {
@@ -374,11 +366,6 @@ export type UserIdentitiesAddAcsUserParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesAddAcsUserParameters instead.
- */
-export type UserIdentitiesAddAcsUserBody = UserIdentitiesAddAcsUserParameters
-
-/**
  * @deprecated Use UserIdentitiesAddAcsUserRequest instead.
  */
 export type UserIdentitiesAddAcsUserResponse = void
@@ -396,16 +383,9 @@ export type UserIdentitiesCreateParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesCreateParameters instead.
- */
-export type UserIdentitiesCreateBody = UserIdentitiesCreateParameters
-
-/**
  * @deprecated Use UserIdentitiesCreateRequest instead.
  */
-export type UserIdentitiesCreateResponse = {
-  user_identity: UserIdentityResource
-}
+export type UserIdentitiesCreateResponse = { user_identity: UserIdentity }
 
 export type UserIdentitiesCreateRequest = SeamHttpRequest<
   UserIdentitiesCreateResponse,
@@ -417,11 +397,6 @@ export interface UserIdentitiesCreateOptions {}
 export type UserIdentitiesDeleteParameters = {
   user_identity_id: string
 }
-
-/**
- * @deprecated Use UserIdentitiesDeleteParameters instead.
- */
-export type UserIdentitiesDeleteParams = UserIdentitiesDeleteParameters
 
 /**
  * @deprecated Use UserIdentitiesDeleteRequest instead.
@@ -439,16 +414,10 @@ export type UserIdentitiesGenerateInstantKeyParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesGenerateInstantKeyParameters instead.
- */
-export type UserIdentitiesGenerateInstantKeyBody =
-  UserIdentitiesGenerateInstantKeyParameters
-
-/**
  * @deprecated Use UserIdentitiesGenerateInstantKeyRequest instead.
  */
 export type UserIdentitiesGenerateInstantKeyResponse = {
-  instant_key: InstantKeyResource
+  instant_key: InstantKey
 }
 
 export type UserIdentitiesGenerateInstantKeyRequest = SeamHttpRequest<
@@ -464,14 +433,9 @@ export type UserIdentitiesGetParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesGetParameters instead.
- */
-export type UserIdentitiesGetParams = UserIdentitiesGetParameters
-
-/**
  * @deprecated Use UserIdentitiesGetRequest instead.
  */
-export type UserIdentitiesGetResponse = { user_identity: UserIdentityResource }
+export type UserIdentitiesGetResponse = { user_identity: UserIdentity }
 
 export type UserIdentitiesGetRequest = SeamHttpRequest<
   UserIdentitiesGetResponse,
@@ -485,12 +449,6 @@ export type UserIdentitiesGrantAccessToDeviceParameters = {
 
   user_identity_id: string
 }
-
-/**
- * @deprecated Use UserIdentitiesGrantAccessToDeviceParameters instead.
- */
-export type UserIdentitiesGrantAccessToDeviceBody =
-  UserIdentitiesGrantAccessToDeviceParameters
 
 /**
  * @deprecated Use UserIdentitiesGrantAccessToDeviceRequest instead.
@@ -514,15 +472,10 @@ export type UserIdentitiesListParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesListParameters instead.
- */
-export type UserIdentitiesListParams = UserIdentitiesListParameters
-
-/**
  * @deprecated Use UserIdentitiesListRequest instead.
  */
 export type UserIdentitiesListResponse = {
-  user_identities: Array<UserIdentityResource>
+  user_identities: Array<UserIdentity>
 }
 
 export type UserIdentitiesListRequest = SeamHttpRequest<
@@ -537,16 +490,10 @@ export type UserIdentitiesListAccessibleDevicesParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesListAccessibleDevicesParameters instead.
- */
-export type UserIdentitiesListAccessibleDevicesParams =
-  UserIdentitiesListAccessibleDevicesParameters
-
-/**
  * @deprecated Use UserIdentitiesListAccessibleDevicesRequest instead.
  */
 export type UserIdentitiesListAccessibleDevicesResponse = {
-  devices: Array<DeviceResource>
+  devices: Array<Device>
 }
 
 export type UserIdentitiesListAccessibleDevicesRequest = SeamHttpRequest<
@@ -561,16 +508,10 @@ export type UserIdentitiesListAccessibleEntrancesParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesListAccessibleEntrancesParameters instead.
- */
-export type UserIdentitiesListAccessibleEntrancesParams =
-  UserIdentitiesListAccessibleEntrancesParameters
-
-/**
  * @deprecated Use UserIdentitiesListAccessibleEntrancesRequest instead.
  */
 export type UserIdentitiesListAccessibleEntrancesResponse = {
-  acs_entrances: Array<AcsEntranceResource>
+  acs_entrances: Array<AcsEntrance>
 }
 
 export type UserIdentitiesListAccessibleEntrancesRequest = SeamHttpRequest<
@@ -585,16 +526,10 @@ export type UserIdentitiesListAcsSystemsParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesListAcsSystemsParameters instead.
- */
-export type UserIdentitiesListAcsSystemsParams =
-  UserIdentitiesListAcsSystemsParameters
-
-/**
  * @deprecated Use UserIdentitiesListAcsSystemsRequest instead.
  */
 export type UserIdentitiesListAcsSystemsResponse = {
-  acs_systems: Array<AcsSystemResource>
+  acs_systems: Array<AcsSystem>
 }
 
 export type UserIdentitiesListAcsSystemsRequest = SeamHttpRequest<
@@ -609,17 +544,9 @@ export type UserIdentitiesListAcsUsersParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesListAcsUsersParameters instead.
- */
-export type UserIdentitiesListAcsUsersParams =
-  UserIdentitiesListAcsUsersParameters
-
-/**
  * @deprecated Use UserIdentitiesListAcsUsersRequest instead.
  */
-export type UserIdentitiesListAcsUsersResponse = {
-  acs_users: Array<AcsUserResource>
-}
+export type UserIdentitiesListAcsUsersResponse = { acs_users: Array<AcsUser> }
 
 export type UserIdentitiesListAcsUsersRequest = SeamHttpRequest<
   UserIdentitiesListAcsUsersResponse,
@@ -633,12 +560,6 @@ export type UserIdentitiesRemoveAcsUserParameters = {
 
   user_identity_id: string
 }
-
-/**
- * @deprecated Use UserIdentitiesRemoveAcsUserParameters instead.
- */
-export type UserIdentitiesRemoveAcsUserParams =
-  UserIdentitiesRemoveAcsUserParameters
 
 /**
  * @deprecated Use UserIdentitiesRemoveAcsUserRequest instead.
@@ -657,12 +578,6 @@ export type UserIdentitiesRevokeAccessToDeviceParameters = {
 
   user_identity_id: string
 }
-
-/**
- * @deprecated Use UserIdentitiesRevokeAccessToDeviceParameters instead.
- */
-export type UserIdentitiesRevokeAccessToDeviceParams =
-  UserIdentitiesRevokeAccessToDeviceParameters
 
 /**
  * @deprecated Use UserIdentitiesRevokeAccessToDeviceRequest instead.
@@ -684,11 +599,6 @@ export type UserIdentitiesUpdateParameters = {
 
   user_identity_key?: string | undefined
 }
-
-/**
- * @deprecated Use UserIdentitiesUpdateParameters instead.
- */
-export type UserIdentitiesUpdateBody = UserIdentitiesUpdateParameters
 
 /**
  * @deprecated Use UserIdentitiesUpdateRequest instead.

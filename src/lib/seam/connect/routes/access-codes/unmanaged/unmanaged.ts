@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { UnmanagedAccessCodeResource } from 'lib/seam/connect/resources/unmanaged-access-code.js'
+import type { UnmanagedAccessCode } from 'lib/seam/connect/resources/unmanaged-access-code.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -233,14 +233,7 @@ export type AccessCodesUnmanagedConvertToManagedParameters = {
   allow_external_modification?: boolean | undefined
   force?: boolean | undefined
   is_external_modification_allowed?: boolean | undefined
-  sync?: boolean | undefined
 }
-
-/**
- * @deprecated Use AccessCodesUnmanagedConvertToManagedParameters instead.
- */
-export type AccessCodesUnmanagedConvertToManagedBody =
-  AccessCodesUnmanagedConvertToManagedParameters
 
 /**
  * @deprecated Use AccessCodesUnmanagedConvertToManagedRequest instead.
@@ -256,15 +249,7 @@ export interface AccessCodesUnmanagedConvertToManagedOptions {}
 
 export type AccessCodesUnmanagedDeleteParameters = {
   access_code_id: string
-
-  sync?: boolean | undefined
 }
-
-/**
- * @deprecated Use AccessCodesUnmanagedDeleteParameters instead.
- */
-export type AccessCodesUnmanagedDeleteParams =
-  AccessCodesUnmanagedDeleteParameters
 
 /**
  * @deprecated Use AccessCodesUnmanagedDeleteRequest instead.
@@ -282,15 +267,10 @@ export type AccessCodesUnmanagedGetParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesUnmanagedGetParameters instead.
- */
-export type AccessCodesUnmanagedGetParams = AccessCodesUnmanagedGetParameters
-
-/**
  * @deprecated Use AccessCodesUnmanagedGetRequest instead.
  */
 export type AccessCodesUnmanagedGetResponse = {
-  access_code: UnmanagedAccessCodeResource
+  access_code: UnmanagedAccessCode
 }
 
 export type AccessCodesUnmanagedGetRequest = SeamHttpRequest<
@@ -310,15 +290,10 @@ export type AccessCodesUnmanagedListParameters = {
 }
 
 /**
- * @deprecated Use AccessCodesUnmanagedListParameters instead.
- */
-export type AccessCodesUnmanagedListParams = AccessCodesUnmanagedListParameters
-
-/**
  * @deprecated Use AccessCodesUnmanagedListRequest instead.
  */
 export type AccessCodesUnmanagedListResponse = {
-  access_codes: Array<UnmanagedAccessCodeResource>
+  access_codes: Array<UnmanagedAccessCode>
 }
 
 export type AccessCodesUnmanagedListRequest = SeamHttpRequest<
@@ -336,12 +311,6 @@ export type AccessCodesUnmanagedUpdateParameters = {
   is_external_modification_allowed?: boolean | undefined
   is_managed: boolean
 }
-
-/**
- * @deprecated Use AccessCodesUnmanagedUpdateParameters instead.
- */
-export type AccessCodesUnmanagedUpdateBody =
-  AccessCodesUnmanagedUpdateParameters
 
 /**
  * @deprecated Use AccessCodesUnmanagedUpdateRequest instead.

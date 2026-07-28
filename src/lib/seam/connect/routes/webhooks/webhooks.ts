@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { WebhookResource } from 'lib/seam/connect/resources/webhook.js'
+import type { Webhook } from 'lib/seam/connect/resources/webhook.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -233,14 +233,9 @@ export type WebhooksCreateParameters = {
 }
 
 /**
- * @deprecated Use WebhooksCreateParameters instead.
- */
-export type WebhooksCreateBody = WebhooksCreateParameters
-
-/**
  * @deprecated Use WebhooksCreateRequest instead.
  */
-export type WebhooksCreateResponse = { webhook: WebhookResource }
+export type WebhooksCreateResponse = { webhook: Webhook }
 
 export type WebhooksCreateRequest = SeamHttpRequest<
   WebhooksCreateResponse,
@@ -252,11 +247,6 @@ export interface WebhooksCreateOptions {}
 export type WebhooksDeleteParameters = {
   webhook_id: string
 }
-
-/**
- * @deprecated Use WebhooksDeleteParameters instead.
- */
-export type WebhooksDeleteParams = WebhooksDeleteParameters
 
 /**
  * @deprecated Use WebhooksDeleteRequest instead.
@@ -272,14 +262,9 @@ export type WebhooksGetParameters = {
 }
 
 /**
- * @deprecated Use WebhooksGetParameters instead.
- */
-export type WebhooksGetParams = WebhooksGetParameters
-
-/**
  * @deprecated Use WebhooksGetRequest instead.
  */
-export type WebhooksGetResponse = { webhook: WebhookResource }
+export type WebhooksGetResponse = { webhook: Webhook }
 
 export type WebhooksGetRequest = SeamHttpRequest<WebhooksGetResponse, 'webhook'>
 
@@ -288,14 +273,9 @@ export interface WebhooksGetOptions {}
 export type WebhooksListParameters = {}
 
 /**
- * @deprecated Use WebhooksListParameters instead.
- */
-export type WebhooksListParams = WebhooksListParameters
-
-/**
  * @deprecated Use WebhooksListRequest instead.
  */
-export type WebhooksListResponse = { webhooks: Array<WebhookResource> }
+export type WebhooksListResponse = { webhooks: Array<Webhook> }
 
 export type WebhooksListRequest = SeamHttpRequest<
   WebhooksListResponse,
@@ -309,11 +289,6 @@ export type WebhooksUpdateParameters = {
 
   webhook_id: string
 }
-
-/**
- * @deprecated Use WebhooksUpdateParameters instead.
- */
-export type WebhooksUpdateBody = WebhooksUpdateParameters
 
 /**
  * @deprecated Use WebhooksUpdateRequest instead.

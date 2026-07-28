@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AccessGrantResource } from 'lib/seam/connect/resources/access-grant.js'
-import type { UnknownResource } from 'lib/seam/connect/resources/unknown.js'
+import type { AccessGrant } from 'lib/seam/connect/resources/access-grant.js'
+import type { Batch } from 'lib/seam/connect/resources/batch.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -297,14 +297,9 @@ export type AccessGrantsCreateParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsCreateParameters instead.
- */
-export type AccessGrantsCreateBody = AccessGrantsCreateParameters
-
-/**
  * @deprecated Use AccessGrantsCreateRequest instead.
  */
-export type AccessGrantsCreateResponse = { access_grant: AccessGrantResource }
+export type AccessGrantsCreateResponse = { access_grant: AccessGrant }
 
 export type AccessGrantsCreateRequest = SeamHttpRequest<
   AccessGrantsCreateResponse,
@@ -316,11 +311,6 @@ export interface AccessGrantsCreateOptions {}
 export type AccessGrantsDeleteParameters = {
   access_grant_id: string
 }
-
-/**
- * @deprecated Use AccessGrantsDeleteParameters instead.
- */
-export type AccessGrantsDeleteParams = AccessGrantsDeleteParameters
 
 /**
  * @deprecated Use AccessGrantsDeleteRequest instead.
@@ -337,14 +327,9 @@ export type AccessGrantsGetParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsGetParameters instead.
- */
-export type AccessGrantsGetParams = AccessGrantsGetParameters
-
-/**
  * @deprecated Use AccessGrantsGetRequest instead.
  */
-export type AccessGrantsGetResponse = { access_grant: AccessGrantResource }
+export type AccessGrantsGetResponse = { access_grant: AccessGrant }
 
 export type AccessGrantsGetRequest = SeamHttpRequest<
   AccessGrantsGetResponse,
@@ -383,14 +368,20 @@ export type AccessGrantsGetRelatedParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsGetRelatedParameters instead.
- */
-export type AccessGrantsGetRelatedParams = AccessGrantsGetRelatedParameters
-
-/**
  * @deprecated Use AccessGrantsGetRelatedRequest instead.
  */
-export type AccessGrantsGetRelatedResponse = { batch: UnknownResource }
+export type AccessGrantsGetRelatedResponse = {
+  batch: Batch<
+    | 'spaces'
+    | 'devices'
+    | 'acs_entrances'
+    | 'connected_accounts'
+    | 'acs_systems'
+    | 'user_identities'
+    | 'acs_access_groups'
+    | 'access_methods'
+  >
+}
 
 export type AccessGrantsGetRelatedRequest = SeamHttpRequest<
   AccessGrantsGetRelatedResponse,
@@ -416,16 +407,9 @@ export type AccessGrantsListParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsListParameters instead.
- */
-export type AccessGrantsListParams = AccessGrantsListParameters
-
-/**
  * @deprecated Use AccessGrantsListRequest instead.
  */
-export type AccessGrantsListResponse = {
-  access_grants: Array<AccessGrantResource>
-}
+export type AccessGrantsListResponse = { access_grants: Array<AccessGrant> }
 
 export type AccessGrantsListRequest = SeamHttpRequest<
   AccessGrantsListResponse,
@@ -445,16 +429,10 @@ export type AccessGrantsRequestAccessMethodsParameters = {
 }
 
 /**
- * @deprecated Use AccessGrantsRequestAccessMethodsParameters instead.
- */
-export type AccessGrantsRequestAccessMethodsBody =
-  AccessGrantsRequestAccessMethodsParameters
-
-/**
  * @deprecated Use AccessGrantsRequestAccessMethodsRequest instead.
  */
 export type AccessGrantsRequestAccessMethodsResponse = {
-  access_grant: AccessGrantResource
+  access_grant: AccessGrant
 }
 
 export type AccessGrantsRequestAccessMethodsRequest = SeamHttpRequest<
@@ -471,11 +449,6 @@ export type AccessGrantsUpdateParameters = {
   name?: string | undefined
   starts_at?: string | undefined
 }
-
-/**
- * @deprecated Use AccessGrantsUpdateParameters instead.
- */
-export type AccessGrantsUpdateBody = AccessGrantsUpdateParameters
 
 /**
  * @deprecated Use AccessGrantsUpdateRequest instead.

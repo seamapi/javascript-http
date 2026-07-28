@@ -5,15 +5,22 @@ export interface ResourceLayoutContext {
   fileName: string
   typeName: string
   resources: Resource[]
-  isUnknown: boolean
+  isBatch: boolean
+  batchResources: BatchResourceLayoutContext[]
 }
 
 export interface ResourceIndexLayoutContext {
   resources: Array<Pick<ResourceLayoutContext, 'fileName' | 'typeName'>>
 }
 
+interface BatchResourceLayoutContext {
+  batchKey: string
+  fileName: string
+  typeName: string
+}
+
 export const getResourceTypeName = (resourceType: string): string =>
-  `${pascalCase(resourceType)}Resource`
+  resourceType === 'event' ? 'SeamEvent' : pascalCase(resourceType)
 
 export const getResourceLayoutContexts = (
   blueprint: Blueprint,
@@ -26,21 +33,33 @@ export const getResourceLayoutContexts = (
   const resourceTypes = [
     ...new Set(resources.map(({ resourceType }) => resourceType)),
   ]
+  const batchResources = getBatchResourceLayoutContexts(resources)
 
-  return [
-    {
-      fileName: 'unknown.ts',
-      typeName: 'UnknownResource',
-      resources: [],
-      isUnknown: true,
-    },
-    ...resourceTypes.map((resourceType) => ({
-      fileName: `${kebabCase(resourceType)}.ts`,
-      typeName: getResourceTypeName(resourceType),
-      resources: resources.filter(
-        (resource) => resource.resourceType === resourceType,
-      ),
-      isUnknown: false,
-    })),
-  ]
+  return resourceTypes.map((resourceType) => ({
+    fileName: `${kebabCase(resourceType)}.ts`,
+    typeName: getResourceTypeName(resourceType),
+    resources: resources.filter(
+      (resource) => resource.resourceType === resourceType,
+    ),
+    isBatch: resourceType === 'batch',
+    batchResources: resourceType === 'batch' ? batchResources : [],
+  }))
+}
+
+const getBatchResourceLayoutContexts = (
+  resources: Resource[],
+): BatchResourceLayoutContext[] => {
+  const batch = resources.find(({ resourceType }) => resourceType === 'batch')
+  if (batch == null) return []
+
+  return batch.properties.flatMap((property) => {
+    if (!('resourceType' in property)) return []
+    return [
+      {
+        batchKey: property.name,
+        fileName: `${kebabCase(property.resourceType)}.js`,
+        typeName: getResourceTypeName(property.resourceType),
+      },
+    ]
+  })
 }

@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { DeviceResource } from 'lib/seam/connect/resources/device.js'
+import type { Device } from 'lib/seam/connect/resources/device.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -199,54 +199,6 @@ export type NoiseSensorsListParameters = {
   device_ids?: Array<string> | undefined
   device_type?: 'noiseaware_activity_zone' | 'minut_sensor' | undefined
   device_types?: Array<'noiseaware_activity_zone' | 'minut_sensor'> | undefined
-  exclude_if?:
-    | Array<
-        | 'can_remotely_unlock'
-        | 'can_remotely_lock'
-        | 'can_program_offline_access_codes'
-        | 'can_program_online_access_codes'
-        | 'can_hvac_heat'
-        | 'can_hvac_cool'
-        | 'can_hvac_heat_cool'
-        | 'can_turn_off_hvac'
-        | 'can_simulate_removal'
-        | 'can_simulate_connection'
-        | 'can_simulate_disconnection'
-        | 'can_unlock_with_code'
-        | 'can_run_thermostat_programs'
-        | 'can_program_thermostat_programs_as_weekday_weekend'
-        | 'can_program_thermostat_programs_as_different_each_day'
-        | 'can_program_thermostat_programs_as_same_each_day'
-        | 'can_simulate_hub_connection'
-        | 'can_simulate_hub_disconnection'
-        | 'can_simulate_paid_subscription'
-        | 'can_configure_auto_lock'
-      >
-    | undefined
-  include_if?:
-    | Array<
-        | 'can_remotely_unlock'
-        | 'can_remotely_lock'
-        | 'can_program_offline_access_codes'
-        | 'can_program_online_access_codes'
-        | 'can_hvac_heat'
-        | 'can_hvac_cool'
-        | 'can_hvac_heat_cool'
-        | 'can_turn_off_hvac'
-        | 'can_simulate_removal'
-        | 'can_simulate_connection'
-        | 'can_simulate_disconnection'
-        | 'can_unlock_with_code'
-        | 'can_run_thermostat_programs'
-        | 'can_program_thermostat_programs_as_weekday_weekend'
-        | 'can_program_thermostat_programs_as_different_each_day'
-        | 'can_program_thermostat_programs_as_same_each_day'
-        | 'can_simulate_hub_connection'
-        | 'can_simulate_hub_disconnection'
-        | 'can_simulate_paid_subscription'
-        | 'can_configure_auto_lock'
-      >
-    | undefined
   limit?: number | undefined
   manufacturer?: 'minut' | 'noiseaware' | undefined
   page_cursor?: string | undefined
@@ -257,14 +209,9 @@ export type NoiseSensorsListParameters = {
 }
 
 /**
- * @deprecated Use NoiseSensorsListParameters instead.
- */
-export type NoiseSensorsListParams = NoiseSensorsListParameters
-
-/**
  * @deprecated Use NoiseSensorsListRequest instead.
  */
-export type NoiseSensorsListResponse = { devices: Array<DeviceResource> }
+export type NoiseSensorsListResponse = { devices: Array<Device> }
 
 export type NoiseSensorsListRequest = SeamHttpRequest<
   NoiseSensorsListResponse,

@@ -29,13 +29,11 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AcsEntranceResource } from 'lib/seam/connect/resources/acs-entrance.js'
-import type { AcsUserResource } from 'lib/seam/connect/resources/acs-user.js'
+import type { AcsEntrance } from 'lib/seam/connect/resources/acs-entrance.js'
+import type { AcsUser } from 'lib/seam/connect/resources/acs-user.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-
-import { SeamHttpAcsUsersUnmanaged } from './unmanaged/index.js'
 
 export class SeamHttpAcsUsers {
   client: Client
@@ -162,10 +160,6 @@ export class SeamHttpAcsUsers {
     this.client.defaults.headers = { ...headers, ...authHeaders }
     const clientSessions = SeamHttpClientSessions.fromClient(this.client)
     await clientSessions.get()
-  }
-
-  get unmanaged(): SeamHttpAcsUsersUnmanaged {
-    return SeamHttpAcsUsersUnmanaged.fromClient(this.client, this.defaults)
   }
 
   addToAccessGroup(
@@ -319,11 +313,6 @@ export type AcsUsersAddToAccessGroupParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersAddToAccessGroupParameters instead.
- */
-export type AcsUsersAddToAccessGroupBody = AcsUsersAddToAccessGroupParameters
-
-/**
  * @deprecated Use AcsUsersAddToAccessGroupRequest instead.
  */
 export type AcsUsersAddToAccessGroupResponse = void
@@ -351,14 +340,9 @@ export type AcsUsersCreateParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersCreateParameters instead.
- */
-export type AcsUsersCreateBody = AcsUsersCreateParameters
-
-/**
  * @deprecated Use AcsUsersCreateRequest instead.
  */
-export type AcsUsersCreateResponse = { acs_user: AcsUserResource }
+export type AcsUsersCreateResponse = { acs_user: AcsUser }
 
 export type AcsUsersCreateRequest = SeamHttpRequest<
   AcsUsersCreateResponse,
@@ -372,11 +356,6 @@ export type AcsUsersDeleteParameters = {
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsUsersDeleteParameters instead.
- */
-export type AcsUsersDeleteParams = AcsUsersDeleteParameters
 
 /**
  * @deprecated Use AcsUsersDeleteRequest instead.
@@ -394,14 +373,9 @@ export type AcsUsersGetParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersGetParameters instead.
- */
-export type AcsUsersGetParams = AcsUsersGetParameters
-
-/**
  * @deprecated Use AcsUsersGetRequest instead.
  */
-export type AcsUsersGetResponse = { acs_user: AcsUserResource }
+export type AcsUsersGetResponse = { acs_user: AcsUser }
 
 export type AcsUsersGetRequest = SeamHttpRequest<
   AcsUsersGetResponse,
@@ -422,14 +396,9 @@ export type AcsUsersListParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersListParameters instead.
- */
-export type AcsUsersListParams = AcsUsersListParameters
-
-/**
  * @deprecated Use AcsUsersListRequest instead.
  */
-export type AcsUsersListResponse = { acs_users: Array<AcsUserResource> }
+export type AcsUsersListResponse = { acs_users: Array<AcsUser> }
 
 export type AcsUsersListRequest = SeamHttpRequest<
   AcsUsersListResponse,
@@ -445,16 +414,10 @@ export type AcsUsersListAccessibleEntrancesParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersListAccessibleEntrancesParameters instead.
- */
-export type AcsUsersListAccessibleEntrancesParams =
-  AcsUsersListAccessibleEntrancesParameters
-
-/**
  * @deprecated Use AcsUsersListAccessibleEntrancesRequest instead.
  */
 export type AcsUsersListAccessibleEntrancesResponse = {
-  acs_entrances: Array<AcsEntranceResource>
+  acs_entrances: Array<AcsEntrance>
 }
 
 export type AcsUsersListAccessibleEntrancesRequest = SeamHttpRequest<
@@ -470,12 +433,6 @@ export type AcsUsersRemoveFromAccessGroupParameters = {
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsUsersRemoveFromAccessGroupParameters instead.
- */
-export type AcsUsersRemoveFromAccessGroupParams =
-  AcsUsersRemoveFromAccessGroupParameters
 
 /**
  * @deprecated Use AcsUsersRemoveFromAccessGroupRequest instead.
@@ -496,12 +453,6 @@ export type AcsUsersRevokeAccessToAllEntrancesParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersRevokeAccessToAllEntrancesParameters instead.
- */
-export type AcsUsersRevokeAccessToAllEntrancesBody =
-  AcsUsersRevokeAccessToAllEntrancesParameters
-
-/**
  * @deprecated Use AcsUsersRevokeAccessToAllEntrancesRequest instead.
  */
 export type AcsUsersRevokeAccessToAllEntrancesResponse = void
@@ -520,11 +471,6 @@ export type AcsUsersSuspendParameters = {
 }
 
 /**
- * @deprecated Use AcsUsersSuspendParameters instead.
- */
-export type AcsUsersSuspendBody = AcsUsersSuspendParameters
-
-/**
  * @deprecated Use AcsUsersSuspendRequest instead.
  */
 export type AcsUsersSuspendResponse = void
@@ -538,11 +484,6 @@ export type AcsUsersUnsuspendParameters = {
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsUsersUnsuspendParameters instead.
- */
-export type AcsUsersUnsuspendBody = AcsUsersUnsuspendParameters
 
 /**
  * @deprecated Use AcsUsersUnsuspendRequest instead.
@@ -569,11 +510,6 @@ export type AcsUsersUpdateParameters = {
   phone_number?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsUsersUpdateParameters instead.
- */
-export type AcsUsersUpdateBody = AcsUsersUpdateParameters
 
 /**
  * @deprecated Use AcsUsersUpdateRequest instead.

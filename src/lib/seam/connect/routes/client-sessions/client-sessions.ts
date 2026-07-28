@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ClientSessionResource } from 'lib/seam/connect/resources/client-session.js'
+import type { ClientSession } from 'lib/seam/connect/resources/client-session.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
 
@@ -264,16 +264,9 @@ export type ClientSessionsCreateParameters = {
 }
 
 /**
- * @deprecated Use ClientSessionsCreateParameters instead.
- */
-export type ClientSessionsCreateBody = ClientSessionsCreateParameters
-
-/**
  * @deprecated Use ClientSessionsCreateRequest instead.
  */
-export type ClientSessionsCreateResponse = {
-  client_session: ClientSessionResource
-}
+export type ClientSessionsCreateResponse = { client_session: ClientSession }
 
 export type ClientSessionsCreateRequest = SeamHttpRequest<
   ClientSessionsCreateResponse,
@@ -285,11 +278,6 @@ export interface ClientSessionsCreateOptions {}
 export type ClientSessionsDeleteParameters = {
   client_session_id: string
 }
-
-/**
- * @deprecated Use ClientSessionsDeleteParameters instead.
- */
-export type ClientSessionsDeleteParams = ClientSessionsDeleteParameters
 
 /**
  * @deprecated Use ClientSessionsDeleteRequest instead.
@@ -306,16 +294,9 @@ export type ClientSessionsGetParameters = {
 }
 
 /**
- * @deprecated Use ClientSessionsGetParameters instead.
- */
-export type ClientSessionsGetParams = ClientSessionsGetParameters
-
-/**
  * @deprecated Use ClientSessionsGetRequest instead.
  */
-export type ClientSessionsGetResponse = {
-  client_session: ClientSessionResource
-}
+export type ClientSessionsGetResponse = { client_session: ClientSession }
 
 export type ClientSessionsGetRequest = SeamHttpRequest<
   ClientSessionsGetResponse,
@@ -334,15 +315,10 @@ export type ClientSessionsGetOrCreateParameters = {
 }
 
 /**
- * @deprecated Use ClientSessionsGetOrCreateParameters instead.
- */
-export type ClientSessionsGetOrCreateBody = ClientSessionsGetOrCreateParameters
-
-/**
  * @deprecated Use ClientSessionsGetOrCreateRequest instead.
  */
 export type ClientSessionsGetOrCreateResponse = {
-  client_session: ClientSessionResource
+  client_session: ClientSession
 }
 
 export type ClientSessionsGetOrCreateRequest = SeamHttpRequest<
@@ -362,11 +338,6 @@ export type ClientSessionsGrantAccessParameters = {
 }
 
 /**
- * @deprecated Use ClientSessionsGrantAccessParameters instead.
- */
-export type ClientSessionsGrantAccessBody = ClientSessionsGrantAccessParameters
-
-/**
  * @deprecated Use ClientSessionsGrantAccessRequest instead.
  */
 export type ClientSessionsGrantAccessResponse = void
@@ -384,15 +355,10 @@ export type ClientSessionsListParameters = {
 }
 
 /**
- * @deprecated Use ClientSessionsListParameters instead.
- */
-export type ClientSessionsListParams = ClientSessionsListParameters
-
-/**
  * @deprecated Use ClientSessionsListRequest instead.
  */
 export type ClientSessionsListResponse = {
-  client_sessions: Array<ClientSessionResource>
+  client_sessions: Array<ClientSession>
 }
 
 export type ClientSessionsListRequest = SeamHttpRequest<
@@ -405,11 +371,6 @@ export interface ClientSessionsListOptions {}
 export type ClientSessionsRevokeParameters = {
   client_session_id: string
 }
-
-/**
- * @deprecated Use ClientSessionsRevokeParameters instead.
- */
-export type ClientSessionsRevokeBody = ClientSessionsRevokeParameters
 
 /**
  * @deprecated Use ClientSessionsRevokeRequest instead.

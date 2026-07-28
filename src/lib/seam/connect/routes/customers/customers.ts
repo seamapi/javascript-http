@@ -29,12 +29,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { CustomerPortalResource } from 'lib/seam/connect/resources/customer-portal.js'
+import type { CustomerPortal } from 'lib/seam/connect/resources/customer-portal.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-
-import { SeamHttpCustomersReservations } from './reservations/index.js'
 
 export class SeamHttpCustomers {
   client: Client
@@ -163,10 +161,6 @@ export class SeamHttpCustomers {
     await clientSessions.get()
   }
 
-  get reservations(): SeamHttpCustomersReservations {
-    return SeamHttpCustomersReservations.fromClient(this.client, this.defaults)
-  }
-
   createPortal(
     parameters?: CustomersCreatePortalParameters,
     options: CustomersCreatePortalOptions = {},
@@ -208,7 +202,6 @@ export class SeamHttpCustomers {
 }
 
 export type CustomersCreatePortalParameters = {
-  _dev?: boolean | undefined
   customer_resources_filters?:
     | Array<{
         field?: string | undefined
@@ -525,16 +518,9 @@ export type CustomersCreatePortalParameters = {
 }
 
 /**
- * @deprecated Use CustomersCreatePortalParameters instead.
- */
-export type CustomersCreatePortalBody = CustomersCreatePortalParameters
-
-/**
  * @deprecated Use CustomersCreatePortalRequest instead.
  */
-export type CustomersCreatePortalResponse = {
-  customer_portal: CustomerPortalResource
-}
+export type CustomersCreatePortalResponse = { customer_portal: CustomerPortal }
 
 export type CustomersCreatePortalRequest = SeamHttpRequest<
   CustomersCreatePortalResponse,
@@ -564,11 +550,6 @@ export type CustomersDeleteDataParameters = {
   user_identity_keys?: Array<string> | undefined
   user_keys?: Array<string> | undefined
 }
-
-/**
- * @deprecated Use CustomersDeleteDataParameters instead.
- */
-export type CustomersDeleteDataParams = CustomersDeleteDataParameters
 
 /**
  * @deprecated Use CustomersDeleteDataRequest instead.
@@ -788,11 +769,6 @@ export type CustomersPushDataParameters = {
       }>
     | undefined
 }
-
-/**
- * @deprecated Use CustomersPushDataParameters instead.
- */
-export type CustomersPushDataBody = CustomersPushDataParameters
 
 /**
  * @deprecated Use CustomersPushDataRequest instead.

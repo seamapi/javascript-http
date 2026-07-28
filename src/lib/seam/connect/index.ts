@@ -10,6 +10,7 @@ export {
   SeamActionAttemptFailedError,
   SeamActionAttemptTimeoutError,
 } from './resolve-action-attempt.js'
+export * from './resources/index.js'
 export * from './routes/index.js'
 export * from './seam-http-error.js'
 export * from './seam-http-request.js'

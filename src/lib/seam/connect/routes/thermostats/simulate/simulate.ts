@@ -199,12 +199,6 @@ export type ThermostatsSimulateHvacModeAdjustedParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsSimulateHvacModeAdjustedParameters instead.
- */
-export type ThermostatsSimulateHvacModeAdjustedBody =
-  ThermostatsSimulateHvacModeAdjustedParameters
-
-/**
  * @deprecated Use ThermostatsSimulateHvacModeAdjustedRequest instead.
  */
 export type ThermostatsSimulateHvacModeAdjustedResponse = void
@@ -222,12 +216,6 @@ export type ThermostatsSimulateTemperatureReachedParameters = {
   temperature_celsius?: number | undefined
   temperature_fahrenheit?: number | undefined
 }
-
-/**
- * @deprecated Use ThermostatsSimulateTemperatureReachedParameters instead.
- */
-export type ThermostatsSimulateTemperatureReachedBody =
-  ThermostatsSimulateTemperatureReachedParameters
 
 /**
  * @deprecated Use ThermostatsSimulateTemperatureReachedRequest instead.

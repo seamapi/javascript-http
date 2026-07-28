@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { EventResource } from 'lib/seam/connect/resources/event.js'
+import type { SeamEvent } from 'lib/seam/connect/resources/event.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -195,14 +195,9 @@ export type EventsGetParameters = {
 }
 
 /**
- * @deprecated Use EventsGetParameters instead.
- */
-export type EventsGetParams = EventsGetParameters
-
-/**
  * @deprecated Use EventsGetRequest instead.
  */
-export type EventsGetResponse = { event: EventResource }
+export type EventsGetResponse = { event: SeamEvent }
 
 export type EventsGetRequest = SeamHttpRequest<EventsGetResponse, 'event'>
 
@@ -462,14 +457,9 @@ export type EventsListParameters = {
 }
 
 /**
- * @deprecated Use EventsListParameters instead.
- */
-export type EventsListParams = EventsListParameters
-
-/**
  * @deprecated Use EventsListRequest instead.
  */
-export type EventsListResponse = { events: Array<EventResource> }
+export type EventsListResponse = { events: Array<SeamEvent> }
 
 export type EventsListRequest = SeamHttpRequest<EventsListResponse, 'events'>
 

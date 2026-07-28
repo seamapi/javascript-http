@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { UnmanagedDeviceResource } from 'lib/seam/connect/resources/unmanaged-device.js'
+import type { UnmanagedDevice } from 'lib/seam/connect/resources/unmanaged-device.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -207,14 +207,9 @@ export type DevicesUnmanagedGetParameters = {
 }
 
 /**
- * @deprecated Use DevicesUnmanagedGetParameters instead.
- */
-export type DevicesUnmanagedGetParams = DevicesUnmanagedGetParameters
-
-/**
  * @deprecated Use DevicesUnmanagedGetRequest instead.
  */
-export type DevicesUnmanagedGetResponse = { device: UnmanagedDeviceResource }
+export type DevicesUnmanagedGetResponse = { device: UnmanagedDevice }
 
 export type DevicesUnmanagedGetRequest = SeamHttpRequest<
   DevicesUnmanagedGetResponse,
@@ -321,54 +316,6 @@ export type DevicesUnmanagedListParameters = {
         | 'ring_camera'
       >
     | undefined
-  exclude_if?:
-    | Array<
-        | 'can_remotely_unlock'
-        | 'can_remotely_lock'
-        | 'can_program_offline_access_codes'
-        | 'can_program_online_access_codes'
-        | 'can_hvac_heat'
-        | 'can_hvac_cool'
-        | 'can_hvac_heat_cool'
-        | 'can_turn_off_hvac'
-        | 'can_simulate_removal'
-        | 'can_simulate_connection'
-        | 'can_simulate_disconnection'
-        | 'can_unlock_with_code'
-        | 'can_run_thermostat_programs'
-        | 'can_program_thermostat_programs_as_weekday_weekend'
-        | 'can_program_thermostat_programs_as_different_each_day'
-        | 'can_program_thermostat_programs_as_same_each_day'
-        | 'can_simulate_hub_connection'
-        | 'can_simulate_hub_disconnection'
-        | 'can_simulate_paid_subscription'
-        | 'can_configure_auto_lock'
-      >
-    | undefined
-  include_if?:
-    | Array<
-        | 'can_remotely_unlock'
-        | 'can_remotely_lock'
-        | 'can_program_offline_access_codes'
-        | 'can_program_online_access_codes'
-        | 'can_hvac_heat'
-        | 'can_hvac_cool'
-        | 'can_hvac_heat_cool'
-        | 'can_turn_off_hvac'
-        | 'can_simulate_removal'
-        | 'can_simulate_connection'
-        | 'can_simulate_disconnection'
-        | 'can_unlock_with_code'
-        | 'can_run_thermostat_programs'
-        | 'can_program_thermostat_programs_as_weekday_weekend'
-        | 'can_program_thermostat_programs_as_different_each_day'
-        | 'can_program_thermostat_programs_as_same_each_day'
-        | 'can_simulate_hub_connection'
-        | 'can_simulate_hub_disconnection'
-        | 'can_simulate_paid_subscription'
-        | 'can_configure_auto_lock'
-      >
-    | undefined
   limit?: number | undefined
   manufacturer?:
     | 'akuvox'
@@ -431,16 +378,9 @@ export type DevicesUnmanagedListParameters = {
 }
 
 /**
- * @deprecated Use DevicesUnmanagedListParameters instead.
- */
-export type DevicesUnmanagedListParams = DevicesUnmanagedListParameters
-
-/**
  * @deprecated Use DevicesUnmanagedListRequest instead.
  */
-export type DevicesUnmanagedListResponse = {
-  devices: Array<UnmanagedDeviceResource>
-}
+export type DevicesUnmanagedListResponse = { devices: Array<UnmanagedDevice> }
 
 export type DevicesUnmanagedListRequest = SeamHttpRequest<
   DevicesUnmanagedListResponse,
@@ -455,11 +395,6 @@ export type DevicesUnmanagedUpdateParameters = {
 
   is_managed?: boolean | undefined
 }
-
-/**
- * @deprecated Use DevicesUnmanagedUpdateParameters instead.
- */
-export type DevicesUnmanagedUpdateBody = DevicesUnmanagedUpdateParameters
 
 /**
  * @deprecated Use DevicesUnmanagedUpdateRequest instead.

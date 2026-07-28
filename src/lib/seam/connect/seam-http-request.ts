@@ -1,10 +1,10 @@
-import type { ActionAttempt } from '@seamapi/types/connect'
 import { serializeUrlSearchParams } from '@seamapi/url-search-params-serializer'
 import type { Method } from 'axios'
 
 import type { Client } from './client.js'
 import type { SeamHttpRequestOptions } from './options.js'
 import { resolveActionAttempt } from './resolve-action-attempt.js'
+import type { ActionAttempt } from './resources/action-attempt.js'
 import { SeamHttpActionAttempts } from './routes/index.js'
 
 interface SeamHttpRequestParent {

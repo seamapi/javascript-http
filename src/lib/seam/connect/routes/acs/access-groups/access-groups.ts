@@ -29,14 +29,12 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { AcsAccessGroupResource } from 'lib/seam/connect/resources/acs-access-group.js'
-import type { AcsEntranceResource } from 'lib/seam/connect/resources/acs-entrance.js'
-import type { AcsUserResource } from 'lib/seam/connect/resources/acs-user.js'
+import type { AcsAccessGroup } from 'lib/seam/connect/resources/acs-access-group.js'
+import type { AcsEntrance } from 'lib/seam/connect/resources/acs-entrance.js'
+import type { AcsUser } from 'lib/seam/connect/resources/acs-user.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
-
-import { SeamHttpAcsAccessGroupsUnmanaged } from './unmanaged/index.js'
 
 export class SeamHttpAcsAccessGroups {
   client: Client
@@ -165,13 +163,6 @@ export class SeamHttpAcsAccessGroups {
     await clientSessions.get()
   }
 
-  get unmanaged(): SeamHttpAcsAccessGroupsUnmanaged {
-    return SeamHttpAcsAccessGroupsUnmanaged.fromClient(
-      this.client,
-      this.defaults,
-    )
-  }
-
   addUser(
     parameters: AcsAccessGroupsAddUserParameters,
     options: AcsAccessGroupsAddUserOptions = {},
@@ -272,11 +263,6 @@ export type AcsAccessGroupsAddUserParameters = {
 }
 
 /**
- * @deprecated Use AcsAccessGroupsAddUserParameters instead.
- */
-export type AcsAccessGroupsAddUserBody = AcsAccessGroupsAddUserParameters
-
-/**
  * @deprecated Use AcsAccessGroupsAddUserRequest instead.
  */
 export type AcsAccessGroupsAddUserResponse = void
@@ -288,11 +274,6 @@ export interface AcsAccessGroupsAddUserOptions {}
 export type AcsAccessGroupsDeleteParameters = {
   acs_access_group_id: string
 }
-
-/**
- * @deprecated Use AcsAccessGroupsDeleteParameters instead.
- */
-export type AcsAccessGroupsDeleteParams = AcsAccessGroupsDeleteParameters
 
 /**
  * @deprecated Use AcsAccessGroupsDeleteRequest instead.
@@ -308,16 +289,9 @@ export type AcsAccessGroupsGetParameters = {
 }
 
 /**
- * @deprecated Use AcsAccessGroupsGetParameters instead.
- */
-export type AcsAccessGroupsGetParams = AcsAccessGroupsGetParameters
-
-/**
  * @deprecated Use AcsAccessGroupsGetRequest instead.
  */
-export type AcsAccessGroupsGetResponse = {
-  acs_access_group: AcsAccessGroupResource
-}
+export type AcsAccessGroupsGetResponse = { acs_access_group: AcsAccessGroup }
 
 export type AcsAccessGroupsGetRequest = SeamHttpRequest<
   AcsAccessGroupsGetResponse,
@@ -334,15 +308,10 @@ export type AcsAccessGroupsListParameters = {
 }
 
 /**
- * @deprecated Use AcsAccessGroupsListParameters instead.
- */
-export type AcsAccessGroupsListParams = AcsAccessGroupsListParameters
-
-/**
  * @deprecated Use AcsAccessGroupsListRequest instead.
  */
 export type AcsAccessGroupsListResponse = {
-  acs_access_groups: Array<AcsAccessGroupResource>
+  acs_access_groups: Array<AcsAccessGroup>
 }
 
 export type AcsAccessGroupsListRequest = SeamHttpRequest<
@@ -357,16 +326,10 @@ export type AcsAccessGroupsListAccessibleEntrancesParameters = {
 }
 
 /**
- * @deprecated Use AcsAccessGroupsListAccessibleEntrancesParameters instead.
- */
-export type AcsAccessGroupsListAccessibleEntrancesParams =
-  AcsAccessGroupsListAccessibleEntrancesParameters
-
-/**
  * @deprecated Use AcsAccessGroupsListAccessibleEntrancesRequest instead.
  */
 export type AcsAccessGroupsListAccessibleEntrancesResponse = {
-  acs_entrances: Array<AcsEntranceResource>
+  acs_entrances: Array<AcsEntrance>
 }
 
 export type AcsAccessGroupsListAccessibleEntrancesRequest = SeamHttpRequest<
@@ -381,16 +344,9 @@ export type AcsAccessGroupsListUsersParameters = {
 }
 
 /**
- * @deprecated Use AcsAccessGroupsListUsersParameters instead.
- */
-export type AcsAccessGroupsListUsersParams = AcsAccessGroupsListUsersParameters
-
-/**
  * @deprecated Use AcsAccessGroupsListUsersRequest instead.
  */
-export type AcsAccessGroupsListUsersResponse = {
-  acs_users: Array<AcsUserResource>
-}
+export type AcsAccessGroupsListUsersResponse = { acs_users: Array<AcsUser> }
 
 export type AcsAccessGroupsListUsersRequest = SeamHttpRequest<
   AcsAccessGroupsListUsersResponse,
@@ -405,12 +361,6 @@ export type AcsAccessGroupsRemoveUserParameters = {
   acs_user_id?: string | undefined
   user_identity_id?: string | undefined
 }
-
-/**
- * @deprecated Use AcsAccessGroupsRemoveUserParameters instead.
- */
-export type AcsAccessGroupsRemoveUserParams =
-  AcsAccessGroupsRemoveUserParameters
 
 /**
  * @deprecated Use AcsAccessGroupsRemoveUserRequest instead.

@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { NoiseThresholdResource } from 'lib/seam/connect/resources/noise-threshold.js'
+import type { NoiseThreshold } from 'lib/seam/connect/resources/noise-threshold.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -239,21 +239,13 @@ export type NoiseSensorsNoiseThresholdsCreateParameters = {
   noise_threshold_decibels?: number | undefined
   noise_threshold_nrs?: number | undefined
   starts_daily_at: string
-
-  sync?: boolean | undefined
 }
-
-/**
- * @deprecated Use NoiseSensorsNoiseThresholdsCreateParameters instead.
- */
-export type NoiseSensorsNoiseThresholdsCreateBody =
-  NoiseSensorsNoiseThresholdsCreateParameters
 
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsCreateRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsCreateResponse = {
-  noise_threshold: NoiseThresholdResource
+  noise_threshold: NoiseThreshold
 }
 
 export type NoiseSensorsNoiseThresholdsCreateRequest = SeamHttpRequest<
@@ -267,15 +259,7 @@ export type NoiseSensorsNoiseThresholdsDeleteParameters = {
   device_id: string
 
   noise_threshold_id: string
-
-  sync?: boolean | undefined
 }
-
-/**
- * @deprecated Use NoiseSensorsNoiseThresholdsDeleteParameters instead.
- */
-export type NoiseSensorsNoiseThresholdsDeleteParams =
-  NoiseSensorsNoiseThresholdsDeleteParameters
 
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsDeleteRequest instead.
@@ -294,16 +278,10 @@ export type NoiseSensorsNoiseThresholdsGetParameters = {
 }
 
 /**
- * @deprecated Use NoiseSensorsNoiseThresholdsGetParameters instead.
- */
-export type NoiseSensorsNoiseThresholdsGetParams =
-  NoiseSensorsNoiseThresholdsGetParameters
-
-/**
  * @deprecated Use NoiseSensorsNoiseThresholdsGetRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsGetResponse = {
-  noise_threshold: NoiseThresholdResource
+  noise_threshold: NoiseThreshold
 }
 
 export type NoiseSensorsNoiseThresholdsGetRequest = SeamHttpRequest<
@@ -315,21 +293,13 @@ export interface NoiseSensorsNoiseThresholdsGetOptions {}
 
 export type NoiseSensorsNoiseThresholdsListParameters = {
   device_id: string
-
-  is_programmed?: boolean | undefined
 }
-
-/**
- * @deprecated Use NoiseSensorsNoiseThresholdsListParameters instead.
- */
-export type NoiseSensorsNoiseThresholdsListParams =
-  NoiseSensorsNoiseThresholdsListParameters
 
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsListRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsListResponse = {
-  noise_thresholds: Array<NoiseThresholdResource>
+  noise_thresholds: Array<NoiseThreshold>
 }
 
 export type NoiseSensorsNoiseThresholdsListRequest = SeamHttpRequest<
@@ -349,14 +319,7 @@ export type NoiseSensorsNoiseThresholdsUpdateParameters = {
 
   noise_threshold_nrs?: number | undefined
   starts_daily_at?: string | undefined
-  sync?: boolean | undefined
 }
-
-/**
- * @deprecated Use NoiseSensorsNoiseThresholdsUpdateParameters instead.
- */
-export type NoiseSensorsNoiseThresholdsUpdateBody =
-  NoiseSensorsNoiseThresholdsUpdateParameters
 
 /**
  * @deprecated Use NoiseSensorsNoiseThresholdsUpdateRequest instead.

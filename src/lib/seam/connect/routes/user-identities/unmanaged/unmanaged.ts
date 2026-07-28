@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { UnknownResource } from 'lib/seam/connect/resources/unknown.js'
+import type { UnmanagedUserIdentity } from 'lib/seam/connect/resources/unmanaged-user-identity.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -209,16 +209,10 @@ export type UserIdentitiesUnmanagedGetParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesUnmanagedGetParameters instead.
- */
-export type UserIdentitiesUnmanagedGetParams =
-  UserIdentitiesUnmanagedGetParameters
-
-/**
  * @deprecated Use UserIdentitiesUnmanagedGetRequest instead.
  */
 export type UserIdentitiesUnmanagedGetResponse = {
-  user_identity: UnknownResource
+  user_identity: UnmanagedUserIdentity
 }
 
 export type UserIdentitiesUnmanagedGetRequest = SeamHttpRequest<
@@ -236,16 +230,10 @@ export type UserIdentitiesUnmanagedListParameters = {
 }
 
 /**
- * @deprecated Use UserIdentitiesUnmanagedListParameters instead.
- */
-export type UserIdentitiesUnmanagedListParams =
-  UserIdentitiesUnmanagedListParameters
-
-/**
  * @deprecated Use UserIdentitiesUnmanagedListRequest instead.
  */
 export type UserIdentitiesUnmanagedListResponse = {
-  user_identities: Array<UnknownResource>
+  user_identities: Array<UnmanagedUserIdentity>
 }
 
 export type UserIdentitiesUnmanagedListRequest = SeamHttpRequest<
@@ -262,12 +250,6 @@ export type UserIdentitiesUnmanagedUpdateParameters = {
 
   user_identity_key?: string | undefined
 }
-
-/**
- * @deprecated Use UserIdentitiesUnmanagedUpdateParameters instead.
- */
-export type UserIdentitiesUnmanagedUpdateBody =
-  UserIdentitiesUnmanagedUpdateParameters
 
 /**
  * @deprecated Use UserIdentitiesUnmanagedUpdateRequest instead.

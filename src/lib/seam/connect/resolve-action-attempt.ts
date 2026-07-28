@@ -1,5 +1,4 @@
-import type { ActionAttempt } from '@seamapi/types/connect'
-
+import type { ActionAttempt } from './resources/action-attempt.js'
 import type { SeamHttpActionAttempts } from './routes/index.js'
 
 export interface ResolveActionAttemptOptions {
@@ -118,12 +117,10 @@ const isFailedActionAttempt = <T extends ActionAttempt>(
   actionAttempt: T,
 ): actionAttempt is FailedActionAttempt<T> => actionAttempt.status === 'error'
 
-export type SucceededActionAttempt<T extends ActionAttempt> = Extract<
-  T,
-  { status: 'success' }
->
+export type SucceededActionAttempt<T extends ActionAttempt> = T & {
+  status: 'success'
+}
 
-export type FailedActionAttempt<T extends ActionAttempt> = Extract<
-  T,
-  { status: 'error' }
->
+export type FailedActionAttempt<T extends ActionAttempt> = T & {
+  status: 'error'
+}

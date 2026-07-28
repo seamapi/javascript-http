@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { PhoneResource } from 'lib/seam/connect/resources/phone.js'
+import type { Phone } from 'lib/seam/connect/resources/phone.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -199,15 +199,9 @@ export type PhonesSimulateCreateSandboxPhoneParameters = {
 }
 
 /**
- * @deprecated Use PhonesSimulateCreateSandboxPhoneParameters instead.
- */
-export type PhonesSimulateCreateSandboxPhoneBody =
-  PhonesSimulateCreateSandboxPhoneParameters
-
-/**
  * @deprecated Use PhonesSimulateCreateSandboxPhoneRequest instead.
  */
-export type PhonesSimulateCreateSandboxPhoneResponse = { phone: PhoneResource }
+export type PhonesSimulateCreateSandboxPhoneResponse = { phone: Phone }
 
 export type PhonesSimulateCreateSandboxPhoneRequest = SeamHttpRequest<
   PhonesSimulateCreateSandboxPhoneResponse,

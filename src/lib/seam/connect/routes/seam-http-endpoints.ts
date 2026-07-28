@@ -48,9 +48,6 @@ import {
   type AccessCodesGetOptions,
   type AccessCodesGetParameters,
   type AccessCodesGetRequest,
-  type AccessCodesGetTimelineOptions,
-  type AccessCodesGetTimelineParameters,
-  type AccessCodesGetTimelineRequest,
   type AccessCodesListOptions,
   type AccessCodesListParameters,
   type AccessCodesListRequest,
@@ -186,33 +183,9 @@ import {
   SeamHttpAcsAccessGroups,
 } from './acs/access-groups/index.js'
 import {
-  type AcsAccessGroupsUnmanagedGetOptions,
-  type AcsAccessGroupsUnmanagedGetParameters,
-  type AcsAccessGroupsUnmanagedGetRequest,
-  type AcsAccessGroupsUnmanagedListOptions,
-  type AcsAccessGroupsUnmanagedListParameters,
-  type AcsAccessGroupsUnmanagedListRequest,
-  SeamHttpAcsAccessGroupsUnmanaged,
-} from './acs/access-groups/unmanaged/index.js'
-import {
-  type AcsCredentialPoolsListOptions,
-  type AcsCredentialPoolsListParameters,
-  type AcsCredentialPoolsListRequest,
-  SeamHttpAcsCredentialPools,
-} from './acs/credential-pools/index.js'
-import {
-  type AcsCredentialProvisioningAutomationsLaunchOptions,
-  type AcsCredentialProvisioningAutomationsLaunchParameters,
-  type AcsCredentialProvisioningAutomationsLaunchRequest,
-  SeamHttpAcsCredentialProvisioningAutomations,
-} from './acs/credential-provisioning-automations/index.js'
-import {
   type AcsCredentialsAssignOptions,
   type AcsCredentialsAssignParameters,
   type AcsCredentialsAssignRequest,
-  type AcsCredentialsCreateOfflineCodeOptions,
-  type AcsCredentialsCreateOfflineCodeParameters,
-  type AcsCredentialsCreateOfflineCodeRequest,
   type AcsCredentialsCreateOptions,
   type AcsCredentialsCreateParameters,
   type AcsCredentialsCreateRequest,
@@ -236,15 +209,6 @@ import {
   type AcsCredentialsUpdateRequest,
   SeamHttpAcsCredentials,
 } from './acs/credentials/index.js'
-import {
-  type AcsCredentialsUnmanagedGetOptions,
-  type AcsCredentialsUnmanagedGetParameters,
-  type AcsCredentialsUnmanagedGetRequest,
-  type AcsCredentialsUnmanagedListOptions,
-  type AcsCredentialsUnmanagedListParameters,
-  type AcsCredentialsUnmanagedListRequest,
-  SeamHttpAcsCredentialsUnmanaged,
-} from './acs/credentials/unmanaged/index.js'
 import {
   type AcsEncodersEncodeCredentialOptions,
   type AcsEncodersEncodeCredentialParameters,
@@ -348,15 +312,6 @@ import {
   SeamHttpAcsUsers,
 } from './acs/users/index.js'
 import {
-  type AcsUsersUnmanagedGetOptions,
-  type AcsUsersUnmanagedGetParameters,
-  type AcsUsersUnmanagedGetRequest,
-  type AcsUsersUnmanagedListOptions,
-  type AcsUsersUnmanagedListParameters,
-  type AcsUsersUnmanagedListRequest,
-  SeamHttpAcsUsersUnmanaged,
-} from './acs/users/unmanaged/index.js'
-import {
   type ActionAttemptsGetOptions,
   type ActionAttemptsGetParameters,
   type ActionAttemptsGetRequest,
@@ -365,15 +320,6 @@ import {
   type ActionAttemptsListRequest,
   SeamHttpActionAttempts,
 } from './action-attempts/index.js'
-import {
-  type BridgesGetOptions,
-  type BridgesGetParameters,
-  type BridgesGetRequest,
-  type BridgesListOptions,
-  type BridgesListParameters,
-  type BridgesListRequest,
-  SeamHttpBridges,
-} from './bridges/index.js'
 import {
   type ClientSessionsCreateOptions,
   type ClientSessionsCreateParameters,
@@ -450,15 +396,6 @@ import {
   SeamHttpCustomers,
 } from './customers/index.js'
 import {
-  type CustomersReservationsCreateDeepLinkOptions,
-  type CustomersReservationsCreateDeepLinkParameters,
-  type CustomersReservationsCreateDeepLinkRequest,
-  SeamHttpCustomersReservations,
-} from './customers/reservations/index.js'
-import {
-  type DevicesDeleteOptions,
-  type DevicesDeleteParameters,
-  type DevicesDeleteRequest,
   type DevicesGetOptions,
   type DevicesGetParameters,
   type DevicesGetRequest,
@@ -606,231 +543,6 @@ import {
   SeamHttpPhonesSimulate,
 } from './phones/simulate/index.js'
 import {
-  type SeamConsoleV1GetResourceLocatorOptions,
-  type SeamConsoleV1GetResourceLocatorParameters,
-  type SeamConsoleV1GetResourceLocatorRequest,
-  SeamHttpSeamConsoleV1,
-} from './seam/console/v1/index.js'
-import {
-  type SeamConsoleV1LynxMigrationGetPropertyMigrationStatusOptions,
-  type SeamConsoleV1LynxMigrationGetPropertyMigrationStatusParameters,
-  type SeamConsoleV1LynxMigrationGetPropertyMigrationStatusRequest,
-  type SeamConsoleV1LynxMigrationGetReservationMigrationStatusOptions,
-  type SeamConsoleV1LynxMigrationGetReservationMigrationStatusParameters,
-  type SeamConsoleV1LynxMigrationGetReservationMigrationStatusRequest,
-  type SeamConsoleV1LynxMigrationListPropertyReservationsOptions,
-  type SeamConsoleV1LynxMigrationListPropertyReservationsParameters,
-  type SeamConsoleV1LynxMigrationListPropertyReservationsRequest,
-  type SeamConsoleV1LynxMigrationMigratePropertyOptions,
-  type SeamConsoleV1LynxMigrationMigratePropertyParameters,
-  type SeamConsoleV1LynxMigrationMigratePropertyRequest,
-  SeamHttpSeamConsoleV1LynxMigration,
-} from './seam/console/v1/lynx-migration/index.js'
-import {
-  type SeamConsoleV1SitesCreateOptions,
-  type SeamConsoleV1SitesCreateParameters,
-  type SeamConsoleV1SitesCreateRequest,
-  type SeamConsoleV1SitesDeleteOptions,
-  type SeamConsoleV1SitesDeleteParameters,
-  type SeamConsoleV1SitesDeleteRequest,
-  type SeamConsoleV1SitesListOptions,
-  type SeamConsoleV1SitesListParameters,
-  type SeamConsoleV1SitesListRequest,
-  type SeamConsoleV1SitesUpdateOptions,
-  type SeamConsoleV1SitesUpdateParameters,
-  type SeamConsoleV1SitesUpdateRequest,
-  SeamHttpSeamConsoleV1Sites,
-} from './seam/console/v1/sites/index.js'
-import {
-  type SeamConsoleV1TimelinesGetOptions,
-  type SeamConsoleV1TimelinesGetParameters,
-  type SeamConsoleV1TimelinesGetRequest,
-  SeamHttpSeamConsoleV1Timelines,
-} from './seam/console/v1/timelines/index.js'
-import {
-  type SeamConsoleV1WorkspaceFeatureFlagsListOptions,
-  type SeamConsoleV1WorkspaceFeatureFlagsListParameters,
-  type SeamConsoleV1WorkspaceFeatureFlagsListRequest,
-  type SeamConsoleV1WorkspaceFeatureFlagsUpdateOptions,
-  type SeamConsoleV1WorkspaceFeatureFlagsUpdateParameters,
-  type SeamConsoleV1WorkspaceFeatureFlagsUpdateRequest,
-  SeamHttpSeamConsoleV1WorkspaceFeatureFlags,
-} from './seam/console/v1/workspace/feature-flags/index.js'
-import {
-  type SeamCustomerV1AccessGrantsListOptions,
-  type SeamCustomerV1AccessGrantsListParameters,
-  type SeamCustomerV1AccessGrantsListRequest,
-  type SeamCustomerV1AccessGrantsUpdateOptions,
-  type SeamCustomerV1AccessGrantsUpdateParameters,
-  type SeamCustomerV1AccessGrantsUpdateRequest,
-  SeamHttpSeamCustomerV1AccessGrants,
-} from './seam/customer/v1/access-grants/index.js'
-import {
-  type SeamCustomerV1AccessMethodsEncodeOptions,
-  type SeamCustomerV1AccessMethodsEncodeParameters,
-  type SeamCustomerV1AccessMethodsEncodeRequest,
-  SeamHttpSeamCustomerV1AccessMethods,
-} from './seam/customer/v1/access-methods/index.js'
-import {
-  type SeamCustomerV1AutomationRunsListOptions,
-  type SeamCustomerV1AutomationRunsListParameters,
-  type SeamCustomerV1AutomationRunsListRequest,
-  SeamHttpSeamCustomerV1AutomationRuns,
-} from './seam/customer/v1/automation-runs/index.js'
-import {
-  type SeamCustomerV1AutomationsDeleteOptions,
-  type SeamCustomerV1AutomationsDeleteParameters,
-  type SeamCustomerV1AutomationsDeleteRequest,
-  type SeamCustomerV1AutomationsGetOptions,
-  type SeamCustomerV1AutomationsGetParameters,
-  type SeamCustomerV1AutomationsGetRequest,
-  type SeamCustomerV1AutomationsUpdateOptions,
-  type SeamCustomerV1AutomationsUpdateParameters,
-  type SeamCustomerV1AutomationsUpdateRequest,
-  SeamHttpSeamCustomerV1Automations,
-} from './seam/customer/v1/automations/index.js'
-import {
-  type SeamCustomerV1ConnectorCustomersListOptions,
-  type SeamCustomerV1ConnectorCustomersListParameters,
-  type SeamCustomerV1ConnectorCustomersListRequest,
-  SeamHttpSeamCustomerV1ConnectorCustomers,
-} from './seam/customer/v1/connector-customers/index.js'
-import {
-  type SeamCustomerV1ConnectorsExternalSitesListOptions,
-  type SeamCustomerV1ConnectorsExternalSitesListParameters,
-  type SeamCustomerV1ConnectorsExternalSitesListRequest,
-  SeamHttpSeamCustomerV1ConnectorsExternalSites,
-} from './seam/customer/v1/connectors/external-sites/index.js'
-import {
-  type SeamCustomerV1ConnectorsIcalValidateConfigOptions,
-  type SeamCustomerV1ConnectorsIcalValidateConfigParameters,
-  type SeamCustomerV1ConnectorsIcalValidateConfigRequest,
-  SeamHttpSeamCustomerV1ConnectorsIcal,
-} from './seam/customer/v1/connectors/ical/index.js'
-import {
-  type SeamCustomerV1ConnectorsAuthorizeOptions,
-  type SeamCustomerV1ConnectorsAuthorizeParameters,
-  type SeamCustomerV1ConnectorsAuthorizeRequest,
-  type SeamCustomerV1ConnectorsConnectorTypesOptions,
-  type SeamCustomerV1ConnectorsConnectorTypesParameters,
-  type SeamCustomerV1ConnectorsConnectorTypesRequest,
-  type SeamCustomerV1ConnectorsCreateOptions,
-  type SeamCustomerV1ConnectorsCreateParameters,
-  type SeamCustomerV1ConnectorsCreateRequest,
-  type SeamCustomerV1ConnectorsDeleteOptions,
-  type SeamCustomerV1ConnectorsDeleteParameters,
-  type SeamCustomerV1ConnectorsDeleteRequest,
-  type SeamCustomerV1ConnectorsListOptions,
-  type SeamCustomerV1ConnectorsListParameters,
-  type SeamCustomerV1ConnectorsListRequest,
-  type SeamCustomerV1ConnectorsSyncOptions,
-  type SeamCustomerV1ConnectorsSyncParameters,
-  type SeamCustomerV1ConnectorsSyncRequest,
-  type SeamCustomerV1ConnectorsUpdateOptions,
-  type SeamCustomerV1ConnectorsUpdateParameters,
-  type SeamCustomerV1ConnectorsUpdateRequest,
-  SeamHttpSeamCustomerV1Connectors,
-} from './seam/customer/v1/connectors/index.js'
-import {
-  type SeamCustomerV1CustomersAutomationsGetOptions,
-  type SeamCustomerV1CustomersAutomationsGetParameters,
-  type SeamCustomerV1CustomersAutomationsGetRequest,
-  type SeamCustomerV1CustomersAutomationsUpdateOptions,
-  type SeamCustomerV1CustomersAutomationsUpdateParameters,
-  type SeamCustomerV1CustomersAutomationsUpdateRequest,
-  SeamHttpSeamCustomerV1CustomersAutomations,
-} from './seam/customer/v1/customers/automations/index.js'
-import {
-  type SeamCustomerV1CustomersListOptions,
-  type SeamCustomerV1CustomersListParameters,
-  type SeamCustomerV1CustomersListRequest,
-  type SeamCustomerV1CustomersMeOptions,
-  type SeamCustomerV1CustomersMeParameters,
-  type SeamCustomerV1CustomersMeRequest,
-  type SeamCustomerV1CustomersOpenPortalOptions,
-  type SeamCustomerV1CustomersOpenPortalParameters,
-  type SeamCustomerV1CustomersOpenPortalRequest,
-  SeamHttpSeamCustomerV1Customers,
-} from './seam/customer/v1/customers/index.js'
-import {
-  type SeamCustomerV1EncodersListOptions,
-  type SeamCustomerV1EncodersListParameters,
-  type SeamCustomerV1EncodersListRequest,
-  SeamHttpSeamCustomerV1Encoders,
-} from './seam/customer/v1/encoders/index.js'
-import {
-  type SeamCustomerV1EventsListOptions,
-  type SeamCustomerV1EventsListParameters,
-  type SeamCustomerV1EventsListRequest,
-  SeamHttpSeamCustomerV1Events,
-} from './seam/customer/v1/events/index.js'
-import {
-  type SeamCustomerV1PortalsGetOptions,
-  type SeamCustomerV1PortalsGetParameters,
-  type SeamCustomerV1PortalsGetRequest,
-  type SeamCustomerV1PortalsUpdateOptions,
-  type SeamCustomerV1PortalsUpdateParameters,
-  type SeamCustomerV1PortalsUpdateRequest,
-  SeamHttpSeamCustomerV1Portals,
-} from './seam/customer/v1/portals/index.js'
-import {
-  type SeamCustomerV1ReservationsGetOptions,
-  type SeamCustomerV1ReservationsGetParameters,
-  type SeamCustomerV1ReservationsGetRequest,
-  type SeamCustomerV1ReservationsListAccessGrantsOptions,
-  type SeamCustomerV1ReservationsListAccessGrantsParameters,
-  type SeamCustomerV1ReservationsListAccessGrantsRequest,
-  type SeamCustomerV1ReservationsListOptions,
-  type SeamCustomerV1ReservationsListParameters,
-  type SeamCustomerV1ReservationsListRequest,
-  SeamHttpSeamCustomerV1Reservations,
-} from './seam/customer/v1/reservations/index.js'
-import {
-  type SeamCustomerV1SettingsGetOptions,
-  type SeamCustomerV1SettingsGetParameters,
-  type SeamCustomerV1SettingsGetRequest,
-  type SeamCustomerV1SettingsUpdateOptions,
-  type SeamCustomerV1SettingsUpdateParameters,
-  type SeamCustomerV1SettingsUpdateRequest,
-  SeamHttpSeamCustomerV1Settings,
-} from './seam/customer/v1/settings/index.js'
-import {
-  type SeamCustomerV1SettingsVerticalResourceAliasesGetOptions,
-  type SeamCustomerV1SettingsVerticalResourceAliasesGetParameters,
-  type SeamCustomerV1SettingsVerticalResourceAliasesGetRequest,
-  SeamHttpSeamCustomerV1SettingsVerticalResourceAliases,
-} from './seam/customer/v1/settings/vertical-resource-aliases/index.js'
-import {
-  type SeamCustomerV1SpacesCreateOptions,
-  type SeamCustomerV1SpacesCreateParameters,
-  type SeamCustomerV1SpacesCreateRequest,
-  type SeamCustomerV1SpacesListOptions,
-  type SeamCustomerV1SpacesListParameters,
-  type SeamCustomerV1SpacesListRequest,
-  type SeamCustomerV1SpacesListReservationsOptions,
-  type SeamCustomerV1SpacesListReservationsParameters,
-  type SeamCustomerV1SpacesListReservationsRequest,
-  type SeamCustomerV1SpacesPushCommonAreasOptions,
-  type SeamCustomerV1SpacesPushCommonAreasParameters,
-  type SeamCustomerV1SpacesPushCommonAreasRequest,
-  SeamHttpSeamCustomerV1Spaces,
-} from './seam/customer/v1/spaces/index.js'
-import {
-  type SeamCustomerV1StaffMembersGetOptions,
-  type SeamCustomerV1StaffMembersGetParameters,
-  type SeamCustomerV1StaffMembersGetRequest,
-  type SeamCustomerV1StaffMembersListOptions,
-  type SeamCustomerV1StaffMembersListParameters,
-  type SeamCustomerV1StaffMembersListRequest,
-  SeamHttpSeamCustomerV1StaffMembers,
-} from './seam/customer/v1/staff-members/index.js'
-import {
-  SeamHttpSeamPartnerV1BuildingBlocksSpaces,
-  type SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
-  type SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
-  type SeamPartnerV1BuildingBlocksSpacesAutoMapRequest,
-} from './seam/partner/v1/building-blocks/spaces/index.js'
-import {
   SeamHttpSpaces,
   type SpacesAddAcsEntrancesOptions,
   type SpacesAddAcsEntrancesParameters,
@@ -895,9 +607,6 @@ import {
   type ThermostatsDeleteClimatePresetOptions,
   type ThermostatsDeleteClimatePresetParameters,
   type ThermostatsDeleteClimatePresetRequest,
-  type ThermostatsGetOptions,
-  type ThermostatsGetParameters,
-  type ThermostatsGetRequest,
   type ThermostatsHeatCoolOptions,
   type ThermostatsHeatCoolParameters,
   type ThermostatsHeatCoolRequest,
@@ -956,36 +665,6 @@ import {
   type ThermostatsSimulateTemperatureReachedParameters,
   type ThermostatsSimulateTemperatureReachedRequest,
 } from './thermostats/simulate/index.js'
-import {
-  SeamHttpUnstablePartnerBuildingBlocks,
-  type UnstablePartnerBuildingBlocksConnectAccountsOptions,
-  type UnstablePartnerBuildingBlocksConnectAccountsParameters,
-  type UnstablePartnerBuildingBlocksConnectAccountsRequest,
-  type UnstablePartnerBuildingBlocksGenerateMagicLinkOptions,
-  type UnstablePartnerBuildingBlocksGenerateMagicLinkParameters,
-  type UnstablePartnerBuildingBlocksGenerateMagicLinkRequest,
-  type UnstablePartnerBuildingBlocksManageDevicesOptions,
-  type UnstablePartnerBuildingBlocksManageDevicesParameters,
-  type UnstablePartnerBuildingBlocksManageDevicesRequest,
-  type UnstablePartnerBuildingBlocksOrganizeSpacesOptions,
-  type UnstablePartnerBuildingBlocksOrganizeSpacesParameters,
-  type UnstablePartnerBuildingBlocksOrganizeSpacesRequest,
-} from './unstable-partner/building-blocks/index.js'
-import {
-  SeamHttpUserIdentitiesEnrollmentAutomations,
-  type UserIdentitiesEnrollmentAutomationsDeleteOptions,
-  type UserIdentitiesEnrollmentAutomationsDeleteParameters,
-  type UserIdentitiesEnrollmentAutomationsDeleteRequest,
-  type UserIdentitiesEnrollmentAutomationsGetOptions,
-  type UserIdentitiesEnrollmentAutomationsGetParameters,
-  type UserIdentitiesEnrollmentAutomationsGetRequest,
-  type UserIdentitiesEnrollmentAutomationsLaunchOptions,
-  type UserIdentitiesEnrollmentAutomationsLaunchParameters,
-  type UserIdentitiesEnrollmentAutomationsLaunchRequest,
-  type UserIdentitiesEnrollmentAutomationsListOptions,
-  type UserIdentitiesEnrollmentAutomationsListParameters,
-  type UserIdentitiesEnrollmentAutomationsListRequest,
-} from './user-identities/enrollment-automations/index.js'
 import {
   SeamHttpUserIdentities,
   type UserIdentitiesAddAcsUserOptions,
@@ -1062,31 +741,10 @@ import {
   type WebhooksUpdateRequest,
 } from './webhooks/index.js'
 import {
-  SeamHttpWorkspacesCustomizationProfiles,
-  type WorkspacesCustomizationProfilesCreateOptions,
-  type WorkspacesCustomizationProfilesCreateParameters,
-  type WorkspacesCustomizationProfilesCreateRequest,
-  type WorkspacesCustomizationProfilesGetOptions,
-  type WorkspacesCustomizationProfilesGetParameters,
-  type WorkspacesCustomizationProfilesGetRequest,
-  type WorkspacesCustomizationProfilesListOptions,
-  type WorkspacesCustomizationProfilesListParameters,
-  type WorkspacesCustomizationProfilesListRequest,
-  type WorkspacesCustomizationProfilesUpdateOptions,
-  type WorkspacesCustomizationProfilesUpdateParameters,
-  type WorkspacesCustomizationProfilesUpdateRequest,
-  type WorkspacesCustomizationProfilesUploadImagesOptions,
-  type WorkspacesCustomizationProfilesUploadImagesParameters,
-  type WorkspacesCustomizationProfilesUploadImagesRequest,
-} from './workspaces/customization-profiles/index.js'
-import {
   SeamHttpWorkspaces,
   type WorkspacesCreateOptions,
   type WorkspacesCreateParameters,
   type WorkspacesCreateRequest,
-  type WorkspacesFindAnythingOptions,
-  type WorkspacesFindAnythingParameters,
-  type WorkspacesFindAnythingRequest,
   type WorkspacesGetOptions,
   type WorkspacesGetParameters,
   type WorkspacesGetRequest,
@@ -1290,24 +948,6 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAccessCodes['get']> {
       const seam = SeamHttpAccessCodes.fromClient(client, defaults)
       return seam.get(...args)
-    }
-  }
-
-  get '/access_codes/get_timeline'(): (
-    parameters: AccessCodesGetTimelineParameters,
-    options?: AccessCodesGetTimelineOptions,
-  ) => AccessCodesGetTimelineRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function accessCodesGetTimeline(
-      ...args: Parameters<SeamHttpAccessCodes['getTimeline']>
-    ): ReturnType<SeamHttpAccessCodes['getTimeline']> {
-      const seam = SeamHttpAccessCodes.fromClient(client, defaults)
-      return seam.getTimeline(...args)
     }
   }
 
@@ -1794,83 +1434,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get '/acs/access_groups/unmanaged/get'(): (
-    parameters: AcsAccessGroupsUnmanagedGetParameters,
-    options?: AcsAccessGroupsUnmanagedGetOptions,
-  ) => AcsAccessGroupsUnmanagedGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function acsAccessGroupsUnmanagedGet(
-      ...args: Parameters<SeamHttpAcsAccessGroupsUnmanaged['get']>
-    ): ReturnType<SeamHttpAcsAccessGroupsUnmanaged['get']> {
-      const seam = SeamHttpAcsAccessGroupsUnmanaged.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get '/acs/access_groups/unmanaged/list'(): (
-    parameters?: AcsAccessGroupsUnmanagedListParameters,
-    options?: AcsAccessGroupsUnmanagedListOptions,
-  ) => AcsAccessGroupsUnmanagedListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function acsAccessGroupsUnmanagedList(
-      ...args: Parameters<SeamHttpAcsAccessGroupsUnmanaged['list']>
-    ): ReturnType<SeamHttpAcsAccessGroupsUnmanaged['list']> {
-      const seam = SeamHttpAcsAccessGroupsUnmanaged.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get '/acs/credential_pools/list'(): (
-    parameters: AcsCredentialPoolsListParameters,
-    options?: AcsCredentialPoolsListOptions,
-  ) => AcsCredentialPoolsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function acsCredentialPoolsList(
-      ...args: Parameters<SeamHttpAcsCredentialPools['list']>
-    ): ReturnType<SeamHttpAcsCredentialPools['list']> {
-      const seam = SeamHttpAcsCredentialPools.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get '/acs/credential_provisioning_automations/launch'(): (
-    parameters: AcsCredentialProvisioningAutomationsLaunchParameters,
-    options?: AcsCredentialProvisioningAutomationsLaunchOptions,
-  ) => AcsCredentialProvisioningAutomationsLaunchRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function acsCredentialProvisioningAutomationsLaunch(
-      ...args: Parameters<
-        SeamHttpAcsCredentialProvisioningAutomations['launch']
-      >
-    ): ReturnType<SeamHttpAcsCredentialProvisioningAutomations['launch']> {
-      const seam = SeamHttpAcsCredentialProvisioningAutomations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.launch(...args)
-    }
-  }
-
   get '/acs/credentials/assign'(): (
     parameters: AcsCredentialsAssignParameters,
     options?: AcsCredentialsAssignOptions,
@@ -1894,24 +1457,6 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAcsCredentials['create']> {
       const seam = SeamHttpAcsCredentials.fromClient(client, defaults)
       return seam.create(...args)
-    }
-  }
-
-  get '/acs/credentials/create_offline_code'(): (
-    parameters: AcsCredentialsCreateOfflineCodeParameters,
-    options?: AcsCredentialsCreateOfflineCodeOptions,
-  ) => AcsCredentialsCreateOfflineCodeRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function acsCredentialsCreateOfflineCode(
-      ...args: Parameters<SeamHttpAcsCredentials['createOfflineCode']>
-    ): ReturnType<SeamHttpAcsCredentials['createOfflineCode']> {
-      const seam = SeamHttpAcsCredentials.fromClient(client, defaults)
-      return seam.createOfflineCode(...args)
     }
   }
 
@@ -1990,42 +1535,6 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpAcsCredentials['update']> {
       const seam = SeamHttpAcsCredentials.fromClient(client, defaults)
       return seam.update(...args)
-    }
-  }
-
-  get '/acs/credentials/unmanaged/get'(): (
-    parameters: AcsCredentialsUnmanagedGetParameters,
-    options?: AcsCredentialsUnmanagedGetOptions,
-  ) => AcsCredentialsUnmanagedGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function acsCredentialsUnmanagedGet(
-      ...args: Parameters<SeamHttpAcsCredentialsUnmanaged['get']>
-    ): ReturnType<SeamHttpAcsCredentialsUnmanaged['get']> {
-      const seam = SeamHttpAcsCredentialsUnmanaged.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get '/acs/credentials/unmanaged/list'(): (
-    parameters?: AcsCredentialsUnmanagedListParameters,
-    options?: AcsCredentialsUnmanagedListOptions,
-  ) => AcsCredentialsUnmanagedListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function acsCredentialsUnmanagedList(
-      ...args: Parameters<SeamHttpAcsCredentialsUnmanaged['list']>
-    ): ReturnType<SeamHttpAcsCredentialsUnmanaged['list']> {
-      const seam = SeamHttpAcsCredentialsUnmanaged.fromClient(client, defaults)
-      return seam.list(...args)
     }
   }
 
@@ -2422,42 +1931,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get '/acs/users/unmanaged/get'(): (
-    parameters: AcsUsersUnmanagedGetParameters,
-    options?: AcsUsersUnmanagedGetOptions,
-  ) => AcsUsersUnmanagedGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function acsUsersUnmanagedGet(
-      ...args: Parameters<SeamHttpAcsUsersUnmanaged['get']>
-    ): ReturnType<SeamHttpAcsUsersUnmanaged['get']> {
-      const seam = SeamHttpAcsUsersUnmanaged.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get '/acs/users/unmanaged/list'(): (
-    parameters?: AcsUsersUnmanagedListParameters,
-    options?: AcsUsersUnmanagedListOptions,
-  ) => AcsUsersUnmanagedListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function acsUsersUnmanagedList(
-      ...args: Parameters<SeamHttpAcsUsersUnmanaged['list']>
-    ): ReturnType<SeamHttpAcsUsersUnmanaged['list']> {
-      const seam = SeamHttpAcsUsersUnmanaged.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
   get '/action_attempts/get'(): (
     parameters: ActionAttemptsGetParameters,
     options?: ActionAttemptsGetOptions,
@@ -2480,42 +1953,6 @@ export class SeamHttpEndpoints {
       ...args: Parameters<SeamHttpActionAttempts['list']>
     ): ReturnType<SeamHttpActionAttempts['list']> {
       const seam = SeamHttpActionAttempts.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get '/bridges/get'(): (
-    parameters: BridgesGetParameters,
-    options?: BridgesGetOptions,
-  ) => BridgesGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function bridgesGet(
-      ...args: Parameters<SeamHttpBridges['get']>
-    ): ReturnType<SeamHttpBridges['get']> {
-      const seam = SeamHttpBridges.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get '/bridges/list'(): (
-    parameters?: BridgesListParameters,
-    options?: BridgesListOptions,
-  ) => BridgesListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function bridgesList(
-      ...args: Parameters<SeamHttpBridges['list']>
-    ): ReturnType<SeamHttpBridges['list']> {
-      const seam = SeamHttpBridges.fromClient(client, defaults)
       return seam.list(...args)
     }
   }
@@ -2780,42 +2217,6 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpCustomers['pushData']> {
       const seam = SeamHttpCustomers.fromClient(client, defaults)
       return seam.pushData(...args)
-    }
-  }
-
-  get '/customers/reservations/create_deep_link'(): (
-    parameters: CustomersReservationsCreateDeepLinkParameters,
-    options?: CustomersReservationsCreateDeepLinkOptions,
-  ) => CustomersReservationsCreateDeepLinkRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function customersReservationsCreateDeepLink(
-      ...args: Parameters<SeamHttpCustomersReservations['createDeepLink']>
-    ): ReturnType<SeamHttpCustomersReservations['createDeepLink']> {
-      const seam = SeamHttpCustomersReservations.fromClient(client, defaults)
-      return seam.createDeepLink(...args)
-    }
-  }
-
-  get '/devices/delete'(): (
-    parameters: DevicesDeleteParameters,
-    options?: DevicesDeleteOptions,
-  ) => DevicesDeleteRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function devicesDelete(
-      ...args: Parameters<SeamHttpDevices['delete']>
-    ): ReturnType<SeamHttpDevices['delete']> {
-      const seam = SeamHttpDevices.fromClient(client, defaults)
-      return seam.delete(...args)
     }
   }
 
@@ -3315,1020 +2716,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get '/seam/console/v1/get_resource_locator'(): (
-    parameters?: SeamConsoleV1GetResourceLocatorParameters,
-    options?: SeamConsoleV1GetResourceLocatorOptions,
-  ) => SeamConsoleV1GetResourceLocatorRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1GetResourceLocator(
-      ...args: Parameters<SeamHttpSeamConsoleV1['getResourceLocator']>
-    ): ReturnType<SeamHttpSeamConsoleV1['getResourceLocator']> {
-      const seam = SeamHttpSeamConsoleV1.fromClient(client, defaults)
-      return seam.getResourceLocator(...args)
-    }
-  }
-
-  get '/seam/console/v1/lynx_migration/get_property_migration_status'(): (
-    parameters: SeamConsoleV1LynxMigrationGetPropertyMigrationStatusParameters,
-    options?: SeamConsoleV1LynxMigrationGetPropertyMigrationStatusOptions,
-  ) => SeamConsoleV1LynxMigrationGetPropertyMigrationStatusRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1LynxMigrationGetPropertyMigrationStatus(
-      ...args: Parameters<
-        SeamHttpSeamConsoleV1LynxMigration['getPropertyMigrationStatus']
-      >
-    ): ReturnType<
-      SeamHttpSeamConsoleV1LynxMigration['getPropertyMigrationStatus']
-    > {
-      const seam = SeamHttpSeamConsoleV1LynxMigration.fromClient(
-        client,
-        defaults,
-      )
-      return seam.getPropertyMigrationStatus(...args)
-    }
-  }
-
-  get '/seam/console/v1/lynx_migration/get_reservation_migration_status'(): (
-    parameters: SeamConsoleV1LynxMigrationGetReservationMigrationStatusParameters,
-    options?: SeamConsoleV1LynxMigrationGetReservationMigrationStatusOptions,
-  ) => SeamConsoleV1LynxMigrationGetReservationMigrationStatusRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1LynxMigrationGetReservationMigrationStatus(
-      ...args: Parameters<
-        SeamHttpSeamConsoleV1LynxMigration['getReservationMigrationStatus']
-      >
-    ): ReturnType<
-      SeamHttpSeamConsoleV1LynxMigration['getReservationMigrationStatus']
-    > {
-      const seam = SeamHttpSeamConsoleV1LynxMigration.fromClient(
-        client,
-        defaults,
-      )
-      return seam.getReservationMigrationStatus(...args)
-    }
-  }
-
-  get '/seam/console/v1/lynx_migration/list_property_reservations'(): (
-    parameters: SeamConsoleV1LynxMigrationListPropertyReservationsParameters,
-    options?: SeamConsoleV1LynxMigrationListPropertyReservationsOptions,
-  ) => SeamConsoleV1LynxMigrationListPropertyReservationsRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1LynxMigrationListPropertyReservations(
-      ...args: Parameters<
-        SeamHttpSeamConsoleV1LynxMigration['listPropertyReservations']
-      >
-    ): ReturnType<
-      SeamHttpSeamConsoleV1LynxMigration['listPropertyReservations']
-    > {
-      const seam = SeamHttpSeamConsoleV1LynxMigration.fromClient(
-        client,
-        defaults,
-      )
-      return seam.listPropertyReservations(...args)
-    }
-  }
-
-  get '/seam/console/v1/lynx_migration/migrate_property'(): (
-    parameters: SeamConsoleV1LynxMigrationMigratePropertyParameters,
-    options?: SeamConsoleV1LynxMigrationMigratePropertyOptions,
-  ) => SeamConsoleV1LynxMigrationMigratePropertyRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1LynxMigrationMigrateProperty(
-      ...args: Parameters<SeamHttpSeamConsoleV1LynxMigration['migrateProperty']>
-    ): ReturnType<SeamHttpSeamConsoleV1LynxMigration['migrateProperty']> {
-      const seam = SeamHttpSeamConsoleV1LynxMigration.fromClient(
-        client,
-        defaults,
-      )
-      return seam.migrateProperty(...args)
-    }
-  }
-
-  get '/seam/console/v1/sites/create'(): (
-    parameters: SeamConsoleV1SitesCreateParameters,
-    options?: SeamConsoleV1SitesCreateOptions,
-  ) => SeamConsoleV1SitesCreateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1SitesCreate(
-      ...args: Parameters<SeamHttpSeamConsoleV1Sites['create']>
-    ): ReturnType<SeamHttpSeamConsoleV1Sites['create']> {
-      const seam = SeamHttpSeamConsoleV1Sites.fromClient(client, defaults)
-      return seam.create(...args)
-    }
-  }
-
-  get '/seam/console/v1/sites/delete'(): (
-    parameters: SeamConsoleV1SitesDeleteParameters,
-    options?: SeamConsoleV1SitesDeleteOptions,
-  ) => SeamConsoleV1SitesDeleteRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1SitesDelete(
-      ...args: Parameters<SeamHttpSeamConsoleV1Sites['delete']>
-    ): ReturnType<SeamHttpSeamConsoleV1Sites['delete']> {
-      const seam = SeamHttpSeamConsoleV1Sites.fromClient(client, defaults)
-      return seam.delete(...args)
-    }
-  }
-
-  get '/seam/console/v1/sites/list'(): (
-    parameters?: SeamConsoleV1SitesListParameters,
-    options?: SeamConsoleV1SitesListOptions,
-  ) => SeamConsoleV1SitesListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1SitesList(
-      ...args: Parameters<SeamHttpSeamConsoleV1Sites['list']>
-    ): ReturnType<SeamHttpSeamConsoleV1Sites['list']> {
-      const seam = SeamHttpSeamConsoleV1Sites.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/console/v1/sites/update'(): (
-    parameters: SeamConsoleV1SitesUpdateParameters,
-    options?: SeamConsoleV1SitesUpdateOptions,
-  ) => SeamConsoleV1SitesUpdateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1SitesUpdate(
-      ...args: Parameters<SeamHttpSeamConsoleV1Sites['update']>
-    ): ReturnType<SeamHttpSeamConsoleV1Sites['update']> {
-      const seam = SeamHttpSeamConsoleV1Sites.fromClient(client, defaults)
-      return seam.update(...args)
-    }
-  }
-
-  get '/seam/console/v1/timelines/get'(): (
-    parameters: SeamConsoleV1TimelinesGetParameters,
-    options?: SeamConsoleV1TimelinesGetOptions,
-  ) => SeamConsoleV1TimelinesGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1TimelinesGet(
-      ...args: Parameters<SeamHttpSeamConsoleV1Timelines['get']>
-    ): ReturnType<SeamHttpSeamConsoleV1Timelines['get']> {
-      const seam = SeamHttpSeamConsoleV1Timelines.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get '/seam/console/v1/workspace/feature_flags/list'(): (
-    parameters?: SeamConsoleV1WorkspaceFeatureFlagsListParameters,
-    options?: SeamConsoleV1WorkspaceFeatureFlagsListOptions,
-  ) => SeamConsoleV1WorkspaceFeatureFlagsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1WorkspaceFeatureFlagsList(
-      ...args: Parameters<SeamHttpSeamConsoleV1WorkspaceFeatureFlags['list']>
-    ): ReturnType<SeamHttpSeamConsoleV1WorkspaceFeatureFlags['list']> {
-      const seam = SeamHttpSeamConsoleV1WorkspaceFeatureFlags.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/console/v1/workspace/feature_flags/update'(): (
-    parameters: SeamConsoleV1WorkspaceFeatureFlagsUpdateParameters,
-    options?: SeamConsoleV1WorkspaceFeatureFlagsUpdateOptions,
-  ) => SeamConsoleV1WorkspaceFeatureFlagsUpdateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamConsoleV1WorkspaceFeatureFlagsUpdate(
-      ...args: Parameters<SeamHttpSeamConsoleV1WorkspaceFeatureFlags['update']>
-    ): ReturnType<SeamHttpSeamConsoleV1WorkspaceFeatureFlags['update']> {
-      const seam = SeamHttpSeamConsoleV1WorkspaceFeatureFlags.fromClient(
-        client,
-        defaults,
-      )
-      return seam.update(...args)
-    }
-  }
-
-  get '/seam/customer/v1/access_grants/list'(): (
-    parameters?: SeamCustomerV1AccessGrantsListParameters,
-    options?: SeamCustomerV1AccessGrantsListOptions,
-  ) => SeamCustomerV1AccessGrantsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1AccessGrantsList(
-      ...args: Parameters<SeamHttpSeamCustomerV1AccessGrants['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1AccessGrants['list']> {
-      const seam = SeamHttpSeamCustomerV1AccessGrants.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/access_grants/update'(): (
-    parameters: SeamCustomerV1AccessGrantsUpdateParameters,
-    options?: SeamCustomerV1AccessGrantsUpdateOptions,
-  ) => SeamCustomerV1AccessGrantsUpdateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1AccessGrantsUpdate(
-      ...args: Parameters<SeamHttpSeamCustomerV1AccessGrants['update']>
-    ): ReturnType<SeamHttpSeamCustomerV1AccessGrants['update']> {
-      const seam = SeamHttpSeamCustomerV1AccessGrants.fromClient(
-        client,
-        defaults,
-      )
-      return seam.update(...args)
-    }
-  }
-
-  get '/seam/customer/v1/access_methods/encode'(): (
-    parameters: SeamCustomerV1AccessMethodsEncodeParameters,
-    options?: SeamCustomerV1AccessMethodsEncodeOptions,
-  ) => SeamCustomerV1AccessMethodsEncodeRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1AccessMethodsEncode(
-      ...args: Parameters<SeamHttpSeamCustomerV1AccessMethods['encode']>
-    ): ReturnType<SeamHttpSeamCustomerV1AccessMethods['encode']> {
-      const seam = SeamHttpSeamCustomerV1AccessMethods.fromClient(
-        client,
-        defaults,
-      )
-      return seam.encode(...args)
-    }
-  }
-
-  get '/seam/customer/v1/automation_runs/list'(): (
-    parameters?: SeamCustomerV1AutomationRunsListParameters,
-    options?: SeamCustomerV1AutomationRunsListOptions,
-  ) => SeamCustomerV1AutomationRunsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1AutomationRunsList(
-      ...args: Parameters<SeamHttpSeamCustomerV1AutomationRuns['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1AutomationRuns['list']> {
-      const seam = SeamHttpSeamCustomerV1AutomationRuns.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/automations/delete'(): (
-    parameters?: SeamCustomerV1AutomationsDeleteParameters,
-    options?: SeamCustomerV1AutomationsDeleteOptions,
-  ) => SeamCustomerV1AutomationsDeleteRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1AutomationsDelete(
-      ...args: Parameters<SeamHttpSeamCustomerV1Automations['delete']>
-    ): ReturnType<SeamHttpSeamCustomerV1Automations['delete']> {
-      const seam = SeamHttpSeamCustomerV1Automations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.delete(...args)
-    }
-  }
-
-  get '/seam/customer/v1/automations/get'(): (
-    parameters?: SeamCustomerV1AutomationsGetParameters,
-    options?: SeamCustomerV1AutomationsGetOptions,
-  ) => SeamCustomerV1AutomationsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1AutomationsGet(
-      ...args: Parameters<SeamHttpSeamCustomerV1Automations['get']>
-    ): ReturnType<SeamHttpSeamCustomerV1Automations['get']> {
-      const seam = SeamHttpSeamCustomerV1Automations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.get(...args)
-    }
-  }
-
-  get '/seam/customer/v1/automations/update'(): (
-    parameters?: SeamCustomerV1AutomationsUpdateParameters,
-    options?: SeamCustomerV1AutomationsUpdateOptions,
-  ) => SeamCustomerV1AutomationsUpdateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1AutomationsUpdate(
-      ...args: Parameters<SeamHttpSeamCustomerV1Automations['update']>
-    ): ReturnType<SeamHttpSeamCustomerV1Automations['update']> {
-      const seam = SeamHttpSeamCustomerV1Automations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.update(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connector_customers/list'(): (
-    parameters?: SeamCustomerV1ConnectorCustomersListParameters,
-    options?: SeamCustomerV1ConnectorCustomersListOptions,
-  ) => SeamCustomerV1ConnectorCustomersListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorCustomersList(
-      ...args: Parameters<SeamHttpSeamCustomerV1ConnectorCustomers['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1ConnectorCustomers['list']> {
-      const seam = SeamHttpSeamCustomerV1ConnectorCustomers.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connectors/authorize'(): (
-    parameters: SeamCustomerV1ConnectorsAuthorizeParameters,
-    options?: SeamCustomerV1ConnectorsAuthorizeOptions,
-  ) => SeamCustomerV1ConnectorsAuthorizeRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsAuthorize(
-      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['authorize']>
-    ): ReturnType<SeamHttpSeamCustomerV1Connectors['authorize']> {
-      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
-      return seam.authorize(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connectors/connector_types'(): (
-    parameters?: SeamCustomerV1ConnectorsConnectorTypesParameters,
-    options?: SeamCustomerV1ConnectorsConnectorTypesOptions,
-  ) => SeamCustomerV1ConnectorsConnectorTypesRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsConnectorTypes(
-      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['connectorTypes']>
-    ): ReturnType<SeamHttpSeamCustomerV1Connectors['connectorTypes']> {
-      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
-      return seam.connectorTypes(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connectors/create'(): (
-    parameters: SeamCustomerV1ConnectorsCreateParameters,
-    options?: SeamCustomerV1ConnectorsCreateOptions,
-  ) => SeamCustomerV1ConnectorsCreateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsCreate(
-      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['create']>
-    ): ReturnType<SeamHttpSeamCustomerV1Connectors['create']> {
-      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
-      return seam.create(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connectors/delete'(): (
-    parameters: SeamCustomerV1ConnectorsDeleteParameters,
-    options?: SeamCustomerV1ConnectorsDeleteOptions,
-  ) => SeamCustomerV1ConnectorsDeleteRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsDelete(
-      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['delete']>
-    ): ReturnType<SeamHttpSeamCustomerV1Connectors['delete']> {
-      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
-      return seam.delete(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connectors/list'(): (
-    parameters?: SeamCustomerV1ConnectorsListParameters,
-    options?: SeamCustomerV1ConnectorsListOptions,
-  ) => SeamCustomerV1ConnectorsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsList(
-      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1Connectors['list']> {
-      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connectors/sync'(): (
-    parameters: SeamCustomerV1ConnectorsSyncParameters,
-    options?: SeamCustomerV1ConnectorsSyncOptions,
-  ) => SeamCustomerV1ConnectorsSyncRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsSync(
-      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['sync']>
-    ): ReturnType<SeamHttpSeamCustomerV1Connectors['sync']> {
-      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
-      return seam.sync(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connectors/update'(): (
-    parameters: SeamCustomerV1ConnectorsUpdateParameters,
-    options?: SeamCustomerV1ConnectorsUpdateOptions,
-  ) => SeamCustomerV1ConnectorsUpdateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsUpdate(
-      ...args: Parameters<SeamHttpSeamCustomerV1Connectors['update']>
-    ): ReturnType<SeamHttpSeamCustomerV1Connectors['update']> {
-      const seam = SeamHttpSeamCustomerV1Connectors.fromClient(client, defaults)
-      return seam.update(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connectors/external_sites/list'(): (
-    parameters: SeamCustomerV1ConnectorsExternalSitesListParameters,
-    options?: SeamCustomerV1ConnectorsExternalSitesListOptions,
-  ) => SeamCustomerV1ConnectorsExternalSitesListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsExternalSitesList(
-      ...args: Parameters<SeamHttpSeamCustomerV1ConnectorsExternalSites['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1ConnectorsExternalSites['list']> {
-      const seam = SeamHttpSeamCustomerV1ConnectorsExternalSites.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/connectors/ical/validate-config'(): (
-    parameters: SeamCustomerV1ConnectorsIcalValidateConfigParameters,
-    options?: SeamCustomerV1ConnectorsIcalValidateConfigOptions,
-  ) => SeamCustomerV1ConnectorsIcalValidateConfigRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ConnectorsIcalValidateConfig(
-      ...args: Parameters<
-        SeamHttpSeamCustomerV1ConnectorsIcal['validateConfig']
-      >
-    ): ReturnType<SeamHttpSeamCustomerV1ConnectorsIcal['validateConfig']> {
-      const seam = SeamHttpSeamCustomerV1ConnectorsIcal.fromClient(
-        client,
-        defaults,
-      )
-      return seam.validateConfig(...args)
-    }
-  }
-
-  get '/seam/customer/v1/customers/automations/get'(): (
-    parameters?: SeamCustomerV1CustomersAutomationsGetParameters,
-    options?: SeamCustomerV1CustomersAutomationsGetOptions,
-  ) => SeamCustomerV1CustomersAutomationsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1CustomersAutomationsGet(
-      ...args: Parameters<SeamHttpSeamCustomerV1CustomersAutomations['get']>
-    ): ReturnType<SeamHttpSeamCustomerV1CustomersAutomations['get']> {
-      const seam = SeamHttpSeamCustomerV1CustomersAutomations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.get(...args)
-    }
-  }
-
-  get '/seam/customer/v1/customers/automations/update'(): (
-    parameters?: SeamCustomerV1CustomersAutomationsUpdateParameters,
-    options?: SeamCustomerV1CustomersAutomationsUpdateOptions,
-  ) => SeamCustomerV1CustomersAutomationsUpdateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1CustomersAutomationsUpdate(
-      ...args: Parameters<SeamHttpSeamCustomerV1CustomersAutomations['update']>
-    ): ReturnType<SeamHttpSeamCustomerV1CustomersAutomations['update']> {
-      const seam = SeamHttpSeamCustomerV1CustomersAutomations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.update(...args)
-    }
-  }
-
-  get '/seam/customer/v1/customers/list'(): (
-    parameters?: SeamCustomerV1CustomersListParameters,
-    options?: SeamCustomerV1CustomersListOptions,
-  ) => SeamCustomerV1CustomersListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1CustomersList(
-      ...args: Parameters<SeamHttpSeamCustomerV1Customers['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1Customers['list']> {
-      const seam = SeamHttpSeamCustomerV1Customers.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/customers/me'(): (
-    parameters?: SeamCustomerV1CustomersMeParameters,
-    options?: SeamCustomerV1CustomersMeOptions,
-  ) => SeamCustomerV1CustomersMeRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1CustomersMe(
-      ...args: Parameters<SeamHttpSeamCustomerV1Customers['me']>
-    ): ReturnType<SeamHttpSeamCustomerV1Customers['me']> {
-      const seam = SeamHttpSeamCustomerV1Customers.fromClient(client, defaults)
-      return seam.me(...args)
-    }
-  }
-
-  get '/seam/customer/v1/customers/open_portal'(): (
-    parameters: SeamCustomerV1CustomersOpenPortalParameters,
-    options?: SeamCustomerV1CustomersOpenPortalOptions,
-  ) => SeamCustomerV1CustomersOpenPortalRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1CustomersOpenPortal(
-      ...args: Parameters<SeamHttpSeamCustomerV1Customers['openPortal']>
-    ): ReturnType<SeamHttpSeamCustomerV1Customers['openPortal']> {
-      const seam = SeamHttpSeamCustomerV1Customers.fromClient(client, defaults)
-      return seam.openPortal(...args)
-    }
-  }
-
-  get '/seam/customer/v1/encoders/list'(): (
-    parameters?: SeamCustomerV1EncodersListParameters,
-    options?: SeamCustomerV1EncodersListOptions,
-  ) => SeamCustomerV1EncodersListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1EncodersList(
-      ...args: Parameters<SeamHttpSeamCustomerV1Encoders['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1Encoders['list']> {
-      const seam = SeamHttpSeamCustomerV1Encoders.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/events/list'(): (
-    parameters: SeamCustomerV1EventsListParameters,
-    options?: SeamCustomerV1EventsListOptions,
-  ) => SeamCustomerV1EventsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1EventsList(
-      ...args: Parameters<SeamHttpSeamCustomerV1Events['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1Events['list']> {
-      const seam = SeamHttpSeamCustomerV1Events.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/portals/get'(): (
-    parameters: SeamCustomerV1PortalsGetParameters,
-    options?: SeamCustomerV1PortalsGetOptions,
-  ) => SeamCustomerV1PortalsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1PortalsGet(
-      ...args: Parameters<SeamHttpSeamCustomerV1Portals['get']>
-    ): ReturnType<SeamHttpSeamCustomerV1Portals['get']> {
-      const seam = SeamHttpSeamCustomerV1Portals.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get '/seam/customer/v1/portals/update'(): (
-    parameters: SeamCustomerV1PortalsUpdateParameters,
-    options?: SeamCustomerV1PortalsUpdateOptions,
-  ) => SeamCustomerV1PortalsUpdateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1PortalsUpdate(
-      ...args: Parameters<SeamHttpSeamCustomerV1Portals['update']>
-    ): ReturnType<SeamHttpSeamCustomerV1Portals['update']> {
-      const seam = SeamHttpSeamCustomerV1Portals.fromClient(client, defaults)
-      return seam.update(...args)
-    }
-  }
-
-  get '/seam/customer/v1/reservations/get'(): (
-    parameters?: SeamCustomerV1ReservationsGetParameters,
-    options?: SeamCustomerV1ReservationsGetOptions,
-  ) => SeamCustomerV1ReservationsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ReservationsGet(
-      ...args: Parameters<SeamHttpSeamCustomerV1Reservations['get']>
-    ): ReturnType<SeamHttpSeamCustomerV1Reservations['get']> {
-      const seam = SeamHttpSeamCustomerV1Reservations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.get(...args)
-    }
-  }
-
-  get '/seam/customer/v1/reservations/list'(): (
-    parameters?: SeamCustomerV1ReservationsListParameters,
-    options?: SeamCustomerV1ReservationsListOptions,
-  ) => SeamCustomerV1ReservationsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ReservationsList(
-      ...args: Parameters<SeamHttpSeamCustomerV1Reservations['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1Reservations['list']> {
-      const seam = SeamHttpSeamCustomerV1Reservations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/reservations/list_access_grants'(): (
-    parameters: SeamCustomerV1ReservationsListAccessGrantsParameters,
-    options?: SeamCustomerV1ReservationsListAccessGrantsOptions,
-  ) => SeamCustomerV1ReservationsListAccessGrantsRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1ReservationsListAccessGrants(
-      ...args: Parameters<
-        SeamHttpSeamCustomerV1Reservations['listAccessGrants']
-      >
-    ): ReturnType<SeamHttpSeamCustomerV1Reservations['listAccessGrants']> {
-      const seam = SeamHttpSeamCustomerV1Reservations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.listAccessGrants(...args)
-    }
-  }
-
-  get '/seam/customer/v1/settings/get'(): (
-    parameters?: SeamCustomerV1SettingsGetParameters,
-    options?: SeamCustomerV1SettingsGetOptions,
-  ) => SeamCustomerV1SettingsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1SettingsGet(
-      ...args: Parameters<SeamHttpSeamCustomerV1Settings['get']>
-    ): ReturnType<SeamHttpSeamCustomerV1Settings['get']> {
-      const seam = SeamHttpSeamCustomerV1Settings.fromClient(client, defaults)
-      return seam.get(...args)
-    }
-  }
-
-  get '/seam/customer/v1/settings/update'(): (
-    parameters?: SeamCustomerV1SettingsUpdateParameters,
-    options?: SeamCustomerV1SettingsUpdateOptions,
-  ) => SeamCustomerV1SettingsUpdateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1SettingsUpdate(
-      ...args: Parameters<SeamHttpSeamCustomerV1Settings['update']>
-    ): ReturnType<SeamHttpSeamCustomerV1Settings['update']> {
-      const seam = SeamHttpSeamCustomerV1Settings.fromClient(client, defaults)
-      return seam.update(...args)
-    }
-  }
-
-  get '/seam/customer/v1/settings/vertical_resource_aliases/get'(): (
-    parameters?: SeamCustomerV1SettingsVerticalResourceAliasesGetParameters,
-    options?: SeamCustomerV1SettingsVerticalResourceAliasesGetOptions,
-  ) => SeamCustomerV1SettingsVerticalResourceAliasesGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1SettingsVerticalResourceAliasesGet(
-      ...args: Parameters<
-        SeamHttpSeamCustomerV1SettingsVerticalResourceAliases['get']
-      >
-    ): ReturnType<
-      SeamHttpSeamCustomerV1SettingsVerticalResourceAliases['get']
-    > {
-      const seam =
-        SeamHttpSeamCustomerV1SettingsVerticalResourceAliases.fromClient(
-          client,
-          defaults,
-        )
-      return seam.get(...args)
-    }
-  }
-
-  get '/seam/customer/v1/spaces/create'(): (
-    parameters: SeamCustomerV1SpacesCreateParameters,
-    options?: SeamCustomerV1SpacesCreateOptions,
-  ) => SeamCustomerV1SpacesCreateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1SpacesCreate(
-      ...args: Parameters<SeamHttpSeamCustomerV1Spaces['create']>
-    ): ReturnType<SeamHttpSeamCustomerV1Spaces['create']> {
-      const seam = SeamHttpSeamCustomerV1Spaces.fromClient(client, defaults)
-      return seam.create(...args)
-    }
-  }
-
-  get '/seam/customer/v1/spaces/list'(): (
-    parameters?: SeamCustomerV1SpacesListParameters,
-    options?: SeamCustomerV1SpacesListOptions,
-  ) => SeamCustomerV1SpacesListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1SpacesList(
-      ...args: Parameters<SeamHttpSeamCustomerV1Spaces['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1Spaces['list']> {
-      const seam = SeamHttpSeamCustomerV1Spaces.fromClient(client, defaults)
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/customer/v1/spaces/list_reservations'(): (
-    parameters: SeamCustomerV1SpacesListReservationsParameters,
-    options?: SeamCustomerV1SpacesListReservationsOptions,
-  ) => SeamCustomerV1SpacesListReservationsRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1SpacesListReservations(
-      ...args: Parameters<SeamHttpSeamCustomerV1Spaces['listReservations']>
-    ): ReturnType<SeamHttpSeamCustomerV1Spaces['listReservations']> {
-      const seam = SeamHttpSeamCustomerV1Spaces.fromClient(client, defaults)
-      return seam.listReservations(...args)
-    }
-  }
-
-  get '/seam/customer/v1/spaces/push_common_areas'(): (
-    parameters?: SeamCustomerV1SpacesPushCommonAreasParameters,
-    options?: SeamCustomerV1SpacesPushCommonAreasOptions,
-  ) => SeamCustomerV1SpacesPushCommonAreasRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1SpacesPushCommonAreas(
-      ...args: Parameters<SeamHttpSeamCustomerV1Spaces['pushCommonAreas']>
-    ): ReturnType<SeamHttpSeamCustomerV1Spaces['pushCommonAreas']> {
-      const seam = SeamHttpSeamCustomerV1Spaces.fromClient(client, defaults)
-      return seam.pushCommonAreas(...args)
-    }
-  }
-
-  get '/seam/customer/v1/staff_members/get'(): (
-    parameters: SeamCustomerV1StaffMembersGetParameters,
-    options?: SeamCustomerV1StaffMembersGetOptions,
-  ) => SeamCustomerV1StaffMembersGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1StaffMembersGet(
-      ...args: Parameters<SeamHttpSeamCustomerV1StaffMembers['get']>
-    ): ReturnType<SeamHttpSeamCustomerV1StaffMembers['get']> {
-      const seam = SeamHttpSeamCustomerV1StaffMembers.fromClient(
-        client,
-        defaults,
-      )
-      return seam.get(...args)
-    }
-  }
-
-  get '/seam/customer/v1/staff_members/list'(): (
-    parameters?: SeamCustomerV1StaffMembersListParameters,
-    options?: SeamCustomerV1StaffMembersListOptions,
-  ) => SeamCustomerV1StaffMembersListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamCustomerV1StaffMembersList(
-      ...args: Parameters<SeamHttpSeamCustomerV1StaffMembers['list']>
-    ): ReturnType<SeamHttpSeamCustomerV1StaffMembers['list']> {
-      const seam = SeamHttpSeamCustomerV1StaffMembers.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get '/seam/partner/v1/building_blocks/spaces/auto_map'(): (
-    parameters?: SeamPartnerV1BuildingBlocksSpacesAutoMapParameters,
-    options?: SeamPartnerV1BuildingBlocksSpacesAutoMapOptions,
-  ) => SeamPartnerV1BuildingBlocksSpacesAutoMapRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function seamPartnerV1BuildingBlocksSpacesAutoMap(
-      ...args: Parameters<SeamHttpSeamPartnerV1BuildingBlocksSpaces['autoMap']>
-    ): ReturnType<SeamHttpSeamPartnerV1BuildingBlocksSpaces['autoMap']> {
-      const seam = SeamHttpSeamPartnerV1BuildingBlocksSpaces.fromClient(
-        client,
-        defaults,
-      )
-      return seam.autoMap(...args)
-    }
-  }
-
   get '/spaces/add_acs_entrances'(): (
     parameters: SpacesAddAcsEntrancesParameters,
     options?: SpacesAddAcsEntrancesOptions,
@@ -4534,24 +2921,6 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpThermostats['deleteClimatePreset']> {
       const seam = SeamHttpThermostats.fromClient(client, defaults)
       return seam.deleteClimatePreset(...args)
-    }
-  }
-
-  get '/thermostats/get'(): (
-    parameters?: ThermostatsGetParameters,
-    options?: ThermostatsGetOptions,
-  ) => ThermostatsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function thermostatsGet(
-      ...args: Parameters<SeamHttpThermostats['get']>
-    ): ReturnType<SeamHttpThermostats['get']> {
-      const seam = SeamHttpThermostats.fromClient(client, defaults)
-      return seam.get(...args)
     }
   }
 
@@ -4815,98 +3184,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get '/unstable_partner/building_blocks/connect_accounts'(): (
-    parameters: UnstablePartnerBuildingBlocksConnectAccountsParameters,
-    options?: UnstablePartnerBuildingBlocksConnectAccountsOptions,
-  ) => UnstablePartnerBuildingBlocksConnectAccountsRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstablePartnerBuildingBlocksConnectAccounts(
-      ...args: Parameters<
-        SeamHttpUnstablePartnerBuildingBlocks['connectAccounts']
-      >
-    ): ReturnType<SeamHttpUnstablePartnerBuildingBlocks['connectAccounts']> {
-      const seam = SeamHttpUnstablePartnerBuildingBlocks.fromClient(
-        client,
-        defaults,
-      )
-      return seam.connectAccounts(...args)
-    }
-  }
-
-  get '/unstable_partner/building_blocks/generate_magic_link'(): (
-    parameters: UnstablePartnerBuildingBlocksGenerateMagicLinkParameters,
-    options?: UnstablePartnerBuildingBlocksGenerateMagicLinkOptions,
-  ) => UnstablePartnerBuildingBlocksGenerateMagicLinkRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstablePartnerBuildingBlocksGenerateMagicLink(
-      ...args: Parameters<
-        SeamHttpUnstablePartnerBuildingBlocks['generateMagicLink']
-      >
-    ): ReturnType<SeamHttpUnstablePartnerBuildingBlocks['generateMagicLink']> {
-      const seam = SeamHttpUnstablePartnerBuildingBlocks.fromClient(
-        client,
-        defaults,
-      )
-      return seam.generateMagicLink(...args)
-    }
-  }
-
-  get '/unstable_partner/building_blocks/manage_devices'(): (
-    parameters: UnstablePartnerBuildingBlocksManageDevicesParameters,
-    options?: UnstablePartnerBuildingBlocksManageDevicesOptions,
-  ) => UnstablePartnerBuildingBlocksManageDevicesRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstablePartnerBuildingBlocksManageDevices(
-      ...args: Parameters<
-        SeamHttpUnstablePartnerBuildingBlocks['manageDevices']
-      >
-    ): ReturnType<SeamHttpUnstablePartnerBuildingBlocks['manageDevices']> {
-      const seam = SeamHttpUnstablePartnerBuildingBlocks.fromClient(
-        client,
-        defaults,
-      )
-      return seam.manageDevices(...args)
-    }
-  }
-
-  get '/unstable_partner/building_blocks/organize_spaces'(): (
-    parameters: UnstablePartnerBuildingBlocksOrganizeSpacesParameters,
-    options?: UnstablePartnerBuildingBlocksOrganizeSpacesOptions,
-  ) => UnstablePartnerBuildingBlocksOrganizeSpacesRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function unstablePartnerBuildingBlocksOrganizeSpaces(
-      ...args: Parameters<
-        SeamHttpUnstablePartnerBuildingBlocks['organizeSpaces']
-      >
-    ): ReturnType<SeamHttpUnstablePartnerBuildingBlocks['organizeSpaces']> {
-      const seam = SeamHttpUnstablePartnerBuildingBlocks.fromClient(
-        client,
-        defaults,
-      )
-      return seam.organizeSpaces(...args)
-    }
-  }
-
   get '/user_identities/add_acs_user'(): (
     parameters: UserIdentitiesAddAcsUserParameters,
     options?: UserIdentitiesAddAcsUserOptions,
@@ -5089,90 +3366,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get '/user_identities/enrollment_automations/delete'(): (
-    parameters: UserIdentitiesEnrollmentAutomationsDeleteParameters,
-    options?: UserIdentitiesEnrollmentAutomationsDeleteOptions,
-  ) => UserIdentitiesEnrollmentAutomationsDeleteRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function userIdentitiesEnrollmentAutomationsDelete(
-      ...args: Parameters<SeamHttpUserIdentitiesEnrollmentAutomations['delete']>
-    ): ReturnType<SeamHttpUserIdentitiesEnrollmentAutomations['delete']> {
-      const seam = SeamHttpUserIdentitiesEnrollmentAutomations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.delete(...args)
-    }
-  }
-
-  get '/user_identities/enrollment_automations/get'(): (
-    parameters: UserIdentitiesEnrollmentAutomationsGetParameters,
-    options?: UserIdentitiesEnrollmentAutomationsGetOptions,
-  ) => UserIdentitiesEnrollmentAutomationsGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function userIdentitiesEnrollmentAutomationsGet(
-      ...args: Parameters<SeamHttpUserIdentitiesEnrollmentAutomations['get']>
-    ): ReturnType<SeamHttpUserIdentitiesEnrollmentAutomations['get']> {
-      const seam = SeamHttpUserIdentitiesEnrollmentAutomations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.get(...args)
-    }
-  }
-
-  get '/user_identities/enrollment_automations/launch'(): (
-    parameters: UserIdentitiesEnrollmentAutomationsLaunchParameters,
-    options?: UserIdentitiesEnrollmentAutomationsLaunchOptions,
-  ) => UserIdentitiesEnrollmentAutomationsLaunchRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function userIdentitiesEnrollmentAutomationsLaunch(
-      ...args: Parameters<SeamHttpUserIdentitiesEnrollmentAutomations['launch']>
-    ): ReturnType<SeamHttpUserIdentitiesEnrollmentAutomations['launch']> {
-      const seam = SeamHttpUserIdentitiesEnrollmentAutomations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.launch(...args)
-    }
-  }
-
-  get '/user_identities/enrollment_automations/list'(): (
-    parameters: UserIdentitiesEnrollmentAutomationsListParameters,
-    options?: UserIdentitiesEnrollmentAutomationsListOptions,
-  ) => UserIdentitiesEnrollmentAutomationsListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function userIdentitiesEnrollmentAutomationsList(
-      ...args: Parameters<SeamHttpUserIdentitiesEnrollmentAutomations['list']>
-    ): ReturnType<SeamHttpUserIdentitiesEnrollmentAutomations['list']> {
-      const seam = SeamHttpUserIdentitiesEnrollmentAutomations.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
   get '/user_identities/unmanaged/get'(): (
     parameters: UserIdentitiesUnmanagedGetParameters,
     options?: UserIdentitiesUnmanagedGetOptions,
@@ -5290,24 +3483,6 @@ export class SeamHttpEndpoints {
     }
   }
 
-  get '/workspaces/find_anything'(): (
-    parameters: WorkspacesFindAnythingParameters,
-    options?: WorkspacesFindAnythingOptions,
-  ) => WorkspacesFindAnythingRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function workspacesFindAnything(
-      ...args: Parameters<SeamHttpWorkspaces['findAnything']>
-    ): ReturnType<SeamHttpWorkspaces['findAnything']> {
-      const seam = SeamHttpWorkspaces.fromClient(client, defaults)
-      return seam.findAnything(...args)
-    }
-  }
-
   get '/workspaces/get'(): (
     parameters?: WorkspacesGetParameters,
     options?: WorkspacesGetOptions,
@@ -5359,119 +3534,11 @@ export class SeamHttpEndpoints {
       return seam.update(...args)
     }
   }
-
-  get '/workspaces/customization_profiles/create'(): (
-    parameters?: WorkspacesCustomizationProfilesCreateParameters,
-    options?: WorkspacesCustomizationProfilesCreateOptions,
-  ) => WorkspacesCustomizationProfilesCreateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function workspacesCustomizationProfilesCreate(
-      ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['create']>
-    ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['create']> {
-      const seam = SeamHttpWorkspacesCustomizationProfiles.fromClient(
-        client,
-        defaults,
-      )
-      return seam.create(...args)
-    }
-  }
-
-  get '/workspaces/customization_profiles/get'(): (
-    parameters: WorkspacesCustomizationProfilesGetParameters,
-    options?: WorkspacesCustomizationProfilesGetOptions,
-  ) => WorkspacesCustomizationProfilesGetRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function workspacesCustomizationProfilesGet(
-      ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['get']>
-    ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['get']> {
-      const seam = SeamHttpWorkspacesCustomizationProfiles.fromClient(
-        client,
-        defaults,
-      )
-      return seam.get(...args)
-    }
-  }
-
-  get '/workspaces/customization_profiles/list'(): (
-    parameters?: WorkspacesCustomizationProfilesListParameters,
-    options?: WorkspacesCustomizationProfilesListOptions,
-  ) => WorkspacesCustomizationProfilesListRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function workspacesCustomizationProfilesList(
-      ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['list']>
-    ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['list']> {
-      const seam = SeamHttpWorkspacesCustomizationProfiles.fromClient(
-        client,
-        defaults,
-      )
-      return seam.list(...args)
-    }
-  }
-
-  get '/workspaces/customization_profiles/update'(): (
-    parameters: WorkspacesCustomizationProfilesUpdateParameters,
-    options?: WorkspacesCustomizationProfilesUpdateOptions,
-  ) => WorkspacesCustomizationProfilesUpdateRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function workspacesCustomizationProfilesUpdate(
-      ...args: Parameters<SeamHttpWorkspacesCustomizationProfiles['update']>
-    ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['update']> {
-      const seam = SeamHttpWorkspacesCustomizationProfiles.fromClient(
-        client,
-        defaults,
-      )
-      return seam.update(...args)
-    }
-  }
-
-  get '/workspaces/customization_profiles/upload_images'(): (
-    parameters?: WorkspacesCustomizationProfilesUploadImagesParameters,
-    options?: WorkspacesCustomizationProfilesUploadImagesOptions,
-  ) => WorkspacesCustomizationProfilesUploadImagesRequest {
-    const { client, defaults } = this
-    if (!this.defaults.isUndocumentedApiEnabled) {
-      throw new Error(
-        'Cannot use undocumented API without isUndocumentedApiEnabled',
-      )
-    }
-    return function workspacesCustomizationProfilesUploadImages(
-      ...args: Parameters<
-        SeamHttpWorkspacesCustomizationProfiles['uploadImages']
-      >
-    ): ReturnType<SeamHttpWorkspacesCustomizationProfiles['uploadImages']> {
-      const seam = SeamHttpWorkspacesCustomizationProfiles.fromClient(
-        client,
-        defaults,
-      )
-      return seam.uploadImages(...args)
-    }
-  }
 }
 
 export type SeamHttpEndpointQueryPaths =
   | '/access_codes/generate_code'
   | '/access_codes/get'
-  | '/access_codes/get_timeline'
   | '/access_codes/list'
   | '/access_codes/unmanaged/get'
   | '/access_codes/unmanaged/list'
@@ -5489,14 +3556,9 @@ export type SeamHttpEndpointQueryPaths =
   | '/acs/access_groups/list'
   | '/acs/access_groups/list_accessible_entrances'
   | '/acs/access_groups/list_users'
-  | '/acs/access_groups/unmanaged/get'
-  | '/acs/access_groups/unmanaged/list'
-  | '/acs/credential_pools/list'
   | '/acs/credentials/get'
   | '/acs/credentials/list'
   | '/acs/credentials/list_accessible_entrances'
-  | '/acs/credentials/unmanaged/get'
-  | '/acs/credentials/unmanaged/list'
   | '/acs/encoders/get'
   | '/acs/encoders/list'
   | '/acs/entrances/get'
@@ -5508,12 +3570,8 @@ export type SeamHttpEndpointQueryPaths =
   | '/acs/users/get'
   | '/acs/users/list'
   | '/acs/users/list_accessible_entrances'
-  | '/acs/users/unmanaged/get'
-  | '/acs/users/unmanaged/list'
   | '/action_attempts/get'
   | '/action_attempts/list'
-  | '/bridges/get'
-  | '/bridges/list'
   | '/client_sessions/get'
   | '/client_sessions/list'
   | '/connect_webviews/get'
@@ -5536,62 +3594,24 @@ export type SeamHttpEndpointQueryPaths =
   | '/noise_sensors/noise_thresholds/list'
   | '/phones/get'
   | '/phones/list'
-  | '/seam/console/v1/get_resource_locator'
-  | '/seam/console/v1/lynx_migration/get_property_migration_status'
-  | '/seam/console/v1/lynx_migration/get_reservation_migration_status'
-  | '/seam/console/v1/lynx_migration/list_property_reservations'
-  | '/seam/console/v1/sites/list'
-  | '/seam/console/v1/timelines/get'
-  | '/seam/console/v1/workspace/feature_flags/list'
-  | '/seam/customer/v1/access_grants/list'
-  | '/seam/customer/v1/automation_runs/list'
-  | '/seam/customer/v1/automations/get'
-  | '/seam/customer/v1/connector_customers/list'
-  | '/seam/customer/v1/connectors/authorize'
-  | '/seam/customer/v1/connectors/connector_types'
-  | '/seam/customer/v1/connectors/list'
-  | '/seam/customer/v1/connectors/external_sites/list'
-  | '/seam/customer/v1/customers/automations/get'
-  | '/seam/customer/v1/customers/list'
-  | '/seam/customer/v1/customers/me'
-  | '/seam/customer/v1/encoders/list'
-  | '/seam/customer/v1/events/list'
-  | '/seam/customer/v1/portals/get'
-  | '/seam/customer/v1/reservations/get'
-  | '/seam/customer/v1/reservations/list'
-  | '/seam/customer/v1/reservations/list_access_grants'
-  | '/seam/customer/v1/settings/get'
-  | '/seam/customer/v1/settings/vertical_resource_aliases/get'
-  | '/seam/customer/v1/spaces/list'
-  | '/seam/customer/v1/spaces/list_reservations'
-  | '/seam/customer/v1/staff_members/get'
-  | '/seam/customer/v1/staff_members/list'
-  | '/seam/partner/v1/building_blocks/spaces/auto_map'
   | '/spaces/get'
   | '/spaces/get_related'
   | '/spaces/list'
-  | '/thermostats/get'
   | '/thermostats/list'
   | '/thermostats/schedules/get'
   | '/thermostats/schedules/list'
-  | '/unstable_partner/building_blocks/generate_magic_link'
   | '/user_identities/get'
   | '/user_identities/list'
   | '/user_identities/list_accessible_devices'
   | '/user_identities/list_accessible_entrances'
   | '/user_identities/list_acs_systems'
   | '/user_identities/list_acs_users'
-  | '/user_identities/enrollment_automations/get'
-  | '/user_identities/enrollment_automations/list'
   | '/user_identities/unmanaged/get'
   | '/user_identities/unmanaged/list'
   | '/webhooks/get'
   | '/webhooks/list'
-  | '/workspaces/find_anything'
   | '/workspaces/get'
   | '/workspaces/list'
-  | '/workspaces/customization_profiles/get'
-  | '/workspaces/customization_profiles/list'
 
 export type SeamHttpEndpointPaginatedQueryPaths =
   | '/access_codes/list'
@@ -5608,10 +3628,6 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/connected_accounts/list'
   | '/devices/list'
   | '/devices/unmanaged/list'
-  | '/seam/customer/v1/automation_runs/list'
-  | '/seam/customer/v1/customers/list'
-  | '/seam/customer/v1/reservations/list'
-  | '/seam/customer/v1/staff_members/list'
   | '/spaces/list'
   | '/user_identities/list'
   | '/user_identities/unmanaged/list'
@@ -5640,10 +3656,8 @@ export type SeamHttpEndpointMutationPaths =
   | '/acs/access_groups/add_user'
   | '/acs/access_groups/delete'
   | '/acs/access_groups/remove_user'
-  | '/acs/credential_provisioning_automations/launch'
   | '/acs/credentials/assign'
   | '/acs/credentials/create'
-  | '/acs/credentials/create_offline_code'
   | '/acs/credentials/delete'
   | '/acs/credentials/unassign'
   | '/acs/credentials/update'
@@ -5679,8 +3693,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/customers/create_portal'
   | '/customers/delete_data'
   | '/customers/push_data'
-  | '/customers/reservations/create_deep_link'
-  | '/devices/delete'
   | '/devices/report_provider_metadata'
   | '/devices/update'
   | '/devices/simulate/connect'
@@ -5702,26 +3714,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/noise_sensors/simulate/trigger_noise_threshold'
   | '/phones/deactivate'
   | '/phones/simulate/create_sandbox_phone'
-  | '/seam/console/v1/lynx_migration/migrate_property'
-  | '/seam/console/v1/sites/create'
-  | '/seam/console/v1/sites/delete'
-  | '/seam/console/v1/sites/update'
-  | '/seam/console/v1/workspace/feature_flags/update'
-  | '/seam/customer/v1/access_grants/update'
-  | '/seam/customer/v1/access_methods/encode'
-  | '/seam/customer/v1/automations/delete'
-  | '/seam/customer/v1/automations/update'
-  | '/seam/customer/v1/connectors/create'
-  | '/seam/customer/v1/connectors/delete'
-  | '/seam/customer/v1/connectors/sync'
-  | '/seam/customer/v1/connectors/update'
-  | '/seam/customer/v1/connectors/ical/validate-config'
-  | '/seam/customer/v1/customers/automations/update'
-  | '/seam/customer/v1/customers/open_portal'
-  | '/seam/customer/v1/portals/update'
-  | '/seam/customer/v1/settings/update'
-  | '/seam/customer/v1/spaces/create'
-  | '/seam/customer/v1/spaces/push_common_areas'
   | '/spaces/add_acs_entrances'
   | '/spaces/add_connected_account'
   | '/spaces/add_devices'
@@ -5752,9 +3744,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/thermostats/schedules/update'
   | '/thermostats/simulate/hvac_mode_adjusted'
   | '/thermostats/simulate/temperature_reached'
-  | '/unstable_partner/building_blocks/connect_accounts'
-  | '/unstable_partner/building_blocks/manage_devices'
-  | '/unstable_partner/building_blocks/organize_spaces'
   | '/user_identities/add_acs_user'
   | '/user_identities/create'
   | '/user_identities/delete'
@@ -5763,8 +3752,6 @@ export type SeamHttpEndpointMutationPaths =
   | '/user_identities/remove_acs_user'
   | '/user_identities/revoke_access_to_device'
   | '/user_identities/update'
-  | '/user_identities/enrollment_automations/delete'
-  | '/user_identities/enrollment_automations/launch'
   | '/user_identities/unmanaged/update'
   | '/webhooks/create'
   | '/webhooks/delete'
@@ -5772,6 +3759,3 @@ export type SeamHttpEndpointMutationPaths =
   | '/workspaces/create'
   | '/workspaces/reset_sandbox'
   | '/workspaces/update'
-  | '/workspaces/customization_profiles/create'
-  | '/workspaces/customization_profiles/update'
-  | '/workspaces/customization_profiles/upload_images'

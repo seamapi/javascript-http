@@ -1,11 +1,6 @@
 {{methodName}}
 {{> endpont-method-signature }}
 {
-  {{#if isUndocumented}}
-  if (!this.defaults.isUndocumentedApiEnabled) {
-    throw new Error('Cannot use undocumented API without isUndocumentedApiEnabled')
-  }
-  {{/if}}
   return new SeamHttpRequest(this, {
     pathname: '{{path}}',
     method: '{{method}}',

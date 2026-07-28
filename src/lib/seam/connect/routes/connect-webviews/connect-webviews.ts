@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ConnectWebviewResource } from 'lib/seam/connect/resources/connect-webview.js'
+import type { ConnectWebview } from 'lib/seam/connect/resources/connect-webview.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -296,7 +296,6 @@ export type ConnectWebviewsCreateParameters = {
   custom_redirect_failure_url?: string | undefined
   custom_redirect_url?: string | undefined
   customer_key?: string | undefined
-  device_selection_mode?: 'none' | 'single' | 'multiple' | undefined
   excluded_providers?: Array<string> | undefined
   provider_category?:
     | 'stable'
@@ -313,16 +312,9 @@ export type ConnectWebviewsCreateParameters = {
 }
 
 /**
- * @deprecated Use ConnectWebviewsCreateParameters instead.
- */
-export type ConnectWebviewsCreateBody = ConnectWebviewsCreateParameters
-
-/**
  * @deprecated Use ConnectWebviewsCreateRequest instead.
  */
-export type ConnectWebviewsCreateResponse = {
-  connect_webview: ConnectWebviewResource
-}
+export type ConnectWebviewsCreateResponse = { connect_webview: ConnectWebview }
 
 export type ConnectWebviewsCreateRequest = SeamHttpRequest<
   ConnectWebviewsCreateResponse,
@@ -334,11 +326,6 @@ export interface ConnectWebviewsCreateOptions {}
 export type ConnectWebviewsDeleteParameters = {
   connect_webview_id: string
 }
-
-/**
- * @deprecated Use ConnectWebviewsDeleteParameters instead.
- */
-export type ConnectWebviewsDeleteParams = ConnectWebviewsDeleteParameters
 
 /**
  * @deprecated Use ConnectWebviewsDeleteRequest instead.
@@ -354,16 +341,9 @@ export type ConnectWebviewsGetParameters = {
 }
 
 /**
- * @deprecated Use ConnectWebviewsGetParameters instead.
- */
-export type ConnectWebviewsGetParams = ConnectWebviewsGetParameters
-
-/**
  * @deprecated Use ConnectWebviewsGetRequest instead.
  */
-export type ConnectWebviewsGetResponse = {
-  connect_webview: ConnectWebviewResource
-}
+export type ConnectWebviewsGetResponse = { connect_webview: ConnectWebview }
 
 export type ConnectWebviewsGetRequest = SeamHttpRequest<
   ConnectWebviewsGetResponse,
@@ -382,15 +362,10 @@ export type ConnectWebviewsListParameters = {
 }
 
 /**
- * @deprecated Use ConnectWebviewsListParameters instead.
- */
-export type ConnectWebviewsListParams = ConnectWebviewsListParameters
-
-/**
  * @deprecated Use ConnectWebviewsListRequest instead.
  */
 export type ConnectWebviewsListResponse = {
-  connect_webviews: Array<ConnectWebviewResource>
+  connect_webviews: Array<ConnectWebview>
 }
 
 export type ConnectWebviewsListRequest = SeamHttpRequest<

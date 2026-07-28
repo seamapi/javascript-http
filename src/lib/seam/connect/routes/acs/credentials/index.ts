@@ -4,4 +4,3 @@
  */
 
 export * from './credentials.js'
-export * from './unmanaged/index.js'

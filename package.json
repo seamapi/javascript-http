@@ -82,7 +82,7 @@
     }
   },
   "peerDependencies": {
-    "@seamapi/types": "^1.982.0"
+    "@seamapi/types": "^1.983.0"
   },
   "peerDependenciesMeta": {
     "@seamapi/types": {
@@ -95,10 +95,10 @@
     "axios-retry": "^4.4.2"
   },
   "devDependencies": {
-    "@seamapi/blueprint": "^1.0.0",
+    "@seamapi/blueprint": "^1.1.0",
     "@seamapi/fake-seam-connect": "^1.77.0",
     "@seamapi/smith": "^1.1.0",
-    "@seamapi/types": "1.982.0",
+    "@seamapi/types": "1.983.0",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^24.10.9",
     "ava": "^8.0.1",

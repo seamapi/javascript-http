@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ThermostatScheduleResource } from 'lib/seam/connect/resources/thermostat-schedule.js'
+import type { ThermostatSchedule } from 'lib/seam/connect/resources/thermostat-schedule.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -241,16 +241,10 @@ export type ThermostatsSchedulesCreateParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsSchedulesCreateParameters instead.
- */
-export type ThermostatsSchedulesCreateBody =
-  ThermostatsSchedulesCreateParameters
-
-/**
  * @deprecated Use ThermostatsSchedulesCreateRequest instead.
  */
 export type ThermostatsSchedulesCreateResponse = {
-  thermostat_schedule: ThermostatScheduleResource
+  thermostat_schedule: ThermostatSchedule
 }
 
 export type ThermostatsSchedulesCreateRequest = SeamHttpRequest<
@@ -263,12 +257,6 @@ export interface ThermostatsSchedulesCreateOptions {}
 export type ThermostatsSchedulesDeleteParameters = {
   thermostat_schedule_id: string
 }
-
-/**
- * @deprecated Use ThermostatsSchedulesDeleteParameters instead.
- */
-export type ThermostatsSchedulesDeleteParams =
-  ThermostatsSchedulesDeleteParameters
 
 /**
  * @deprecated Use ThermostatsSchedulesDeleteRequest instead.
@@ -284,15 +272,10 @@ export type ThermostatsSchedulesGetParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsSchedulesGetParameters instead.
- */
-export type ThermostatsSchedulesGetParams = ThermostatsSchedulesGetParameters
-
-/**
  * @deprecated Use ThermostatsSchedulesGetRequest instead.
  */
 export type ThermostatsSchedulesGetResponse = {
-  thermostat_schedule: ThermostatScheduleResource
+  thermostat_schedule: ThermostatSchedule
 }
 
 export type ThermostatsSchedulesGetRequest = SeamHttpRequest<
@@ -309,15 +292,10 @@ export type ThermostatsSchedulesListParameters = {
 }
 
 /**
- * @deprecated Use ThermostatsSchedulesListParameters instead.
- */
-export type ThermostatsSchedulesListParams = ThermostatsSchedulesListParameters
-
-/**
  * @deprecated Use ThermostatsSchedulesListRequest instead.
  */
 export type ThermostatsSchedulesListResponse = {
-  thermostat_schedules: Array<ThermostatScheduleResource>
+  thermostat_schedules: Array<ThermostatSchedule>
 }
 
 export type ThermostatsSchedulesListRequest = SeamHttpRequest<
@@ -336,12 +314,6 @@ export type ThermostatsSchedulesUpdateParameters = {
   starts_at?: string | undefined
   thermostat_schedule_id: string
 }
-
-/**
- * @deprecated Use ThermostatsSchedulesUpdateParameters instead.
- */
-export type ThermostatsSchedulesUpdateBody =
-  ThermostatsSchedulesUpdateParameters
 
 /**
  * @deprecated Use ThermostatsSchedulesUpdateRequest instead.

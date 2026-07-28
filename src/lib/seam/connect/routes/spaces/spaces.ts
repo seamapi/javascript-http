@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { SpaceResource } from 'lib/seam/connect/resources/space.js'
-import type { UnknownResource } from 'lib/seam/connect/resources/unknown.js'
+import type { Batch } from 'lib/seam/connect/resources/batch.js'
+import type { Space } from 'lib/seam/connect/resources/space.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -326,11 +326,6 @@ export type SpacesAddAcsEntrancesParameters = {
 }
 
 /**
- * @deprecated Use SpacesAddAcsEntrancesParameters instead.
- */
-export type SpacesAddAcsEntrancesBody = SpacesAddAcsEntrancesParameters
-
-/**
  * @deprecated Use SpacesAddAcsEntrancesRequest instead.
  */
 export type SpacesAddAcsEntrancesResponse = void
@@ -346,11 +341,6 @@ export type SpacesAddConnectedAccountParameters = {
 }
 
 /**
- * @deprecated Use SpacesAddConnectedAccountParameters instead.
- */
-export type SpacesAddConnectedAccountBody = SpacesAddConnectedAccountParameters
-
-/**
  * @deprecated Use SpacesAddConnectedAccountRequest instead.
  */
 export type SpacesAddConnectedAccountResponse = void
@@ -364,11 +354,6 @@ export type SpacesAddDevicesParameters = {
 
   space_id: string
 }
-
-/**
- * @deprecated Use SpacesAddDevicesParameters instead.
- */
-export type SpacesAddDevicesBody = SpacesAddDevicesParameters
 
 /**
  * @deprecated Use SpacesAddDevicesRequest instead.
@@ -398,14 +383,9 @@ export type SpacesCreateParameters = {
 }
 
 /**
- * @deprecated Use SpacesCreateParameters instead.
- */
-export type SpacesCreateBody = SpacesCreateParameters
-
-/**
  * @deprecated Use SpacesCreateRequest instead.
  */
-export type SpacesCreateResponse = { space: SpaceResource }
+export type SpacesCreateResponse = { space: Space }
 
 export type SpacesCreateRequest = SeamHttpRequest<SpacesCreateResponse, 'space'>
 
@@ -414,11 +394,6 @@ export interface SpacesCreateOptions {}
 export type SpacesDeleteParameters = {
   space_id: string
 }
-
-/**
- * @deprecated Use SpacesDeleteParameters instead.
- */
-export type SpacesDeleteParams = SpacesDeleteParameters
 
 /**
  * @deprecated Use SpacesDeleteRequest instead.
@@ -435,14 +410,9 @@ export type SpacesGetParameters = {
 }
 
 /**
- * @deprecated Use SpacesGetParameters instead.
- */
-export type SpacesGetParams = SpacesGetParameters
-
-/**
  * @deprecated Use SpacesGetRequest instead.
  */
-export type SpacesGetResponse = { space: SpaceResource }
+export type SpacesGetResponse = { space: Space }
 
 export type SpacesGetRequest = SeamHttpRequest<SpacesGetResponse, 'space'>
 
@@ -474,14 +444,18 @@ export type SpacesGetRelatedParameters = {
 }
 
 /**
- * @deprecated Use SpacesGetRelatedParameters instead.
- */
-export type SpacesGetRelatedParams = SpacesGetRelatedParameters
-
-/**
  * @deprecated Use SpacesGetRelatedRequest instead.
  */
-export type SpacesGetRelatedResponse = { batch: UnknownResource }
+export type SpacesGetRelatedResponse = {
+  batch: Batch<
+    | 'spaces'
+    | 'devices'
+    | 'acs_entrances'
+    | 'connected_accounts'
+    | 'acs_systems'
+    | 'access_methods'
+  >
+}
 
 export type SpacesGetRelatedRequest = SeamHttpRequest<
   SpacesGetRelatedResponse,
@@ -491,25 +465,17 @@ export type SpacesGetRelatedRequest = SeamHttpRequest<
 export interface SpacesGetRelatedOptions {}
 
 export type SpacesListParameters = {
-  connected_account_id?: string | undefined
   customer_key?: string | undefined
   limit?: number | undefined
   page_cursor?: string | undefined
-  parent_space_id?: string | undefined
-  parent_space_key?: string | undefined
   search?: string | undefined
   space_key?: string | undefined
 }
 
 /**
- * @deprecated Use SpacesListParameters instead.
- */
-export type SpacesListParams = SpacesListParameters
-
-/**
  * @deprecated Use SpacesListRequest instead.
  */
-export type SpacesListResponse = { spaces: Array<SpaceResource> }
+export type SpacesListResponse = { spaces: Array<Space> }
 
 export type SpacesListRequest = SeamHttpRequest<SpacesListResponse, 'spaces'>
 
@@ -520,11 +486,6 @@ export type SpacesRemoveAcsEntrancesParameters = {
 
   space_id: string
 }
-
-/**
- * @deprecated Use SpacesRemoveAcsEntrancesParameters instead.
- */
-export type SpacesRemoveAcsEntrancesParams = SpacesRemoveAcsEntrancesParameters
 
 /**
  * @deprecated Use SpacesRemoveAcsEntrancesRequest instead.
@@ -540,12 +501,6 @@ export type SpacesRemoveConnectedAccountParameters = {
 
   space_id: string
 }
-
-/**
- * @deprecated Use SpacesRemoveConnectedAccountParameters instead.
- */
-export type SpacesRemoveConnectedAccountParams =
-  SpacesRemoveConnectedAccountParameters
 
 /**
  * @deprecated Use SpacesRemoveConnectedAccountRequest instead.
@@ -564,11 +519,6 @@ export type SpacesRemoveDevicesParameters = {
 
   space_id: string
 }
-
-/**
- * @deprecated Use SpacesRemoveDevicesParameters instead.
- */
-export type SpacesRemoveDevicesParams = SpacesRemoveDevicesParameters
 
 /**
  * @deprecated Use SpacesRemoveDevicesRequest instead.
@@ -591,21 +541,14 @@ export type SpacesUpdateParameters = {
     | undefined
   device_ids?: Array<string> | undefined
   name?: string | undefined
-  parent_space_id?: string | undefined
-  parent_space_key?: string | undefined
   space_id?: string | undefined
   space_key?: string | undefined
 }
 
 /**
- * @deprecated Use SpacesUpdateParameters instead.
- */
-export type SpacesUpdateBody = SpacesUpdateParameters
-
-/**
  * @deprecated Use SpacesUpdateRequest instead.
  */
-export type SpacesUpdateResponse = { space: SpaceResource }
+export type SpacesUpdateResponse = { space: Space }
 
 export type SpacesUpdateRequest = SeamHttpRequest<SpacesUpdateResponse, 'space'>
 

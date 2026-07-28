@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { ConnectedAccountResource } from 'lib/seam/connect/resources/connected-account.js'
+import type { ConnectedAccount } from 'lib/seam/connect/resources/connected-account.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -238,14 +238,7 @@ export class SeamHttpConnectedAccounts {
 
 export type ConnectedAccountsDeleteParameters = {
   connected_account_id: string
-
-  sync?: boolean | undefined
 }
-
-/**
- * @deprecated Use ConnectedAccountsDeleteParameters instead.
- */
-export type ConnectedAccountsDeleteParams = ConnectedAccountsDeleteParameters
 
 /**
  * @deprecated Use ConnectedAccountsDeleteRequest instead.
@@ -262,15 +255,10 @@ export type ConnectedAccountsGetParameters = {
 }
 
 /**
- * @deprecated Use ConnectedAccountsGetParameters instead.
- */
-export type ConnectedAccountsGetParams = ConnectedAccountsGetParameters
-
-/**
  * @deprecated Use ConnectedAccountsGetRequest instead.
  */
 export type ConnectedAccountsGetResponse = {
-  connected_account: ConnectedAccountResource
+  connected_account: ConnectedAccount
 }
 
 export type ConnectedAccountsGetRequest = SeamHttpRequest<
@@ -291,15 +279,10 @@ export type ConnectedAccountsListParameters = {
 }
 
 /**
- * @deprecated Use ConnectedAccountsListParameters instead.
- */
-export type ConnectedAccountsListParams = ConnectedAccountsListParameters
-
-/**
  * @deprecated Use ConnectedAccountsListRequest instead.
  */
 export type ConnectedAccountsListResponse = {
-  connected_accounts: Array<ConnectedAccountResource>
+  connected_accounts: Array<ConnectedAccount>
 }
 
 export type ConnectedAccountsListRequest = SeamHttpRequest<
@@ -312,11 +295,6 @@ export interface ConnectedAccountsListOptions {}
 export type ConnectedAccountsSyncParameters = {
   connected_account_id: string
 }
-
-/**
- * @deprecated Use ConnectedAccountsSyncParameters instead.
- */
-export type ConnectedAccountsSyncBody = ConnectedAccountsSyncParameters
 
 /**
  * @deprecated Use ConnectedAccountsSyncRequest instead.
@@ -340,11 +318,6 @@ export type ConnectedAccountsUpdateParameters = {
   customer_key?: string | undefined
   display_name?: string | undefined
 }
-
-/**
- * @deprecated Use ConnectedAccountsUpdateParameters instead.
- */
-export type ConnectedAccountsUpdateBody = ConnectedAccountsUpdateParameters
 
 /**
  * @deprecated Use ConnectedAccountsUpdateRequest instead.
