@@ -175,6 +175,9 @@ export class SeamHttpNoiseSensors {
     return SeamHttpNoiseSensorsSimulate.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Returns a list of all [noise sensors](https://docs.seam.co/capability-guides/noise-sensors).
+   */
   list(
     parameters?: NoiseSensorsListParameters,
     options: NoiseSensorsListOptions = {},
@@ -190,21 +193,69 @@ export class SeamHttpNoiseSensors {
 }
 
 export type NoiseSensorsListParameters = {
+  /**
+   * ID of the Connect Webview for which you want to list devices.
+   */
   connect_webview_id?: string | undefined
+  /**
+   * ID of the connected account for which you want to list devices.
+   */
   connected_account_id?: string | undefined
+  /**
+   * Array of IDs of the connected accounts for which you want to list devices.
+   */
   connected_account_ids?: Array<string> | undefined
+  /**
+   * Timestamp by which to limit returned devices. Returns devices created before this timestamp.
+   */
   created_before?: string | undefined
+  /**
+   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices.
+   */
   custom_metadata_has?: Record<string, unknown> | undefined
+  /**
+   * Customer key for which you want to list devices.
+   */
   customer_key?: string | undefined
+  /**
+   * Array of device IDs for which you want to list devices.
+   */
   device_ids?: Array<string> | undefined
+  /**
+   * Device type of the noise sensors that you want to list.
+   */
   device_type?: 'noiseaware_activity_zone' | 'minut_sensor' | undefined
+  /**
+   * Device types of the noise sensors that you want to list.
+   */
   device_types?: Array<'noiseaware_activity_zone' | 'minut_sensor'> | undefined
+  /**
+   * Numerical limit on the number of devices to return.
+   */
   limit?: number | undefined
+  /**
+   * Manufacturers of the noise sensors that you want to list.
+   */
   manufacturer?: 'minut' | 'noiseaware' | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned devices to include all records that satisfy a partial match using `device_id` (full or partial UUID prefix, minimum 4 characters), `connected_account_id`, `display_name`, `custom_metadata` or `location.location_name`.
+   */
   search?: string | undefined
+  /**
+   * ID of the space for which you want to list devices.
+   */
   space_id?: string | undefined
+  /**
+   * @deprecated Use `space_id`.
+   */
   unstable_location_id?: string | undefined
+  /**
+   * Your own internal user ID for the user for which you want to list devices.
+   */
   user_identifier_key?: string | undefined
 }
 

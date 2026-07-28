@@ -168,6 +168,9 @@ export class SeamHttpAcsEncoders {
     return SeamHttpAcsEncodersSimulate.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Encodes an existing [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) onto a plastic card placed on the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners). Either provide an `acs_credential_id` or an `access_method_id`
+   */
   encodeCredential(
     parameters: AcsEncodersEncodeCredentialParameters,
     options: AcsEncodersEncodeCredentialOptions = {},
@@ -181,6 +184,9 @@ export class SeamHttpAcsEncoders {
     })
   }
 
+  /**
+   * Returns a specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   */
   get(
     parameters: AcsEncodersGetParameters,
     options: AcsEncodersGetOptions = {},
@@ -194,6 +200,9 @@ export class SeamHttpAcsEncoders {
     })
   }
 
+  /**
+   * Returns a list of all [encoders](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   */
   list(
     parameters?: AcsEncodersListParameters,
     options: AcsEncodersListOptions = {},
@@ -207,6 +216,9 @@ export class SeamHttpAcsEncoders {
     })
   }
 
+  /**
+   * Scans an encoded [acs_credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) from a plastic card placed on the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   */
   scanCredential(
     parameters: AcsEncodersScanCredentialParameters,
     options: AcsEncodersScanCredentialOptions = {},
@@ -220,6 +232,9 @@ export class SeamHttpAcsEncoders {
     })
   }
 
+  /**
+   * Scans a physical card placed on the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) and assigns the scanned credential to an ACS user. Provide either an `acs_user_id` or a `user_identity_id`.
+   */
   scanToAssignCredential(
     parameters: AcsEncodersScanToAssignCredentialParameters,
     options: AcsEncodersScanToAssignCredentialOptions = {},
@@ -235,8 +250,17 @@ export class SeamHttpAcsEncoders {
 }
 
 export type AcsEncodersEncodeCredentialParameters = {
+  /**
+   * ID of the `access_method` to encode onto a card.
+   */
   access_method_id?: string | undefined
+  /**
+   * ID of the `acs_credential` to encode onto a card.
+   */
   acs_credential_id?: string | undefined
+  /**
+   * ID of the `acs_encoder` to use to encode the `acs_credential`.
+   */
   acs_encoder_id: string
 }
 
@@ -258,6 +282,9 @@ export type AcsEncodersEncodeCredentialOptions = Pick<
 >
 
 export type AcsEncodersGetParameters = {
+  /**
+   * ID of the encoder that you want to get.
+   */
   acs_encoder_id: string
 }
 
@@ -274,10 +301,25 @@ export type AcsEncodersGetRequest = SeamHttpRequest<
 export interface AcsEncodersGetOptions {}
 
 export type AcsEncodersListParameters = {
+  /**
+   * ID of the access system for which you want to retrieve all encoders.
+   */
   acs_system_id?: string | undefined
+  /**
+   * IDs of the access systems for which you want to retrieve all encoders.
+   */
   acs_system_ids?: Array<string> | undefined
+  /**
+   * IDs of the encoders that you want to retrieve.
+   */
   acs_encoder_ids?: Array<string> | undefined
+  /**
+   * Number of encoders to return.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
 }
 
@@ -294,10 +336,19 @@ export type AcsEncodersListRequest = SeamHttpRequest<
 export interface AcsEncodersListOptions {}
 
 export type AcsEncodersScanCredentialParameters = {
+  /**
+   * ID of the encoder to use for the scan.
+   */
   acs_encoder_id: string
 
+  /**
+   * Salto KS-specific metadata for the scan action.
+   */
   salto_ks_metadata?:
     | {
+        /**
+         * When true, activates tag registration mode on the encoder to detect new, unregistered tags. When false, only detects existing tags already registered in the system. Defaults to false.
+         */
         detect_new_tags?: boolean | undefined
       }
     | undefined
@@ -321,14 +372,29 @@ export type AcsEncodersScanCredentialOptions = Pick<
 >
 
 export type AcsEncodersScanToAssignCredentialParameters = {
+  /**
+   * ID of the `acs_encoder` to use to scan the credential.
+   */
   acs_encoder_id: string
 
+  /**
+   * ID of the `acs_user` to assign the scanned credential to.
+   */
   acs_user_id?: string | undefined
+  /**
+   * Salto KS-specific metadata for the scan action.
+   */
   salto_ks_metadata?:
     | {
+        /**
+         * When true, activates tag registration mode on the encoder to detect new, unregistered tags. When false, only detects existing tags already registered in the system. Defaults to false.
+         */
         detect_new_tags?: boolean | undefined
       }
     | undefined
+  /**
+   * ID of the `user_identity` to assign the scanned credential to. If the ACS system contains an ACS user linked to this user identity, it is used. Otherwise, one is created.
+   */
   user_identity_id?: string | undefined
 }
 

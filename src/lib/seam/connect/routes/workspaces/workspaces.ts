@@ -162,6 +162,9 @@ export class SeamHttpWorkspaces {
     await clientSessions.get()
   }
 
+  /**
+   * Creates a new [workspace](https://docs.seam.co/core-concepts/workspaces).
+   */
   create(
     parameters: WorkspacesCreateParameters,
     options: WorkspacesCreateOptions = {},
@@ -175,6 +178,9 @@ export class SeamHttpWorkspaces {
     })
   }
 
+  /**
+   * Returns the [workspace](https://docs.seam.co/core-concepts/workspaces) associated with the authentication value.
+   */
   get(
     parameters?: WorkspacesGetParameters,
     options: WorkspacesGetOptions = {},
@@ -188,6 +194,9 @@ export class SeamHttpWorkspaces {
     })
   }
 
+  /**
+   * Returns a list of [workspaces](https://docs.seam.co/core-concepts/workspaces) associated with the authentication value.
+   */
   list(
     parameters?: WorkspacesListParameters,
     options: WorkspacesListOptions = {},
@@ -201,6 +210,9 @@ export class SeamHttpWorkspaces {
     })
   }
 
+  /**
+   * Resets the [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces) associated with the authentication value. Note that this endpoint is only available for sandbox workspaces.
+   */
   resetSandbox(
     parameters?: WorkspacesResetSandboxParameters,
     options: WorkspacesResetSandboxOptions = {},
@@ -214,6 +226,9 @@ export class SeamHttpWorkspaces {
     })
   }
 
+  /**
+   * Updates the [workspace](https://docs.seam.co/core-concepts/workspaces) associated with the authentication value.
+   */
   update(
     parameters?: WorkspacesUpdateParameters,
     options: WorkspacesUpdateOptions = {},
@@ -229,23 +244,66 @@ export class SeamHttpWorkspaces {
 }
 
 export type WorkspacesCreateParameters = {
+  /**
+   * Company name for the new workspace.
+   */
   company_name?: string | undefined
+  /**
+   * Connect partner name for the new workspace.
+   * @deprecated Use `company_name` instead.
+   */
   connect_partner_name?: string | undefined
+  /**
+   * [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews) customizations for the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
+   */
   connect_webview_customization?:
     | {
+        /**
+         * Logo shape for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
+         */
         logo_shape?: 'circle' | 'square' | undefined
+        /**
+         * Primary button color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
+         */
         primary_button_color?: string | undefined
+        /**
+         * Primary button text color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
+         */
         primary_button_text_color?: string | undefined
+        /**
+         * Success message for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
+         */
         success_message?: string | undefined
       }
     | undefined
+  /**
+   * Indicates whether the new workspace is a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   is_sandbox?: boolean | undefined
+  /**
+   * Name of the new workspace.
+   */
   name: string
 
+  /**
+   * ID of the organization to associate with the new workspace.
+   */
   organization_id?: string | undefined
+  /**
+   * @deprecated Use `connect_webview_customization.webview_logo_shape` instead.
+   */
   webview_logo_shape?: 'circle' | 'square' | undefined
+  /**
+   * @deprecated Use `connect_webview_customization.webview_primary_button_color` instead.
+   */
   webview_primary_button_color?: string | undefined
+  /**
+   * @deprecated Use `connect_webview_customization.webview_primary_button_text_color` instead.
+   */
   webview_primary_button_text_color?: string | undefined
+  /**
+   * @deprecated Use `connect_webview_customization.webview_success_message` instead.
+   */
   webview_success_message?: string | undefined
 }
 
@@ -307,18 +365,48 @@ export type WorkspacesResetSandboxOptions = Pick<
 >
 
 export type WorkspacesUpdateParameters = {
+  /**
+   * Connect partner name for the workspace.
+   */
   connect_partner_name?: string | undefined
+  /**
+   * [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews) customizations for the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
+   */
   connect_webview_customization?:
     | {
+        /**
+         * Logo shape for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
+         */
         logo_shape?: 'circle' | 'square' | undefined
+        /**
+         * Primary button color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
+         */
         primary_button_color?: string | undefined
+        /**
+         * Primary button text color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
+         */
         primary_button_text_color?: string | undefined
+        /**
+         * Success message for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
+         */
         success_message?: string | undefined
       }
     | undefined
+  /**
+   * Indicates whether publishable key authentication is enabled for this workspace.
+   */
   is_publishable_key_auth_enabled?: boolean | undefined
+  /**
+   * Indicates whether the workspace is suspended.
+   */
   is_suspended?: boolean | undefined
+  /**
+   * Name of the workspace.
+   */
   name?: string | undefined
+  /**
+   * ID of the organization to assign the workspace to. The authenticated user must be the owner of the workspace and an admin of the target organization.
+   */
   organization_id?: string | undefined
 }
 

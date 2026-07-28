@@ -161,6 +161,13 @@ export class SeamHttpAccessCodesUnmanaged {
     await clientSessions.get()
   }
 
+  /**
+   * Converts an [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) to an [access code managed through Seam](https://docs.seam.co/low-level-apis/smart-locks/access-codes).
+   *
+   * An unmanaged access code has a limited set of operations that you can perform on it. Once you convert an unmanaged access code to a managed access code, the full set of access code operations and lifecycle events becomes available for it.
+   *
+   * Note that not all device providers support converting an unmanaged access code to a managed access code.
+   */
   convertToManaged(
     parameters: AccessCodesUnmanagedConvertToManagedParameters,
     options: AccessCodesUnmanagedConvertToManagedOptions = {},
@@ -174,6 +181,9 @@ export class SeamHttpAccessCodesUnmanaged {
     })
   }
 
+  /**
+   * Deletes an [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   */
   delete(
     parameters: AccessCodesUnmanagedDeleteParameters,
     options: AccessCodesUnmanagedDeleteOptions = {},
@@ -187,6 +197,11 @@ export class SeamHttpAccessCodesUnmanaged {
     })
   }
 
+  /**
+   * Returns a specified [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   *
+   * You must specify either `access_code_id` or both `device_id` and `code`.
+   */
   get(
     parameters?: AccessCodesUnmanagedGetParameters,
     options: AccessCodesUnmanagedGetOptions = {},
@@ -200,6 +215,9 @@ export class SeamHttpAccessCodesUnmanaged {
     })
   }
 
+  /**
+   * Returns a list of all [unmanaged access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   */
   list(
     parameters: AccessCodesUnmanagedListParameters,
     options: AccessCodesUnmanagedListOptions = {},
@@ -213,6 +231,9 @@ export class SeamHttpAccessCodesUnmanaged {
     })
   }
 
+  /**
+   * Updates a specified [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   */
   update(
     parameters: AccessCodesUnmanagedUpdateParameters,
     options: AccessCodesUnmanagedUpdateOptions = {},
@@ -228,10 +249,22 @@ export class SeamHttpAccessCodesUnmanaged {
 }
 
 export type AccessCodesUnmanagedConvertToManagedParameters = {
+  /**
+   * ID of the unmanaged access code that you want to convert to a managed access code.
+   */
   access_code_id: string
 
+  /**
+   * Indicates whether [external modification](https://docs.seam.co/low-level-apis/smart-locks/access-codes#external-modification) of the access code is allowed.
+   */
   allow_external_modification?: boolean | undefined
+  /**
+   * Indicates whether to force the access code conversion. To switch management of an access code from one Seam workspace to another, set `force` to `true`.
+   */
   force?: boolean | undefined
+  /**
+   * Indicates whether [external modification](https://docs.seam.co/low-level-apis/smart-locks/access-codes#external-modification) of the access code is allowed.
+   */
   is_external_modification_allowed?: boolean | undefined
 }
 
@@ -248,6 +281,9 @@ export type AccessCodesUnmanagedConvertToManagedRequest = SeamHttpRequest<
 export interface AccessCodesUnmanagedConvertToManagedOptions {}
 
 export type AccessCodesUnmanagedDeleteParameters = {
+  /**
+   * ID of the unmanaged access code that you want to delete.
+   */
   access_code_id: string
 }
 
@@ -261,8 +297,17 @@ export type AccessCodesUnmanagedDeleteRequest = SeamHttpRequest<void, undefined>
 export interface AccessCodesUnmanagedDeleteOptions {}
 
 export type AccessCodesUnmanagedGetParameters = {
+  /**
+   * ID of the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
+   */
   access_code_id?: string | undefined
+  /**
+   * Code of the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
+   */
   code?: string | undefined
+  /**
+   * ID of the device containing the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
+   */
   device_id?: string | undefined
 }
 
@@ -281,11 +326,26 @@ export type AccessCodesUnmanagedGetRequest = SeamHttpRequest<
 export interface AccessCodesUnmanagedGetOptions {}
 
 export type AccessCodesUnmanagedListParameters = {
+  /**
+   * ID of the device for which you want to list unmanaged access codes.
+   */
   device_id: string
 
+  /**
+   * Numerical limit on the number of unmanaged access codes to return.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned access codes to include all records that satisfy a partial match using `name`, `code` or `access_code_id`.
+   */
   search?: string | undefined
+  /**
+   * Your user ID for the user by which to filter unmanaged access codes.
+   */
   user_identifier_key?: string | undefined
 }
 
@@ -304,11 +364,24 @@ export type AccessCodesUnmanagedListRequest = SeamHttpRequest<
 export interface AccessCodesUnmanagedListOptions {}
 
 export type AccessCodesUnmanagedUpdateParameters = {
+  /**
+   * ID of the unmanaged access code that you want to update.
+   */
   access_code_id: string
 
+  /**
+   * Indicates whether [external modification](https://docs.seam.co/low-level-apis/smart-locks/access-codes#external-modification) of the code is allowed.
+   */
   allow_external_modification?: boolean | undefined
+  /**
+   * Indicates whether to force the unmanaged access code update.
+   */
   force?: boolean | undefined
+  /**
+   * Indicates whether [external modification](https://docs.seam.co/low-level-apis/smart-locks/access-codes#external-modification) of the code is allowed.
+   */
   is_external_modification_allowed?: boolean | undefined
+
   is_managed: boolean
 }
 

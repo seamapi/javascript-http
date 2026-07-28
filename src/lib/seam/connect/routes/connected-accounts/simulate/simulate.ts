@@ -163,6 +163,9 @@ export class SeamHttpConnectedAccountsSimulate {
     await clientSessions.get()
   }
 
+  /**
+   * Simulates a connected account becoming disconnected from Seam. Only applicable for [sandbox workspaces](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   disconnect(
     parameters: ConnectedAccountsSimulateDisconnectParameters,
     options: ConnectedAccountsSimulateDisconnectOptions = {},
@@ -178,6 +181,9 @@ export class SeamHttpConnectedAccountsSimulate {
 }
 
 export type ConnectedAccountsSimulateDisconnectParameters = {
+  /**
+   * ID of the connected account you want to simulate as disconnected.
+   */
   connected_account_id: string
 }
 

@@ -165,6 +165,9 @@ export class SeamHttpThermostatsDailyPrograms {
     await clientSessions.get()
   }
 
+  /**
+   * Creates a new thermostat daily program. A daily program consists of a set of periods, where each period includes a start time and the key of a configured climate preset. Once you have defined a daily program, you can assign it to one or more days within a weekly program.
+   */
   create(
     parameters: ThermostatsDailyProgramsCreateParameters,
     options: ThermostatsDailyProgramsCreateOptions = {},
@@ -178,6 +181,9 @@ export class SeamHttpThermostatsDailyPrograms {
     })
   }
 
+  /**
+   * Deletes a thermostat daily program.
+   */
   delete(
     parameters: ThermostatsDailyProgramsDeleteParameters,
     options: ThermostatsDailyProgramsDeleteOptions = {},
@@ -191,6 +197,9 @@ export class SeamHttpThermostatsDailyPrograms {
     })
   }
 
+  /**
+   * Updates a specified thermostat daily program. The periods that you specify overwrite any existing periods for the daily program.
+   */
   update(
     parameters: ThermostatsDailyProgramsUpdateParameters,
     options: ThermostatsDailyProgramsUpdateOptions = {},
@@ -206,12 +215,27 @@ export class SeamHttpThermostatsDailyPrograms {
 }
 
 export type ThermostatsDailyProgramsCreateParameters = {
+  /**
+   * ID of the thermostat device for which you want to create a daily program.
+   */
   device_id: string
 
+  /**
+   * Name of the thermostat daily program.
+   */
   name: string
 
+  /**
+   * Array of thermostat daily program periods.
+   */
   periods: Array<{
+    /**
+     * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to activate at the `starts_at_time`.
+     */
     climate_preset_key?: string | undefined
+    /**
+     * Time at which the thermostat daily program period starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+     */
     starts_at_time?: string | undefined
   }>
 }
@@ -231,6 +255,9 @@ export type ThermostatsDailyProgramsCreateRequest = SeamHttpRequest<
 export interface ThermostatsDailyProgramsCreateOptions {}
 
 export type ThermostatsDailyProgramsDeleteParameters = {
+  /**
+   * ID of the thermostat daily program that you want to delete.
+   */
   thermostat_daily_program_id: string
 }
 
@@ -247,13 +274,28 @@ export type ThermostatsDailyProgramsDeleteRequest = SeamHttpRequest<
 export interface ThermostatsDailyProgramsDeleteOptions {}
 
 export type ThermostatsDailyProgramsUpdateParameters = {
+  /**
+   * Name of the thermostat daily program that you want to update.
+   */
   name: string
 
+  /**
+   * Array of thermostat daily program periods. The periods that you specify overwrite any existing periods for the daily program.
+   */
   periods: Array<{
+    /**
+     * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to activate at the `starts_at_time`.
+     */
     climate_preset_key?: string | undefined
+    /**
+     * Time at which the thermostat daily program period starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+     */
     starts_at_time?: string | undefined
   }>
 
+  /**
+   * ID of the thermostat daily program that you want to update.
+   */
   thermostat_daily_program_id: string
 }
 

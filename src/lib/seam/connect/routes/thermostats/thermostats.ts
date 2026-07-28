@@ -181,6 +181,9 @@ export class SeamHttpThermostats {
     return SeamHttpThermostatsSimulate.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Activates a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   activateClimatePreset(
     parameters: ThermostatsActivateClimatePresetParameters,
     options: ThermostatsActivateClimatePresetOptions = {},
@@ -194,6 +197,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to [cool mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   */
   cool(
     parameters: ThermostatsCoolParameters,
     options: ThermostatsCoolOptions = {},
@@ -207,6 +213,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Creates a [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   createClimatePreset(
     parameters: ThermostatsCreateClimatePresetParameters,
     options: ThermostatsCreateClimatePresetOptions = {},
@@ -220,6 +229,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Deletes a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   deleteClimatePreset(
     parameters: ThermostatsDeleteClimatePresetParameters,
     options: ThermostatsDeleteClimatePresetOptions = {},
@@ -233,6 +245,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to [heat mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   */
   heat(
     parameters: ThermostatsHeatParameters,
     options: ThermostatsHeatOptions = {},
@@ -246,6 +261,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to [heat-cool ("auto") mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   */
   heatCool(
     parameters: ThermostatsHeatCoolParameters,
     options: ThermostatsHeatCoolOptions = {},
@@ -259,6 +277,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Returns a list of all [thermostats](https://docs.seam.co/capability-guides/thermostats).
+   */
   list(
     parameters?: ThermostatsListParameters,
     options: ThermostatsListOptions = {},
@@ -272,6 +293,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to ["off" mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   */
   off(
     parameters: ThermostatsOffParameters,
     options: ThermostatsOffOptions = {},
@@ -285,6 +309,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Sets a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) as the ["fallback"](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets/setting-the-fallback-climate-preset) preset for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   setFallbackClimatePreset(
     parameters: ThermostatsSetFallbackClimatePresetParameters,
     options: ThermostatsSetFallbackClimatePresetOptions = {},
@@ -298,6 +325,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Sets the [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   setFanMode(
     parameters: ThermostatsSetFanModeParameters,
     options: ThermostatsSetFanModeOptions = {},
@@ -311,6 +341,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Sets the [HVAC mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   setHvacMode(
     parameters: ThermostatsSetHvacModeParameters,
     options: ThermostatsSetHvacModeOptions = {},
@@ -324,6 +357,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Sets a [temperature threshold](https://docs.seam.co/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) for a specified thermostat. Seam emits a `thermostat.temperature_threshold_exceeded` event and adds a warning on a thermostat if it reports a temperature outside the threshold range.
+   */
   setTemperatureThreshold(
     parameters: ThermostatsSetTemperatureThresholdParameters,
     options: ThermostatsSetTemperatureThresholdOptions = {},
@@ -337,6 +373,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Updates a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   updateClimatePreset(
     parameters: ThermostatsUpdateClimatePresetParameters,
     options: ThermostatsUpdateClimatePresetOptions = {},
@@ -350,6 +389,9 @@ export class SeamHttpThermostats {
     })
   }
 
+  /**
+   * Updates the thermostat weekly program for a thermostat device. To configure a weekly program, specify the ID of the daily program that you want to use for each day of the week. When you update a weekly program, the set of programs that you specify overwrites any previous weekly program for the thermostat.
+   */
   updateWeeklyProgram(
     parameters: ThermostatsUpdateWeeklyProgramParameters,
     options: ThermostatsUpdateWeeklyProgramOptions = {},
@@ -365,8 +407,14 @@ export class SeamHttpThermostats {
 }
 
 export type ThermostatsActivateClimatePresetParameters = {
+  /**
+   * Climate preset key of the climate preset that you want to activate.
+   */
   climate_preset_key: string
 
+  /**
+   * ID of the thermostat device for which you want to activate a climate preset.
+   */
   device_id: string
 }
 
@@ -388,8 +436,17 @@ export type ThermostatsActivateClimatePresetOptions = Pick<
 >
 
 export type ThermostatsCoolParameters = {
+  /**
+   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   */
   cooling_set_point_celsius?: number | undefined
+  /**
+   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   */
   cooling_set_point_fahrenheit?: number | undefined
+  /**
+   * ID of the thermostat device that you want to set to cool mode.
+   */
   device_id: string
 }
 
@@ -409,26 +466,72 @@ export type ThermostatsCoolOptions = Pick<
 >
 
 export type ThermostatsCreateClimatePresetParameters = {
+  /**
+   * Unique key to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+   */
   climate_preset_key: string
 
+  /**
+   * The climate preset mode for the thermostat, based on the available climate preset modes reported by the device.
+   */
   climate_preset_mode?:
     'home' | 'away' | 'wake' | 'sleep' | 'occupied' | 'unoccupied' | undefined
+  /**
+   * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   */
   cooling_set_point_celsius?: number | undefined
+  /**
+   * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   */
   cooling_set_point_fahrenheit?: number | undefined
+  /**
+   * ID of the thermostat device for which you want create a climate preset.
+   */
   device_id: string
 
+  /**
+   * Metadata specific to the Ecobee climate, if applicable.
+   */
   ecobee_metadata?:
     | {
+        /**
+         * Reference to the Ecobee climate, if applicable.
+         */
         climate_ref?: string | undefined
+        /**
+         * Indicates if the climate preset is optimized by Ecobee.
+         */
         is_optimized?: boolean | undefined
+        /**
+         * Indicates whether the climate preset is owned by the user or the system.
+         */
         owner?: 'user' | 'system' | undefined
       }
     | undefined
+  /**
+   * Desired [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+   */
   fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
+  /**
+   * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   */
   heating_set_point_celsius?: number | undefined
+  /**
+   * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   */
   heating_set_point_fahrenheit?: number | undefined
+  /**
+   * Desired [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+   */
   hvac_mode_setting?: 'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
+  /**
+   * Indicates whether a person at the thermostat or using the API can change the thermostat's settings.
+   * @deprecated Use 'thermostat_schedule.is_override_allowed'
+   */
   manual_override_allowed?: boolean | undefined
+  /**
+   * User-friendly name to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+   */
   name?: string | undefined
 }
 
@@ -445,8 +548,14 @@ export type ThermostatsCreateClimatePresetRequest = SeamHttpRequest<
 export interface ThermostatsCreateClimatePresetOptions {}
 
 export type ThermostatsDeleteClimatePresetParameters = {
+  /**
+   * Climate preset key of the climate preset that you want to delete.
+   */
   climate_preset_key: string
 
+  /**
+   * ID of the thermostat device for which you want to delete a climate preset.
+   */
   device_id: string
 }
 
@@ -463,9 +572,18 @@ export type ThermostatsDeleteClimatePresetRequest = SeamHttpRequest<
 export interface ThermostatsDeleteClimatePresetOptions {}
 
 export type ThermostatsHeatParameters = {
+  /**
+   * ID of the thermostat device that you want to set to heat mode.
+   */
   device_id: string
 
+  /**
+   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   */
   heating_set_point_celsius?: number | undefined
+  /**
+   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   */
   heating_set_point_fahrenheit?: number | undefined
 }
 
@@ -485,11 +603,26 @@ export type ThermostatsHeatOptions = Pick<
 >
 
 export type ThermostatsHeatCoolParameters = {
+  /**
+   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   */
   cooling_set_point_celsius?: number | undefined
+  /**
+   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   */
   cooling_set_point_fahrenheit?: number | undefined
+  /**
+   * ID of the thermostat device that you want to set to heat-cool mode.
+   */
   device_id: string
 
+  /**
+   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   */
   heating_set_point_celsius?: number | undefined
+  /**
+   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   */
   heating_set_point_fahrenheit?: number | undefined
 }
 
@@ -509,13 +642,37 @@ export type ThermostatsHeatCoolOptions = Pick<
 >
 
 export type ThermostatsListParameters = {
+  /**
+   * ID of the Connect Webview for which you want to list devices.
+   */
   connect_webview_id?: string | undefined
+  /**
+   * ID of the connected account for which you want to list devices.
+   */
   connected_account_id?: string | undefined
+  /**
+   * Array of IDs of the connected accounts for which you want to list devices.
+   */
   connected_account_ids?: Array<string> | undefined
+  /**
+   * Timestamp by which to limit returned devices. Returns devices created before this timestamp.
+   */
   created_before?: string | undefined
+  /**
+   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices.
+   */
   custom_metadata_has?: Record<string, unknown> | undefined
+  /**
+   * Customer key for which you want to list devices.
+   */
   customer_key?: string | undefined
+  /**
+   * Array of device IDs for which you want to list devices.
+   */
   device_ids?: Array<string> | undefined
+  /**
+   * Device type by which you want to filter thermostat devices.
+   */
   device_type?:
     | 'ecobee_thermostat'
     | 'nest_thermostat'
@@ -524,6 +681,9 @@ export type ThermostatsListParameters = {
     | 'sensi_thermostat'
     | 'smartthings_thermostat'
     | undefined
+  /**
+   * Array of device types by which you want to filter thermostat devices.
+   */
   device_types?:
     | Array<
         | 'ecobee_thermostat'
@@ -534,7 +694,13 @@ export type ThermostatsListParameters = {
         | 'smartthings_thermostat'
       >
     | undefined
+  /**
+   * Numerical limit on the number of devices to return.
+   */
   limit?: number | undefined
+  /**
+   * Manufacturer by which you want to filter thermostat devices.
+   */
   manufacturer?:
     | 'ecobee'
     | 'honeywell_resideo'
@@ -543,10 +709,25 @@ export type ThermostatsListParameters = {
     | 'smartthings'
     | 'tado'
     | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned devices to include all records that satisfy a partial match using `device_id` (full or partial UUID prefix, minimum 4 characters), `connected_account_id`, `display_name`, `custom_metadata` or `location.location_name`.
+   */
   search?: string | undefined
+  /**
+   * ID of the space for which you want to list devices.
+   */
   space_id?: string | undefined
+  /**
+   * @deprecated Use `space_id`.
+   */
   unstable_location_id?: string | undefined
+  /**
+   * Your own internal user ID for the user for which you want to list devices.
+   */
   user_identifier_key?: string | undefined
 }
 
@@ -563,6 +744,9 @@ export type ThermostatsListRequest = SeamHttpRequest<
 export interface ThermostatsListOptions {}
 
 export type ThermostatsOffParameters = {
+  /**
+   * ID of the thermostat device that you want to set to off mode.
+   */
   device_id: string
 }
 
@@ -582,8 +766,14 @@ export type ThermostatsOffOptions = Pick<
 >
 
 export type ThermostatsSetFallbackClimatePresetParameters = {
+  /**
+   * Climate preset key of the climate preset that you want to set as the fallback climate preset.
+   */
   climate_preset_key: string
 
+  /**
+   * ID of the thermostat device for which you want to set the fallback climate preset.
+   */
   device_id: string
 }
 
@@ -600,9 +790,19 @@ export type ThermostatsSetFallbackClimatePresetRequest = SeamHttpRequest<
 export interface ThermostatsSetFallbackClimatePresetOptions {}
 
 export type ThermostatsSetFanModeParameters = {
+  /**
+   * ID of the thermostat device for which you want to set the fan mode.
+   */
   device_id: string
 
+  /**
+   * Fan mode setting for the thermostat, such as `auto`, `on`, or `circulate`.
+   * @deprecated Use `fan_mode_setting` instead.
+   */
   fan_mode?: 'auto' | 'on' | 'circulate' | undefined
+  /**
+   * [Fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings) that you want to set for the thermostat.
+   */
   fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
 }
 
@@ -622,13 +822,28 @@ export type ThermostatsSetFanModeOptions = Pick<
 >
 
 export type ThermostatsSetHvacModeParameters = {
+  /**
+   * ID of the thermostat device for which you want to set the HVAC mode.
+   */
   device_id: string
 
   hvac_mode_setting: 'off' | 'cool' | 'heat' | 'heat_cool' | 'eco'
 
+  /**
+   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   */
   cooling_set_point_celsius?: number | undefined
+  /**
+   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   */
   cooling_set_point_fahrenheit?: number | undefined
+  /**
+   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   */
   heating_set_point_celsius?: number | undefined
+  /**
+   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   */
   heating_set_point_fahrenheit?: number | undefined
 }
 
@@ -648,11 +863,26 @@ export type ThermostatsSetHvacModeOptions = Pick<
 >
 
 export type ThermostatsSetTemperatureThresholdParameters = {
+  /**
+   * ID of the thermostat device for which you want to set a temperature threshold.
+   */
   device_id: string
 
+  /**
+   * Lower temperature limit in in °C. Seam alerts you if the reported temperature is lower than this value. You can specify either `lower_limit` but not both.
+   */
   lower_limit_celsius?: number | undefined
+  /**
+   * Lower temperature limit in in °F. Seam alerts you if the reported temperature is lower than this value. You can specify either `lower_limit` but not both.
+   */
   lower_limit_fahrenheit?: number | undefined
+  /**
+   * Upper temperature limit in in °C. Seam alerts you if the reported temperature is higher than this value. You can specify either `upper_limit` but not both.
+   */
   upper_limit_celsius?: number | undefined
+  /**
+   * Upper temperature limit in in °C. Seam alerts you if the reported temperature is higher than this value. You can specify either `upper_limit` but not both.
+   */
   upper_limit_fahrenheit?: number | undefined
 }
 
@@ -669,26 +899,72 @@ export type ThermostatsSetTemperatureThresholdRequest = SeamHttpRequest<
 export interface ThermostatsSetTemperatureThresholdOptions {}
 
 export type ThermostatsUpdateClimatePresetParameters = {
+  /**
+   * Unique key to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+   */
   climate_preset_key: string
 
+  /**
+   * The climate preset mode for the thermostat, based on the available climate preset modes reported by the device.
+   */
   climate_preset_mode?:
     'home' | 'away' | 'wake' | 'sleep' | 'occupied' | 'unoccupied' | undefined
+  /**
+   * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   */
   cooling_set_point_celsius?: number | undefined
+  /**
+   * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   */
   cooling_set_point_fahrenheit?: number | undefined
+  /**
+   * ID of the thermostat device for which you want to update a climate preset.
+   */
   device_id: string
 
+  /**
+   * Metadata specific to the Ecobee climate, if applicable.
+   */
   ecobee_metadata?:
     | {
+        /**
+         * Reference to the Ecobee climate, if applicable.
+         */
         climate_ref?: string | undefined
+        /**
+         * Indicates if the climate preset is optimized by Ecobee.
+         */
         is_optimized?: boolean | undefined
+        /**
+         * Indicates whether the climate preset is owned by the user or the system.
+         */
         owner?: 'user' | 'system' | undefined
       }
     | undefined
+  /**
+   * Desired [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+   */
   fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
+  /**
+   * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   */
   heating_set_point_celsius?: number | undefined
+  /**
+   * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   */
   heating_set_point_fahrenheit?: number | undefined
+  /**
+   * Desired [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+   */
   hvac_mode_setting?: 'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
+  /**
+   * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+   * @deprecated Use 'thermostat_schedule.is_override_allowed'
+   */
   manual_override_allowed?: boolean | undefined
+  /**
+   * User-friendly name to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+   */
   name?: string | undefined
 }
 
@@ -705,14 +981,38 @@ export type ThermostatsUpdateClimatePresetRequest = SeamHttpRequest<
 export interface ThermostatsUpdateClimatePresetOptions {}
 
 export type ThermostatsUpdateWeeklyProgramParameters = {
+  /**
+   * ID of the thermostat device for which you want to update the weekly program.
+   */
   device_id: string
 
+  /**
+   * ID of the thermostat daily program to run on Fridays.
+   */
   friday_program_id?: string | undefined
+  /**
+   * ID of the thermostat daily program to run on Mondays.
+   */
   monday_program_id?: string | undefined
+  /**
+   * ID of the thermostat daily program to run on Saturdays.
+   */
   saturday_program_id?: string | undefined
+  /**
+   * ID of the thermostat daily program to run on Sundays.
+   */
   sunday_program_id?: string | undefined
+  /**
+   * ID of the thermostat daily program to run on Thursdays.
+   */
   thursday_program_id?: string | undefined
+  /**
+   * ID of the thermostat daily program to run on Tuesdays.
+   */
   tuesday_program_id?: string | undefined
+  /**
+   * ID of the thermostat daily program to run on Wednesdays.
+   */
   wednesday_program_id?: string | undefined
 }
 

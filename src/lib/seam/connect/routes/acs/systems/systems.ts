@@ -161,6 +161,9 @@ export class SeamHttpAcsSystems {
     await clientSessions.get()
   }
 
+  /**
+   * Returns a specified [access system](https://docs.seam.co/low-level-apis/access-systems).
+   */
   get(
     parameters: AcsSystemsGetParameters,
     options: AcsSystemsGetOptions = {},
@@ -174,6 +177,11 @@ export class SeamHttpAcsSystems {
     })
   }
 
+  /**
+   * Returns a list of all [access systems](https://docs.seam.co/low-level-apis/access-systems).
+   *
+   * To filter the list of returned access systems by a specific connected account ID, include the `connected_account_id` in the request body. If you omit the `connected_account_id` parameter, the response includes all access systems connected to your workspace.
+   */
   list(
     parameters?: AcsSystemsListParameters,
     options: AcsSystemsListOptions = {},
@@ -187,6 +195,11 @@ export class SeamHttpAcsSystems {
     })
   }
 
+  /**
+   * Returns a list of all credential manager systems that are compatible with a specified [access system](https://docs.seam.co/low-level-apis/access-systems).
+   *
+   * Specify the access system for which you want to retrieve all compatible credential manager systems by including the corresponding `acs_system_id` in the request body.
+   */
   listCompatibleCredentialManagerAcsSystems(
     parameters: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
     options: AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = {},
@@ -200,6 +213,9 @@ export class SeamHttpAcsSystems {
     })
   }
 
+  /**
+   * Reports ACS system device status including encoders and entrances.
+   */
   reportDevices(
     parameters: AcsSystemsReportDevicesParameters,
     options: AcsSystemsReportDevicesOptions = {},
@@ -215,6 +231,9 @@ export class SeamHttpAcsSystems {
 }
 
 export type AcsSystemsGetParameters = {
+  /**
+   * ID of the access system that you want to get.
+   */
   acs_system_id: string
 }
 
@@ -231,8 +250,17 @@ export type AcsSystemsGetRequest = SeamHttpRequest<
 export interface AcsSystemsGetOptions {}
 
 export type AcsSystemsListParameters = {
+  /**
+   * ID of the connected account by which you want to filter the list of access systems.
+   */
   connected_account_id?: string | undefined
+  /**
+   * Customer key for which you want to list access systems.
+   */
   customer_key?: string | undefined
+  /**
+   * String for which to search. Filters returned access systems to include all records that satisfy a partial match using `name` or `acs_system_id`.
+   */
   search?: string | undefined
 }
 
@@ -249,6 +277,9 @@ export type AcsSystemsListRequest = SeamHttpRequest<
 export interface AcsSystemsListOptions {}
 
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters = {
+  /**
+   * ID of the access system for which you want to retrieve all compatible credential manager systems.
+   */
   acs_system_id: string
 }
 
@@ -268,28 +299,61 @@ export type AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest =
 export interface AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions {}
 
 export type AcsSystemsReportDevicesParameters = {
+  /**
+   * Array of ACS encoders to report
+   */
   acs_encoders?:
     | Array<{
+        /**
+         * Hotek-specific metadata associated with the entrance.
+         */
         hotek_metadata?:
           | {
+              /**
+               * The encoder number determined by the USB port connection.
+               */
               encoder_number?: string | undefined
             }
           | undefined
+        /**
+         * Whether the encoder is removed
+         */
         is_removed?: boolean | undefined
       }>
     | undefined
+  /**
+   * Array of ACS entrances to report
+   */
   acs_entrances?:
     | Array<{
+        /**
+         * Hotek-specific metadata associated with the entrance.
+         */
         hotek_metadata?:
           | {
+              /**
+               * The common area name
+               */
               common_area_name?: string | undefined
+              /**
+               * The room number identifier
+               */
               common_area_number?: string | undefined
+              /**
+               * The room number identifier
+               */
               room_number?: string | undefined
             }
           | undefined
+        /**
+         * Whether the entrance is removed
+         */
         is_removed?: boolean | undefined
       }>
     | undefined
+  /**
+   * ID of the ACS system to report resources for
+   */
   acs_system_id: string
 }
 

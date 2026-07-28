@@ -169,6 +169,9 @@ export class SeamHttpAccessMethods {
     return SeamHttpAccessMethodsUnmanaged.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Assigns a pre-registered card credential, identified by `card_number`, to a card-mode access method. Use this endpoint for access systems that use pre-registered cards, where a physical card must be associated with an access method before it can be used for access. Assigning a card credential also triggers issuance of the access method.
+   */
   assignCard(
     parameters: AccessMethodsAssignCardParameters,
     options: AccessMethodsAssignCardOptions = {},
@@ -182,6 +185,9 @@ export class SeamHttpAccessMethods {
     })
   }
 
+  /**
+   * Deletes an access method.
+   */
   delete(
     parameters?: AccessMethodsDeleteParameters,
     options: AccessMethodsDeleteOptions = {},
@@ -195,6 +201,9 @@ export class SeamHttpAccessMethods {
     })
   }
 
+  /**
+   * Encodes an existing access method onto a plastic card placed on the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   */
   encode(
     parameters: AccessMethodsEncodeParameters,
     options: AccessMethodsEncodeOptions = {},
@@ -208,6 +217,9 @@ export class SeamHttpAccessMethods {
     })
   }
 
+  /**
+   * Gets an access method.
+   */
   get(
     parameters: AccessMethodsGetParameters,
     options: AccessMethodsGetOptions = {},
@@ -221,6 +233,9 @@ export class SeamHttpAccessMethods {
     })
   }
 
+  /**
+   * Gets all related resources for one or more Access Methods.
+   */
   getRelated(
     parameters: AccessMethodsGetRelatedParameters,
     options: AccessMethodsGetRelatedOptions = {},
@@ -234,6 +249,9 @@ export class SeamHttpAccessMethods {
     })
   }
 
+  /**
+   * Lists all access methods, usually filtered by Access Grant.
+   */
   list(
     parameters?: AccessMethodsListParameters,
     options: AccessMethodsListOptions = {},
@@ -247,6 +265,9 @@ export class SeamHttpAccessMethods {
     })
   }
 
+  /**
+   * Remotely unlocks a specified [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) using the cloud key credential associated with an access method. Returns an action attempt that tracks the progress of the unlock operation.
+   */
   unlockDoor(
     parameters: AccessMethodsUnlockDoorParameters,
     options: AccessMethodsUnlockDoorOptions = {},
@@ -262,8 +283,14 @@ export class SeamHttpAccessMethods {
 }
 
 export type AccessMethodsAssignCardParameters = {
+  /**
+   * ID of the `access_method` to assign the credential to.
+   */
   access_method_id: string
 
+  /**
+   * Card number of the credential to assign.
+   */
   card_number: string
 }
 
@@ -283,8 +310,17 @@ export type AccessMethodsAssignCardOptions = Pick<
 >
 
 export type AccessMethodsDeleteParameters = {
+  /**
+   * ID of access method to delete.
+   */
   access_method_id?: string | undefined
+  /**
+   * ID of access grant whose access methods should be deleted.
+   */
   access_grant_id?: string | undefined
+  /**
+   * Reservation key of the access grant whose access methods should be deleted.
+   */
   reservation_key?: string | undefined
 }
 
@@ -298,8 +334,14 @@ export type AccessMethodsDeleteRequest = SeamHttpRequest<void, undefined>
 export interface AccessMethodsDeleteOptions {}
 
 export type AccessMethodsEncodeParameters = {
+  /**
+   * ID of the `access_method` to encode onto a card.
+   */
   access_method_id: string
 
+  /**
+   * ID of the `acs_encoder` to use to encode the `access_method`.
+   */
   acs_encoder_id: string
 }
 
@@ -319,6 +361,9 @@ export type AccessMethodsEncodeOptions = Pick<
 >
 
 export type AccessMethodsGetParameters = {
+  /**
+   * ID of access method to get.
+   */
   access_method_id: string
 }
 
@@ -335,6 +380,9 @@ export type AccessMethodsGetRequest = SeamHttpRequest<
 export interface AccessMethodsGetOptions {}
 
 export type AccessMethodsGetRelatedParameters = {
+  /**
+   * IDs of the access methods that you want to get along with their related resources.
+   */
   access_method_ids: Array<string>
 
   exclude?:
@@ -349,6 +397,7 @@ export type AccessMethodsGetRelatedParameters = {
         | 'acs_credentials'
       >
     | undefined
+
   include?:
     | Array<
         | 'spaces'
@@ -387,13 +436,37 @@ export type AccessMethodsGetRelatedRequest = SeamHttpRequest<
 export interface AccessMethodsGetRelatedOptions {}
 
 export type AccessMethodsListParameters = {
+  /**
+   * ID of the access code by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
+   */
   access_code_id?: string | undefined
+  /**
+   * ID of Access Grant to list access methods for.
+   */
   access_grant_id?: string | undefined
+  /**
+   * Key of Access Grant to list access methods for.
+   */
   access_grant_key?: string | undefined
+  /**
+   * ID of the entrance for which you want to retrieve all access methods that grant access to it.
+   */
   acs_entrance_id?: string | undefined
+  /**
+   * ID of the device by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
+   */
   device_id?: string | undefined
+  /**
+   * Maximum number of records to return per page.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * ID of the space by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
+   */
   space_id?: string | undefined
 }
 
@@ -410,8 +483,14 @@ export type AccessMethodsListRequest = SeamHttpRequest<
 export interface AccessMethodsListOptions {}
 
 export type AccessMethodsUnlockDoorParameters = {
+  /**
+   * ID of the cloud_key `access_method` to use for the unlock operation.
+   */
   access_method_id: string
 
+  /**
+   * ID of the entrance to unlock.
+   */
   acs_entrance_id: string
 }
 

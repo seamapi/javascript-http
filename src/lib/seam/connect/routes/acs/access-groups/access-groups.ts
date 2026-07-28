@@ -163,6 +163,9 @@ export class SeamHttpAcsAccessGroups {
     await clientSessions.get()
   }
 
+  /**
+   * Adds a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) to a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   addUser(
     parameters: AcsAccessGroupsAddUserParameters,
     options: AcsAccessGroupsAddUserOptions = {},
@@ -176,6 +179,9 @@ export class SeamHttpAcsAccessGroups {
     })
   }
 
+  /**
+   * Deletes a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   delete(
     parameters: AcsAccessGroupsDeleteParameters,
     options: AcsAccessGroupsDeleteOptions = {},
@@ -189,6 +195,9 @@ export class SeamHttpAcsAccessGroups {
     })
   }
 
+  /**
+   * Returns a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   get(
     parameters: AcsAccessGroupsGetParameters,
     options: AcsAccessGroupsGetOptions = {},
@@ -202,6 +211,9 @@ export class SeamHttpAcsAccessGroups {
     })
   }
 
+  /**
+   * Returns a list of all [access groups](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   list(
     parameters?: AcsAccessGroupsListParameters,
     options: AcsAccessGroupsListOptions = {},
@@ -215,6 +227,9 @@ export class SeamHttpAcsAccessGroups {
     })
   }
 
+  /**
+   * Returns a list of all accessible entrances for a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   listAccessibleEntrances(
     parameters: AcsAccessGroupsListAccessibleEntrancesParameters,
     options: AcsAccessGroupsListAccessibleEntrancesOptions = {},
@@ -228,6 +243,9 @@ export class SeamHttpAcsAccessGroups {
     })
   }
 
+  /**
+   * Returns a list of all [access system users](https://docs.seam.co/low-level-apis/access-systems/user-management) in an [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   listUsers(
     parameters: AcsAccessGroupsListUsersParameters,
     options: AcsAccessGroupsListUsersOptions = {},
@@ -241,6 +259,9 @@ export class SeamHttpAcsAccessGroups {
     })
   }
 
+  /**
+   * Removes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) from a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   removeUser(
     parameters: AcsAccessGroupsRemoveUserParameters,
     options: AcsAccessGroupsRemoveUserOptions = {},
@@ -256,9 +277,18 @@ export class SeamHttpAcsAccessGroups {
 }
 
 export type AcsAccessGroupsAddUserParameters = {
+  /**
+   * ID of the access group to which you want to add an access system user.
+   */
   acs_access_group_id: string
 
+  /**
+   * ID of the access system user that you want to add to an access group. You can only provide one of acs_user_id or user_identity_id.
+   */
   acs_user_id?: string | undefined
+  /**
+   * ID of the desired user identity that you want to add to an access group. You can only provide one of acs_user_id or user_identity_id. If the ACS system contains an ACS user with the same `email_address` or `phone_number` as the user identity that you specify, they are linked, and the access group membership belongs to the ACS user. If the ACS system does not have a corresponding ACS user, one is created.
+   */
   user_identity_id?: string | undefined
 }
 
@@ -272,6 +302,9 @@ export type AcsAccessGroupsAddUserRequest = SeamHttpRequest<void, undefined>
 export interface AcsAccessGroupsAddUserOptions {}
 
 export type AcsAccessGroupsDeleteParameters = {
+  /**
+   * ID of the access group that you want to delete.
+   */
   acs_access_group_id: string
 }
 
@@ -285,6 +318,9 @@ export type AcsAccessGroupsDeleteRequest = SeamHttpRequest<void, undefined>
 export interface AcsAccessGroupsDeleteOptions {}
 
 export type AcsAccessGroupsGetParameters = {
+  /**
+   * ID of the access group that you want to get.
+   */
   acs_access_group_id: string
 }
 
@@ -301,9 +337,21 @@ export type AcsAccessGroupsGetRequest = SeamHttpRequest<
 export interface AcsAccessGroupsGetOptions {}
 
 export type AcsAccessGroupsListParameters = {
+  /**
+   * ID of the access system for which you want to retrieve all access groups.
+   */
   acs_system_id?: string | undefined
+  /**
+   * ID of the access system user for which you want to retrieve all access groups.
+   */
   acs_user_id?: string | undefined
+  /**
+   * String for which to search. Filters returned access groups to include all records that satisfy a partial match using `name` or `acs_access_group_id`.
+   */
   search?: string | undefined
+  /**
+   * ID of the user identity for which you want to retrieve all access groups.
+   */
   user_identity_id?: string | undefined
 }
 
@@ -322,6 +370,9 @@ export type AcsAccessGroupsListRequest = SeamHttpRequest<
 export interface AcsAccessGroupsListOptions {}
 
 export type AcsAccessGroupsListAccessibleEntrancesParameters = {
+  /**
+   * ID of the access group for which you want to retrieve all accessible entrances.
+   */
   acs_access_group_id: string
 }
 
@@ -340,6 +391,9 @@ export type AcsAccessGroupsListAccessibleEntrancesRequest = SeamHttpRequest<
 export interface AcsAccessGroupsListAccessibleEntrancesOptions {}
 
 export type AcsAccessGroupsListUsersParameters = {
+  /**
+   * ID of the access group for which you want to retrieve all access system users.
+   */
   acs_access_group_id: string
 }
 
@@ -356,9 +410,18 @@ export type AcsAccessGroupsListUsersRequest = SeamHttpRequest<
 export interface AcsAccessGroupsListUsersOptions {}
 
 export type AcsAccessGroupsRemoveUserParameters = {
+  /**
+   * ID of the access group from which you want to remove an access system user.
+   */
   acs_access_group_id: string
 
+  /**
+   * ID of the access system user that you want to remove from an access group.
+   */
   acs_user_id?: string | undefined
+  /**
+   * ID of the user identity associated with the user that you want to remove from an access group.
+   */
   user_identity_id?: string | undefined
 }
 

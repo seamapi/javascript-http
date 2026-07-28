@@ -168,6 +168,9 @@ export class SeamHttpLocks {
     return SeamHttpLocksSimulate.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Configures the auto-lock setting for a specified [lock](https://docs.seam.co/low-level-apis/smart-locks).
+   */
   configureAutoLock(
     parameters: LocksConfigureAutoLockParameters,
     options: LocksConfigureAutoLockOptions = {},
@@ -181,6 +184,10 @@ export class SeamHttpLocks {
     })
   }
 
+  /**
+   * Returns a specified [lock](https://docs.seam.co/low-level-apis/smart-locks).
+   * @deprecated Use `/devices/get` instead.
+   */
   get(
     parameters?: LocksGetParameters,
     options: LocksGetOptions = {},
@@ -194,6 +201,9 @@ export class SeamHttpLocks {
     })
   }
 
+  /**
+   * Returns a list of all [locks](https://docs.seam.co/low-level-apis/smart-locks).
+   */
   list(
     parameters?: LocksListParameters,
     options: LocksListOptions = {},
@@ -207,6 +217,9 @@ export class SeamHttpLocks {
     })
   }
 
+  /**
+   * Locks a [lock](https://docs.seam.co/low-level-apis/smart-locks). See also [Locking and Unlocking Smart Locks](https://docs.seam.co/low-level-apis/smart-locks/lock-and-unlock).
+   */
   lockDoor(
     parameters: LocksLockDoorParameters,
     options: LocksLockDoorOptions = {},
@@ -220,6 +233,9 @@ export class SeamHttpLocks {
     })
   }
 
+  /**
+   * Unlocks a [lock](https://docs.seam.co/low-level-apis/smart-locks). See also [Locking and Unlocking Smart Locks](https://docs.seam.co/low-level-apis/smart-locks/lock-and-unlock).
+   */
   unlockDoor(
     parameters: LocksUnlockDoorParameters,
     options: LocksUnlockDoorOptions = {},
@@ -235,9 +251,18 @@ export class SeamHttpLocks {
 }
 
 export type LocksConfigureAutoLockParameters = {
+  /**
+   * Delay in seconds before the lock automatically locks. Required when enabling auto-lock. Must be between 1 and 60.
+   */
   auto_lock_delay_seconds?: number | undefined
+  /**
+   * Whether to enable or disable auto-lock.
+   */
   auto_lock_enabled: boolean
 
+  /**
+   * ID of the lock for which you want to configure the auto-lock.
+   */
   device_id: string
 }
 
@@ -257,7 +282,13 @@ export type LocksConfigureAutoLockOptions = Pick<
 >
 
 export type LocksGetParameters = {
+  /**
+   * ID of the lock that you want to get.
+   */
   device_id?: string | undefined
+  /**
+   * Name of the lock that you want to get.
+   */
   name?: string | undefined
 }
 
@@ -271,13 +302,37 @@ export type LocksGetRequest = SeamHttpRequest<LocksGetResponse, 'device'>
 export interface LocksGetOptions {}
 
 export type LocksListParameters = {
+  /**
+   * ID of the Connect Webview for which you want to list devices.
+   */
   connect_webview_id?: string | undefined
+  /**
+   * ID of the connected account for which you want to list devices.
+   */
   connected_account_id?: string | undefined
+  /**
+   * Array of IDs of the connected accounts for which you want to list devices.
+   */
   connected_account_ids?: Array<string> | undefined
+  /**
+   * Timestamp by which to limit returned devices. Returns devices created before this timestamp.
+   */
   created_before?: string | undefined
+  /**
+   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices.
+   */
   custom_metadata_has?: Record<string, unknown> | undefined
+  /**
+   * Customer key for which you want to list devices.
+   */
   customer_key?: string | undefined
+  /**
+   * Array of device IDs for which you want to list devices.
+   */
   device_ids?: Array<string> | undefined
+  /**
+   * Device type of the locks that you want to list.
+   */
   device_type?:
     | 'akuvox_lock'
     | 'august_lock'
@@ -310,6 +365,9 @@ export type LocksListParameters = {
     | 'kisi_lock'
     | 'aqara_lock'
     | undefined
+  /**
+   * Device types of the locks that you want to list.
+   */
   device_types?:
     | Array<
         | 'akuvox_lock'
@@ -344,7 +402,13 @@ export type LocksListParameters = {
         | 'aqara_lock'
       >
     | undefined
+  /**
+   * Numerical limit on the number of devices to return.
+   */
   limit?: number | undefined
+  /**
+   * Manufacturer of the locks that you want to list.
+   */
   manufacturer?:
     | 'akuvox'
     | 'august'
@@ -379,10 +443,25 @@ export type LocksListParameters = {
     | 'omnitec'
     | 'kisi'
     | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned devices to include all records that satisfy a partial match using `device_id` (full or partial UUID prefix, minimum 4 characters), `connected_account_id`, `display_name`, `custom_metadata` or `location.location_name`.
+   */
   search?: string | undefined
+  /**
+   * ID of the space for which you want to list devices.
+   */
   space_id?: string | undefined
+  /**
+   * @deprecated Use `space_id`.
+   */
   unstable_location_id?: string | undefined
+  /**
+   * Your own internal user ID for the user for which you want to list devices.
+   */
   user_identifier_key?: string | undefined
 }
 
@@ -396,6 +475,9 @@ export type LocksListRequest = SeamHttpRequest<LocksListResponse, 'devices'>
 export interface LocksListOptions {}
 
 export type LocksLockDoorParameters = {
+  /**
+   * ID of the lock that you want to lock.
+   */
   device_id: string
 }
 
@@ -415,6 +497,9 @@ export type LocksLockDoorOptions = Pick<
 >
 
 export type LocksUnlockDoorParameters = {
+  /**
+   * ID of the lock that you want to unlock.
+   */
   device_id: string
 }
 

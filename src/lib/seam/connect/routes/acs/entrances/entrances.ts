@@ -163,6 +163,9 @@ export class SeamHttpAcsEntrances {
     await clientSessions.get()
   }
 
+  /**
+   * Returns a specified [access system entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   */
   get(
     parameters: AcsEntrancesGetParameters,
     options: AcsEntrancesGetOptions = {},
@@ -176,6 +179,9 @@ export class SeamHttpAcsEntrances {
     })
   }
 
+  /**
+   * Grants a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) access to a specified [access system entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   */
   grantAccess(
     parameters: AcsEntrancesGrantAccessParameters,
     options: AcsEntrancesGrantAccessOptions = {},
@@ -189,6 +195,9 @@ export class SeamHttpAcsEntrances {
     })
   }
 
+  /**
+   * Returns a list of all [access system entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   */
   list(
     parameters?: AcsEntrancesListParameters,
     options: AcsEntrancesListOptions = {},
@@ -202,6 +211,9 @@ export class SeamHttpAcsEntrances {
     })
   }
 
+  /**
+   * Returns a list of all [credentials](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) with access to a specified [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   */
   listCredentialsWithAccess(
     parameters: AcsEntrancesListCredentialsWithAccessParameters,
     options: AcsEntrancesListCredentialsWithAccessOptions = {},
@@ -215,6 +227,9 @@ export class SeamHttpAcsEntrances {
     })
   }
 
+  /**
+   * Remotely unlocks a specified [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) using a cloud_key credential. Returns an action attempt that tracks the progress of the unlock operation.
+   */
   unlock(
     parameters: AcsEntrancesUnlockParameters,
     options: AcsEntrancesUnlockOptions = {},
@@ -230,6 +245,9 @@ export class SeamHttpAcsEntrances {
 }
 
 export type AcsEntrancesGetParameters = {
+  /**
+   * ID of the entrance that you want to get.
+   */
   acs_entrance_id: string
 }
 
@@ -246,9 +264,18 @@ export type AcsEntrancesGetRequest = SeamHttpRequest<
 export interface AcsEntrancesGetOptions {}
 
 export type AcsEntrancesGrantAccessParameters = {
+  /**
+   * ID of the entrance to which you want to grant an access system user access.
+   */
   acs_entrance_id: string
 
+  /**
+   * ID of the access system user to whom you want to grant access to an entrance. You can only provide one of acs_user_id or user_identity_id.
+   */
   acs_user_id?: string | undefined
+  /**
+   * ID of the user identity to whom you want to grant access to an entrance. You can only provide one of acs_user_id or user_identity_id. If the ACS system contains an ACS user with the same `email_address` or `phone_number` as the user identity that you specify, they are linked, and the access group membership belongs to the ACS user. If the ACS system does not have a corresponding ACS user, one is created.
+   */
   user_identity_id?: string | undefined
 }
 
@@ -262,16 +289,49 @@ export type AcsEntrancesGrantAccessRequest = SeamHttpRequest<void, undefined>
 export interface AcsEntrancesGrantAccessOptions {}
 
 export type AcsEntrancesListParameters = {
+  /**
+   * ID of the access method for which you want to retrieve all entrances to which it grants access.
+   */
   access_method_id?: string | undefined
+  /**
+   * ID of the credential for which you want to retrieve all entrances.
+   */
   acs_credential_id?: string | undefined
+  /**
+   * IDs of the entrances for which you want to retrieve all entrances.
+   */
   acs_entrance_ids?: Array<string> | undefined
+  /**
+   * ID of the access system for which you want to retrieve all entrances.
+   */
   acs_system_id?: string | undefined
+  /**
+   * ID of the connected account for which you want to retrieve all entrances.
+   */
   connected_account_id?: string | undefined
+  /**
+   * Customer key for which you want to list entrances.
+   */
   customer_key?: string | undefined
+  /**
+   * Maximum number of records to return per page.
+   */
   limit?: number | undefined
+  /**
+   * @deprecated Use `space_id`.
+   */
   location_id?: string | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned entrances to include all records that satisfy a partial match using `display_name`.
+   */
   search?: string | undefined
+  /**
+   * ID of the space for which you want to list entrances.
+   */
   space_id?: string | undefined
 }
 
@@ -288,8 +348,14 @@ export type AcsEntrancesListRequest = SeamHttpRequest<
 export interface AcsEntrancesListOptions {}
 
 export type AcsEntrancesListCredentialsWithAccessParameters = {
+  /**
+   * ID of the entrance for which you want to list all credentials that grant access.
+   */
   acs_entrance_id: string
 
+  /**
+   * Conditions that credentials must meet to be included in the returned list.
+   */
   include_if?: Array<'visionline_metadata.is_valid'> | undefined
 }
 
@@ -308,8 +374,14 @@ export type AcsEntrancesListCredentialsWithAccessRequest = SeamHttpRequest<
 export interface AcsEntrancesListCredentialsWithAccessOptions {}
 
 export type AcsEntrancesUnlockParameters = {
+  /**
+   * ID of the cloud_key credential to use for the unlock operation.
+   */
   acs_credential_id: string
 
+  /**
+   * ID of the entrance to unlock.
+   */
   acs_entrance_id: string
 }
 

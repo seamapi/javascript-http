@@ -160,6 +160,9 @@ export class SeamHttpAcsEncodersSimulate {
     await clientSessions.get()
   }
 
+  /**
+   * Simulates that the next attempt to encode a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will fail. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   nextCredentialEncodeWillFail(
     parameters: AcsEncodersSimulateNextCredentialEncodeWillFailParameters,
     options: AcsEncodersSimulateNextCredentialEncodeWillFailOptions = {},
@@ -173,6 +176,9 @@ export class SeamHttpAcsEncodersSimulate {
     })
   }
 
+  /**
+   * Simulates that the next attempt to encode a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will succeed. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   nextCredentialEncodeWillSucceed(
     parameters: AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters,
     options: AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = {},
@@ -186,6 +192,9 @@ export class SeamHttpAcsEncodersSimulate {
     })
   }
 
+  /**
+   * Simulates that the next attempt to scan a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will fail. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   nextCredentialScanWillFail(
     parameters: AcsEncodersSimulateNextCredentialScanWillFailParameters,
     options: AcsEncodersSimulateNextCredentialScanWillFailOptions = {},
@@ -199,6 +208,9 @@ export class SeamHttpAcsEncodersSimulate {
     })
   }
 
+  /**
+   * Simulates that the next attempt to scan a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will succeed. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   nextCredentialScanWillSucceed(
     parameters: AcsEncodersSimulateNextCredentialScanWillSucceedParameters,
     options: AcsEncodersSimulateNextCredentialScanWillSucceedOptions = {},
@@ -214,14 +226,23 @@ export class SeamHttpAcsEncodersSimulate {
 }
 
 export type AcsEncodersSimulateNextCredentialEncodeWillFailParameters = {
+  /**
+   * ID of the `acs_encoder` that will be used in the next request to encode the `acs_credential`.
+   */
   acs_encoder_id: string
 
+  /**
+   * Code of the error to simulate.
+   */
   error_code?:
     | 'no_credential_on_encoder'
     | 'encoding_interrupted'
     | 'uncategorized_error'
     | 'action_attempt_expired'
     | undefined
+  /**
+   * ID of the `acs_credential` that will fail to be encoded onto a card in the next request.
+   */
   acs_credential_id?: string | undefined
 }
 
@@ -236,8 +257,14 @@ export type AcsEncodersSimulateNextCredentialEncodeWillFailRequest =
 export interface AcsEncodersSimulateNextCredentialEncodeWillFailOptions {}
 
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters = {
+  /**
+   * ID of the `acs_encoder` that will be used in the next request to encode the `acs_credential`.
+   */
   acs_encoder_id: string
 
+  /**
+   * Scenario to simulate.
+   */
   scenario?: 'credential_is_issued' | undefined
 }
 
@@ -252,6 +279,9 @@ export type AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest =
 export interface AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions {}
 
 export type AcsEncodersSimulateNextCredentialScanWillFailParameters = {
+  /**
+   * ID of the `acs_encoder` that will fail to scan the `acs_credential` in the next request.
+   */
   acs_encoder_id: string
 
   error_code?:
@@ -259,6 +289,7 @@ export type AcsEncodersSimulateNextCredentialScanWillFailParameters = {
     | 'uncategorized_error'
     | 'action_attempt_expired'
     | undefined
+
   acs_credential_id_on_seam?: string | undefined
 }
 
@@ -273,9 +304,18 @@ export type AcsEncodersSimulateNextCredentialScanWillFailRequest =
 export interface AcsEncodersSimulateNextCredentialScanWillFailOptions {}
 
 export type AcsEncodersSimulateNextCredentialScanWillSucceedParameters = {
+  /**
+   * ID of the Seam `acs_credential` that matches the `acs_credential` on the encoder in this simulation.
+   */
   acs_credential_id_on_seam?: string | undefined
+  /**
+   * ID of the `acs_encoder` that will be used in the next request to scan the `acs_credential`.
+   */
   acs_encoder_id: string
 
+  /**
+   * Scenario to simulate.
+   */
   scenario?:
     | 'credential_exists_on_seam'
     | 'credential_on_encoder_needs_update'

@@ -162,6 +162,9 @@ export class SeamHttpAcsCredentials {
     await clientSessions.get()
   }
 
+  /**
+   * Assigns a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) to a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   */
   assign(
     parameters: AcsCredentialsAssignParameters,
     options: AcsCredentialsAssignOptions = {},
@@ -175,6 +178,9 @@ export class SeamHttpAcsCredentials {
     })
   }
 
+  /**
+   * Creates a new [credential](https://docs.seam.co/low-level-apis/managing-credentials) for a specified [ACS user](https://docs.seam.co/low-level-apis/access-systems/user-management). For granting access, we recommend [Access Grants](https://docs.seam.co/use-cases/granting-access) instead: they create and manage the underlying credentials for you, across access systems and standalone smart locks alike. Use this low-level endpoint only when you need direct control over an individual ACS credential.
+   */
   create(
     parameters: AcsCredentialsCreateParameters,
     options: AcsCredentialsCreateOptions = {},
@@ -188,6 +194,9 @@ export class SeamHttpAcsCredentials {
     })
   }
 
+  /**
+   * Deletes a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   */
   delete(
     parameters: AcsCredentialsDeleteParameters,
     options: AcsCredentialsDeleteOptions = {},
@@ -201,6 +210,9 @@ export class SeamHttpAcsCredentials {
     })
   }
 
+  /**
+   * Returns a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   */
   get(
     parameters: AcsCredentialsGetParameters,
     options: AcsCredentialsGetOptions = {},
@@ -214,6 +226,9 @@ export class SeamHttpAcsCredentials {
     })
   }
 
+  /**
+   * Returns a list of all [credentials](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   */
   list(
     parameters?: AcsCredentialsListParameters,
     options: AcsCredentialsListOptions = {},
@@ -227,6 +242,9 @@ export class SeamHttpAcsCredentials {
     })
   }
 
+  /**
+   * Returns a list of all [entrances](https://docs.seam.co/api/acs/entrances) to which a [credential](https://docs.seam.co/api/acs/credentials) grants access.
+   */
   listAccessibleEntrances(
     parameters: AcsCredentialsListAccessibleEntrancesParameters,
     options: AcsCredentialsListAccessibleEntrancesOptions = {},
@@ -240,6 +258,9 @@ export class SeamHttpAcsCredentials {
     })
   }
 
+  /**
+   * Unassigns a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) from a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   */
   unassign(
     parameters: AcsCredentialsUnassignParameters,
     options: AcsCredentialsUnassignOptions = {},
@@ -253,6 +274,9 @@ export class SeamHttpAcsCredentials {
     })
   }
 
+  /**
+   * Updates the code and ends at date and time for a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   */
   update(
     parameters: AcsCredentialsUpdateParameters,
     options: AcsCredentialsUpdateOptions = {},
@@ -268,9 +292,18 @@ export class SeamHttpAcsCredentials {
 }
 
 export type AcsCredentialsAssignParameters = {
+  /**
+   * ID of the credential that you want to assign to an access system user.
+   */
   acs_credential_id: string
 
+  /**
+   * ID of the access system user to whom you want to assign a credential. You can only provide one of acs_user_id or user_identity_id.
+   */
   acs_user_id?: string | undefined
+  /**
+   * ID of the user identity to whom you want to assign a credential. You can only provide one of acs_user_id or user_identity_id. If the ACS system contains an ACS user with the same `email_address` or `phone_number` as the user identity that you specify, they are linked, and the credential belongs to the ACS user. If the ACS system does not have a corresponding ACS user, one is created.
+   */
   user_identity_id?: string | undefined
 }
 
@@ -284,36 +317,85 @@ export type AcsCredentialsAssignRequest = SeamHttpRequest<void, undefined>
 export interface AcsCredentialsAssignOptions {}
 
 export type AcsCredentialsCreateParameters = {
+  /**
+   * Access method for the new credential. Supported values: `code`, `card`, `mobile_key`, `cloud_key`.
+   */
   access_method: 'code' | 'card' | 'mobile_key' | 'cloud_key'
 
+  /**
+   * ID of the access system to which the new credential belongs. You must provide either `acs_user_id` or the combination of `user_identity_id` and `acs_system_id`.
+   */
   acs_system_id?: string | undefined
+  /**
+   * ID of the access system user to whom the new credential belongs. You must provide either `acs_user_id` or the combination of `user_identity_id` and `acs_system_id`.
+   */
   acs_user_id?: string | undefined
+  /**
+   * Set of IDs of the [entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) for which the new credential grants access.
+   */
   allowed_acs_entrance_ids?: Array<string> | undefined
+  /**
+   * Vostio-specific metadata for the new credential.
+   */
   assa_abloy_vostio_metadata?:
     | {
         auto_join?: boolean | undefined
+
         join_all_guest_acs_entrances?: boolean | undefined
+
         override_all_guest_acs_entrances?: boolean | undefined
+
         override_guest_acs_entrance_ids?: Array<string> | undefined
       }
     | undefined
+  /**
+   * Access (PIN) code for the new credential. There may be manufacturer-specific code restrictions. For details, see the applicable [device or system integration guide](https://docs.seam.co/device-and-system-integration-guides).
+   */
   code?: string | undefined
+  /**
+   * ACS system ID of the credential manager for the new credential.
+   */
   credential_manager_acs_system_id?: string | undefined
+  /**
+   * Date and time at which the validity of the new credential ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
+   */
   ends_at?: string | undefined
+  /**
+   * Indicates whether the new credential is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
+   */
   is_multi_phone_sync_credential?: boolean | undefined
+  /**
+   * Salto Space-specific metadata for the new credential.
+   */
   salto_space_metadata?:
     | {
+        /**
+         * Indicates whether to assign a first, new card to a user. See also [Programming Salto Space Card-based Credentials](https://docs.seam.co/device-and-system-integration-guides/salto-proaccess-space-access-system/programming-salto-space-card-based-credentials).
+         */
         assign_new_key?: boolean | undefined
       }
     | undefined
+  /**
+   * Date and time at which the validity of the new credential starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+   */
   starts_at?: string | undefined
+  /**
+   * ID of the user identity to whom the new credential belongs. You must provide either `acs_user_id` or the combination of `user_identity_id` and `acs_system_id`. If the access system contains a user with the same `email_address` or `phone_number` as the user identity that you specify, they are linked, and the credential belongs to the access system user. If the access system does not have a corresponding user, one is created.
+   */
   user_identity_id?: string | undefined
+  /**
+   * Visionline-specific metadata for the new credential.
+   */
   visionline_metadata?:
     | {
         auto_join?: boolean | undefined
+
         card_format?: 'TLCode' | 'rfid48' | undefined
+
         card_function_type?: 'guest' | 'staff' | undefined
+
         joiner_acs_credential_ids?: Array<string> | undefined
+
         override?: boolean | undefined
       }
     | undefined
@@ -332,6 +414,9 @@ export type AcsCredentialsCreateRequest = SeamHttpRequest<
 export interface AcsCredentialsCreateOptions {}
 
 export type AcsCredentialsDeleteParameters = {
+  /**
+   * ID of the credential that you want to delete.
+   */
   acs_credential_id: string
 }
 
@@ -345,6 +430,9 @@ export type AcsCredentialsDeleteRequest = SeamHttpRequest<void, undefined>
 export interface AcsCredentialsDeleteOptions {}
 
 export type AcsCredentialsGetParameters = {
+  /**
+   * ID of the credential that you want to get.
+   */
   acs_credential_id: string
 }
 
@@ -361,13 +449,37 @@ export type AcsCredentialsGetRequest = SeamHttpRequest<
 export interface AcsCredentialsGetOptions {}
 
 export type AcsCredentialsListParameters = {
+  /**
+   * ID of the access system user for which you want to retrieve all credentials.
+   */
   acs_user_id?: string | undefined
+  /**
+   * ID of the access system for which you want to retrieve all credentials.
+   */
   acs_system_id?: string | undefined
+  /**
+   * ID of the user identity for which you want to retrieve all credentials.
+   */
   user_identity_id?: string | undefined
+  /**
+   * Date and time, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format, before which events to return were created.
+   */
   created_before?: string | undefined
+  /**
+   * Indicates whether you want to retrieve only multi-phone sync credentials or non-multi-phone sync credentials.
+   */
   is_multi_phone_sync_credential?: boolean | undefined
+  /**
+   * Number of credentials to return.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned credentials to include all records that satisfy a partial match using `display_name`, `code`, `card_number`, `acs_user_id` or `acs_credential_id`.
+   */
   search?: string | undefined
 }
 
@@ -386,6 +498,9 @@ export type AcsCredentialsListRequest = SeamHttpRequest<
 export interface AcsCredentialsListOptions {}
 
 export type AcsCredentialsListAccessibleEntrancesParameters = {
+  /**
+   * ID of the credential for which you want to retrieve all entrances to which the credential grants access.
+   */
   acs_credential_id: string
 }
 
@@ -404,9 +519,18 @@ export type AcsCredentialsListAccessibleEntrancesRequest = SeamHttpRequest<
 export interface AcsCredentialsListAccessibleEntrancesOptions {}
 
 export type AcsCredentialsUnassignParameters = {
+  /**
+   * ID of the credential that you want to unassign from an access system user.
+   */
   acs_credential_id: string
 
+  /**
+   * ID of the access system user from which you want to unassign a credential. You can only provide one of acs_user_id or user_identity_id.
+   */
   acs_user_id?: string | undefined
+  /**
+   * ID of the user identity from which you want to unassign a credential. You can only provide one of acs_user_id or user_identity_id.
+   */
   user_identity_id?: string | undefined
 }
 
@@ -420,9 +544,18 @@ export type AcsCredentialsUnassignRequest = SeamHttpRequest<void, undefined>
 export interface AcsCredentialsUnassignOptions {}
 
 export type AcsCredentialsUpdateParameters = {
+  /**
+   * ID of the credential that you want to update.
+   */
   acs_credential_id: string
 
+  /**
+   * Replacement access (PIN) code for the credential that you want to update.
+   */
   code?: string | undefined
+  /**
+   * Replacement date and time at which the validity of the credential ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after the `starts_at` value that you set when creating the credential.
+   */
   ends_at?: string | undefined
 }
 

@@ -55,6 +55,9 @@ interface BatchResourceMap {
   workspaces: Workspace
 }
 
+/**
+ * A batch of workspace resources.
+ */
 export type Batch<
   TKey extends keyof BatchResourceMap = keyof BatchResourceMap,
 > = {
