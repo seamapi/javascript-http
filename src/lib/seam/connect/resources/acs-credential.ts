@@ -216,7 +216,6 @@ export type AcsCredential = {
   warnings: Array<
     /**
      * Indicates that the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is waiting to be issued.
-     * @deprecated
      */
     | {
         /**
@@ -235,7 +234,6 @@ export type AcsCredential = {
         warning_code: 'waiting_to_be_issued'
       } /**
      * Indicates that the schedule of one of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials)'s children was modified externally.
-     * @deprecated
      */
     | {
         /**
@@ -254,7 +252,6 @@ export type AcsCredential = {
         warning_code: 'schedule_externally_modified'
       } /**
      * Indicates that the schedule of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was modified to avoid creating a credential with a start date in the past.
-     * @deprecated
      */
     | {
         /**
@@ -273,7 +270,6 @@ export type AcsCredential = {
         warning_code: 'schedule_modified'
       } /**
      * Indicates that the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is being deleted.
-     * @deprecated
      */
     | {
         /**
@@ -292,7 +288,6 @@ export type AcsCredential = {
         warning_code: 'being_deleted'
       } /**
      * An unknown issue occurred while syncing the state of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) with the provider. This issue may affect the proper functioning of the credential.
-     * @deprecated
      */
     | {
         /**
@@ -311,7 +306,6 @@ export type AcsCredential = {
         warning_code: 'unknown_issue_with_acs_credential'
       } /**
      * Access permissions for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) have changed. [Reissue](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners/creating-and-encoding-card-based-credentials) (re-encode) the credential. This issue may affect the proper functioning of the credential.
-     * @deprecated
      */
     | {
         /**

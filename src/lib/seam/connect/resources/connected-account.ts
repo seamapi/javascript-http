@@ -65,7 +65,6 @@ export type ConnectedAccount = {
   errors: Array<
     /**
      * Indicates that the account is disconnected.
-     * @deprecated
      */
     | {
         /**
@@ -92,7 +91,6 @@ export type ConnectedAccount = {
         message: string
       } /**
      * Indicates that the Seam API cannot communicate with [Seam Bridge](https://docs.seam.co/capability-guides/seam-bridge), for example, if the Seam Bridge executable has stopped or if the computer running the Seam Bridge executable is offline. See also [Troubleshooting Your Access Control System](https://docs.seam.co/low-level-apis/access-systems/troubleshooting-your-access-control-system#acs_system-errors-seam_bridge_disconnected).
-     * @deprecated
      */
     | {
         /**
@@ -119,7 +117,6 @@ export type ConnectedAccount = {
         message: string
       } /**
      * Indicates that the maximum number of users allowed for the site has been reached. This means that new access codes cannot be created. Contact Salto support to increase the user limit.
-     * @deprecated
      */
     | {
         /**
@@ -175,7 +172,6 @@ export type ConnectedAccount = {
         }
       } /**
      * Indicates that one or more dormakaba sites associated with the connected account could not be connected. Contact dormakaba support.
-     * @deprecated
      */
     | {
         /**
@@ -253,7 +249,6 @@ export type ConnectedAccount = {
   warnings: Array<
     /**
      * Indicates that scheduled downtime is planned for the connected account.
-     * @deprecated
      */
     | {
         /**
@@ -272,7 +267,6 @@ export type ConnectedAccount = {
         warning_code: 'scheduled_maintenance_window'
       } /**
      * Indicates that an unknown issue occurred while syncing the state of the connected account with the provider. This issue may affect the proper functioning of one or more resources in the account.
-     * @deprecated
      */
     | {
         /**
@@ -291,7 +285,6 @@ export type ConnectedAccount = {
         warning_code: 'unknown_issue_with_connected_account'
       } /**
      * Indicates that the Salto KS site has exceeded 80% of the maximum number of allowed users. Increase your subscription limit or delete some users from your site.
-     * @deprecated
      */
     | {
         /**
@@ -339,7 +332,6 @@ export type ConnectedAccount = {
         warning_code: 'salto_ks_subscription_limit_almost_reached'
       } /**
      * Indicates that the Connected Account requires reauthorization using a new Connect Webview. The account is still connected, but cannot access new features. Delaying reauthorization too long will eventually cause the Connected Account to become disconnected.
-     * @deprecated
      */
     | {
         /**
@@ -358,7 +350,6 @@ export type ConnectedAccount = {
         warning_code: 'account_reauthorization_requested'
       } /**
      * Indicates that the connected account is currently being deleted. All devices, access codes, and other resources associated with this account are in the process of being removed from Seam.
-     * @deprecated
      */
     | {
         /**
@@ -377,7 +368,6 @@ export type ConnectedAccount = {
         warning_code: 'being_deleted'
       } /**
      * Indicates that the connected account's provider service is temporarily unavailable. Seam will automatically retry and reconnect when the service becomes available again.
-     * @deprecated
      */
     | {
         /**
@@ -396,7 +386,6 @@ export type ConnectedAccount = {
         warning_code: 'provider_service_unavailable'
       } /**
      * Indicates that the connected account requires additional setup before it can be fully operational. Follow the instructions in the warning message to complete the setup.
-     * @deprecated
      */
     | {
         /**
@@ -415,7 +404,6 @@ export type ConnectedAccount = {
         warning_code: 'setup_required'
       } /**
      * Indicates that one or more dormakaba sites associated with the connected account are not approved. Contact support@getseam.com to finish setting up your account.
-     * @deprecated
      */
     | {
         /**

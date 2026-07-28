@@ -32,7 +32,6 @@ export type UserIdentity = {
   errors: Array<
     /**
      * Indicates that there is an issue with an access system user associated with this user identity.
-     * @deprecated
      */
     {
       /**
@@ -85,7 +84,6 @@ export type UserIdentity = {
   warnings: Array<
     /**
      * Indicates that the user identity is currently being deleted.
-     * @deprecated
      */
     | {
         /**
@@ -104,7 +102,6 @@ export type UserIdentity = {
         warning_code: 'being_deleted'
       } /**
      * Indicates that the ACS user's profile does not match the user identity's profile
-     * @deprecated
      */
     | {
         /**

@@ -65,7 +65,6 @@ export type AcsUser = {
   errors: Array<
     /**
      * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was deleted from the [access system](https://docs.seam.co/low-level-apis/access-systems) outside of Seam.
-     * @deprecated
      */
     | {
         /**
@@ -81,7 +80,6 @@ export type AcsUser = {
         message: string
       } /**
      * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) could not be subscribed on Salto KS because the subscription limit has been exceeded.
-     * @deprecated
      */
     | {
         /**
@@ -97,7 +95,6 @@ export type AcsUser = {
         message: string
       } /**
      * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was not created on the [access system](https://docs.seam.co/low-level-apis/access-systems). This is likely due to an internal unexpected error. Contact Seam [support](mailto:support@seam.co).
-     * @deprecated
      */
     | {
         /**
@@ -113,7 +110,6 @@ export type AcsUser = {
         message: string
       } /**
      * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was not updated on the [access system](https://docs.seam.co/low-level-apis/access-systems). This is likely due to an internal unexpected error. Contact Seam [support](mailto:support@seam.co).
-     * @deprecated
      */
     | {
         /**
@@ -129,7 +125,6 @@ export type AcsUser = {
         message: string
       } /**
      * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was not deleted on the [access system](https://docs.seam.co/low-level-apis/access-systems). This is likely due to an internal unexpected error. Contact Seam [support](mailto:support@seam.co).
-     * @deprecated
      */
     | {
         /**
@@ -145,7 +140,6 @@ export type AcsUser = {
         message: string
       } /**
      * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was created from the Seam API but also exists on Mission Control. This is unsupported. Contact Seam [support](mailto:support@seam.co).
-     * @deprecated
      */
     | {
         /**
@@ -204,7 +198,6 @@ export type AcsUser = {
     | Array<
         /**
          * Seam is in the process of pushing a user creation to the integrated access system.
-         * @deprecated
          */
         | {
             /**
@@ -223,7 +216,6 @@ export type AcsUser = {
             mutation_code: 'creating'
           } /**
          * Seam is in the process of pushing a user deletion to the integrated access system.
-         * @deprecated
          */
         | {
             /**
@@ -242,7 +234,6 @@ export type AcsUser = {
             mutation_code: 'deleting'
           } /**
          * User exists in Seam but has not been pushed to the provider yet. Will be created when a credential is issued.
-         * @deprecated
          */
         | {
             /**
@@ -264,9 +255,7 @@ export type AcsUser = {
              * Optional: When the user creation is scheduled to occur.
              */
             scheduled_at?: string | null | undefined
-          } /**
-         * @deprecated
-         */
+          }
         | {
             /**
              * Date and time at which the mutation was created.
@@ -320,7 +309,6 @@ export type AcsUser = {
             }
           } /**
          * Seam is in the process of pushing an access schedule update to the integrated access system.
-         * @deprecated
          */
         | {
             /**
@@ -367,7 +355,6 @@ export type AcsUser = {
             }
           } /**
          * Seam is in the process of pushing a suspension state update to the integrated access system.
-         * @deprecated
          */
         | {
             /**
@@ -400,7 +387,6 @@ export type AcsUser = {
             }
           } /**
          * Seam is in the process of pushing an access group membership update to the integrated access system.
-         * @deprecated
          */
         | {
             /**
@@ -439,7 +425,6 @@ export type AcsUser = {
             }
           } /**
          * A scheduled access group membership change is pending for this user.
-         * @deprecated
          */
         | {
             /**
@@ -468,7 +453,6 @@ export type AcsUser = {
             variant: 'adding' | 'removing'
           } /**
          * Seam is in the process of assigning or unassigning a credential to the user on the integrated access system.
-         * @deprecated
          */
         | {
             /**
@@ -560,7 +544,6 @@ export type AcsUser = {
   warnings: Array<
     /**
      * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) is being deleted from the [access system](https://docs.seam.co/low-level-apis/access-systems). This is a temporary state, and the access system user will be deleted shortly.
-     * @deprecated
      */
     | {
         /**
@@ -576,7 +559,6 @@ export type AcsUser = {
         warning_code: 'being_deleted'
       } /**
      * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) is not subscribed on Salto KS, so they cannot unlock doors or perform any actions. This occurs when the their access schedule hasn’t started yet, if their access schedule has ended, if the site has reached its limit for active users (subscription slots), or if they have been manually unsubscribed.
-     * @deprecated
      */
     | {
         /**
@@ -592,7 +574,6 @@ export type AcsUser = {
         warning_code: 'salto_ks_user_not_subscribed'
       } /**
      * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) exists but is not currently able to gain access—for example, because their access schedule has not started yet or has ended, the access system has reached its limit for active users, or they have been unsubscribed or deactivated. Refer to the warning message for the provider-specific reason. This is distinct from `is_suspended`, which indicates the user has been explicitly blocked.
-     * @deprecated
      */
     | {
         /**
@@ -608,7 +589,6 @@ export type AcsUser = {
         warning_code: 'acs_user_inactive'
       } /**
      * An unknown issue occurred while syncing the state of this [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) with the provider. This issue may affect the proper functioning of this user.
-     * @deprecated
      */
     | {
         /**
@@ -624,7 +604,6 @@ export type AcsUser = {
         warning_code: 'unknown_issue_with_acs_user'
       } /**
      * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was created on Latch Mission Control. Please use the Latch Mission Control to manage this user.
-     * @deprecated
      */
     | {
         /**

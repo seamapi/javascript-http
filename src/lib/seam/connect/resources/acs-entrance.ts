@@ -376,7 +376,6 @@ export type AcsEntrance = {
   warnings: Array<
     /**
      * Indicates that a change in the reported device model has been detected for this Salto KS entrance, which may occur after an IQ hub reset. Access code support may be affected. See https://help.getseam.com/articles/5098842588-salto-ks-lock-loses-access-code-support for troubleshooting steps.
-     * @deprecated
      */
     | {
         /**
@@ -395,7 +394,6 @@ export type AcsEntrance = {
         warning_code: 'salto_ks_entrance_access_code_support_removed'
       } /**
      * Indicates that this entrance shares a zone with other entrances in Avigilon Alta and cannot be added to an access group individually.
-     * @deprecated
      */
     | {
         /**
@@ -414,7 +412,6 @@ export type AcsEntrance = {
         warning_code: 'entrance_shares_zone'
       } /**
      * Indicates that this entrance requires additional configuration in the access control system before Seam can fully manage it.
-     * @deprecated
      */
     | {
         /**
@@ -433,7 +430,6 @@ export type AcsEntrance = {
         warning_code: 'entrance_setup_required'
       } /**
      * deprecated: Use `privacy_mode` instead. Indicates that this entrance is in privacy mode. When privacy mode is enabled, access codes, mobile keys, and remote unlocks will not work unless the user has admin access.
-     * @deprecated
      */
     | {
         /**
@@ -452,7 +448,6 @@ export type AcsEntrance = {
         warning_code: 'salto_ks_privacy_mode'
       } /**
      * Indicates that this entrance is in privacy mode. When privacy mode is enabled, access codes, mobile keys, and remote unlocks will not work unless the user has admin access.
-     * @deprecated
      */
     | {
         /**

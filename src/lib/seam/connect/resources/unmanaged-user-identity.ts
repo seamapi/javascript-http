@@ -32,7 +32,6 @@ export type UnmanagedUserIdentity = {
   errors: Array<
     /**
      * Indicates that there is an issue with an access system user associated with this user identity.
-     * @deprecated
      */
     {
       /**
@@ -81,7 +80,6 @@ export type UnmanagedUserIdentity = {
   warnings: Array<
     /**
      * Indicates that the user identity is currently being deleted.
-     * @deprecated
      */
     | {
         /**
@@ -100,7 +98,6 @@ export type UnmanagedUserIdentity = {
         warning_code: 'being_deleted'
       } /**
      * Indicates that the ACS user's profile does not match the user identity's profile
-     * @deprecated
      */
     | {
         /**

@@ -172,7 +172,6 @@ export type UnmanagedDevice = {
   errors: Array<
     /**
      * Indicates that the account is disconnected.
-     * @deprecated
      */
     | {
         /**
@@ -201,7 +200,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that the Salto site user limit has been reached.
-     * @deprecated
      */
     | {
         /**
@@ -230,7 +228,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that one or more dormakaba sites associated with the connected account could not be connected. Contact dormakaba support.
-     * @deprecated
      */
     | {
         /**
@@ -259,7 +256,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that the device is offline.
-     * @deprecated
      */
     | {
         /**
@@ -283,7 +279,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that the device has been removed.
-     * @deprecated
      */
     | {
         /**
@@ -307,7 +302,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that the hub is disconnected.
-     * @deprecated
      */
     | {
         /**
@@ -331,7 +325,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that the device is disconnected.
-     * @deprecated
      */
     | {
         /**
@@ -355,7 +348,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that the [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) is empty.
-     * @deprecated
      */
     | {
         /**
@@ -379,7 +371,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that the user is not authorized to use the August lock.
-     * @deprecated
      */
     | {
         /**
@@ -403,7 +394,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that device credentials are missing.
-     * @deprecated
      */
     | {
         /**
@@ -427,7 +417,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that the auxiliary heat is running.
-     * @deprecated
      */
     | {
         /**
@@ -451,7 +440,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that a subscription is required to connect.
-     * @deprecated
      */
     | {
         /**
@@ -475,7 +463,6 @@ export type UnmanagedDevice = {
         message: string
       } /**
      * Indicates that the Seam API cannot communicate with [Seam Bridge](https://docs.seam.co/capability-guides/seam-bridge), for example, if the Seam Bridge executable has stopped or if the computer running the Seam Bridge executable is offline. See also [Troubleshooting Your Access Control System](https://docs.seam.co/low-level-apis/access-systems/troubleshooting-your-access-control-system#acs_system-errors-seam_bridge_disconnected).
-     * @deprecated
      */
     | {
         /**
@@ -648,7 +635,6 @@ export type UnmanagedDevice = {
   warnings: Array<
     /**
      * Indicates that the backup access code is unhealthy.
-     * @deprecated
      */
     | {
         /**
@@ -667,7 +653,6 @@ export type UnmanagedDevice = {
         warning_code: 'partial_backup_access_code_pool'
       } /**
      * Indicates that there are too many backup codes.
-     * @deprecated
      */
     | {
         /**
@@ -686,7 +671,6 @@ export type UnmanagedDevice = {
         warning_code: 'many_active_backup_codes'
       } /**
      * Indicates that a third-party integration has been detected.
-     * @deprecated
      */
     | {
         /**
@@ -705,7 +689,6 @@ export type UnmanagedDevice = {
         warning_code: 'third_party_integration_detected'
       } /**
      * Indicates that the Remote Unlock feature is not enabled in the settings."
-     * @deprecated
      */
     | {
         /**
@@ -724,7 +707,6 @@ export type UnmanagedDevice = {
         warning_code: 'ttlock_lock_gateway_unlocking_not_enabled'
       } /**
      * Indicates that the gateway signal is weak.
-     * @deprecated
      */
     | {
         /**
@@ -743,7 +725,6 @@ export type UnmanagedDevice = {
         warning_code: 'ttlock_weak_gateway_signal'
       } /**
      * Indicates that the device is in power saving mode and may have limited functionality.
-     * @deprecated
      */
     | {
         /**
@@ -762,7 +743,6 @@ export type UnmanagedDevice = {
         warning_code: 'power_saving_mode'
       } /**
      * Indicates that the temperature threshold has been exceeded.
-     * @deprecated
      */
     | {
         /**
@@ -781,7 +761,6 @@ export type UnmanagedDevice = {
         warning_code: 'temperature_threshold_exceeded'
       } /**
      * Indicates that the device appears to be unresponsive.
-     * @deprecated
      */
     | {
         /**
@@ -800,7 +779,6 @@ export type UnmanagedDevice = {
         warning_code: 'device_communication_degraded'
       } /**
      * Indicates that a scheduled maintenance window has been detected.
-     * @deprecated
      */
     | {
         /**
@@ -819,7 +797,6 @@ export type UnmanagedDevice = {
         warning_code: 'scheduled_maintenance_window'
       } /**
      * Indicates that the device has a flaky connection.
-     * @deprecated
      */
     | {
         /**
@@ -838,7 +815,6 @@ export type UnmanagedDevice = {
         warning_code: 'device_has_flaky_connection'
       } /**
      * Indicates that the Salto KS lock is in Office Mode. Access Codes will not unlock doors.
-     * @deprecated
      */
     | {
         /**
@@ -857,7 +833,6 @@ export type UnmanagedDevice = {
         warning_code: 'salto_ks_office_mode'
       } /**
      * Indicates that the Salto KS lock is in Privacy Mode. Access Codes will not unlock doors.
-     * @deprecated
      */
     | {
         /**
@@ -876,7 +851,6 @@ export type UnmanagedDevice = {
         warning_code: 'salto_ks_privacy_mode'
       } /**
      * Indicates that the lock is in Privacy Mode. Access codes and remote unlock are blocked until Privacy Mode is disabled.
-     * @deprecated
      */
     | {
         /**
@@ -895,7 +869,6 @@ export type UnmanagedDevice = {
         warning_code: 'privacy_mode'
       } /**
      * Indicates that the Salto KS site has exceeded 80% of the maximum number of allowed users. Increase your subscription limit or delete some users from your site.
-     * @deprecated
      */
     | {
         /**
@@ -914,7 +887,6 @@ export type UnmanagedDevice = {
         warning_code: 'salto_ks_subscription_limit_almost_reached'
       } /**
      * Indicates that a change in the reported device model has been detected for this Salto KS lock, which may occur after an IQ hub reset. Access code support may be affected. See https://help.getseam.com/articles/5098842588-salto-ks-lock-loses-access-code-support for troubleshooting steps.
-     * @deprecated
      */
     | {
         /**
@@ -933,7 +905,6 @@ export type UnmanagedDevice = {
         warning_code: 'salto_ks_lock_access_code_support_removed'
       } /**
      * Indicates that an unknown issue occurred while syncing the state of the phone with the provider. This issue may affect the proper functioning of the phone.
-     * @deprecated
      */
     | {
         /**
@@ -952,7 +923,6 @@ export type UnmanagedDevice = {
         warning_code: 'unknown_issue_with_phone'
       } /**
      * Indicates that Seam detected that the Lockly device does not have a time zone configured. Time-bound codes may not work as expected.
-     * @deprecated
      */
     | {
         /**
@@ -971,7 +941,6 @@ export type UnmanagedDevice = {
         warning_code: 'lockly_time_zone_not_configured'
       } /**
      * Indicates that Seam does not know the time zone of the Ultraloq device. Set a time zone to enable time-bound access codes.
-     * @deprecated
      */
     | {
         /**
@@ -990,7 +959,6 @@ export type UnmanagedDevice = {
         warning_code: 'ultraloq_time_zone_unknown'
       } /**
      * Indicates that Seam does not know the device's time zone. Set a time zone to enable time-bound access codes.
-     * @deprecated
      */
     | {
         /**
@@ -1009,7 +977,6 @@ export type UnmanagedDevice = {
         warning_code: 'time_zone_unknown'
       } /**
      * Indicates that the device's configured time zone does not match its hardware UTC offset. Time-bound access codes may activate at the wrong local time.
-     * @deprecated
      */
     | {
         /**
@@ -1028,7 +995,6 @@ export type UnmanagedDevice = {
         warning_code: 'time_zone_mismatch'
       } /**
      * Indicates that the 2N device does not have a time zone configured. Configure a time zone on the device to enable access codes.
-     * @deprecated
      */
     | {
         /**
@@ -1047,7 +1013,6 @@ export type UnmanagedDevice = {
         warning_code: 'two_n_device_missing_timezone'
       } /**
      * Indicates that a hub or relay must be connected to unlock additional capabilities such as remote unlock.
-     * @deprecated
      */
     | {
         /**
@@ -1066,7 +1031,6 @@ export type UnmanagedDevice = {
         warning_code: 'hub_required_for_additional_capabilities'
       } /**
      * Indicates a provider-specific issue that may affect device functionality.
-     * @deprecated
      */
     | {
         /**
@@ -1085,7 +1049,6 @@ export type UnmanagedDevice = {
         warning_code: 'provider_issue'
       } /**
      * Indicates that the key is in a locker that does not support the access codes API.
-     * @deprecated
      */
     | {
         /**
@@ -1104,7 +1067,6 @@ export type UnmanagedDevice = {
         warning_code: 'keynest_unsupported_locker'
       } /**
      * Indicates that the accessory keypad exists, but is not linked to the Igloohome Bridge. Online access code programming will fail until the keypad is linked to the Igloohome Bridge in the Igloohome app.
-     * @deprecated
      */
     | {
         /**
@@ -1123,7 +1085,6 @@ export type UnmanagedDevice = {
         warning_code: 'accessory_keypad_setup_required'
       } /**
      * Indicates that the device may optimistically be reported as online because the provider does not reliably report its online status.
-     * @deprecated
      */
     | {
         /**
@@ -1142,7 +1103,6 @@ export type UnmanagedDevice = {
         warning_code: 'unreliable_online_status'
       } /**
      * Indicates that the device has reached its maximum number of active access codes. Delete existing codes before creating new ones.
-     * @deprecated
      */
     | {
         /**
@@ -1171,7 +1131,6 @@ export type UnmanagedDevice = {
         warning_code: 'max_access_codes_reached'
       } /**
      * Indicates that the connected Kwikset account has member-level access to this lock's home. Admin or owner access is required to manage access codes and control the lock remotely.
-     * @deprecated
      */
     | {
         /**

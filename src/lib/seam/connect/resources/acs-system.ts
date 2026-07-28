@@ -52,7 +52,6 @@ export type AcsSystem = {
      * Indicates that the Seam API cannot communicate with [Seam Bridge](https://docs.seam.co/capability-guides/seam-bridge), for example, if Seam Bridge executable has stopped or if the computer running the Seam Bridge executable is offline.
      * This error might also occur if Seam Bridge is connected to the wrong [workspace](https://docs.seam.co/core-concepts/workspaces).
      * See also [Troubleshooting Your Access Control System](https://docs.seam.co/low-level-apis/access-systems/troubleshooting-your-access-control-system#acs_system-errors-seam_bridge_disconnected).
-     * @deprecated
      */
     | {
         /**
@@ -72,7 +71,6 @@ export type AcsSystem = {
       } /**
      * Indicates that the Seam API cannot communicate with [Seam Bridge](https://docs.seam.co/capability-guides/seam-bridge), for example, if Seam Bridge executable has stopped or if the computer running the Seam Bridge executable is offline.
      * See also [Troubleshooting Your Access Control System](https://docs.seam.co/low-level-apis/access-systems/troubleshooting-your-access-control-system#acs_system-errors-seam_bridge_disconnected).
-     * @deprecated
      */
     | {
         /**
@@ -97,7 +95,6 @@ export type AcsSystem = {
      * Indicates that [Seam Bridge](https://docs.seam.co/capability-guides/seam-bridge) is functioning correctly and the Seam API can communicate with Seam Bridge, but the Seam API cannot connect to the on-premises [Visionline access control system](https://docs.seam.co/device-and-system-integration-guides/assa-abloy-visionline-access-control-system).
      * For example, the IP address of the on-premises access control system may be set incorrectly within the Seam [workspace](https://docs.seam.co/core-concepts/workspaces).
      * See also [Troubleshooting Your Access Control System](https://docs.seam.co/low-level-apis/access-systems/troubleshooting-your-access-control-system#acs_system-errors-visionline_instance_unreachable).
-     * @deprecated
      */
     | {
         /**
@@ -116,7 +113,6 @@ export type AcsSystem = {
         message: string
       } /**
      * Indicates that the maximum number of users allowed for the site has been reached. This means that new access codes cannot be created. Contact Salto support to increase the user limit.
-     * @deprecated
      */
     | {
         /**
@@ -135,7 +131,6 @@ export type AcsSystem = {
         message: string
       } /**
      * Indicates that the [access control system](https://docs.seam.co/low-level-apis/access-systems) has been disconnected. See [Troubleshooting Your Access Control System](https://docs.seam.co/low-level-apis/access-systems/troubleshooting-your-access-control-system) to resolve the issue.
-     * @deprecated
      */
     | {
         /**
@@ -154,7 +149,6 @@ export type AcsSystem = {
         message: string
       } /**
      * Indicates that the login credentials are invalid. Reconnect the account using a [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews) to restore access.
-     * @deprecated
      */
     | {
         /**
@@ -173,7 +167,6 @@ export type AcsSystem = {
         message: string
       } /**
      * Indicates that the [access control system](https://docs.seam.co/low-level-apis/access-systems) has lost its Salto KS certification. Contact [support](mailto:support@seam.co) to regain access.
-     * @deprecated
      */
     | {
         /**
@@ -192,7 +185,6 @@ export type AcsSystem = {
         message: string
       } /**
      * Indicates that the access control system provider's service is temporarily unavailable. Seam will automatically retry and reconnect when the service becomes available again.
-     * @deprecated
      */
     | {
         /**
@@ -319,7 +311,6 @@ export type AcsSystem = {
   warnings: Array<
     /**
      * Indicates that the Salto KS site has exceeded 80% of the maximum number of allowed users. Increase your subscription limit or delete some users from your site to rectify the issue.
-     * @deprecated
      */
     | {
         /**
@@ -338,7 +329,6 @@ export type AcsSystem = {
         warning_code: 'salto_ks_subscription_limit_almost_reached'
       } /**
      * Indicates the [access control system](https://docs.seam.co/low-level-apis/access-systems) time zone could not be determined because the reported physical location does not match the time zone configured on the physical [ACS entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
-     * @deprecated
      */
     | {
         /**
@@ -361,7 +351,6 @@ export type AcsSystem = {
         warning_code: 'time_zone_does_not_match_location'
       } /**
      * Indicates that the access control system requires additional setup before it can be fully operational. Follow the instructions in the warning message to complete the setup.
-     * @deprecated
      */
     | {
         /**

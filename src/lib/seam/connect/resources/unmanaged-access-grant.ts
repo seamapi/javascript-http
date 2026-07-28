@@ -37,7 +37,6 @@ export type UnmanagedAccessGrant = {
   errors: Array<
     /**
      * Indicates that Seam could not create one or more of the requested access methods for the access grant.
-     * @deprecated
      */
     {
       /**
@@ -77,7 +76,6 @@ export type UnmanagedAccessGrant = {
   pending_mutations: Array<
     /**
      * Seam is in the process of updating the devices/spaces associated with this access grant.
-     * @deprecated
      */
     | {
         /**
@@ -120,7 +118,6 @@ export type UnmanagedAccessGrant = {
         }
       } /**
      * Seam is in the process of updating the access times for this access grant.
-     * @deprecated
      */
     | {
         /**
@@ -230,7 +227,6 @@ export type UnmanagedAccessGrant = {
   warnings: Array<
     /**
      * Indicates that the [access grant](https://docs.seam.co/use-cases/granting-access) is being deleted.
-     * @deprecated
      */
     | {
         /**
@@ -249,7 +245,6 @@ export type UnmanagedAccessGrant = {
         warning_code: 'being_deleted'
       } /**
      * Indicates that the access grant should have access to more locations than it currently does. Access methods are being created for the missing locations.
-     * @deprecated
      */
     | {
         /**
@@ -268,7 +263,6 @@ export type UnmanagedAccessGrant = {
         warning_code: 'underprovisioned_access'
       } /**
      * Indicates that the access grant has access to locations it should not have. Access methods are being removed from the extra locations.
-     * @deprecated
      */
     | {
         /**
@@ -308,7 +302,6 @@ export type UnmanagedAccessGrant = {
         warning_code: 'overprovisioned_access'
       } /**
      * Indicates that the access times for this [access grant](https://docs.seam.co/use-cases/granting-access) are being updated.
-     * @deprecated
      */
     | {
         /**
@@ -332,7 +325,6 @@ export type UnmanagedAccessGrant = {
         warning_code: 'updating_access_times'
       } /**
      * Indicates that the requested PIN code was already in use on a device, so a different code was assigned.
-     * @deprecated
      */
     | {
         /**
@@ -366,7 +358,6 @@ export type UnmanagedAccessGrant = {
         warning_code: 'requested_code_unavailable'
       } /**
      * Indicates that a device in the access grant does not support access codes and was excluded from code materialization.
-     * @deprecated
      */
     | {
         /**
@@ -390,7 +381,6 @@ export type UnmanagedAccessGrant = {
         warning_code: 'device_does_not_support_access_codes'
       } /**
      * Indicates that a device in the access grant cannot program an access code for the grant's time range because of device-specific time constraints.
-     * @deprecated
      */
     | {
         /**

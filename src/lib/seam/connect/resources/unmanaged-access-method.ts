@@ -32,7 +32,6 @@ export type UnmanagedAccessMethod = {
   errors: Array<
     /**
      * Indicates that Seam was unable to issue this [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant) before its access grant started, so the recipient may be unable to access the space. This usually points to a problem that needs attention, such as an offline or disconnected device. Seam keeps retrying, and this error clears automatically if the access method is eventually issued.
-     * @deprecated
      */
     {
       /**
@@ -88,7 +87,6 @@ export type UnmanagedAccessMethod = {
   pending_mutations: Array<
     /**
      * Seam is in the process of provisioning access for this access method on new devices.
-     * @deprecated
      */
     | {
         /**
@@ -127,7 +125,6 @@ export type UnmanagedAccessMethod = {
         }
       } /**
      * Seam is in the process of revoking access for this access method from devices.
-     * @deprecated
      */
     | {
         /**
@@ -166,7 +163,6 @@ export type UnmanagedAccessMethod = {
         }
       } /**
      * Seam is in the process of updating the access times for this access method.
-     * @deprecated
      */
     | {
         /**
@@ -220,7 +216,6 @@ export type UnmanagedAccessMethod = {
   warnings: Array<
     /**
      * Indicates that the [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant) is being deleted.
-     * @deprecated
      */
     | {
         /**
@@ -239,7 +234,6 @@ export type UnmanagedAccessMethod = {
         warning_code: 'being_deleted'
       } /**
      * Indicates that the access times for this [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant) are being updated.
-     * @deprecated
      */
     | {
         /**
@@ -258,7 +252,6 @@ export type UnmanagedAccessMethod = {
         warning_code: 'updating_access_times'
       } /**
      * Indicates that all attempts to create an access code on this device before the start time failed and a backup access code was used to ensure access was provided in time.
-     * @deprecated
      */
     | {
         /**
@@ -281,7 +274,6 @@ export type UnmanagedAccessMethod = {
         warning_code: 'pulled_backup_access_code'
       } /**
      * Indicates that Seam has not yet issued this [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant), even though its access grant is about to begin, so access may not be ready when the recipient arrives. Seam is still attempting to issue it, and this warning clears automatically once issuance succeeds.
-     * @deprecated
      */
     | {
         /**

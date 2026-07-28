@@ -77,7 +77,6 @@ export type AcsAccessGroup = {
   errors: Array<
     /**
      * Indicates that the [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups) was not created on the [access system](https://docs.seam.co/low-level-apis/access-systems). This is likely due to an internal unexpected error. Contact Seam [support](mailto:support@seam.co).
-     * @deprecated
      */
     {
       /**
@@ -133,7 +132,6 @@ export type AcsAccessGroup = {
   pending_mutations: Array<
     /**
      * Seam is in the process of pushing an access group creation to the integrated access system.
-     * @deprecated
      */
     | {
         /**
@@ -152,7 +150,6 @@ export type AcsAccessGroup = {
         mutation_code: 'creating'
       } /**
      * Seam is in the process of pushing an access group deletion to the integrated access system.
-     * @deprecated
      */
     | {
         /**
@@ -171,7 +168,6 @@ export type AcsAccessGroup = {
         mutation_code: 'deleting'
       } /**
      * This access group is scheduled for automatic deletion when its access window expires.
-     * @deprecated
      */
     | {
         /**
@@ -190,7 +186,6 @@ export type AcsAccessGroup = {
         mutation_code: 'deferring_deletion'
       } /**
      * Seam is in the process of pushing an access group information update to the integrated access system.
-     * @deprecated
      */
     | {
         /**
@@ -229,7 +224,6 @@ export type AcsAccessGroup = {
         }
       } /**
      * Seam is in the process of pushing an access schedule update to the integrated access system.
-     * @deprecated
      */
     | {
         /**
@@ -276,7 +270,6 @@ export type AcsAccessGroup = {
         }
       } /**
      * Seam is in the process of pushing a user membership update to the integrated access system.
-     * @deprecated
      */
     | {
         /**
@@ -315,7 +308,6 @@ export type AcsAccessGroup = {
         }
       } /**
      * Seam is in the process of pushing an entrance membership update to the integrated access system.
-     * @deprecated
      */
     | {
         /**
@@ -354,7 +346,6 @@ export type AcsAccessGroup = {
         }
       } /**
      * A scheduled user membership change is pending for this access group.
-     * @deprecated
      */
     | {
         /**

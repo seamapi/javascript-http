@@ -88,7 +88,6 @@ export type AccessCode = {
   errors: Array<
     /**
      * Indicates a provider-specific issue that prevents the access code from being set or managed. Check the error message for details.
-     * @deprecated
      */
     | {
         /**
@@ -111,7 +110,6 @@ export type AccessCode = {
         message: string
       } /**
      * Failed to set code on device.
-     * @deprecated
      */
     | {
         /**
@@ -134,7 +132,6 @@ export type AccessCode = {
         message: string
       } /**
      * Failed to remove code from device.
-     * @deprecated
      */
     | {
         /**
@@ -157,7 +154,6 @@ export type AccessCode = {
         message: string
       } /**
      * Duplicate access code detected on device.
-     * @deprecated
      */
     | {
         /**
@@ -189,7 +185,6 @@ export type AccessCode = {
         unmanaged_access_code_id?: string | undefined
       } /**
      * No space for access code on device.
-     * @deprecated
      */
     | {
         /**
@@ -212,7 +207,6 @@ export type AccessCode = {
         message: string
       } /**
      * Code was modified or removed externally after Seam successfully set it on the device. The external change conflicts with the state that Seam is trying to apply, so Seam will attempt to set the code on the device again.
-     * @deprecated
      */
     | {
         /**
@@ -260,7 +254,6 @@ export type AccessCode = {
           | undefined
       } /**
      * Indicates that the access code is disabled or inactive on the device. The code exists but will not grant access until re-enabled.
-     * @deprecated
      */
     | {
         /**
@@ -283,7 +276,6 @@ export type AccessCode = {
         message: string
       } /**
      * Admin role required—insufficient permissions to manage PINs on this device. Please have an admin update your role, or ask them to set the PIN.
-     * @deprecated
      */
     | {
         /**
@@ -306,7 +298,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that the account is disconnected.
-     * @deprecated
      */
     | {
         /**
@@ -335,7 +326,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that the Salto site user limit has been reached.
-     * @deprecated
      */
     | {
         /**
@@ -364,7 +354,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that one or more dormakaba sites associated with the connected account could not be connected. Contact dormakaba support.
-     * @deprecated
      */
     | {
         /**
@@ -393,7 +382,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that the device is offline.
-     * @deprecated
      */
     | {
         /**
@@ -417,7 +405,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that the device has been removed.
-     * @deprecated
      */
     | {
         /**
@@ -441,7 +428,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that the hub is disconnected.
-     * @deprecated
      */
     | {
         /**
@@ -465,7 +451,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that the device is disconnected.
-     * @deprecated
      */
     | {
         /**
@@ -489,7 +474,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that the [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) is empty.
-     * @deprecated
      */
     | {
         /**
@@ -513,7 +497,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that the user is not authorized to use the August lock.
-     * @deprecated
      */
     | {
         /**
@@ -537,7 +520,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that device credentials are missing.
-     * @deprecated
      */
     | {
         /**
@@ -561,7 +543,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that the auxiliary heat is running.
-     * @deprecated
      */
     | {
         /**
@@ -585,7 +566,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that a subscription is required to connect.
-     * @deprecated
      */
     | {
         /**
@@ -609,7 +589,6 @@ export type AccessCode = {
         message: string
       } /**
      * Indicates that the Seam API cannot communicate with [Seam Bridge](https://docs.seam.co/capability-guides/seam-bridge), for example, if the Seam Bridge executable has stopped or if the computer running the Seam Bridge executable is offline. See also [Troubleshooting Your Access Control System](https://docs.seam.co/low-level-apis/access-systems/troubleshooting-your-access-control-system#acs_system-errors-seam_bridge_disconnected).
-     * @deprecated
      */
     | {
         /**
@@ -684,7 +663,6 @@ export type AccessCode = {
   pending_mutations: Array<
     /**
      * Seam is in the process of setting an access code on the device.
-     * @deprecated
      */
     | {
         /**
@@ -703,7 +681,6 @@ export type AccessCode = {
         mutation_code: 'creating'
       } /**
      * Seam is waiting until closer to the access code's start time before programming it on the device.
-     * @deprecated
      */
     | {
         /**
@@ -727,7 +704,6 @@ export type AccessCode = {
         scheduled_at: string
       } /**
      * Seam is in the process of removing an access code from the device.
-     * @deprecated
      */
     | {
         /**
@@ -746,7 +722,6 @@ export type AccessCode = {
         mutation_code: 'deleting'
       } /**
      * Seam is in the process of pushing an updated PIN code to the device.
-     * @deprecated
      */
     | {
         /**
@@ -785,7 +760,6 @@ export type AccessCode = {
         }
       } /**
      * Seam is in the process of pushing an updated access code name to the device.
-     * @deprecated
      */
     | {
         /**
@@ -824,7 +798,6 @@ export type AccessCode = {
         }
       } /**
      * Seam is in the process of pushing an updated time frame to the device.
-     * @deprecated
      */
     | {
         /**
@@ -896,7 +869,6 @@ export type AccessCode = {
   warnings: Array<
     /**
      * The access code's PIN rotates periodically when the code is renewed. Retrieve the latest code before each use.
-     * @deprecated
      */
     | {
         /**
@@ -914,7 +886,6 @@ export type AccessCode = {
         warning_code: 'code_rotates_periodically'
       } /**
      * The device's time zone is unknown and this code's time frame crosses a daylight-saving transition in at least one plausible time zone. A 1-hour safety buffer has been applied to the side of the time frame affected by the transition (`ends_at` for spring-forward, `starts_at` for fall-back) so the code stays active through the shift — the code may be usable up to 1 hour beyond your requested window. Set the device's time zone via `/devices/report_provider_metadata` to clear the buffer and guarantee exact handling.
-     * @deprecated
      */
     | {
         /**
@@ -932,7 +903,6 @@ export type AccessCode = {
         warning_code: 'time_frame_adjusted_for_unknown_time_zone'
       } /**
      * Code was modified or removed externally after Seam successfully set it on the device. External modification is allowed for this code, so the externally modified state is being honored.
-     * @deprecated
      */
     | {
         /**
@@ -974,7 +944,6 @@ export type AccessCode = {
         warning_code: 'external_modification_in_effect'
       } /**
      * Delay in setting code on device.
-     * @deprecated
      */
     | {
         /**
@@ -992,7 +961,6 @@ export type AccessCode = {
         warning_code: 'delay_in_setting_on_device'
       } /**
      * Delay in removing code from device.
-     * @deprecated
      */
     | {
         /**
@@ -1010,7 +978,6 @@ export type AccessCode = {
         warning_code: 'delay_in_removing_from_device'
       } /**
      * Third-party integration detected that may cause access codes to fail.
-     * @deprecated
      */
     | {
         /**
@@ -1028,7 +995,6 @@ export type AccessCode = {
         warning_code: 'third_party_integration_detected'
       } /**
      * Algopins must be used within 24 hours.
-     * @deprecated
      */
     | {
         /**
@@ -1046,7 +1012,6 @@ export type AccessCode = {
         warning_code: 'igloo_algopin_must_be_used_within_24_hours'
       } /**
      * Management was transferred to another workspace.
-     * @deprecated
      */
     | {
         /**
@@ -1064,7 +1029,6 @@ export type AccessCode = {
         warning_code: 'management_transferred'
       } /**
      * A backup access code has been pulled and is being used in place of this access code.
-     * @deprecated
      */
     | {
         /**
@@ -1082,7 +1046,6 @@ export type AccessCode = {
         warning_code: 'using_backup_access_code'
       } /**
      * Access code is being deleted.
-     * @deprecated
      */
     | {
         /**
@@ -1100,7 +1063,6 @@ export type AccessCode = {
         warning_code: 'being_deleted'
       } /**
      * An unknown issue occurred with the access code.
-     * @deprecated
      */
     | {
         /**
