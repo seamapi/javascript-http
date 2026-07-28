@@ -160,6 +160,9 @@ export class SeamHttpDevicesSimulate {
     await clientSessions.get()
   }
 
+  /**
+   * Simulates connecting a device to Seam. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://docs.seam.co/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
+   */
   connect(
     parameters: DevicesSimulateConnectParameters,
     options: DevicesSimulateConnectOptions = {},
@@ -173,6 +176,12 @@ export class SeamHttpDevicesSimulate {
     })
   }
 
+  /**
+   * Simulates bringing the Wi‑Fi hub (bridge) back online for a device.
+   * Only applicable for sandbox workspaces and currently
+   * implemented for August and TTLock locks.
+   * This will clear the `hub_disconnected` error on the device.
+   */
   connectToHub(
     parameters: DevicesSimulateConnectToHubParameters,
     options: DevicesSimulateConnectToHubOptions = {},
@@ -186,6 +195,9 @@ export class SeamHttpDevicesSimulate {
     })
   }
 
+  /**
+   * Simulates disconnecting a device from Seam. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://docs.seam.co/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
+   */
   disconnect(
     parameters: DevicesSimulateDisconnectParameters,
     options: DevicesSimulateDisconnectOptions = {},
@@ -199,6 +211,13 @@ export class SeamHttpDevicesSimulate {
     })
   }
 
+  /**
+   * Simulates taking the Wi‑Fi hub (bridge) offline for a device.
+   * Only applicable for sandbox workspaces and currently
+   * implemented for August, TTLock, and IglooHome devices.
+   * This will set the `hub_disconnected` error on the device, or mark the
+   * IglooHome bridge offline in sandbox.
+   */
   disconnectFromHub(
     parameters: DevicesSimulateDisconnectFromHubParameters,
     options: DevicesSimulateDisconnectFromHubOptions = {},
@@ -212,6 +231,11 @@ export class SeamHttpDevicesSimulate {
     })
   }
 
+  /**
+   * Toggle the simulated Nuki Smart Hosting subscription for a device (sandbox only).
+   * Send `is_expired: true` to simulate an expired subscription, or `false` to simulate an active subscription.
+   * The actual device error is created/cleared by the poller after this state change.
+   */
   paidSubscription(
     parameters: DevicesSimulatePaidSubscriptionParameters,
     options: DevicesSimulatePaidSubscriptionOptions = {},
@@ -225,6 +249,9 @@ export class SeamHttpDevicesSimulate {
     })
   }
 
+  /**
+   * Simulates removing a device from Seam. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://docs.seam.co/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
+   */
   remove(
     parameters: DevicesSimulateRemoveParameters,
     options: DevicesSimulateRemoveOptions = {},
@@ -240,6 +267,9 @@ export class SeamHttpDevicesSimulate {
 }
 
 export type DevicesSimulateConnectParameters = {
+  /**
+   * ID of the device that you want to simulate connecting to Seam.
+   */
   device_id: string
 }
 
@@ -253,6 +283,9 @@ export type DevicesSimulateConnectRequest = SeamHttpRequest<void, undefined>
 export interface DevicesSimulateConnectOptions {}
 
 export type DevicesSimulateConnectToHubParameters = {
+  /**
+   * ID of the device whose hub you want to reconnect.
+   */
   device_id: string
 }
 
@@ -269,6 +302,9 @@ export type DevicesSimulateConnectToHubRequest = SeamHttpRequest<
 export interface DevicesSimulateConnectToHubOptions {}
 
 export type DevicesSimulateDisconnectParameters = {
+  /**
+   * ID of the device that you want to simulate disconnecting from Seam.
+   */
   device_id: string
 }
 
@@ -282,6 +318,9 @@ export type DevicesSimulateDisconnectRequest = SeamHttpRequest<void, undefined>
 export interface DevicesSimulateDisconnectOptions {}
 
 export type DevicesSimulateDisconnectFromHubParameters = {
+  /**
+   * ID of the device whose hub you want to disconnect.
+   */
   device_id: string
 }
 
@@ -316,6 +355,9 @@ export type DevicesSimulatePaidSubscriptionRequest = SeamHttpRequest<
 export interface DevicesSimulatePaidSubscriptionOptions {}
 
 export type DevicesSimulateRemoveParameters = {
+  /**
+   * ID of the device that you want to simulate removing from Seam.
+   */
   device_id: string
 }
 

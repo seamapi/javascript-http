@@ -161,6 +161,9 @@ export class SeamHttpInstantKeys {
     await clientSessions.get()
   }
 
+  /**
+   * Deletes a specified [Instant Key](https://docs.seam.co/capability-guides/instant-keys).
+   */
   delete(
     parameters: InstantKeysDeleteParameters,
     options: InstantKeysDeleteOptions = {},
@@ -174,6 +177,9 @@ export class SeamHttpInstantKeys {
     })
   }
 
+  /**
+   * Gets an [instant key](https://docs.seam.co/capability-guides/instant-keys).
+   */
   get(
     parameters?: InstantKeysGetParameters,
     options: InstantKeysGetOptions = {},
@@ -187,6 +193,9 @@ export class SeamHttpInstantKeys {
     })
   }
 
+  /**
+   * Returns a list of all [instant keys](https://docs.seam.co/capability-guides/instant-keys).
+   */
   list(
     parameters?: InstantKeysListParameters,
     options: InstantKeysListOptions = {},
@@ -202,6 +211,9 @@ export class SeamHttpInstantKeys {
 }
 
 export type InstantKeysDeleteParameters = {
+  /**
+   * ID of the Instant Key that you want to delete.
+   */
   instant_key_id: string
 }
 
@@ -215,7 +227,13 @@ export type InstantKeysDeleteRequest = SeamHttpRequest<void, undefined>
 export interface InstantKeysDeleteOptions {}
 
 export type InstantKeysGetParameters = {
+  /**
+   * ID of the instant key to get.
+   */
   instant_key_id?: string | undefined
+  /**
+   * URL of the instant key to get.
+   */
   instant_key_url?: string | undefined
 }
 
@@ -232,6 +250,9 @@ export type InstantKeysGetRequest = SeamHttpRequest<
 export interface InstantKeysGetOptions {}
 
 export type InstantKeysListParameters = {
+  /**
+   * ID of the user identity by which you want to filter the list of Instant Keys.
+   */
   user_identity_id?: string | undefined
 }
 

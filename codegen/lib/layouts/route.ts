@@ -17,6 +17,9 @@ export interface RouteIndexLayoutContext {
 }
 
 export interface EndpointLayoutContext {
+  description: string
+  isDeprecated: boolean
+  deprecationMessage: string
   path: string
   methodName: string
   functionName: string
@@ -119,6 +122,9 @@ export const getEndpointLayoutContext = (
   const methodName = camelCase(endpoint.name)
 
   return {
+    description: endpoint.description,
+    isDeprecated: endpoint.isDeprecated,
+    deprecationMessage: endpoint.deprecationMessage,
     path: endpoint.path,
     methodName,
     functionName: camelCase(prefix),

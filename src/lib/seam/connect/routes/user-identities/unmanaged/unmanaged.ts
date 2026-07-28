@@ -164,6 +164,9 @@ export class SeamHttpUserIdentitiesUnmanaged {
     await clientSessions.get()
   }
 
+  /**
+   * Returns a specified unmanaged [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) (where is_managed = false).
+   */
   get(
     parameters: UserIdentitiesUnmanagedGetParameters,
     options: UserIdentitiesUnmanagedGetOptions = {},
@@ -177,6 +180,9 @@ export class SeamHttpUserIdentitiesUnmanaged {
     })
   }
 
+  /**
+   * Returns a list of all unmanaged [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) (where is_managed = false).
+   */
   list(
     parameters?: UserIdentitiesUnmanagedListParameters,
     options: UserIdentitiesUnmanagedListOptions = {},
@@ -190,6 +196,11 @@ export class SeamHttpUserIdentitiesUnmanaged {
     })
   }
 
+  /**
+   * Updates an unmanaged [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) to make it managed.
+   *
+   * This endpoint can only be used to convert unmanaged user identities to managed ones by setting `is_managed` to `true`. It cannot be used to convert managed user identities back to unmanaged.
+   */
   update(
     parameters: UserIdentitiesUnmanagedUpdateParameters,
     options: UserIdentitiesUnmanagedUpdateOptions = {},
@@ -205,6 +216,9 @@ export class SeamHttpUserIdentitiesUnmanaged {
 }
 
 export type UserIdentitiesUnmanagedGetParameters = {
+  /**
+   * ID of the unmanaged user identity that you want to get.
+   */
   user_identity_id: string
 }
 
@@ -223,9 +237,21 @@ export type UserIdentitiesUnmanagedGetRequest = SeamHttpRequest<
 export interface UserIdentitiesUnmanagedGetOptions {}
 
 export type UserIdentitiesUnmanagedListParameters = {
+  /**
+   * Timestamp by which to limit returned unmanaged user identities. Returns user identities created before this timestamp.
+   */
   created_before?: string | undefined
+  /**
+   * Maximum number of records to return per page.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned unmanaged user identities to include all records that satisfy a partial match using `full_name`, `phone_number`, `email_address`,  `user_identity_id` or `acs_system_id`.
+   */
   search?: string | undefined
 }
 
@@ -244,10 +270,19 @@ export type UserIdentitiesUnmanagedListRequest = SeamHttpRequest<
 export interface UserIdentitiesUnmanagedListOptions {}
 
 export type UserIdentitiesUnmanagedUpdateParameters = {
+  /**
+   * Must be set to true to convert the unmanaged user identity to managed.
+   */
   is_managed: boolean
 
+  /**
+   * ID of the unmanaged user identity that you want to update.
+   */
   user_identity_id: string
 
+  /**
+   * Unique key for the user identity. If not provided, the existing key will be preserved.
+   */
   user_identity_key?: string | undefined
 }
 

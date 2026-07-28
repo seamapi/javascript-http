@@ -161,6 +161,9 @@ export class SeamHttpAccessCodesSimulate {
     await clientSessions.get()
   }
 
+  /**
+   * Simulates the creation of an [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) in a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   createUnmanagedAccessCode(
     parameters: AccessCodesSimulateCreateUnmanagedAccessCodeParameters,
     options: AccessCodesSimulateCreateUnmanagedAccessCodeOptions = {},
@@ -176,10 +179,19 @@ export class SeamHttpAccessCodesSimulate {
 }
 
 export type AccessCodesSimulateCreateUnmanagedAccessCodeParameters = {
+  /**
+   * Code of the simulated unmanaged access code.
+   */
   code: string
 
+  /**
+   * ID of the device for which you want to simulate the creation of an unmanaged access code.
+   */
   device_id: string
 
+  /**
+   * Name of the simulated unmanaged access code.
+   */
   name: string
 }
 

@@ -5,9 +5,19 @@
 
 export type SeamEvent =
   | {
+      /**
+       * Date and time at which the event was created.
+       */
       created_at?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id?: string | undefined
+
       event_type?:
         | 'access_code.created'
         | 'access_code.changed'
@@ -119,170 +129,428 @@ export type SeamEvent =
         | 'space.created'
         | 'space.deleted'
         | undefined
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at?: string | undefined
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id?: string | undefined
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.created'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Human-readable reason for the change (e.g. `ongoing code auto-renewed`).
+       */
       change_reason?: string | undefined
+      /**
+       * List of properties that changed on the access code.
+       */
       changed_properties?:
         | Array<{
+            /**
+             * Previous value of the property, or null if not set.
+             */
             from: string | null
+            /**
+             * Name of the property that changed (e.g. `code`).
+             */
             property: string
 
+            /**
+             * New value of the property, or null if cleared.
+             */
             to: string | null
           }>
         | undefined
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.changed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the change and its source.
+       */
       description: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.name_changed'
 
+      /**
+       * Previous access code name configuration.
+       */
       from: {
+        /**
+         * Previous name of the access code.
+         */
         name: string | null
       }
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * New access code name configuration.
+       */
       to: {
+        /**
+         * New name of the access code.
+         */
         name: string | null
       }
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the change and its source.
+       */
       description: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.code_changed'
 
+      /**
+       * Previous pin code configuration.
+       */
       from: {
+        /**
+         * Previous pin code.
+         */
         code: string | null
       }
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * New pin code configuration.
+       */
       to: {
+        /**
+         * New pin code.
+         */
         code: string | null
       }
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the change and its source.
+       */
       description: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.time_frame_changed'
 
+      /**
+       * Previous time frame configuration.
+       */
       from: {
+        /**
+         * Previous end time.
+         */
         ends_at: string | null
+        /**
+         * Previous start time.
+         */
         starts_at: string | null
       }
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * New time frame configuration.
+       */
       to: {
+        /**
+         * New end time.
+         */
         ends_at: string | null
+        /**
+         * New start time.
+         */
         starts_at: string | null
       }
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.mutations_requested'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Array of mutations requested on the access code, each containing the mutation type and from/to values.
+       */
       requested_mutations: Array<{
+        /**
+         * Previous property values before the requested change. Keys depend on the mutation type. Absent for non-property mutations like `deleting`.
+         */
         from?: Record<string, unknown> | undefined
+        /**
+         * Code identifying the type of mutation requested, such as `updating_name`, `updating_code`, `updating_time_frame`, or `deleting`.
+         */
         mutation_code:
           | 'updating_name'
           | 'updating_code'
@@ -291,2137 +559,5390 @@ export type SeamEvent =
           | 'creating'
           | 'deferring_creation'
 
+        /**
+         * New property values after the requested change. Keys depend on the mutation type. Absent for non-property mutations like `deleting`.
+         */
         to?: Record<string, unknown> | undefined
       }>
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Code for the affected access code.
+       */
       code: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.scheduled_on_device'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Code for the affected access code.
+       */
       code: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.set_on_device'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.removed_from_device'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Errors associated with the access code.
+       */
       access_code_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Warnings associated with the access code.
+       */
       access_code_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the device.
+       */
       device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Warnings associated with the device.
+       */
       device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.delay_in_setting_on_device'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Errors associated with the access code.
+       */
       access_code_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Warnings associated with the access code.
+       */
       access_code_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the device.
+       */
       device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Warnings associated with the device.
+       */
       device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.failed_to_set_on_device'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Code for the affected access code.
+       */
       code: string | null
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.deleted'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Errors associated with the access code.
+       */
       access_code_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Warnings associated with the access code.
+       */
       access_code_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the device.
+       */
       device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Warnings associated with the device.
+       */
       device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.delay_in_removing_from_device'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Errors associated with the access code.
+       */
       access_code_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Warnings associated with the access code.
+       */
       access_code_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the device.
+       */
       device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Warnings associated with the device.
+       */
       device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.failed_to_remove_from_device'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.modified_external_to_seam'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.deleted_external_to_seam'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * ID of the backup access code that was pulled from the pool.
+       */
       backup_access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.backup_access_code_pulled'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.unmanaged.converted_to_managed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Errors associated with the access code.
+       */
       access_code_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Warnings associated with the access code.
+       */
       access_code_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the device.
+       */
       device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Warnings associated with the device.
+       */
       device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.unmanaged.failed_to_convert_to_managed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.unmanaged.created'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access code.
+       */
       access_code_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the affected access code.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the device associated with the affected access code.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_code.unmanaged.removed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected Access Grant.
+       */
       access_grant_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_grant.created'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected Access Grant.
+       */
       access_grant_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_grant.deleted'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected Access Grant.
+       */
       access_grant_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_grant.access_granted_to_all_doors'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected Access Grant.
+       */
       access_grant_id: string
 
+      /**
+       * ID of the affected [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+       */
       acs_entrance_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_grant.access_granted_to_door'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected Access Grant.
+       */
       access_grant_id: string
 
+      /**
+       * ID of the affected [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+       */
       acs_entrance_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_grant.access_to_door_lost'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected Access Grant.
+       */
       access_grant_id: string
 
+      /**
+       * Key of the affected Access Grant (if present).
+       */
       access_grant_key?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The new end time for the access grant.
+       */
       ends_at?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_grant.access_times_changed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * The new start time for the access grant.
+       */
       starts_at?: string | undefined
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected Access Grant.
+       */
       access_grant_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Description of why the access methods could not be created.
+       */
       error_message: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_grant.could_not_create_requested_access_methods'
 
+      /**
+       * IDs of the devices that did not receive a requested access method. Use these to identify which specific devices failed without having to fetch the Access Grant.
+       */
       missing_device_ids?: Array<string> | undefined
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of the access grants associated with this access method.
+       */
       access_grant_ids: Array<string>
 
+      /**
+       * Keys of the access grants associated with this access method (if present).
+       */
       access_grant_keys?: Array<string> | undefined
+      /**
+       * ID of the affected access method.
+       */
       access_method_id: string
 
+      /**
+       * The actual PIN code for code access methods (only present when mode is 'code').
+       */
       code?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_method.issued'
 
+      /**
+       * Indicates whether the code is a backup code (only present when mode is 'code' and a backup code was used).
+       */
       is_backup_code?: boolean | undefined
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of the access grants associated with this access method.
+       */
       access_grant_ids: Array<string>
 
+      /**
+       * Keys of the access grants associated with this access method (if present).
+       */
       access_grant_keys?: Array<string> | undefined
+      /**
+       * ID of the affected access method.
+       */
       access_method_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_method.revoked'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of the access grants associated with this access method.
+       */
       access_grant_ids: Array<string>
 
+      /**
+       * Keys of the access grants associated with this access method (if present).
+       */
       access_grant_keys?: Array<string> | undefined
+      /**
+       * ID of the affected access method.
+       */
       access_method_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_method.card_encoding_required'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of the access grants associated with this access method.
+       */
       access_grant_ids: Array<string>
 
+      /**
+       * Keys of the access grants associated with this access method (if present).
+       */
       access_grant_keys?: Array<string> | undefined
+      /**
+       * ID of the affected access method.
+       */
       access_method_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_method.deleted'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of the access grants associated with this access method.
+       */
       access_grant_ids: Array<string>
 
+      /**
+       * Keys of the access grants associated with this access method (if present).
+       */
       access_grant_keys?: Array<string> | undefined
+      /**
+       * ID of the affected access method.
+       */
       access_method_id: string
 
+      /**
+       * The actual PIN code for code access methods (only present when mode is 'code').
+       */
       code?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_method.reissued'
 
+      /**
+       * Indicates whether the code is a backup code (only present when mode is 'code' and a backup code was used).
+       */
       is_backup_code?: boolean | undefined
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of the access grants associated with this access method.
+       */
       access_grant_ids: Array<string>
 
+      /**
+       * Keys of the access grants associated with this access method (if present).
+       */
       access_grant_keys?: Array<string> | undefined
+      /**
+       * ID of the affected access method.
+       */
       access_method_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_method.created'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of the access grants associated with this access method.
+       */
       access_grant_ids: Array<string>
 
+      /**
+       * Keys of the access grants associated with this access method (if present).
+       */
       access_grant_keys?: Array<string> | undefined
+      /**
+       * ID of the affected access method.
+       */
       access_method_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_method.delay_in_issuing'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of the access grants associated with this access method.
+       */
       access_grant_ids: Array<string>
 
+      /**
+       * Keys of the access grants associated with this access method (if present).
+       */
       access_grant_keys?: Array<string> | undefined
+      /**
+       * ID of the affected access method.
+       */
       access_method_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'access_method.failed_to_issue'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_system.connected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_system.added'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Errors associated with the access control system.
+       */
       acs_system_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * Warnings associated with the access control system.
+       */
       acs_system_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_system.disconnected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected credential.
+       */
       acs_credential_id: string
 
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_credential.deleted'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected credential.
+       */
       acs_credential_id: string
 
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_credential.issued'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected credential.
+       */
       acs_credential_id: string
 
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_credential.reissued'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected credential.
+       */
       acs_credential_id: string
 
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_credential.invalidated'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the affected access system user.
+       */
       acs_user_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_user.created'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the affected access system user.
+       */
       acs_user_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_user.deleted'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected encoder.
+       */
       acs_encoder_id: string
 
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_encoder.added'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected encoder.
+       */
       acs_encoder_id: string
 
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_encoder.removed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected access group.
+       */
       acs_access_group_id: string
 
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_access_group.deleted'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected entrance.
+       */
       acs_entrance_id: string
 
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_entrance.added'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected entrance.
+       */
       acs_entrance_id: string
 
+      /**
+       * ID of the access system.
+       */
       acs_system_id: string
 
+      /**
+       * ID of the connected account.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'acs_entrance.removed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected client session.
+       */
       client_session_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'client_session.deleted'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the Connect Webview associated with the event.
+       */
       connect_webview_id?: string | undefined
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected connected account.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with this connected account, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'connected_account.connected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the Connect Webview associated with the event.
+       */
       connect_webview_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected connected account.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'connected_account.created'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the Connect Webview associated with the event.
+       */
       connect_webview_id: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected connected account.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'connected_account.successful_login'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected connected account.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'connected_account.disconnected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected connected account.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'connected_account.completed_first_sync'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected connected account.
+       */
       connected_account_id: string
 
+      /**
+       * undocumented: Unreleased.
+       */
       connected_account_type?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with this connected account, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'connected_account.deleted'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected connected account.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'connected_account.completed_first_sync_after_reconnection'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected connected account.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'connected_account.reauthorization_requested'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected action attempt.
+       */
       action_attempt_id: string
 
+      /**
+       * Type of the action.
+       */
       action_type: string
 
+      /**
+       * ID of the connected account associated with the action attempt, if applicable.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * ID of the device associated with the action attempt, if applicable.
+       */
       device_id?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'action_attempt.lock_door.succeeded'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Status of the action.
+       */
       status: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected action attempt.
+       */
       action_attempt_id: string
 
+      /**
+       * Type of the action.
+       */
       action_type: string
 
+      /**
+       * ID of the connected account associated with the action attempt, if applicable.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * ID of the device associated with the action attempt, if applicable.
+       */
       device_id?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'action_attempt.lock_door.failed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Status of the action.
+       */
       status: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected action attempt.
+       */
       action_attempt_id: string
 
+      /**
+       * Type of the action.
+       */
       action_type: string
 
+      /**
+       * ID of the connected account associated with the action attempt, if applicable.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * ID of the device associated with the action attempt, if applicable.
+       */
       device_id?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'action_attempt.unlock_door.succeeded'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Status of the action.
+       */
       status: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected action attempt.
+       */
       action_attempt_id: string
 
+      /**
+       * Type of the action.
+       */
       action_type: string
 
+      /**
+       * ID of the connected account associated with the action attempt, if applicable.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * ID of the device associated with the action attempt, if applicable.
+       */
       device_id?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'action_attempt.unlock_door.failed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Status of the action.
+       */
       status: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected action attempt.
+       */
       action_attempt_id: string
 
+      /**
+       * Type of the action.
+       */
       action_type: string
 
+      /**
+       * ID of the connected account associated with the action attempt, if applicable.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * ID of the device associated with the action attempt, if applicable.
+       */
       device_id?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'action_attempt.simulate_keypad_code_entry.succeeded'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Status of the action.
+       */
       status: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected action attempt.
+       */
       action_attempt_id: string
 
+      /**
+       * Type of the action.
+       */
       action_type: string
 
+      /**
+       * ID of the connected account associated with the action attempt, if applicable.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * ID of the device associated with the action attempt, if applicable.
+       */
       device_id?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'action_attempt.simulate_keypad_code_entry.failed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Status of the action.
+       */
       status: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected action attempt.
+       */
       action_attempt_id: string
 
+      /**
+       * Type of the action.
+       */
       action_type: string
 
+      /**
+       * ID of the connected account associated with the action attempt, if applicable.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * ID of the device associated with the action attempt, if applicable.
+       */
       device_id?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'action_attempt.simulate_manual_lock_via_keypad.succeeded'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Status of the action.
+       */
       status: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected action attempt.
+       */
       action_attempt_id: string
 
+      /**
+       * Type of the action.
+       */
       action_type: string
 
+      /**
+       * ID of the connected account associated with the action attempt, if applicable.
+       */
       connected_account_id?: string | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * ID of the device associated with the action attempt, if applicable.
+       */
       device_id?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'action_attempt.simulate_manual_lock_via_keypad.failed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Status of the action.
+       */
       status: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected Connect Webview.
+       */
       connect_webview_id: string
 
+      /**
+       * Custom metadata of the connected account; present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with this connect webview, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'connect_webview.login_succeeded'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the affected Connect Webview.
+       */
       connect_webview_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'connect_webview.login_failed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.connected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.added'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.converted_to_unmanaged'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.unmanaged.converted_to_managed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.unmanaged.connected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the device.
+       */
       device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Warnings associated with the device.
+       */
       device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Error code associated with the disconnection event, if any.
+       */
       error_code:
         'account_disconnected' | 'hub_disconnected' | 'device_disconnected'
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.disconnected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the device.
+       */
       device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Warnings associated with the device.
+       */
       device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Error code associated with the disconnection event, if any.
+       */
       error_code:
         'account_disconnected' | 'hub_disconnected' | 'device_disconnected'
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.unmanaged.disconnected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.tampered'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Number in the range 0 to 1.0 indicating the amount of battery in the affected device, as reported by the device.
+       */
       battery_level: number
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.low_battery'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Number in the range 0 to 1.0 indicating the amount of battery in the affected device, as reported by the device.
+       */
       battery_level: number
 
+      /**
+       * Battery status of the affected device, calculated from the numeric `battery_level` value.
+       */
       battery_status: 'critical' | 'low' | 'good' | 'full'
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.battery_status_changed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.removed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Name of the deleted device, captured at deletion time. The device record no longer exists when this event fires, so the name is preserved here. Null when the device had no resolvable name.
+       */
       device_name?: string | null | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.deleted'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.third_party_integration_detected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.third_party_integration_no_longer_detected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.salto.privacy_mode_activated'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.salto.privacy_mode_deactivated'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the device.
+       */
       device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Warnings associated with the device.
+       */
       device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.connection_became_flaky'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.connection_stabilized'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the device.
+       */
       device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Warnings associated with the device.
+       */
       device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.error.subscription_required'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.error.subscription_required.resolved'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.accessory_keypad_connected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
       connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Warnings associated with the connected account.
+       */
       connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * Errors associated with the device.
+       */
       device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
         created_at: string
 
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
         error_code: string
 
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
       }>
 
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Warnings associated with the device.
+       */
       device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
         created_at: string
 
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
         message: string
 
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
         warning_code: string
       }>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.accessory_keypad_disconnected'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'noise_sensor.noise_threshold_triggered'
 
+      /**
+       * Metadata from Minut.
+       */
       minut_metadata?: Record<string, unknown> | undefined
+      /**
+       * Detected noise level in decibels.
+       */
       noise_level_decibels?: number | undefined
+      /**
+       * Detected noise level in Noiseaware Noise Risk Score (NRS).
+       */
       noise_level_nrs?: number | undefined
+      /**
+       * ID of the noise threshold that was triggered.
+       */
       noise_threshold_id?: string | undefined
+      /**
+       * Name of the noise threshold that was triggered.
+       */
       noise_threshold_name?: string | undefined
+      /**
+       * Metadata from Noiseaware.
+       */
       noiseaware_metadata?: Record<string, unknown> | undefined
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the access code that was used to lock the device.
+       */
       access_code_id?: string | undefined
+      /**
+       * Whether the access code is managed by Seam (true) or unmanaged (false). Only present when access_code_id is set.
+       */
       access_code_is_managed?: boolean | undefined
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the ACS entrance associated with the lock event.
+       */
       acs_entrance_id?: string | undefined
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the ACS system associated with the lock event.
+       */
       acs_system_id?: string | undefined
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the ACS user associated with the lock event.
+       */
       acs_user_id?: string | undefined
+      /**
+       * ID of the Seam action attempt that triggered this lock. Present only when the lock was initiated through Seam (via a `LOCK_DOOR` action attempt).
+       */
       action_attempt_id?: string | undefined
+      /**
+       * Code (PIN) that was used to lock the device, if known. Taken from the matched managed or unmanaged access code, or from the code reported by the provider when no access code matched.
+       */
       code?: string | undefined
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'lock.locked'
 
+      /**
+       * Whether the lock action was performed over Bluetooth by a remote client (such as the provider's mobile app), rather than a direct physical interaction or a Seam-initiated remote action.
+       */
       is_via_bluetooth?: boolean | undefined
+      /**
+       * Whether the lock action was performed by an NFC credential tap (such as an Apple Home Key or an NFC key fob) presented to the lock, rather than a direct physical interaction or a Seam-initiated remote action.
+       */
       is_via_nfc?: boolean | undefined
+      /**
+       * Method by which the lock was locked. `keycode`: an access code was used (see `access_code_id`). `manual`: a physical action such as a thumbturn or button press. `remote`: a remote action via an app, Bluetooth, or the Seam API (see `action_attempt_id` if Seam-initiated; see `is_via_bluetooth` or `is_via_nfc` for the transport). `automatic`: triggered automatically, for example by an auto-relock timer. `unknown`: could not be determined.
+       */
       method: 'keycode' | 'manual' | 'automatic' | 'unknown' | 'remote' | 'card'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the user identity associated with the lock event.
+       */
       user_identity_id?: string | undefined
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the access code that was used to unlock the affected device.
+       */
       access_code_id?: string | undefined
+      /**
+       * Whether the access code is managed by Seam (true) or unmanaged (false). Only present when access_code_id is set.
+       */
       access_code_is_managed?: boolean | undefined
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the ACS entrance associated with the unlock event.
+       */
       acs_entrance_id?: string | undefined
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the ACS system associated with the unlock event.
+       */
       acs_system_id?: string | undefined
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the ACS user associated with the unlock event.
+       */
       acs_user_id?: string | undefined
+      /**
+       * ID of the Seam action attempt that triggered this unlock. Present only when the unlock was initiated through Seam (via an `UNLOCK_DOOR` action attempt).
+       */
       action_attempt_id?: string | undefined
+      /**
+       * Code (PIN) that was used to unlock the affected device, if known. Taken from the matched managed or unmanaged access code, or from the code reported by the provider when no access code matched.
+       */
       code?: string | undefined
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'lock.unlocked'
 
+      /**
+       * Whether the unlock action was performed over Bluetooth by a remote client (such as the provider's mobile app), rather than a direct physical interaction or a Seam-initiated remote action.
+       */
       is_via_bluetooth?: boolean | undefined
+      /**
+       * Whether the unlock action was performed by an NFC credential tap (such as an Apple Home Key or an NFC key fob) presented to the lock, rather than a direct physical interaction or a Seam-initiated remote action.
+       */
       is_via_nfc?: boolean | undefined
+      /**
+       * Method by which the lock was unlocked. `keycode`: an [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes) was used (see `access_code_id`). `manual`: a physical action such as a thumbturn or handle press. `remote`: a remote action via an app, Bluetooth, or the Seam API (see `action_attempt_id` if Seam-initiated; see `is_via_bluetooth` or `is_via_nfc` for the transport). `automatic`: triggered automatically, for example by a time-based schedule. `unknown`: could not be determined.
+       */
       method: 'keycode' | 'manual' | 'automatic' | 'unknown' | 'remote' | 'card'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the user identity associated with the unlock event.
+       */
       user_identity_id?: string | undefined
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * ID of the access code that was used in the unlock attempts.
+       */
       access_code_id?: string | undefined
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the ACS entrance associated with the access-denied event.
+       */
       acs_entrance_id?: string | undefined
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the ACS system associated with the access-denied event.
+       */
       acs_system_id?: string | undefined
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the ACS user associated with the access-denied event.
+       */
       acs_user_id?: string | undefined
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id?: string | undefined
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'lock.access_denied'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Why access was denied, when the provider reports a determinable cause. Omitted when unknown.
+       */
       reason?:
         | {
+            /**
+             * Human-readable explanation of why access was denied.
+             */
             message: string
 
+            /**
+             * Normalized reason a lock denied access. Provider-agnostic; not all providers report every value.
+             */
             reason_code:
               | 'unknown_code'
               | 'expired_code'
@@ -2431,298 +5952,792 @@ export type SeamEvent =
               | 'credential_error'
           }
         | undefined
+      /**
+       * undocumented: Unreleased.
+       *       ---
+       *       ID of the user identity associated with the access-denied event.
+       */
       user_identity_id?: string | undefined
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Key of the climate preset that was activated.
+       */
       climate_preset_key: string
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'thermostat.climate_preset_activated'
 
+      /**
+       * Indicates whether the climate preset that was activated is the fallback climate preset for the thermostat.
+       */
       is_fallback_climate_preset: boolean
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the thermostat schedule that prompted the affected climate preset to be activated.
+       */
       thermostat_schedule_id: string | null
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+       */
       cooling_set_point_celsius?: number | undefined
+      /**
+       * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+       */
       cooling_set_point_fahrenheit?: number | undefined
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'thermostat.manually_adjusted'
 
+      /**
+       * Desired [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+       */
       fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
+      /**
+       * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+       */
       heating_set_point_celsius?: number | undefined
+      /**
+       * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+       */
       heating_set_point_fahrenheit?: number | undefined
+      /**
+       * Desired [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+       */
       hvac_mode_setting?:
         'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
+      /**
+       * Method used to adjust the affected thermostat manually. `seam` indicates that the Seam API, Seam CLI, or Seam Console was used to adjust the thermostat.
+       */
       method: 'seam' | 'external'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'thermostat.temperature_threshold_exceeded'
 
+      /**
+       * Lower temperature limit, in °C, defined by the set threshold.
+       */
       lower_limit_celsius: number | null
+      /**
+       * Lower temperature limit, in °F, defined by the set threshold.
+       */
       lower_limit_fahrenheit: number | null
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Temperature, in °C, reported by the affected thermostat.
+       */
       temperature_celsius: number
 
+      /**
+       * Temperature, in °F, reported by the affected thermostat.
+       */
       temperature_fahrenheit: number
 
+      /**
+       * Upper temperature limit, in °C, defined by the set threshold.
+       */
       upper_limit_celsius: number | null
+      /**
+       * Upper temperature limit, in °F, defined by the set threshold.
+       */
       upper_limit_fahrenheit: number | null
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'thermostat.temperature_threshold_no_longer_exceeded'
 
+      /**
+       * Lower temperature limit, in °C, defined by the set threshold.
+       */
       lower_limit_celsius: number | null
+      /**
+       * Lower temperature limit, in °F, defined by the set threshold.
+       */
       lower_limit_fahrenheit: number | null
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Temperature, in °C, reported by the affected thermostat.
+       */
       temperature_celsius: number
 
+      /**
+       * Temperature, in °F, reported by the affected thermostat.
+       */
       temperature_fahrenheit: number
 
+      /**
+       * Upper temperature limit, in °C, defined by the set threshold.
+       */
       upper_limit_celsius: number | null
+      /**
+       * Upper temperature limit, in °F, defined by the set threshold.
+       */
       upper_limit_fahrenheit: number | null
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Desired temperature, in °C, defined by the affected thermostat's cooling or heating set point.
+       */
       desired_temperature_celsius?: number | undefined
+      /**
+       * Desired temperature, in °F, defined by the affected thermostat's cooling or heating set point.
+       */
       desired_temperature_fahrenheit?: number | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'thermostat.temperature_reached_set_point'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Temperature, in °C, reported by the affected thermostat.
+       */
       temperature_celsius: number
 
+      /**
+       * Temperature, in °F, reported by the affected thermostat.
+       */
       temperature_fahrenheit: number
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'thermostat.temperature_changed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * Temperature, in °C, reported by the affected thermostat.
+       */
       temperature_celsius: number
 
+      /**
+       * Temperature, in °F, reported by the affected thermostat.
+       */
       temperature_fahrenheit: number
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * The new name of the affected device.
+       */
       device_name: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.name_changed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * The reason the camera was activated.
+       */
       activation_reason: 'motion_detected'
 
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'camera.activated'
 
+      /**
+       * URL to a thumbnail image captured at the time of activation.
+       */
       image_url?: string | undefined
+      /**
+       * Sub-type of motion detected, if available.
+       */
       motion_sub_type?: 'human' | 'vehicle' | 'package' | 'other' | undefined
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * URL to a short video clip captured at the time of activation.
+       */
       video_url?: string | undefined
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
       connected_account_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
       connected_account_id: string
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * The customer key associated with the device, if any.
+       */
       customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'device.doorbell_rang'
 
+      /**
+       * URL to a thumbnail image captured at the time the doorbell was pressed.
+       */
       image_url?: string | undefined
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * URL to a short video clip captured at the time the doorbell was pressed.
+       */
       video_url?: string | undefined
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * Custom metadata of the device; present when device_id is provided.
+       */
       device_custom_metadata?: Record<string, unknown> | undefined
+      /**
+       * ID of the affected phone device.
+       */
       device_id: string
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
       event_type: 'phone.deactivated'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of all ACS entrances currently attached to the space.
+       */
       acs_entrance_ids: Array<string>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * IDs of all devices currently attached to the space.
+       */
       device_ids: Array<string>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
+      /**
+       * Type of the event.
+       */
       event_type: 'space.device_membership_changed'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the affected space.
+       */
       space_id: string
 
+      /**
+       * Unique key for the space within the workspace.
+       */
       space_key?: string | undefined
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of all ACS entrances attached to the space when it was created.
+       */
       acs_entrance_ids: Array<string>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * IDs of all devices attached to the space when it was created.
+       */
       device_ids: Array<string>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
+      /**
+       * Type of the event.
+       */
       event_type: 'space.created'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the affected space.
+       */
       space_id: string
 
+      /**
+       * Unique key for the space within the workspace.
+       */
       space_key?: string | undefined
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }
   | {
+      /**
+       * IDs of all ACS entrances currently attached to the space when it was deleted.
+       */
       acs_entrance_ids: Array<string>
 
+      /**
+       * Date and time at which the event was created.
+       */
       created_at: string
 
+      /**
+       * IDs of all devices attached to the space when it was deleted.
+       */
       device_ids: Array<string>
 
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
       event_description?: string | undefined
+      /**
+       * ID of the event.
+       */
       event_id: string
 
+      /**
+       * Type of the event.
+       */
       event_type: 'space.deleted'
 
+      /**
+       * Date and time at which the event occurred.
+       */
       occurred_at: string
 
+      /**
+       * ID of the affected space.
+       */
       space_id: string
 
+      /**
+       * Unique key for the space within the workspace.
+       */
       space_key?: string | undefined
+      /**
+       * ID of the workspace associated with the event.
+       */
       workspace_id: string
     }

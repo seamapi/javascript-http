@@ -161,6 +161,9 @@ export class SeamHttpAccessMethodsUnmanaged {
     await clientSessions.get()
   }
 
+  /**
+   * Gets an unmanaged access method (where is_managed = false).
+   */
   get(
     parameters: AccessMethodsUnmanagedGetParameters,
     options: AccessMethodsUnmanagedGetOptions = {},
@@ -174,6 +177,9 @@ export class SeamHttpAccessMethodsUnmanaged {
     })
   }
 
+  /**
+   * Lists all unmanaged access methods (where is_managed = false), usually filtered by Access Grant.
+   */
   list(
     parameters: AccessMethodsUnmanagedListParameters,
     options: AccessMethodsUnmanagedListOptions = {},
@@ -189,6 +195,9 @@ export class SeamHttpAccessMethodsUnmanaged {
 }
 
 export type AccessMethodsUnmanagedGetParameters = {
+  /**
+   * ID of unmanaged access method to get.
+   */
   access_method_id: string
 }
 
@@ -207,10 +216,22 @@ export type AccessMethodsUnmanagedGetRequest = SeamHttpRequest<
 export interface AccessMethodsUnmanagedGetOptions {}
 
 export type AccessMethodsUnmanagedListParameters = {
+  /**
+   * ID of Access Grant to list unmanaged access methods for.
+   */
   access_grant_id: string
 
+  /**
+   * ID of the entrance for which you want to retrieve all unmanaged access methods.
+   */
   acs_entrance_id?: string | undefined
+  /**
+   * ID of the device for which you want to retrieve all unmanaged access methods.
+   */
   device_id?: string | undefined
+  /**
+   * ID of the space for which you want to retrieve all unmanaged access methods.
+   */
   space_id?: string | undefined
 }
 

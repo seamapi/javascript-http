@@ -161,6 +161,15 @@ export class SeamHttpConnectWebviews {
     await clientSessions.get()
   }
 
+  /**
+   * Creates a new [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews).
+   *
+   * To enable a user to connect their devices or systems to Seam, they must sign in to their device or system account. To enable a user to sign in, you create a `connect_webview`. After creating the Connect Webview, you receive a URL that you can use to display the visual component of this Connect Webview for your user. You can open an iframe or new window to display the Connect Webview.
+   *
+   * You should make a new `connect_webview` for each unique login request. Each `connect_webview` tracks the user that signed in with it. You receive an error if you reuse a Connect Webview for the same user twice or if you use the same Connect Webview for multiple users.
+   *
+   * See also: [Connect Webview Process](https://docs.seam.co/core-concepts/connect-webviews/connect-webview-process).
+   */
   create(
     parameters?: ConnectWebviewsCreateParameters,
     options: ConnectWebviewsCreateOptions = {},
@@ -174,6 +183,11 @@ export class SeamHttpConnectWebviews {
     })
   }
 
+  /**
+   * Deletes a [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews).
+   *
+   * You do not need to delete a Connect Webview once a user completes it. Instead, you can simply ignore completed Connect Webviews.
+   */
   delete(
     parameters: ConnectWebviewsDeleteParameters,
     options: ConnectWebviewsDeleteOptions = {},
@@ -187,6 +201,11 @@ export class SeamHttpConnectWebviews {
     })
   }
 
+  /**
+   * Returns a specified [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews).
+   *
+   * Unless you're using a `custom_redirect_url`, you should poll a newly-created `connect_webview` to find out if the user has signed in or to get details about what devices they've connected.
+   */
   get(
     parameters: ConnectWebviewsGetParameters,
     options: ConnectWebviewsGetOptions = {},
@@ -200,6 +219,9 @@ export class SeamHttpConnectWebviews {
     })
   }
 
+  /**
+   * Returns a list of all [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews).
+   */
   list(
     parameters?: ConnectWebviewsListParameters,
     options: ConnectWebviewsListOptions = {},
@@ -215,11 +237,17 @@ export class SeamHttpConnectWebviews {
 }
 
 export type ConnectWebviewsCreateParameters = {
+  /**
+   * List of accepted device capabilities that restrict the types of devices that can be connected through the Connect Webview. If not provided, defaults will be determined based on the accepted providers.
+   */
   accepted_capabilities?:
     | Array<
         'lock' | 'thermostat' | 'noise_sensor' | 'access_control' | 'camera'
       >
     | undefined
+  /**
+   * Accepted device provider keys as an alternative to `provider_category`. Use this parameter to specify accepted providers explicitly. See [Customize the Brands to Display in Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-brands-to-display-in-your-connect-webviews). To list all provider keys, use [`/devices/list_device_providers`](https://docs.seam.co/api/devices/list_device_providers) with no filters.
+   */
   accepted_providers?:
     | Array<
         | 'hotek'
@@ -291,12 +319,33 @@ export type ConnectWebviewsCreateParameters = {
         | 'slack'
       >
     | undefined
+  /**
+   * Indicates whether newly-added devices should appear as [managed devices](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices). See also: [Customize the Behavior Settings of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-behavior-settings-of-your-connect-webviews).
+   */
   automatically_manage_new_devices?: boolean | undefined
+  /**
+   * Custom metadata that you want to associate with the Connect Webview. Supports up to 50 JSON key:value pairs. [Adding custom metadata to a Connect Webview](https://docs.seam.co/core-concepts/connect-webviews/attaching-custom-data-to-the-connect-webview) enables you to store custom information, like customer details or internal IDs from your application. The custom metadata is then transferred to any [connected accounts](https://docs.seam.co/core-concepts/connected-accounts) that were connected using the Connect Webview, making it easy to find and filter these resources in your [workspace](https://docs.seam.co/core-concepts/workspaces). You can also [filter Connect Webviews by custom metadata](https://docs.seam.co/core-concepts/connect-webviews/filtering-connect-webviews-by-custom-metadata).
+   */
   custom_metadata?: Record<string, unknown> | undefined
+  /**
+   * Alternative URL that you want to redirect the user to on an error. If you do not set this parameter, the Connect Webview falls back to the `custom_redirect_url`.
+   */
   custom_redirect_failure_url?: string | undefined
+  /**
+   * URL that you want to redirect the user to after the provider login is complete.
+   */
   custom_redirect_url?: string | undefined
+  /**
+   * Associate the Connect Webview, the connected account, and all resources under the connected account with a customer. If the connected account already exists, it will be associated with the customer. If the connected account already exists, but is already associated with a customer, the Connect Webview will show an error.
+   */
   customer_key?: string | undefined
+  /**
+   * List of provider keys to exclude from the Connect Webview. These providers will not be shown when the user tries to connect an account.
+   */
   excluded_providers?: Array<string> | undefined
+  /**
+   * Specifies the category of providers that you want to include. To list all providers within a category, use [`/devices/list_device_providers`](https://docs.seam.co/api/devices/list_device_providers) with the desired `provider_category` filter.
+   */
   provider_category?:
     | 'stable'
     | 'consumer_smartlocks'
@@ -308,6 +357,9 @@ export type ConnectWebviewsCreateParameters = {
     | 'connectors'
     | 'internal_beta'
     | undefined
+  /**
+   * Indicates whether Seam should finish syncing all devices in a newly-connected account before completing the associated Connect Webview. See also: [Customize the Behavior Settings of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-behavior-settings-of-your-connect-webviews).
+   */
   wait_for_device_creation?: boolean | undefined
 }
 
@@ -324,6 +376,9 @@ export type ConnectWebviewsCreateRequest = SeamHttpRequest<
 export interface ConnectWebviewsCreateOptions {}
 
 export type ConnectWebviewsDeleteParameters = {
+  /**
+   * ID of the Connect Webview that you want to delete.
+   */
   connect_webview_id: string
 }
 
@@ -337,6 +392,9 @@ export type ConnectWebviewsDeleteRequest = SeamHttpRequest<void, undefined>
 export interface ConnectWebviewsDeleteOptions {}
 
 export type ConnectWebviewsGetParameters = {
+  /**
+   * ID of the Connect Webview that you want to get.
+   */
   connect_webview_id: string
 }
 
@@ -353,11 +411,29 @@ export type ConnectWebviewsGetRequest = SeamHttpRequest<
 export interface ConnectWebviewsGetOptions {}
 
 export type ConnectWebviewsListParameters = {
+  /**
+   * Custom metadata pairs by which you want to [filter Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/filtering-connect-webviews-by-custom-metadata). Returns Connect Webviews with `custom_metadata` that contains all of the provided key:value pairs.
+   */
   custom_metadata_has?: Record<string, unknown> | undefined
+  /**
+   * Customer key for which you want to list connect webviews.
+   */
   customer_key?: string | undefined
+  /**
+   * Maximum number of records to return per page.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned Connect Webviews to include all records that satisfy a partial match using `connect_webview_id`, `accepted_providers`, `custom_metadata`, or `customer_key`.
+   */
   search?: string | undefined
+  /**
+   * Your user ID for the user by which you want to filter Connect Webviews.
+   */
   user_identifier_key?: string | undefined
 }
 

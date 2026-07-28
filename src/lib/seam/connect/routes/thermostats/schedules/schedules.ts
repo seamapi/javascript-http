@@ -161,6 +161,9 @@ export class SeamHttpThermostatsSchedules {
     await clientSessions.get()
   }
 
+  /**
+   * Creates a new [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   create(
     parameters: ThermostatsSchedulesCreateParameters,
     options: ThermostatsSchedulesCreateOptions = {},
@@ -174,6 +177,9 @@ export class SeamHttpThermostatsSchedules {
     })
   }
 
+  /**
+   * Deletes a [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   delete(
     parameters: ThermostatsSchedulesDeleteParameters,
     options: ThermostatsSchedulesDeleteOptions = {},
@@ -187,6 +193,9 @@ export class SeamHttpThermostatsSchedules {
     })
   }
 
+  /**
+   * Returns a specified [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+   */
   get(
     parameters: ThermostatsSchedulesGetParameters,
     options: ThermostatsSchedulesGetOptions = {},
@@ -200,6 +209,9 @@ export class SeamHttpThermostatsSchedules {
     })
   }
 
+  /**
+   * Returns a list of all [thermostat schedules](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   list(
     parameters: ThermostatsSchedulesListParameters,
     options: ThermostatsSchedulesListOptions = {},
@@ -213,6 +225,9 @@ export class SeamHttpThermostatsSchedules {
     })
   }
 
+  /**
+   * Updates a specified [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+   */
   update(
     parameters: ThermostatsSchedulesUpdateParameters,
     options: ThermostatsSchedulesUpdateOptions = {},
@@ -228,15 +243,36 @@ export class SeamHttpThermostatsSchedules {
 }
 
 export type ThermostatsSchedulesCreateParameters = {
+  /**
+   * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the new thermostat schedule.
+   */
   climate_preset_key: string
 
+  /**
+   * ID of the thermostat device for which you want to create a schedule.
+   */
   device_id: string
 
+  /**
+   * Date and time at which the new thermostat schedule ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+   */
   ends_at: string
 
+  /**
+   * Indicates whether a person at the thermostat or using the API can change the thermostat's settings while the new schedule is active. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+   */
   is_override_allowed?: boolean | undefined
+  /**
+   * Number of minutes for which a person at the thermostat or using the API can change the thermostat's settings after the activation of the scheduled climate preset. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+   */
   max_override_period_minutes?: number | undefined
+  /**
+   * Name of the thermostat schedule.
+   */
   name?: string | undefined
+  /**
+   * Date and time at which the new thermostat schedule starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+   */
   starts_at: string
 }
 
@@ -255,6 +291,9 @@ export type ThermostatsSchedulesCreateRequest = SeamHttpRequest<
 export interface ThermostatsSchedulesCreateOptions {}
 
 export type ThermostatsSchedulesDeleteParameters = {
+  /**
+   * ID of the thermostat schedule that you want to delete.
+   */
   thermostat_schedule_id: string
 }
 
@@ -268,6 +307,9 @@ export type ThermostatsSchedulesDeleteRequest = SeamHttpRequest<void, undefined>
 export interface ThermostatsSchedulesDeleteOptions {}
 
 export type ThermostatsSchedulesGetParameters = {
+  /**
+   * ID of the thermostat schedule that you want to get.
+   */
   thermostat_schedule_id: string
 }
 
@@ -286,8 +328,14 @@ export type ThermostatsSchedulesGetRequest = SeamHttpRequest<
 export interface ThermostatsSchedulesGetOptions {}
 
 export type ThermostatsSchedulesListParameters = {
+  /**
+   * ID of the thermostat device for which you want to list schedules.
+   */
   device_id: string
 
+  /**
+   * User identifier key by which to filter the list of returned thermostat schedules.
+   */
   user_identifier_key?: string | undefined
 }
 
@@ -306,12 +354,33 @@ export type ThermostatsSchedulesListRequest = SeamHttpRequest<
 export interface ThermostatsSchedulesListOptions {}
 
 export type ThermostatsSchedulesUpdateParameters = {
+  /**
+   * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the thermostat schedule.
+   */
   climate_preset_key?: string | undefined
+  /**
+   * Date and time at which the thermostat schedule ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+   */
   ends_at?: string | undefined
+  /**
+   * Indicates whether a person at the thermostat or using the API can change the thermostat's settings while the schedule is active. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+   */
   is_override_allowed?: boolean | undefined
+  /**
+   * Number of minutes for which a person at the thermostat or using the API can change the thermostat's settings after the activation of the scheduled climate preset. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+   */
   max_override_period_minutes?: number | undefined
+  /**
+   * Name of the thermostat schedule.
+   */
   name?: string | undefined
+  /**
+   * Date and time at which the thermostat schedule starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+   */
   starts_at?: string | undefined
+  /**
+   * ID of the thermostat schedule that you want to update.
+   */
   thermostat_schedule_id: string
 }
 

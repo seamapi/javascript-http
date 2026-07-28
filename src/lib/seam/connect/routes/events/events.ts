@@ -161,6 +161,9 @@ export class SeamHttpEvents {
     await clientSessions.get()
   }
 
+  /**
+   * Returns a specified event. This endpoint returns the same event that would be sent to a [webhook](https://docs.seam.co/developer-tools/webhooks), but it enables you to retrieve an event that already took place.
+   */
   get(
     parameters?: EventsGetParameters,
     options: EventsGetOptions = {},
@@ -174,6 +177,9 @@ export class SeamHttpEvents {
     })
   }
 
+  /**
+   * Returns a list of all events. This endpoint returns the same events that would be sent to a [webhook](https://docs.seam.co/developer-tools/webhooks), but it enables you to filter or see events that already took place.
+   */
   list(
     parameters?: EventsListParameters,
     options: EventsListOptions = {},
@@ -189,8 +195,17 @@ export class SeamHttpEvents {
 }
 
 export type EventsGetParameters = {
+  /**
+   * Unique identifier for the device that triggered the event that you want to get.
+   */
   device_id?: string | undefined
+  /**
+   * Unique identifier for the event that you want to get.
+   */
   event_id?: string | undefined
+  /**
+   * Type of the event that you want to get.
+   */
   event_type?: string | undefined
 }
 
@@ -204,26 +219,89 @@ export type EventsGetRequest = SeamHttpRequest<EventsGetResponse, 'event'>
 export interface EventsGetOptions {}
 
 export type EventsListParameters = {
+  /**
+   * ID of the access code for which you want to list events.
+   */
   access_code_id?: string | undefined
+  /**
+   * IDs of the access codes for which you want to list events.
+   */
   access_code_ids?: Array<string> | undefined
+  /**
+   * ID of the access grant for which you want to list events.
+   */
   access_grant_id?: string | undefined
+  /**
+   * IDs of the access grants for which you want to list events.
+   */
   access_grant_ids?: Array<string> | undefined
+  /**
+   * ID of the access method for which you want to list events.
+   */
   access_method_id?: string | undefined
+  /**
+   * IDs of the access methods for which you want to list events.
+   */
   access_method_ids?: Array<string> | undefined
+  /**
+   * ID of the ACS access group for which you want to list events.
+   */
   acs_access_group_id?: string | undefined
+  /**
+   * ID of the ACS credential for which you want to list events.
+   */
   acs_credential_id?: string | undefined
+  /**
+   * ID of the ACS encoder for which you want to list events.
+   */
   acs_encoder_id?: string | undefined
+  /**
+   * ID of the ACS entrance for which you want to list events.
+   */
   acs_entrance_id?: string | undefined
+  /**
+   * ID of the access system for which you want to list events.
+   */
   acs_system_id?: string | undefined
+  /**
+   * IDs of the access systems for which you want to list events.
+   */
   acs_system_ids?: Array<string> | undefined
+  /**
+   * ID of the ACS user for which you want to list events.
+   */
   acs_user_id?: string | undefined
+  /**
+   * Lower and upper timestamps to define an exclusive interval containing the events that you want to list. You must include `since` or `between`.
+   */
   between?: Array<{}> | undefined
+  /**
+   * ID of the Connect Webview for which you want to list events.
+   */
   connect_webview_id?: string | undefined
+  /**
+   * ID of the connected account for which you want to list events.
+   */
   connected_account_id?: string | undefined
+  /**
+   * Customer key for which you want to list events.
+   */
   customer_key?: string | undefined
+  /**
+   * ID of the device for which you want to list events.
+   */
   device_id?: string | undefined
+  /**
+   * IDs of the devices for which you want to list events.
+   */
   device_ids?: Array<string> | undefined
+  /**
+   * IDs of the events that you want to list.
+   */
   event_ids?: Array<string> | undefined
+  /**
+   * Type of the events that you want to list.
+   */
   event_type?:
     | 'access_code.created'
     | 'access_code.changed'
@@ -335,6 +413,9 @@ export type EventsListParameters = {
     | 'space.created'
     | 'space.deleted'
     | undefined
+  /**
+   * Types of the events that you want to list.
+   */
   event_types?:
     | Array<
         | 'access_code.created'
@@ -448,11 +529,29 @@ export type EventsListParameters = {
         | 'space.deleted'
       >
     | undefined
+  /**
+   * Numerical limit on the number of events to return.
+   */
   limit?: number | undefined
+  /**
+   * Timestamp to indicate the beginning generation time for the events that you want to list. You must include `since` or `between`.
+   */
   since?: string | undefined
+  /**
+   * ID of the space for which you want to list events.
+   */
   space_id?: string | undefined
+  /**
+   * IDs of the spaces for which you want to list events.
+   */
   space_ids?: Array<string> | undefined
+  /**
+   * Offset for the events that you want to list.
+   */
   unstable_offset?: number | undefined
+  /**
+   * ID of the user identity for which you want to list events.
+   */
   user_identity_id?: string | undefined
 }
 

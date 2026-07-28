@@ -94,6 +94,9 @@ export class SeamHttpEndpointsWithoutWorkspace {
     return new SeamHttpEndpointsWithoutWorkspace(constructorOptions)
   }
 
+  /**
+   * Creates a new [workspace](https://docs.seam.co/core-concepts/workspaces).
+   */
   get '/workspaces/create'(): (
     parameters: WorkspacesCreateParameters,
     options?: WorkspacesCreateOptions,
@@ -107,6 +110,9 @@ export class SeamHttpEndpointsWithoutWorkspace {
     }
   }
 
+  /**
+   * Returns a list of [workspaces](https://docs.seam.co/core-concepts/workspaces) associated with the authentication value.
+   */
   get '/workspaces/list'(): (
     parameters?: WorkspacesListParameters,
     options?: WorkspacesListOptions,

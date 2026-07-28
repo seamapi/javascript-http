@@ -160,6 +160,9 @@ export class SeamHttpThermostatsSimulate {
     await clientSessions.get()
   }
 
+  /**
+   * Simulates having adjusted the [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) for a [thermostat](https://docs.seam.co/capability-guides/thermostats). Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your Thermostat App with Simulate Endpoints](https://docs.seam.co/capability-guides/thermostats/testing-your-thermostat-app-with-simulate-endpoints).
+   */
   hvacModeAdjusted(
     parameters: ThermostatsSimulateHvacModeAdjustedParameters,
     options: ThermostatsSimulateHvacModeAdjustedOptions = {},
@@ -173,6 +176,9 @@ export class SeamHttpThermostatsSimulate {
     })
   }
 
+  /**
+   * Simulates a [thermostat](https://docs.seam.co/capability-guides/thermostats) reaching a specified temperature. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your Thermostat App with Simulate Endpoints](https://docs.seam.co/capability-guides/thermostats/testing-your-thermostat-app-with-simulate-endpoints).
+   */
   temperatureReached(
     parameters: ThermostatsSimulateTemperatureReachedParameters,
     options: ThermostatsSimulateTemperatureReachedOptions = {},
@@ -188,13 +194,31 @@ export class SeamHttpThermostatsSimulate {
 }
 
 export type ThermostatsSimulateHvacModeAdjustedParameters = {
+  /**
+   * ID of the thermostat device for which you want to simulate having adjusted the HVAC mode.
+   */
   device_id: string
 
+  /**
+   * HVAC mode that you want to simulate.
+   */
   hvac_mode: 'off' | 'cool' | 'heat' | 'heat_cool'
 
+  /**
+   * Cooling [set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to simulate. You must set `cooling_set_point_celsius` or `cooling_set_point_fahrenheit`.
+   */
   cooling_set_point_celsius?: number | undefined
+  /**
+   * Cooling [set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to simulate. You must set `cooling_set_point_fahrenheit` or `cooling_set_point_celsius`.
+   */
   cooling_set_point_fahrenheit?: number | undefined
+  /**
+   * Heating [set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to simulate. You must set `heating_set_point_celsius` or `heating_set_point_fahrenheit`.
+   */
   heating_set_point_celsius?: number | undefined
+  /**
+   * Heating [set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to simulate. You must set `heating_set_point_fahrenheit` or `heating_set_point_celsius`.
+   */
   heating_set_point_fahrenheit?: number | undefined
 }
 
@@ -211,9 +235,18 @@ export type ThermostatsSimulateHvacModeAdjustedRequest = SeamHttpRequest<
 export interface ThermostatsSimulateHvacModeAdjustedOptions {}
 
 export type ThermostatsSimulateTemperatureReachedParameters = {
+  /**
+   * ID of the thermostat device that you want to simulate reaching a specified temperature.
+   */
   device_id: string
 
+  /**
+   * Temperature in °C that you want simulate the thermostat reaching. You must set `temperature_celsius` or `temperature_fahrenheit`.
+   */
   temperature_celsius?: number | undefined
+  /**
+   * Temperature in °F that you want simulate the thermostat reaching. You must set `temperature_fahrenheit` or `temperature_celsius`.
+   */
   temperature_fahrenheit?: number | undefined
 }
 

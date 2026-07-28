@@ -4,26 +4,89 @@
  */
 
 export type DeviceProvider = {
+  /**
+   * Indicates whether the lock supports configuring automatic locking.
+   */
   can_configure_auto_lock?: boolean | undefined
+  /**
+   * Indicates whether the thermostat supports cooling.
+   */
   can_hvac_cool?: boolean | undefined
+  /**
+   * Indicates whether the thermostat supports heating.
+   */
   can_hvac_heat?: boolean | undefined
+  /**
+   * Indicates whether the thermostat supports simultaneous heating and cooling.
+   */
   can_hvac_heat_cool?: boolean | undefined
+  /**
+   * Indicates whether the device supports programming offline access codes.
+   */
   can_program_offline_access_codes?: boolean | undefined
+  /**
+   * Indicates whether the device supports programming online access codes.
+   */
   can_program_online_access_codes?: boolean | undefined
+  /**
+   * Indicates whether the thermostat supports different climate programs for each day of the week.
+   */
   can_program_thermostat_programs_as_different_each_day?: boolean | undefined
+  /**
+   * Indicates whether the thermostat supports a single climate program applied to every day.
+   */
   can_program_thermostat_programs_as_same_each_day?: boolean | undefined
+  /**
+   * Indicates whether the thermostat supports weekday/weekend climate programs.
+   */
   can_program_thermostat_programs_as_weekday_weekend?: boolean | undefined
+  /**
+   * Indicates whether the device supports remote locking.
+   */
   can_remotely_lock?: boolean | undefined
+  /**
+   * Indicates whether the device supports remote unlocking.
+   */
   can_remotely_unlock?: boolean | undefined
+  /**
+   * Indicates whether the thermostat supports running climate programs.
+   */
   can_run_thermostat_programs?: boolean | undefined
+  /**
+   * Indicates whether the device supports simulating connection in a sandbox.
+   */
   can_simulate_connection?: boolean | undefined
+  /**
+   * Indicates whether the device supports simulating disconnection in a sandbox.
+   */
   can_simulate_disconnection?: boolean | undefined
+  /**
+   * Indicates whether the hub supports simulating connection in a sandbox.
+   */
   can_simulate_hub_connection?: boolean | undefined
+  /**
+   * Indicates whether the hub supports simulating disconnection in a sandbox.
+   */
   can_simulate_hub_disconnection?: boolean | undefined
+  /**
+   * Indicates whether the device supports simulating a paid subscription in a sandbox.
+   */
   can_simulate_paid_subscription?: boolean | undefined
+  /**
+   * Indicates whether the device supports simulating removal in a sandbox.
+   */
   can_simulate_removal?: boolean | undefined
+  /**
+   * Indicates whether the thermostat can be turned off.
+   */
   can_turn_off_hvac?: boolean | undefined
+  /**
+   * Indicates whether the lock supports unlocking with an access code.
+   */
   can_unlock_with_code?: boolean | undefined
+  /**
+   * Name of the device provider.
+   */
   device_provider_name:
     | 'hotek'
     | 'dormakaba_community'
@@ -89,10 +152,19 @@ export type DeviceProvider = {
     | 'kisi'
     | 'aqara'
 
+  /**
+   * Display name for the device provider.
+   */
   display_name: string
 
+  /**
+   * Image URL for the device provider.
+   */
   image_url: string
 
+  /**
+   * List of provider categories to which the device provider belongs, such as `stable`, `consumer_smartlocks`, `thermostats`, and so on.
+   */
   provider_categories: Array<
     | 'stable'
     | 'consumer_smartlocks'

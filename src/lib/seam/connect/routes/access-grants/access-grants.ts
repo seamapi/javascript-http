@@ -168,6 +168,9 @@ export class SeamHttpAccessGrants {
     return SeamHttpAccessGrantsUnmanaged.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Creates a new [Access Grant](https://docs.seam.co/use-cases/granting-access/access-grants). Access Grants are the default and recommended way to grant a user access to any physical space, irrespective of the locking hardware. They work with both standalone smart locks (using `device_ids`) and access control systems (using `acs_entrance_ids` or `space_ids`), and can issue PIN codes, key cards, and mobile keys through a single request.
+   */
   create(
     parameters: AccessGrantsCreateParameters,
     options: AccessGrantsCreateOptions = {},
@@ -181,6 +184,9 @@ export class SeamHttpAccessGrants {
     })
   }
 
+  /**
+   * Delete an Access Grant.
+   */
   delete(
     parameters: AccessGrantsDeleteParameters,
     options: AccessGrantsDeleteOptions = {},
@@ -194,6 +200,9 @@ export class SeamHttpAccessGrants {
     })
   }
 
+  /**
+   * Get an Access Grant.
+   */
   get(
     parameters?: AccessGrantsGetParameters,
     options: AccessGrantsGetOptions = {},
@@ -207,6 +216,9 @@ export class SeamHttpAccessGrants {
     })
   }
 
+  /**
+   * Gets all related resources for one or more Access Grants.
+   */
   getRelated(
     parameters?: AccessGrantsGetRelatedParameters,
     options: AccessGrantsGetRelatedOptions = {},
@@ -220,6 +232,9 @@ export class SeamHttpAccessGrants {
     })
   }
 
+  /**
+   * Gets an Access Grant.
+   */
   list(
     parameters?: AccessGrantsListParameters,
     options: AccessGrantsListOptions = {},
@@ -233,6 +248,9 @@ export class SeamHttpAccessGrants {
     })
   }
 
+  /**
+   * Adds additional requested access methods to an existing Access Grant.
+   */
   requestAccessMethods(
     parameters: AccessGrantsRequestAccessMethodsParameters,
     options: AccessGrantsRequestAccessMethodsOptions = {},
@@ -246,6 +264,9 @@ export class SeamHttpAccessGrants {
     })
   }
 
+  /**
+   * Updates an existing Access Grant's time window.
+   */
   update(
     parameters?: AccessGrantsUpdateParameters,
     options: AccessGrantsUpdateOptions = {},
@@ -261,38 +282,111 @@ export class SeamHttpAccessGrants {
 }
 
 export type AccessGrantsCreateParameters = {
+  /**
+   * ID of user identity for whom access is being granted.
+   */
   user_identity_id?: string | undefined
+  /**
+   * When used, creates a new user identity with the given details, and grants them access.
+   */
   user_identity?:
     | {
+        /**
+         * Unique email address for the user identity.
+         */
         email_address?: string | undefined
+        /**
+         * Full name of the user associated with the user identity.
+         */
         full_name?: string | undefined
+        /**
+         * Unique phone number for the user identity in [E.164 format](https://www.itu.int/rec/T-REC-E.164/en) (for example, +15555550100).
+         */
         phone_number?: string | undefined
+        /**
+         * Unique key for the user identity.
+         */
         user_identity_key?: string | undefined
       }
     | undefined
+  /**
+   * Unique key for the access grant within the workspace.
+   */
   access_grant_key?: string | undefined
+  /**
+   * Set of IDs of the [entrances](https://docs.seam.co/api/acs/systems/list) to which access is being granted.
+   */
   acs_entrance_ids?: Array<string> | undefined
+  /**
+   * ID of the customization profile to apply to the Access Grant and its access methods.
+   */
   customization_profile_id?: string | undefined
+  /**
+   * Set of IDs of the [devices](https://docs.seam.co/api/devices/list) to which access is being granted.
+   */
   device_ids?: Array<string> | undefined
+  /**
+   * Date and time at which the validity of the new grant ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
+   */
   ends_at?: string | undefined
+  /**
+   * @deprecated Create a space first, then reference it using `space_ids`.
+   */
   location?:
     | {
+        /**
+         * @deprecated Use `acs_entrance_ids` at the top level.
+         */
         acs_entrance_ids?: Array<string> | undefined
+        /**
+         * @deprecated Use `device_ids` at the top level.
+         */
         device_ids?: Array<string> | undefined
+        /**
+         * Name of the location.
+         */
         name?: string | undefined
       }
     | undefined
+  /**
+   * @deprecated Use `space_ids`.
+   */
   location_ids?: Array<string> | undefined
+  /**
+   * Name for the access grant.
+   */
   name?: string | undefined
+
   requested_access_methods: Array<{
+    /**
+     * Specific PIN code to use for this access method. Only applicable when mode is 'code'.
+     */
     code?: string | undefined
+    /**
+     * Maximum number of times the instant key can be used. Only applicable when mode is 'mobile_key'. Defaults to 1 if not specified.
+     */
     instant_key_max_use_count?: number | undefined
+    /**
+     * Access method mode. Supported values: `code`, `card`, `mobile_key`, `cloud_key`.
+     */
     mode?: 'code' | 'card' | 'mobile_key' | 'cloud_key' | undefined
   }>
 
+  /**
+   * Reservation key for the access grant.
+   */
   reservation_key?: string | undefined
+  /**
+   * Set of IDs of existing spaces to which access is being granted.
+   */
   space_ids?: Array<string> | undefined
+  /**
+   * Set of keys of existing spaces to which access is being granted.
+   */
   space_keys?: Array<string> | undefined
+  /**
+   * Date and time at which the validity of the new grant starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+   */
   starts_at?: string | undefined
 }
 
@@ -309,6 +403,9 @@ export type AccessGrantsCreateRequest = SeamHttpRequest<
 export interface AccessGrantsCreateOptions {}
 
 export type AccessGrantsDeleteParameters = {
+  /**
+   * ID of Access Grant to delete.
+   */
   access_grant_id: string
 }
 
@@ -322,7 +419,13 @@ export type AccessGrantsDeleteRequest = SeamHttpRequest<void, undefined>
 export interface AccessGrantsDeleteOptions {}
 
 export type AccessGrantsGetParameters = {
+  /**
+   * ID of Access Grant to get.
+   */
   access_grant_id?: string | undefined
+  /**
+   * Unique key of Access Grant to get.
+   */
   access_grant_key?: string | undefined
 }
 
@@ -339,8 +442,15 @@ export type AccessGrantsGetRequest = SeamHttpRequest<
 export interface AccessGrantsGetOptions {}
 
 export type AccessGrantsGetRelatedParameters = {
+  /**
+   * IDs of the access grants that you want to get along with their related resources.
+   */
   access_grant_ids?: Array<string> | undefined
+  /**
+   * Keys of the access grants that you want to get along with their related resources.
+   */
   access_grant_keys?: Array<string> | undefined
+
   exclude?:
     | Array<
         | 'spaces'
@@ -353,6 +463,7 @@ export type AccessGrantsGetRelatedParameters = {
         | 'access_methods'
       >
     | undefined
+
   include?:
     | Array<
         | 'spaces'
@@ -391,18 +502,57 @@ export type AccessGrantsGetRelatedRequest = SeamHttpRequest<
 export interface AccessGrantsGetRelatedOptions {}
 
 export type AccessGrantsListParameters = {
+  /**
+   * ID of the access code by which you want to filter the list of Access Grants.
+   */
   access_code_id?: string | undefined
+  /**
+   * IDs of the access grants to retrieve.
+   */
   access_grant_ids?: Array<string> | undefined
+  /**
+   * Filter Access Grants by access_grant_key. Use null to filter for Access Grants without an access_grant_key.
+   */
   access_grant_key?: string | undefined
+  /**
+   * ID of the entrance by which you want to filter the list of Access Grants.
+   */
   acs_entrance_id?: string | undefined
+  /**
+   * ID of the access system by which you want to filter the list of Access Grants.
+   */
   acs_system_id?: string | undefined
+  /**
+   * Customer key for which you want to list access grants.
+   */
   customer_key?: string | undefined
+  /**
+   * ID of the device by which you want to filter the list of Access Grants.
+   */
   device_id?: string | undefined
+  /**
+   * Numerical limit on the number of access grants to return.
+   */
   limit?: number | undefined
+  /**
+   * @deprecated Use `space_id`.
+   */
   location_id?: string | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * Filter Access Grants by reservation_key.
+   */
   reservation_key?: string | undefined
+  /**
+   * ID of the space by which you want to filter the list of Access Grants.
+   */
   space_id?: string | undefined
+  /**
+   * ID of user identity by which you want to filter the list of Access Grants.
+   */
   user_identity_id?: string | undefined
 }
 
@@ -419,11 +569,26 @@ export type AccessGrantsListRequest = SeamHttpRequest<
 export interface AccessGrantsListOptions {}
 
 export type AccessGrantsRequestAccessMethodsParameters = {
+  /**
+   * ID of the Access Grant to add access methods to.
+   */
   access_grant_id: string
 
+  /**
+   * Array of requested access methods to add to the access grant.
+   */
   requested_access_methods: Array<{
+    /**
+     * Specific PIN code to use for this access method. Only applicable when mode is 'code'.
+     */
     code?: string | undefined
+    /**
+     * Maximum number of times the instant key can be used. Only applicable when mode is 'mobile_key'. Defaults to 1 if not specified.
+     */
     instant_key_max_use_count?: number | undefined
+    /**
+     * Access method mode. Supported values: `code`, `card`, `mobile_key`, `cloud_key`.
+     */
     mode?: 'code' | 'card' | 'mobile_key' | 'cloud_key' | undefined
   }>
 }
@@ -443,10 +608,25 @@ export type AccessGrantsRequestAccessMethodsRequest = SeamHttpRequest<
 export interface AccessGrantsRequestAccessMethodsOptions {}
 
 export type AccessGrantsUpdateParameters = {
+  /**
+   * ID of the Access Grant to update. Provide either `access_grant_id` or `access_grant_key`.
+   */
   access_grant_id?: string | undefined
+  /**
+   * Key of the Access Grant to update. Provide either `access_grant_id` or `access_grant_key`.
+   */
   access_grant_key?: string | undefined
+  /**
+   * Date and time at which the validity of the grant ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
+   */
   ends_at?: string | undefined
+  /**
+   * Display name for the access grant.
+   */
   name?: string | undefined
+  /**
+   * Date and time at which the validity of the grant starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+   */
   starts_at?: string | undefined
 }
 

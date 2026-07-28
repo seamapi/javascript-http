@@ -161,6 +161,9 @@ export class SeamHttpWebhooks {
     await clientSessions.get()
   }
 
+  /**
+   * Creates a new [webhook](https://docs.seam.co/developer-tools/webhooks).
+   */
   create(
     parameters: WebhooksCreateParameters,
     options: WebhooksCreateOptions = {},
@@ -174,6 +177,9 @@ export class SeamHttpWebhooks {
     })
   }
 
+  /**
+   * Deletes a specified [webhook](https://docs.seam.co/developer-tools/webhooks).
+   */
   delete(
     parameters: WebhooksDeleteParameters,
     options: WebhooksDeleteOptions = {},
@@ -187,6 +193,9 @@ export class SeamHttpWebhooks {
     })
   }
 
+  /**
+   * Gets a specified [webhook](https://docs.seam.co/developer-tools/webhooks).
+   */
   get(
     parameters: WebhooksGetParameters,
     options: WebhooksGetOptions = {},
@@ -200,6 +209,9 @@ export class SeamHttpWebhooks {
     })
   }
 
+  /**
+   * Returns a list of all [webhooks](https://docs.seam.co/developer-tools/webhooks).
+   */
   list(
     parameters?: WebhooksListParameters,
     options: WebhooksListOptions = {},
@@ -213,6 +225,9 @@ export class SeamHttpWebhooks {
     })
   }
 
+  /**
+   * Updates a specified [webhook](https://docs.seam.co/developer-tools/webhooks).
+   */
   update(
     parameters: WebhooksUpdateParameters,
     options: WebhooksUpdateOptions = {},
@@ -228,7 +243,13 @@ export class SeamHttpWebhooks {
 }
 
 export type WebhooksCreateParameters = {
+  /**
+   * Types of events that you want the new webhook to receive.
+   */
   event_types?: Array<string> | undefined
+  /**
+   * URL for the new webhook.
+   */
   url: string
 }
 
@@ -245,6 +266,9 @@ export type WebhooksCreateRequest = SeamHttpRequest<
 export interface WebhooksCreateOptions {}
 
 export type WebhooksDeleteParameters = {
+  /**
+   * ID of the webhook that you want to delete.
+   */
   webhook_id: string
 }
 
@@ -258,6 +282,9 @@ export type WebhooksDeleteRequest = SeamHttpRequest<void, undefined>
 export interface WebhooksDeleteOptions {}
 
 export type WebhooksGetParameters = {
+  /**
+   * ID of the webhook that you want to get.
+   */
   webhook_id: string
 }
 
@@ -285,8 +312,14 @@ export type WebhooksListRequest = SeamHttpRequest<
 export interface WebhooksListOptions {}
 
 export type WebhooksUpdateParameters = {
+  /**
+   * Types of events that you want the webhook to receive.
+   */
   event_types: Array<string>
 
+  /**
+   * ID of the webhook that you want to update.
+   */
   webhook_id: string
 }
 

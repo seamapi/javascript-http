@@ -173,6 +173,11 @@ export class SeamHttpDevices {
     return SeamHttpDevicesUnmanaged.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Returns a specified [device](https://docs.seam.co/core-concepts/devices).
+   *
+   * You must specify either `device_id` or `name`.
+   */
   get(
     parameters?: DevicesGetParameters,
     options: DevicesGetOptions = {},
@@ -186,6 +191,9 @@ export class SeamHttpDevices {
     })
   }
 
+  /**
+   * Returns a list of all [devices](https://docs.seam.co/core-concepts/devices).
+   */
   list(
     parameters?: DevicesListParameters,
     options: DevicesListOptions = {},
@@ -199,6 +207,13 @@ export class SeamHttpDevices {
     })
   }
 
+  /**
+   * Returns a list of all device providers.
+   *
+   * The information that this endpoint returns for each provider includes a set of [capability flags](https://docs.seam.co/capability-guides/device-and-system-capabilities#capability-flags), such as `device_provider.can_remotely_unlock`. If at least one supported device from a provider has a specific capability, the corresponding capability flag is `true`.
+   *
+   * When you create a [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews), you can customize the providers—that is, the brands—that it displays. In the `/connect_webviews/create` request, include the desired set of device provider keys in the `accepted_providers` parameter. See also [Customize the Brands to Display in Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-brands-to-display-in-your-connect-webviews).
+   */
   listDeviceProviders(
     parameters?: DevicesListDeviceProvidersParameters,
     options: DevicesListDeviceProvidersOptions = {},
@@ -212,6 +227,9 @@ export class SeamHttpDevices {
     })
   }
 
+  /**
+   * Updates provider-specific metadata for devices.
+   */
   reportProviderMetadata(
     parameters: DevicesReportProviderMetadataParameters,
     options: DevicesReportProviderMetadataOptions = {},
@@ -225,6 +243,11 @@ export class SeamHttpDevices {
     })
   }
 
+  /**
+   * Updates a specified [device](https://docs.seam.co/core-concepts/devices).
+   *
+   * You can add or change [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) for a device, change the device's name, or [convert a managed device to unmanaged](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
+   */
   update(
     parameters: DevicesUpdateParameters,
     options: DevicesUpdateOptions = {},
@@ -240,7 +263,13 @@ export class SeamHttpDevices {
 }
 
 export type DevicesGetParameters = {
+  /**
+   * ID of the device that you want to get.
+   */
   device_id?: string | undefined
+  /**
+   * Name of the device that you want to get.
+   */
   name?: string | undefined
 }
 
@@ -254,13 +283,37 @@ export type DevicesGetRequest = SeamHttpRequest<DevicesGetResponse, 'device'>
 export interface DevicesGetOptions {}
 
 export type DevicesListParameters = {
+  /**
+   * ID of the Connect Webview for which you want to list devices.
+   */
   connect_webview_id?: string | undefined
+  /**
+   * ID of the connected account for which you want to list devices.
+   */
   connected_account_id?: string | undefined
+  /**
+   * Array of IDs of the connected accounts for which you want to list devices.
+   */
   connected_account_ids?: Array<string> | undefined
+  /**
+   * Timestamp by which to limit returned devices. Returns devices created before this timestamp.
+   */
   created_before?: string | undefined
+  /**
+   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices.
+   */
   custom_metadata_has?: Record<string, unknown> | undefined
+  /**
+   * Customer key for which you want to list devices.
+   */
   customer_key?: string | undefined
+  /**
+   * Array of device IDs for which you want to list devices.
+   */
   device_ids?: Array<string> | undefined
+  /**
+   * Device type for which you want to list devices.
+   */
   device_type?:
     | 'akuvox_lock'
     | 'august_lock'
@@ -305,6 +358,9 @@ export type DevicesListParameters = {
     | 'android_phone'
     | 'ring_camera'
     | undefined
+  /**
+   * Array of device types for which you want to list devices.
+   */
   device_types?:
     | Array<
         | 'akuvox_lock'
@@ -351,7 +407,13 @@ export type DevicesListParameters = {
         | 'ring_camera'
       >
     | undefined
+  /**
+   * Numerical limit on the number of devices to return.
+   */
   limit?: number | undefined
+  /**
+   * Manufacturer for which you want to list devices.
+   */
   manufacturer?:
     | 'akuvox'
     | 'august'
@@ -405,10 +467,25 @@ export type DevicesListParameters = {
     | 'kisi'
     | 'slack'
     | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned devices to include all records that satisfy a partial match using `device_id` (full or partial UUID prefix, minimum 4 characters), `connected_account_id`, `display_name`, `custom_metadata` or `location.location_name`.
+   */
   search?: string | undefined
+  /**
+   * ID of the space for which you want to list devices.
+   */
   space_id?: string | undefined
+  /**
+   * @deprecated Use `space_id`.
+   */
   unstable_location_id?: string | undefined
+  /**
+   * Your own internal user ID for the user for which you want to list devices.
+   */
   user_identifier_key?: string | undefined
 }
 
@@ -422,6 +499,9 @@ export type DevicesListRequest = SeamHttpRequest<DevicesListResponse, 'devices'>
 export interface DevicesListOptions {}
 
 export type DevicesListDeviceProvidersParameters = {
+  /**
+   * Category for which you want to list providers.
+   */
   provider_category?:
     | 'stable'
     | 'consumer_smartlocks'
@@ -449,10 +529,22 @@ export type DevicesListDeviceProvidersRequest = SeamHttpRequest<
 export interface DevicesListDeviceProvidersOptions {}
 
 export type DevicesReportProviderMetadataParameters = {
+  /**
+   * Array of devices with provider metadata to update
+   */
   devices: Array<{
+    /**
+     * ID of the device to update
+     */
     device_id?: string | undefined
+    /**
+     * Omnitec-specific metadata to update
+     */
     omnitec_metadata?:
       | {
+          /**
+           * IANA timezone for the Omnitec device
+           */
           time_zone?:
             | 'Africa/Abidjan'
             | 'Africa/Accra'
@@ -886,8 +978,14 @@ export type DevicesReportProviderMetadataParameters = {
             | undefined
         }
       | undefined
+    /**
+     * Schlage-specific metadata to update
+     */
     schlage_metadata?:
       | {
+          /**
+           * IANA timezone for the Schlage device
+           */
           time_zone?:
             | 'Africa/Abidjan'
             | 'Africa/Accra'
@@ -1321,8 +1419,14 @@ export type DevicesReportProviderMetadataParameters = {
             | undefined
         }
       | undefined
+    /**
+     * Ultraloq-specific metadata to update
+     */
     ultraloq_metadata?:
       | {
+          /**
+           * IANA timezone for the Ultraloq device
+           */
           time_zone?:
             | 'Africa/Abidjan'
             | 'Africa/Accra'
@@ -1772,14 +1876,33 @@ export type DevicesReportProviderMetadataRequest = SeamHttpRequest<
 export interface DevicesReportProviderMetadataOptions {}
 
 export type DevicesUpdateParameters = {
+  /**
+   * Indicates whether the device's [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) is enabled. Set to `false` to disable the pool: Seam stops refilling it and removes any backup codes that have not yet been pulled into active use.
+   */
   backup_access_code_pool_enabled?: boolean | undefined
+  /**
+   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs. [Adding custom metadata to a device](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter devices by the desired metadata](https://docs.seam.co/core-concepts/devices/filtering-devices-by-custom-metadata).
+   */
   custom_metadata?: Record<string, unknown> | undefined
+  /**
+   * ID of the device that you want to update.
+   */
   device_id: string
 
+  /**
+   * Indicates whether the device is managed. To unmanage a device, set `is_managed` to `false`.
+   */
   is_managed?: boolean | undefined
+  /**
+   * Name for the device.
+   */
   name?: string | undefined
+
   properties?:
     | {
+        /**
+         * Name for the device.
+         */
         name?: string | undefined
       }
     | undefined

@@ -886,6 +886,9 @@ export class SeamHttpEndpoints {
     await clientSessions.get()
   }
 
+  /**
+   * Creates a new [access code](https://docs.seam.co/low-level-apis/access-codes). For granting access, we recommend [Access Grants](https://docs.seam.co/use-cases/granting-access) instead: they work across both standalone smart locks and access control systems and manage the underlying codes for you. Use this low-level endpoint only when you need direct control over a code on a single device, such as setting a custom PIN value.
+   */
   get '/access_codes/create'(): (
     parameters: AccessCodesCreateParameters,
     options?: AccessCodesCreateOptions,
@@ -899,6 +902,19 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates new [access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes) that share a common code across multiple devices.
+   *
+   * Users with more than one door lock in a property may want to create groups of linked access codes, all of which have the same code (PIN). For example, a short-term rental host may want to provide guests the same PIN for both a front door lock and a back door lock.
+   *
+   * If you specify a custom code, Seam assigns this custom code to each of the resulting access codes. However, in this case, Seam does not link these access codes together with a `common_code_key`. That is, `common_code_key` remains null for these access codes.
+   *
+   * If you want to change these access codes that are not linked by a `common_code_key`, you cannot use `/access_codes/update_multiple`. However, you can update each of these access codes individually, using `/access_codes/update`.
+   *
+   * See also [Creating and Updating Multiple Linked Access Codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/creating-and-updating-multiple-linked-access-codes).
+   *
+   * For granting a person access to a space, [Access Grants](https://docs.seam.co/use-cases/granting-access) are the default and recommended approach and work across both standalone smart locks and access systems. Use the lower-level Access Codes API directly only when you specifically need to manage individual PIN codes.
+   */
   get '/access_codes/create_multiple'(): (
     parameters: AccessCodesCreateMultipleParameters,
     options?: AccessCodesCreateMultipleOptions,
@@ -912,6 +928,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes an [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes).
+   */
   get '/access_codes/delete'(): (
     parameters: AccessCodesDeleteParameters,
     options?: AccessCodesDeleteOptions,
@@ -925,6 +944,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Generates a code for an [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes), given a device ID.
+   */
   get '/access_codes/generate_code'(): (
     parameters: AccessCodesGenerateCodeParameters,
     options?: AccessCodesGenerateCodeOptions,
@@ -938,6 +960,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes).
+   *
+   * You must specify either `access_code_id` or both `device_id` and `code`.
+   */
   get '/access_codes/get'(): (
     parameters?: AccessCodesGetParameters,
     options?: AccessCodesGetOptions,
@@ -951,6 +978,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes).
+   *
+   * Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
+   */
   get '/access_codes/list'(): (
     parameters?: AccessCodesListParameters,
     options?: AccessCodesListOptions,
@@ -964,6 +996,17 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Retrieves a backup access code for an [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes). See also [Managing Backup Access Codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes).
+   *
+   * A backup access code pool is a collection of pre-programmed access codes stored on a device, ready for use. These codes are programmed in addition to the regular access codes on Seam, serving as a safety net for any issues with the primary codes. If there's ever a complication with a primary access code—be it due to intermittent connectivity, manual removal from a device, or provider outages—a backup code can be retrieved. Its end time can then be adjusted to align with the original code, facilitating seamless and uninterrupted access.
+   *
+   * You can pull a backup access code from the pool at any time. These backup codes are guaranteed to work immediately and automatically programmed to be removed from the device after the access code ends.
+   *
+   * You can only pull backup access codes for time-bound access codes.
+   *
+   * Before pulling a backup access code, make sure that the device's `properties.supports_backup_access_code_pool` is `true`. Then, to activate the backup pool, set `use_backup_access_code_pool` to `true` when creating an access code.
+   */
   get '/access_codes/pull_backup_access_code'(): (
     parameters: AccessCodesPullBackupAccessCodeParameters,
     options?: AccessCodesPullBackupAccessCodeOptions,
@@ -977,6 +1020,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Enables you to report access code-related constraints for a device. Currently, supports reporting supported code length constraints for SmartThings devices.
+   *
+   * Specify either `supported_code_lengths` or `min_code_length`/`max_code_length`.
+   */
   get '/access_codes/report_device_constraints'(): (
     parameters: AccessCodesReportDeviceConstraintsParameters,
     options?: AccessCodesReportDeviceConstraintsOptions,
@@ -990,6 +1038,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a specified active or upcoming [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes).
+   *
+   * See also [Modifying Access Codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/modifying-access-codes).
+   */
   get '/access_codes/update'(): (
     parameters: AccessCodesUpdateParameters,
     options?: AccessCodesUpdateOptions,
@@ -1003,6 +1056,13 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates [access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes) that share a common code across multiple devices.
+   *
+   * Specify the `common_code_key` to identify the set of access codes that you want to update.
+   *
+   * See also [Update Linked Access Codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/creating-and-updating-multiple-linked-access-codes#update-linked-access-codes).
+   */
   get '/access_codes/update_multiple'(): (
     parameters: AccessCodesUpdateMultipleParameters,
     options?: AccessCodesUpdateMultipleOptions,
@@ -1016,6 +1076,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates the creation of an [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) in a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   get '/access_codes/simulate/create_unmanaged_access_code'(): (
     parameters: AccessCodesSimulateCreateUnmanagedAccessCodeParameters,
     options?: AccessCodesSimulateCreateUnmanagedAccessCodeOptions,
@@ -1031,6 +1094,13 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Converts an [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) to an [access code managed through Seam](https://docs.seam.co/low-level-apis/smart-locks/access-codes).
+   *
+   * An unmanaged access code has a limited set of operations that you can perform on it. Once you convert an unmanaged access code to a managed access code, the full set of access code operations and lifecycle events becomes available for it.
+   *
+   * Note that not all device providers support converting an unmanaged access code to a managed access code.
+   */
   get '/access_codes/unmanaged/convert_to_managed'(): (
     parameters: AccessCodesUnmanagedConvertToManagedParameters,
     options?: AccessCodesUnmanagedConvertToManagedOptions,
@@ -1044,6 +1114,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes an [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   */
   get '/access_codes/unmanaged/delete'(): (
     parameters: AccessCodesUnmanagedDeleteParameters,
     options?: AccessCodesUnmanagedDeleteOptions,
@@ -1057,6 +1130,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   *
+   * You must specify either `access_code_id` or both `device_id` and `code`.
+   */
   get '/access_codes/unmanaged/get'(): (
     parameters?: AccessCodesUnmanagedGetParameters,
     options?: AccessCodesUnmanagedGetOptions,
@@ -1070,6 +1148,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [unmanaged access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   */
   get '/access_codes/unmanaged/list'(): (
     parameters: AccessCodesUnmanagedListParameters,
     options?: AccessCodesUnmanagedListOptions,
@@ -1083,6 +1164,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a specified [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   */
   get '/access_codes/unmanaged/update'(): (
     parameters: AccessCodesUnmanagedUpdateParameters,
     options?: AccessCodesUnmanagedUpdateOptions,
@@ -1096,6 +1180,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new [Access Grant](https://docs.seam.co/use-cases/granting-access/access-grants). Access Grants are the default and recommended way to grant a user access to any physical space, irrespective of the locking hardware. They work with both standalone smart locks (using `device_ids`) and access control systems (using `acs_entrance_ids` or `space_ids`), and can issue PIN codes, key cards, and mobile keys through a single request.
+   */
   get '/access_grants/create'(): (
     parameters: AccessGrantsCreateParameters,
     options?: AccessGrantsCreateOptions,
@@ -1109,6 +1196,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Delete an Access Grant.
+   */
   get '/access_grants/delete'(): (
     parameters: AccessGrantsDeleteParameters,
     options?: AccessGrantsDeleteOptions,
@@ -1122,6 +1212,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Get an Access Grant.
+   */
   get '/access_grants/get'(): (
     parameters?: AccessGrantsGetParameters,
     options?: AccessGrantsGetOptions,
@@ -1135,6 +1228,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Gets all related resources for one or more Access Grants.
+   */
   get '/access_grants/get_related'(): (
     parameters?: AccessGrantsGetRelatedParameters,
     options?: AccessGrantsGetRelatedOptions,
@@ -1148,6 +1244,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Gets an Access Grant.
+   */
   get '/access_grants/list'(): (
     parameters?: AccessGrantsListParameters,
     options?: AccessGrantsListOptions,
@@ -1161,6 +1260,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Adds additional requested access methods to an existing Access Grant.
+   */
   get '/access_grants/request_access_methods'(): (
     parameters: AccessGrantsRequestAccessMethodsParameters,
     options?: AccessGrantsRequestAccessMethodsOptions,
@@ -1174,6 +1276,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates an existing Access Grant's time window.
+   */
   get '/access_grants/update'(): (
     parameters?: AccessGrantsUpdateParameters,
     options?: AccessGrantsUpdateOptions,
@@ -1187,6 +1292,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Get an unmanaged Access Grant (where is_managed = false).
+   */
   get '/access_grants/unmanaged/get'(): (
     parameters: AccessGrantsUnmanagedGetParameters,
     options?: AccessGrantsUnmanagedGetOptions,
@@ -1200,6 +1308,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Gets unmanaged Access Grants (where is_managed = false).
+   */
   get '/access_grants/unmanaged/list'(): (
     parameters?: AccessGrantsUnmanagedListParameters,
     options?: AccessGrantsUnmanagedListOptions,
@@ -1213,6 +1324,13 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates an unmanaged Access Grant to make it managed.
+   *
+   * This endpoint can only be used to convert unmanaged access grants to managed ones by setting `is_managed` to `true`. It cannot be used to convert managed access grants back to unmanaged.
+   *
+   * When converting an unmanaged access grant to managed, all associated access methods will also be converted to managed.
+   */
   get '/access_grants/unmanaged/update'(): (
     parameters: AccessGrantsUnmanagedUpdateParameters,
     options?: AccessGrantsUnmanagedUpdateOptions,
@@ -1226,6 +1344,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Assigns a pre-registered card credential, identified by `card_number`, to a card-mode access method. Use this endpoint for access systems that use pre-registered cards, where a physical card must be associated with an access method before it can be used for access. Assigning a card credential also triggers issuance of the access method.
+   */
   get '/access_methods/assign_card'(): (
     parameters: AccessMethodsAssignCardParameters,
     options?: AccessMethodsAssignCardOptions,
@@ -1239,6 +1360,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes an access method.
+   */
   get '/access_methods/delete'(): (
     parameters?: AccessMethodsDeleteParameters,
     options?: AccessMethodsDeleteOptions,
@@ -1252,6 +1376,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Encodes an existing access method onto a plastic card placed on the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   */
   get '/access_methods/encode'(): (
     parameters: AccessMethodsEncodeParameters,
     options?: AccessMethodsEncodeOptions,
@@ -1265,6 +1392,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Gets an access method.
+   */
   get '/access_methods/get'(): (
     parameters: AccessMethodsGetParameters,
     options?: AccessMethodsGetOptions,
@@ -1278,6 +1408,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Gets all related resources for one or more Access Methods.
+   */
   get '/access_methods/get_related'(): (
     parameters: AccessMethodsGetRelatedParameters,
     options?: AccessMethodsGetRelatedOptions,
@@ -1291,6 +1424,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Lists all access methods, usually filtered by Access Grant.
+   */
   get '/access_methods/list'(): (
     parameters?: AccessMethodsListParameters,
     options?: AccessMethodsListOptions,
@@ -1304,6 +1440,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Remotely unlocks a specified [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) using the cloud key credential associated with an access method. Returns an action attempt that tracks the progress of the unlock operation.
+   */
   get '/access_methods/unlock_door'(): (
     parameters: AccessMethodsUnlockDoorParameters,
     options?: AccessMethodsUnlockDoorOptions,
@@ -1317,6 +1456,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Gets an unmanaged access method (where is_managed = false).
+   */
   get '/access_methods/unmanaged/get'(): (
     parameters: AccessMethodsUnmanagedGetParameters,
     options?: AccessMethodsUnmanagedGetOptions,
@@ -1330,6 +1472,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Lists all unmanaged access methods (where is_managed = false), usually filtered by Access Grant.
+   */
   get '/access_methods/unmanaged/list'(): (
     parameters: AccessMethodsUnmanagedListParameters,
     options?: AccessMethodsUnmanagedListOptions,
@@ -1343,6 +1488,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Adds a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) to a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   get '/acs/access_groups/add_user'(): (
     parameters: AcsAccessGroupsAddUserParameters,
     options?: AcsAccessGroupsAddUserOptions,
@@ -1356,6 +1504,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   get '/acs/access_groups/delete'(): (
     parameters: AcsAccessGroupsDeleteParameters,
     options?: AcsAccessGroupsDeleteOptions,
@@ -1369,6 +1520,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   get '/acs/access_groups/get'(): (
     parameters: AcsAccessGroupsGetParameters,
     options?: AcsAccessGroupsGetOptions,
@@ -1382,6 +1536,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [access groups](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   get '/acs/access_groups/list'(): (
     parameters?: AcsAccessGroupsListParameters,
     options?: AcsAccessGroupsListOptions,
@@ -1395,6 +1552,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all accessible entrances for a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   get '/acs/access_groups/list_accessible_entrances'(): (
     parameters: AcsAccessGroupsListAccessibleEntrancesParameters,
     options?: AcsAccessGroupsListAccessibleEntrancesOptions,
@@ -1408,6 +1568,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [access system users](https://docs.seam.co/low-level-apis/access-systems/user-management) in an [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   get '/acs/access_groups/list_users'(): (
     parameters: AcsAccessGroupsListUsersParameters,
     options?: AcsAccessGroupsListUsersOptions,
@@ -1421,6 +1584,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Removes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) from a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   get '/acs/access_groups/remove_user'(): (
     parameters: AcsAccessGroupsRemoveUserParameters,
     options?: AcsAccessGroupsRemoveUserOptions,
@@ -1434,6 +1600,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Assigns a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) to a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   */
   get '/acs/credentials/assign'(): (
     parameters: AcsCredentialsAssignParameters,
     options?: AcsCredentialsAssignOptions,
@@ -1447,6 +1616,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new [credential](https://docs.seam.co/low-level-apis/managing-credentials) for a specified [ACS user](https://docs.seam.co/low-level-apis/access-systems/user-management). For granting access, we recommend [Access Grants](https://docs.seam.co/use-cases/granting-access) instead: they create and manage the underlying credentials for you, across access systems and standalone smart locks alike. Use this low-level endpoint only when you need direct control over an individual ACS credential.
+   */
   get '/acs/credentials/create'(): (
     parameters: AcsCredentialsCreateParameters,
     options?: AcsCredentialsCreateOptions,
@@ -1460,6 +1632,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   */
   get '/acs/credentials/delete'(): (
     parameters: AcsCredentialsDeleteParameters,
     options?: AcsCredentialsDeleteOptions,
@@ -1473,6 +1648,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   */
   get '/acs/credentials/get'(): (
     parameters: AcsCredentialsGetParameters,
     options?: AcsCredentialsGetOptions,
@@ -1486,6 +1664,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [credentials](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   */
   get '/acs/credentials/list'(): (
     parameters?: AcsCredentialsListParameters,
     options?: AcsCredentialsListOptions,
@@ -1499,6 +1680,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [entrances](https://docs.seam.co/api/acs/entrances) to which a [credential](https://docs.seam.co/api/acs/credentials) grants access.
+   */
   get '/acs/credentials/list_accessible_entrances'(): (
     parameters: AcsCredentialsListAccessibleEntrancesParameters,
     options?: AcsCredentialsListAccessibleEntrancesOptions,
@@ -1512,6 +1696,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Unassigns a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) from a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   */
   get '/acs/credentials/unassign'(): (
     parameters: AcsCredentialsUnassignParameters,
     options?: AcsCredentialsUnassignOptions,
@@ -1525,6 +1712,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates the code and ends at date and time for a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   */
   get '/acs/credentials/update'(): (
     parameters: AcsCredentialsUpdateParameters,
     options?: AcsCredentialsUpdateOptions,
@@ -1538,6 +1728,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Encodes an existing [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) onto a plastic card placed on the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners). Either provide an `acs_credential_id` or an `access_method_id`
+   */
   get '/acs/encoders/encode_credential'(): (
     parameters: AcsEncodersEncodeCredentialParameters,
     options?: AcsEncodersEncodeCredentialOptions,
@@ -1551,6 +1744,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   */
   get '/acs/encoders/get'(): (
     parameters: AcsEncodersGetParameters,
     options?: AcsEncodersGetOptions,
@@ -1564,6 +1760,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [encoders](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   */
   get '/acs/encoders/list'(): (
     parameters?: AcsEncodersListParameters,
     options?: AcsEncodersListOptions,
@@ -1577,6 +1776,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Scans an encoded [acs_credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) from a plastic card placed on the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   */
   get '/acs/encoders/scan_credential'(): (
     parameters: AcsEncodersScanCredentialParameters,
     options?: AcsEncodersScanCredentialOptions,
@@ -1590,6 +1792,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Scans a physical card placed on the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) and assigns the scanned credential to an ACS user. Provide either an `acs_user_id` or a `user_identity_id`.
+   */
   get '/acs/encoders/scan_to_assign_credential'(): (
     parameters: AcsEncodersScanToAssignCredentialParameters,
     options?: AcsEncodersScanToAssignCredentialOptions,
@@ -1603,6 +1808,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates that the next attempt to encode a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will fail. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   get '/acs/encoders/simulate/next_credential_encode_will_fail'(): (
     parameters: AcsEncodersSimulateNextCredentialEncodeWillFailParameters,
     options?: AcsEncodersSimulateNextCredentialEncodeWillFailOptions,
@@ -1618,6 +1826,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates that the next attempt to encode a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will succeed. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   get '/acs/encoders/simulate/next_credential_encode_will_succeed'(): (
     parameters: AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters,
     options?: AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions,
@@ -1635,6 +1846,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates that the next attempt to scan a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will fail. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   get '/acs/encoders/simulate/next_credential_scan_will_fail'(): (
     parameters: AcsEncodersSimulateNextCredentialScanWillFailParameters,
     options?: AcsEncodersSimulateNextCredentialScanWillFailOptions,
@@ -1650,6 +1864,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates that the next attempt to scan a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will succeed. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   get '/acs/encoders/simulate/next_credential_scan_will_succeed'(): (
     parameters: AcsEncodersSimulateNextCredentialScanWillSucceedParameters,
     options?: AcsEncodersSimulateNextCredentialScanWillSucceedOptions,
@@ -1667,6 +1884,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [access system entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   */
   get '/acs/entrances/get'(): (
     parameters: AcsEntrancesGetParameters,
     options?: AcsEntrancesGetOptions,
@@ -1680,6 +1900,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Grants a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) access to a specified [access system entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   */
   get '/acs/entrances/grant_access'(): (
     parameters: AcsEntrancesGrantAccessParameters,
     options?: AcsEntrancesGrantAccessOptions,
@@ -1693,6 +1916,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [access system entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   */
   get '/acs/entrances/list'(): (
     parameters?: AcsEntrancesListParameters,
     options?: AcsEntrancesListOptions,
@@ -1706,6 +1932,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [credentials](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) with access to a specified [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   */
   get '/acs/entrances/list_credentials_with_access'(): (
     parameters: AcsEntrancesListCredentialsWithAccessParameters,
     options?: AcsEntrancesListCredentialsWithAccessOptions,
@@ -1719,6 +1948,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Remotely unlocks a specified [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) using a cloud_key credential. Returns an action attempt that tracks the progress of the unlock operation.
+   */
   get '/acs/entrances/unlock'(): (
     parameters: AcsEntrancesUnlockParameters,
     options?: AcsEntrancesUnlockOptions,
@@ -1732,6 +1964,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [access system](https://docs.seam.co/low-level-apis/access-systems).
+   */
   get '/acs/systems/get'(): (
     parameters: AcsSystemsGetParameters,
     options?: AcsSystemsGetOptions,
@@ -1745,6 +1980,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [access systems](https://docs.seam.co/low-level-apis/access-systems).
+   *
+   * To filter the list of returned access systems by a specific connected account ID, include the `connected_account_id` in the request body. If you omit the `connected_account_id` parameter, the response includes all access systems connected to your workspace.
+   */
   get '/acs/systems/list'(): (
     parameters?: AcsSystemsListParameters,
     options?: AcsSystemsListOptions,
@@ -1758,6 +1998,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all credential manager systems that are compatible with a specified [access system](https://docs.seam.co/low-level-apis/access-systems).
+   *
+   * Specify the access system for which you want to retrieve all compatible credential manager systems by including the corresponding `acs_system_id` in the request body.
+   */
   get '/acs/systems/list_compatible_credential_manager_acs_systems'(): (
     parameters: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
     options?: AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions,
@@ -1775,6 +2020,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Reports ACS system device status including encoders and entrances.
+   */
   get '/acs/systems/report_devices'(): (
     parameters: AcsSystemsReportDevicesParameters,
     options?: AcsSystemsReportDevicesOptions,
@@ -1788,6 +2036,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Adds a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) to a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   get '/acs/users/add_to_access_group'(): (
     parameters: AcsUsersAddToAccessGroupParameters,
     options?: AcsUsersAddToAccessGroupOptions,
@@ -1801,6 +2052,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   */
   get '/acs/users/create'(): (
     parameters: AcsUsersCreateParameters,
     options?: AcsUsersCreateOptions,
@@ -1814,6 +2068,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) and invalidates the access system user's [credentials](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   */
   get '/acs/users/delete'(): (
     parameters?: AcsUsersDeleteParameters,
     options?: AcsUsersDeleteOptions,
@@ -1827,6 +2084,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   */
   get '/acs/users/get'(): (
     parameters?: AcsUsersGetParameters,
     options?: AcsUsersGetOptions,
@@ -1840,6 +2100,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [access system users](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   */
   get '/acs/users/list'(): (
     parameters?: AcsUsersListParameters,
     options?: AcsUsersListOptions,
@@ -1853,6 +2116,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Lists the [entrances](https://docs.seam.co/api/acs/entrances) to which a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) has access.
+   */
   get '/acs/users/list_accessible_entrances'(): (
     parameters?: AcsUsersListAccessibleEntrancesParameters,
     options?: AcsUsersListAccessibleEntrancesOptions,
@@ -1866,6 +2132,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Removes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) from a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   */
   get '/acs/users/remove_from_access_group'(): (
     parameters: AcsUsersRemoveFromAccessGroupParameters,
     options?: AcsUsersRemoveFromAccessGroupOptions,
@@ -1879,6 +2148,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Revokes access to all [entrances](https://docs.seam.co/api/acs/entrances) for a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   */
   get '/acs/users/revoke_access_to_all_entrances'(): (
     parameters?: AcsUsersRevokeAccessToAllEntrancesParameters,
     options?: AcsUsersRevokeAccessToAllEntrancesOptions,
@@ -1892,6 +2164,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * [Suspends](https://docs.seam.co/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users#suspend-an-acs-user) a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management). Suspending an access system user revokes their access temporarily. To restore an access system user's access, you can [unsuspend](https://docs.seam.co/api/acs/users/unsuspend) them.
+   */
   get '/acs/users/suspend'(): (
     parameters?: AcsUsersSuspendParameters,
     options?: AcsUsersSuspendOptions,
@@ -1905,6 +2180,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * [Unsuspends](https://docs.seam.co/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users#unsuspend-an-acs-user) a specified suspended [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management). While [suspending an access system user](https://docs.seam.co/api/acs/users/suspend) revokes their access temporarily, unsuspending the access system user restores their access.
+   */
   get '/acs/users/unsuspend'(): (
     parameters?: AcsUsersUnsuspendParameters,
     options?: AcsUsersUnsuspendOptions,
@@ -1918,6 +2196,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates the properties of a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   */
   get '/acs/users/update'(): (
     parameters?: AcsUsersUpdateParameters,
     options?: AcsUsersUpdateOptions,
@@ -1931,6 +2212,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [action attempt](https://docs.seam.co/core-concepts/action-attempts).
+   */
   get '/action_attempts/get'(): (
     parameters: ActionAttemptsGetParameters,
     options?: ActionAttemptsGetOptions,
@@ -1944,6 +2228,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of the [action attempts](https://docs.seam.co/core-concepts/action-attempts) that you specify as an array of `action_attempt_id`s.
+   */
   get '/action_attempts/list'(): (
     parameters?: ActionAttemptsListParameters,
     options?: ActionAttemptsListOptions,
@@ -1957,6 +2244,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   */
   get '/client_sessions/create'(): (
     parameters?: ClientSessionsCreateParameters,
     options?: ClientSessionsCreateOptions,
@@ -1970,6 +2260,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   */
   get '/client_sessions/delete'(): (
     parameters: ClientSessionsDeleteParameters,
     options?: ClientSessionsDeleteOptions,
@@ -1983,6 +2276,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   */
   get '/client_sessions/get'(): (
     parameters?: ClientSessionsGetParameters,
     options?: ClientSessionsGetOptions,
@@ -1996,6 +2292,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens) with specific characteristics or creates a new client session with these characteristics if it does not yet exist.
+   */
   get '/client_sessions/get_or_create'(): (
     parameters?: ClientSessionsGetOrCreateParameters,
     options?: ClientSessionsGetOrCreateOptions,
@@ -2009,6 +2308,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Grants a [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens) access to one or more resources, such as [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews), [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity), and so on.
+   */
   get '/client_sessions/grant_access'(): (
     parameters?: ClientSessionsGrantAccessParameters,
     options?: ClientSessionsGrantAccessOptions,
@@ -2022,6 +2324,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [client sessions](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   */
   get '/client_sessions/list'(): (
     parameters?: ClientSessionsListParameters,
     options?: ClientSessionsListOptions,
@@ -2035,6 +2340,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Revokes a [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   *
+   * Note that [deleting a client session](https://docs.seam.co/api/client_sessions/delete) is a separate action.
+   */
   get '/client_sessions/revoke'(): (
     parameters: ClientSessionsRevokeParameters,
     options?: ClientSessionsRevokeOptions,
@@ -2048,6 +2358,15 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews).
+   *
+   * To enable a user to connect their devices or systems to Seam, they must sign in to their device or system account. To enable a user to sign in, you create a `connect_webview`. After creating the Connect Webview, you receive a URL that you can use to display the visual component of this Connect Webview for your user. You can open an iframe or new window to display the Connect Webview.
+   *
+   * You should make a new `connect_webview` for each unique login request. Each `connect_webview` tracks the user that signed in with it. You receive an error if you reuse a Connect Webview for the same user twice or if you use the same Connect Webview for multiple users.
+   *
+   * See also: [Connect Webview Process](https://docs.seam.co/core-concepts/connect-webviews/connect-webview-process).
+   */
   get '/connect_webviews/create'(): (
     parameters?: ConnectWebviewsCreateParameters,
     options?: ConnectWebviewsCreateOptions,
@@ -2061,6 +2380,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews).
+   *
+   * You do not need to delete a Connect Webview once a user completes it. Instead, you can simply ignore completed Connect Webviews.
+   */
   get '/connect_webviews/delete'(): (
     parameters: ConnectWebviewsDeleteParameters,
     options?: ConnectWebviewsDeleteOptions,
@@ -2074,6 +2398,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews).
+   *
+   * Unless you're using a `custom_redirect_url`, you should poll a newly-created `connect_webview` to find out if the user has signed in or to get details about what devices they've connected.
+   */
   get '/connect_webviews/get'(): (
     parameters: ConnectWebviewsGetParameters,
     options?: ConnectWebviewsGetOptions,
@@ -2087,6 +2416,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews).
+   */
   get '/connect_webviews/list'(): (
     parameters?: ConnectWebviewsListParameters,
     options?: ConnectWebviewsListOptions,
@@ -2100,6 +2432,13 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a specified [connected account](https://docs.seam.co/core-concepts/connected-accounts).
+   *
+   * Deleting a connected account triggers a `connected_account.deleted` event and removes the connected account and all data associated with the connected account from Seam, including devices, events, access codes, and so on. For every deleted resource, Seam sends a corresponding deleted event, but the resource is not deleted from the provider.
+   *
+   * For example, if you delete a connected account with a device that has an access code, Seam sends a `connected_account.deleted` event, a `device.deleted` event, and an `access_code.deleted` event, but Seam does not remove the access code from the device.
+   */
   get '/connected_accounts/delete'(): (
     parameters: ConnectedAccountsDeleteParameters,
     options?: ConnectedAccountsDeleteOptions,
@@ -2113,6 +2452,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [connected account](https://docs.seam.co/core-concepts/connected-accounts).
+   */
   get '/connected_accounts/get'(): (
     parameters?: ConnectedAccountsGetParameters,
     options?: ConnectedAccountsGetOptions,
@@ -2126,6 +2468,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [connected accounts](https://docs.seam.co/core-concepts/connected-accounts).
+   */
   get '/connected_accounts/list'(): (
     parameters?: ConnectedAccountsListParameters,
     options?: ConnectedAccountsListOptions,
@@ -2139,6 +2484,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Request a [connected account](https://docs.seam.co/core-concepts/connected-accounts) sync attempt for the specified `connected_account_id`.
+   */
   get '/connected_accounts/sync'(): (
     parameters: ConnectedAccountsSyncParameters,
     options?: ConnectedAccountsSyncOptions,
@@ -2152,6 +2500,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a [connected account](https://docs.seam.co/core-concepts/connected-accounts).
+   */
   get '/connected_accounts/update'(): (
     parameters: ConnectedAccountsUpdateParameters,
     options?: ConnectedAccountsUpdateOptions,
@@ -2165,6 +2516,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates a connected account becoming disconnected from Seam. Only applicable for [sandbox workspaces](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   get '/connected_accounts/simulate/disconnect'(): (
     parameters: ConnectedAccountsSimulateDisconnectParameters,
     options?: ConnectedAccountsSimulateDisconnectOptions,
@@ -2181,6 +2535,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new customer portal magic link with configurable features.
+   */
   get '/customers/create_portal'(): (
     parameters?: CustomersCreatePortalParameters,
     options?: CustomersCreatePortalOptions,
@@ -2194,6 +2551,10 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes customer data including resources like spaces, properties, rooms, users, etc.
+   * This will delete the partner resources and any related Seam resources (user identities, access grants, spaces).
+   */
   get '/customers/delete_data'(): (
     parameters?: CustomersDeleteDataParameters,
     options?: CustomersDeleteDataOptions,
@@ -2207,6 +2568,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Pushes customer data including resources like spaces, properties, rooms, users, etc.
+   */
   get '/customers/push_data'(): (
     parameters: CustomersPushDataParameters,
     options?: CustomersPushDataOptions,
@@ -2220,6 +2584,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [device](https://docs.seam.co/core-concepts/devices).
+   *
+   * You must specify either `device_id` or `name`.
+   */
   get '/devices/get'(): (
     parameters?: DevicesGetParameters,
     options?: DevicesGetOptions,
@@ -2233,6 +2602,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [devices](https://docs.seam.co/core-concepts/devices).
+   */
   get '/devices/list'(): (
     parameters?: DevicesListParameters,
     options?: DevicesListOptions,
@@ -2246,6 +2618,13 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all device providers.
+   *
+   * The information that this endpoint returns for each provider includes a set of [capability flags](https://docs.seam.co/capability-guides/device-and-system-capabilities#capability-flags), such as `device_provider.can_remotely_unlock`. If at least one supported device from a provider has a specific capability, the corresponding capability flag is `true`.
+   *
+   * When you create a [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews), you can customize the providers—that is, the brands—that it displays. In the `/connect_webviews/create` request, include the desired set of device provider keys in the `accepted_providers` parameter. See also [Customize the Brands to Display in Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-brands-to-display-in-your-connect-webviews).
+   */
   get '/devices/list_device_providers'(): (
     parameters?: DevicesListDeviceProvidersParameters,
     options?: DevicesListDeviceProvidersOptions,
@@ -2259,6 +2638,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates provider-specific metadata for devices.
+   */
   get '/devices/report_provider_metadata'(): (
     parameters: DevicesReportProviderMetadataParameters,
     options?: DevicesReportProviderMetadataOptions,
@@ -2272,6 +2654,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a specified [device](https://docs.seam.co/core-concepts/devices).
+   *
+   * You can add or change [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) for a device, change the device's name, or [convert a managed device to unmanaged](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
+   */
   get '/devices/update'(): (
     parameters: DevicesUpdateParameters,
     options?: DevicesUpdateOptions,
@@ -2285,6 +2672,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates connecting a device to Seam. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://docs.seam.co/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
+   */
   get '/devices/simulate/connect'(): (
     parameters: DevicesSimulateConnectParameters,
     options?: DevicesSimulateConnectOptions,
@@ -2298,6 +2688,12 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates bringing the Wi‑Fi hub (bridge) back online for a device.
+   * Only applicable for sandbox workspaces and currently
+   * implemented for August and TTLock locks.
+   * This will clear the `hub_disconnected` error on the device.
+   */
   get '/devices/simulate/connect_to_hub'(): (
     parameters: DevicesSimulateConnectToHubParameters,
     options?: DevicesSimulateConnectToHubOptions,
@@ -2311,6 +2707,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates disconnecting a device from Seam. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://docs.seam.co/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
+   */
   get '/devices/simulate/disconnect'(): (
     parameters: DevicesSimulateDisconnectParameters,
     options?: DevicesSimulateDisconnectOptions,
@@ -2324,6 +2723,13 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates taking the Wi‑Fi hub (bridge) offline for a device.
+   * Only applicable for sandbox workspaces and currently
+   * implemented for August, TTLock, and IglooHome devices.
+   * This will set the `hub_disconnected` error on the device, or mark the
+   * IglooHome bridge offline in sandbox.
+   */
   get '/devices/simulate/disconnect_from_hub'(): (
     parameters: DevicesSimulateDisconnectFromHubParameters,
     options?: DevicesSimulateDisconnectFromHubOptions,
@@ -2337,6 +2743,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Toggle the simulated Nuki Smart Hosting subscription for a device (sandbox only).
+   * Send `is_expired: true` to simulate an expired subscription, or `false` to simulate an active subscription.
+   * The actual device error is created/cleared by the poller after this state change.
+   */
   get '/devices/simulate/paid_subscription'(): (
     parameters: DevicesSimulatePaidSubscriptionParameters,
     options?: DevicesSimulatePaidSubscriptionOptions,
@@ -2350,6 +2761,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates removing a device from Seam. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://docs.seam.co/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
+   */
   get '/devices/simulate/remove'(): (
     parameters: DevicesSimulateRemoveParameters,
     options?: DevicesSimulateRemoveOptions,
@@ -2363,6 +2777,13 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [unmanaged device](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
+   *
+   * An unmanaged device has a limited set of visible properties and a subset of supported events. You cannot control an unmanaged device. Any [access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) on an unmanaged device are unmanaged. To control an unmanaged device with Seam, [convert it to a managed device](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices#convert-an-unmanaged-device-to-managed).
+   *
+   * You must specify either `device_id` or `name`.
+   */
   get '/devices/unmanaged/get'(): (
     parameters?: DevicesUnmanagedGetParameters,
     options?: DevicesUnmanagedGetOptions,
@@ -2376,6 +2797,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [unmanaged devices](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
+   *
+   * An unmanaged device has a limited set of visible properties and a subset of supported events. You cannot control an unmanaged device. Any [access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) on an unmanaged device are unmanaged. To control an unmanaged device with Seam, [convert it to a managed device](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices#convert-an-unmanaged-device-to-managed).
+   */
   get '/devices/unmanaged/list'(): (
     parameters?: DevicesUnmanagedListParameters,
     options?: DevicesUnmanagedListOptions,
@@ -2389,6 +2815,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a specified [unmanaged device](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices). To convert an unmanaged device to managed, set `is_managed` to `true`.
+   *
+   * An unmanaged device has a limited set of visible properties and a subset of supported events. You cannot control an unmanaged device. Any [access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) on an unmanaged device are unmanaged. To control an unmanaged device with Seam, [convert it to a managed device](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices#convert-an-unmanaged-device-to-managed).
+   */
   get '/devices/unmanaged/update'(): (
     parameters: DevicesUnmanagedUpdateParameters,
     options?: DevicesUnmanagedUpdateOptions,
@@ -2402,6 +2833,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified event. This endpoint returns the same event that would be sent to a [webhook](https://docs.seam.co/developer-tools/webhooks), but it enables you to retrieve an event that already took place.
+   */
   get '/events/get'(): (
     parameters?: EventsGetParameters,
     options?: EventsGetOptions,
@@ -2415,6 +2849,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all events. This endpoint returns the same events that would be sent to a [webhook](https://docs.seam.co/developer-tools/webhooks), but it enables you to filter or see events that already took place.
+   */
   get '/events/list'(): (
     parameters?: EventsListParameters,
     options?: EventsListOptions,
@@ -2428,6 +2865,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a specified [Instant Key](https://docs.seam.co/capability-guides/instant-keys).
+   */
   get '/instant_keys/delete'(): (
     parameters: InstantKeysDeleteParameters,
     options?: InstantKeysDeleteOptions,
@@ -2441,6 +2881,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Gets an [instant key](https://docs.seam.co/capability-guides/instant-keys).
+   */
   get '/instant_keys/get'(): (
     parameters?: InstantKeysGetParameters,
     options?: InstantKeysGetOptions,
@@ -2454,6 +2897,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [instant keys](https://docs.seam.co/capability-guides/instant-keys).
+   */
   get '/instant_keys/list'(): (
     parameters?: InstantKeysListParameters,
     options?: InstantKeysListOptions,
@@ -2467,6 +2913,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Configures the auto-lock setting for a specified [lock](https://docs.seam.co/low-level-apis/smart-locks).
+   */
   get '/locks/configure_auto_lock'(): (
     parameters: LocksConfigureAutoLockParameters,
     options?: LocksConfigureAutoLockOptions,
@@ -2480,6 +2929,10 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [lock](https://docs.seam.co/low-level-apis/smart-locks).
+   * @deprecated Use `/devices/get` instead.
+   */
   get '/locks/get'(): (
     parameters?: LocksGetParameters,
     options?: LocksGetOptions,
@@ -2493,6 +2946,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [locks](https://docs.seam.co/low-level-apis/smart-locks).
+   */
   get '/locks/list'(): (
     parameters?: LocksListParameters,
     options?: LocksListOptions,
@@ -2506,6 +2962,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Locks a [lock](https://docs.seam.co/low-level-apis/smart-locks). See also [Locking and Unlocking Smart Locks](https://docs.seam.co/low-level-apis/smart-locks/lock-and-unlock).
+   */
   get '/locks/lock_door'(): (
     parameters: LocksLockDoorParameters,
     options?: LocksLockDoorOptions,
@@ -2519,6 +2978,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Unlocks a [lock](https://docs.seam.co/low-level-apis/smart-locks). See also [Locking and Unlocking Smart Locks](https://docs.seam.co/low-level-apis/smart-locks/lock-and-unlock).
+   */
   get '/locks/unlock_door'(): (
     parameters: LocksUnlockDoorParameters,
     options?: LocksUnlockDoorOptions,
@@ -2532,6 +2994,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates the entry of a code on a keypad. You can only perform this action for [August](https://docs.seam.co/device-and-system-integration-guides/august-locks) devices within [sandbox workspaces](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   get '/locks/simulate/keypad_code_entry'(): (
     parameters: LocksSimulateKeypadCodeEntryParameters,
     options?: LocksSimulateKeypadCodeEntryOptions,
@@ -2545,6 +3010,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates a manual lock action using a keypad. You can only perform this action for [August](https://docs.seam.co/device-and-system-integration-guides/august-locks) devices within [sandbox workspaces](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   get '/locks/simulate/manual_lock_via_keypad'(): (
     parameters: LocksSimulateManualLockViaKeypadParameters,
     options?: LocksSimulateManualLockViaKeypadOptions,
@@ -2558,6 +3026,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [noise sensors](https://docs.seam.co/capability-guides/noise-sensors).
+   */
   get '/noise_sensors/list'(): (
     parameters?: NoiseSensorsListParameters,
     options?: NoiseSensorsListOptions,
@@ -2571,6 +3042,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new [noise threshold](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors). Thresholds represent the limits of noise tolerated at a property, which can be customized for each hour of the day. Each device has its own default thresholds, but you can use the Seam API to modify them.
+   */
   get '/noise_sensors/noise_thresholds/create'(): (
     parameters: NoiseSensorsNoiseThresholdsCreateParameters,
     options?: NoiseSensorsNoiseThresholdsCreateOptions,
@@ -2587,6 +3061,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a [noise threshold](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) from a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors).
+   */
   get '/noise_sensors/noise_thresholds/delete'(): (
     parameters: NoiseSensorsNoiseThresholdsDeleteParameters,
     options?: NoiseSensorsNoiseThresholdsDeleteOptions,
@@ -2603,6 +3080,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [noise threshold](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors).
+   */
   get '/noise_sensors/noise_thresholds/get'(): (
     parameters: NoiseSensorsNoiseThresholdsGetParameters,
     options?: NoiseSensorsNoiseThresholdsGetOptions,
@@ -2619,6 +3099,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [noise thresholds](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors).
+   */
   get '/noise_sensors/noise_thresholds/list'(): (
     parameters: NoiseSensorsNoiseThresholdsListParameters,
     options?: NoiseSensorsNoiseThresholdsListOptions,
@@ -2635,6 +3118,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a [noise threshold](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors).
+   */
   get '/noise_sensors/noise_thresholds/update'(): (
     parameters: NoiseSensorsNoiseThresholdsUpdateParameters,
     options?: NoiseSensorsNoiseThresholdsUpdateOptions,
@@ -2651,6 +3137,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates the triggering of a [noise threshold](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors) in a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   get '/noise_sensors/simulate/trigger_noise_threshold'(): (
     parameters: NoiseSensorsSimulateTriggerNoiseThresholdParameters,
     options?: NoiseSensorsSimulateTriggerNoiseThresholdOptions,
@@ -2664,6 +3153,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deactivates a phone, which is useful, for example, if a user has lost their phone. For more information, see [App User Lost Phone Process](https://docs.seam.co/capability-guides/mobile-access/managing-phones-for-a-user-identity#app-user-lost-phone-process).
+   */
   get '/phones/deactivate'(): (
     parameters: PhonesDeactivateParameters,
     options?: PhonesDeactivateOptions,
@@ -2677,6 +3169,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [phone](https://docs.seam.co/capability-guides/mobile-access/managing-phones-for-a-user-identity).
+   */
   get '/phones/get'(): (
     parameters: PhonesGetParameters,
     options?: PhonesGetOptions,
@@ -2690,6 +3185,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [phones](https://docs.seam.co/capability-guides/mobile-access/managing-phones-for-a-user-identity). To filter the list of returned phones by a specific owner user identity or credential, include the `owner_user_identity_id` or `acs_credential_id`, respectively, in the request body.
+   */
   get '/phones/list'(): (
     parameters?: PhonesListParameters,
     options?: PhonesListOptions,
@@ -2703,6 +3201,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new simulated phone in a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Creating a Simulated Phone for a User Identity](https://docs.seam.co/capability-guides/mobile-access/developing-in-a-sandbox-workspace#creating-a-simulated-phone-for-a-user-identity).
+   */
   get '/phones/simulate/create_sandbox_phone'(): (
     parameters: PhonesSimulateCreateSandboxPhoneParameters,
     options?: PhonesSimulateCreateSandboxPhoneOptions,
@@ -2716,6 +3217,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Adds [entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) to a specific space.
+   */
   get '/spaces/add_acs_entrances'(): (
     parameters: SpacesAddAcsEntrancesParameters,
     options?: SpacesAddAcsEntrancesOptions,
@@ -2729,6 +3233,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Adds a [connected account](https://docs.seam.co/core-concepts/connected-accounts) to a specific space.
+   */
   get '/spaces/add_connected_account'(): (
     parameters: SpacesAddConnectedAccountParameters,
     options?: SpacesAddConnectedAccountOptions,
@@ -2742,6 +3249,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Adds devices to a specific space.
+   */
   get '/spaces/add_devices'(): (
     parameters: SpacesAddDevicesParameters,
     options?: SpacesAddDevicesOptions,
@@ -2755,6 +3265,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new space.
+   */
   get '/spaces/create'(): (
     parameters: SpacesCreateParameters,
     options?: SpacesCreateOptions,
@@ -2768,6 +3281,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a space.
+   */
   get '/spaces/delete'(): (
     parameters: SpacesDeleteParameters,
     options?: SpacesDeleteOptions,
@@ -2781,6 +3297,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Gets a space.
+   */
   get '/spaces/get'(): (
     parameters?: SpacesGetParameters,
     options?: SpacesGetOptions,
@@ -2794,6 +3313,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Gets all related resources for one or more Spaces.
+   */
   get '/spaces/get_related'(): (
     parameters?: SpacesGetRelatedParameters,
     options?: SpacesGetRelatedOptions,
@@ -2807,6 +3329,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all spaces.
+   */
   get '/spaces/list'(): (
     parameters?: SpacesListParameters,
     options?: SpacesListOptions,
@@ -2820,6 +3345,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Removes [entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) from a specific space.
+   */
   get '/spaces/remove_acs_entrances'(): (
     parameters: SpacesRemoveAcsEntrancesParameters,
     options?: SpacesRemoveAcsEntrancesOptions,
@@ -2833,6 +3361,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Removes a [connected account](https://docs.seam.co/core-concepts/connected-accounts) from a specific space.
+   */
   get '/spaces/remove_connected_account'(): (
     parameters: SpacesRemoveConnectedAccountParameters,
     options?: SpacesRemoveConnectedAccountOptions,
@@ -2846,6 +3377,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Removes devices from a specific space.
+   */
   get '/spaces/remove_devices'(): (
     parameters: SpacesRemoveDevicesParameters,
     options?: SpacesRemoveDevicesOptions,
@@ -2859,6 +3393,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates an existing space.
+   */
   get '/spaces/update'(): (
     parameters?: SpacesUpdateParameters,
     options?: SpacesUpdateOptions,
@@ -2872,6 +3409,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Activates a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/activate_climate_preset'(): (
     parameters: ThermostatsActivateClimatePresetParameters,
     options?: ThermostatsActivateClimatePresetOptions,
@@ -2885,6 +3425,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to [cool mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   */
   get '/thermostats/cool'(): (
     parameters: ThermostatsCoolParameters,
     options?: ThermostatsCoolOptions,
@@ -2898,6 +3441,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/create_climate_preset'(): (
     parameters: ThermostatsCreateClimatePresetParameters,
     options?: ThermostatsCreateClimatePresetOptions,
@@ -2911,6 +3457,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/delete_climate_preset'(): (
     parameters: ThermostatsDeleteClimatePresetParameters,
     options?: ThermostatsDeleteClimatePresetOptions,
@@ -2924,6 +3473,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to [heat mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   */
   get '/thermostats/heat'(): (
     parameters: ThermostatsHeatParameters,
     options?: ThermostatsHeatOptions,
@@ -2937,6 +3489,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to [heat-cool ("auto") mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   */
   get '/thermostats/heat_cool'(): (
     parameters: ThermostatsHeatCoolParameters,
     options?: ThermostatsHeatCoolOptions,
@@ -2950,6 +3505,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [thermostats](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/list'(): (
     parameters?: ThermostatsListParameters,
     options?: ThermostatsListOptions,
@@ -2963,6 +3521,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to ["off" mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   */
   get '/thermostats/off'(): (
     parameters: ThermostatsOffParameters,
     options?: ThermostatsOffOptions,
@@ -2976,6 +3537,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Sets a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) as the ["fallback"](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets/setting-the-fallback-climate-preset) preset for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/set_fallback_climate_preset'(): (
     parameters: ThermostatsSetFallbackClimatePresetParameters,
     options?: ThermostatsSetFallbackClimatePresetOptions,
@@ -2989,6 +3553,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Sets the [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/set_fan_mode'(): (
     parameters: ThermostatsSetFanModeParameters,
     options?: ThermostatsSetFanModeOptions,
@@ -3002,6 +3569,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Sets the [HVAC mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/set_hvac_mode'(): (
     parameters: ThermostatsSetHvacModeParameters,
     options?: ThermostatsSetHvacModeOptions,
@@ -3015,6 +3585,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Sets a [temperature threshold](https://docs.seam.co/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) for a specified thermostat. Seam emits a `thermostat.temperature_threshold_exceeded` event and adds a warning on a thermostat if it reports a temperature outside the threshold range.
+   */
   get '/thermostats/set_temperature_threshold'(): (
     parameters: ThermostatsSetTemperatureThresholdParameters,
     options?: ThermostatsSetTemperatureThresholdOptions,
@@ -3028,6 +3601,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/update_climate_preset'(): (
     parameters: ThermostatsUpdateClimatePresetParameters,
     options?: ThermostatsUpdateClimatePresetOptions,
@@ -3041,6 +3617,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates the thermostat weekly program for a thermostat device. To configure a weekly program, specify the ID of the daily program that you want to use for each day of the week. When you update a weekly program, the set of programs that you specify overwrites any previous weekly program for the thermostat.
+   */
   get '/thermostats/update_weekly_program'(): (
     parameters: ThermostatsUpdateWeeklyProgramParameters,
     options?: ThermostatsUpdateWeeklyProgramOptions,
@@ -3054,6 +3633,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new thermostat daily program. A daily program consists of a set of periods, where each period includes a start time and the key of a configured climate preset. Once you have defined a daily program, you can assign it to one or more days within a weekly program.
+   */
   get '/thermostats/daily_programs/create'(): (
     parameters: ThermostatsDailyProgramsCreateParameters,
     options?: ThermostatsDailyProgramsCreateOptions,
@@ -3067,6 +3649,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a thermostat daily program.
+   */
   get '/thermostats/daily_programs/delete'(): (
     parameters: ThermostatsDailyProgramsDeleteParameters,
     options?: ThermostatsDailyProgramsDeleteOptions,
@@ -3080,6 +3665,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a specified thermostat daily program. The periods that you specify overwrite any existing periods for the daily program.
+   */
   get '/thermostats/daily_programs/update'(): (
     parameters: ThermostatsDailyProgramsUpdateParameters,
     options?: ThermostatsDailyProgramsUpdateOptions,
@@ -3093,6 +3681,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/schedules/create'(): (
     parameters: ThermostatsSchedulesCreateParameters,
     options?: ThermostatsSchedulesCreateOptions,
@@ -3106,6 +3697,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/schedules/delete'(): (
     parameters: ThermostatsSchedulesDeleteParameters,
     options?: ThermostatsSchedulesDeleteOptions,
@@ -3119,6 +3713,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+   */
   get '/thermostats/schedules/get'(): (
     parameters: ThermostatsSchedulesGetParameters,
     options?: ThermostatsSchedulesGetOptions,
@@ -3132,6 +3729,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [thermostat schedules](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   */
   get '/thermostats/schedules/list'(): (
     parameters: ThermostatsSchedulesListParameters,
     options?: ThermostatsSchedulesListOptions,
@@ -3145,6 +3745,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a specified [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+   */
   get '/thermostats/schedules/update'(): (
     parameters: ThermostatsSchedulesUpdateParameters,
     options?: ThermostatsSchedulesUpdateOptions,
@@ -3158,6 +3761,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates having adjusted the [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) for a [thermostat](https://docs.seam.co/capability-guides/thermostats). Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your Thermostat App with Simulate Endpoints](https://docs.seam.co/capability-guides/thermostats/testing-your-thermostat-app-with-simulate-endpoints).
+   */
   get '/thermostats/simulate/hvac_mode_adjusted'(): (
     parameters: ThermostatsSimulateHvacModeAdjustedParameters,
     options?: ThermostatsSimulateHvacModeAdjustedOptions,
@@ -3171,6 +3777,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Simulates a [thermostat](https://docs.seam.co/capability-guides/thermostats) reaching a specified temperature. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your Thermostat App with Simulate Endpoints](https://docs.seam.co/capability-guides/thermostats/testing-your-thermostat-app-with-simulate-endpoints).
+   */
   get '/thermostats/simulate/temperature_reached'(): (
     parameters: ThermostatsSimulateTemperatureReachedParameters,
     options?: ThermostatsSimulateTemperatureReachedOptions,
@@ -3184,6 +3793,13 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Adds a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) to a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   *
+   * You must specify either `user_identity_id` or `user_identity_key` to identify the user identity.
+   *
+   * If `user_identity_key` is provided, but the user identity doesn't exist, a new user identity will be created automatically using information from the ACS user.
+   */
   get '/user_identities/add_acs_user'(): (
     parameters: UserIdentitiesAddAcsUserParameters,
     options?: UserIdentitiesAddAcsUserOptions,
@@ -3197,6 +3813,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   get '/user_identities/create'(): (
     parameters?: UserIdentitiesCreateParameters,
     options?: UserIdentitiesCreateOptions,
@@ -3210,6 +3829,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This deletes the user identity and all associated resources, including any [credentials](https://docs.seam.co/api/acs/credentials), [acs users](https://docs.seam.co/api/acs/users) and [client sessions](https://docs.seam.co/api/client_sessions).
+   */
   get '/user_identities/delete'(): (
     parameters: UserIdentitiesDeleteParameters,
     options?: UserIdentitiesDeleteOptions,
@@ -3223,6 +3845,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Generates a new [instant key](https://docs.seam.co/capability-guides/instant-keys) for a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   get '/user_identities/generate_instant_key'(): (
     parameters: UserIdentitiesGenerateInstantKeyParameters,
     options?: UserIdentitiesGenerateInstantKeyOptions,
@@ -3236,6 +3861,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   get '/user_identities/get'(): (
     parameters?: UserIdentitiesGetParameters,
     options?: UserIdentitiesGetOptions,
@@ -3249,6 +3877,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Grants a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) access to a specified [device](https://docs.seam.co/core-concepts/devices/).
+   */
   get '/user_identities/grant_access_to_device'(): (
     parameters: UserIdentitiesGrantAccessToDeviceParameters,
     options?: UserIdentitiesGrantAccessToDeviceOptions,
@@ -3262,6 +3893,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   get '/user_identities/list'(): (
     parameters?: UserIdentitiesListParameters,
     options?: UserIdentitiesListOptions,
@@ -3275,6 +3909,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [devices](https://docs.seam.co/core-concepts/devices) associated with a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This includes devices derived from the access grants assigned to the user identity and devices directly linked to the user identity.
+   */
   get '/user_identities/list_accessible_devices'(): (
     parameters: UserIdentitiesListAccessibleDevicesParameters,
     options?: UserIdentitiesListAccessibleDevicesOptions,
@@ -3288,6 +3925,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [ACS entrances](https://docs.seam.co/api/acs/entrances) accessible to a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This includes entrances derived from the access grants assigned to the user identity and entrances accessible through ACS users linked to the user identity.
+   */
   get '/user_identities/list_accessible_entrances'(): (
     parameters: UserIdentitiesListAccessibleEntrancesParameters,
     options?: UserIdentitiesListAccessibleEntrancesOptions,
@@ -3301,6 +3941,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [access systems](https://docs.seam.co/low-level-apis/access-systems) associated with a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   get '/user_identities/list_acs_systems'(): (
     parameters: UserIdentitiesListAcsSystemsParameters,
     options?: UserIdentitiesListAcsSystemsOptions,
@@ -3314,6 +3957,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [access system users](https://docs.seam.co/low-level-apis/access-systems/user-management) assigned to a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   get '/user_identities/list_acs_users'(): (
     parameters: UserIdentitiesListAcsUsersParameters,
     options?: UserIdentitiesListAcsUsersOptions,
@@ -3327,6 +3973,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Removes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) from a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   get '/user_identities/remove_acs_user'(): (
     parameters: UserIdentitiesRemoveAcsUserParameters,
     options?: UserIdentitiesRemoveAcsUserOptions,
@@ -3340,6 +3989,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Revokes access to a specified [device](https://docs.seam.co/core-concepts/devices/) from a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   get '/user_identities/revoke_access_to_device'(): (
     parameters: UserIdentitiesRevokeAccessToDeviceParameters,
     options?: UserIdentitiesRevokeAccessToDeviceOptions,
@@ -3353,6 +4005,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   get '/user_identities/update'(): (
     parameters: UserIdentitiesUpdateParameters,
     options?: UserIdentitiesUpdateOptions,
@@ -3366,6 +4021,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a specified unmanaged [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) (where is_managed = false).
+   */
   get '/user_identities/unmanaged/get'(): (
     parameters: UserIdentitiesUnmanagedGetParameters,
     options?: UserIdentitiesUnmanagedGetOptions,
@@ -3379,6 +4037,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all unmanaged [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) (where is_managed = false).
+   */
   get '/user_identities/unmanaged/list'(): (
     parameters?: UserIdentitiesUnmanagedListParameters,
     options?: UserIdentitiesUnmanagedListOptions,
@@ -3392,6 +4053,11 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates an unmanaged [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) to make it managed.
+   *
+   * This endpoint can only be used to convert unmanaged user identities to managed ones by setting `is_managed` to `true`. It cannot be used to convert managed user identities back to unmanaged.
+   */
   get '/user_identities/unmanaged/update'(): (
     parameters: UserIdentitiesUnmanagedUpdateParameters,
     options?: UserIdentitiesUnmanagedUpdateOptions,
@@ -3405,6 +4071,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new [webhook](https://docs.seam.co/developer-tools/webhooks).
+   */
   get '/webhooks/create'(): (
     parameters: WebhooksCreateParameters,
     options?: WebhooksCreateOptions,
@@ -3418,6 +4087,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Deletes a specified [webhook](https://docs.seam.co/developer-tools/webhooks).
+   */
   get '/webhooks/delete'(): (
     parameters: WebhooksDeleteParameters,
     options?: WebhooksDeleteOptions,
@@ -3431,6 +4103,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Gets a specified [webhook](https://docs.seam.co/developer-tools/webhooks).
+   */
   get '/webhooks/get'(): (
     parameters: WebhooksGetParameters,
     options?: WebhooksGetOptions,
@@ -3444,6 +4119,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of all [webhooks](https://docs.seam.co/developer-tools/webhooks).
+   */
   get '/webhooks/list'(): (
     parameters?: WebhooksListParameters,
     options?: WebhooksListOptions,
@@ -3457,6 +4135,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates a specified [webhook](https://docs.seam.co/developer-tools/webhooks).
+   */
   get '/webhooks/update'(): (
     parameters: WebhooksUpdateParameters,
     options?: WebhooksUpdateOptions,
@@ -3470,6 +4151,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Creates a new [workspace](https://docs.seam.co/core-concepts/workspaces).
+   */
   get '/workspaces/create'(): (
     parameters: WorkspacesCreateParameters,
     options?: WorkspacesCreateOptions,
@@ -3483,6 +4167,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns the [workspace](https://docs.seam.co/core-concepts/workspaces) associated with the authentication value.
+   */
   get '/workspaces/get'(): (
     parameters?: WorkspacesGetParameters,
     options?: WorkspacesGetOptions,
@@ -3496,6 +4183,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Returns a list of [workspaces](https://docs.seam.co/core-concepts/workspaces) associated with the authentication value.
+   */
   get '/workspaces/list'(): (
     parameters?: WorkspacesListParameters,
     options?: WorkspacesListOptions,
@@ -3509,6 +4199,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Resets the [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces) associated with the authentication value. Note that this endpoint is only available for sandbox workspaces.
+   */
   get '/workspaces/reset_sandbox'(): (
     parameters?: WorkspacesResetSandboxParameters,
     options?: WorkspacesResetSandboxOptions,
@@ -3522,6 +4215,9 @@ export class SeamHttpEndpoints {
     }
   }
 
+  /**
+   * Updates the [workspace](https://docs.seam.co/core-concepts/workspaces) associated with the authentication value.
+   */
   get '/workspaces/update'(): (
     parameters?: WorkspacesUpdateParameters,
     options?: WorkspacesUpdateOptions,

@@ -161,6 +161,13 @@ export class SeamHttpDevicesUnmanaged {
     await clientSessions.get()
   }
 
+  /**
+   * Returns a specified [unmanaged device](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
+   *
+   * An unmanaged device has a limited set of visible properties and a subset of supported events. You cannot control an unmanaged device. Any [access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) on an unmanaged device are unmanaged. To control an unmanaged device with Seam, [convert it to a managed device](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices#convert-an-unmanaged-device-to-managed).
+   *
+   * You must specify either `device_id` or `name`.
+   */
   get(
     parameters?: DevicesUnmanagedGetParameters,
     options: DevicesUnmanagedGetOptions = {},
@@ -174,6 +181,11 @@ export class SeamHttpDevicesUnmanaged {
     })
   }
 
+  /**
+   * Returns a list of all [unmanaged devices](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
+   *
+   * An unmanaged device has a limited set of visible properties and a subset of supported events. You cannot control an unmanaged device. Any [access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) on an unmanaged device are unmanaged. To control an unmanaged device with Seam, [convert it to a managed device](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices#convert-an-unmanaged-device-to-managed).
+   */
   list(
     parameters?: DevicesUnmanagedListParameters,
     options: DevicesUnmanagedListOptions = {},
@@ -187,6 +199,11 @@ export class SeamHttpDevicesUnmanaged {
     })
   }
 
+  /**
+   * Updates a specified [unmanaged device](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices). To convert an unmanaged device to managed, set `is_managed` to `true`.
+   *
+   * An unmanaged device has a limited set of visible properties and a subset of supported events. You cannot control an unmanaged device. Any [access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) on an unmanaged device are unmanaged. To control an unmanaged device with Seam, [convert it to a managed device](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices#convert-an-unmanaged-device-to-managed).
+   */
   update(
     parameters: DevicesUnmanagedUpdateParameters,
     options: DevicesUnmanagedUpdateOptions = {},
@@ -202,7 +219,13 @@ export class SeamHttpDevicesUnmanaged {
 }
 
 export type DevicesUnmanagedGetParameters = {
+  /**
+   * ID of the unmanaged device that you want to get.
+   */
   device_id?: string | undefined
+  /**
+   * Name of the unmanaged device that you want to get.
+   */
   name?: string | undefined
 }
 
@@ -219,13 +242,37 @@ export type DevicesUnmanagedGetRequest = SeamHttpRequest<
 export interface DevicesUnmanagedGetOptions {}
 
 export type DevicesUnmanagedListParameters = {
+  /**
+   * ID of the Connect Webview for which you want to list devices.
+   */
   connect_webview_id?: string | undefined
+  /**
+   * ID of the connected account for which you want to list devices.
+   */
   connected_account_id?: string | undefined
+  /**
+   * Array of IDs of the connected accounts for which you want to list devices.
+   */
   connected_account_ids?: Array<string> | undefined
+  /**
+   * Timestamp by which to limit returned devices. Returns devices created before this timestamp.
+   */
   created_before?: string | undefined
+  /**
+   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices.
+   */
   custom_metadata_has?: Record<string, unknown> | undefined
+  /**
+   * Customer key for which you want to list devices.
+   */
   customer_key?: string | undefined
+  /**
+   * Array of device IDs for which you want to list devices.
+   */
   device_ids?: Array<string> | undefined
+  /**
+   * Device type for which you want to list devices.
+   */
   device_type?:
     | 'akuvox_lock'
     | 'august_lock'
@@ -270,6 +317,9 @@ export type DevicesUnmanagedListParameters = {
     | 'android_phone'
     | 'ring_camera'
     | undefined
+  /**
+   * Array of device types for which you want to list devices.
+   */
   device_types?:
     | Array<
         | 'akuvox_lock'
@@ -316,7 +366,13 @@ export type DevicesUnmanagedListParameters = {
         | 'ring_camera'
       >
     | undefined
+  /**
+   * Numerical limit on the number of devices to return.
+   */
   limit?: number | undefined
+  /**
+   * Manufacturer for which you want to list devices.
+   */
   manufacturer?:
     | 'akuvox'
     | 'august'
@@ -370,10 +426,25 @@ export type DevicesUnmanagedListParameters = {
     | 'kisi'
     | 'slack'
     | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned devices to include all records that satisfy a partial match using `device_id` (full or partial UUID prefix, minimum 4 characters), `connected_account_id`, `display_name`, `custom_metadata` or `location.location_name`.
+   */
   search?: string | undefined
+  /**
+   * ID of the space for which you want to list devices.
+   */
   space_id?: string | undefined
+  /**
+   * @deprecated Use `space_id`.
+   */
   unstable_location_id?: string | undefined
+  /**
+   * Your own internal user ID for the user for which you want to list devices.
+   */
   user_identifier_key?: string | undefined
 }
 
@@ -390,9 +461,18 @@ export type DevicesUnmanagedListRequest = SeamHttpRequest<
 export interface DevicesUnmanagedListOptions {}
 
 export type DevicesUnmanagedUpdateParameters = {
+  /**
+   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs.
+   */
   custom_metadata?: Record<string, unknown> | undefined
+  /**
+   * ID of the unmanaged device that you want to update.
+   */
   device_id: string
 
+  /**
+   * Indicates whether the device is managed. Set this parameter to `true` to convert an unmanaged device to managed.
+   */
   is_managed?: boolean | undefined
 }
 

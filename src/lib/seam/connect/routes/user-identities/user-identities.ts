@@ -175,6 +175,13 @@ export class SeamHttpUserIdentities {
     )
   }
 
+  /**
+   * Adds a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) to a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   *
+   * You must specify either `user_identity_id` or `user_identity_key` to identify the user identity.
+   *
+   * If `user_identity_key` is provided, but the user identity doesn't exist, a new user identity will be created automatically using information from the ACS user.
+   */
   addAcsUser(
     parameters: UserIdentitiesAddAcsUserParameters,
     options: UserIdentitiesAddAcsUserOptions = {},
@@ -188,6 +195,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Creates a new [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   create(
     parameters?: UserIdentitiesCreateParameters,
     options: UserIdentitiesCreateOptions = {},
@@ -201,6 +211,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Deletes a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This deletes the user identity and all associated resources, including any [credentials](https://docs.seam.co/api/acs/credentials), [acs users](https://docs.seam.co/api/acs/users) and [client sessions](https://docs.seam.co/api/client_sessions).
+   */
   delete(
     parameters: UserIdentitiesDeleteParameters,
     options: UserIdentitiesDeleteOptions = {},
@@ -214,6 +227,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Generates a new [instant key](https://docs.seam.co/capability-guides/instant-keys) for a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   generateInstantKey(
     parameters: UserIdentitiesGenerateInstantKeyParameters,
     options: UserIdentitiesGenerateInstantKeyOptions = {},
@@ -227,6 +243,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Returns a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   get(
     parameters?: UserIdentitiesGetParameters,
     options: UserIdentitiesGetOptions = {},
@@ -240,6 +259,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Grants a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) access to a specified [device](https://docs.seam.co/core-concepts/devices/).
+   */
   grantAccessToDevice(
     parameters: UserIdentitiesGrantAccessToDeviceParameters,
     options: UserIdentitiesGrantAccessToDeviceOptions = {},
@@ -253,6 +275,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Returns a list of all [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   list(
     parameters?: UserIdentitiesListParameters,
     options: UserIdentitiesListOptions = {},
@@ -266,6 +291,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Returns a list of all [devices](https://docs.seam.co/core-concepts/devices) associated with a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This includes devices derived from the access grants assigned to the user identity and devices directly linked to the user identity.
+   */
   listAccessibleDevices(
     parameters: UserIdentitiesListAccessibleDevicesParameters,
     options: UserIdentitiesListAccessibleDevicesOptions = {},
@@ -279,6 +307,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Returns a list of all [ACS entrances](https://docs.seam.co/api/acs/entrances) accessible to a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This includes entrances derived from the access grants assigned to the user identity and entrances accessible through ACS users linked to the user identity.
+   */
   listAccessibleEntrances(
     parameters: UserIdentitiesListAccessibleEntrancesParameters,
     options: UserIdentitiesListAccessibleEntrancesOptions = {},
@@ -292,6 +323,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Returns a list of all [access systems](https://docs.seam.co/low-level-apis/access-systems) associated with a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   listAcsSystems(
     parameters: UserIdentitiesListAcsSystemsParameters,
     options: UserIdentitiesListAcsSystemsOptions = {},
@@ -305,6 +339,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Returns a list of all [access system users](https://docs.seam.co/low-level-apis/access-systems/user-management) assigned to a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   listAcsUsers(
     parameters: UserIdentitiesListAcsUsersParameters,
     options: UserIdentitiesListAcsUsersOptions = {},
@@ -318,6 +355,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Removes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) from a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   removeAcsUser(
     parameters: UserIdentitiesRemoveAcsUserParameters,
     options: UserIdentitiesRemoveAcsUserOptions = {},
@@ -331,6 +371,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Revokes access to a specified [device](https://docs.seam.co/core-concepts/devices/) from a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   revokeAccessToDevice(
     parameters: UserIdentitiesRevokeAccessToDeviceParameters,
     options: UserIdentitiesRevokeAccessToDeviceOptions = {},
@@ -344,6 +387,9 @@ export class SeamHttpUserIdentities {
     })
   }
 
+  /**
+   * Updates a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   */
   update(
     parameters: UserIdentitiesUpdateParameters,
     options: UserIdentitiesUpdateOptions = {},
@@ -359,9 +405,18 @@ export class SeamHttpUserIdentities {
 }
 
 export type UserIdentitiesAddAcsUserParameters = {
+  /**
+   * ID of the access system user that you want to add to the user identity.
+   */
   acs_user_id: string
 
+  /**
+   * ID of the user identity to which you want to add an access system user.
+   */
   user_identity_id?: string | undefined
+  /**
+   * Key of the user identity to which you want to add an access system user.
+   */
   user_identity_key?: string | undefined
 }
 
@@ -375,10 +430,25 @@ export type UserIdentitiesAddAcsUserRequest = SeamHttpRequest<void, undefined>
 export interface UserIdentitiesAddAcsUserOptions {}
 
 export type UserIdentitiesCreateParameters = {
+  /**
+   * List of access system IDs to associate with the new user identity through access system users. If there's no user with the same email address or phone number in the specified access systems, a new access system user is created. If there is an existing user with the same email or phone number in the specified access systems, the user is linked to the user identity.
+   */
   acs_system_ids?: Array<string> | undefined
+  /**
+   * Unique email address for the new user identity.
+   */
   email_address?: string | undefined
+  /**
+   * Full name of the user associated with the new user identity.
+   */
   full_name?: string | undefined
+  /**
+   * Unique phone number for the new user identity in E.164 format (for example, +15555550100).
+   */
   phone_number?: string | undefined
+  /**
+   * Unique key for the new user identity.
+   */
   user_identity_key?: string | undefined
 }
 
@@ -395,6 +465,9 @@ export type UserIdentitiesCreateRequest = SeamHttpRequest<
 export interface UserIdentitiesCreateOptions {}
 
 export type UserIdentitiesDeleteParameters = {
+  /**
+   * ID of the user identity that you want to delete.
+   */
   user_identity_id: string
 }
 
@@ -409,7 +482,13 @@ export interface UserIdentitiesDeleteOptions {}
 
 export type UserIdentitiesGenerateInstantKeyParameters = {
   customization_profile_id?: string | undefined
+  /**
+   * Maximum number of times the instant key can be used. Default: 1.
+   */
   max_use_count?: number | undefined
+  /**
+   * ID of the user identity for which you want to generate an instant key.
+   */
   user_identity_id: string
 }
 
@@ -428,7 +507,11 @@ export type UserIdentitiesGenerateInstantKeyRequest = SeamHttpRequest<
 export interface UserIdentitiesGenerateInstantKeyOptions {}
 
 export type UserIdentitiesGetParameters = {
+  /**
+   * ID of the user identity that you want to get.
+   */
   user_identity_id?: string | undefined
+
   user_identity_key?: string | undefined
 }
 
@@ -445,8 +528,14 @@ export type UserIdentitiesGetRequest = SeamHttpRequest<
 export interface UserIdentitiesGetOptions {}
 
 export type UserIdentitiesGrantAccessToDeviceParameters = {
+  /**
+   * ID of the managed device to which you want to grant access to the user identity.
+   */
   device_id: string
 
+  /**
+   * ID of the user identity that you want to grant access to a device.
+   */
   user_identity_id: string
 }
 
@@ -463,11 +552,29 @@ export type UserIdentitiesGrantAccessToDeviceRequest = SeamHttpRequest<
 export interface UserIdentitiesGrantAccessToDeviceOptions {}
 
 export type UserIdentitiesListParameters = {
+  /**
+   * Timestamp by which to limit returned user identities. Returns user identities created before this timestamp.
+   */
   created_before?: string | undefined
+  /**
+   * `acs_system_id` of the credential manager by which you want to filter the list of user identities.
+   */
   credential_manager_acs_system_id?: string | undefined
+  /**
+   * Maximum number of records to return per page.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned user identities to include all records that satisfy a partial match using `full_name`, `phone_number`, `email_address` or `user_identity_id`.
+   */
   search?: string | undefined
+  /**
+   * Array of user identity IDs by which to filter the list of user identities.
+   */
   user_identity_ids?: Array<string> | undefined
 }
 
@@ -486,6 +593,9 @@ export type UserIdentitiesListRequest = SeamHttpRequest<
 export interface UserIdentitiesListOptions {}
 
 export type UserIdentitiesListAccessibleDevicesParameters = {
+  /**
+   * ID of the user identity for which you want to retrieve all accessible devices.
+   */
   user_identity_id: string
 }
 
@@ -504,6 +614,9 @@ export type UserIdentitiesListAccessibleDevicesRequest = SeamHttpRequest<
 export interface UserIdentitiesListAccessibleDevicesOptions {}
 
 export type UserIdentitiesListAccessibleEntrancesParameters = {
+  /**
+   * ID of the user identity for which you want to retrieve all accessible entrances.
+   */
   user_identity_id: string
 }
 
@@ -522,6 +635,9 @@ export type UserIdentitiesListAccessibleEntrancesRequest = SeamHttpRequest<
 export interface UserIdentitiesListAccessibleEntrancesOptions {}
 
 export type UserIdentitiesListAcsSystemsParameters = {
+  /**
+   * ID of the user identity for which you want to retrieve all access systems.
+   */
   user_identity_id: string
 }
 
@@ -540,6 +656,9 @@ export type UserIdentitiesListAcsSystemsRequest = SeamHttpRequest<
 export interface UserIdentitiesListAcsSystemsOptions {}
 
 export type UserIdentitiesListAcsUsersParameters = {
+  /**
+   * ID of the user identity for which you want to retrieve all access system users.
+   */
   user_identity_id: string
 }
 
@@ -556,8 +675,14 @@ export type UserIdentitiesListAcsUsersRequest = SeamHttpRequest<
 export interface UserIdentitiesListAcsUsersOptions {}
 
 export type UserIdentitiesRemoveAcsUserParameters = {
+  /**
+   * ID of the access system user that you want to remove from the user identity..
+   */
   acs_user_id: string
 
+  /**
+   * ID of the user identity from which you want to remove an access system user.
+   */
   user_identity_id: string
 }
 
@@ -574,8 +699,14 @@ export type UserIdentitiesRemoveAcsUserRequest = SeamHttpRequest<
 export interface UserIdentitiesRemoveAcsUserOptions {}
 
 export type UserIdentitiesRevokeAccessToDeviceParameters = {
+  /**
+   * ID of the managed device to which you want to revoke access from the user identity.
+   */
   device_id: string
 
+  /**
+   * ID of the user identity from which you want to revoke access to a device.
+   */
   user_identity_id: string
 }
 
@@ -592,11 +723,26 @@ export type UserIdentitiesRevokeAccessToDeviceRequest = SeamHttpRequest<
 export interface UserIdentitiesRevokeAccessToDeviceOptions {}
 
 export type UserIdentitiesUpdateParameters = {
+  /**
+   * Unique email address for the user identity.
+   */
   email_address?: string | undefined
+  /**
+   * Full name of the user associated with the user identity.
+   */
   full_name?: string | undefined
+  /**
+   * Unique phone number for the user identity.
+   */
   phone_number?: string | undefined
+  /**
+   * ID of the user identity that you want to update.
+   */
   user_identity_id: string
 
+  /**
+   * Unique key for the user identity.
+   */
   user_identity_key?: string | undefined
 }
 

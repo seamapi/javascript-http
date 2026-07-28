@@ -170,6 +170,13 @@ export class SeamHttpConnectedAccounts {
     )
   }
 
+  /**
+   * Deletes a specified [connected account](https://docs.seam.co/core-concepts/connected-accounts).
+   *
+   * Deleting a connected account triggers a `connected_account.deleted` event and removes the connected account and all data associated with the connected account from Seam, including devices, events, access codes, and so on. For every deleted resource, Seam sends a corresponding deleted event, but the resource is not deleted from the provider.
+   *
+   * For example, if you delete a connected account with a device that has an access code, Seam sends a `connected_account.deleted` event, a `device.deleted` event, and an `access_code.deleted` event, but Seam does not remove the access code from the device.
+   */
   delete(
     parameters: ConnectedAccountsDeleteParameters,
     options: ConnectedAccountsDeleteOptions = {},
@@ -183,6 +190,9 @@ export class SeamHttpConnectedAccounts {
     })
   }
 
+  /**
+   * Returns a specified [connected account](https://docs.seam.co/core-concepts/connected-accounts).
+   */
   get(
     parameters?: ConnectedAccountsGetParameters,
     options: ConnectedAccountsGetOptions = {},
@@ -196,6 +206,9 @@ export class SeamHttpConnectedAccounts {
     })
   }
 
+  /**
+   * Returns a list of all [connected accounts](https://docs.seam.co/core-concepts/connected-accounts).
+   */
   list(
     parameters?: ConnectedAccountsListParameters,
     options: ConnectedAccountsListOptions = {},
@@ -209,6 +222,9 @@ export class SeamHttpConnectedAccounts {
     })
   }
 
+  /**
+   * Request a [connected account](https://docs.seam.co/core-concepts/connected-accounts) sync attempt for the specified `connected_account_id`.
+   */
   sync(
     parameters: ConnectedAccountsSyncParameters,
     options: ConnectedAccountsSyncOptions = {},
@@ -222,6 +238,9 @@ export class SeamHttpConnectedAccounts {
     })
   }
 
+  /**
+   * Updates a [connected account](https://docs.seam.co/core-concepts/connected-accounts).
+   */
   update(
     parameters: ConnectedAccountsUpdateParameters,
     options: ConnectedAccountsUpdateOptions = {},
@@ -237,6 +256,9 @@ export class SeamHttpConnectedAccounts {
 }
 
 export type ConnectedAccountsDeleteParameters = {
+  /**
+   * ID of the connected account that you want to delete.
+   */
   connected_account_id: string
 }
 
@@ -250,7 +272,13 @@ export type ConnectedAccountsDeleteRequest = SeamHttpRequest<void, undefined>
 export interface ConnectedAccountsDeleteOptions {}
 
 export type ConnectedAccountsGetParameters = {
+  /**
+   * ID of the connected account that you want to get.
+   */
   connected_account_id?: string | undefined
+  /**
+   * Email address associated with the connected account that you want to get.
+   */
   email?: string | undefined
 }
 
@@ -269,12 +297,33 @@ export type ConnectedAccountsGetRequest = SeamHttpRequest<
 export interface ConnectedAccountsGetOptions {}
 
 export type ConnectedAccountsListParameters = {
+  /**
+   * Custom metadata pairs by which you want to filter connected accounts. Returns connected accounts with `custom_metadata` that contains all of the provided key:value pairs.
+   */
   custom_metadata_has?: Record<string, unknown> | undefined
+  /**
+   * Customer key by which you want to filter connected accounts.
+   */
   customer_key?: string | undefined
+  /**
+   * Maximum number of records to return per page.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned connected accounts to include all records that satisfy a partial match using `connected_account_id`, `account_type`, `customer_key`, `custom_metadata`, `user_identifier.username`, `user_identifier.email` or `user_identifier.phone`.
+   */
   search?: string | undefined
+  /**
+   * ID of the space by which you want to filter connected accounts.
+   */
   space_id?: string | undefined
+  /**
+   * Your user ID for the user by which you want to filter connected accounts.
+   */
   user_identifier_key?: string | undefined
 }
 
@@ -293,6 +342,9 @@ export type ConnectedAccountsListRequest = SeamHttpRequest<
 export interface ConnectedAccountsListOptions {}
 
 export type ConnectedAccountsSyncParameters = {
+  /**
+   * ID of the connected account that you want to sync.
+   */
   connected_account_id: string
 }
 
@@ -306,16 +358,34 @@ export type ConnectedAccountsSyncRequest = SeamHttpRequest<void, undefined>
 export interface ConnectedAccountsSyncOptions {}
 
 export type ConnectedAccountsUpdateParameters = {
+  /**
+   * List of accepted device capabilities that restrict the types of devices that can be connected through this connected account. Valid values are `lock`, `thermostat`, `noise_sensor`, and `access_control`.
+   */
   accepted_capabilities?:
     | Array<
         'lock' | 'thermostat' | 'noise_sensor' | 'access_control' | 'camera'
       >
     | undefined
+  /**
+   * Indicates whether newly-added devices should appear as [managed devices](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
+   */
   automatically_manage_new_devices?: boolean | undefined
+  /**
+   * ID of the connected account that you want to update.
+   */
   connected_account_id: string
 
+  /**
+   * Custom metadata that you want to associate with the connected account. Entirely replaces the existing custom metadata object. If a new Connect Webview contains custom metadata and is used to reconnect a connected account, the custom metadata from the Connect Webview will entirely replace the entire custom metadata object on the connected account. Supports up to 50 JSON key:value pairs. [Adding custom metadata to a connected account](https://docs.seam.co/core-concepts/connected-accounts/adding-custom-metadata-to-a-connected-account) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter connected accounts by the desired metadata](https://docs.seam.co/core-concepts/connected-accounts/filtering-connected-accounts-by-custom-metadata).
+   */
   custom_metadata?: Record<string, unknown> | undefined
+  /**
+   * The customer key to associate with this connected account. If provided, the connected account and all resources under the connected account will be moved to this customer. May only be provided if the connected account is not already associated with a customer.
+   */
   customer_key?: string | undefined
+  /**
+   * Human-readable name for the connected account, shown in the dashboard. For example, `Booking from Airbnb House 1`.
+   */
   display_name?: string | undefined
 }
 

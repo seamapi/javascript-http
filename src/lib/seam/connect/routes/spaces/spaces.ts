@@ -162,6 +162,9 @@ export class SeamHttpSpaces {
     await clientSessions.get()
   }
 
+  /**
+   * Adds [entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) to a specific space.
+   */
   addAcsEntrances(
     parameters: SpacesAddAcsEntrancesParameters,
     options: SpacesAddAcsEntrancesOptions = {},
@@ -175,6 +178,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Adds a [connected account](https://docs.seam.co/core-concepts/connected-accounts) to a specific space.
+   */
   addConnectedAccount(
     parameters: SpacesAddConnectedAccountParameters,
     options: SpacesAddConnectedAccountOptions = {},
@@ -188,6 +194,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Adds devices to a specific space.
+   */
   addDevices(
     parameters: SpacesAddDevicesParameters,
     options: SpacesAddDevicesOptions = {},
@@ -201,6 +210,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Creates a new space.
+   */
   create(
     parameters: SpacesCreateParameters,
     options: SpacesCreateOptions = {},
@@ -214,6 +226,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Deletes a space.
+   */
   delete(
     parameters: SpacesDeleteParameters,
     options: SpacesDeleteOptions = {},
@@ -227,6 +242,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Gets a space.
+   */
   get(
     parameters?: SpacesGetParameters,
     options: SpacesGetOptions = {},
@@ -240,6 +258,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Gets all related resources for one or more Spaces.
+   */
   getRelated(
     parameters?: SpacesGetRelatedParameters,
     options: SpacesGetRelatedOptions = {},
@@ -253,6 +274,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Returns a list of all spaces.
+   */
   list(
     parameters?: SpacesListParameters,
     options: SpacesListOptions = {},
@@ -266,6 +290,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Removes [entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) from a specific space.
+   */
   removeAcsEntrances(
     parameters: SpacesRemoveAcsEntrancesParameters,
     options: SpacesRemoveAcsEntrancesOptions = {},
@@ -279,6 +306,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Removes a [connected account](https://docs.seam.co/core-concepts/connected-accounts) from a specific space.
+   */
   removeConnectedAccount(
     parameters: SpacesRemoveConnectedAccountParameters,
     options: SpacesRemoveConnectedAccountOptions = {},
@@ -292,6 +322,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Removes devices from a specific space.
+   */
   removeDevices(
     parameters: SpacesRemoveDevicesParameters,
     options: SpacesRemoveDevicesOptions = {},
@@ -305,6 +338,9 @@ export class SeamHttpSpaces {
     })
   }
 
+  /**
+   * Updates an existing space.
+   */
   update(
     parameters?: SpacesUpdateParameters,
     options: SpacesUpdateOptions = {},
@@ -320,8 +356,14 @@ export class SeamHttpSpaces {
 }
 
 export type SpacesAddAcsEntrancesParameters = {
+  /**
+   * IDs of the entrances that you want to add to the space.
+   */
   acs_entrance_ids: Array<string>
 
+  /**
+   * ID of the space to which you want to add entrances.
+   */
   space_id: string
 }
 
@@ -335,8 +377,14 @@ export type SpacesAddAcsEntrancesRequest = SeamHttpRequest<void, undefined>
 export interface SpacesAddAcsEntrancesOptions {}
 
 export type SpacesAddConnectedAccountParameters = {
+  /**
+   * ID of the connected account that you want to add to the space.
+   */
   connected_account_id: string
 
+  /**
+   * ID of the space to which you want to add the connected account.
+   */
   space_id: string
 }
 
@@ -350,8 +398,14 @@ export type SpacesAddConnectedAccountRequest = SeamHttpRequest<void, undefined>
 export interface SpacesAddConnectedAccountOptions {}
 
 export type SpacesAddDevicesParameters = {
+  /**
+   * IDs of the devices that you want to add to the space.
+   */
   device_ids: Array<string>
 
+  /**
+   * ID of the space to which you want to add devices.
+   */
   space_id: string
 }
 
@@ -365,20 +419,53 @@ export type SpacesAddDevicesRequest = SeamHttpRequest<void, undefined>
 export interface SpacesAddDevicesOptions {}
 
 export type SpacesCreateParameters = {
+  /**
+   * IDs of the entrances that you want to add to the new space.
+   */
   acs_entrance_ids?: Array<string> | undefined
+  /**
+   * IDs of connected accounts to associate with the new space. Persisted on seam.location_third_party_account so the UI can show which provider account(s) a space came from.
+   */
   connected_account_ids?: Array<string> | undefined
+  /**
+   * Reservation/stay-related defaults for the space.
+   */
   customer_data?:
     | {
+        /**
+         * Postal address for the space.
+         */
         address?: string | undefined
+        /**
+         * Default check-in time for reservations at the space, as HH:mm or HH:mm:ss.
+         */
         default_checkin_time?: string | undefined
+        /**
+         * Default check-out time for reservations at the space, as HH:mm or HH:mm:ss.
+         */
         default_checkout_time?: string | undefined
+        /**
+         * IANA time zone for the space, e.g. America/Los_Angeles.
+         */
         time_zone?: string | undefined
       }
     | undefined
+  /**
+   * Customer key for which you want to create the space.
+   */
   customer_key?: string | undefined
+  /**
+   * IDs of the devices that you want to add to the new space.
+   */
   device_ids?: Array<string> | undefined
+  /**
+   * Name of the space that you want to create.
+   */
   name: string
 
+  /**
+   * Unique key for the space within the workspace.
+   */
   space_key?: string | undefined
 }
 
@@ -392,6 +479,9 @@ export type SpacesCreateRequest = SeamHttpRequest<SpacesCreateResponse, 'space'>
 export interface SpacesCreateOptions {}
 
 export type SpacesDeleteParameters = {
+  /**
+   * ID of the space that you want to delete.
+   */
   space_id: string
 }
 
@@ -405,7 +495,13 @@ export type SpacesDeleteRequest = SeamHttpRequest<void, undefined>
 export interface SpacesDeleteOptions {}
 
 export type SpacesGetParameters = {
+  /**
+   * ID of the space that you want to get.
+   */
   space_id?: string | undefined
+  /**
+   * Unique key of the space that you want to get.
+   */
   space_key?: string | undefined
 }
 
@@ -429,6 +525,7 @@ export type SpacesGetRelatedParameters = {
         | 'access_methods'
       >
     | undefined
+
   include?:
     | Array<
         | 'spaces'
@@ -439,7 +536,13 @@ export type SpacesGetRelatedParameters = {
         | 'access_methods'
       >
     | undefined
+  /**
+   * IDs of the spaces that you want to get along with their related resources.
+   */
   space_ids?: Array<string> | undefined
+  /**
+   * Keys of the spaces that you want to get along with their related resources.
+   */
   space_keys?: Array<string> | undefined
 }
 
@@ -465,10 +568,25 @@ export type SpacesGetRelatedRequest = SeamHttpRequest<
 export interface SpacesGetRelatedOptions {}
 
 export type SpacesListParameters = {
+  /**
+   * Customer key for which you want to list spaces.
+   */
   customer_key?: string | undefined
+  /**
+   * Maximum number of records to return per page.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * String for which to search. Filters returned spaces to include all records that satisfy a partial match using `name`, `space_key`, or `customer_key`.
+   */
   search?: string | undefined
+  /**
+   * Filter spaces by space_key.
+   */
   space_key?: string | undefined
 }
 
@@ -482,8 +600,14 @@ export type SpacesListRequest = SeamHttpRequest<SpacesListResponse, 'spaces'>
 export interface SpacesListOptions {}
 
 export type SpacesRemoveAcsEntrancesParameters = {
+  /**
+   * IDs of the entrances that you want to remove from the space.
+   */
   acs_entrance_ids: Array<string>
 
+  /**
+   * ID of the space from which you want to remove entrances.
+   */
   space_id: string
 }
 
@@ -497,8 +621,14 @@ export type SpacesRemoveAcsEntrancesRequest = SeamHttpRequest<void, undefined>
 export interface SpacesRemoveAcsEntrancesOptions {}
 
 export type SpacesRemoveConnectedAccountParameters = {
+  /**
+   * ID of the connected account that you want to remove from the space.
+   */
   connected_account_id: string
 
+  /**
+   * ID of the space from which you want to remove the connected account.
+   */
   space_id: string
 }
 
@@ -515,8 +645,14 @@ export type SpacesRemoveConnectedAccountRequest = SeamHttpRequest<
 export interface SpacesRemoveConnectedAccountOptions {}
 
 export type SpacesRemoveDevicesParameters = {
+  /**
+   * IDs of the devices that you want to remove from the space.
+   */
   device_ids: Array<string>
 
+  /**
+   * ID of the space from which you want to remove devices.
+   */
   space_id: string
 }
 
@@ -530,18 +666,48 @@ export type SpacesRemoveDevicesRequest = SeamHttpRequest<void, undefined>
 export interface SpacesRemoveDevicesOptions {}
 
 export type SpacesUpdateParameters = {
+  /**
+   * IDs of the entrances that you want to set for the space. If specified, this will replace all existing entrances.
+   */
   acs_entrance_ids?: Array<string> | undefined
+  /**
+   * Reservation/stay-related defaults for the space. Only the keys you provide are updated; omit a key to leave it unchanged. Pass null on a key to clear it.
+   */
   customer_data?:
     | {
+        /**
+         * Postal address for the space.
+         */
         address?: string | undefined
+        /**
+         * Default check-in time for reservations at the space, as HH:mm or HH:mm:ss.
+         */
         default_checkin_time?: string | undefined
+        /**
+         * Default check-out time for reservations at the space, as HH:mm or HH:mm:ss.
+         */
         default_checkout_time?: string | undefined
+        /**
+         * IANA time zone for the space, e.g. America/Los_Angeles.
+         */
         time_zone?: string | undefined
       }
     | undefined
+  /**
+   * IDs of the devices that you want to set for the space. If specified, this will replace all existing devices.
+   */
   device_ids?: Array<string> | undefined
+  /**
+   * Name of the space.
+   */
   name?: string | undefined
+  /**
+   * ID of the space that you want to update.
+   */
   space_id?: string | undefined
+  /**
+   * Unique key of the space that you want to update.
+   */
   space_key?: string | undefined
 }
 

@@ -161,6 +161,9 @@ export class SeamHttpPhonesSimulate {
     await clientSessions.get()
   }
 
+  /**
+   * Creates a new simulated phone in a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Creating a Simulated Phone for a User Identity](https://docs.seam.co/capability-guides/mobile-access/developing-in-a-sandbox-workspace#creating-a-simulated-phone-for-a-user-identity).
+   */
   createSandboxPhone(
     parameters: PhonesSimulateCreateSandboxPhoneParameters,
     options: PhonesSimulateCreateSandboxPhoneOptions = {},
@@ -176,25 +179,67 @@ export class SeamHttpPhonesSimulate {
 }
 
 export type PhonesSimulateCreateSandboxPhoneParameters = {
+  /**
+   * ASSA ABLOY metadata that you want to associate with the simulated phone.
+   */
   assa_abloy_metadata?:
     | {
+        /**
+         * Application version that you want to use for the simulated phone.
+         */
         application_version?: string | undefined
+        /**
+         * Indicates whether the simulated phone should have Bluetooth low energy (BLE) capability.
+         */
         ble_capability?: boolean | undefined
+        /**
+         * Indicates whether the simulated phone should have host card emulation (HCE) capability.
+         */
         hce_capability?: boolean | undefined
+        /**
+         * Indicates whether the simulated phone should have near-field communication (NFC) capability.
+         */
         nfc_capability?: boolean | undefined
+        /**
+         * SEOS applet version that you want to use for the simulated phone.
+         */
         seos_applet_version?: string | undefined
+        /**
+         * ID of the SEOS trusted service manager (TSM) endpoint that you want to use for the simulated phone.
+         */
         seos_tsm_endpoint_id?: number | undefined
       }
     | undefined
+  /**
+   * ID of the custom SDK installation that you want to use for the simulated phone.
+   */
   custom_sdk_installation_id?: string | undefined
+  /**
+   * Metadata that you want to associate with the simulated phone.
+   */
   phone_metadata?:
     | {
+        /**
+         * Manufacturer that you want to use for the simulated phone.
+         */
         device_manufacturer?: string | undefined
+        /**
+         * Device model that you want to use for the simulated phone.
+         */
         device_model?: string | undefined
+        /**
+         * Mobile operating system that you want to use for the simulated phone.
+         */
         operating_system?: 'android' | 'ios' | undefined
+        /**
+         * Mobile operating system version that you want to use for the simulated phone.
+         */
         os_version?: string | undefined
       }
     | undefined
+  /**
+   * ID of the user identity that you want to associate with the simulated phone.
+   */
   user_identity_id: string
 }
 

@@ -1,0 +1,12 @@
+{{#if (or (trim description) isDeprecated)}}
+/**
+{{#each (lines description)}}
+ * {{replaceAll this "*/" "*\/"}}
+{{/each}}
+{{#if isDeprecated}}
+ * @deprecated{{#with (trim deprecationMessage)}} {{replaceAll this "*/" "*\/"}}{{/with}}
+{{/if}}
+ */
+{{else}}
+{{identity " "}}
+{{/if}}

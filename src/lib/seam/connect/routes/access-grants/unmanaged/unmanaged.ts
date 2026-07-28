@@ -161,6 +161,9 @@ export class SeamHttpAccessGrantsUnmanaged {
     await clientSessions.get()
   }
 
+  /**
+   * Get an unmanaged Access Grant (where is_managed = false).
+   */
   get(
     parameters: AccessGrantsUnmanagedGetParameters,
     options: AccessGrantsUnmanagedGetOptions = {},
@@ -174,6 +177,9 @@ export class SeamHttpAccessGrantsUnmanaged {
     })
   }
 
+  /**
+   * Gets unmanaged Access Grants (where is_managed = false).
+   */
   list(
     parameters?: AccessGrantsUnmanagedListParameters,
     options: AccessGrantsUnmanagedListOptions = {},
@@ -187,6 +193,13 @@ export class SeamHttpAccessGrantsUnmanaged {
     })
   }
 
+  /**
+   * Updates an unmanaged Access Grant to make it managed.
+   *
+   * This endpoint can only be used to convert unmanaged access grants to managed ones by setting `is_managed` to `true`. It cannot be used to convert managed access grants back to unmanaged.
+   *
+   * When converting an unmanaged access grant to managed, all associated access methods will also be converted to managed.
+   */
   update(
     parameters: AccessGrantsUnmanagedUpdateParameters,
     options: AccessGrantsUnmanagedUpdateOptions = {},
@@ -202,6 +215,9 @@ export class SeamHttpAccessGrantsUnmanaged {
 }
 
 export type AccessGrantsUnmanagedGetParameters = {
+  /**
+   * ID of unmanaged Access Grant to get.
+   */
   access_grant_id: string
 }
 
@@ -220,11 +236,29 @@ export type AccessGrantsUnmanagedGetRequest = SeamHttpRequest<
 export interface AccessGrantsUnmanagedGetOptions {}
 
 export type AccessGrantsUnmanagedListParameters = {
+  /**
+   * ID of the entrance by which you want to filter the list of unmanaged Access Grants.
+   */
   acs_entrance_id?: string | undefined
+  /**
+   * ID of the access system by which you want to filter the list of unmanaged Access Grants.
+   */
   acs_system_id?: string | undefined
+  /**
+   * Numerical limit on the number of unmanaged access grants to return.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
+  /**
+   * Filter unmanaged Access Grants by reservation_key.
+   */
   reservation_key?: string | undefined
+  /**
+   * ID of user identity by which you want to filter the list of unmanaged Access Grants.
+   */
   user_identity_id?: string | undefined
 }
 
@@ -243,9 +277,18 @@ export type AccessGrantsUnmanagedListRequest = SeamHttpRequest<
 export interface AccessGrantsUnmanagedListOptions {}
 
 export type AccessGrantsUnmanagedUpdateParameters = {
+  /**
+   * ID of the unmanaged Access Grant to update.
+   */
   access_grant_id: string
 
+  /**
+   * Unique key for the access grant. If not provided, the existing key will be preserved.
+   */
   access_grant_key?: string | undefined
+  /**
+   * Must be set to true to convert the unmanaged access grant to managed.
+   */
   is_managed: boolean
 }
 

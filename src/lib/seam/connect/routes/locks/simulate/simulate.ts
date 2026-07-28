@@ -161,6 +161,9 @@ export class SeamHttpLocksSimulate {
     await clientSessions.get()
   }
 
+  /**
+   * Simulates the entry of a code on a keypad. You can only perform this action for [August](https://docs.seam.co/device-and-system-integration-guides/august-locks) devices within [sandbox workspaces](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   keypadCodeEntry(
     parameters: LocksSimulateKeypadCodeEntryParameters,
     options: LocksSimulateKeypadCodeEntryOptions = {},
@@ -174,6 +177,9 @@ export class SeamHttpLocksSimulate {
     })
   }
 
+  /**
+   * Simulates a manual lock action using a keypad. You can only perform this action for [August](https://docs.seam.co/device-and-system-integration-guides/august-locks) devices within [sandbox workspaces](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   */
   manualLockViaKeypad(
     parameters: LocksSimulateManualLockViaKeypadParameters,
     options: LocksSimulateManualLockViaKeypadOptions = {},
@@ -189,8 +195,14 @@ export class SeamHttpLocksSimulate {
 }
 
 export type LocksSimulateKeypadCodeEntryParameters = {
+  /**
+   * Code that you want to simulate entering on a keypad.
+   */
   code: string
 
+  /**
+   * ID of the device for which you want to simulate a keypad code entry.
+   */
   device_id: string
 }
 
@@ -212,6 +224,9 @@ export type LocksSimulateKeypadCodeEntryOptions = Pick<
 >
 
 export type LocksSimulateManualLockViaKeypadParameters = {
+  /**
+   * ID of the device for which you want to simulate a manual lock action using a keypad.
+   */
   device_id: string
 }
 

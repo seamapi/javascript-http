@@ -161,6 +161,9 @@ export class SeamHttpActionAttempts {
     await clientSessions.get()
   }
 
+  /**
+   * Returns a specified [action attempt](https://docs.seam.co/core-concepts/action-attempts).
+   */
   get(
     parameters: ActionAttemptsGetParameters,
     options: ActionAttemptsGetOptions = {},
@@ -174,6 +177,9 @@ export class SeamHttpActionAttempts {
     })
   }
 
+  /**
+   * Returns a list of the [action attempts](https://docs.seam.co/core-concepts/action-attempts) that you specify as an array of `action_attempt_id`s.
+   */
   list(
     parameters?: ActionAttemptsListParameters,
     options: ActionAttemptsListOptions = {},
@@ -189,6 +195,9 @@ export class SeamHttpActionAttempts {
 }
 
 export type ActionAttemptsGetParameters = {
+  /**
+   * ID of the action attempt that you want to get.
+   */
   action_attempt_id: string
 }
 
@@ -208,9 +217,21 @@ export type ActionAttemptsGetOptions = Pick<
 >
 
 export type ActionAttemptsListParameters = {
+  /**
+   * IDs of the action attempts that you want to retrieve.
+   */
   action_attempt_ids?: Array<string> | undefined
+  /**
+   * ID of the device to filter action attempts by.
+   */
   device_id?: string | undefined
+  /**
+   * Maximum number of records to return per page.
+   */
   limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
   page_cursor?: string | undefined
 }
 
