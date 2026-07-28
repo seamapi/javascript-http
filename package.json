@@ -1,6 +1,6 @@
 {
   "name": "@seamapi/http",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "JavaScript HTTP client for the Seam API written in TypeScript.",
   "type": "module",
   "main": "index.js",
@@ -79,14 +79,6 @@
     "packageManager": {
       "name": "npm",
       "version": "^11.12.0 || ^10.9.4"
-    }
-  },
-  "peerDependencies": {
-    "@seamapi/types": "^1.983.0"
-  },
-  "peerDependenciesMeta": {
-    "@seamapi/types": {
-      "optional": true
     }
   },
   "dependencies": {
