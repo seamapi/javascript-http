@@ -1,1 +1,2 @@
-{{#if (eq format "boolean")}}boolean{{else if (eq format "number")}}number{{else if (eq format "record")}}Record<string, unknown>{{else if (eq format "enum")}}{{#each values}}{{#unless @first}} | {{/unless}}{{json name}}{{else}}string{{/each}}{{else}}string{{/if}}
+{{#if (eq format "boolean")}}boolean{{else if (eq format "number")}}number{{else if (eq format "record")}}Record<string, unknown>{{else if (eq format "enum")}}{{#each values}}{{#unless @first}} | {{/unless}}{{{doc description isDeprecated deprecationMessage}}}
+{{json name}}{{else}}string{{/each}}{{else}}string{{/if}}

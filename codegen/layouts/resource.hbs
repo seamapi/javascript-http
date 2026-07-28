@@ -14,9 +14,11 @@ interface BatchResourceMap {
 {{/each}}
 }
 
+{{{doc resources.0.description resources.0.isDeprecated resources.0.deprecationMessage}}}
 export type {{typeName}}<TKey extends keyof BatchResourceMap = keyof BatchResourceMap> = {
   [K in TKey]?: Array<BatchResourceMap[K]> | undefined
 }
 {{else}}
+{{{doc resources.0.description resources.0.isDeprecated resources.0.deprecationMessage}}}
 export type {{typeName}} = {{#each resources}}{{#unless @first}} | {{/unless}}{{> resource-object properties=properties}}{{/each}}
 {{/if}}
