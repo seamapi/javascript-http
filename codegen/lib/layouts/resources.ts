@@ -5,10 +5,18 @@ export interface ResourceLayoutContext {
   fileName: string
   typeName: string
   resources: Resource[]
+  isBatch: boolean
+  batchResources: BatchResourceLayoutContext[]
 }
 
 export interface ResourceIndexLayoutContext {
   resources: Array<Pick<ResourceLayoutContext, 'fileName' | 'typeName'>>
+}
+
+interface BatchResourceLayoutContext {
+  batchKey: string
+  fileName: string
+  typeName: string
 }
 
 export const getResourceTypeName = (resourceType: string): string =>
@@ -25,6 +33,7 @@ export const getResourceLayoutContexts = (
   const resourceTypes = [
     ...new Set(resources.map(({ resourceType }) => resourceType)),
   ]
+  const batchResources = getBatchResourceLayoutContexts(resources)
 
   return resourceTypes.map((resourceType) => ({
     fileName: `${kebabCase(resourceType)}.ts`,
@@ -32,5 +41,25 @@ export const getResourceLayoutContexts = (
     resources: resources.filter(
       (resource) => resource.resourceType === resourceType,
     ),
+    isBatch: resourceType === 'batch',
+    batchResources: resourceType === 'batch' ? batchResources : [],
   }))
+}
+
+const getBatchResourceLayoutContexts = (
+  resources: Resource[],
+): BatchResourceLayoutContext[] => {
+  const batch = resources.find(({ resourceType }) => resourceType === 'batch')
+  if (batch == null) return []
+
+  return batch.properties.flatMap((property) => {
+    if (!('resourceType' in property)) return []
+    return [
+      {
+        batchKey: property.name,
+        fileName: `${kebabCase(property.resourceType)}.js`,
+        typeName: getResourceTypeName(property.resourceType),
+      },
+    ]
+  })
 }

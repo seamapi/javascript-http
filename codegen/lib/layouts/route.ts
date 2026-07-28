@@ -58,17 +58,7 @@ export const setRouteLayoutContext = (
   file.resourceTypeImports =
     node != null && 'endpoints' in node
       ? [
-          ...new Set(
-            node.endpoints.flatMap((endpoint) => {
-              if (
-                endpoint.response.responseType === 'void' ||
-                endpoint.response.resourceType === 'unknown'
-              ) {
-                return []
-              }
-              return [endpoint.response.resourceType]
-            }),
-          ),
+          ...new Set(node.endpoints.flatMap(getEndpointResponseResourceTypes)),
         ].map((resourceType) => ({
           fileName: `${kebabCase(resourceType)}.js`,
           typeName: getResourceTypeName(resourceType),
@@ -104,6 +94,18 @@ export const getEndpointLayoutContext = (
 ): EndpointLayoutContext => {
   const prefix = pascalCase([route.path.split('/'), endpoint.name].join('_'))
 
+  const batchResourceKeys = getBatchResourceKeys(endpoint)
+
+  if (
+    endpoint.response.responseType !== 'void' &&
+    endpoint.response.resourceType === 'unknown' &&
+    batchResourceKeys.length === 0
+  ) {
+    throw new Error(
+      `Cannot generate ${endpoint.path}: response resource type is unknown`,
+    )
+  }
+
   const requestFormat = ['GET', 'DELETE'].includes(
     endpoint.request.preferredMethod,
   )
@@ -136,11 +138,27 @@ export const getEndpointLayoutContext = (
     responseResourceTypeName:
       endpoint.response.responseType === 'void'
         ? ''
-        : endpoint.response.resourceType === 'unknown'
-          ? 'unknown'
+        : batchResourceKeys.length > 0
+          ? `Batch<${batchResourceKeys.map((key) => `'${key}'`).join(' | ')}>`
           : getResourceTypeName(endpoint.response.resourceType),
     ...getResponseContext(endpoint),
   }
+}
+
+const getEndpointResponseResourceTypes = (endpoint: Endpoint): string[] => {
+  if (endpoint.response.responseType === 'void') return []
+  if (endpoint.response.responseType === 'resource') {
+    const { batchResourceTypes } = endpoint.response
+    if (batchResourceTypes != null) return ['batch']
+  }
+  return [endpoint.response.resourceType]
+}
+
+const getBatchResourceKeys = (endpoint: Endpoint): string[] => {
+  if (endpoint.response.responseType !== 'resource') return []
+  return (
+    endpoint.response.batchResourceTypes?.map(({ batchKey }) => batchKey) ?? []
+  )
 }
 
 const getResponseContext = (
