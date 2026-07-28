@@ -31,7 +31,7 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 import type { AccessMethod } from 'lib/seam/connect/resources/access-method.js'
 import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
-import type { Unknown } from 'lib/seam/connect/resources/unknown.js'
+import type { Batch } from 'lib/seam/connect/resources/batch.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -366,7 +366,18 @@ export type AccessMethodsGetRelatedParameters = {
 /**
  * @deprecated Use AccessMethodsGetRelatedRequest instead.
  */
-export type AccessMethodsGetRelatedResponse = { batch: Unknown }
+export type AccessMethodsGetRelatedResponse = {
+  batch: Batch<
+    | 'spaces'
+    | 'devices'
+    | 'acs_entrances'
+    | 'access_grants'
+    | 'access_methods'
+    | 'instant_keys'
+    | 'client_sessions'
+    | 'acs_credentials'
+  >
+}
 
 export type AccessMethodsGetRelatedRequest = SeamHttpRequest<
   AccessMethodsGetRelatedResponse,

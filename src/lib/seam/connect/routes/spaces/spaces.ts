@@ -29,8 +29,8 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
+import type { Batch } from 'lib/seam/connect/resources/batch.js'
 import type { Space } from 'lib/seam/connect/resources/space.js'
-import type { Unknown } from 'lib/seam/connect/resources/unknown.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -446,7 +446,16 @@ export type SpacesGetRelatedParameters = {
 /**
  * @deprecated Use SpacesGetRelatedRequest instead.
  */
-export type SpacesGetRelatedResponse = { batch: Unknown }
+export type SpacesGetRelatedResponse = {
+  batch: Batch<
+    | 'spaces'
+    | 'devices'
+    | 'acs_entrances'
+    | 'connected_accounts'
+    | 'acs_systems'
+    | 'access_methods'
+  >
+}
 
 export type SpacesGetRelatedRequest = SeamHttpRequest<
   SpacesGetRelatedResponse,

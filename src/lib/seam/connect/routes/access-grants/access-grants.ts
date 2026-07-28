@@ -30,7 +30,7 @@ import {
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
 import type { AccessGrant } from 'lib/seam/connect/resources/access-grant.js'
-import type { Unknown } from 'lib/seam/connect/resources/unknown.js'
+import type { Batch } from 'lib/seam/connect/resources/batch.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -370,7 +370,18 @@ export type AccessGrantsGetRelatedParameters = {
 /**
  * @deprecated Use AccessGrantsGetRelatedRequest instead.
  */
-export type AccessGrantsGetRelatedResponse = { batch: Unknown }
+export type AccessGrantsGetRelatedResponse = {
+  batch: Batch<
+    | 'spaces'
+    | 'devices'
+    | 'acs_entrances'
+    | 'connected_accounts'
+    | 'acs_systems'
+    | 'user_identities'
+    | 'acs_access_groups'
+    | 'access_methods'
+  >
+}
 
 export type AccessGrantsGetRelatedRequest = SeamHttpRequest<
   AccessGrantsGetRelatedResponse,

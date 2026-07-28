@@ -82,7 +82,7 @@
     }
   },
   "peerDependencies": {
-    "@seamapi/types": "^1.982.0"
+    "@seamapi/types": "^1.983.0"
   },
   "peerDependenciesMeta": {
     "@seamapi/types": {

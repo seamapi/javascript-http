@@ -29,7 +29,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/seam/connect/parse-options.js'
-import type { Unknown } from 'lib/seam/connect/resources/unknown.js'
+import type { UnmanagedAccessGrant } from 'lib/seam/connect/resources/unmanaged-access-grant.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -208,7 +208,9 @@ export type AccessGrantsUnmanagedGetParameters = {
 /**
  * @deprecated Use AccessGrantsUnmanagedGetRequest instead.
  */
-export type AccessGrantsUnmanagedGetResponse = { access_grant: Unknown }
+export type AccessGrantsUnmanagedGetResponse = {
+  access_grant: UnmanagedAccessGrant
+}
 
 export type AccessGrantsUnmanagedGetRequest = SeamHttpRequest<
   AccessGrantsUnmanagedGetResponse,
@@ -230,7 +232,7 @@ export type AccessGrantsUnmanagedListParameters = {
  * @deprecated Use AccessGrantsUnmanagedListRequest instead.
  */
 export type AccessGrantsUnmanagedListResponse = {
-  access_grants: Array<Unknown>
+  access_grants: Array<UnmanagedAccessGrant>
 }
 
 export type AccessGrantsUnmanagedListRequest = SeamHttpRequest<
