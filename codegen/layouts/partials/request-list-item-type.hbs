@@ -1,7 +1,7 @@
 {{#if (eq itemFormat "object")}}
 {{> request-object parameters=itemParameters}}
 {{else if (eq itemFormat "discriminated_object")}}
-{{#each variants}}{{#unless @first}} | {{/unless}}{{{doc description}}}
+{{#each variants}}{{#unless @first}} | {{/unless}}{{> doc isDeprecated=true~}}
 {{> request-object parameters=parameters}}{{/each}}
 {{else}}
 {{> request-scalar-type format=itemFormat values=itemEnumValues}}

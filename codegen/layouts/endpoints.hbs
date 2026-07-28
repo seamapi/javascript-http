@@ -23,7 +23,7 @@ export class {{className}} {
 {{/if}}
 
   {{#each endpoints}}
-  {{{doc description isDeprecated deprecationMessage}}}
+  {{> doc}}
   get['{{path}}'](): {{> endpont-method-signature isFnType=true }}
   {
   const { client, defaults } = this

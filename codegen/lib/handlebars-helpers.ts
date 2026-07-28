@@ -5,26 +5,15 @@ export const json = (value: string): string => JSON.stringify(value)
 export const replaceExtension = (fileName: string, extension: string): string =>
   fileName.replace(/\.[^.]+$/, extension)
 
-/** Formats blueprint documentation as a safe TSDoc comment. */
-export const doc = (
-  description: string,
-  isDeprecated = false,
-  deprecationMessage = '',
-): string => {
-  const lines = description.trim() === '' ? [] : description.trim().split('\n')
+export const trim = (value = ''): string => value.trim()
 
-  if (isDeprecated) {
-    const message = deprecationMessage.trim()
-    lines.push(`@deprecated${message === '' ? '' : ` ${message}`}`)
-  }
-
-  if (lines.length === 0) return ''
-
-  return [
-    '/**',
-    ...lines.map((line) => ` * ${escapeComment(line)}`),
-    ' */',
-  ].join('\n')
+export const lines = (value = ''): string[] => {
+  const trimmed = trim(value)
+  return trimmed === '' ? [] : trimmed.split('\n')
 }
 
-const escapeComment = (line: string): string => line.replaceAll('*/', '*\\/')
+export const replaceAll = (
+  value: string,
+  searchValue: string,
+  replaceValue: string,
+): string => value.replaceAll(searchValue, replaceValue)

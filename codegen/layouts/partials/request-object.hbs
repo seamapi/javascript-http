@@ -1,6 +1,6 @@
 {
 {{#each parameters}}
-  {{{doc description isDeprecated deprecationMessage}}}
+  {{> doc}}
   {{json name}}{{#unless isRequired}}?{{/unless}}: {{> request-parameter-type }}{{#unless isRequired}} | undefined{{/unless}}
 {{/each}}
 }
