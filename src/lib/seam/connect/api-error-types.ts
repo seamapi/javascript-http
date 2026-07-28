@@ -1,5 +1,3 @@
-// UPSTREAM: These types should be provided by @seamapi/types/connect.
-
 export interface ApiErrorResponse {
   error: ApiError
 }
