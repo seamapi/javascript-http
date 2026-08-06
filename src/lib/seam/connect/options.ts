@@ -1,6 +1,10 @@
 import type { Client, ClientOptions } from './client.js'
-import { isSeamHttpRequestOption } from './parse-options.js'
-import type { ResolveActionAttemptOptions } from './resolve-action-attempt.js'
+import {
+  isSeamHttpRequestOption,
+  type SeamHttpRequestOptions,
+} from './request-options.js'
+
+export type { SeamHttpRequestOptions } from './request-options.js'
 
 export type SeamHttpWithoutWorkspaceOptions =
   | SeamHttpWithoutWorkspaceOptionsFromEnv
@@ -18,10 +22,6 @@ export type SeamHttpOptions =
 
 interface SeamHttpCommonOptions extends ClientOptions, SeamHttpRequestOptions {
   endpoint?: string
-}
-
-export interface SeamHttpRequestOptions {
-  waitForActionAttempt?: boolean | ResolveActionAttemptOptions
 }
 
 export interface SeamHttpFromPublishableKeyOptions extends SeamHttpCommonOptions {}

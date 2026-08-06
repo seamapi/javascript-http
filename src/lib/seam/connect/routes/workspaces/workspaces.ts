@@ -31,6 +31,7 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
 import type { Workspace } from 'lib/seam/connect/resources/workspace.js'
+import { SeamHttpActionAttempts } from 'lib/seam/connect/routes/action-attempts/index.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -223,6 +224,10 @@ export class SeamHttpWorkspaces {
       body: parameters,
       responseKey: 'action_attempt',
       options,
+      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
+        ...this.defaults,
+        waitForActionAttempt: false,
+      }),
     })
   }
 

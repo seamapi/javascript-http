@@ -8,5 +8,11 @@
     {{requestFormat}}: parameters,
     responseKey: {{#if returnsVoid}}undefined{{else}}'{{responseKey}}'{{/if}},
     options,
+    {{#if returnsActionAttempt}}
+    actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
+      ...this.defaults,
+      waitForActionAttempt: false,
+    }),
+    {{/if}}
   })
 }

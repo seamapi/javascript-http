@@ -31,6 +31,7 @@ import {
 } from 'lib/seam/connect/parse-options.js'
 import type { ActionAttempt } from 'lib/seam/connect/resources/action-attempt.js'
 import type { Device } from 'lib/seam/connect/resources/device.js'
+import { SeamHttpActionAttempts } from 'lib/seam/connect/routes/action-attempts/index.js'
 import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
@@ -181,6 +182,10 @@ export class SeamHttpLocks {
       body: parameters,
       responseKey: 'action_attempt',
       options,
+      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
+        ...this.defaults,
+        waitForActionAttempt: false,
+      }),
     })
   }
 
@@ -230,6 +235,10 @@ export class SeamHttpLocks {
       body: parameters,
       responseKey: 'action_attempt',
       options,
+      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
+        ...this.defaults,
+        waitForActionAttempt: false,
+      }),
     })
   }
 
@@ -246,6 +255,10 @@ export class SeamHttpLocks {
       body: parameters,
       responseKey: 'action_attempt',
       options,
+      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
+        ...this.defaults,
+        waitForActionAttempt: false,
+      }),
     })
   }
 }

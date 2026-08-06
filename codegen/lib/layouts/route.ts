@@ -9,6 +9,7 @@ export interface RouteLayoutContext {
   endpoints: EndpointLayoutContext[]
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
+  needsActionAttemptsImport: boolean
   resourceTypeImports: ResourceTypeImport[]
 }
 
@@ -58,6 +59,11 @@ export const setRouteLayoutContext = (
   file.className = getClassName(node?.path ?? null)
   file.skipClientSessionImport =
     node == null || node?.path === '/client_sessions'
+  file.needsActionAttemptsImport =
+    node != null &&
+    node.path !== '/action_attempts' &&
+    'endpoints' in node &&
+    node.endpoints.some(isActionAttemptEndpoint)
   file.resourceTypeImports =
     node != null && 'endpoints' in node
       ? [
@@ -115,9 +121,7 @@ export const getEndpointLayoutContext = (
     ? 'params'
     : 'body'
 
-  const returnsActionAttempt =
-    endpoint.response.responseType === 'resource' &&
-    endpoint.response.resourceType === 'action_attempt'
+  const returnsActionAttempt = isActionAttemptEndpoint(endpoint)
 
   const methodName = camelCase(endpoint.name)
 
@@ -150,6 +154,10 @@ export const getEndpointLayoutContext = (
     ...getResponseContext(endpoint),
   }
 }
+
+const isActionAttemptEndpoint = (endpoint: Endpoint): boolean =>
+  endpoint.response.responseType === 'resource' &&
+  endpoint.response.resourceType === 'action_attempt'
 
 const getEndpointResponseResourceTypes = (endpoint: Endpoint): string[] => {
   if (endpoint.response.responseType === 'void') return []

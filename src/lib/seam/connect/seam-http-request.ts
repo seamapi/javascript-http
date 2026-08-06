@@ -3,9 +3,11 @@ import type { Method } from 'axios'
 
 import type { Client } from './client.js'
 import type { SeamHttpRequestOptions } from './options.js'
-import { resolveActionAttempt } from './resolve-action-attempt.js'
+import {
+  type ActionAttemptsClient,
+  resolveActionAttempt,
+} from './resolve-action-attempt.js'
 import type { ActionAttempt } from './resources/action-attempt.js'
-import { SeamHttpActionAttempts } from './routes/index.js'
 
 interface SeamHttpRequestParent {
   readonly client: Client
@@ -19,6 +21,7 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly params?: undefined | Record<string, unknown>
   readonly responseKey: TResponseKey
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
+  readonly actionAttempts?: ActionAttemptsClient
 }
 
 export class SeamHttpRequest<
@@ -101,12 +104,14 @@ export class SeamHttpRequest<
         this.#parent.defaults.waitForActionAttempt
 
       if (waitForActionAttempt !== false) {
+        if (this.#config.actionAttempts == null) {
+          throw new Error(
+            'Cannot wait for an action attempt without an action attempts client',
+          )
+        }
         const actionAttempt = await resolveActionAttempt(
           data as unknown as ActionAttempt,
-          SeamHttpActionAttempts.fromClient(this.#parent.client, {
-            ...this.#parent.defaults,
-            waitForActionAttempt: false,
-          }),
+          this.#config.actionAttempts,
           typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
         )
         return actionAttempt as Response

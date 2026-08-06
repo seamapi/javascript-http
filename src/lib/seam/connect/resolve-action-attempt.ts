@@ -1,5 +1,8 @@
 import type { ActionAttempt } from './resources/action-attempt.js'
-import type { SeamHttpActionAttempts } from './routes/index.js'
+
+export interface ActionAttemptsClient {
+  get(parameters: { action_attempt_id: string }): PromiseLike<ActionAttempt>
+}
 
 export interface ResolveActionAttemptOptions {
   timeout?: number
@@ -8,7 +11,7 @@ export interface ResolveActionAttemptOptions {
 
 export const resolveActionAttempt = async <T extends ActionAttempt>(
   actionAttempt: T,
-  actionAttempts: SeamHttpActionAttempts,
+  actionAttempts: ActionAttemptsClient,
   { timeout = 10_000, pollingInterval = 1_000 }: ResolveActionAttemptOptions,
 ): Promise<SucceededActionAttempt<T>> => {
   let timeoutRef
@@ -32,7 +35,7 @@ export const resolveActionAttempt = async <T extends ActionAttempt>(
 
 const pollActionAttempt = async <T extends ActionAttempt>(
   actionAttempt: T,
-  actionAttempts: SeamHttpActionAttempts,
+  actionAttempts: ActionAttemptsClient,
   options: Pick<ResolveActionAttemptOptions, 'pollingInterval'>,
 ): Promise<SucceededActionAttempt<T>> => {
   if (isSuccessfulActionAttempt(actionAttempt)) {

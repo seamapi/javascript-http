@@ -12,6 +12,7 @@ import {
   type SeamHttpRequestOptions,
   type SeamHttpWithoutWorkspaceOptions,
 } from './options.js'
+import { isSeamHttpRequestOption } from './request-options.js'
 
 export const defaultEndpoint = 'https://connect.getseam.com'
 
@@ -177,11 +178,4 @@ export const limitToSeamHttpRequestOptions = (
     ) as Required<SeamHttpRequestOptions>
 }
 
-export const isSeamHttpRequestOption = (
-  key: string,
-): key is keyof SeamHttpRequestOptions => {
-  const keys: Record<keyof SeamHttpRequestOptions, true> = {
-    waitForActionAttempt: true,
-  }
-  return Object.keys(keys).includes(key)
-}
+export { isSeamHttpRequestOption } from './request-options.js'

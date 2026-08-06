@@ -6,14 +6,15 @@ import {
   isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
   isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken,
   SeamHttpInvalidOptionsError,
+  type SeamHttpOptions,
   type SeamHttpOptionsWithApiKey,
   type SeamHttpOptionsWithClientSessionToken,
   type SeamHttpOptionsWithConsoleSessionToken,
   type SeamHttpOptionsWithPersonalAccessToken,
+  type SeamHttpWithoutWorkspaceOptions,
   type SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
   type SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken,
 } from './options.js'
-import type { Options } from './parse-options.js'
 import {
   accessTokenPrefix,
   clientSessionTokenPrefix,
@@ -28,6 +29,9 @@ import {
 } from './token.js'
 
 type Headers = Record<string, string>
+type Options =
+  | SeamHttpWithoutWorkspaceOptions
+  | (SeamHttpOptions & { publishableKey?: string })
 
 export const getAuthHeaders = (options: Options): Headers => {
   if ('publishableKey' in options && options.publishableKey != null) {
