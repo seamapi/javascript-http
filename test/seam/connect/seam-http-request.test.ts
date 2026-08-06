@@ -3,7 +3,7 @@ import { getTestServer } from 'fixtures/seam/connect/api.js'
 
 import { SeamHttp } from '@seamapi/http/connect'
 
-import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
+import { SeamHttpRequest } from 'lib/seam-http-request.js'
 
 test('SeamHttp: returns a SeamHttpRequest', async (t) => {
   const { seed, endpoint } = await getTestServer(t)

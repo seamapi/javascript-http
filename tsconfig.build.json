@@ -9,7 +9,7 @@
     "rootDir": "./src",
     "outDir": "./"
   },
-  "files": ["src/index.ts", "src/connect.ts"],
+  "files": ["src/index.ts"],
   "include": ["src/**/*"],
   "exclude": ["**/*.test.ts"]
 }

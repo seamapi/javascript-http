@@ -1,17 +1,17 @@
 import { seamApiLtsVersion } from 'lib/lts-version.js'
 {{#each resourceTypeImports}}
-import type { {{typeName}} } from 'lib/seam/connect/resources/{{fileName}}'
+import type { {{typeName}} } from 'lib/resources/{{fileName}}'
 {{/each}}
 
 import {
   getAuthHeadersForClientSessionToken,
   warnOnInsecureuserIdentifierKey,
-} from 'lib/seam/connect/auth.js'
+} from 'lib/auth.js'
 import {
   type Client,
   type ClientOptions,
   createClient,
-} from 'lib/seam/connect/client.js'
+} from 'lib/client.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -27,19 +27,19 @@ import {
   type SeamHttpOptionsWithConsoleSessionToken,
   type SeamHttpOptionsWithPersonalAccessToken,
   type SeamHttpRequestOptions,
-} from 'lib/seam/connect/options.js'
+} from 'lib/options.js'
 import {
   limitToSeamHttpRequestOptions,
   parseOptions
-} from 'lib/seam/connect/parse-options.js'
-import { SeamHttpRequest } from 'lib/seam/connect/seam-http-request.js'
-import { SeamPaginator } from 'lib/seam/connect/seam-paginator.js'
+} from 'lib/parse-options.js'
+import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import { SeamPaginator } from 'lib/seam-paginator.js'
 
 {{#if needsActionAttemptsImport}}
-import { SeamHttpActionAttempts } from 'lib/seam/connect/routes/action-attempts/index.js'
+import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
 {{/if}}
 {{#unless skipClientSessionImport}}
-import { SeamHttpClientSessions } from 'lib/seam/connect/routes/client-sessions/index.js'
+import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 {{/unless}}
 
 {{#each subroutes}}

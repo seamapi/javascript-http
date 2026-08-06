@@ -30,8 +30,8 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           files: |
-            src/lib/seam/connect/routes/**
-            src/lib/seam/connect/resources/**
+            src/lib/routes/**
+            src/lib/resources/**
   merge:
     name: Merge
     runs-on: ubuntu-latest
