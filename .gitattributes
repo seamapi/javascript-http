@@ -1,2 +1,2 @@
-src/lib/seam/connect/resources/** linguist-generated
-src/lib/seam/connect/routes/** linguist-generated
+src/lib/resources/** linguist-generated
+src/lib/routes/** linguist-generated

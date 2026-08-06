@@ -26,12 +26,12 @@
     "types": ["node"],
     "paths": {
       "@seamapi/http": ["./src/index.ts"],
-      "@seamapi/http/connect": ["./src/connect.ts"],
+      "@seamapi/http/connect": ["./src/index.ts"],
       "fixtures/*": ["./test/fixtures/*"],
       "lib/*": ["./src/lib/*"]
     }
   },
-  "files": ["src/index.ts", "src/connect.ts"],
+  "files": ["src/index.ts"],
   "include": [
     "src/**/*",
     "test/**/*",

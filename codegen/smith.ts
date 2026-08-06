@@ -7,13 +7,13 @@ import * as types from '@seamapi/types/connect'
 import { deleteAsync } from 'del'
 import Metalsmith from 'metalsmith'
 
-import { connect, helpers } from './lib/index.js'
+import { helpers, http } from './lib/index.js'
 
 const rootDir = dirname(fileURLToPath(import.meta.url))
 
 await Promise.all([
-  deleteAsync('./src/lib/seam/connect/routes'),
-  deleteAsync('./src/lib/seam/connect/resources'),
+  deleteAsync('./src/lib/routes'),
+  deleteAsync('./src/lib/resources'),
 ])
 
 const partials = await getHandlebarsPartials(`${rootDir}/layouts/partials`)
@@ -23,7 +23,7 @@ Metalsmith(rootDir)
   .destination('../')
   .clean(false)
   .use(blueprint({ types, omitUndocumented: true }))
-  .use(connect)
+  .use(http)
   .use(
     layouts({
       default: 'default.hbs',

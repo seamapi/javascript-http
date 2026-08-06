@@ -4,4 +4,4 @@ import * as customHelpers from './handlebars-helpers.js'
 
 export const helpers = { ...handlebarsHelpers, ...customHelpers }
 
-export * from './connect.js'
+export * from './http.js'

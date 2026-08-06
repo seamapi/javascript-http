@@ -28,8 +28,8 @@ type File = RouteLayoutContext &
   ResourceLayoutContext &
   ResourceIndexLayoutContext & { layout: string }
 
-const rootPath = 'src/lib/seam/connect/routes'
-const resourcesPath = 'src/lib/seam/connect/resources'
+const rootPath = 'src/lib/routes'
+const resourcesPath = 'src/lib/resources'
 
 const supportedAuthMethods: SeamAuthMethod[] = [
   'api_key',
@@ -39,10 +39,7 @@ const supportedAuthMethods: SeamAuthMethod[] = [
   'console_session_token',
 ]
 
-export const connect = (
-  files: Metalsmith.Files,
-  metalsmith: Metalsmith,
-): void => {
+export const http = (files: Metalsmith.Files, metalsmith: Metalsmith): void => {
   const metadata = metalsmith.metadata() as Metadata
   const { blueprint } = metadata
 
