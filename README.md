@@ -427,6 +427,7 @@ the constructor takes some advanced options that affect behavior.
 const seam = new SeamHttp({
   apiKey: 'your-api-key',
   endpoint: 'https://example.com',
+  timeout: 30000,
   axiosOptions: {},
   axiosRetryOptions: {},
 })
@@ -438,6 +439,7 @@ these options may be passed in as the last argument.
 ```ts
 const seam = SeamHttp.fromApiKey('some-api-key', {
   endpoint: 'https://example.com',
+  timeout: 30000,
   axiosOptions: {},
   axiosRetryOptions: {},
 })
@@ -450,6 +452,22 @@ e.g., testing or proxy setups.
 This option corresponds to the Axios `baseURL` setting.
 
 Either pass the `endpoint` option, or set the `SEAM_ENDPOINT` environment variable.
+
+#### Setting the request timeout
+
+Requests time out after 30 seconds by default.
+Pass the `timeout` option, in milliseconds, to override this:
+
+```ts
+const seam = new SeamHttp({
+  apiKey: 'your-api-key',
+  timeout: 60000,
+})
+```
+
+Set `timeout` to `0` to disable the timeout entirely.
+A request that times out rejects with an Axios `ECONNABORTED` error,
+and is retried according to the retry options.
 
 #### Configuring the Axios Client
 

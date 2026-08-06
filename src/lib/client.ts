@@ -6,7 +6,10 @@ import { errorInterceptor } from './error-interceptor.js'
 
 export type Client = AxiosInstance
 
+export const defaultTimeout = 30_000
+
 export interface ClientOptions {
+  timeout?: number
   axiosOptions?: AxiosRequestConfig
   axiosRetryOptions?: AxiosRetryConfig
 }
@@ -17,6 +20,7 @@ export const createClient = (options: ClientOptions): AxiosInstance => {
   const client = axios.create({
     paramsSerializer: serializeUrlSearchParams,
     adapter: 'fetch',
+    timeout: options.timeout ?? defaultTimeout,
     ...options.axiosOptions,
   })
 

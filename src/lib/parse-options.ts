@@ -2,7 +2,7 @@ import { seamApiLtsVersion } from 'lib/lts-version.js'
 import version from 'lib/version.js'
 
 import { getAuthHeaders } from './auth.js'
-import type { Client, ClientOptions } from './client.js'
+import { type Client, type ClientOptions, defaultTimeout } from './client.js'
 import {
   isSeamHttpOptionsWithClient,
   isSeamHttpOptionsWithClientSessionToken,
@@ -40,6 +40,7 @@ export const parseOptions = (
 
   return {
     ...options,
+    timeout: options.timeout ?? defaultTimeout,
     axiosOptions: {
       baseURL: options.endpoint ?? getEndpointFromEnv() ?? defaultEndpoint,
       withCredentials: isSeamHttpOptionsWithClientSessionToken(options),
