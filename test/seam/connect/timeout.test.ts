@@ -41,6 +41,5 @@ test('SeamHttp: timeout option aborts slow requests', async (t) => {
     instanceOf: AxiosError,
   })
 
-  // The SDK uses the fetch adapter, which reports timeouts as ETIMEDOUT.
   t.is(err?.code, AxiosError.ETIMEDOUT)
 })
