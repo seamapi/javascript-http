@@ -116,7 +116,7 @@ export const getEndpointLayoutContext = (
   }
 
   const requestFormat = ['GET', 'DELETE'].includes(
-    endpoint.request.preferredMethod,
+    endpoint.request.semanticMethod,
   )
     ? 'params'
     : 'body'
@@ -132,7 +132,7 @@ export const getEndpointLayoutContext = (
     path: endpoint.path,
     methodName,
     functionName: camelCase(prefix),
-    method: endpoint.request.preferredMethod,
+    method: endpoint.request.semanticMethod,
     className: getClassName(route.path),
     requestFormat,
     returnsActionAttempt,
