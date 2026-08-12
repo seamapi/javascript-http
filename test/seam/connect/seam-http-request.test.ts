@@ -50,26 +50,23 @@ test('SeamHttpRequest: url is a URL for requests without query string', async (t
   )
 })
 
-test(
-  'SeamHttpRequest: url is a URL for requests with query string',
-  async (t) => {
-    const { seed, endpoint } = await getTestServer(t)
-    const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
-    const { url } = seam.devices.list({
-      limit: 10,
-      device_ids: [seed.august_device_1, seed.ecobee_device_1],
-    })
-    t.true(url instanceof URL)
-    t.deepEqual(
-      toPlainUrlObject(url),
-      toPlainUrlObject(
-        new URL(
-          `${endpoint}/devices/get?device_ids=${seed.august_device_1}&device_ids=${seed.ecobee_device_1}&limit=10`,
-        ),
+test('SeamHttpRequest: url is a URL for requests with query string', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+  const { url } = seam.devices.list({
+    limit: 10,
+    device_ids: [seed.august_device_1, seed.ecobee_device_1],
+  })
+  t.true(url instanceof URL)
+  t.deepEqual(
+    toPlainUrlObject(url),
+    toPlainUrlObject(
+      new URL(
+        `${endpoint}/devices/get?device_ids=${seed.august_device_1}&device_ids=${seed.ecobee_device_1}&limit=10`,
       ),
-    )
-  },
-)
+    ),
+  )
+})
 
 test('SeamHttpRequest: url is a URL when endpoint is a url without a path', async (t) => {
   const { seed } = await getTestServer(t)
