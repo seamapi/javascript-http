@@ -17,7 +17,8 @@ test('SeamHttp: sends default headers', async (t) => {
       'seam-sdk-version': seamapiJavascriptHttpVersion,
     },
   })
-    .post('/devices/get', { device_id: deviceId })
+    .get('/devices/get')
+    .query({ device_id: deviceId })
     .reply(200, { device: { device_id: deviceId } })
   const seam = new SeamHttp({ apiKey: seed.seam_apikey1_token, endpoint })
   const device = await seam.devices.get({
