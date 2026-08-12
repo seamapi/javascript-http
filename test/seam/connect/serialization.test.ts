@@ -48,8 +48,7 @@ test('serializes array params when undefined and explicitly using get', async (t
   t.is(devices.length, db.devices.length)
 })
 
-// UPSTREAM: nextlove parses device_ids= to [''] but should parse this to []
-test.failing(
+test(
   'serializes array params when empty and explicitly using get',
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)

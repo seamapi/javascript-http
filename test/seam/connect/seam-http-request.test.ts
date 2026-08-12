@@ -50,8 +50,7 @@ test('SeamHttpRequest: url is a URL for requests without query string', async (t
   )
 })
 
-// UPSTREAM: The Seam API does not yet consistently support GET requests, so only POST is used.
-test.failing(
+test(
   'SeamHttpRequest: url is a URL for requests with query string',
   async (t) => {
     const { seed, endpoint } = await getTestServer(t)
