@@ -203,8 +203,8 @@ export class SeamHttpAcsUsers {
   ): AcsUsersDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -219,8 +219,8 @@ export class SeamHttpAcsUsers {
   ): AcsUsersGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_user',
       options,
     })
@@ -235,8 +235,8 @@ export class SeamHttpAcsUsers {
   ): AcsUsersListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_users',
       options,
     })
@@ -251,8 +251,8 @@ export class SeamHttpAcsUsers {
   ): AcsUsersListAccessibleEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/list_accessible_entrances',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_entrances',
       options,
     })
@@ -267,8 +267,8 @@ export class SeamHttpAcsUsers {
   ): AcsUsersRemoveFromAccessGroupRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/remove_from_access_group',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })

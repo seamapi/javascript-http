@@ -235,8 +235,8 @@ export class SeamHttpAccessMethods {
   ): AccessMethodsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_method',
       options,
     })
@@ -251,8 +251,8 @@ export class SeamHttpAccessMethods {
   ): AccessMethodsGetRelatedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/get_related',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'batch',
       options,
     })
@@ -267,8 +267,8 @@ export class SeamHttpAccessMethods {
   ): AccessMethodsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_methods',
       options,
     })

@@ -176,8 +176,8 @@ export class SeamHttpPhones {
   ): PhonesDeactivateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/deactivate',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -192,8 +192,8 @@ export class SeamHttpPhones {
   ): PhonesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'phone',
       options,
     })
@@ -208,8 +208,8 @@ export class SeamHttpPhones {
   ): PhonesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/phones/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'phones',
       options,
     })

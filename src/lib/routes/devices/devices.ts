@@ -184,8 +184,8 @@ export class SeamHttpDevices {
   ): DevicesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'device',
       options,
     })
@@ -200,8 +200,8 @@ export class SeamHttpDevices {
   ): DevicesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'devices',
       options,
     })
@@ -220,8 +220,8 @@ export class SeamHttpDevices {
   ): DevicesListDeviceProvidersRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/list_device_providers',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'device_providers',
       options,
     })

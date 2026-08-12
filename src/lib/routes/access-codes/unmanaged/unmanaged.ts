@@ -190,8 +190,8 @@ export class SeamHttpAccessCodesUnmanaged {
   ): AccessCodesUnmanagedDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -208,8 +208,8 @@ export class SeamHttpAccessCodesUnmanaged {
   ): AccessCodesUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_code',
       options,
     })
@@ -224,8 +224,8 @@ export class SeamHttpAccessCodesUnmanaged {
   ): AccessCodesUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_codes',
       options,
     })

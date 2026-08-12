@@ -220,8 +220,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -284,8 +284,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'user_identities',
       options,
     })
@@ -300,8 +300,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesListAccessibleDevicesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_accessible_devices',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'devices',
       options,
     })
@@ -316,8 +316,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesListAccessibleEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_accessible_entrances',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_entrances',
       options,
     })
@@ -332,8 +332,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesListAcsSystemsRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_acs_systems',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_systems',
       options,
     })
@@ -348,8 +348,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesListAcsUsersRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_acs_users',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_users',
       options,
     })
@@ -364,8 +364,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesRemoveAcsUserRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/remove_acs_user',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -380,8 +380,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesRevokeAccessToDeviceRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/revoke_access_to_device',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })

@@ -173,8 +173,8 @@ export class SeamHttpUserIdentitiesUnmanaged {
   ): UserIdentitiesUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'user_identity',
       options,
     })
@@ -189,8 +189,8 @@ export class SeamHttpUserIdentitiesUnmanaged {
   ): UserIdentitiesUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'user_identities',
       options,
     })

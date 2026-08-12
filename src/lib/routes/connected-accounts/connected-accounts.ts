@@ -183,8 +183,8 @@ export class SeamHttpConnectedAccounts {
   ): ConnectedAccountsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -215,8 +215,8 @@ export class SeamHttpConnectedAccounts {
   ): ConnectedAccountsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'connected_accounts',
       options,
     })

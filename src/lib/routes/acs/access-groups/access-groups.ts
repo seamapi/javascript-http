@@ -188,8 +188,8 @@ export class SeamHttpAcsAccessGroups {
   ): AcsAccessGroupsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -204,8 +204,8 @@ export class SeamHttpAcsAccessGroups {
   ): AcsAccessGroupsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_access_group',
       options,
     })
@@ -220,8 +220,8 @@ export class SeamHttpAcsAccessGroups {
   ): AcsAccessGroupsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_access_groups',
       options,
     })
@@ -236,8 +236,8 @@ export class SeamHttpAcsAccessGroups {
   ): AcsAccessGroupsListAccessibleEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list_accessible_entrances',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_entrances',
       options,
     })
@@ -252,8 +252,8 @@ export class SeamHttpAcsAccessGroups {
   ): AcsAccessGroupsListUsersRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list_users',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_users',
       options,
     })
@@ -268,8 +268,8 @@ export class SeamHttpAcsAccessGroups {
   ): AcsAccessGroupsRemoveUserRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/remove_user',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })

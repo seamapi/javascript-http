@@ -170,8 +170,8 @@ export class SeamHttpActionAttempts {
   ): ActionAttemptsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/action_attempts/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -190,8 +190,8 @@ export class SeamHttpActionAttempts {
   ): ActionAttemptsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/action_attempts/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'action_attempts',
       options,
     })

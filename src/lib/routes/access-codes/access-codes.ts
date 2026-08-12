@@ -223,8 +223,8 @@ export class SeamHttpAccessCodes {
   ): AccessCodesDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -239,8 +239,8 @@ export class SeamHttpAccessCodes {
   ): AccessCodesGenerateCodeRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/generate_code',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'generated_code',
       options,
     })
@@ -257,8 +257,8 @@ export class SeamHttpAccessCodes {
   ): AccessCodesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_code',
       options,
     })
@@ -275,8 +275,8 @@ export class SeamHttpAccessCodes {
   ): AccessCodesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_codes',
       options,
     })

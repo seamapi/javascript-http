@@ -203,8 +203,8 @@ export class SeamHttpAcsCredentials {
   ): AcsCredentialsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -219,8 +219,8 @@ export class SeamHttpAcsCredentials {
   ): AcsCredentialsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_credential',
       options,
     })
@@ -251,8 +251,8 @@ export class SeamHttpAcsCredentials {
   ): AcsCredentialsListAccessibleEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/list_accessible_entrances',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_entrances',
       options,
     })

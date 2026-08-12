@@ -187,8 +187,8 @@ export class SeamHttpCustomers {
   ): CustomersDeleteDataRequest {
     return new SeamHttpRequest(this, {
       pathname: '/customers/delete_data',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })

@@ -194,8 +194,8 @@ export class SeamHttpConnectWebviews {
   ): ConnectWebviewsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -212,8 +212,8 @@ export class SeamHttpConnectWebviews {
   ): ConnectWebviewsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'connect_webview',
       options,
     })
@@ -228,8 +228,8 @@ export class SeamHttpConnectWebviews {
   ): ConnectWebviewsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'connect_webviews',
       options,
     })

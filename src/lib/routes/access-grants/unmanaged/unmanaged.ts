@@ -170,8 +170,8 @@ export class SeamHttpAccessGrantsUnmanaged {
   ): AccessGrantsUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_grant',
       options,
     })
@@ -186,8 +186,8 @@ export class SeamHttpAccessGrantsUnmanaged {
   ): AccessGrantsUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_grants',
       options,
     })

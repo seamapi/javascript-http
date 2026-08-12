@@ -247,8 +247,8 @@ export class SeamHttpThermostats {
   ): ThermostatsDeleteClimatePresetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/delete_climate_preset',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -303,8 +303,8 @@ export class SeamHttpThermostats {
   ): ThermostatsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'devices',
       options,
     })

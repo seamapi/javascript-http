@@ -185,8 +185,8 @@ export class SeamHttpClientSessions {
   ): ClientSessionsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -201,8 +201,8 @@ export class SeamHttpClientSessions {
   ): ClientSessionsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'client_session',
       options,
     })
@@ -249,8 +249,8 @@ export class SeamHttpClientSessions {
   ): ClientSessionsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'client_sessions',
       options,
     })

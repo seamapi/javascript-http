@@ -198,8 +198,8 @@ export class SeamHttpAcsEncoders {
   ): AcsEncodersGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_encoder',
       options,
     })

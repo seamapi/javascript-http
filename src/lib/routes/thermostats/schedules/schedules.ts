@@ -186,8 +186,8 @@ export class SeamHttpThermostatsSchedules {
   ): ThermostatsSchedulesDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -202,8 +202,8 @@ export class SeamHttpThermostatsSchedules {
   ): ThermostatsSchedulesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'thermostat_schedule',
       options,
     })
@@ -218,8 +218,8 @@ export class SeamHttpThermostatsSchedules {
   ): ThermostatsSchedulesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'thermostat_schedules',
       options,
     })

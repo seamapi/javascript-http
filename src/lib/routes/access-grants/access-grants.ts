@@ -193,8 +193,8 @@ export class SeamHttpAccessGrants {
   ): AccessGrantsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -225,8 +225,8 @@ export class SeamHttpAccessGrants {
   ): AccessGrantsGetRelatedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/get_related',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'batch',
       options,
     })
@@ -241,8 +241,8 @@ export class SeamHttpAccessGrants {
   ): AccessGrantsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_grants',
       options,
     })

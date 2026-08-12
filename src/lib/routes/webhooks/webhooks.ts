@@ -186,8 +186,8 @@ export class SeamHttpWebhooks {
   ): WebhooksDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -202,8 +202,8 @@ export class SeamHttpWebhooks {
   ): WebhooksGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'webhook',
       options,
     })

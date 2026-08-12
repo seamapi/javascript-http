@@ -235,8 +235,8 @@ export class SeamHttpSpaces {
   ): SpacesDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -267,8 +267,8 @@ export class SeamHttpSpaces {
   ): SpacesGetRelatedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/get_related',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'batch',
       options,
     })
@@ -283,8 +283,8 @@ export class SeamHttpSpaces {
   ): SpacesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'spaces',
       options,
     })
@@ -299,8 +299,8 @@ export class SeamHttpSpaces {
   ): SpacesRemoveAcsEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_acs_entrances',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -315,8 +315,8 @@ export class SeamHttpSpaces {
   ): SpacesRemoveConnectedAccountRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_connected_account',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -331,8 +331,8 @@ export class SeamHttpSpaces {
   ): SpacesRemoveDevicesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_devices',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })

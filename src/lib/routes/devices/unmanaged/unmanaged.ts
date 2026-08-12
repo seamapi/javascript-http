@@ -174,8 +174,8 @@ export class SeamHttpDevicesUnmanaged {
   ): DevicesUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'device',
       options,
     })
@@ -192,8 +192,8 @@ export class SeamHttpDevicesUnmanaged {
   ): DevicesUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'devices',
       options,
     })
