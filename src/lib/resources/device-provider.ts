@@ -139,6 +139,7 @@ export type DeviceProvider = {
     | 'keyincode'
     | 'dormakaba_ambiance'
     | 'ultraloq'
+    | 'yacan'
     | 'dusaw'
     | 'sifely'
     | 'thirty_three_lock'

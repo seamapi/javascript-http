@@ -232,8 +232,8 @@ export class SeamHttpSpaces {
   ): SpacesDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -280,8 +280,8 @@ export class SeamHttpSpaces {
   ): SpacesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'spaces',
       options,
     })
@@ -312,8 +312,8 @@ export class SeamHttpSpaces {
   ): SpacesRemoveConnectedAccountRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_connected_account',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -432,19 +432,19 @@ export type SpacesCreateParameters = {
         /**
          * Postal address for the space.
          */
-        address?: string | undefined
+        address?: string | null | undefined
         /**
          * Default check-in time for reservations at the space, as HH:mm or HH:mm:ss.
          */
-        default_checkin_time?: string | undefined
+        default_checkin_time?: string | null | undefined
         /**
          * Default check-out time for reservations at the space, as HH:mm or HH:mm:ss.
          */
-        default_checkout_time?: string | undefined
+        default_checkout_time?: string | null | undefined
         /**
          * IANA time zone for the space, e.g. America/Los_Angeles.
          */
-        time_zone?: string | undefined
+        time_zone?: string | null | undefined
       }
     | undefined
   /**
@@ -576,7 +576,7 @@ export type SpacesListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned spaces to include all records that satisfy a partial match using `name`, `space_key`, or `customer_key`.
    */
@@ -675,19 +675,19 @@ export type SpacesUpdateParameters = {
         /**
          * Postal address for the space.
          */
-        address?: string | undefined
+        address?: string | null | undefined
         /**
          * Default check-in time for reservations at the space, as HH:mm or HH:mm:ss.
          */
-        default_checkin_time?: string | undefined
+        default_checkin_time?: string | null | undefined
         /**
          * Default check-out time for reservations at the space, as HH:mm or HH:mm:ss.
          */
-        default_checkout_time?: string | undefined
+        default_checkout_time?: string | null | undefined
         /**
          * IANA time zone for the space, e.g. America/Los_Angeles.
          */
-        time_zone?: string | undefined
+        time_zone?: string | null | undefined
       }
     | undefined
   /**

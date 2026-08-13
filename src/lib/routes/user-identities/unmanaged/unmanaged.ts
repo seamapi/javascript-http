@@ -170,8 +170,8 @@ export class SeamHttpUserIdentitiesUnmanaged {
   ): UserIdentitiesUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'user_identity',
       options,
     })
@@ -186,8 +186,8 @@ export class SeamHttpUserIdentitiesUnmanaged {
   ): UserIdentitiesUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'user_identities',
       options,
     })
@@ -245,7 +245,7 @@ export type UserIdentitiesUnmanagedListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned unmanaged user identities to include all records that satisfy a partial match using `full_name`, `phone_number`, `email_address`,  `user_identity_id` or `acs_system_id`.
    */

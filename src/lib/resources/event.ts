@@ -3458,10 +3458,6 @@ export type SeamEvent =
       connected_account_id: string
 
       /**
-       * undocumented: Unreleased.
-       */
-      connected_account_type?: string | undefined
-      /**
        * Date and time at which the event was created.
        */
       created_at: string
@@ -5672,24 +5668,6 @@ export type SeamEvent =
        */
       access_code_is_managed?: boolean | undefined
       /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the ACS entrance associated with the lock event.
-       */
-      acs_entrance_id?: string | undefined
-      /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the ACS system associated with the lock event.
-       */
-      acs_system_id?: string | undefined
-      /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the ACS user associated with the lock event.
-       */
-      acs_user_id?: string | undefined
-      /**
        * ID of the Seam action attempt that triggered this lock. Present only when the lock was initiated through Seam (via a `LOCK_DOOR` action attempt).
        */
       action_attempt_id?: string | undefined
@@ -5754,12 +5732,6 @@ export type SeamEvent =
       occurred_at: string
 
       /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the user identity associated with the lock event.
-       */
-      user_identity_id?: string | undefined
-      /**
        * ID of the workspace associated with the event.
        */
       workspace_id: string
@@ -5773,24 +5745,6 @@ export type SeamEvent =
        * Whether the access code is managed by Seam (true) or unmanaged (false). Only present when access_code_id is set.
        */
       access_code_is_managed?: boolean | undefined
-      /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the ACS entrance associated with the unlock event.
-       */
-      acs_entrance_id?: string | undefined
-      /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the ACS system associated with the unlock event.
-       */
-      acs_system_id?: string | undefined
-      /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the ACS user associated with the unlock event.
-       */
-      acs_user_id?: string | undefined
       /**
        * ID of the Seam action attempt that triggered this unlock. Present only when the unlock was initiated through Seam (via an `UNLOCK_DOOR` action attempt).
        */
@@ -5855,12 +5809,6 @@ export type SeamEvent =
       occurred_at: string
 
       /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the user identity associated with the unlock event.
-       */
-      user_identity_id?: string | undefined
-      /**
        * ID of the workspace associated with the event.
        */
       workspace_id: string
@@ -5870,24 +5818,6 @@ export type SeamEvent =
        * ID of the access code that was used in the unlock attempts.
        */
       access_code_id?: string | undefined
-      /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the ACS entrance associated with the access-denied event.
-       */
-      acs_entrance_id?: string | undefined
-      /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the ACS system associated with the access-denied event.
-       */
-      acs_system_id?: string | undefined
-      /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the ACS user associated with the access-denied event.
-       */
-      acs_user_id?: string | undefined
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
@@ -5952,12 +5882,6 @@ export type SeamEvent =
               | 'credential_error'
           }
         | undefined
-      /**
-       * undocumented: Unreleased.
-       *       ---
-       *       ID of the user identity associated with the access-denied event.
-       */
-      user_identity_id?: string | undefined
       /**
        * ID of the workspace associated with the event.
        */

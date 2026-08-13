@@ -200,8 +200,8 @@ export class SeamHttpAcsUsers {
   ): AcsUsersDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -216,8 +216,8 @@ export class SeamHttpAcsUsers {
   ): AcsUsersGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_user',
       options,
     })
@@ -232,8 +232,8 @@ export class SeamHttpAcsUsers {
   ): AcsUsersListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_users',
       options,
     })
@@ -248,8 +248,8 @@ export class SeamHttpAcsUsers {
   ): AcsUsersListAccessibleEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/list_accessible_entrances',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_entrances',
       options,
     })
@@ -264,8 +264,8 @@ export class SeamHttpAcsUsers {
   ): AcsUsersRemoveFromAccessGroupRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/remove_from_access_group',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -366,7 +366,7 @@ export type AcsUsersCreateParameters = {
         /**
          * Ending timestamp for the new access system user's access.
          */
-        ends_at?: string | undefined
+        ends_at?: string | null | undefined
         /**
          * Starting timestamp for the new access system user's access.
          */
@@ -484,7 +484,7 @@ export type AcsUsersListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned access system users to include all records that satisfy a partial match using `full_name`, `phone_number`, `email_address`, `acs_user_id`, `user_identity_id`, `user_identity_full_name` or `user_identity_phone_number`.
    */
@@ -662,6 +662,7 @@ export type AcsUsersUpdateParameters = {
          */
         starts_at?: string | undefined
       }
+    | null
     | undefined
   /**
    * ID of the access system that you want to update. You can only provide acs_system_id with user_identity_id.

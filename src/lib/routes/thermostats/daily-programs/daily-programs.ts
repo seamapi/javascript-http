@@ -188,8 +188,8 @@ export class SeamHttpThermostatsDailyPrograms {
   ): ThermostatsDailyProgramsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })

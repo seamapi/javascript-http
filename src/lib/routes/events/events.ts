@@ -167,8 +167,8 @@ export class SeamHttpEvents {
   ): EventsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/events/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'event',
       options,
     })
@@ -271,7 +271,7 @@ export type EventsListParameters = {
   /**
    * Lower and upper timestamps to define an exclusive interval containing the events that you want to list. You must include `since` or `between`.
    */
-  between?: Array<{}> | undefined
+  between?: Array<string> | undefined
   /**
    * ID of the Connect Webview for which you want to list events.
    */

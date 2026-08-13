@@ -187,8 +187,8 @@ export class SeamHttpAccessCodesUnmanaged {
   ): AccessCodesUnmanagedDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -205,8 +205,8 @@ export class SeamHttpAccessCodesUnmanaged {
   ): AccessCodesUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_code',
       options,
     })
@@ -221,8 +221,8 @@ export class SeamHttpAccessCodesUnmanaged {
   ): AccessCodesUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_codes',
       options,
     })
@@ -335,7 +335,7 @@ export type AccessCodesUnmanagedListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned access codes to include all records that satisfy a partial match using `name`, `code` or `access_code_id`.
    */

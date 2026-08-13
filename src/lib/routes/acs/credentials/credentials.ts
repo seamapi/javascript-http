@@ -200,8 +200,8 @@ export class SeamHttpAcsCredentials {
   ): AcsCredentialsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -216,8 +216,8 @@ export class SeamHttpAcsCredentials {
   ): AcsCredentialsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_credential',
       options,
     })
@@ -248,8 +248,8 @@ export class SeamHttpAcsCredentials {
   ): AcsCredentialsListAccessibleEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/list_accessible_entrances',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_entrances',
       options,
     })
@@ -473,7 +473,7 @@ export type AcsCredentialsListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned credentials to include all records that satisfy a partial match using `display_name`, `code`, `card_number`, `acs_user_id` or `acs_credential_id`.
    */

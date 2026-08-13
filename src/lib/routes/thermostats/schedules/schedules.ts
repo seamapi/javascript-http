@@ -183,8 +183,8 @@ export class SeamHttpThermostatsSchedules {
   ): ThermostatsSchedulesDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -199,8 +199,8 @@ export class SeamHttpThermostatsSchedules {
   ): ThermostatsSchedulesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'thermostat_schedule',
       options,
     })
@@ -215,8 +215,8 @@ export class SeamHttpThermostatsSchedules {
   ): ThermostatsSchedulesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'thermostat_schedules',
       options,
     })
@@ -262,7 +262,7 @@ export type ThermostatsSchedulesCreateParameters = {
   /**
    * Number of minutes for which a person at the thermostat or using the API can change the thermostat's settings after the activation of the scheduled climate preset. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
    */
-  max_override_period_minutes?: number | undefined
+  max_override_period_minutes?: number | null | undefined
   /**
    * Name of the thermostat schedule.
    */
@@ -366,7 +366,7 @@ export type ThermostatsSchedulesUpdateParameters = {
   /**
    * Number of minutes for which a person at the thermostat or using the API can change the thermostat's settings after the activation of the scheduled climate preset. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
    */
-  max_override_period_minutes?: number | undefined
+  max_override_period_minutes?: number | null | undefined
   /**
    * Name of the thermostat schedule.
    */

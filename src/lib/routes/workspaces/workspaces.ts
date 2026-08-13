@@ -254,7 +254,7 @@ export type WorkspacesCreateParameters = {
    * Connect partner name for the new workspace.
    * @deprecated Use `company_name` instead.
    */
-  connect_partner_name?: string | undefined
+  connect_partner_name?: string | null | undefined
   /**
    * [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews) customizations for the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
    */
@@ -263,19 +263,19 @@ export type WorkspacesCreateParameters = {
         /**
          * Logo shape for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        logo_shape?: 'circle' | 'square' | undefined
+        logo_shape?: 'circle' | 'square' | null | undefined
         /**
          * Primary button color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        primary_button_color?: string | undefined
+        primary_button_color?: string | null | undefined
         /**
          * Primary button text color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        primary_button_text_color?: string | undefined
+        primary_button_text_color?: string | null | undefined
         /**
          * Success message for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        success_message?: string | undefined
+        success_message?: string | null | undefined
       }
     | undefined
   /**
@@ -379,19 +379,19 @@ export type WorkspacesUpdateParameters = {
         /**
          * Logo shape for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        logo_shape?: 'circle' | 'square' | undefined
+        logo_shape?: 'circle' | 'square' | null | undefined
         /**
          * Primary button color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        primary_button_color?: string | undefined
+        primary_button_color?: string | null | undefined
         /**
          * Primary button text color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        primary_button_text_color?: string | undefined
+        primary_button_text_color?: string | null | undefined
         /**
          * Success message for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        success_message?: string | undefined
+        success_message?: string | null | undefined
       }
     | undefined
   /**
