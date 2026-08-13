@@ -85,7 +85,7 @@
   },
   "devDependencies": {
     "@seamapi/blueprint": "^1.1.0",
-    "@seamapi/fake-seam-connect": "^2.0.2",
+    "@seamapi/fake-seam-connect": "^2.0.3",
     "@seamapi/smith": "^1.1.0",
     "@seamapi/types": "1.983.0",
     "@types/jsonwebtoken": "^9.0.6",
