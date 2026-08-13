@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { NoiseThreshold } from 'lib/resources/noise-threshold.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -168,6 +169,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     parameters: NoiseSensorsNoiseThresholdsCreateParameters,
     options: NoiseSensorsNoiseThresholdsCreateOptions = {},
   ): NoiseSensorsNoiseThresholdsCreateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/noise_sensors/noise_thresholds/create',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/create',
       method: 'POST',
@@ -184,6 +191,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     parameters: NoiseSensorsNoiseThresholdsDeleteParameters,
     options: NoiseSensorsNoiseThresholdsDeleteOptions = {},
   ): NoiseSensorsNoiseThresholdsDeleteRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/noise_sensors/noise_thresholds/delete',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/delete',
       method: 'DELETE',
@@ -200,6 +213,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     parameters: NoiseSensorsNoiseThresholdsGetParameters,
     options: NoiseSensorsNoiseThresholdsGetOptions = {},
   ): NoiseSensorsNoiseThresholdsGetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/noise_sensors/noise_thresholds/get',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/get',
       method: 'GET',
@@ -216,6 +235,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     parameters: NoiseSensorsNoiseThresholdsListParameters,
     options: NoiseSensorsNoiseThresholdsListOptions = {},
   ): NoiseSensorsNoiseThresholdsListRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/noise_sensors/noise_thresholds/list',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/list',
       method: 'GET',
@@ -232,6 +257,12 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     parameters: NoiseSensorsNoiseThresholdsUpdateParameters,
     options: NoiseSensorsNoiseThresholdsUpdateOptions = {},
   ): NoiseSensorsNoiseThresholdsUpdateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/noise_sensors/noise_thresholds/update',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/update',
       method: 'PUT',

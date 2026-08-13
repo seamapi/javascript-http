@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { AcsEncoder } from 'lib/resources/acs-encoder.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
@@ -173,6 +174,12 @@ export class SeamHttpAcsEncoders {
     parameters: AcsEncodersEncodeCredentialParameters,
     options: AcsEncodersEncodeCredentialOptions = {},
   ): AcsEncodersEncodeCredentialRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/acs/encoders/encode_credential',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/encode_credential',
       method: 'POST',
@@ -193,6 +200,8 @@ export class SeamHttpAcsEncoders {
     parameters: AcsEncodersGetParameters,
     options: AcsEncodersGetOptions = {},
   ): AcsEncodersGetRequest {
+    assertValidRequestParameters(parameters, '/acs/encoders/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/get',
       method: 'GET',
@@ -209,6 +218,8 @@ export class SeamHttpAcsEncoders {
     parameters?: AcsEncodersListParameters,
     options: AcsEncodersListOptions = {},
   ): AcsEncodersListRequest {
+    assertValidRequestParameters(parameters, '/acs/encoders/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/list',
       method: 'POST',
@@ -225,6 +236,12 @@ export class SeamHttpAcsEncoders {
     parameters: AcsEncodersScanCredentialParameters,
     options: AcsEncodersScanCredentialOptions = {},
   ): AcsEncodersScanCredentialRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/acs/encoders/scan_credential',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/scan_credential',
       method: 'POST',
@@ -245,6 +262,12 @@ export class SeamHttpAcsEncoders {
     parameters: AcsEncodersScanToAssignCredentialParameters,
     options: AcsEncodersScanToAssignCredentialOptions = {},
   ): AcsEncodersScanToAssignCredentialRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/acs/encoders/scan_to_assign_credential',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/scan_to_assign_credential',
       method: 'POST',

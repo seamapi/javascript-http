@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { UnmanagedAccessCode } from 'lib/resources/unmanaged-access-code.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -169,6 +173,12 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedConvertToManagedParameters,
     options: AccessCodesUnmanagedConvertToManagedOptions = {},
   ): AccessCodesUnmanagedConvertToManagedRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/unmanaged/convert_to_managed',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/convert_to_managed',
       method: 'PATCH',
@@ -185,6 +195,12 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedDeleteParameters,
     options: AccessCodesUnmanagedDeleteOptions = {},
   ): AccessCodesUnmanagedDeleteRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/unmanaged/delete',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/delete',
       method: 'DELETE',
@@ -200,9 +216,15 @@ export class SeamHttpAccessCodesUnmanaged {
    * You must specify either `access_code_id` or both `device_id` and `code`.
    */
   get(
-    parameters?: AccessCodesUnmanagedGetParameters,
+    parameters: AccessCodesUnmanagedGetParameters,
     options: AccessCodesUnmanagedGetOptions = {},
   ): AccessCodesUnmanagedGetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/unmanaged/get',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/get',
       method: 'GET',
@@ -219,6 +241,12 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedListParameters,
     options: AccessCodesUnmanagedListOptions = {},
   ): AccessCodesUnmanagedListRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/unmanaged/list',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/list',
       method: 'GET',
@@ -235,6 +263,12 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedUpdateParameters,
     options: AccessCodesUnmanagedUpdateOptions = {},
   ): AccessCodesUnmanagedUpdateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/unmanaged/update',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/update',
       method: 'PATCH',
@@ -293,7 +327,7 @@ export type AccessCodesUnmanagedDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface AccessCodesUnmanagedDeleteOptions {}
 
-export type AccessCodesUnmanagedGetParameters = {
+export type AccessCodesUnmanagedGetParameters = RequireAtLeastOne<{
   /**
    * ID of the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
    */
@@ -306,7 +340,7 @@ export type AccessCodesUnmanagedGetParameters = {
    * ID of the device containing the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
    */
   device_id?: string | undefined
-}
+}>
 
 /**
  * @deprecated Use AccessCodesUnmanagedGetRequest instead.

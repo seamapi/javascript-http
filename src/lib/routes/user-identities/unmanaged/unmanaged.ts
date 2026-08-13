@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { UnmanagedUserIdentity } from 'lib/resources/unmanaged-user-identity.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -168,6 +169,12 @@ export class SeamHttpUserIdentitiesUnmanaged {
     parameters: UserIdentitiesUnmanagedGetParameters,
     options: UserIdentitiesUnmanagedGetOptions = {},
   ): UserIdentitiesUnmanagedGetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/user_identities/unmanaged/get',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/get',
       method: 'GET',
@@ -184,6 +191,12 @@ export class SeamHttpUserIdentitiesUnmanaged {
     parameters?: UserIdentitiesUnmanagedListParameters,
     options: UserIdentitiesUnmanagedListOptions = {},
   ): UserIdentitiesUnmanagedListRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/user_identities/unmanaged/list',
+      false,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/list',
       method: 'GET',
@@ -202,6 +215,12 @@ export class SeamHttpUserIdentitiesUnmanaged {
     parameters: UserIdentitiesUnmanagedUpdateParameters,
     options: UserIdentitiesUnmanagedUpdateOptions = {},
   ): UserIdentitiesUnmanagedUpdateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/user_identities/unmanaged/update',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/update',
       method: 'PATCH',

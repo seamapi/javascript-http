@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { Phone } from 'lib/resources/phone.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -171,6 +172,8 @@ export class SeamHttpPhones {
     parameters: PhonesDeactivateParameters,
     options: PhonesDeactivateOptions = {},
   ): PhonesDeactivateRequest {
+    assertValidRequestParameters(parameters, '/phones/deactivate', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/phones/deactivate',
       method: 'DELETE',
@@ -187,6 +190,8 @@ export class SeamHttpPhones {
     parameters: PhonesGetParameters,
     options: PhonesGetOptions = {},
   ): PhonesGetRequest {
+    assertValidRequestParameters(parameters, '/phones/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/phones/get',
       method: 'GET',
@@ -203,6 +208,8 @@ export class SeamHttpPhones {
     parameters?: PhonesListParameters,
     options: PhonesListOptions = {},
   ): PhonesListRequest {
+    assertValidRequestParameters(parameters, '/phones/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/phones/list',
       method: 'GET',

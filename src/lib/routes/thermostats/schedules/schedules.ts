@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ThermostatSchedule } from 'lib/resources/thermostat-schedule.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -165,6 +166,12 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesCreateParameters,
     options: ThermostatsSchedulesCreateOptions = {},
   ): ThermostatsSchedulesCreateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/schedules/create',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/create',
       method: 'POST',
@@ -181,6 +188,12 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesDeleteParameters,
     options: ThermostatsSchedulesDeleteOptions = {},
   ): ThermostatsSchedulesDeleteRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/schedules/delete',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/delete',
       method: 'DELETE',
@@ -197,6 +210,8 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesGetParameters,
     options: ThermostatsSchedulesGetOptions = {},
   ): ThermostatsSchedulesGetRequest {
+    assertValidRequestParameters(parameters, '/thermostats/schedules/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/get',
       method: 'GET',
@@ -213,6 +228,12 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesListParameters,
     options: ThermostatsSchedulesListOptions = {},
   ): ThermostatsSchedulesListRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/schedules/list',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/list',
       method: 'GET',
@@ -229,6 +250,12 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesUpdateParameters,
     options: ThermostatsSchedulesUpdateOptions = {},
   ): ThermostatsSchedulesUpdateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/schedules/update',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/update',
       method: 'PATCH',

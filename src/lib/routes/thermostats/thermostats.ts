@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import type { Device } from 'lib/resources/device.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
@@ -186,6 +187,12 @@ export class SeamHttpThermostats {
     parameters: ThermostatsActivateClimatePresetParameters,
     options: ThermostatsActivateClimatePresetOptions = {},
   ): ThermostatsActivateClimatePresetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/activate_climate_preset',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/activate_climate_preset',
       method: 'POST',
@@ -206,6 +213,8 @@ export class SeamHttpThermostats {
     parameters: ThermostatsCoolParameters,
     options: ThermostatsCoolOptions = {},
   ): ThermostatsCoolRequest {
+    assertValidRequestParameters(parameters, '/thermostats/cool', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/cool',
       method: 'POST',
@@ -226,6 +235,12 @@ export class SeamHttpThermostats {
     parameters: ThermostatsCreateClimatePresetParameters,
     options: ThermostatsCreateClimatePresetOptions = {},
   ): ThermostatsCreateClimatePresetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/create_climate_preset',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/create_climate_preset',
       method: 'POST',
@@ -242,6 +257,12 @@ export class SeamHttpThermostats {
     parameters: ThermostatsDeleteClimatePresetParameters,
     options: ThermostatsDeleteClimatePresetOptions = {},
   ): ThermostatsDeleteClimatePresetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/delete_climate_preset',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/delete_climate_preset',
       method: 'DELETE',
@@ -258,6 +279,8 @@ export class SeamHttpThermostats {
     parameters: ThermostatsHeatParameters,
     options: ThermostatsHeatOptions = {},
   ): ThermostatsHeatRequest {
+    assertValidRequestParameters(parameters, '/thermostats/heat', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/heat',
       method: 'POST',
@@ -278,6 +301,8 @@ export class SeamHttpThermostats {
     parameters: ThermostatsHeatCoolParameters,
     options: ThermostatsHeatCoolOptions = {},
   ): ThermostatsHeatCoolRequest {
+    assertValidRequestParameters(parameters, '/thermostats/heat_cool', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/heat_cool',
       method: 'POST',
@@ -298,6 +323,8 @@ export class SeamHttpThermostats {
     parameters?: ThermostatsListParameters,
     options: ThermostatsListOptions = {},
   ): ThermostatsListRequest {
+    assertValidRequestParameters(parameters, '/thermostats/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/list',
       method: 'POST',
@@ -314,6 +341,8 @@ export class SeamHttpThermostats {
     parameters: ThermostatsOffParameters,
     options: ThermostatsOffOptions = {},
   ): ThermostatsOffRequest {
+    assertValidRequestParameters(parameters, '/thermostats/off', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/off',
       method: 'POST',
@@ -334,6 +363,12 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetFallbackClimatePresetParameters,
     options: ThermostatsSetFallbackClimatePresetOptions = {},
   ): ThermostatsSetFallbackClimatePresetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/set_fallback_climate_preset',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_fallback_climate_preset',
       method: 'POST',
@@ -350,6 +385,8 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetFanModeParameters,
     options: ThermostatsSetFanModeOptions = {},
   ): ThermostatsSetFanModeRequest {
+    assertValidRequestParameters(parameters, '/thermostats/set_fan_mode', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_fan_mode',
       method: 'POST',
@@ -370,6 +407,8 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetHvacModeParameters,
     options: ThermostatsSetHvacModeOptions = {},
   ): ThermostatsSetHvacModeRequest {
+    assertValidRequestParameters(parameters, '/thermostats/set_hvac_mode', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_hvac_mode',
       method: 'POST',
@@ -390,6 +429,12 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetTemperatureThresholdParameters,
     options: ThermostatsSetTemperatureThresholdOptions = {},
   ): ThermostatsSetTemperatureThresholdRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/set_temperature_threshold',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_temperature_threshold',
       method: 'PATCH',
@@ -406,6 +451,12 @@ export class SeamHttpThermostats {
     parameters: ThermostatsUpdateClimatePresetParameters,
     options: ThermostatsUpdateClimatePresetOptions = {},
   ): ThermostatsUpdateClimatePresetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/update_climate_preset',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/update_climate_preset',
       method: 'PATCH',
@@ -422,6 +473,12 @@ export class SeamHttpThermostats {
     parameters: ThermostatsUpdateWeeklyProgramParameters,
     options: ThermostatsUpdateWeeklyProgramOptions = {},
   ): ThermostatsUpdateWeeklyProgramRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/update_weekly_program',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/update_weekly_program',
       method: 'POST',

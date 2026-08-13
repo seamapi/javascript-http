@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { AcsCredential } from 'lib/resources/acs-credential.js'
 import type { AcsEntrance } from 'lib/resources/acs-entrance.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
@@ -166,6 +167,8 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsAssignParameters,
     options: AcsCredentialsAssignOptions = {},
   ): AcsCredentialsAssignRequest {
+    assertValidRequestParameters(parameters, '/acs/credentials/assign', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/assign',
       method: 'PATCH',
@@ -182,6 +185,8 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsCreateParameters,
     options: AcsCredentialsCreateOptions = {},
   ): AcsCredentialsCreateRequest {
+    assertValidRequestParameters(parameters, '/acs/credentials/create', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/create',
       method: 'POST',
@@ -198,6 +203,8 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsDeleteParameters,
     options: AcsCredentialsDeleteOptions = {},
   ): AcsCredentialsDeleteRequest {
+    assertValidRequestParameters(parameters, '/acs/credentials/delete', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/delete',
       method: 'DELETE',
@@ -214,6 +221,8 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsGetParameters,
     options: AcsCredentialsGetOptions = {},
   ): AcsCredentialsGetRequest {
+    assertValidRequestParameters(parameters, '/acs/credentials/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/get',
       method: 'GET',
@@ -230,6 +239,8 @@ export class SeamHttpAcsCredentials {
     parameters?: AcsCredentialsListParameters,
     options: AcsCredentialsListOptions = {},
   ): AcsCredentialsListRequest {
+    assertValidRequestParameters(parameters, '/acs/credentials/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/list',
       method: 'GET',
@@ -246,6 +257,12 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsListAccessibleEntrancesParameters,
     options: AcsCredentialsListAccessibleEntrancesOptions = {},
   ): AcsCredentialsListAccessibleEntrancesRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/acs/credentials/list_accessible_entrances',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/list_accessible_entrances',
       method: 'GET',
@@ -262,6 +279,8 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsUnassignParameters,
     options: AcsCredentialsUnassignOptions = {},
   ): AcsCredentialsUnassignRequest {
+    assertValidRequestParameters(parameters, '/acs/credentials/unassign', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/unassign',
       method: 'PATCH',
@@ -278,6 +297,8 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsUpdateParameters,
     options: AcsCredentialsUpdateOptions = {},
   ): AcsCredentialsUpdateRequest {
+    assertValidRequestParameters(parameters, '/acs/credentials/update', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/update',
       method: 'PATCH',

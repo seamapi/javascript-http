@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { Phone } from 'lib/resources/phone.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -165,6 +166,12 @@ export class SeamHttpPhonesSimulate {
     parameters: PhonesSimulateCreateSandboxPhoneParameters,
     options: PhonesSimulateCreateSandboxPhoneOptions = {},
   ): PhonesSimulateCreateSandboxPhoneRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/phones/simulate/create_sandbox_phone',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/phones/simulate/create_sandbox_phone',
       method: 'POST',

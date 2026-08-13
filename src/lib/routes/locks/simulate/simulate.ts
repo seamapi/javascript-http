@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
@@ -166,6 +167,12 @@ export class SeamHttpLocksSimulate {
     parameters: LocksSimulateKeypadCodeEntryParameters,
     options: LocksSimulateKeypadCodeEntryOptions = {},
   ): LocksSimulateKeypadCodeEntryRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/locks/simulate/keypad_code_entry',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/locks/simulate/keypad_code_entry',
       method: 'POST',
@@ -186,6 +193,12 @@ export class SeamHttpLocksSimulate {
     parameters: LocksSimulateManualLockViaKeypadParameters,
     options: LocksSimulateManualLockViaKeypadOptions = {},
   ): LocksSimulateManualLockViaKeypadRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/locks/simulate/manual_lock_via_keypad',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/locks/simulate/manual_lock_via_keypad',
       method: 'POST',

@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
@@ -164,6 +165,12 @@ export class SeamHttpThermostatsSimulate {
     parameters: ThermostatsSimulateHvacModeAdjustedParameters,
     options: ThermostatsSimulateHvacModeAdjustedOptions = {},
   ): ThermostatsSimulateHvacModeAdjustedRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/simulate/hvac_mode_adjusted',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/simulate/hvac_mode_adjusted',
       method: 'POST',
@@ -180,6 +187,12 @@ export class SeamHttpThermostatsSimulate {
     parameters: ThermostatsSimulateTemperatureReachedParameters,
     options: ThermostatsSimulateTemperatureReachedOptions = {},
   ): ThermostatsSimulateTemperatureReachedRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/simulate/temperature_reached',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/simulate/temperature_reached',
       method: 'POST',

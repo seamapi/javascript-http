@@ -10,6 +10,7 @@ export interface RouteLayoutContext {
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
   needsActionAttemptsImport: boolean
+  needsRequireAtLeastOneImport: boolean
   resourceTypeImports: ResourceTypeImport[]
 }
 
@@ -35,6 +36,8 @@ export interface EndpointLayoutContext {
   returnsActionAttempt: boolean
   returnsVoid: boolean
   isOptionalParamsOk: boolean
+  hasRequiredParameters: boolean
+  requiresAtLeastOneParameter: boolean
   parameters: Parameter[]
   responseIsList: boolean
   responseResourceTypeName: string
@@ -64,6 +67,10 @@ export const setRouteLayoutContext = (
     node.path !== '/action_attempts' &&
     'endpoints' in node &&
     node.endpoints.some(isActionAttemptEndpoint)
+  file.needsRequireAtLeastOneImport =
+    node != null &&
+    'endpoints' in node &&
+    node.endpoints.some(requiresAtLeastOneParameter)
   file.resourceTypeImports =
     node != null && 'endpoints' in node
       ? [
@@ -140,9 +147,9 @@ export const getEndpointLayoutContext = (
     responseTypeName: `${prefix}Response`,
     optionsTypeName: `${prefix}Options`,
     requestTypeName: `${prefix}Request`,
-    isOptionalParamsOk: endpoint.request.parameters.every(
-      (parameter) => !parameter.isRequired,
-    ),
+    isOptionalParamsOk: !endpoint.request.hasRequiredParameters,
+    hasRequiredParameters: endpoint.request.hasRequiredParameters,
+    requiresAtLeastOneParameter: requiresAtLeastOneParameter(endpoint),
     parameters: endpoint.request.parameters,
     responseIsList: endpoint.response.responseType === 'resource_list',
     responseResourceTypeName:
@@ -154,6 +161,10 @@ export const getEndpointLayoutContext = (
     ...getResponseContext(endpoint),
   }
 }
+
+const requiresAtLeastOneParameter = (endpoint: Endpoint): boolean =>
+  endpoint.request.hasRequiredParameters &&
+  endpoint.request.parameters.every(({ isRequired }) => !isRequired)
 
 const isActionAttemptEndpoint = (endpoint: Endpoint): boolean =>
   endpoint.response.responseType === 'resource' &&

@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { SeamEvent } from 'lib/resources/event.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -162,9 +166,11 @@ export class SeamHttpEvents {
    * Returns a specified event. This endpoint returns the same event that would be sent to a [webhook](https://docs.seam.co/developer-tools/webhooks), but it enables you to retrieve an event that already took place.
    */
   get(
-    parameters?: EventsGetParameters,
+    parameters: EventsGetParameters,
     options: EventsGetOptions = {},
   ): EventsGetRequest {
+    assertValidRequestParameters(parameters, '/events/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/events/get',
       method: 'GET',
@@ -178,9 +184,11 @@ export class SeamHttpEvents {
    * Returns a list of all events. This endpoint returns the same events that would be sent to a [webhook](https://docs.seam.co/developer-tools/webhooks), but it enables you to filter or see events that already took place.
    */
   list(
-    parameters?: EventsListParameters,
+    parameters: EventsListParameters,
     options: EventsListOptions = {},
   ): EventsListRequest {
+    assertValidRequestParameters(parameters, '/events/list', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/events/list',
       method: 'POST',
@@ -191,7 +199,7 @@ export class SeamHttpEvents {
   }
 }
 
-export type EventsGetParameters = {
+export type EventsGetParameters = RequireAtLeastOne<{
   /**
    * Unique identifier for the device that triggered the event that you want to get.
    */
@@ -204,7 +212,7 @@ export type EventsGetParameters = {
    * Type of the event that you want to get.
    */
   event_type?: string | undefined
-}
+}>
 
 /**
  * @deprecated Use EventsGetRequest instead.
@@ -215,7 +223,7 @@ export type EventsGetRequest = SeamHttpRequest<EventsGetResponse, 'event'>
 
 export interface EventsGetOptions {}
 
-export type EventsListParameters = {
+export type EventsListParameters = RequireAtLeastOne<{
   /**
    * ID of the access code for which you want to list events.
    */
@@ -550,7 +558,7 @@ export type EventsListParameters = {
    * ID of the user identity for which you want to list events.
    */
   user_identity_id?: string | undefined
-}
+}>
 
 /**
  * @deprecated Use EventsListRequest instead.

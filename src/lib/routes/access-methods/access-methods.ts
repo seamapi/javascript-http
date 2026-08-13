@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { AccessMethod } from 'lib/resources/access-method.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import type { Batch } from 'lib/resources/batch.js'
@@ -174,6 +178,12 @@ export class SeamHttpAccessMethods {
     parameters: AccessMethodsAssignCardParameters,
     options: AccessMethodsAssignCardOptions = {},
   ): AccessMethodsAssignCardRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_methods/assign_card',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/assign_card',
       method: 'POST',
@@ -191,9 +201,11 @@ export class SeamHttpAccessMethods {
    * Deletes an access method.
    */
   delete(
-    parameters?: AccessMethodsDeleteParameters,
+    parameters: AccessMethodsDeleteParameters,
     options: AccessMethodsDeleteOptions = {},
   ): AccessMethodsDeleteRequest {
+    assertValidRequestParameters(parameters, '/access_methods/delete', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/delete',
       method: 'DELETE',
@@ -210,6 +222,8 @@ export class SeamHttpAccessMethods {
     parameters: AccessMethodsEncodeParameters,
     options: AccessMethodsEncodeOptions = {},
   ): AccessMethodsEncodeRequest {
+    assertValidRequestParameters(parameters, '/access_methods/encode', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/encode',
       method: 'POST',
@@ -230,6 +244,8 @@ export class SeamHttpAccessMethods {
     parameters: AccessMethodsGetParameters,
     options: AccessMethodsGetOptions = {},
   ): AccessMethodsGetRequest {
+    assertValidRequestParameters(parameters, '/access_methods/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/get',
       method: 'GET',
@@ -246,6 +262,12 @@ export class SeamHttpAccessMethods {
     parameters: AccessMethodsGetRelatedParameters,
     options: AccessMethodsGetRelatedOptions = {},
   ): AccessMethodsGetRelatedRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_methods/get_related',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/get_related',
       method: 'POST',
@@ -259,9 +281,11 @@ export class SeamHttpAccessMethods {
    * Lists all access methods, usually filtered by Access Grant.
    */
   list(
-    parameters?: AccessMethodsListParameters,
+    parameters: AccessMethodsListParameters,
     options: AccessMethodsListOptions = {},
   ): AccessMethodsListRequest {
+    assertValidRequestParameters(parameters, '/access_methods/list', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/list',
       method: 'GET',
@@ -278,6 +302,12 @@ export class SeamHttpAccessMethods {
     parameters: AccessMethodsUnlockDoorParameters,
     options: AccessMethodsUnlockDoorOptions = {},
   ): AccessMethodsUnlockDoorRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_methods/unlock_door',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/unlock_door',
       method: 'POST',
@@ -319,7 +349,7 @@ export type AccessMethodsAssignCardOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type AccessMethodsDeleteParameters = {
+export type AccessMethodsDeleteParameters = RequireAtLeastOne<{
   /**
    * ID of access method to delete.
    */
@@ -332,7 +362,7 @@ export type AccessMethodsDeleteParameters = {
    * Reservation key of the access grant whose access methods should be deleted.
    */
   reservation_key?: string | undefined
-}
+}>
 
 /**
  * @deprecated Use AccessMethodsDeleteRequest instead.
@@ -445,7 +475,7 @@ export type AccessMethodsGetRelatedRequest = SeamHttpRequest<
 
 export interface AccessMethodsGetRelatedOptions {}
 
-export type AccessMethodsListParameters = {
+export type AccessMethodsListParameters = RequireAtLeastOne<{
   /**
    * ID of the access code by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
    */
@@ -478,7 +508,7 @@ export type AccessMethodsListParameters = {
    * ID of the space by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
    */
   space_id?: string | undefined
-}
+}>
 
 /**
  * @deprecated Use AccessMethodsListRequest instead.
