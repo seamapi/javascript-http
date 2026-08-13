@@ -1,4 +1,3 @@
-import { seamApiLtsVersion } from 'lib/lts-version.js'
 import version from 'lib/version.js'
 
 import { getAuthHeaders } from './auth.js'
@@ -19,7 +18,6 @@ export const defaultEndpoint = 'https://connect.getseam.com'
 export const sdkHeaders = {
   'seam-sdk-name': 'seamapi/javascript-http',
   'seam-sdk-version': version,
-  'seam-lts-version': seamApiLtsVersion,
 }
 
 export type Options =
