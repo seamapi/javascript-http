@@ -15,19 +15,8 @@ declare const $brand: unique symbol
 export type SeamPageCursor = string & { [$brand]: 'SeamPageCursor' }
 
 interface Pagination {
-  /**
-   * Indicates whether there is another page of results after this one.
-   */
   readonly hasNextPage: boolean
-
-  /**
-   * Cursor to fetch the next page of results, or null if there is no next page.
-   */
   readonly nextPageCursor: SeamPageCursor | null
-
-  /**
-   * URL to fetch the next page of results, or null if there is no next page.
-   */
   readonly nextPageUrl: string | null
 }
 

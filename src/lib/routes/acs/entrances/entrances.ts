@@ -41,14 +41,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /acs/entrances routes.
  */
 export class SeamHttpAcsEntrances {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -313,9 +306,6 @@ export class SeamHttpAcsEntrances {
   }
 }
 
-/**
- * Parameters for `SeamHttpAcsEntrances.get`.
- */
 export type AcsEntrancesGetParameters = {
   /**
    * ID of the entrance that you want to get.
@@ -324,28 +314,17 @@ export type AcsEntrancesGetParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEntrances.get`.
- *
  * @deprecated Use AcsEntrancesGetRequest instead.
  */
 export type AcsEntrancesGetResponse = { acs_entrance: AcsEntrance }
 
-/**
- * Request returned by `SeamHttpAcsEntrances.get`.
- */
 export type AcsEntrancesGetRequest = SeamHttpRequest<
   AcsEntrancesGetResponse,
   'acs_entrance'
 >
 
-/**
- * Options for `SeamHttpAcsEntrances.get`.
- */
 export interface AcsEntrancesGetOptions {}
 
-/**
- * Parameters for `SeamHttpAcsEntrances.grantAccess`.
- */
 export type AcsEntrancesGrantAccessParameters = {
   /**
    * ID of the entrance to which you want to grant an access system user access.
@@ -363,25 +342,14 @@ export type AcsEntrancesGrantAccessParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEntrances.grantAccess`.
- *
  * @deprecated Use AcsEntrancesGrantAccessRequest instead.
  */
 export type AcsEntrancesGrantAccessResponse = void
 
-/**
- * Request returned by `SeamHttpAcsEntrances.grantAccess`.
- */
 export type AcsEntrancesGrantAccessRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsEntrances.grantAccess`.
- */
 export interface AcsEntrancesGrantAccessOptions {}
 
-/**
- * Parameters for `SeamHttpAcsEntrances.list`.
- */
 export type AcsEntrancesListParameters = {
   /**
    * ID of the access method for which you want to retrieve all entrances to which it grants access.
@@ -430,28 +398,17 @@ export type AcsEntrancesListParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEntrances.list`.
- *
  * @deprecated Use AcsEntrancesListRequest instead.
  */
 export type AcsEntrancesListResponse = { acs_entrances: Array<AcsEntrance> }
 
-/**
- * Request returned by `SeamHttpAcsEntrances.list`.
- */
 export type AcsEntrancesListRequest = SeamHttpRequest<
   AcsEntrancesListResponse,
   'acs_entrances'
 >
 
-/**
- * Options for `SeamHttpAcsEntrances.list`.
- */
 export interface AcsEntrancesListOptions {}
 
-/**
- * Parameters for `SeamHttpAcsEntrances.listCredentialsWithAccess`.
- */
 export type AcsEntrancesListCredentialsWithAccessParameters = {
   /**
    * ID of the entrance for which you want to list all credentials that grant access.
@@ -465,30 +422,19 @@ export type AcsEntrancesListCredentialsWithAccessParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEntrances.listCredentialsWithAccess`.
- *
  * @deprecated Use AcsEntrancesListCredentialsWithAccessRequest instead.
  */
 export type AcsEntrancesListCredentialsWithAccessResponse = {
   acs_credentials: Array<AcsCredential>
 }
 
-/**
- * Request returned by `SeamHttpAcsEntrances.listCredentialsWithAccess`.
- */
 export type AcsEntrancesListCredentialsWithAccessRequest = SeamHttpRequest<
   AcsEntrancesListCredentialsWithAccessResponse,
   'acs_credentials'
 >
 
-/**
- * Options for `SeamHttpAcsEntrances.listCredentialsWithAccess`.
- */
 export interface AcsEntrancesListCredentialsWithAccessOptions {}
 
-/**
- * Parameters for `SeamHttpAcsEntrances.unlock`.
- */
 export type AcsEntrancesUnlockParameters = {
   /**
    * ID of the cloud_key credential to use for the unlock operation.
@@ -502,23 +448,15 @@ export type AcsEntrancesUnlockParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEntrances.unlock`.
- *
  * @deprecated Use AcsEntrancesUnlockRequest instead.
  */
 export type AcsEntrancesUnlockResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpAcsEntrances.unlock`.
- */
 export type AcsEntrancesUnlockRequest = SeamHttpRequest<
   AcsEntrancesUnlockResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpAcsEntrances.unlock`.
- */
 export type AcsEntrancesUnlockOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'

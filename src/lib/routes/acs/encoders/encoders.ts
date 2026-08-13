@@ -42,14 +42,7 @@ import { SeamHttpAcsEncodersSimulate } from './simulate/index.js'
  * Client for the Seam API /acs/encoders routes.
  */
 export class SeamHttpAcsEncoders {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -331,9 +324,6 @@ export class SeamHttpAcsEncoders {
   }
 }
 
-/**
- * Parameters for `SeamHttpAcsEncoders.encodeCredential`.
- */
 export type AcsEncodersEncodeCredentialParameters = {
   /**
    * ID of the `access_method` to encode onto a card.
@@ -350,33 +340,22 @@ export type AcsEncodersEncodeCredentialParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEncoders.encodeCredential`.
- *
  * @deprecated Use AcsEncodersEncodeCredentialRequest instead.
  */
 export type AcsEncodersEncodeCredentialResponse = {
   action_attempt: ActionAttempt
 }
 
-/**
- * Request returned by `SeamHttpAcsEncoders.encodeCredential`.
- */
 export type AcsEncodersEncodeCredentialRequest = SeamHttpRequest<
   AcsEncodersEncodeCredentialResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpAcsEncoders.encodeCredential`.
- */
 export type AcsEncodersEncodeCredentialOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpAcsEncoders.get`.
- */
 export type AcsEncodersGetParameters = {
   /**
    * ID of the encoder that you want to get.
@@ -385,28 +364,17 @@ export type AcsEncodersGetParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEncoders.get`.
- *
  * @deprecated Use AcsEncodersGetRequest instead.
  */
 export type AcsEncodersGetResponse = { acs_encoder: AcsEncoder }
 
-/**
- * Request returned by `SeamHttpAcsEncoders.get`.
- */
 export type AcsEncodersGetRequest = SeamHttpRequest<
   AcsEncodersGetResponse,
   'acs_encoder'
 >
 
-/**
- * Options for `SeamHttpAcsEncoders.get`.
- */
 export interface AcsEncodersGetOptions {}
 
-/**
- * Parameters for `SeamHttpAcsEncoders.list`.
- */
 export type AcsEncodersListParameters = {
   /**
    * ID of the access system for which you want to retrieve all encoders.
@@ -431,28 +399,17 @@ export type AcsEncodersListParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEncoders.list`.
- *
  * @deprecated Use AcsEncodersListRequest instead.
  */
 export type AcsEncodersListResponse = { acs_encoders: Array<AcsEncoder> }
 
-/**
- * Request returned by `SeamHttpAcsEncoders.list`.
- */
 export type AcsEncodersListRequest = SeamHttpRequest<
   AcsEncodersListResponse,
   'acs_encoders'
 >
 
-/**
- * Options for `SeamHttpAcsEncoders.list`.
- */
 export interface AcsEncodersListOptions {}
 
-/**
- * Parameters for `SeamHttpAcsEncoders.scanCredential`.
- */
 export type AcsEncodersScanCredentialParameters = {
   /**
    * ID of the encoder to use for the scan.
@@ -473,33 +430,22 @@ export type AcsEncodersScanCredentialParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEncoders.scanCredential`.
- *
  * @deprecated Use AcsEncodersScanCredentialRequest instead.
  */
 export type AcsEncodersScanCredentialResponse = {
   action_attempt: ActionAttempt
 }
 
-/**
- * Request returned by `SeamHttpAcsEncoders.scanCredential`.
- */
 export type AcsEncodersScanCredentialRequest = SeamHttpRequest<
   AcsEncodersScanCredentialResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpAcsEncoders.scanCredential`.
- */
 export type AcsEncodersScanCredentialOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpAcsEncoders.scanToAssignCredential`.
- */
 export type AcsEncodersScanToAssignCredentialParameters = {
   /**
    * ID of the `acs_encoder` to use to scan the credential.
@@ -528,25 +474,17 @@ export type AcsEncodersScanToAssignCredentialParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEncoders.scanToAssignCredential`.
- *
  * @deprecated Use AcsEncodersScanToAssignCredentialRequest instead.
  */
 export type AcsEncodersScanToAssignCredentialResponse = {
   action_attempt: ActionAttempt
 }
 
-/**
- * Request returned by `SeamHttpAcsEncoders.scanToAssignCredential`.
- */
 export type AcsEncodersScanToAssignCredentialRequest = SeamHttpRequest<
   AcsEncodersScanToAssignCredentialResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpAcsEncoders.scanToAssignCredential`.
- */
 export type AcsEncodersScanToAssignCredentialOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'

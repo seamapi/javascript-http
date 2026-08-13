@@ -40,14 +40,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /thermostats/daily_programs routes.
  */
 export class SeamHttpThermostatsDailyPrograms {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -279,9 +272,6 @@ export class SeamHttpThermostatsDailyPrograms {
   }
 }
 
-/**
- * Parameters for `SeamHttpThermostatsDailyPrograms.create`.
- */
 export type ThermostatsDailyProgramsCreateParameters = {
   /**
    * ID of the thermostat device for which you want to create a daily program.
@@ -309,30 +299,19 @@ export type ThermostatsDailyProgramsCreateParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostatsDailyPrograms.create`.
- *
  * @deprecated Use ThermostatsDailyProgramsCreateRequest instead.
  */
 export type ThermostatsDailyProgramsCreateResponse = {
   thermostat_daily_program: ThermostatDailyProgram
 }
 
-/**
- * Request returned by `SeamHttpThermostatsDailyPrograms.create`.
- */
 export type ThermostatsDailyProgramsCreateRequest = SeamHttpRequest<
   ThermostatsDailyProgramsCreateResponse,
   'thermostat_daily_program'
 >
 
-/**
- * Options for `SeamHttpThermostatsDailyPrograms.create`.
- */
 export interface ThermostatsDailyProgramsCreateOptions {}
 
-/**
- * Parameters for `SeamHttpThermostatsDailyPrograms.delete`.
- */
 export type ThermostatsDailyProgramsDeleteParameters = {
   /**
    * ID of the thermostat daily program that you want to delete.
@@ -341,28 +320,17 @@ export type ThermostatsDailyProgramsDeleteParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostatsDailyPrograms.delete`.
- *
  * @deprecated Use ThermostatsDailyProgramsDeleteRequest instead.
  */
 export type ThermostatsDailyProgramsDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpThermostatsDailyPrograms.delete`.
- */
 export type ThermostatsDailyProgramsDeleteRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpThermostatsDailyPrograms.delete`.
- */
 export interface ThermostatsDailyProgramsDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpThermostatsDailyPrograms.update`.
- */
 export type ThermostatsDailyProgramsUpdateParameters = {
   /**
    * Name of the thermostat daily program that you want to update.
@@ -390,25 +358,17 @@ export type ThermostatsDailyProgramsUpdateParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostatsDailyPrograms.update`.
- *
  * @deprecated Use ThermostatsDailyProgramsUpdateRequest instead.
  */
 export type ThermostatsDailyProgramsUpdateResponse = {
   action_attempt: ActionAttempt
 }
 
-/**
- * Request returned by `SeamHttpThermostatsDailyPrograms.update`.
- */
 export type ThermostatsDailyProgramsUpdateRequest = SeamHttpRequest<
   ThermostatsDailyProgramsUpdateResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpThermostatsDailyPrograms.update`.
- */
 export type ThermostatsDailyProgramsUpdateOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'

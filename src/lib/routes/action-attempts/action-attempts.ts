@@ -38,14 +38,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /action_attempts routes.
  */
 export class SeamHttpActionAttempts {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -243,9 +236,6 @@ export class SeamHttpActionAttempts {
   }
 }
 
-/**
- * Parameters for `SeamHttpActionAttempts.get`.
- */
 export type ActionAttemptsGetParameters = {
   /**
    * ID of the action attempt that you want to get.
@@ -254,31 +244,20 @@ export type ActionAttemptsGetParameters = {
 }
 
 /**
- * Response from `SeamHttpActionAttempts.get`.
- *
  * @deprecated Use ActionAttemptsGetRequest instead.
  */
 export type ActionAttemptsGetResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpActionAttempts.get`.
- */
 export type ActionAttemptsGetRequest = SeamHttpRequest<
   ActionAttemptsGetResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpActionAttempts.get`.
- */
 export type ActionAttemptsGetOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpActionAttempts.list`.
- */
 export type ActionAttemptsListParameters = {
   /**
    * IDs of the action attempts that you want to retrieve.
@@ -299,23 +278,15 @@ export type ActionAttemptsListParameters = {
 }
 
 /**
- * Response from `SeamHttpActionAttempts.list`.
- *
  * @deprecated Use ActionAttemptsListRequest instead.
  */
 export type ActionAttemptsListResponse = {
   action_attempts: Array<ActionAttempt>
 }
 
-/**
- * Request returned by `SeamHttpActionAttempts.list`.
- */
 export type ActionAttemptsListRequest = SeamHttpRequest<
   ActionAttemptsListResponse,
   'action_attempts'
 >
 
-/**
- * Options for `SeamHttpActionAttempts.list`.
- */
 export interface ActionAttemptsListOptions {}

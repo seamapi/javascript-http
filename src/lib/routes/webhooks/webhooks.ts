@@ -38,14 +38,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /webhooks routes.
  */
 export class SeamHttpWebhooks {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -298,9 +291,6 @@ export class SeamHttpWebhooks {
   }
 }
 
-/**
- * Parameters for `SeamHttpWebhooks.create`.
- */
 export type WebhooksCreateParameters = {
   /**
    * Types of events that you want the new webhook to receive.
@@ -313,28 +303,17 @@ export type WebhooksCreateParameters = {
 }
 
 /**
- * Response from `SeamHttpWebhooks.create`.
- *
  * @deprecated Use WebhooksCreateRequest instead.
  */
 export type WebhooksCreateResponse = { webhook: Webhook }
 
-/**
- * Request returned by `SeamHttpWebhooks.create`.
- */
 export type WebhooksCreateRequest = SeamHttpRequest<
   WebhooksCreateResponse,
   'webhook'
 >
 
-/**
- * Options for `SeamHttpWebhooks.create`.
- */
 export interface WebhooksCreateOptions {}
 
-/**
- * Parameters for `SeamHttpWebhooks.delete`.
- */
 export type WebhooksDeleteParameters = {
   /**
    * ID of the webhook that you want to delete.
@@ -343,25 +322,14 @@ export type WebhooksDeleteParameters = {
 }
 
 /**
- * Response from `SeamHttpWebhooks.delete`.
- *
  * @deprecated Use WebhooksDeleteRequest instead.
  */
 export type WebhooksDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpWebhooks.delete`.
- */
 export type WebhooksDeleteRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpWebhooks.delete`.
- */
 export interface WebhooksDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpWebhooks.get`.
- */
 export type WebhooksGetParameters = {
   /**
    * ID of the webhook that you want to get.
@@ -370,50 +338,28 @@ export type WebhooksGetParameters = {
 }
 
 /**
- * Response from `SeamHttpWebhooks.get`.
- *
  * @deprecated Use WebhooksGetRequest instead.
  */
 export type WebhooksGetResponse = { webhook: Webhook }
 
-/**
- * Request returned by `SeamHttpWebhooks.get`.
- */
 export type WebhooksGetRequest = SeamHttpRequest<WebhooksGetResponse, 'webhook'>
 
-/**
- * Options for `SeamHttpWebhooks.get`.
- */
 export interface WebhooksGetOptions {}
 
-/**
- * Parameters for `SeamHttpWebhooks.list`.
- */
 export type WebhooksListParameters = {}
 
 /**
- * Response from `SeamHttpWebhooks.list`.
- *
  * @deprecated Use WebhooksListRequest instead.
  */
 export type WebhooksListResponse = { webhooks: Array<Webhook> }
 
-/**
- * Request returned by `SeamHttpWebhooks.list`.
- */
 export type WebhooksListRequest = SeamHttpRequest<
   WebhooksListResponse,
   'webhooks'
 >
 
-/**
- * Options for `SeamHttpWebhooks.list`.
- */
 export interface WebhooksListOptions {}
 
-/**
- * Parameters for `SeamHttpWebhooks.update`.
- */
 export type WebhooksUpdateParameters = {
   /**
    * Types of events that you want the webhook to receive.
@@ -427,18 +373,10 @@ export type WebhooksUpdateParameters = {
 }
 
 /**
- * Response from `SeamHttpWebhooks.update`.
- *
  * @deprecated Use WebhooksUpdateRequest instead.
  */
 export type WebhooksUpdateResponse = void
 
-/**
- * Request returned by `SeamHttpWebhooks.update`.
- */
 export type WebhooksUpdateRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpWebhooks.update`.
- */
 export interface WebhooksUpdateOptions {}

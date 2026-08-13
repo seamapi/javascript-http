@@ -39,14 +39,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /acs/credentials routes.
  */
 export class SeamHttpAcsCredentials {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -366,9 +359,6 @@ export class SeamHttpAcsCredentials {
   }
 }
 
-/**
- * Parameters for `SeamHttpAcsCredentials.assign`.
- */
 export type AcsCredentialsAssignParameters = {
   /**
    * ID of the credential that you want to assign to an access system user.
@@ -386,25 +376,14 @@ export type AcsCredentialsAssignParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsCredentials.assign`.
- *
  * @deprecated Use AcsCredentialsAssignRequest instead.
  */
 export type AcsCredentialsAssignResponse = void
 
-/**
- * Request returned by `SeamHttpAcsCredentials.assign`.
- */
 export type AcsCredentialsAssignRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsCredentials.assign`.
- */
 export interface AcsCredentialsAssignOptions {}
 
-/**
- * Parameters for `SeamHttpAcsCredentials.create`.
- */
 export type AcsCredentialsCreateParameters = {
   /**
    * Access method for the new credential. Supported values: `code`, `card`, `mobile_key`, `cloud_key`.
@@ -491,28 +470,17 @@ export type AcsCredentialsCreateParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsCredentials.create`.
- *
  * @deprecated Use AcsCredentialsCreateRequest instead.
  */
 export type AcsCredentialsCreateResponse = { acs_credential: AcsCredential }
 
-/**
- * Request returned by `SeamHttpAcsCredentials.create`.
- */
 export type AcsCredentialsCreateRequest = SeamHttpRequest<
   AcsCredentialsCreateResponse,
   'acs_credential'
 >
 
-/**
- * Options for `SeamHttpAcsCredentials.create`.
- */
 export interface AcsCredentialsCreateOptions {}
 
-/**
- * Parameters for `SeamHttpAcsCredentials.delete`.
- */
 export type AcsCredentialsDeleteParameters = {
   /**
    * ID of the credential that you want to delete.
@@ -521,25 +489,14 @@ export type AcsCredentialsDeleteParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsCredentials.delete`.
- *
  * @deprecated Use AcsCredentialsDeleteRequest instead.
  */
 export type AcsCredentialsDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpAcsCredentials.delete`.
- */
 export type AcsCredentialsDeleteRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsCredentials.delete`.
- */
 export interface AcsCredentialsDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpAcsCredentials.get`.
- */
 export type AcsCredentialsGetParameters = {
   /**
    * ID of the credential that you want to get.
@@ -548,28 +505,17 @@ export type AcsCredentialsGetParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsCredentials.get`.
- *
  * @deprecated Use AcsCredentialsGetRequest instead.
  */
 export type AcsCredentialsGetResponse = { acs_credential: AcsCredential }
 
-/**
- * Request returned by `SeamHttpAcsCredentials.get`.
- */
 export type AcsCredentialsGetRequest = SeamHttpRequest<
   AcsCredentialsGetResponse,
   'acs_credential'
 >
 
-/**
- * Options for `SeamHttpAcsCredentials.get`.
- */
 export interface AcsCredentialsGetOptions {}
 
-/**
- * Parameters for `SeamHttpAcsCredentials.list`.
- */
 export type AcsCredentialsListParameters = {
   /**
    * ID of the access system user for which you want to retrieve all credentials.
@@ -606,30 +552,19 @@ export type AcsCredentialsListParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsCredentials.list`.
- *
  * @deprecated Use AcsCredentialsListRequest instead.
  */
 export type AcsCredentialsListResponse = {
   acs_credentials: Array<AcsCredential>
 }
 
-/**
- * Request returned by `SeamHttpAcsCredentials.list`.
- */
 export type AcsCredentialsListRequest = SeamHttpRequest<
   AcsCredentialsListResponse,
   'acs_credentials'
 >
 
-/**
- * Options for `SeamHttpAcsCredentials.list`.
- */
 export interface AcsCredentialsListOptions {}
 
-/**
- * Parameters for `SeamHttpAcsCredentials.listAccessibleEntrances`.
- */
 export type AcsCredentialsListAccessibleEntrancesParameters = {
   /**
    * ID of the credential for which you want to retrieve all entrances to which the credential grants access.
@@ -638,30 +573,19 @@ export type AcsCredentialsListAccessibleEntrancesParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsCredentials.listAccessibleEntrances`.
- *
  * @deprecated Use AcsCredentialsListAccessibleEntrancesRequest instead.
  */
 export type AcsCredentialsListAccessibleEntrancesResponse = {
   acs_entrances: Array<AcsEntrance>
 }
 
-/**
- * Request returned by `SeamHttpAcsCredentials.listAccessibleEntrances`.
- */
 export type AcsCredentialsListAccessibleEntrancesRequest = SeamHttpRequest<
   AcsCredentialsListAccessibleEntrancesResponse,
   'acs_entrances'
 >
 
-/**
- * Options for `SeamHttpAcsCredentials.listAccessibleEntrances`.
- */
 export interface AcsCredentialsListAccessibleEntrancesOptions {}
 
-/**
- * Parameters for `SeamHttpAcsCredentials.unassign`.
- */
 export type AcsCredentialsUnassignParameters = {
   /**
    * ID of the credential that you want to unassign from an access system user.
@@ -679,25 +603,14 @@ export type AcsCredentialsUnassignParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsCredentials.unassign`.
- *
  * @deprecated Use AcsCredentialsUnassignRequest instead.
  */
 export type AcsCredentialsUnassignResponse = void
 
-/**
- * Request returned by `SeamHttpAcsCredentials.unassign`.
- */
 export type AcsCredentialsUnassignRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsCredentials.unassign`.
- */
 export interface AcsCredentialsUnassignOptions {}
 
-/**
- * Parameters for `SeamHttpAcsCredentials.update`.
- */
 export type AcsCredentialsUpdateParameters = {
   /**
    * ID of the credential that you want to update.
@@ -715,18 +628,10 @@ export type AcsCredentialsUpdateParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsCredentials.update`.
- *
  * @deprecated Use AcsCredentialsUpdateRequest instead.
  */
 export type AcsCredentialsUpdateResponse = void
 
-/**
- * Request returned by `SeamHttpAcsCredentials.update`.
- */
 export type AcsCredentialsUpdateRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsCredentials.update`.
- */
 export interface AcsCredentialsUpdateOptions {}

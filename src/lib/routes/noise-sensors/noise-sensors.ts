@@ -41,14 +41,7 @@ import { SeamHttpNoiseSensorsSimulate } from './simulate/index.js'
  * Client for the Seam API /noise_sensors routes.
  */
 export class SeamHttpNoiseSensors {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -239,9 +232,6 @@ export class SeamHttpNoiseSensors {
   }
 }
 
-/**
- * Parameters for `SeamHttpNoiseSensors.list`.
- */
 export type NoiseSensorsListParameters = {
   /**
    * ID of the Connect Webview for which you want to list devices.
@@ -270,21 +260,13 @@ export type NoiseSensorsListParameters = {
 }
 
 /**
- * Response from `SeamHttpNoiseSensors.list`.
- *
  * @deprecated Use NoiseSensorsListRequest instead.
  */
 export type NoiseSensorsListResponse = { devices: Array<Device> }
 
-/**
- * Request returned by `SeamHttpNoiseSensors.list`.
- */
 export type NoiseSensorsListRequest = SeamHttpRequest<
   NoiseSensorsListResponse,
   'devices'
 >
 
-/**
- * Options for `SeamHttpNoiseSensors.list`.
- */
 export interface NoiseSensorsListOptions {}

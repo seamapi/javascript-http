@@ -40,14 +40,7 @@ import { SeamHttpPhonesSimulate } from './simulate/index.js'
  * Client for the Seam API /phones routes.
  */
 export class SeamHttpPhones {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -266,9 +259,6 @@ export class SeamHttpPhones {
   }
 }
 
-/**
- * Parameters for `SeamHttpPhones.deactivate`.
- */
 export type PhonesDeactivateParameters = {
   /**
    * Device ID of the phone that you want to deactivate.
@@ -277,25 +267,14 @@ export type PhonesDeactivateParameters = {
 }
 
 /**
- * Response from `SeamHttpPhones.deactivate`.
- *
  * @deprecated Use PhonesDeactivateRequest instead.
  */
 export type PhonesDeactivateResponse = void
 
-/**
- * Request returned by `SeamHttpPhones.deactivate`.
- */
 export type PhonesDeactivateRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpPhones.deactivate`.
- */
 export interface PhonesDeactivateOptions {}
 
-/**
- * Parameters for `SeamHttpPhones.get`.
- */
 export type PhonesGetParameters = {
   /**
    * Device ID of the phone that you want to get.
@@ -304,25 +283,14 @@ export type PhonesGetParameters = {
 }
 
 /**
- * Response from `SeamHttpPhones.get`.
- *
  * @deprecated Use PhonesGetRequest instead.
  */
 export type PhonesGetResponse = { phone: Phone }
 
-/**
- * Request returned by `SeamHttpPhones.get`.
- */
 export type PhonesGetRequest = SeamHttpRequest<PhonesGetResponse, 'phone'>
 
-/**
- * Options for `SeamHttpPhones.get`.
- */
 export interface PhonesGetOptions {}
 
-/**
- * Parameters for `SeamHttpPhones.list`.
- */
 export type PhonesListParameters = {
   /**
    * ID of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) by which you want to filter the list of returned phones.
@@ -335,18 +303,10 @@ export type PhonesListParameters = {
 }
 
 /**
- * Response from `SeamHttpPhones.list`.
- *
  * @deprecated Use PhonesListRequest instead.
  */
 export type PhonesListResponse = { phones: Array<Phone> }
 
-/**
- * Request returned by `SeamHttpPhones.list`.
- */
 export type PhonesListRequest = SeamHttpRequest<PhonesListResponse, 'phones'>
 
-/**
- * Options for `SeamHttpPhones.list`.
- */
 export interface PhonesListOptions {}

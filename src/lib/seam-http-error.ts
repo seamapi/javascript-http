@@ -9,9 +9,6 @@ export class SeamHttpApiError extends Error {
    */
   code: string
 
-  /**
-   * HTTP status code of the error response.
-   */
   statusCode: number
 
   /**
@@ -49,14 +46,7 @@ export const isSeamHttpApiError = (
  * Error thrown when the Seam API returns a 401 Unauthorized error response.
  */
 export class SeamHttpUnauthorizedError extends SeamHttpApiError {
-  /**
-   * Error type returned by the Seam API, always `unauthorized`.
-   */
   override code: 'unauthorized'
-
-  /**
-   * HTTP status code of the error response, always 401.
-   */
   override statusCode: 401
 
   constructor(requestId: string) {
@@ -83,9 +73,6 @@ export const isSeamHttpUnauthorizedError = (
  * Error thrown when the Seam API returns an `invalid_input` error response.
  */
 export class SeamHttpInvalidInputError extends SeamHttpApiError {
-  /**
-   * Error type returned by the Seam API, always `invalid_input`.
-   */
   override code: 'invalid_input'
 
   readonly #validationErrors: NonNullable<ApiError['validation_errors']>

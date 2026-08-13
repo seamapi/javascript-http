@@ -29,14 +29,7 @@ import { SeamHttpWorkspaces } from 'lib/routes/workspaces/index.js'
  * or console session token.
  */
 export class SeamHttpWithoutWorkspace {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(options: SeamHttpWithoutWorkspaceOptions = {}) {

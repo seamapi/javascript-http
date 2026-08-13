@@ -45,14 +45,7 @@ import { SeamHttpLocksSimulate } from './simulate/index.js'
  * Client for the Seam API /locks routes.
  */
 export class SeamHttpLocks {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -328,9 +321,6 @@ export class SeamHttpLocks {
   }
 }
 
-/**
- * Parameters for `SeamHttpLocks.configureAutoLock`.
- */
 export type LocksConfigureAutoLockParameters = {
   /**
    * Delay in seconds before the lock automatically locks. Required when enabling auto-lock. Must be between 1 and 60.
@@ -348,31 +338,20 @@ export type LocksConfigureAutoLockParameters = {
 }
 
 /**
- * Response from `SeamHttpLocks.configureAutoLock`.
- *
  * @deprecated Use LocksConfigureAutoLockRequest instead.
  */
 export type LocksConfigureAutoLockResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpLocks.configureAutoLock`.
- */
 export type LocksConfigureAutoLockRequest = SeamHttpRequest<
   LocksConfigureAutoLockResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpLocks.configureAutoLock`.
- */
 export type LocksConfigureAutoLockOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpLocks.get`.
- */
 export type LocksGetParameters = RequireAtLeastOne<{
   /**
    * ID of the lock that you want to get.
@@ -385,25 +364,14 @@ export type LocksGetParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpLocks.get`.
- *
  * @deprecated Use LocksGetRequest instead.
  */
 export type LocksGetResponse = { device: Device }
 
-/**
- * Request returned by `SeamHttpLocks.get`.
- */
 export type LocksGetRequest = SeamHttpRequest<LocksGetResponse, 'device'>
 
-/**
- * Options for `SeamHttpLocks.get`.
- */
 export interface LocksGetOptions {}
 
-/**
- * Parameters for `SeamHttpLocks.list`.
- */
 export type LocksListParameters = {
   /**
    * ID of the Connect Webview for which you want to list devices.
@@ -532,25 +500,14 @@ export type LocksListParameters = {
 }
 
 /**
- * Response from `SeamHttpLocks.list`.
- *
  * @deprecated Use LocksListRequest instead.
  */
 export type LocksListResponse = { devices: Array<Device> }
 
-/**
- * Request returned by `SeamHttpLocks.list`.
- */
 export type LocksListRequest = SeamHttpRequest<LocksListResponse, 'devices'>
 
-/**
- * Options for `SeamHttpLocks.list`.
- */
 export interface LocksListOptions {}
 
-/**
- * Parameters for `SeamHttpLocks.lockDoor`.
- */
 export type LocksLockDoorParameters = {
   /**
    * ID of the lock that you want to lock.
@@ -559,31 +516,20 @@ export type LocksLockDoorParameters = {
 }
 
 /**
- * Response from `SeamHttpLocks.lockDoor`.
- *
  * @deprecated Use LocksLockDoorRequest instead.
  */
 export type LocksLockDoorResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpLocks.lockDoor`.
- */
 export type LocksLockDoorRequest = SeamHttpRequest<
   LocksLockDoorResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpLocks.lockDoor`.
- */
 export type LocksLockDoorOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpLocks.unlockDoor`.
- */
 export type LocksUnlockDoorParameters = {
   /**
    * ID of the lock that you want to unlock.
@@ -592,23 +538,15 @@ export type LocksUnlockDoorParameters = {
 }
 
 /**
- * Response from `SeamHttpLocks.unlockDoor`.
- *
  * @deprecated Use LocksUnlockDoorRequest instead.
  */
 export type LocksUnlockDoorResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpLocks.unlockDoor`.
- */
 export type LocksUnlockDoorRequest = SeamHttpRequest<
   LocksUnlockDoorResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpLocks.unlockDoor`.
- */
 export type LocksUnlockDoorOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'

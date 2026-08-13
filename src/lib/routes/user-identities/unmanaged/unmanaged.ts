@@ -38,14 +38,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /user_identities/unmanaged routes.
  */
 export class SeamHttpUserIdentitiesUnmanaged {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -275,9 +268,6 @@ export class SeamHttpUserIdentitiesUnmanaged {
   }
 }
 
-/**
- * Parameters for `SeamHttpUserIdentitiesUnmanaged.get`.
- */
 export type UserIdentitiesUnmanagedGetParameters = {
   /**
    * ID of the unmanaged user identity that you want to get.
@@ -286,30 +276,19 @@ export type UserIdentitiesUnmanagedGetParameters = {
 }
 
 /**
- * Response from `SeamHttpUserIdentitiesUnmanaged.get`.
- *
  * @deprecated Use UserIdentitiesUnmanagedGetRequest instead.
  */
 export type UserIdentitiesUnmanagedGetResponse = {
   user_identity: UnmanagedUserIdentity
 }
 
-/**
- * Request returned by `SeamHttpUserIdentitiesUnmanaged.get`.
- */
 export type UserIdentitiesUnmanagedGetRequest = SeamHttpRequest<
   UserIdentitiesUnmanagedGetResponse,
   'user_identity'
 >
 
-/**
- * Options for `SeamHttpUserIdentitiesUnmanaged.get`.
- */
 export interface UserIdentitiesUnmanagedGetOptions {}
 
-/**
- * Parameters for `SeamHttpUserIdentitiesUnmanaged.list`.
- */
 export type UserIdentitiesUnmanagedListParameters = {
   /**
    * Timestamp by which to limit returned unmanaged user identities. Returns user identities created before this timestamp.
@@ -330,30 +309,19 @@ export type UserIdentitiesUnmanagedListParameters = {
 }
 
 /**
- * Response from `SeamHttpUserIdentitiesUnmanaged.list`.
- *
  * @deprecated Use UserIdentitiesUnmanagedListRequest instead.
  */
 export type UserIdentitiesUnmanagedListResponse = {
   user_identities: Array<UnmanagedUserIdentity>
 }
 
-/**
- * Request returned by `SeamHttpUserIdentitiesUnmanaged.list`.
- */
 export type UserIdentitiesUnmanagedListRequest = SeamHttpRequest<
   UserIdentitiesUnmanagedListResponse,
   'user_identities'
 >
 
-/**
- * Options for `SeamHttpUserIdentitiesUnmanaged.list`.
- */
 export interface UserIdentitiesUnmanagedListOptions {}
 
-/**
- * Parameters for `SeamHttpUserIdentitiesUnmanaged.update`.
- */
 export type UserIdentitiesUnmanagedUpdateParameters = {
   /**
    * Must be set to true to convert the unmanaged user identity to managed.
@@ -372,21 +340,13 @@ export type UserIdentitiesUnmanagedUpdateParameters = {
 }
 
 /**
- * Response from `SeamHttpUserIdentitiesUnmanaged.update`.
- *
  * @deprecated Use UserIdentitiesUnmanagedUpdateRequest instead.
  */
 export type UserIdentitiesUnmanagedUpdateResponse = void
 
-/**
- * Request returned by `SeamHttpUserIdentitiesUnmanaged.update`.
- */
 export type UserIdentitiesUnmanagedUpdateRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpUserIdentitiesUnmanaged.update`.
- */
 export interface UserIdentitiesUnmanagedUpdateOptions {}

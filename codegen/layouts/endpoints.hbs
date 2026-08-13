@@ -42,22 +42,13 @@ export class {{className}} {
 }
 
 {{#if endpointReadPaths.length}}
-/**
- * Paths of the Seam API query endpoints{{#if withoutWorkspace}} available without a workspace{{/if}}.
- */
 export type {{typeNamePrefix}}QueryPaths = {{#each endpointReadPaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
 {{/if}}
 
 {{#if endpointPaginatedPaths.length}}
-/**
- * Paths of the Seam API query endpoints{{#if withoutWorkspace}} available without a workspace{{/if}} that support pagination.
- */
 export type {{typeNamePrefix}}PaginatedQueryPaths = {{#each endpointPaginatedPaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
 {{/if}}
 
 {{#if endpointWritePaths.length}}
-/**
- * Paths of the Seam API mutation endpoints{{#if withoutWorkspace}} available without a workspace{{/if}}.
- */
 export type {{typeNamePrefix}}MutationPaths = {{#each endpointWritePaths}}'{{.}}' {{#unless @last}} | {{/unless}}{{/each}}
 {{/if}}

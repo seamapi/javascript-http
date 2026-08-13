@@ -39,14 +39,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /locks/simulate routes.
  */
 export class SeamHttpLocksSimulate {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -256,9 +249,6 @@ export class SeamHttpLocksSimulate {
   }
 }
 
-/**
- * Parameters for `SeamHttpLocksSimulate.keypadCodeEntry`.
- */
 export type LocksSimulateKeypadCodeEntryParameters = {
   /**
    * Code that you want to simulate entering on a keypad.
@@ -272,33 +262,22 @@ export type LocksSimulateKeypadCodeEntryParameters = {
 }
 
 /**
- * Response from `SeamHttpLocksSimulate.keypadCodeEntry`.
- *
  * @deprecated Use LocksSimulateKeypadCodeEntryRequest instead.
  */
 export type LocksSimulateKeypadCodeEntryResponse = {
   action_attempt: ActionAttempt
 }
 
-/**
- * Request returned by `SeamHttpLocksSimulate.keypadCodeEntry`.
- */
 export type LocksSimulateKeypadCodeEntryRequest = SeamHttpRequest<
   LocksSimulateKeypadCodeEntryResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpLocksSimulate.keypadCodeEntry`.
- */
 export type LocksSimulateKeypadCodeEntryOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpLocksSimulate.manualLockViaKeypad`.
- */
 export type LocksSimulateManualLockViaKeypadParameters = {
   /**
    * ID of the device for which you want to simulate a manual lock action using a keypad.
@@ -307,25 +286,17 @@ export type LocksSimulateManualLockViaKeypadParameters = {
 }
 
 /**
- * Response from `SeamHttpLocksSimulate.manualLockViaKeypad`.
- *
  * @deprecated Use LocksSimulateManualLockViaKeypadRequest instead.
  */
 export type LocksSimulateManualLockViaKeypadResponse = {
   action_attempt: ActionAttempt
 }
 
-/**
- * Request returned by `SeamHttpLocksSimulate.manualLockViaKeypad`.
- */
 export type LocksSimulateManualLockViaKeypadRequest = SeamHttpRequest<
   LocksSimulateManualLockViaKeypadResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpLocksSimulate.manualLockViaKeypad`.
- */
 export type LocksSimulateManualLockViaKeypadOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'

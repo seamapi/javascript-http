@@ -40,14 +40,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /client_sessions routes.
  */
 export class SeamHttpClientSessions {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -350,9 +343,6 @@ export class SeamHttpClientSessions {
   }
 }
 
-/**
- * Parameters for `SeamHttpClientSessions.create`.
- */
 export type ClientSessionsCreateParameters = {
   /**
    * IDs of the [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) for which you want to create a client session.
@@ -391,28 +381,17 @@ export type ClientSessionsCreateParameters = {
 }
 
 /**
- * Response from `SeamHttpClientSessions.create`.
- *
  * @deprecated Use ClientSessionsCreateRequest instead.
  */
 export type ClientSessionsCreateResponse = { client_session: ClientSession }
 
-/**
- * Request returned by `SeamHttpClientSessions.create`.
- */
 export type ClientSessionsCreateRequest = SeamHttpRequest<
   ClientSessionsCreateResponse,
   'client_session'
 >
 
-/**
- * Options for `SeamHttpClientSessions.create`.
- */
 export interface ClientSessionsCreateOptions {}
 
-/**
- * Parameters for `SeamHttpClientSessions.delete`.
- */
 export type ClientSessionsDeleteParameters = {
   /**
    * ID of the client session that you want to delete.
@@ -421,25 +400,14 @@ export type ClientSessionsDeleteParameters = {
 }
 
 /**
- * Response from `SeamHttpClientSessions.delete`.
- *
  * @deprecated Use ClientSessionsDeleteRequest instead.
  */
 export type ClientSessionsDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpClientSessions.delete`.
- */
 export type ClientSessionsDeleteRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpClientSessions.delete`.
- */
 export interface ClientSessionsDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpClientSessions.get`.
- */
 export type ClientSessionsGetParameters = {
   /**
    * ID of the client session that you want to get.
@@ -452,28 +420,17 @@ export type ClientSessionsGetParameters = {
 }
 
 /**
- * Response from `SeamHttpClientSessions.get`.
- *
  * @deprecated Use ClientSessionsGetRequest instead.
  */
 export type ClientSessionsGetResponse = { client_session: ClientSession }
 
-/**
- * Request returned by `SeamHttpClientSessions.get`.
- */
 export type ClientSessionsGetRequest = SeamHttpRequest<
   ClientSessionsGetResponse,
   'client_session'
 >
 
-/**
- * Options for `SeamHttpClientSessions.get`.
- */
 export interface ClientSessionsGetOptions {}
 
-/**
- * Parameters for `SeamHttpClientSessions.getOrCreate`.
- */
 export type ClientSessionsGetOrCreateParameters = {
   /**
    * IDs of the [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) that you want to associate with the client session (or that are already associated with the existing client session).
@@ -504,30 +461,19 @@ export type ClientSessionsGetOrCreateParameters = {
 }
 
 /**
- * Response from `SeamHttpClientSessions.getOrCreate`.
- *
  * @deprecated Use ClientSessionsGetOrCreateRequest instead.
  */
 export type ClientSessionsGetOrCreateResponse = {
   client_session: ClientSession
 }
 
-/**
- * Request returned by `SeamHttpClientSessions.getOrCreate`.
- */
 export type ClientSessionsGetOrCreateRequest = SeamHttpRequest<
   ClientSessionsGetOrCreateResponse,
   'client_session'
 >
 
-/**
- * Options for `SeamHttpClientSessions.getOrCreate`.
- */
 export interface ClientSessionsGetOrCreateOptions {}
 
-/**
- * Parameters for `SeamHttpClientSessions.grantAccess`.
- */
 export type ClientSessionsGrantAccessParameters = RequireAtLeastOne<{
   /**
    * ID of the client session to which you want to grant access to resources.
@@ -558,25 +504,14 @@ export type ClientSessionsGrantAccessParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpClientSessions.grantAccess`.
- *
  * @deprecated Use ClientSessionsGrantAccessRequest instead.
  */
 export type ClientSessionsGrantAccessResponse = void
 
-/**
- * Request returned by `SeamHttpClientSessions.grantAccess`.
- */
 export type ClientSessionsGrantAccessRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpClientSessions.grantAccess`.
- */
 export interface ClientSessionsGrantAccessOptions {}
 
-/**
- * Parameters for `SeamHttpClientSessions.list`.
- */
 export type ClientSessionsListParameters = {
   /**
    * ID of the client session that you want to retrieve.
@@ -601,30 +536,19 @@ export type ClientSessionsListParameters = {
 }
 
 /**
- * Response from `SeamHttpClientSessions.list`.
- *
  * @deprecated Use ClientSessionsListRequest instead.
  */
 export type ClientSessionsListResponse = {
   client_sessions: Array<ClientSession>
 }
 
-/**
- * Request returned by `SeamHttpClientSessions.list`.
- */
 export type ClientSessionsListRequest = SeamHttpRequest<
   ClientSessionsListResponse,
   'client_sessions'
 >
 
-/**
- * Options for `SeamHttpClientSessions.list`.
- */
 export interface ClientSessionsListOptions {}
 
-/**
- * Parameters for `SeamHttpClientSessions.revoke`.
- */
 export type ClientSessionsRevokeParameters = {
   /**
    * ID of the client session that you want to revoke.
@@ -633,18 +557,10 @@ export type ClientSessionsRevokeParameters = {
 }
 
 /**
- * Response from `SeamHttpClientSessions.revoke`.
- *
  * @deprecated Use ClientSessionsRevokeRequest instead.
  */
 export type ClientSessionsRevokeResponse = void
 
-/**
- * Request returned by `SeamHttpClientSessions.revoke`.
- */
 export type ClientSessionsRevokeRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpClientSessions.revoke`.
- */
 export interface ClientSessionsRevokeOptions {}

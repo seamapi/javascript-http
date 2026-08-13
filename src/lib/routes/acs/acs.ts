@@ -43,14 +43,7 @@ import { SeamHttpAcsUsers } from './users/index.js'
  * Client for the Seam API /acs routes.
  */
 export class SeamHttpAcs {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {

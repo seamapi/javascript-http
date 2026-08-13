@@ -37,14 +37,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /noise_sensors/simulate routes.
  */
 export class SeamHttpNoiseSensorsSimulate {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -223,9 +216,6 @@ export class SeamHttpNoiseSensorsSimulate {
   }
 }
 
-/**
- * Parameters for `SeamHttpNoiseSensorsSimulate.triggerNoiseThreshold`.
- */
 export type NoiseSensorsSimulateTriggerNoiseThresholdParameters = {
   /**
    * ID of the device for which you want to simulate the triggering of a noise threshold.
@@ -234,21 +224,13 @@ export type NoiseSensorsSimulateTriggerNoiseThresholdParameters = {
 }
 
 /**
- * Response from `SeamHttpNoiseSensorsSimulate.triggerNoiseThreshold`.
- *
  * @deprecated Use NoiseSensorsSimulateTriggerNoiseThresholdRequest instead.
  */
 export type NoiseSensorsSimulateTriggerNoiseThresholdResponse = void
 
-/**
- * Request returned by `SeamHttpNoiseSensorsSimulate.triggerNoiseThreshold`.
- */
 export type NoiseSensorsSimulateTriggerNoiseThresholdRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpNoiseSensorsSimulate.triggerNoiseThreshold`.
- */
 export interface NoiseSensorsSimulateTriggerNoiseThresholdOptions {}

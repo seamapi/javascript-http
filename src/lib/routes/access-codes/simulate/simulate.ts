@@ -38,14 +38,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /access_codes/simulate routes.
  */
 export class SeamHttpAccessCodesSimulate {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -224,9 +217,6 @@ export class SeamHttpAccessCodesSimulate {
   }
 }
 
-/**
- * Parameters for `SeamHttpAccessCodesSimulate.createUnmanagedAccessCode`.
- */
 export type AccessCodesSimulateCreateUnmanagedAccessCodeParameters = {
   /**
    * Code of the simulated unmanaged access code.
@@ -245,24 +235,16 @@ export type AccessCodesSimulateCreateUnmanagedAccessCodeParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodesSimulate.createUnmanagedAccessCode`.
- *
  * @deprecated Use AccessCodesSimulateCreateUnmanagedAccessCodeRequest instead.
  */
 export type AccessCodesSimulateCreateUnmanagedAccessCodeResponse = {
   access_code: UnmanagedAccessCode
 }
 
-/**
- * Request returned by `SeamHttpAccessCodesSimulate.createUnmanagedAccessCode`.
- */
 export type AccessCodesSimulateCreateUnmanagedAccessCodeRequest =
   SeamHttpRequest<
     AccessCodesSimulateCreateUnmanagedAccessCodeResponse,
     'access_code'
   >
 
-/**
- * Options for `SeamHttpAccessCodesSimulate.createUnmanagedAccessCode`.
- */
 export interface AccessCodesSimulateCreateUnmanagedAccessCodeOptions {}

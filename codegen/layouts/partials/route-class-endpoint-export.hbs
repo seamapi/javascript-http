@@ -1,29 +1,15 @@
-/**
- * Parameters for `{{className}}.{{methodName}}`.
- */
 export type {{parametersTypeName}} = {{#if requiresAtLeastOneParameter}}RequireAtLeastOne<{{/if}}{{> request-object parameters=parameters}}{{#if requiresAtLeastOneParameter}}>{{/if}}
 
 /**
- * Response from `{{className}}.{{methodName}}`.
- *
  * @deprecated Use {{requestTypeName}} instead.
  */
 export type {{responseTypeName}} = {{#if returnsVoid}}void{{else}}{ {{json responseKey}}: {{#if responseIsList}}Array<{{responseResourceTypeName}}>{{else}}{{responseResourceTypeName}}{{/if}} }{{/if}}
 
-/**
- * Request returned by `{{className}}.{{methodName}}`.
- */
 export type {{requestTypeName}} = SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
 
 
 {{#if returnsActionAttempt}}
-/**
- * Options for `{{className}}.{{methodName}}`.
- */
 export type {{optionsTypeName}} = Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
 {{else}}
-/**
- * Options for `{{className}}.{{methodName}}`.
- */
 export interface {{optionsTypeName}} {}
 {{/if}}

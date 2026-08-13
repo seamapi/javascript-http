@@ -37,14 +37,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /devices/simulate routes.
  */
 export class SeamHttpDevicesSimulate {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -344,9 +337,6 @@ export class SeamHttpDevicesSimulate {
   }
 }
 
-/**
- * Parameters for `SeamHttpDevicesSimulate.connect`.
- */
 export type DevicesSimulateConnectParameters = {
   /**
    * ID of the device that you want to simulate connecting to Seam.
@@ -355,25 +345,14 @@ export type DevicesSimulateConnectParameters = {
 }
 
 /**
- * Response from `SeamHttpDevicesSimulate.connect`.
- *
  * @deprecated Use DevicesSimulateConnectRequest instead.
  */
 export type DevicesSimulateConnectResponse = void
 
-/**
- * Request returned by `SeamHttpDevicesSimulate.connect`.
- */
 export type DevicesSimulateConnectRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpDevicesSimulate.connect`.
- */
 export interface DevicesSimulateConnectOptions {}
 
-/**
- * Parameters for `SeamHttpDevicesSimulate.connectToHub`.
- */
 export type DevicesSimulateConnectToHubParameters = {
   /**
    * ID of the device whose hub you want to reconnect.
@@ -382,28 +361,17 @@ export type DevicesSimulateConnectToHubParameters = {
 }
 
 /**
- * Response from `SeamHttpDevicesSimulate.connectToHub`.
- *
  * @deprecated Use DevicesSimulateConnectToHubRequest instead.
  */
 export type DevicesSimulateConnectToHubResponse = void
 
-/**
- * Request returned by `SeamHttpDevicesSimulate.connectToHub`.
- */
 export type DevicesSimulateConnectToHubRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpDevicesSimulate.connectToHub`.
- */
 export interface DevicesSimulateConnectToHubOptions {}
 
-/**
- * Parameters for `SeamHttpDevicesSimulate.disconnect`.
- */
 export type DevicesSimulateDisconnectParameters = {
   /**
    * ID of the device that you want to simulate disconnecting from Seam.
@@ -412,25 +380,14 @@ export type DevicesSimulateDisconnectParameters = {
 }
 
 /**
- * Response from `SeamHttpDevicesSimulate.disconnect`.
- *
  * @deprecated Use DevicesSimulateDisconnectRequest instead.
  */
 export type DevicesSimulateDisconnectResponse = void
 
-/**
- * Request returned by `SeamHttpDevicesSimulate.disconnect`.
- */
 export type DevicesSimulateDisconnectRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpDevicesSimulate.disconnect`.
- */
 export interface DevicesSimulateDisconnectOptions {}
 
-/**
- * Parameters for `SeamHttpDevicesSimulate.disconnectFromHub`.
- */
 export type DevicesSimulateDisconnectFromHubParameters = {
   /**
    * ID of the device whose hub you want to disconnect.
@@ -439,28 +396,17 @@ export type DevicesSimulateDisconnectFromHubParameters = {
 }
 
 /**
- * Response from `SeamHttpDevicesSimulate.disconnectFromHub`.
- *
  * @deprecated Use DevicesSimulateDisconnectFromHubRequest instead.
  */
 export type DevicesSimulateDisconnectFromHubResponse = void
 
-/**
- * Request returned by `SeamHttpDevicesSimulate.disconnectFromHub`.
- */
 export type DevicesSimulateDisconnectFromHubRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpDevicesSimulate.disconnectFromHub`.
- */
 export interface DevicesSimulateDisconnectFromHubOptions {}
 
-/**
- * Parameters for `SeamHttpDevicesSimulate.paidSubscription`.
- */
 export type DevicesSimulatePaidSubscriptionParameters = {
   device_id: string
 
@@ -468,28 +414,17 @@ export type DevicesSimulatePaidSubscriptionParameters = {
 }
 
 /**
- * Response from `SeamHttpDevicesSimulate.paidSubscription`.
- *
  * @deprecated Use DevicesSimulatePaidSubscriptionRequest instead.
  */
 export type DevicesSimulatePaidSubscriptionResponse = void
 
-/**
- * Request returned by `SeamHttpDevicesSimulate.paidSubscription`.
- */
 export type DevicesSimulatePaidSubscriptionRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpDevicesSimulate.paidSubscription`.
- */
 export interface DevicesSimulatePaidSubscriptionOptions {}
 
-/**
- * Parameters for `SeamHttpDevicesSimulate.remove`.
- */
 export type DevicesSimulateRemoveParameters = {
   /**
    * ID of the device that you want to simulate removing from Seam.
@@ -498,18 +433,10 @@ export type DevicesSimulateRemoveParameters = {
 }
 
 /**
- * Response from `SeamHttpDevicesSimulate.remove`.
- *
  * @deprecated Use DevicesSimulateRemoveRequest instead.
  */
 export type DevicesSimulateRemoveResponse = void
 
-/**
- * Request returned by `SeamHttpDevicesSimulate.remove`.
- */
 export type DevicesSimulateRemoveRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpDevicesSimulate.remove`.
- */
 export interface DevicesSimulateRemoveOptions {}

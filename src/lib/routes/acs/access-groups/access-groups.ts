@@ -40,14 +40,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /acs/access_groups routes.
  */
 export class SeamHttpAcsAccessGroups {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -361,9 +354,6 @@ export class SeamHttpAcsAccessGroups {
   }
 }
 
-/**
- * Parameters for `SeamHttpAcsAccessGroups.addUser`.
- */
 export type AcsAccessGroupsAddUserParameters = {
   /**
    * ID of the access group to which you want to add an access system user.
@@ -381,25 +371,14 @@ export type AcsAccessGroupsAddUserParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsAccessGroups.addUser`.
- *
  * @deprecated Use AcsAccessGroupsAddUserRequest instead.
  */
 export type AcsAccessGroupsAddUserResponse = void
 
-/**
- * Request returned by `SeamHttpAcsAccessGroups.addUser`.
- */
 export type AcsAccessGroupsAddUserRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsAccessGroups.addUser`.
- */
 export interface AcsAccessGroupsAddUserOptions {}
 
-/**
- * Parameters for `SeamHttpAcsAccessGroups.delete`.
- */
 export type AcsAccessGroupsDeleteParameters = {
   /**
    * ID of the access group that you want to delete.
@@ -408,25 +387,14 @@ export type AcsAccessGroupsDeleteParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsAccessGroups.delete`.
- *
  * @deprecated Use AcsAccessGroupsDeleteRequest instead.
  */
 export type AcsAccessGroupsDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpAcsAccessGroups.delete`.
- */
 export type AcsAccessGroupsDeleteRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsAccessGroups.delete`.
- */
 export interface AcsAccessGroupsDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpAcsAccessGroups.get`.
- */
 export type AcsAccessGroupsGetParameters = {
   /**
    * ID of the access group that you want to get.
@@ -435,28 +403,17 @@ export type AcsAccessGroupsGetParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsAccessGroups.get`.
- *
  * @deprecated Use AcsAccessGroupsGetRequest instead.
  */
 export type AcsAccessGroupsGetResponse = { acs_access_group: AcsAccessGroup }
 
-/**
- * Request returned by `SeamHttpAcsAccessGroups.get`.
- */
 export type AcsAccessGroupsGetRequest = SeamHttpRequest<
   AcsAccessGroupsGetResponse,
   'acs_access_group'
 >
 
-/**
- * Options for `SeamHttpAcsAccessGroups.get`.
- */
 export interface AcsAccessGroupsGetOptions {}
 
-/**
- * Parameters for `SeamHttpAcsAccessGroups.list`.
- */
 export type AcsAccessGroupsListParameters = {
   /**
    * ID of the access system for which you want to retrieve all access groups.
@@ -477,30 +434,19 @@ export type AcsAccessGroupsListParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsAccessGroups.list`.
- *
  * @deprecated Use AcsAccessGroupsListRequest instead.
  */
 export type AcsAccessGroupsListResponse = {
   acs_access_groups: Array<AcsAccessGroup>
 }
 
-/**
- * Request returned by `SeamHttpAcsAccessGroups.list`.
- */
 export type AcsAccessGroupsListRequest = SeamHttpRequest<
   AcsAccessGroupsListResponse,
   'acs_access_groups'
 >
 
-/**
- * Options for `SeamHttpAcsAccessGroups.list`.
- */
 export interface AcsAccessGroupsListOptions {}
 
-/**
- * Parameters for `SeamHttpAcsAccessGroups.listAccessibleEntrances`.
- */
 export type AcsAccessGroupsListAccessibleEntrancesParameters = {
   /**
    * ID of the access group for which you want to retrieve all accessible entrances.
@@ -509,30 +455,19 @@ export type AcsAccessGroupsListAccessibleEntrancesParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsAccessGroups.listAccessibleEntrances`.
- *
  * @deprecated Use AcsAccessGroupsListAccessibleEntrancesRequest instead.
  */
 export type AcsAccessGroupsListAccessibleEntrancesResponse = {
   acs_entrances: Array<AcsEntrance>
 }
 
-/**
- * Request returned by `SeamHttpAcsAccessGroups.listAccessibleEntrances`.
- */
 export type AcsAccessGroupsListAccessibleEntrancesRequest = SeamHttpRequest<
   AcsAccessGroupsListAccessibleEntrancesResponse,
   'acs_entrances'
 >
 
-/**
- * Options for `SeamHttpAcsAccessGroups.listAccessibleEntrances`.
- */
 export interface AcsAccessGroupsListAccessibleEntrancesOptions {}
 
-/**
- * Parameters for `SeamHttpAcsAccessGroups.listUsers`.
- */
 export type AcsAccessGroupsListUsersParameters = {
   /**
    * ID of the access group for which you want to retrieve all access system users.
@@ -541,28 +476,17 @@ export type AcsAccessGroupsListUsersParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsAccessGroups.listUsers`.
- *
  * @deprecated Use AcsAccessGroupsListUsersRequest instead.
  */
 export type AcsAccessGroupsListUsersResponse = { acs_users: Array<AcsUser> }
 
-/**
- * Request returned by `SeamHttpAcsAccessGroups.listUsers`.
- */
 export type AcsAccessGroupsListUsersRequest = SeamHttpRequest<
   AcsAccessGroupsListUsersResponse,
   'acs_users'
 >
 
-/**
- * Options for `SeamHttpAcsAccessGroups.listUsers`.
- */
 export interface AcsAccessGroupsListUsersOptions {}
 
-/**
- * Parameters for `SeamHttpAcsAccessGroups.removeUser`.
- */
 export type AcsAccessGroupsRemoveUserParameters = {
   /**
    * ID of the access group from which you want to remove an access system user.
@@ -580,18 +504,10 @@ export type AcsAccessGroupsRemoveUserParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsAccessGroups.removeUser`.
- *
  * @deprecated Use AcsAccessGroupsRemoveUserRequest instead.
  */
 export type AcsAccessGroupsRemoveUserResponse = void
 
-/**
- * Request returned by `SeamHttpAcsAccessGroups.removeUser`.
- */
 export type AcsAccessGroupsRemoveUserRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsAccessGroups.removeUser`.
- */
 export interface AcsAccessGroupsRemoveUserOptions {}

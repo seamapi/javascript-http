@@ -42,14 +42,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /acs/users routes.
  */
 export class SeamHttpAcsUsers {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -426,9 +419,6 @@ export class SeamHttpAcsUsers {
   }
 }
 
-/**
- * Parameters for `SeamHttpAcsUsers.addToAccessGroup`.
- */
 export type AcsUsersAddToAccessGroupParameters = {
   /**
    * ID of the access group to which you want to add an access system user.
@@ -442,25 +432,14 @@ export type AcsUsersAddToAccessGroupParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsUsers.addToAccessGroup`.
- *
  * @deprecated Use AcsUsersAddToAccessGroupRequest instead.
  */
 export type AcsUsersAddToAccessGroupResponse = void
 
-/**
- * Request returned by `SeamHttpAcsUsers.addToAccessGroup`.
- */
 export type AcsUsersAddToAccessGroupRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsUsers.addToAccessGroup`.
- */
 export interface AcsUsersAddToAccessGroupOptions {}
 
-/**
- * Parameters for `SeamHttpAcsUsers.create`.
- */
 export type AcsUsersCreateParameters = {
   /**
    * `starts_at` and `ends_at` timestamps for the new access system user's access. If you specify an `access_schedule`, you may include both `starts_at` and `ends_at`. If you omit `starts_at`, it defaults to the current time. `ends_at` is optional and must be a time in the future and after `starts_at`.
@@ -510,28 +489,17 @@ export type AcsUsersCreateParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsUsers.create`.
- *
  * @deprecated Use AcsUsersCreateRequest instead.
  */
 export type AcsUsersCreateResponse = { acs_user: AcsUser }
 
-/**
- * Request returned by `SeamHttpAcsUsers.create`.
- */
 export type AcsUsersCreateRequest = SeamHttpRequest<
   AcsUsersCreateResponse,
   'acs_user'
 >
 
-/**
- * Options for `SeamHttpAcsUsers.create`.
- */
 export interface AcsUsersCreateOptions {}
 
-/**
- * Parameters for `SeamHttpAcsUsers.delete`.
- */
 export type AcsUsersDeleteParameters = RequireAtLeastOne<{
   /**
    * ID of the access system that you want to delete. You must provide acs_system_id with user_identity_id.
@@ -548,25 +516,14 @@ export type AcsUsersDeleteParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAcsUsers.delete`.
- *
  * @deprecated Use AcsUsersDeleteRequest instead.
  */
 export type AcsUsersDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpAcsUsers.delete`.
- */
 export type AcsUsersDeleteRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsUsers.delete`.
- */
 export interface AcsUsersDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpAcsUsers.get`.
- */
 export type AcsUsersGetParameters = RequireAtLeastOne<{
   /**
    * ID of the access system that you want to get. You can only provide acs_user_id or user_identity_id.
@@ -583,28 +540,17 @@ export type AcsUsersGetParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAcsUsers.get`.
- *
  * @deprecated Use AcsUsersGetRequest instead.
  */
 export type AcsUsersGetResponse = { acs_user: AcsUser }
 
-/**
- * Request returned by `SeamHttpAcsUsers.get`.
- */
 export type AcsUsersGetRequest = SeamHttpRequest<
   AcsUsersGetResponse,
   'acs_user'
 >
 
-/**
- * Options for `SeamHttpAcsUsers.get`.
- */
 export interface AcsUsersGetOptions {}
 
-/**
- * Parameters for `SeamHttpAcsUsers.list`.
- */
 export type AcsUsersListParameters = {
   /**
    * ID of the `acs_system` for which you want to retrieve all access system users.
@@ -641,28 +587,17 @@ export type AcsUsersListParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsUsers.list`.
- *
  * @deprecated Use AcsUsersListRequest instead.
  */
 export type AcsUsersListResponse = { acs_users: Array<AcsUser> }
 
-/**
- * Request returned by `SeamHttpAcsUsers.list`.
- */
 export type AcsUsersListRequest = SeamHttpRequest<
   AcsUsersListResponse,
   'acs_users'
 >
 
-/**
- * Options for `SeamHttpAcsUsers.list`.
- */
 export interface AcsUsersListOptions {}
 
-/**
- * Parameters for `SeamHttpAcsUsers.listAccessibleEntrances`.
- */
 export type AcsUsersListAccessibleEntrancesParameters = RequireAtLeastOne<{
   /**
    * ID of the access system for which you want to list accessible entrances. You can only provide acs_system_id with user_identity_id.
@@ -679,30 +614,19 @@ export type AcsUsersListAccessibleEntrancesParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAcsUsers.listAccessibleEntrances`.
- *
  * @deprecated Use AcsUsersListAccessibleEntrancesRequest instead.
  */
 export type AcsUsersListAccessibleEntrancesResponse = {
   acs_entrances: Array<AcsEntrance>
 }
 
-/**
- * Request returned by `SeamHttpAcsUsers.listAccessibleEntrances`.
- */
 export type AcsUsersListAccessibleEntrancesRequest = SeamHttpRequest<
   AcsUsersListAccessibleEntrancesResponse,
   'acs_entrances'
 >
 
-/**
- * Options for `SeamHttpAcsUsers.listAccessibleEntrances`.
- */
 export interface AcsUsersListAccessibleEntrancesOptions {}
 
-/**
- * Parameters for `SeamHttpAcsUsers.removeFromAccessGroup`.
- */
 export type AcsUsersRemoveFromAccessGroupParameters = {
   /**
    * ID of the access group from which you want to remove an access system user.
@@ -720,28 +644,17 @@ export type AcsUsersRemoveFromAccessGroupParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsUsers.removeFromAccessGroup`.
- *
  * @deprecated Use AcsUsersRemoveFromAccessGroupRequest instead.
  */
 export type AcsUsersRemoveFromAccessGroupResponse = void
 
-/**
- * Request returned by `SeamHttpAcsUsers.removeFromAccessGroup`.
- */
 export type AcsUsersRemoveFromAccessGroupRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpAcsUsers.removeFromAccessGroup`.
- */
 export interface AcsUsersRemoveFromAccessGroupOptions {}
 
-/**
- * Parameters for `SeamHttpAcsUsers.revokeAccessToAllEntrances`.
- */
 export type AcsUsersRevokeAccessToAllEntrancesParameters = RequireAtLeastOne<{
   /**
    * ID of the access system for which you want to revoke access. You can only provide acs_system_id with user_identity_id.
@@ -758,28 +671,17 @@ export type AcsUsersRevokeAccessToAllEntrancesParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAcsUsers.revokeAccessToAllEntrances`.
- *
  * @deprecated Use AcsUsersRevokeAccessToAllEntrancesRequest instead.
  */
 export type AcsUsersRevokeAccessToAllEntrancesResponse = void
 
-/**
- * Request returned by `SeamHttpAcsUsers.revokeAccessToAllEntrances`.
- */
 export type AcsUsersRevokeAccessToAllEntrancesRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpAcsUsers.revokeAccessToAllEntrances`.
- */
 export interface AcsUsersRevokeAccessToAllEntrancesOptions {}
 
-/**
- * Parameters for `SeamHttpAcsUsers.suspend`.
- */
 export type AcsUsersSuspendParameters = RequireAtLeastOne<{
   /**
    * ID of the access system that you want to suspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
@@ -796,25 +698,14 @@ export type AcsUsersSuspendParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAcsUsers.suspend`.
- *
  * @deprecated Use AcsUsersSuspendRequest instead.
  */
 export type AcsUsersSuspendResponse = void
 
-/**
- * Request returned by `SeamHttpAcsUsers.suspend`.
- */
 export type AcsUsersSuspendRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsUsers.suspend`.
- */
 export interface AcsUsersSuspendOptions {}
 
-/**
- * Parameters for `SeamHttpAcsUsers.unsuspend`.
- */
 export type AcsUsersUnsuspendParameters = RequireAtLeastOne<{
   /**
    * ID of the access system of the user that you want to unsuspend. You can only provide acs_system_id with user_identity_id.
@@ -831,25 +722,14 @@ export type AcsUsersUnsuspendParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAcsUsers.unsuspend`.
- *
  * @deprecated Use AcsUsersUnsuspendRequest instead.
  */
 export type AcsUsersUnsuspendResponse = void
 
-/**
- * Request returned by `SeamHttpAcsUsers.unsuspend`.
- */
 export type AcsUsersUnsuspendRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsUsers.unsuspend`.
- */
 export interface AcsUsersUnsuspendOptions {}
 
-/**
- * Parameters for `SeamHttpAcsUsers.update`.
- */
 export type AcsUsersUpdateParameters = RequireAtLeastOne<{
   /**
    * `starts_at` and `ends_at` timestamps for the access system user's access. If you specify an `access_schedule`, you may include both `starts_at` and `ends_at`. If you omit `starts_at`, it defaults to the current time. `ends_at` is optional and must be a time in the future and after `starts_at`.
@@ -902,18 +782,10 @@ export type AcsUsersUpdateParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAcsUsers.update`.
- *
  * @deprecated Use AcsUsersUpdateRequest instead.
  */
 export type AcsUsersUpdateResponse = void
 
-/**
- * Request returned by `SeamHttpAcsUsers.update`.
- */
 export type AcsUsersUpdateRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsUsers.update`.
- */
 export interface AcsUsersUpdateOptions {}

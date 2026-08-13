@@ -38,14 +38,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /acs/systems routes.
  */
 export class SeamHttpAcsSystems {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -289,9 +282,6 @@ export class SeamHttpAcsSystems {
   }
 }
 
-/**
- * Parameters for `SeamHttpAcsSystems.get`.
- */
 export type AcsSystemsGetParameters = {
   /**
    * ID of the access system that you want to get.
@@ -300,28 +290,17 @@ export type AcsSystemsGetParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsSystems.get`.
- *
  * @deprecated Use AcsSystemsGetRequest instead.
  */
 export type AcsSystemsGetResponse = { acs_system: AcsSystem }
 
-/**
- * Request returned by `SeamHttpAcsSystems.get`.
- */
 export type AcsSystemsGetRequest = SeamHttpRequest<
   AcsSystemsGetResponse,
   'acs_system'
 >
 
-/**
- * Options for `SeamHttpAcsSystems.get`.
- */
 export interface AcsSystemsGetOptions {}
 
-/**
- * Parameters for `SeamHttpAcsSystems.list`.
- */
 export type AcsSystemsListParameters = {
   /**
    * ID of the connected account by which you want to filter the list of access systems.
@@ -338,28 +317,17 @@ export type AcsSystemsListParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsSystems.list`.
- *
  * @deprecated Use AcsSystemsListRequest instead.
  */
 export type AcsSystemsListResponse = { acs_systems: Array<AcsSystem> }
 
-/**
- * Request returned by `SeamHttpAcsSystems.list`.
- */
 export type AcsSystemsListRequest = SeamHttpRequest<
   AcsSystemsListResponse,
   'acs_systems'
 >
 
-/**
- * Options for `SeamHttpAcsSystems.list`.
- */
 export interface AcsSystemsListOptions {}
 
-/**
- * Parameters for `SeamHttpAcsSystems.listCompatibleCredentialManagerAcsSystems`.
- */
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters = {
   /**
    * ID of the access system for which you want to retrieve all compatible credential manager systems.
@@ -368,31 +336,20 @@ export type AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsSystems.listCompatibleCredentialManagerAcsSystems`.
- *
  * @deprecated Use AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest instead.
  */
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse = {
   acs_systems: Array<AcsSystem>
 }
 
-/**
- * Request returned by `SeamHttpAcsSystems.listCompatibleCredentialManagerAcsSystems`.
- */
 export type AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest =
   SeamHttpRequest<
     AcsSystemsListCompatibleCredentialManagerAcsSystemsResponse,
     'acs_systems'
   >
 
-/**
- * Options for `SeamHttpAcsSystems.listCompatibleCredentialManagerAcsSystems`.
- */
 export interface AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions {}
 
-/**
- * Parameters for `SeamHttpAcsSystems.reportDevices`.
- */
 export type AcsSystemsReportDevicesParameters = {
   /**
    * Array of ACS encoders to report
@@ -453,18 +410,10 @@ export type AcsSystemsReportDevicesParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsSystems.reportDevices`.
- *
  * @deprecated Use AcsSystemsReportDevicesRequest instead.
  */
 export type AcsSystemsReportDevicesResponse = void
 
-/**
- * Request returned by `SeamHttpAcsSystems.reportDevices`.
- */
 export type AcsSystemsReportDevicesRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsSystems.reportDevices`.
- */
 export interface AcsSystemsReportDevicesOptions {}

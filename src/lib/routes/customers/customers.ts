@@ -38,14 +38,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /customers routes.
  */
 export class SeamHttpCustomers {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -268,9 +261,6 @@ export class SeamHttpCustomers {
   }
 }
 
-/**
- * Parameters for `SeamHttpCustomers.createPortal`.
- */
 export type CustomersCreatePortalParameters = {
   /**
    * Filter configuration for resources based on their custom_metadata. Each filter specifies a field, operation, and value to match against resource custom_metadata.
@@ -1150,28 +1140,17 @@ export type CustomersCreatePortalParameters = {
 }
 
 /**
- * Response from `SeamHttpCustomers.createPortal`.
- *
  * @deprecated Use CustomersCreatePortalRequest instead.
  */
 export type CustomersCreatePortalResponse = { customer_portal: CustomerPortal }
 
-/**
- * Request returned by `SeamHttpCustomers.createPortal`.
- */
 export type CustomersCreatePortalRequest = SeamHttpRequest<
   CustomersCreatePortalResponse,
   'customer_portal'
 >
 
-/**
- * Options for `SeamHttpCustomers.createPortal`.
- */
 export interface CustomersCreatePortalOptions {}
 
-/**
- * Parameters for `SeamHttpCustomers.deleteData`.
- */
 export type CustomersDeleteDataParameters = {
   /**
    * List of access grant keys to delete.
@@ -1252,25 +1231,14 @@ export type CustomersDeleteDataParameters = {
 }
 
 /**
- * Response from `SeamHttpCustomers.deleteData`.
- *
  * @deprecated Use CustomersDeleteDataRequest instead.
  */
 export type CustomersDeleteDataResponse = void
 
-/**
- * Request returned by `SeamHttpCustomers.deleteData`.
- */
 export type CustomersDeleteDataRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpCustomers.deleteData`.
- */
 export interface CustomersDeleteDataOptions {}
 
-/**
- * Parameters for `SeamHttpCustomers.pushData`.
- */
 export type CustomersPushDataParameters = {
   /**
    * List of access grants.
@@ -1911,18 +1879,10 @@ export type CustomersPushDataParameters = {
 }
 
 /**
- * Response from `SeamHttpCustomers.pushData`.
- *
  * @deprecated Use CustomersPushDataRequest instead.
  */
 export type CustomersPushDataResponse = void
 
-/**
- * Request returned by `SeamHttpCustomers.pushData`.
- */
 export type CustomersPushDataRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpCustomers.pushData`.
- */
 export interface CustomersPushDataOptions {}

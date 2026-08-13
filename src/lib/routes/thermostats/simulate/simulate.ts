@@ -37,14 +37,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /thermostats/simulate routes.
  */
 export class SeamHttpThermostatsSimulate {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -246,9 +239,6 @@ export class SeamHttpThermostatsSimulate {
   }
 }
 
-/**
- * Parameters for `SeamHttpThermostatsSimulate.hvacModeAdjusted`.
- */
 export type ThermostatsSimulateHvacModeAdjustedParameters = {
   /**
    * ID of the thermostat device for which you want to simulate having adjusted the HVAC mode.
@@ -279,28 +269,17 @@ export type ThermostatsSimulateHvacModeAdjustedParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostatsSimulate.hvacModeAdjusted`.
- *
  * @deprecated Use ThermostatsSimulateHvacModeAdjustedRequest instead.
  */
 export type ThermostatsSimulateHvacModeAdjustedResponse = void
 
-/**
- * Request returned by `SeamHttpThermostatsSimulate.hvacModeAdjusted`.
- */
 export type ThermostatsSimulateHvacModeAdjustedRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpThermostatsSimulate.hvacModeAdjusted`.
- */
 export interface ThermostatsSimulateHvacModeAdjustedOptions {}
 
-/**
- * Parameters for `SeamHttpThermostatsSimulate.temperatureReached`.
- */
 export type ThermostatsSimulateTemperatureReachedParameters = {
   /**
    * ID of the thermostat device that you want to simulate reaching a specified temperature.
@@ -318,21 +297,13 @@ export type ThermostatsSimulateTemperatureReachedParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostatsSimulate.temperatureReached`.
- *
  * @deprecated Use ThermostatsSimulateTemperatureReachedRequest instead.
  */
 export type ThermostatsSimulateTemperatureReachedResponse = void
 
-/**
- * Request returned by `SeamHttpThermostatsSimulate.temperatureReached`.
- */
 export type ThermostatsSimulateTemperatureReachedRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpThermostatsSimulate.temperatureReached`.
- */
 export interface ThermostatsSimulateTemperatureReachedOptions {}

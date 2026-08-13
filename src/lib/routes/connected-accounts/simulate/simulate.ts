@@ -37,14 +37,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /connected_accounts/simulate routes.
  */
 export class SeamHttpConnectedAccountsSimulate {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -226,9 +219,6 @@ export class SeamHttpConnectedAccountsSimulate {
   }
 }
 
-/**
- * Parameters for `SeamHttpConnectedAccountsSimulate.disconnect`.
- */
 export type ConnectedAccountsSimulateDisconnectParameters = {
   /**
    * ID of the connected account you want to simulate as disconnected.
@@ -237,21 +227,13 @@ export type ConnectedAccountsSimulateDisconnectParameters = {
 }
 
 /**
- * Response from `SeamHttpConnectedAccountsSimulate.disconnect`.
- *
  * @deprecated Use ConnectedAccountsSimulateDisconnectRequest instead.
  */
 export type ConnectedAccountsSimulateDisconnectResponse = void
 
-/**
- * Request returned by `SeamHttpConnectedAccountsSimulate.disconnect`.
- */
 export type ConnectedAccountsSimulateDisconnectRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpConnectedAccountsSimulate.disconnect`.
- */
 export interface ConnectedAccountsSimulateDisconnectOptions {}

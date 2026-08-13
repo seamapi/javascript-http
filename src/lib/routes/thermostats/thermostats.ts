@@ -44,14 +44,7 @@ import { SeamHttpThermostatsSimulate } from './simulate/index.js'
  * Client for the Seam API /thermostats routes.
  */
 export class SeamHttpThermostats {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -568,9 +561,6 @@ export class SeamHttpThermostats {
   }
 }
 
-/**
- * Parameters for `SeamHttpThermostats.activateClimatePreset`.
- */
 export type ThermostatsActivateClimatePresetParameters = {
   /**
    * Climate preset key of the climate preset that you want to activate.
@@ -584,33 +574,22 @@ export type ThermostatsActivateClimatePresetParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.activateClimatePreset`.
- *
  * @deprecated Use ThermostatsActivateClimatePresetRequest instead.
  */
 export type ThermostatsActivateClimatePresetResponse = {
   action_attempt: ActionAttempt
 }
 
-/**
- * Request returned by `SeamHttpThermostats.activateClimatePreset`.
- */
 export type ThermostatsActivateClimatePresetRequest = SeamHttpRequest<
   ThermostatsActivateClimatePresetResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpThermostats.activateClimatePreset`.
- */
 export type ThermostatsActivateClimatePresetOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpThermostats.cool`.
- */
 export type ThermostatsCoolParameters = {
   /**
    * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
@@ -627,31 +606,20 @@ export type ThermostatsCoolParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.cool`.
- *
  * @deprecated Use ThermostatsCoolRequest instead.
  */
 export type ThermostatsCoolResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpThermostats.cool`.
- */
 export type ThermostatsCoolRequest = SeamHttpRequest<
   ThermostatsCoolResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpThermostats.cool`.
- */
 export type ThermostatsCoolOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpThermostats.createClimatePreset`.
- */
 export type ThermostatsCreateClimatePresetParameters = {
   /**
    * Unique key to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
@@ -724,28 +692,17 @@ export type ThermostatsCreateClimatePresetParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.createClimatePreset`.
- *
  * @deprecated Use ThermostatsCreateClimatePresetRequest instead.
  */
 export type ThermostatsCreateClimatePresetResponse = void
 
-/**
- * Request returned by `SeamHttpThermostats.createClimatePreset`.
- */
 export type ThermostatsCreateClimatePresetRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpThermostats.createClimatePreset`.
- */
 export interface ThermostatsCreateClimatePresetOptions {}
 
-/**
- * Parameters for `SeamHttpThermostats.deleteClimatePreset`.
- */
 export type ThermostatsDeleteClimatePresetParameters = {
   /**
    * Climate preset key of the climate preset that you want to delete.
@@ -759,28 +716,17 @@ export type ThermostatsDeleteClimatePresetParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.deleteClimatePreset`.
- *
  * @deprecated Use ThermostatsDeleteClimatePresetRequest instead.
  */
 export type ThermostatsDeleteClimatePresetResponse = void
 
-/**
- * Request returned by `SeamHttpThermostats.deleteClimatePreset`.
- */
 export type ThermostatsDeleteClimatePresetRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpThermostats.deleteClimatePreset`.
- */
 export interface ThermostatsDeleteClimatePresetOptions {}
 
-/**
- * Parameters for `SeamHttpThermostats.heat`.
- */
 export type ThermostatsHeatParameters = {
   /**
    * ID of the thermostat device that you want to set to heat mode.
@@ -798,31 +744,20 @@ export type ThermostatsHeatParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.heat`.
- *
  * @deprecated Use ThermostatsHeatRequest instead.
  */
 export type ThermostatsHeatResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpThermostats.heat`.
- */
 export type ThermostatsHeatRequest = SeamHttpRequest<
   ThermostatsHeatResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpThermostats.heat`.
- */
 export type ThermostatsHeatOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpThermostats.heatCool`.
- */
 export type ThermostatsHeatCoolParameters = {
   /**
    * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
@@ -848,31 +783,20 @@ export type ThermostatsHeatCoolParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.heatCool`.
- *
  * @deprecated Use ThermostatsHeatCoolRequest instead.
  */
 export type ThermostatsHeatCoolResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpThermostats.heatCool`.
- */
 export type ThermostatsHeatCoolRequest = SeamHttpRequest<
   ThermostatsHeatCoolResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpThermostats.heatCool`.
- */
 export type ThermostatsHeatCoolOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpThermostats.list`.
- */
 export type ThermostatsListParameters = {
   /**
    * ID of the Connect Webview for which you want to list devices.
@@ -924,28 +848,17 @@ export type ThermostatsListParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.list`.
- *
  * @deprecated Use ThermostatsListRequest instead.
  */
 export type ThermostatsListResponse = { devices: Array<Device> }
 
-/**
- * Request returned by `SeamHttpThermostats.list`.
- */
 export type ThermostatsListRequest = SeamHttpRequest<
   ThermostatsListResponse,
   'devices'
 >
 
-/**
- * Options for `SeamHttpThermostats.list`.
- */
 export interface ThermostatsListOptions {}
 
-/**
- * Parameters for `SeamHttpThermostats.off`.
- */
 export type ThermostatsOffParameters = {
   /**
    * ID of the thermostat device that you want to set to off mode.
@@ -954,31 +867,20 @@ export type ThermostatsOffParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.off`.
- *
  * @deprecated Use ThermostatsOffRequest instead.
  */
 export type ThermostatsOffResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpThermostats.off`.
- */
 export type ThermostatsOffRequest = SeamHttpRequest<
   ThermostatsOffResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpThermostats.off`.
- */
 export type ThermostatsOffOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpThermostats.setFallbackClimatePreset`.
- */
 export type ThermostatsSetFallbackClimatePresetParameters = {
   /**
    * Climate preset key of the climate preset that you want to set as the fallback climate preset.
@@ -992,28 +894,17 @@ export type ThermostatsSetFallbackClimatePresetParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.setFallbackClimatePreset`.
- *
  * @deprecated Use ThermostatsSetFallbackClimatePresetRequest instead.
  */
 export type ThermostatsSetFallbackClimatePresetResponse = void
 
-/**
- * Request returned by `SeamHttpThermostats.setFallbackClimatePreset`.
- */
 export type ThermostatsSetFallbackClimatePresetRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpThermostats.setFallbackClimatePreset`.
- */
 export interface ThermostatsSetFallbackClimatePresetOptions {}
 
-/**
- * Parameters for `SeamHttpThermostats.setFanMode`.
- */
 export type ThermostatsSetFanModeParameters = {
   /**
    * ID of the thermostat device for which you want to set the fan mode.
@@ -1033,31 +924,20 @@ export type ThermostatsSetFanModeParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.setFanMode`.
- *
  * @deprecated Use ThermostatsSetFanModeRequest instead.
  */
 export type ThermostatsSetFanModeResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpThermostats.setFanMode`.
- */
 export type ThermostatsSetFanModeRequest = SeamHttpRequest<
   ThermostatsSetFanModeResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpThermostats.setFanMode`.
- */
 export type ThermostatsSetFanModeOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpThermostats.setHvacMode`.
- */
 export type ThermostatsSetHvacModeParameters = {
   /**
    * ID of the thermostat device for which you want to set the HVAC mode.
@@ -1085,31 +965,20 @@ export type ThermostatsSetHvacModeParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.setHvacMode`.
- *
  * @deprecated Use ThermostatsSetHvacModeRequest instead.
  */
 export type ThermostatsSetHvacModeResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpThermostats.setHvacMode`.
- */
 export type ThermostatsSetHvacModeRequest = SeamHttpRequest<
   ThermostatsSetHvacModeResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpThermostats.setHvacMode`.
- */
 export type ThermostatsSetHvacModeOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpThermostats.setTemperatureThreshold`.
- */
 export type ThermostatsSetTemperatureThresholdParameters = {
   /**
    * ID of the thermostat device for which you want to set a temperature threshold.
@@ -1135,28 +1004,17 @@ export type ThermostatsSetTemperatureThresholdParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.setTemperatureThreshold`.
- *
  * @deprecated Use ThermostatsSetTemperatureThresholdRequest instead.
  */
 export type ThermostatsSetTemperatureThresholdResponse = void
 
-/**
- * Request returned by `SeamHttpThermostats.setTemperatureThreshold`.
- */
 export type ThermostatsSetTemperatureThresholdRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpThermostats.setTemperatureThreshold`.
- */
 export interface ThermostatsSetTemperatureThresholdOptions {}
 
-/**
- * Parameters for `SeamHttpThermostats.updateClimatePreset`.
- */
 export type ThermostatsUpdateClimatePresetParameters = {
   /**
    * Unique key to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
@@ -1229,28 +1087,17 @@ export type ThermostatsUpdateClimatePresetParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.updateClimatePreset`.
- *
  * @deprecated Use ThermostatsUpdateClimatePresetRequest instead.
  */
 export type ThermostatsUpdateClimatePresetResponse = void
 
-/**
- * Request returned by `SeamHttpThermostats.updateClimatePreset`.
- */
 export type ThermostatsUpdateClimatePresetRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpThermostats.updateClimatePreset`.
- */
 export interface ThermostatsUpdateClimatePresetOptions {}
 
-/**
- * Parameters for `SeamHttpThermostats.updateWeeklyProgram`.
- */
 export type ThermostatsUpdateWeeklyProgramParameters = {
   /**
    * ID of the thermostat device for which you want to update the weekly program.
@@ -1288,25 +1135,17 @@ export type ThermostatsUpdateWeeklyProgramParameters = {
 }
 
 /**
- * Response from `SeamHttpThermostats.updateWeeklyProgram`.
- *
  * @deprecated Use ThermostatsUpdateWeeklyProgramRequest instead.
  */
 export type ThermostatsUpdateWeeklyProgramResponse = {
   action_attempt: ActionAttempt
 }
 
-/**
- * Request returned by `SeamHttpThermostats.updateWeeklyProgram`.
- */
 export type ThermostatsUpdateWeeklyProgramRequest = SeamHttpRequest<
   ThermostatsUpdateWeeklyProgramResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpThermostats.updateWeeklyProgram`.
- */
 export type ThermostatsUpdateWeeklyProgramOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'

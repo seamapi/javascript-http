@@ -61,14 +61,7 @@ import { SeamHttpWorkspaces } from './workspaces/index.js'
  * e.g., use `seam.devices.list()` to call the `/devices/list` endpoint.
  */
 export class SeamHttp {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {

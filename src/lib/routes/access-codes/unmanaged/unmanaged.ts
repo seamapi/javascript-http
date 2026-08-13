@@ -41,14 +41,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /access_codes/unmanaged routes.
  */
 export class SeamHttpAccessCodesUnmanaged {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -325,9 +318,6 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 }
 
-/**
- * Parameters for `SeamHttpAccessCodesUnmanaged.convertToManaged`.
- */
 export type AccessCodesUnmanagedConvertToManagedParameters = {
   /**
    * ID of the unmanaged access code that you want to convert to a managed access code.
@@ -349,28 +339,17 @@ export type AccessCodesUnmanagedConvertToManagedParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodesUnmanaged.convertToManaged`.
- *
  * @deprecated Use AccessCodesUnmanagedConvertToManagedRequest instead.
  */
 export type AccessCodesUnmanagedConvertToManagedResponse = void
 
-/**
- * Request returned by `SeamHttpAccessCodesUnmanaged.convertToManaged`.
- */
 export type AccessCodesUnmanagedConvertToManagedRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpAccessCodesUnmanaged.convertToManaged`.
- */
 export interface AccessCodesUnmanagedConvertToManagedOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodesUnmanaged.delete`.
- */
 export type AccessCodesUnmanagedDeleteParameters = {
   /**
    * ID of the unmanaged access code that you want to delete.
@@ -379,25 +358,14 @@ export type AccessCodesUnmanagedDeleteParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodesUnmanaged.delete`.
- *
  * @deprecated Use AccessCodesUnmanagedDeleteRequest instead.
  */
 export type AccessCodesUnmanagedDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpAccessCodesUnmanaged.delete`.
- */
 export type AccessCodesUnmanagedDeleteRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAccessCodesUnmanaged.delete`.
- */
 export interface AccessCodesUnmanagedDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodesUnmanaged.get`.
- */
 export type AccessCodesUnmanagedGetParameters = RequireAtLeastOne<{
   /**
    * ID of the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
@@ -414,30 +382,19 @@ export type AccessCodesUnmanagedGetParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAccessCodesUnmanaged.get`.
- *
  * @deprecated Use AccessCodesUnmanagedGetRequest instead.
  */
 export type AccessCodesUnmanagedGetResponse = {
   access_code: UnmanagedAccessCode
 }
 
-/**
- * Request returned by `SeamHttpAccessCodesUnmanaged.get`.
- */
 export type AccessCodesUnmanagedGetRequest = SeamHttpRequest<
   AccessCodesUnmanagedGetResponse,
   'access_code'
 >
 
-/**
- * Options for `SeamHttpAccessCodesUnmanaged.get`.
- */
 export interface AccessCodesUnmanagedGetOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodesUnmanaged.list`.
- */
 export type AccessCodesUnmanagedListParameters = {
   /**
    * ID of the device for which you want to list unmanaged access codes.
@@ -463,30 +420,19 @@ export type AccessCodesUnmanagedListParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodesUnmanaged.list`.
- *
  * @deprecated Use AccessCodesUnmanagedListRequest instead.
  */
 export type AccessCodesUnmanagedListResponse = {
   access_codes: Array<UnmanagedAccessCode>
 }
 
-/**
- * Request returned by `SeamHttpAccessCodesUnmanaged.list`.
- */
 export type AccessCodesUnmanagedListRequest = SeamHttpRequest<
   AccessCodesUnmanagedListResponse,
   'access_codes'
 >
 
-/**
- * Options for `SeamHttpAccessCodesUnmanaged.list`.
- */
 export interface AccessCodesUnmanagedListOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodesUnmanaged.update`.
- */
 export type AccessCodesUnmanagedUpdateParameters = {
   /**
    * ID of the unmanaged access code that you want to update.
@@ -510,18 +456,10 @@ export type AccessCodesUnmanagedUpdateParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodesUnmanaged.update`.
- *
  * @deprecated Use AccessCodesUnmanagedUpdateRequest instead.
  */
 export type AccessCodesUnmanagedUpdateResponse = void
 
-/**
- * Request returned by `SeamHttpAccessCodesUnmanaged.update`.
- */
 export type AccessCodesUnmanagedUpdateRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAccessCodesUnmanaged.update`.
- */
 export interface AccessCodesUnmanagedUpdateOptions {}

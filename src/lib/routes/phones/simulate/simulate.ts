@@ -38,14 +38,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /phones/simulate routes.
  */
 export class SeamHttpPhonesSimulate {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -224,9 +217,6 @@ export class SeamHttpPhonesSimulate {
   }
 }
 
-/**
- * Parameters for `SeamHttpPhonesSimulate.createSandboxPhone`.
- */
 export type PhonesSimulateCreateSandboxPhoneParameters = {
   /**
    * ASSA ABLOY metadata that you want to associate with the simulated phone.
@@ -293,21 +283,13 @@ export type PhonesSimulateCreateSandboxPhoneParameters = {
 }
 
 /**
- * Response from `SeamHttpPhonesSimulate.createSandboxPhone`.
- *
  * @deprecated Use PhonesSimulateCreateSandboxPhoneRequest instead.
  */
 export type PhonesSimulateCreateSandboxPhoneResponse = { phone: Phone }
 
-/**
- * Request returned by `SeamHttpPhonesSimulate.createSandboxPhone`.
- */
 export type PhonesSimulateCreateSandboxPhoneRequest = SeamHttpRequest<
   PhonesSimulateCreateSandboxPhoneResponse,
   'phone'
 >
 
-/**
- * Options for `SeamHttpPhonesSimulate.createSandboxPhone`.
- */
 export interface PhonesSimulateCreateSandboxPhoneOptions {}

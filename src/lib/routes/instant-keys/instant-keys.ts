@@ -41,14 +41,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /instant_keys routes.
  */
 export class SeamHttpInstantKeys {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -260,9 +253,6 @@ export class SeamHttpInstantKeys {
   }
 }
 
-/**
- * Parameters for `SeamHttpInstantKeys.delete`.
- */
 export type InstantKeysDeleteParameters = {
   /**
    * ID of the Instant Key that you want to delete.
@@ -271,25 +261,14 @@ export type InstantKeysDeleteParameters = {
 }
 
 /**
- * Response from `SeamHttpInstantKeys.delete`.
- *
  * @deprecated Use InstantKeysDeleteRequest instead.
  */
 export type InstantKeysDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpInstantKeys.delete`.
- */
 export type InstantKeysDeleteRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpInstantKeys.delete`.
- */
 export interface InstantKeysDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpInstantKeys.get`.
- */
 export type InstantKeysGetParameters = RequireAtLeastOne<{
   /**
    * ID of the instant key to get.
@@ -302,28 +281,17 @@ export type InstantKeysGetParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpInstantKeys.get`.
- *
  * @deprecated Use InstantKeysGetRequest instead.
  */
 export type InstantKeysGetResponse = { instant_key: InstantKey }
 
-/**
- * Request returned by `SeamHttpInstantKeys.get`.
- */
 export type InstantKeysGetRequest = SeamHttpRequest<
   InstantKeysGetResponse,
   'instant_key'
 >
 
-/**
- * Options for `SeamHttpInstantKeys.get`.
- */
 export interface InstantKeysGetOptions {}
 
-/**
- * Parameters for `SeamHttpInstantKeys.list`.
- */
 export type InstantKeysListParameters = {
   /**
    * ID of the user identity by which you want to filter the list of Instant Keys.
@@ -332,21 +300,13 @@ export type InstantKeysListParameters = {
 }
 
 /**
- * Response from `SeamHttpInstantKeys.list`.
- *
  * @deprecated Use InstantKeysListRequest instead.
  */
 export type InstantKeysListResponse = { instant_keys: Array<InstantKey> }
 
-/**
- * Request returned by `SeamHttpInstantKeys.list`.
- */
 export type InstantKeysListRequest = SeamHttpRequest<
   InstantKeysListResponse,
   'instant_keys'
 >
 
-/**
- * Options for `SeamHttpInstantKeys.list`.
- */
 export interface InstantKeysListOptions {}

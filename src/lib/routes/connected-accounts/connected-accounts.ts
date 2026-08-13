@@ -43,14 +43,7 @@ import { SeamHttpConnectedAccountsSimulate } from './simulate/index.js'
  * Client for the Seam API /connected_accounts routes.
  */
 export class SeamHttpConnectedAccounts {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -332,9 +325,6 @@ export class SeamHttpConnectedAccounts {
   }
 }
 
-/**
- * Parameters for `SeamHttpConnectedAccounts.delete`.
- */
 export type ConnectedAccountsDeleteParameters = {
   /**
    * ID of the connected account that you want to delete.
@@ -343,25 +333,14 @@ export type ConnectedAccountsDeleteParameters = {
 }
 
 /**
- * Response from `SeamHttpConnectedAccounts.delete`.
- *
  * @deprecated Use ConnectedAccountsDeleteRequest instead.
  */
 export type ConnectedAccountsDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpConnectedAccounts.delete`.
- */
 export type ConnectedAccountsDeleteRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpConnectedAccounts.delete`.
- */
 export interface ConnectedAccountsDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpConnectedAccounts.get`.
- */
 export type ConnectedAccountsGetParameters = RequireAtLeastOne<{
   /**
    * ID of the connected account that you want to get.
@@ -374,30 +353,19 @@ export type ConnectedAccountsGetParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpConnectedAccounts.get`.
- *
  * @deprecated Use ConnectedAccountsGetRequest instead.
  */
 export type ConnectedAccountsGetResponse = {
   connected_account: ConnectedAccount
 }
 
-/**
- * Request returned by `SeamHttpConnectedAccounts.get`.
- */
 export type ConnectedAccountsGetRequest = SeamHttpRequest<
   ConnectedAccountsGetResponse,
   'connected_account'
 >
 
-/**
- * Options for `SeamHttpConnectedAccounts.get`.
- */
 export interface ConnectedAccountsGetOptions {}
 
-/**
- * Parameters for `SeamHttpConnectedAccounts.list`.
- */
 export type ConnectedAccountsListParameters = {
   /**
    * Custom metadata pairs by which you want to filter connected accounts. Returns connected accounts with `custom_metadata` that contains all of the provided key:value pairs.
@@ -430,30 +398,19 @@ export type ConnectedAccountsListParameters = {
 }
 
 /**
- * Response from `SeamHttpConnectedAccounts.list`.
- *
  * @deprecated Use ConnectedAccountsListRequest instead.
  */
 export type ConnectedAccountsListResponse = {
   connected_accounts: Array<ConnectedAccount>
 }
 
-/**
- * Request returned by `SeamHttpConnectedAccounts.list`.
- */
 export type ConnectedAccountsListRequest = SeamHttpRequest<
   ConnectedAccountsListResponse,
   'connected_accounts'
 >
 
-/**
- * Options for `SeamHttpConnectedAccounts.list`.
- */
 export interface ConnectedAccountsListOptions {}
 
-/**
- * Parameters for `SeamHttpConnectedAccounts.sync`.
- */
 export type ConnectedAccountsSyncParameters = {
   /**
    * ID of the connected account that you want to sync.
@@ -462,25 +419,14 @@ export type ConnectedAccountsSyncParameters = {
 }
 
 /**
- * Response from `SeamHttpConnectedAccounts.sync`.
- *
  * @deprecated Use ConnectedAccountsSyncRequest instead.
  */
 export type ConnectedAccountsSyncResponse = void
 
-/**
- * Request returned by `SeamHttpConnectedAccounts.sync`.
- */
 export type ConnectedAccountsSyncRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpConnectedAccounts.sync`.
- */
 export interface ConnectedAccountsSyncOptions {}
 
-/**
- * Parameters for `SeamHttpConnectedAccounts.update`.
- */
 export type ConnectedAccountsUpdateParameters = {
   /**
    * List of accepted device capabilities that restrict the types of devices that can be connected through this connected account. Valid values are `lock`, `thermostat`, `noise_sensor`, and `access_control`.
@@ -514,18 +460,10 @@ export type ConnectedAccountsUpdateParameters = {
 }
 
 /**
- * Response from `SeamHttpConnectedAccounts.update`.
- *
  * @deprecated Use ConnectedAccountsUpdateRequest instead.
  */
 export type ConnectedAccountsUpdateResponse = void
 
-/**
- * Request returned by `SeamHttpConnectedAccounts.update`.
- */
 export type ConnectedAccountsUpdateRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpConnectedAccounts.update`.
- */
 export interface ConnectedAccountsUpdateOptions {}

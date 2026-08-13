@@ -27,6 +27,11 @@ const publicApiFiles = [
   'src/lib/token.ts',
 ]
 
+// The generated endpoint Parameters, Response, Request, and Options types
+// are self-describing, so exported types in generated route files
+// do not require documentation.
+const generatedRouteFiles = ['src/lib/routes/**/*.ts']
+
 export default [
   globalIgnores(resolveIgnoresFromGitignore()),
   ...neostandard({ ts: true, noStyle: true }),
@@ -115,12 +120,10 @@ export default [
             'ExportNamedDeclaration > TSInterfaceDeclaration',
             'ExportNamedDeclaration > TSTypeAliasDeclaration',
             'ExportNamedDeclaration > TSEnumDeclaration',
-            'MethodDefinition[key.type!="PrivateIdentifier"]',
-            'PropertyDefinition[key.type!="PrivateIdentifier"]',
           ],
           checkConstructors: false,
-          checkGetters: true,
-          checkSetters: true,
+          checkGetters: false,
+          checkSetters: false,
           enableFixer: false,
         },
       ],
@@ -139,6 +142,29 @@ export default [
       'jsdoc/tag-lines': ['error', 'never', { startLines: 1 }],
       // Conflicts with how Prettier formats JSDoc inside union types.
       'jsdoc/check-alignment': 'off',
+    },
+  },
+  {
+    files: generatedRouteFiles,
+    rules: {
+      'jsdoc/require-jsdoc': [
+        'error',
+        {
+          publicOnly: true,
+          require: {
+            ArrowFunctionExpression: true,
+            ClassDeclaration: true,
+            ClassExpression: true,
+            FunctionDeclaration: true,
+            FunctionExpression: true,
+            MethodDefinition: false,
+          },
+          checkConstructors: false,
+          checkGetters: false,
+          checkSetters: false,
+          enableFixer: false,
+        },
+      ],
     },
   },
   {

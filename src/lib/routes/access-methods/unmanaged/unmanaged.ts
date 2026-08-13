@@ -38,14 +38,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /access_methods/unmanaged routes.
  */
 export class SeamHttpAccessMethodsUnmanaged {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -247,9 +240,6 @@ export class SeamHttpAccessMethodsUnmanaged {
   }
 }
 
-/**
- * Parameters for `SeamHttpAccessMethodsUnmanaged.get`.
- */
 export type AccessMethodsUnmanagedGetParameters = {
   /**
    * ID of unmanaged access method to get.
@@ -258,30 +248,19 @@ export type AccessMethodsUnmanagedGetParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessMethodsUnmanaged.get`.
- *
  * @deprecated Use AccessMethodsUnmanagedGetRequest instead.
  */
 export type AccessMethodsUnmanagedGetResponse = {
   access_method: UnmanagedAccessMethod
 }
 
-/**
- * Request returned by `SeamHttpAccessMethodsUnmanaged.get`.
- */
 export type AccessMethodsUnmanagedGetRequest = SeamHttpRequest<
   AccessMethodsUnmanagedGetResponse,
   'access_method'
 >
 
-/**
- * Options for `SeamHttpAccessMethodsUnmanaged.get`.
- */
 export interface AccessMethodsUnmanagedGetOptions {}
 
-/**
- * Parameters for `SeamHttpAccessMethodsUnmanaged.list`.
- */
 export type AccessMethodsUnmanagedListParameters = {
   /**
    * ID of Access Grant to list unmanaged access methods for.
@@ -303,23 +282,15 @@ export type AccessMethodsUnmanagedListParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessMethodsUnmanaged.list`.
- *
  * @deprecated Use AccessMethodsUnmanagedListRequest instead.
  */
 export type AccessMethodsUnmanagedListResponse = {
   access_methods: Array<UnmanagedAccessMethod>
 }
 
-/**
- * Request returned by `SeamHttpAccessMethodsUnmanaged.list`.
- */
 export type AccessMethodsUnmanagedListRequest = SeamHttpRequest<
   AccessMethodsUnmanagedListResponse,
   'access_methods'
 >
 
-/**
- * Options for `SeamHttpAccessMethodsUnmanaged.list`.
- */
 export interface AccessMethodsUnmanagedListOptions {}

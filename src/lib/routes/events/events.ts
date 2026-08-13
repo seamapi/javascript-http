@@ -41,14 +41,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /events routes.
  */
 export class SeamHttpEvents {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -240,9 +233,6 @@ export class SeamHttpEvents {
   }
 }
 
-/**
- * Parameters for `SeamHttpEvents.get`.
- */
 export type EventsGetParameters = RequireAtLeastOne<{
   /**
    * Unique identifier for the device that triggered the event that you want to get.
@@ -259,25 +249,14 @@ export type EventsGetParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpEvents.get`.
- *
  * @deprecated Use EventsGetRequest instead.
  */
 export type EventsGetResponse = { event: SeamEvent }
 
-/**
- * Request returned by `SeamHttpEvents.get`.
- */
 export type EventsGetRequest = SeamHttpRequest<EventsGetResponse, 'event'>
 
-/**
- * Options for `SeamHttpEvents.get`.
- */
 export interface EventsGetOptions {}
 
-/**
- * Parameters for `SeamHttpEvents.list`.
- */
 export type EventsListParameters = RequireAtLeastOne<{
   /**
    * ID of the access code for which you want to list events.
@@ -616,18 +595,10 @@ export type EventsListParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpEvents.list`.
- *
  * @deprecated Use EventsListRequest instead.
  */
 export type EventsListResponse = { events: Array<SeamEvent> }
 
-/**
- * Request returned by `SeamHttpEvents.list`.
- */
 export type EventsListRequest = SeamHttpRequest<EventsListResponse, 'events'>
 
-/**
- * Options for `SeamHttpEvents.list`.
- */
 export interface EventsListOptions {}

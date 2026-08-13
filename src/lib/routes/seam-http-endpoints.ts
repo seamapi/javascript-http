@@ -763,14 +763,7 @@ import {
  * with endpoints keyed by their path, e.g., `seam.get['/devices/list']()`.
  */
 export class SeamHttpEndpoints {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -4272,9 +4265,6 @@ export class SeamHttpEndpoints {
   }
 }
 
-/**
- * Paths of the Seam API query endpoints.
- */
 export type SeamHttpEndpointQueryPaths =
   | '/access_codes/generate_code'
   | '/access_codes/get'
@@ -4352,9 +4342,6 @@ export type SeamHttpEndpointQueryPaths =
   | '/workspaces/get'
   | '/workspaces/list'
 
-/**
- * Paths of the Seam API query endpoints that support pagination.
- */
 export type SeamHttpEndpointPaginatedQueryPaths =
   | '/access_codes/list'
   | '/access_codes/unmanaged/list'
@@ -4374,9 +4361,6 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/user_identities/list'
   | '/user_identities/unmanaged/list'
 
-/**
- * Paths of the Seam API mutation endpoints.
- */
 export type SeamHttpEndpointMutationPaths =
   | '/access_codes/create'
   | '/access_codes/create_multiple'

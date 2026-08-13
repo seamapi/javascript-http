@@ -44,14 +44,7 @@ import { SeamHttpAccessCodesUnmanaged } from './unmanaged/index.js'
  * Client for the Seam API /access_codes routes.
  */
 export class SeamHttpAccessCodes {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -462,9 +455,6 @@ export class SeamHttpAccessCodes {
   }
 }
 
-/**
- * Parameters for `SeamHttpAccessCodes.create`.
- */
 export type AccessCodesCreateParameters = {
   /**
    * Indicates whether [external modification](https://docs.seam.co/low-level-apis/smart-locks/access-codes#external-modification) of the code is allowed. Default: `false`.
@@ -538,28 +528,17 @@ export type AccessCodesCreateParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodes.create`.
- *
  * @deprecated Use AccessCodesCreateRequest instead.
  */
 export type AccessCodesCreateResponse = { access_code: AccessCode }
 
-/**
- * Request returned by `SeamHttpAccessCodes.create`.
- */
 export type AccessCodesCreateRequest = SeamHttpRequest<
   AccessCodesCreateResponse,
   'access_code'
 >
 
-/**
- * Options for `SeamHttpAccessCodes.create`.
- */
 export interface AccessCodesCreateOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodes.createMultiple`.
- */
 export type AccessCodesCreateMultipleParameters = {
   /**
    * Indicates whether [external modification](https://docs.seam.co/low-level-apis/smart-locks/access-codes#external-modification) of the code is allowed. Default: `false`.
@@ -618,30 +597,19 @@ export type AccessCodesCreateMultipleParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodes.createMultiple`.
- *
  * @deprecated Use AccessCodesCreateMultipleRequest instead.
  */
 export type AccessCodesCreateMultipleResponse = {
   access_codes: Array<AccessCode>
 }
 
-/**
- * Request returned by `SeamHttpAccessCodes.createMultiple`.
- */
 export type AccessCodesCreateMultipleRequest = SeamHttpRequest<
   AccessCodesCreateMultipleResponse,
   'access_codes'
 >
 
-/**
- * Options for `SeamHttpAccessCodes.createMultiple`.
- */
 export interface AccessCodesCreateMultipleOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodes.delete`.
- */
 export type AccessCodesDeleteParameters = {
   /**
    * ID of the access code that you want to delete.
@@ -655,25 +623,14 @@ export type AccessCodesDeleteParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodes.delete`.
- *
  * @deprecated Use AccessCodesDeleteRequest instead.
  */
 export type AccessCodesDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpAccessCodes.delete`.
- */
 export type AccessCodesDeleteRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAccessCodes.delete`.
- */
 export interface AccessCodesDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodes.generateCode`.
- */
 export type AccessCodesGenerateCodeParameters = {
   /**
    * ID of the device for which you want to generate a code.
@@ -682,28 +639,17 @@ export type AccessCodesGenerateCodeParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodes.generateCode`.
- *
  * @deprecated Use AccessCodesGenerateCodeRequest instead.
  */
 export type AccessCodesGenerateCodeResponse = { generated_code: AccessCode }
 
-/**
- * Request returned by `SeamHttpAccessCodes.generateCode`.
- */
 export type AccessCodesGenerateCodeRequest = SeamHttpRequest<
   AccessCodesGenerateCodeResponse,
   'generated_code'
 >
 
-/**
- * Options for `SeamHttpAccessCodes.generateCode`.
- */
 export interface AccessCodesGenerateCodeOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodes.get`.
- */
 export type AccessCodesGetParameters = RequireAtLeastOne<{
   /**
    * ID of the access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
@@ -720,28 +666,17 @@ export type AccessCodesGetParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAccessCodes.get`.
- *
  * @deprecated Use AccessCodesGetRequest instead.
  */
 export type AccessCodesGetResponse = { access_code: AccessCode }
 
-/**
- * Request returned by `SeamHttpAccessCodes.get`.
- */
 export type AccessCodesGetRequest = SeamHttpRequest<
   AccessCodesGetResponse,
   'access_code'
 >
 
-/**
- * Options for `SeamHttpAccessCodes.get`.
- */
 export interface AccessCodesGetOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodes.list`.
- */
 export type AccessCodesListParameters = RequireAtLeastOne<{
   /**
    * IDs of the access codes that you want to retrieve. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
@@ -786,28 +721,17 @@ export type AccessCodesListParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAccessCodes.list`.
- *
  * @deprecated Use AccessCodesListRequest instead.
  */
 export type AccessCodesListResponse = { access_codes: Array<AccessCode> }
 
-/**
- * Request returned by `SeamHttpAccessCodes.list`.
- */
 export type AccessCodesListRequest = SeamHttpRequest<
   AccessCodesListResponse,
   'access_codes'
 >
 
-/**
- * Options for `SeamHttpAccessCodes.list`.
- */
 export interface AccessCodesListOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodes.pullBackupAccessCode`.
- */
 export type AccessCodesPullBackupAccessCodeParameters = {
   /**
    * ID of the access code for which you want to pull a backup access code.
@@ -816,30 +740,19 @@ export type AccessCodesPullBackupAccessCodeParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodes.pullBackupAccessCode`.
- *
  * @deprecated Use AccessCodesPullBackupAccessCodeRequest instead.
  */
 export type AccessCodesPullBackupAccessCodeResponse = {
   access_code: AccessCode
 }
 
-/**
- * Request returned by `SeamHttpAccessCodes.pullBackupAccessCode`.
- */
 export type AccessCodesPullBackupAccessCodeRequest = SeamHttpRequest<
   AccessCodesPullBackupAccessCodeResponse,
   'access_code'
 >
 
-/**
- * Options for `SeamHttpAccessCodes.pullBackupAccessCode`.
- */
 export interface AccessCodesPullBackupAccessCodeOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodes.reportDeviceConstraints`.
- */
 export type AccessCodesReportDeviceConstraintsParameters = {
   /**
    * ID of the device for which you want to report constraints.
@@ -861,28 +774,17 @@ export type AccessCodesReportDeviceConstraintsParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodes.reportDeviceConstraints`.
- *
  * @deprecated Use AccessCodesReportDeviceConstraintsRequest instead.
  */
 export type AccessCodesReportDeviceConstraintsResponse = void
 
-/**
- * Request returned by `SeamHttpAccessCodes.reportDeviceConstraints`.
- */
 export type AccessCodesReportDeviceConstraintsRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpAccessCodes.reportDeviceConstraints`.
- */
 export interface AccessCodesReportDeviceConstraintsOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodes.update`.
- */
 export type AccessCodesUpdateParameters = {
   /**
    * ID of the access code that you want to update.
@@ -936,25 +838,14 @@ export type AccessCodesUpdateParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodes.update`.
- *
  * @deprecated Use AccessCodesUpdateRequest instead.
  */
 export type AccessCodesUpdateResponse = void
 
-/**
- * Request returned by `SeamHttpAccessCodes.update`.
- */
 export type AccessCodesUpdateRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAccessCodes.update`.
- */
 export interface AccessCodesUpdateOptions {}
 
-/**
- * Parameters for `SeamHttpAccessCodes.updateMultiple`.
- */
 export type AccessCodesUpdateMultipleParameters = {
   /**
    * Key that links the group of access codes, assigned on creation by `/access_codes/create_multiple`.
@@ -982,18 +873,10 @@ export type AccessCodesUpdateMultipleParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessCodes.updateMultiple`.
- *
  * @deprecated Use AccessCodesUpdateMultipleRequest instead.
  */
 export type AccessCodesUpdateMultipleResponse = void
 
-/**
- * Request returned by `SeamHttpAccessCodes.updateMultiple`.
- */
 export type AccessCodesUpdateMultipleRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAccessCodes.updateMultiple`.
- */
 export interface AccessCodesUpdateMultipleOptions {}

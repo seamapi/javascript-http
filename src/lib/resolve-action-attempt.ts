@@ -93,9 +93,6 @@ export const isSeamActionAttemptError = <T extends ActionAttempt>(
  * Error relating to an action attempt.
  */
 export class SeamActionAttemptError<T extends ActionAttempt> extends Error {
-  /**
-   * The action attempt that caused this error.
-   */
   actionAttempt: T
 
   constructor(message: string, actionAttempt: T) {

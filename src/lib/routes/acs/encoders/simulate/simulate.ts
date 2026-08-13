@@ -37,14 +37,7 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
  * Client for the Seam API /acs/encoders/simulate routes.
  */
 export class SeamHttpAcsEncodersSimulate {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -292,9 +285,6 @@ export class SeamHttpAcsEncodersSimulate {
   }
 }
 
-/**
- * Parameters for `SeamHttpAcsEncodersSimulate.nextCredentialEncodeWillFail`.
- */
 export type AcsEncodersSimulateNextCredentialEncodeWillFailParameters = {
   /**
    * ID of the `acs_encoder` that will be used in the next request to encode the `acs_credential`.
@@ -317,26 +307,15 @@ export type AcsEncodersSimulateNextCredentialEncodeWillFailParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEncodersSimulate.nextCredentialEncodeWillFail`.
- *
  * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillFailRequest instead.
  */
 export type AcsEncodersSimulateNextCredentialEncodeWillFailResponse = void
 
-/**
- * Request returned by `SeamHttpAcsEncodersSimulate.nextCredentialEncodeWillFail`.
- */
 export type AcsEncodersSimulateNextCredentialEncodeWillFailRequest =
   SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsEncodersSimulate.nextCredentialEncodeWillFail`.
- */
 export interface AcsEncodersSimulateNextCredentialEncodeWillFailOptions {}
 
-/**
- * Parameters for `SeamHttpAcsEncodersSimulate.nextCredentialEncodeWillSucceed`.
- */
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters = {
   /**
    * ID of the `acs_encoder` that will be used in the next request to encode the `acs_credential`.
@@ -350,26 +329,15 @@ export type AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEncodersSimulate.nextCredentialEncodeWillSucceed`.
- *
  * @deprecated Use AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest instead.
  */
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedResponse = void
 
-/**
- * Request returned by `SeamHttpAcsEncodersSimulate.nextCredentialEncodeWillSucceed`.
- */
 export type AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest =
   SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsEncodersSimulate.nextCredentialEncodeWillSucceed`.
- */
 export interface AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions {}
 
-/**
- * Parameters for `SeamHttpAcsEncodersSimulate.nextCredentialScanWillFail`.
- */
 export type AcsEncodersSimulateNextCredentialScanWillFailParameters = {
   /**
    * ID of the `acs_encoder` that will fail to scan the `acs_credential` in the next request.
@@ -386,26 +354,15 @@ export type AcsEncodersSimulateNextCredentialScanWillFailParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEncodersSimulate.nextCredentialScanWillFail`.
- *
  * @deprecated Use AcsEncodersSimulateNextCredentialScanWillFailRequest instead.
  */
 export type AcsEncodersSimulateNextCredentialScanWillFailResponse = void
 
-/**
- * Request returned by `SeamHttpAcsEncodersSimulate.nextCredentialScanWillFail`.
- */
 export type AcsEncodersSimulateNextCredentialScanWillFailRequest =
   SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsEncodersSimulate.nextCredentialScanWillFail`.
- */
 export interface AcsEncodersSimulateNextCredentialScanWillFailOptions {}
 
-/**
- * Parameters for `SeamHttpAcsEncodersSimulate.nextCredentialScanWillSucceed`.
- */
 export type AcsEncodersSimulateNextCredentialScanWillSucceedParameters = {
   /**
    * ID of the Seam `acs_credential` that matches the `acs_credential` on the encoder in this simulation.
@@ -428,19 +385,11 @@ export type AcsEncodersSimulateNextCredentialScanWillSucceedParameters = {
 }
 
 /**
- * Response from `SeamHttpAcsEncodersSimulate.nextCredentialScanWillSucceed`.
- *
  * @deprecated Use AcsEncodersSimulateNextCredentialScanWillSucceedRequest instead.
  */
 export type AcsEncodersSimulateNextCredentialScanWillSucceedResponse = void
 
-/**
- * Request returned by `SeamHttpAcsEncodersSimulate.nextCredentialScanWillSucceed`.
- */
 export type AcsEncodersSimulateNextCredentialScanWillSucceedRequest =
   SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAcsEncodersSimulate.nextCredentialScanWillSucceed`.
- */
 export interface AcsEncodersSimulateNextCredentialScanWillSucceedOptions {}

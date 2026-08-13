@@ -46,14 +46,7 @@ import { SeamHttpAccessMethodsUnmanaged } from './unmanaged/index.js'
  * Client for the Seam API /access_methods routes.
  */
 export class SeamHttpAccessMethods {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -374,9 +367,6 @@ export class SeamHttpAccessMethods {
   }
 }
 
-/**
- * Parameters for `SeamHttpAccessMethods.assignCard`.
- */
 export type AccessMethodsAssignCardParameters = {
   /**
    * ID of the `access_method` to assign the credential to.
@@ -390,31 +380,20 @@ export type AccessMethodsAssignCardParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessMethods.assignCard`.
- *
  * @deprecated Use AccessMethodsAssignCardRequest instead.
  */
 export type AccessMethodsAssignCardResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpAccessMethods.assignCard`.
- */
 export type AccessMethodsAssignCardRequest = SeamHttpRequest<
   AccessMethodsAssignCardResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpAccessMethods.assignCard`.
- */
 export type AccessMethodsAssignCardOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpAccessMethods.delete`.
- */
 export type AccessMethodsDeleteParameters = RequireAtLeastOne<{
   /**
    * ID of access method to delete.
@@ -431,25 +410,14 @@ export type AccessMethodsDeleteParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAccessMethods.delete`.
- *
  * @deprecated Use AccessMethodsDeleteRequest instead.
  */
 export type AccessMethodsDeleteResponse = void
 
-/**
- * Request returned by `SeamHttpAccessMethods.delete`.
- */
 export type AccessMethodsDeleteRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpAccessMethods.delete`.
- */
 export interface AccessMethodsDeleteOptions {}
 
-/**
- * Parameters for `SeamHttpAccessMethods.encode`.
- */
 export type AccessMethodsEncodeParameters = {
   /**
    * ID of the `access_method` to encode onto a card.
@@ -463,31 +431,20 @@ export type AccessMethodsEncodeParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessMethods.encode`.
- *
  * @deprecated Use AccessMethodsEncodeRequest instead.
  */
 export type AccessMethodsEncodeResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpAccessMethods.encode`.
- */
 export type AccessMethodsEncodeRequest = SeamHttpRequest<
   AccessMethodsEncodeResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpAccessMethods.encode`.
- */
 export type AccessMethodsEncodeOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
-/**
- * Parameters for `SeamHttpAccessMethods.get`.
- */
 export type AccessMethodsGetParameters = {
   /**
    * ID of access method to get.
@@ -496,28 +453,17 @@ export type AccessMethodsGetParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessMethods.get`.
- *
  * @deprecated Use AccessMethodsGetRequest instead.
  */
 export type AccessMethodsGetResponse = { access_method: AccessMethod }
 
-/**
- * Request returned by `SeamHttpAccessMethods.get`.
- */
 export type AccessMethodsGetRequest = SeamHttpRequest<
   AccessMethodsGetResponse,
   'access_method'
 >
 
-/**
- * Options for `SeamHttpAccessMethods.get`.
- */
 export interface AccessMethodsGetOptions {}
 
-/**
- * Parameters for `SeamHttpAccessMethods.getRelated`.
- */
 export type AccessMethodsGetRelatedParameters = {
   /**
    * IDs of the access methods that you want to get along with their related resources.
@@ -552,8 +498,6 @@ export type AccessMethodsGetRelatedParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessMethods.getRelated`.
- *
  * @deprecated Use AccessMethodsGetRelatedRequest instead.
  */
 export type AccessMethodsGetRelatedResponse = {
@@ -569,22 +513,13 @@ export type AccessMethodsGetRelatedResponse = {
   >
 }
 
-/**
- * Request returned by `SeamHttpAccessMethods.getRelated`.
- */
 export type AccessMethodsGetRelatedRequest = SeamHttpRequest<
   AccessMethodsGetRelatedResponse,
   'batch'
 >
 
-/**
- * Options for `SeamHttpAccessMethods.getRelated`.
- */
 export interface AccessMethodsGetRelatedOptions {}
 
-/**
- * Parameters for `SeamHttpAccessMethods.list`.
- */
 export type AccessMethodsListParameters = RequireAtLeastOne<{
   /**
    * ID of the access code by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
@@ -621,28 +556,17 @@ export type AccessMethodsListParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpAccessMethods.list`.
- *
  * @deprecated Use AccessMethodsListRequest instead.
  */
 export type AccessMethodsListResponse = { access_methods: Array<AccessMethod> }
 
-/**
- * Request returned by `SeamHttpAccessMethods.list`.
- */
 export type AccessMethodsListRequest = SeamHttpRequest<
   AccessMethodsListResponse,
   'access_methods'
 >
 
-/**
- * Options for `SeamHttpAccessMethods.list`.
- */
 export interface AccessMethodsListOptions {}
 
-/**
- * Parameters for `SeamHttpAccessMethods.unlockDoor`.
- */
 export type AccessMethodsUnlockDoorParameters = {
   /**
    * ID of the cloud_key `access_method` to use for the unlock operation.
@@ -656,23 +580,15 @@ export type AccessMethodsUnlockDoorParameters = {
 }
 
 /**
- * Response from `SeamHttpAccessMethods.unlockDoor`.
- *
  * @deprecated Use AccessMethodsUnlockDoorRequest instead.
  */
 export type AccessMethodsUnlockDoorResponse = { action_attempt: ActionAttempt }
 
-/**
- * Request returned by `SeamHttpAccessMethods.unlockDoor`.
- */
 export type AccessMethodsUnlockDoorRequest = SeamHttpRequest<
   AccessMethodsUnlockDoorResponse,
   'action_attempt'
 >
 
-/**
- * Options for `SeamHttpAccessMethods.unlockDoor`.
- */
 export type AccessMethodsUnlockDoorOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'

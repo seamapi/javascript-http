@@ -57,9 +57,6 @@ export interface SeamHttpWithoutWorkspaceOptionsFromEnv extends SeamHttpCommonOp
  * Options for creating a SeamHttpWithoutWorkspace client from an existing client.
  */
 export interface SeamHttpWithoutWorkspaceOptionsWithClient extends SeamHttpCommonOptions {
-  /**
-   * The existing client to use for requests.
-   */
   client: Client
 }
 
@@ -78,9 +75,6 @@ export const isSeamHttpWithoutWorkspaceOptionsWithClient = (
  * Options for creating a SeamHttp client from an existing client.
  */
 export interface SeamHttpOptionsWithClient extends SeamHttpRequestOptions {
-  /**
-   * The existing client to use for requests.
-   */
   client: Client
 }
 
@@ -112,9 +106,6 @@ export const isSeamHttpOptionsWithClient = (
  * Options for creating a SeamHttp client authenticated with an API key.
  */
 export interface SeamHttpOptionsWithApiKey extends SeamHttpCommonOptions {
-  /**
-   * The API key to use for authentication.
-   */
   apiKey: string
 }
 
@@ -155,9 +146,6 @@ export const isSeamHttpOptionsWithApiKey = (
  * Options for creating a SeamHttp client authenticated with a client session token.
  */
 export interface SeamHttpOptionsWithClientSessionToken extends SeamHttpCommonOptions {
-  /**
-   * The client session token to use for authentication.
-   */
   clientSessionToken: string
 }
 
@@ -199,9 +187,6 @@ export const isSeamHttpOptionsWithClientSessionToken = (
  * authenticated with a console session token.
  */
 export interface SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken extends SeamHttpCommonOptions {
-  /**
-   * The console session token to use for authentication.
-   */
   consoleSessionToken: string
 }
 
@@ -243,14 +228,7 @@ export const isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken = (
  * authenticated with a console session token and scoped to a workspace.
  */
 export interface SeamHttpOptionsWithConsoleSessionToken extends SeamHttpCommonOptions {
-  /**
-   * The console session token to use for authentication.
-   */
   consoleSessionToken: string
-
-  /**
-   * The ID of the workspace to scope requests to.
-   */
   workspaceId: string
 }
 
@@ -281,9 +259,6 @@ export const isSeamHttpOptionsWithConsoleSessionToken = (
  * authenticated with a personal access token.
  */
 export interface SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken extends SeamHttpCommonOptions {
-  /**
-   * The personal access token to use for authentication.
-   */
   personalAccessToken: string
 }
 
@@ -325,14 +300,7 @@ export const isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken = (
  * authenticated with a personal access token and scoped to a workspace.
  */
 export interface SeamHttpOptionsWithPersonalAccessToken extends SeamHttpCommonOptions {
-  /**
-   * The personal access token to use for authentication.
-   */
   personalAccessToken: string
-
-  /**
-   * The ID of the workspace to scope requests to.
-   */
   workspaceId: string
 }
 

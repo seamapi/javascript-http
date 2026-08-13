@@ -45,14 +45,7 @@ import { SeamHttpDevicesUnmanaged } from './unmanaged/index.js'
  * Client for the Seam API /devices routes.
  */
 export class SeamHttpDevices {
-  /**
-   * The client used to make HTTP requests to the Seam API.
-   */
   client: Client
-
-  /**
-   * Default request options used for requests made by this client.
-   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -332,9 +325,6 @@ export class SeamHttpDevices {
   }
 }
 
-/**
- * Parameters for `SeamHttpDevices.get`.
- */
 export type DevicesGetParameters = RequireAtLeastOne<{
   /**
    * ID of the device that you want to get.
@@ -347,25 +337,14 @@ export type DevicesGetParameters = RequireAtLeastOne<{
 }>
 
 /**
- * Response from `SeamHttpDevices.get`.
- *
  * @deprecated Use DevicesGetRequest instead.
  */
 export type DevicesGetResponse = { device: Device }
 
-/**
- * Request returned by `SeamHttpDevices.get`.
- */
 export type DevicesGetRequest = SeamHttpRequest<DevicesGetResponse, 'device'>
 
-/**
- * Options for `SeamHttpDevices.get`.
- */
 export interface DevicesGetOptions {}
 
-/**
- * Parameters for `SeamHttpDevices.list`.
- */
 export type DevicesListParameters = {
   /**
    * ID of the Connect Webview for which you want to list devices.
@@ -577,25 +556,14 @@ export type DevicesListParameters = {
 }
 
 /**
- * Response from `SeamHttpDevices.list`.
- *
  * @deprecated Use DevicesListRequest instead.
  */
 export type DevicesListResponse = { devices: Array<Device> }
 
-/**
- * Request returned by `SeamHttpDevices.list`.
- */
 export type DevicesListRequest = SeamHttpRequest<DevicesListResponse, 'devices'>
 
-/**
- * Options for `SeamHttpDevices.list`.
- */
 export interface DevicesListOptions {}
 
-/**
- * Parameters for `SeamHttpDevices.listDeviceProviders`.
- */
 export type DevicesListDeviceProvidersParameters = {
   /**
    * Category for which you want to list providers.
@@ -613,30 +581,19 @@ export type DevicesListDeviceProvidersParameters = {
 }
 
 /**
- * Response from `SeamHttpDevices.listDeviceProviders`.
- *
  * @deprecated Use DevicesListDeviceProvidersRequest instead.
  */
 export type DevicesListDeviceProvidersResponse = {
   device_providers: Array<DeviceProvider>
 }
 
-/**
- * Request returned by `SeamHttpDevices.listDeviceProviders`.
- */
 export type DevicesListDeviceProvidersRequest = SeamHttpRequest<
   DevicesListDeviceProvidersResponse,
   'device_providers'
 >
 
-/**
- * Options for `SeamHttpDevices.listDeviceProviders`.
- */
 export interface DevicesListDeviceProvidersOptions {}
 
-/**
- * Parameters for `SeamHttpDevices.reportProviderMetadata`.
- */
 export type DevicesReportProviderMetadataParameters = {
   /**
    * Array of devices with provider metadata to update
@@ -1973,28 +1930,17 @@ export type DevicesReportProviderMetadataParameters = {
 }
 
 /**
- * Response from `SeamHttpDevices.reportProviderMetadata`.
- *
  * @deprecated Use DevicesReportProviderMetadataRequest instead.
  */
 export type DevicesReportProviderMetadataResponse = void
 
-/**
- * Request returned by `SeamHttpDevices.reportProviderMetadata`.
- */
 export type DevicesReportProviderMetadataRequest = SeamHttpRequest<
   void,
   undefined
 >
 
-/**
- * Options for `SeamHttpDevices.reportProviderMetadata`.
- */
 export interface DevicesReportProviderMetadataOptions {}
 
-/**
- * Parameters for `SeamHttpDevices.update`.
- */
 export type DevicesUpdateParameters = {
   /**
    * Indicates whether the device's [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) is enabled. Set to `false` to disable the pool: Seam stops refilling it and removes any backup codes that have not yet been pulled into active use.
@@ -2029,18 +1975,10 @@ export type DevicesUpdateParameters = {
 }
 
 /**
- * Response from `SeamHttpDevices.update`.
- *
  * @deprecated Use DevicesUpdateRequest instead.
  */
 export type DevicesUpdateResponse = void
 
-/**
- * Request returned by `SeamHttpDevices.update`.
- */
 export type DevicesUpdateRequest = SeamHttpRequest<void, undefined>
 
-/**
- * Options for `SeamHttpDevices.update`.
- */
 export interface DevicesUpdateOptions {}
