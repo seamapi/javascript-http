@@ -466,8 +466,10 @@ const seam = new SeamHttp({
 ```
 
 Set `timeout` to `0` to disable the timeout entirely.
-A request that times out rejects with an Axios `ETIMEDOUT` error,
-and is retried according to the retry options.
+A request that times out rejects with an Axios `ETIMEDOUT` error.
+Timed-out idempotent requests are retried according to the retry options, with
+the timeout reset for each attempt. Non-idempotent requests are not retried by
+default.
 
 #### Configuring the Axios Client
 

@@ -32,6 +32,7 @@ export const createClient = (options: ClientOptions): AxiosInstance => {
     retries: 2,
     retryCondition: isIdempotentRequestError,
     retryDelay: exponentialDelay,
+    shouldResetTimeout: true,
     ...options.axiosRetryOptions,
   })
 
