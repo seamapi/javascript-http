@@ -15,6 +15,17 @@ test('endpoint rejects missing required parameters', (t) => {
       message: 'Parameters are required for /devices/get',
     },
   )
+
+  t.throws(
+    () => {
+      // @ts-expect-error Verify an explicitly required schema property makes the argument required.
+      seam.devices.reportProviderMetadata()
+    },
+    {
+      instanceOf: TypeError,
+      message: 'Parameters are required for /devices/report_provider_metadata',
+    },
+  )
 })
 
 test('endpoint rejects an empty required parameters object', (t) => {
@@ -25,7 +36,20 @@ test('endpoint rejects an empty required parameters object', (t) => {
     },
     {
       instanceOf: TypeError,
-      message: 'Parameters for /devices/get must contain at least one property',
+      message: 'At least one parameter is required for /devices/get',
+    },
+  )
+})
+
+test('endpoint rejects required parameters with only undefined values', (t) => {
+  t.throws(
+    () => {
+      // @ts-expect-error Verify RequireAtLeastOne requires a defined value.
+      seam.devices.get({ device_id: undefined })
+    },
+    {
+      instanceOf: TypeError,
+      message: 'At least one parameter is required for /devices/get',
     },
   )
 })
@@ -50,4 +74,5 @@ test('endpoint accepts omitted optional parameters', (t) => {
 test('endpoint accepts required parameters', (t) => {
   t.notThrows(() => seam.devices.get({ device_id: 'device-id' }))
   t.notThrows(() => seam.devices.get({ name: 'Front Door' }))
+  t.notThrows(() => seam.devices.reportProviderMetadata({ devices: [] }))
 })
