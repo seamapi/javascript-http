@@ -1,4 +1,11 @@
+/**
+ * The client used to make HTTP requests to the Seam API.
+ */
 client: Client
+
+/**
+ * Default request options used for requests made by this client.
+ */
 readonly defaults: Required<SeamHttpRequestOptions>
 
 constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -7,6 +14,9 @@ constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
   this.defaults = limitToSeamHttpRequestOptions(options)
 }
 
+/**
+ * Creates a new {{className}} from an existing HTTP client.
+ */
 static fromClient(
   client: SeamHttpOptionsWithClient['client'],
   options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -18,6 +28,9 @@ static fromClient(
   return new {{className}}(constructorOptions)
 }
 
+/**
+ * Creates a new {{className}} authenticated with an API key.
+ */
 static fromApiKey(
   apiKey: SeamHttpOptionsWithApiKey['apiKey'],
   options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -29,6 +42,9 @@ static fromApiKey(
   return new {{className}}(constructorOptions)
 }
 
+/**
+ * Creates a new {{className}} authenticated with a client session token.
+ */
 static fromClientSessionToken(
   clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   options: Omit<
@@ -43,6 +59,11 @@ static fromClientSessionToken(
   return new {{className}}(constructorOptions)
 }
 
+/**
+ * Creates a new {{className}} authenticated with a client session token
+ * for the user identified by the user identifier key.
+ * The client session is created with the publishable key if it does not exist.
+ */
 static async fromPublishableKey(
   publishableKey: string,
   userIdentifierKey: string,
@@ -63,6 +84,10 @@ static async fromPublishableKey(
   return {{className}}.fromClientSessionToken(token, options)
 }
 
+/**
+ * Creates a new {{className}} authenticated with a console session token
+ * and scoped to a workspace.
+ */
 static fromConsoleSessionToken(
   consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
   workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -80,6 +105,10 @@ static fromConsoleSessionToken(
   return new {{className}}(constructorOptions)
 }
 
+/**
+ * Creates a new {{className}} authenticated with a personal access token
+ * and scoped to a workspace.
+ */
 static fromPersonalAccessToken(
   personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
   workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -97,12 +126,21 @@ static fromPersonalAccessToken(
   return new {{className}}(constructorOptions)
 }
 
+/**
+ * Creates a new SeamPaginator to iterate over the paginated results
+ * of the request.
+ */
 createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
   request: SeamHttpRequest<TResponse, TResponseKey>,
 ): SeamPaginator<TResponse, TResponseKey> {
   return new SeamPaginator<TResponse, TResponseKey>(this, request)
 }
 
+/**
+ * Updates the client session token used by this client for authentication.
+ *
+ * @throws If this client was not created with a client session token.
+ */
 async updateClientSessionToken(
   clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
 ): Promise<void> {

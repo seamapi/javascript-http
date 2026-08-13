@@ -510,6 +510,7 @@ export type UnmanagedDevice = {
         time_zone?: string | undefined
         /**
          * Time zone of the device location.
+         *
          * @deprecated Use `time_zone` instead.
          */
         timezone?: string | undefined
@@ -608,12 +609,14 @@ export type UnmanagedDevice = {
 
     /**
      * Name of the device.
+     *
      * @deprecated use device.display_name instead
      */
     name: string
 
     /**
      * Indicates whether it is currently possible to use offline access codes for the device.
+     *
      * @deprecated use device.can_program_offline_access_codes
      */
     offline_access_codes_enabled?: boolean | undefined
@@ -624,6 +627,7 @@ export type UnmanagedDevice = {
 
     /**
      * Indicates whether it is currently possible to use online access codes for the device.
+     *
      * @deprecated use device.can_program_online_access_codes
      */
     online_access_codes_enabled?: boolean | undefined

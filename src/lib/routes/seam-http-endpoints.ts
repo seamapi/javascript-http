@@ -758,8 +758,19 @@ import {
   type WorkspacesUpdateRequest,
 } from './workspaces/index.js'
 
+/**
+ * HTTP client for the Seam API
+ * with endpoints keyed by their path, e.g., `seam.get['/devices/list']()`.
+ */
 export class SeamHttpEndpoints {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -768,6 +779,9 @@ export class SeamHttpEndpoints {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpEndpoints from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -779,6 +793,9 @@ export class SeamHttpEndpoints {
     return new SeamHttpEndpoints(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpEndpoints authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -790,6 +807,9 @@ export class SeamHttpEndpoints {
     return new SeamHttpEndpoints(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpEndpoints authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -804,6 +824,11 @@ export class SeamHttpEndpoints {
     return new SeamHttpEndpoints(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpEndpoints authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -824,6 +849,10 @@ export class SeamHttpEndpoints {
     return SeamHttpEndpoints.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpEndpoints authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -841,6 +870,10 @@ export class SeamHttpEndpoints {
     return new SeamHttpEndpoints(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpEndpoints authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -858,12 +891,21 @@ export class SeamHttpEndpoints {
     return new SeamHttpEndpoints(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -2928,6 +2970,7 @@ export class SeamHttpEndpoints {
 
   /**
    * Returns a specified [lock](https://docs.seam.co/low-level-apis/smart-locks).
+   *
    * @deprecated Use `/devices/get` instead.
    */
   get '/locks/get'(): (
@@ -4229,6 +4272,9 @@ export class SeamHttpEndpoints {
   }
 }
 
+/**
+ * Paths of the Seam API query endpoints.
+ */
 export type SeamHttpEndpointQueryPaths =
   | '/access_codes/generate_code'
   | '/access_codes/get'
@@ -4306,6 +4352,9 @@ export type SeamHttpEndpointQueryPaths =
   | '/workspaces/get'
   | '/workspaces/list'
 
+/**
+ * Paths of the Seam API query endpoints that support pagination.
+ */
 export type SeamHttpEndpointPaginatedQueryPaths =
   | '/access_codes/list'
   | '/access_codes/unmanaged/list'
@@ -4325,6 +4374,9 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/user_identities/list'
   | '/user_identities/unmanaged/list'
 
+/**
+ * Paths of the Seam API mutation endpoints.
+ */
 export type SeamHttpEndpointMutationPaths =
   | '/access_codes/create'
   | '/access_codes/create_multiple'

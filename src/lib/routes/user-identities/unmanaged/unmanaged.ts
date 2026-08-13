@@ -33,8 +33,18 @@ import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
+/**
+ * Client for the Seam API /user_identities/unmanaged routes.
+ */
 export class SeamHttpUserIdentitiesUnmanaged {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -43,6 +53,9 @@ export class SeamHttpUserIdentitiesUnmanaged {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentitiesUnmanaged from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -54,6 +67,9 @@ export class SeamHttpUserIdentitiesUnmanaged {
     return new SeamHttpUserIdentitiesUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentitiesUnmanaged authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -65,6 +81,9 @@ export class SeamHttpUserIdentitiesUnmanaged {
     return new SeamHttpUserIdentitiesUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentitiesUnmanaged authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -79,6 +98,11 @@ export class SeamHttpUserIdentitiesUnmanaged {
     return new SeamHttpUserIdentitiesUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentitiesUnmanaged authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -102,6 +126,10 @@ export class SeamHttpUserIdentitiesUnmanaged {
     )
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentitiesUnmanaged authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -119,6 +147,10 @@ export class SeamHttpUserIdentitiesUnmanaged {
     return new SeamHttpUserIdentitiesUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentitiesUnmanaged authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -136,12 +168,21 @@ export class SeamHttpUserIdentitiesUnmanaged {
     return new SeamHttpUserIdentitiesUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -212,6 +253,9 @@ export class SeamHttpUserIdentitiesUnmanaged {
   }
 }
 
+/**
+ * Parameters for `SeamHttpUserIdentitiesUnmanaged.get`.
+ */
 export type UserIdentitiesUnmanagedGetParameters = {
   /**
    * ID of the unmanaged user identity that you want to get.
@@ -220,19 +264,30 @@ export type UserIdentitiesUnmanagedGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentitiesUnmanaged.get`.
+ *
  * @deprecated Use UserIdentitiesUnmanagedGetRequest instead.
  */
 export type UserIdentitiesUnmanagedGetResponse = {
   user_identity: UnmanagedUserIdentity
 }
 
+/**
+ * Request returned by `SeamHttpUserIdentitiesUnmanaged.get`.
+ */
 export type UserIdentitiesUnmanagedGetRequest = SeamHttpRequest<
   UserIdentitiesUnmanagedGetResponse,
   'user_identity'
 >
 
+/**
+ * Options for `SeamHttpUserIdentitiesUnmanaged.get`.
+ */
 export interface UserIdentitiesUnmanagedGetOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentitiesUnmanaged.list`.
+ */
 export type UserIdentitiesUnmanagedListParameters = {
   /**
    * Timestamp by which to limit returned unmanaged user identities. Returns user identities created before this timestamp.
@@ -253,19 +308,30 @@ export type UserIdentitiesUnmanagedListParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentitiesUnmanaged.list`.
+ *
  * @deprecated Use UserIdentitiesUnmanagedListRequest instead.
  */
 export type UserIdentitiesUnmanagedListResponse = {
   user_identities: Array<UnmanagedUserIdentity>
 }
 
+/**
+ * Request returned by `SeamHttpUserIdentitiesUnmanaged.list`.
+ */
 export type UserIdentitiesUnmanagedListRequest = SeamHttpRequest<
   UserIdentitiesUnmanagedListResponse,
   'user_identities'
 >
 
+/**
+ * Options for `SeamHttpUserIdentitiesUnmanaged.list`.
+ */
 export interface UserIdentitiesUnmanagedListOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentitiesUnmanaged.update`.
+ */
 export type UserIdentitiesUnmanagedUpdateParameters = {
   /**
    * Must be set to true to convert the unmanaged user identity to managed.
@@ -284,13 +350,21 @@ export type UserIdentitiesUnmanagedUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentitiesUnmanaged.update`.
+ *
  * @deprecated Use UserIdentitiesUnmanagedUpdateRequest instead.
  */
 export type UserIdentitiesUnmanagedUpdateResponse = void
 
+/**
+ * Request returned by `SeamHttpUserIdentitiesUnmanaged.update`.
+ */
 export type UserIdentitiesUnmanagedUpdateRequest = SeamHttpRequest<
   void,
   undefined
 >
 
+/**
+ * Options for `SeamHttpUserIdentitiesUnmanaged.update`.
+ */
 export interface UserIdentitiesUnmanagedUpdateOptions {}

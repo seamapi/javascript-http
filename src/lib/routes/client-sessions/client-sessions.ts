@@ -32,8 +32,18 @@ import type { ClientSession } from 'lib/resources/client-session.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
+/**
+ * Client for the Seam API /client_sessions routes.
+ */
 export class SeamHttpClientSessions {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -42,6 +52,9 @@ export class SeamHttpClientSessions {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpClientSessions from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -53,6 +66,9 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpClientSessions authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -64,6 +80,9 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpClientSessions authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -78,6 +97,11 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpClientSessions authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -98,6 +122,10 @@ export class SeamHttpClientSessions {
     return SeamHttpClientSessions.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpClientSessions authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -115,6 +143,10 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpClientSessions authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -132,12 +164,21 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -272,6 +313,9 @@ export class SeamHttpClientSessions {
   }
 }
 
+/**
+ * Parameters for `SeamHttpClientSessions.create`.
+ */
 export type ClientSessionsCreateParameters = {
   /**
    * IDs of the [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) for which you want to create a client session.
@@ -303,23 +347,35 @@ export type ClientSessionsCreateParameters = {
   user_identity_id?: string | undefined
   /**
    * IDs of the [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
+   *
    * @deprecated Use `user_identity_id` instead.
    */
   user_identity_ids?: Array<string> | undefined
 }
 
 /**
+ * Response from `SeamHttpClientSessions.create`.
+ *
  * @deprecated Use ClientSessionsCreateRequest instead.
  */
 export type ClientSessionsCreateResponse = { client_session: ClientSession }
 
+/**
+ * Request returned by `SeamHttpClientSessions.create`.
+ */
 export type ClientSessionsCreateRequest = SeamHttpRequest<
   ClientSessionsCreateResponse,
   'client_session'
 >
 
+/**
+ * Options for `SeamHttpClientSessions.create`.
+ */
 export interface ClientSessionsCreateOptions {}
 
+/**
+ * Parameters for `SeamHttpClientSessions.delete`.
+ */
 export type ClientSessionsDeleteParameters = {
   /**
    * ID of the client session that you want to delete.
@@ -328,14 +384,25 @@ export type ClientSessionsDeleteParameters = {
 }
 
 /**
+ * Response from `SeamHttpClientSessions.delete`.
+ *
  * @deprecated Use ClientSessionsDeleteRequest instead.
  */
 export type ClientSessionsDeleteResponse = void
 
+/**
+ * Request returned by `SeamHttpClientSessions.delete`.
+ */
 export type ClientSessionsDeleteRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpClientSessions.delete`.
+ */
 export interface ClientSessionsDeleteOptions {}
 
+/**
+ * Parameters for `SeamHttpClientSessions.get`.
+ */
 export type ClientSessionsGetParameters = {
   /**
    * ID of the client session that you want to get.
@@ -348,17 +415,28 @@ export type ClientSessionsGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpClientSessions.get`.
+ *
  * @deprecated Use ClientSessionsGetRequest instead.
  */
 export type ClientSessionsGetResponse = { client_session: ClientSession }
 
+/**
+ * Request returned by `SeamHttpClientSessions.get`.
+ */
 export type ClientSessionsGetRequest = SeamHttpRequest<
   ClientSessionsGetResponse,
   'client_session'
 >
 
+/**
+ * Options for `SeamHttpClientSessions.get`.
+ */
 export interface ClientSessionsGetOptions {}
 
+/**
+ * Parameters for `SeamHttpClientSessions.getOrCreate`.
+ */
 export type ClientSessionsGetOrCreateParameters = {
   /**
    * IDs of the [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) that you want to associate with the client session (or that are already associated with the existing client session).
@@ -382,25 +460,37 @@ export type ClientSessionsGetOrCreateParameters = {
   user_identity_id?: string | undefined
   /**
    * IDs of the [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
+   *
    * @deprecated Use `user_identity_id`.
    */
   user_identity_ids?: Array<string> | undefined
 }
 
 /**
+ * Response from `SeamHttpClientSessions.getOrCreate`.
+ *
  * @deprecated Use ClientSessionsGetOrCreateRequest instead.
  */
 export type ClientSessionsGetOrCreateResponse = {
   client_session: ClientSession
 }
 
+/**
+ * Request returned by `SeamHttpClientSessions.getOrCreate`.
+ */
 export type ClientSessionsGetOrCreateRequest = SeamHttpRequest<
   ClientSessionsGetOrCreateResponse,
   'client_session'
 >
 
+/**
+ * Options for `SeamHttpClientSessions.getOrCreate`.
+ */
 export interface ClientSessionsGetOrCreateOptions {}
 
+/**
+ * Parameters for `SeamHttpClientSessions.grantAccess`.
+ */
 export type ClientSessionsGrantAccessParameters = {
   /**
    * ID of the client session to which you want to grant access to resources.
@@ -424,20 +514,32 @@ export type ClientSessionsGrantAccessParameters = {
   user_identity_id?: string | undefined
   /**
    * IDs of the [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
+   *
    * @deprecated Use `user_identity_id`.
    */
   user_identity_ids?: Array<string> | undefined
 }
 
 /**
+ * Response from `SeamHttpClientSessions.grantAccess`.
+ *
  * @deprecated Use ClientSessionsGrantAccessRequest instead.
  */
 export type ClientSessionsGrantAccessResponse = void
 
+/**
+ * Request returned by `SeamHttpClientSessions.grantAccess`.
+ */
 export type ClientSessionsGrantAccessRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpClientSessions.grantAccess`.
+ */
 export interface ClientSessionsGrantAccessOptions {}
 
+/**
+ * Parameters for `SeamHttpClientSessions.list`.
+ */
 export type ClientSessionsListParameters = {
   /**
    * ID of the client session that you want to retrieve.
@@ -462,19 +564,30 @@ export type ClientSessionsListParameters = {
 }
 
 /**
+ * Response from `SeamHttpClientSessions.list`.
+ *
  * @deprecated Use ClientSessionsListRequest instead.
  */
 export type ClientSessionsListResponse = {
   client_sessions: Array<ClientSession>
 }
 
+/**
+ * Request returned by `SeamHttpClientSessions.list`.
+ */
 export type ClientSessionsListRequest = SeamHttpRequest<
   ClientSessionsListResponse,
   'client_sessions'
 >
 
+/**
+ * Options for `SeamHttpClientSessions.list`.
+ */
 export interface ClientSessionsListOptions {}
 
+/**
+ * Parameters for `SeamHttpClientSessions.revoke`.
+ */
 export type ClientSessionsRevokeParameters = {
   /**
    * ID of the client session that you want to revoke.
@@ -483,10 +596,18 @@ export type ClientSessionsRevokeParameters = {
 }
 
 /**
+ * Response from `SeamHttpClientSessions.revoke`.
+ *
  * @deprecated Use ClientSessionsRevokeRequest instead.
  */
 export type ClientSessionsRevokeResponse = void
 
+/**
+ * Request returned by `SeamHttpClientSessions.revoke`.
+ */
 export type ClientSessionsRevokeRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpClientSessions.revoke`.
+ */
 export interface ClientSessionsRevokeOptions {}

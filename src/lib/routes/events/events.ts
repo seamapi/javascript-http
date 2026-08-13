@@ -33,8 +33,18 @@ import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
+/**
+ * Client for the Seam API /events routes.
+ */
 export class SeamHttpEvents {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -43,6 +53,9 @@ export class SeamHttpEvents {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpEvents from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -54,6 +67,9 @@ export class SeamHttpEvents {
     return new SeamHttpEvents(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpEvents authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -65,6 +81,9 @@ export class SeamHttpEvents {
     return new SeamHttpEvents(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpEvents authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -79,6 +98,11 @@ export class SeamHttpEvents {
     return new SeamHttpEvents(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpEvents authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -99,6 +123,10 @@ export class SeamHttpEvents {
     return SeamHttpEvents.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpEvents authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -116,6 +144,10 @@ export class SeamHttpEvents {
     return new SeamHttpEvents(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpEvents authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -133,12 +165,21 @@ export class SeamHttpEvents {
     return new SeamHttpEvents(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -191,6 +232,9 @@ export class SeamHttpEvents {
   }
 }
 
+/**
+ * Parameters for `SeamHttpEvents.get`.
+ */
 export type EventsGetParameters = {
   /**
    * Unique identifier for the device that triggered the event that you want to get.
@@ -207,14 +251,25 @@ export type EventsGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpEvents.get`.
+ *
  * @deprecated Use EventsGetRequest instead.
  */
 export type EventsGetResponse = { event: SeamEvent }
 
+/**
+ * Request returned by `SeamHttpEvents.get`.
+ */
 export type EventsGetRequest = SeamHttpRequest<EventsGetResponse, 'event'>
 
+/**
+ * Options for `SeamHttpEvents.get`.
+ */
 export interface EventsGetOptions {}
 
+/**
+ * Parameters for `SeamHttpEvents.list`.
+ */
 export type EventsListParameters = {
   /**
    * ID of the access code for which you want to list events.
@@ -553,10 +608,18 @@ export type EventsListParameters = {
 }
 
 /**
+ * Response from `SeamHttpEvents.list`.
+ *
  * @deprecated Use EventsListRequest instead.
  */
 export type EventsListResponse = { events: Array<SeamEvent> }
 
+/**
+ * Request returned by `SeamHttpEvents.list`.
+ */
 export type EventsListRequest = SeamHttpRequest<EventsListResponse, 'events'>
 
+/**
+ * Options for `SeamHttpEvents.list`.
+ */
 export interface EventsListOptions {}

@@ -33,8 +33,18 @@ import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
+/**
+ * Client for the Seam API /devices/unmanaged routes.
+ */
 export class SeamHttpDevicesUnmanaged {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -43,6 +53,9 @@ export class SeamHttpDevicesUnmanaged {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpDevicesUnmanaged from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -54,6 +67,9 @@ export class SeamHttpDevicesUnmanaged {
     return new SeamHttpDevicesUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpDevicesUnmanaged authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -65,6 +81,9 @@ export class SeamHttpDevicesUnmanaged {
     return new SeamHttpDevicesUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpDevicesUnmanaged authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -79,6 +98,11 @@ export class SeamHttpDevicesUnmanaged {
     return new SeamHttpDevicesUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpDevicesUnmanaged authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -99,6 +123,10 @@ export class SeamHttpDevicesUnmanaged {
     return SeamHttpDevicesUnmanaged.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpDevicesUnmanaged authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -116,6 +144,10 @@ export class SeamHttpDevicesUnmanaged {
     return new SeamHttpDevicesUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpDevicesUnmanaged authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -133,12 +165,21 @@ export class SeamHttpDevicesUnmanaged {
     return new SeamHttpDevicesUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -215,6 +256,9 @@ export class SeamHttpDevicesUnmanaged {
   }
 }
 
+/**
+ * Parameters for `SeamHttpDevicesUnmanaged.get`.
+ */
 export type DevicesUnmanagedGetParameters = {
   /**
    * ID of the unmanaged device that you want to get.
@@ -227,17 +271,28 @@ export type DevicesUnmanagedGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpDevicesUnmanaged.get`.
+ *
  * @deprecated Use DevicesUnmanagedGetRequest instead.
  */
 export type DevicesUnmanagedGetResponse = { device: UnmanagedDevice }
 
+/**
+ * Request returned by `SeamHttpDevicesUnmanaged.get`.
+ */
 export type DevicesUnmanagedGetRequest = SeamHttpRequest<
   DevicesUnmanagedGetResponse,
   'device'
 >
 
+/**
+ * Options for `SeamHttpDevicesUnmanaged.get`.
+ */
 export interface DevicesUnmanagedGetOptions {}
 
+/**
+ * Parameters for `SeamHttpDevicesUnmanaged.list`.
+ */
 export type DevicesUnmanagedListParameters = {
   /**
    * ID of the Connect Webview for which you want to list devices.
@@ -446,17 +501,28 @@ export type DevicesUnmanagedListParameters = {
 }
 
 /**
+ * Response from `SeamHttpDevicesUnmanaged.list`.
+ *
  * @deprecated Use DevicesUnmanagedListRequest instead.
  */
 export type DevicesUnmanagedListResponse = { devices: Array<UnmanagedDevice> }
 
+/**
+ * Request returned by `SeamHttpDevicesUnmanaged.list`.
+ */
 export type DevicesUnmanagedListRequest = SeamHttpRequest<
   DevicesUnmanagedListResponse,
   'devices'
 >
 
+/**
+ * Options for `SeamHttpDevicesUnmanaged.list`.
+ */
 export interface DevicesUnmanagedListOptions {}
 
+/**
+ * Parameters for `SeamHttpDevicesUnmanaged.update`.
+ */
 export type DevicesUnmanagedUpdateParameters = {
   /**
    * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs.
@@ -474,10 +540,18 @@ export type DevicesUnmanagedUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpDevicesUnmanaged.update`.
+ *
  * @deprecated Use DevicesUnmanagedUpdateRequest instead.
  */
 export type DevicesUnmanagedUpdateResponse = void
 
+/**
+ * Request returned by `SeamHttpDevicesUnmanaged.update`.
+ */
 export type DevicesUnmanagedUpdateRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpDevicesUnmanaged.update`.
+ */
 export interface DevicesUnmanagedUpdateOptions {}

@@ -14,11 +14,23 @@ interface BatchResourceMap {
 {{/each}}
 }
 
+{{#if (or (trim resources.[0].description) resources.[0].isDeprecated)}}
 {{> doc resources.[0]}}
+{{else}}
+/**
+ * Represents a {{typeName}} resource of the Seam API.
+ */
+{{/if}}
 export type {{typeName}}<TKey extends keyof BatchResourceMap = keyof BatchResourceMap> = {
   [K in TKey]?: Array<BatchResourceMap[K]> | undefined
 }
 {{else}}
+{{#if (or (trim resources.[0].description) resources.[0].isDeprecated)}}
 {{> doc resources.[0]}}
+{{else}}
+/**
+ * Represents a {{typeName}} resource of the Seam API.
+ */
+{{/if}}
 export type {{typeName}} = {{#each resources}}{{#unless @first}} | {{/unless}}{{> resource-object properties=properties}}{{/each}}
 {{/if}}

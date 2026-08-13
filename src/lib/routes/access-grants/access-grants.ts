@@ -36,8 +36,18 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpAccessGrantsUnmanaged } from './unmanaged/index.js'
 
+/**
+ * Client for the Seam API /access_grants routes.
+ */
 export class SeamHttpAccessGrants {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -46,6 +56,9 @@ export class SeamHttpAccessGrants {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrants from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -57,6 +70,9 @@ export class SeamHttpAccessGrants {
     return new SeamHttpAccessGrants(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrants authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -68,6 +84,9 @@ export class SeamHttpAccessGrants {
     return new SeamHttpAccessGrants(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrants authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -82,6 +101,11 @@ export class SeamHttpAccessGrants {
     return new SeamHttpAccessGrants(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrants authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -102,6 +126,10 @@ export class SeamHttpAccessGrants {
     return SeamHttpAccessGrants.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrants authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -119,6 +147,10 @@ export class SeamHttpAccessGrants {
     return new SeamHttpAccessGrants(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrants authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -136,12 +168,21 @@ export class SeamHttpAccessGrants {
     return new SeamHttpAccessGrants(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -161,6 +202,9 @@ export class SeamHttpAccessGrants {
     await clientSessions.get()
   }
 
+  /**
+   * Client for the Seam API /access_grants/unmanaged routes.
+   */
   get unmanaged(): SeamHttpAccessGrantsUnmanaged {
     return SeamHttpAccessGrantsUnmanaged.fromClient(this.client, this.defaults)
   }
@@ -278,6 +322,9 @@ export class SeamHttpAccessGrants {
   }
 }
 
+/**
+ * Parameters for `SeamHttpAccessGrants.create`.
+ */
 export type AccessGrantsCreateParameters = {
   /**
    * ID of user identity for whom access is being granted.
@@ -388,17 +435,28 @@ export type AccessGrantsCreateParameters = {
 }
 
 /**
+ * Response from `SeamHttpAccessGrants.create`.
+ *
  * @deprecated Use AccessGrantsCreateRequest instead.
  */
 export type AccessGrantsCreateResponse = { access_grant: AccessGrant }
 
+/**
+ * Request returned by `SeamHttpAccessGrants.create`.
+ */
 export type AccessGrantsCreateRequest = SeamHttpRequest<
   AccessGrantsCreateResponse,
   'access_grant'
 >
 
+/**
+ * Options for `SeamHttpAccessGrants.create`.
+ */
 export interface AccessGrantsCreateOptions {}
 
+/**
+ * Parameters for `SeamHttpAccessGrants.delete`.
+ */
 export type AccessGrantsDeleteParameters = {
   /**
    * ID of Access Grant to delete.
@@ -407,14 +465,25 @@ export type AccessGrantsDeleteParameters = {
 }
 
 /**
+ * Response from `SeamHttpAccessGrants.delete`.
+ *
  * @deprecated Use AccessGrantsDeleteRequest instead.
  */
 export type AccessGrantsDeleteResponse = void
 
+/**
+ * Request returned by `SeamHttpAccessGrants.delete`.
+ */
 export type AccessGrantsDeleteRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpAccessGrants.delete`.
+ */
 export interface AccessGrantsDeleteOptions {}
 
+/**
+ * Parameters for `SeamHttpAccessGrants.get`.
+ */
 export type AccessGrantsGetParameters = {
   /**
    * ID of Access Grant to get.
@@ -427,17 +496,28 @@ export type AccessGrantsGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpAccessGrants.get`.
+ *
  * @deprecated Use AccessGrantsGetRequest instead.
  */
 export type AccessGrantsGetResponse = { access_grant: AccessGrant }
 
+/**
+ * Request returned by `SeamHttpAccessGrants.get`.
+ */
 export type AccessGrantsGetRequest = SeamHttpRequest<
   AccessGrantsGetResponse,
   'access_grant'
 >
 
+/**
+ * Options for `SeamHttpAccessGrants.get`.
+ */
 export interface AccessGrantsGetOptions {}
 
+/**
+ * Parameters for `SeamHttpAccessGrants.getRelated`.
+ */
 export type AccessGrantsGetRelatedParameters = {
   /**
    * IDs of the access grants that you want to get along with their related resources.
@@ -476,6 +556,8 @@ export type AccessGrantsGetRelatedParameters = {
 }
 
 /**
+ * Response from `SeamHttpAccessGrants.getRelated`.
+ *
  * @deprecated Use AccessGrantsGetRelatedRequest instead.
  */
 export type AccessGrantsGetRelatedResponse = {
@@ -491,13 +573,22 @@ export type AccessGrantsGetRelatedResponse = {
   >
 }
 
+/**
+ * Request returned by `SeamHttpAccessGrants.getRelated`.
+ */
 export type AccessGrantsGetRelatedRequest = SeamHttpRequest<
   AccessGrantsGetRelatedResponse,
   'batch'
 >
 
+/**
+ * Options for `SeamHttpAccessGrants.getRelated`.
+ */
 export interface AccessGrantsGetRelatedOptions {}
 
+/**
+ * Parameters for `SeamHttpAccessGrants.list`.
+ */
 export type AccessGrantsListParameters = {
   /**
    * ID of the access code by which you want to filter the list of Access Grants.
@@ -554,17 +645,28 @@ export type AccessGrantsListParameters = {
 }
 
 /**
+ * Response from `SeamHttpAccessGrants.list`.
+ *
  * @deprecated Use AccessGrantsListRequest instead.
  */
 export type AccessGrantsListResponse = { access_grants: Array<AccessGrant> }
 
+/**
+ * Request returned by `SeamHttpAccessGrants.list`.
+ */
 export type AccessGrantsListRequest = SeamHttpRequest<
   AccessGrantsListResponse,
   'access_grants'
 >
 
+/**
+ * Options for `SeamHttpAccessGrants.list`.
+ */
 export interface AccessGrantsListOptions {}
 
+/**
+ * Parameters for `SeamHttpAccessGrants.requestAccessMethods`.
+ */
 export type AccessGrantsRequestAccessMethodsParameters = {
   /**
    * ID of the Access Grant to add access methods to.
@@ -591,19 +693,30 @@ export type AccessGrantsRequestAccessMethodsParameters = {
 }
 
 /**
+ * Response from `SeamHttpAccessGrants.requestAccessMethods`.
+ *
  * @deprecated Use AccessGrantsRequestAccessMethodsRequest instead.
  */
 export type AccessGrantsRequestAccessMethodsResponse = {
   access_grant: AccessGrant
 }
 
+/**
+ * Request returned by `SeamHttpAccessGrants.requestAccessMethods`.
+ */
 export type AccessGrantsRequestAccessMethodsRequest = SeamHttpRequest<
   AccessGrantsRequestAccessMethodsResponse,
   'access_grant'
 >
 
+/**
+ * Options for `SeamHttpAccessGrants.requestAccessMethods`.
+ */
 export interface AccessGrantsRequestAccessMethodsOptions {}
 
+/**
+ * Parameters for `SeamHttpAccessGrants.update`.
+ */
 export type AccessGrantsUpdateParameters = {
   /**
    * ID of the Access Grant to update. Provide either `access_grant_id` or `access_grant_key`.
@@ -628,10 +741,18 @@ export type AccessGrantsUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpAccessGrants.update`.
+ *
  * @deprecated Use AccessGrantsUpdateRequest instead.
  */
 export type AccessGrantsUpdateResponse = void
 
+/**
+ * Request returned by `SeamHttpAccessGrants.update`.
+ */
 export type AccessGrantsUpdateRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpAccessGrants.update`.
+ */
 export interface AccessGrantsUpdateOptions {}

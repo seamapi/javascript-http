@@ -33,8 +33,18 @@ import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
+/**
+ * Client for the Seam API /access_grants/unmanaged routes.
+ */
 export class SeamHttpAccessGrantsUnmanaged {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -43,6 +53,9 @@ export class SeamHttpAccessGrantsUnmanaged {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrantsUnmanaged from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -54,6 +67,9 @@ export class SeamHttpAccessGrantsUnmanaged {
     return new SeamHttpAccessGrantsUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrantsUnmanaged authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -65,6 +81,9 @@ export class SeamHttpAccessGrantsUnmanaged {
     return new SeamHttpAccessGrantsUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrantsUnmanaged authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -79,6 +98,11 @@ export class SeamHttpAccessGrantsUnmanaged {
     return new SeamHttpAccessGrantsUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrantsUnmanaged authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -99,6 +123,10 @@ export class SeamHttpAccessGrantsUnmanaged {
     return SeamHttpAccessGrantsUnmanaged.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrantsUnmanaged authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -116,6 +144,10 @@ export class SeamHttpAccessGrantsUnmanaged {
     return new SeamHttpAccessGrantsUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAccessGrantsUnmanaged authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -133,12 +165,21 @@ export class SeamHttpAccessGrantsUnmanaged {
     return new SeamHttpAccessGrantsUnmanaged(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -211,6 +252,9 @@ export class SeamHttpAccessGrantsUnmanaged {
   }
 }
 
+/**
+ * Parameters for `SeamHttpAccessGrantsUnmanaged.get`.
+ */
 export type AccessGrantsUnmanagedGetParameters = {
   /**
    * ID of unmanaged Access Grant to get.
@@ -219,19 +263,30 @@ export type AccessGrantsUnmanagedGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpAccessGrantsUnmanaged.get`.
+ *
  * @deprecated Use AccessGrantsUnmanagedGetRequest instead.
  */
 export type AccessGrantsUnmanagedGetResponse = {
   access_grant: UnmanagedAccessGrant
 }
 
+/**
+ * Request returned by `SeamHttpAccessGrantsUnmanaged.get`.
+ */
 export type AccessGrantsUnmanagedGetRequest = SeamHttpRequest<
   AccessGrantsUnmanagedGetResponse,
   'access_grant'
 >
 
+/**
+ * Options for `SeamHttpAccessGrantsUnmanaged.get`.
+ */
 export interface AccessGrantsUnmanagedGetOptions {}
 
+/**
+ * Parameters for `SeamHttpAccessGrantsUnmanaged.list`.
+ */
 export type AccessGrantsUnmanagedListParameters = {
   /**
    * ID of the entrance by which you want to filter the list of unmanaged Access Grants.
@@ -260,19 +315,30 @@ export type AccessGrantsUnmanagedListParameters = {
 }
 
 /**
+ * Response from `SeamHttpAccessGrantsUnmanaged.list`.
+ *
  * @deprecated Use AccessGrantsUnmanagedListRequest instead.
  */
 export type AccessGrantsUnmanagedListResponse = {
   access_grants: Array<UnmanagedAccessGrant>
 }
 
+/**
+ * Request returned by `SeamHttpAccessGrantsUnmanaged.list`.
+ */
 export type AccessGrantsUnmanagedListRequest = SeamHttpRequest<
   AccessGrantsUnmanagedListResponse,
   'access_grants'
 >
 
+/**
+ * Options for `SeamHttpAccessGrantsUnmanaged.list`.
+ */
 export interface AccessGrantsUnmanagedListOptions {}
 
+/**
+ * Parameters for `SeamHttpAccessGrantsUnmanaged.update`.
+ */
 export type AccessGrantsUnmanagedUpdateParameters = {
   /**
    * ID of the unmanaged Access Grant to update.
@@ -290,13 +356,21 @@ export type AccessGrantsUnmanagedUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpAccessGrantsUnmanaged.update`.
+ *
  * @deprecated Use AccessGrantsUnmanagedUpdateRequest instead.
  */
 export type AccessGrantsUnmanagedUpdateResponse = void
 
+/**
+ * Request returned by `SeamHttpAccessGrantsUnmanaged.update`.
+ */
 export type AccessGrantsUnmanagedUpdateRequest = SeamHttpRequest<
   void,
   undefined
 >
 
+/**
+ * Options for `SeamHttpAccessGrantsUnmanaged.update`.
+ */
 export interface AccessGrantsUnmanagedUpdateOptions {}

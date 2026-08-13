@@ -34,8 +34,18 @@ import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
+/**
+ * Client for the Seam API /spaces routes.
+ */
 export class SeamHttpSpaces {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -44,6 +54,9 @@ export class SeamHttpSpaces {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpSpaces from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -55,6 +68,9 @@ export class SeamHttpSpaces {
     return new SeamHttpSpaces(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpSpaces authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -66,6 +82,9 @@ export class SeamHttpSpaces {
     return new SeamHttpSpaces(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpSpaces authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -80,6 +99,11 @@ export class SeamHttpSpaces {
     return new SeamHttpSpaces(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpSpaces authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -100,6 +124,10 @@ export class SeamHttpSpaces {
     return SeamHttpSpaces.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpSpaces authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -117,6 +145,10 @@ export class SeamHttpSpaces {
     return new SeamHttpSpaces(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpSpaces authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -134,12 +166,21 @@ export class SeamHttpSpaces {
     return new SeamHttpSpaces(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -352,6 +393,9 @@ export class SeamHttpSpaces {
   }
 }
 
+/**
+ * Parameters for `SeamHttpSpaces.addAcsEntrances`.
+ */
 export type SpacesAddAcsEntrancesParameters = {
   /**
    * IDs of the entrances that you want to add to the space.
@@ -365,14 +409,25 @@ export type SpacesAddAcsEntrancesParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.addAcsEntrances`.
+ *
  * @deprecated Use SpacesAddAcsEntrancesRequest instead.
  */
 export type SpacesAddAcsEntrancesResponse = void
 
+/**
+ * Request returned by `SeamHttpSpaces.addAcsEntrances`.
+ */
 export type SpacesAddAcsEntrancesRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpSpaces.addAcsEntrances`.
+ */
 export interface SpacesAddAcsEntrancesOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.addConnectedAccount`.
+ */
 export type SpacesAddConnectedAccountParameters = {
   /**
    * ID of the connected account that you want to add to the space.
@@ -386,14 +441,25 @@ export type SpacesAddConnectedAccountParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.addConnectedAccount`.
+ *
  * @deprecated Use SpacesAddConnectedAccountRequest instead.
  */
 export type SpacesAddConnectedAccountResponse = void
 
+/**
+ * Request returned by `SeamHttpSpaces.addConnectedAccount`.
+ */
 export type SpacesAddConnectedAccountRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpSpaces.addConnectedAccount`.
+ */
 export interface SpacesAddConnectedAccountOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.addDevices`.
+ */
 export type SpacesAddDevicesParameters = {
   /**
    * IDs of the devices that you want to add to the space.
@@ -407,14 +473,25 @@ export type SpacesAddDevicesParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.addDevices`.
+ *
  * @deprecated Use SpacesAddDevicesRequest instead.
  */
 export type SpacesAddDevicesResponse = void
 
+/**
+ * Request returned by `SeamHttpSpaces.addDevices`.
+ */
 export type SpacesAddDevicesRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpSpaces.addDevices`.
+ */
 export interface SpacesAddDevicesOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.create`.
+ */
 export type SpacesCreateParameters = {
   /**
    * IDs of the entrances that you want to add to the new space.
@@ -467,14 +544,25 @@ export type SpacesCreateParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.create`.
+ *
  * @deprecated Use SpacesCreateRequest instead.
  */
 export type SpacesCreateResponse = { space: Space }
 
+/**
+ * Request returned by `SeamHttpSpaces.create`.
+ */
 export type SpacesCreateRequest = SeamHttpRequest<SpacesCreateResponse, 'space'>
 
+/**
+ * Options for `SeamHttpSpaces.create`.
+ */
 export interface SpacesCreateOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.delete`.
+ */
 export type SpacesDeleteParameters = {
   /**
    * ID of the space that you want to delete.
@@ -483,14 +571,25 @@ export type SpacesDeleteParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.delete`.
+ *
  * @deprecated Use SpacesDeleteRequest instead.
  */
 export type SpacesDeleteResponse = void
 
+/**
+ * Request returned by `SeamHttpSpaces.delete`.
+ */
 export type SpacesDeleteRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpSpaces.delete`.
+ */
 export interface SpacesDeleteOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.get`.
+ */
 export type SpacesGetParameters = {
   /**
    * ID of the space that you want to get.
@@ -503,14 +602,25 @@ export type SpacesGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.get`.
+ *
  * @deprecated Use SpacesGetRequest instead.
  */
 export type SpacesGetResponse = { space: Space }
 
+/**
+ * Request returned by `SeamHttpSpaces.get`.
+ */
 export type SpacesGetRequest = SeamHttpRequest<SpacesGetResponse, 'space'>
 
+/**
+ * Options for `SeamHttpSpaces.get`.
+ */
 export interface SpacesGetOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.getRelated`.
+ */
 export type SpacesGetRelatedParameters = {
   exclude?:
     | Array<
@@ -544,6 +654,8 @@ export type SpacesGetRelatedParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.getRelated`.
+ *
  * @deprecated Use SpacesGetRelatedRequest instead.
  */
 export type SpacesGetRelatedResponse = {
@@ -557,13 +669,22 @@ export type SpacesGetRelatedResponse = {
   >
 }
 
+/**
+ * Request returned by `SeamHttpSpaces.getRelated`.
+ */
 export type SpacesGetRelatedRequest = SeamHttpRequest<
   SpacesGetRelatedResponse,
   'batch'
 >
 
+/**
+ * Options for `SeamHttpSpaces.getRelated`.
+ */
 export interface SpacesGetRelatedOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.list`.
+ */
 export type SpacesListParameters = {
   /**
    * Customer key for which you want to list spaces.
@@ -588,14 +709,25 @@ export type SpacesListParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.list`.
+ *
  * @deprecated Use SpacesListRequest instead.
  */
 export type SpacesListResponse = { spaces: Array<Space> }
 
+/**
+ * Request returned by `SeamHttpSpaces.list`.
+ */
 export type SpacesListRequest = SeamHttpRequest<SpacesListResponse, 'spaces'>
 
+/**
+ * Options for `SeamHttpSpaces.list`.
+ */
 export interface SpacesListOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.removeAcsEntrances`.
+ */
 export type SpacesRemoveAcsEntrancesParameters = {
   /**
    * IDs of the entrances that you want to remove from the space.
@@ -609,14 +741,25 @@ export type SpacesRemoveAcsEntrancesParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.removeAcsEntrances`.
+ *
  * @deprecated Use SpacesRemoveAcsEntrancesRequest instead.
  */
 export type SpacesRemoveAcsEntrancesResponse = void
 
+/**
+ * Request returned by `SeamHttpSpaces.removeAcsEntrances`.
+ */
 export type SpacesRemoveAcsEntrancesRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpSpaces.removeAcsEntrances`.
+ */
 export interface SpacesRemoveAcsEntrancesOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.removeConnectedAccount`.
+ */
 export type SpacesRemoveConnectedAccountParameters = {
   /**
    * ID of the connected account that you want to remove from the space.
@@ -630,17 +773,28 @@ export type SpacesRemoveConnectedAccountParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.removeConnectedAccount`.
+ *
  * @deprecated Use SpacesRemoveConnectedAccountRequest instead.
  */
 export type SpacesRemoveConnectedAccountResponse = void
 
+/**
+ * Request returned by `SeamHttpSpaces.removeConnectedAccount`.
+ */
 export type SpacesRemoveConnectedAccountRequest = SeamHttpRequest<
   void,
   undefined
 >
 
+/**
+ * Options for `SeamHttpSpaces.removeConnectedAccount`.
+ */
 export interface SpacesRemoveConnectedAccountOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.removeDevices`.
+ */
 export type SpacesRemoveDevicesParameters = {
   /**
    * IDs of the devices that you want to remove from the space.
@@ -654,14 +808,25 @@ export type SpacesRemoveDevicesParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.removeDevices`.
+ *
  * @deprecated Use SpacesRemoveDevicesRequest instead.
  */
 export type SpacesRemoveDevicesResponse = void
 
+/**
+ * Request returned by `SeamHttpSpaces.removeDevices`.
+ */
 export type SpacesRemoveDevicesRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpSpaces.removeDevices`.
+ */
 export interface SpacesRemoveDevicesOptions {}
 
+/**
+ * Parameters for `SeamHttpSpaces.update`.
+ */
 export type SpacesUpdateParameters = {
   /**
    * IDs of the entrances that you want to set for the space. If specified, this will replace all existing entrances.
@@ -709,10 +874,18 @@ export type SpacesUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpSpaces.update`.
+ *
  * @deprecated Use SpacesUpdateRequest instead.
  */
 export type SpacesUpdateResponse = { space: Space }
 
+/**
+ * Request returned by `SeamHttpSpaces.update`.
+ */
 export type SpacesUpdateRequest = SeamHttpRequest<SpacesUpdateResponse, 'space'>
 
+/**
+ * Options for `SeamHttpSpaces.update`.
+ */
 export interface SpacesUpdateOptions {}

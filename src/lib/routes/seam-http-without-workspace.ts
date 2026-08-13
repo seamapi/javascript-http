@@ -21,8 +21,22 @@ import {
 } from 'lib/parse-options.js'
 import { SeamHttpWorkspaces } from 'lib/routes/workspaces/index.js'
 
+/**
+ * HTTP client for the Seam API not scoped to a workspace.
+ *
+ * Use this client to list or create workspaces,
+ * e.g., when authenticated with a personal access token
+ * or console session token.
+ */
 export class SeamHttpWithoutWorkspace {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(options: SeamHttpWithoutWorkspaceOptions = {}) {
@@ -31,6 +45,9 @@ export class SeamHttpWithoutWorkspace {
     this.defaults = limitToSeamHttpRequestOptions(opts)
   }
 
+  /**
+   * Creates a new SeamHttpWithoutWorkspace from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpWithoutWorkspaceOptionsWithClient['client'],
     options: Omit<SeamHttpWithoutWorkspaceOptionsWithClient, 'client'> = {},
@@ -42,6 +59,10 @@ export class SeamHttpWithoutWorkspace {
     return new SeamHttpWithoutWorkspace(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpWithoutWorkspace authenticated with a console session token
+   * and not scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken['consoleSessionToken'],
     options: Omit<
@@ -62,6 +83,10 @@ export class SeamHttpWithoutWorkspace {
     return new SeamHttpWithoutWorkspace(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpWithoutWorkspace authenticated with a personal access token
+   * and not scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken['personalAccessToken'],
     options: Omit<
@@ -82,6 +107,9 @@ export class SeamHttpWithoutWorkspace {
     return new SeamHttpWithoutWorkspace(constructorOptions)
   }
 
+  /**
+   * Client for the Seam API /workspaces routes available without a workspace.
+   */
   get workspaces(): Pick<SeamHttpWorkspaces, 'create' | 'list'> {
     return SeamHttpWorkspaces.fromClient(this.client, this.defaults)
   }

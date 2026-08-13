@@ -33,8 +33,18 @@ import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
+/**
+ * Client for the Seam API /connect_webviews routes.
+ */
 export class SeamHttpConnectWebviews {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -43,6 +53,9 @@ export class SeamHttpConnectWebviews {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpConnectWebviews from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -54,6 +67,9 @@ export class SeamHttpConnectWebviews {
     return new SeamHttpConnectWebviews(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpConnectWebviews authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -65,6 +81,9 @@ export class SeamHttpConnectWebviews {
     return new SeamHttpConnectWebviews(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpConnectWebviews authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -79,6 +98,11 @@ export class SeamHttpConnectWebviews {
     return new SeamHttpConnectWebviews(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpConnectWebviews authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -99,6 +123,10 @@ export class SeamHttpConnectWebviews {
     return SeamHttpConnectWebviews.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpConnectWebviews authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -116,6 +144,10 @@ export class SeamHttpConnectWebviews {
     return new SeamHttpConnectWebviews(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpConnectWebviews authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -133,12 +165,21 @@ export class SeamHttpConnectWebviews {
     return new SeamHttpConnectWebviews(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -233,6 +274,9 @@ export class SeamHttpConnectWebviews {
   }
 }
 
+/**
+ * Parameters for `SeamHttpConnectWebviews.create`.
+ */
 export type ConnectWebviewsCreateParameters = {
   /**
    * List of accepted device capabilities that restrict the types of devices that can be connected through the Connect Webview. If not provided, defaults will be determined based on the accepted providers.
@@ -361,17 +405,28 @@ export type ConnectWebviewsCreateParameters = {
 }
 
 /**
+ * Response from `SeamHttpConnectWebviews.create`.
+ *
  * @deprecated Use ConnectWebviewsCreateRequest instead.
  */
 export type ConnectWebviewsCreateResponse = { connect_webview: ConnectWebview }
 
+/**
+ * Request returned by `SeamHttpConnectWebviews.create`.
+ */
 export type ConnectWebviewsCreateRequest = SeamHttpRequest<
   ConnectWebviewsCreateResponse,
   'connect_webview'
 >
 
+/**
+ * Options for `SeamHttpConnectWebviews.create`.
+ */
 export interface ConnectWebviewsCreateOptions {}
 
+/**
+ * Parameters for `SeamHttpConnectWebviews.delete`.
+ */
 export type ConnectWebviewsDeleteParameters = {
   /**
    * ID of the Connect Webview that you want to delete.
@@ -380,14 +435,25 @@ export type ConnectWebviewsDeleteParameters = {
 }
 
 /**
+ * Response from `SeamHttpConnectWebviews.delete`.
+ *
  * @deprecated Use ConnectWebviewsDeleteRequest instead.
  */
 export type ConnectWebviewsDeleteResponse = void
 
+/**
+ * Request returned by `SeamHttpConnectWebviews.delete`.
+ */
 export type ConnectWebviewsDeleteRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpConnectWebviews.delete`.
+ */
 export interface ConnectWebviewsDeleteOptions {}
 
+/**
+ * Parameters for `SeamHttpConnectWebviews.get`.
+ */
 export type ConnectWebviewsGetParameters = {
   /**
    * ID of the Connect Webview that you want to get.
@@ -396,17 +462,28 @@ export type ConnectWebviewsGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpConnectWebviews.get`.
+ *
  * @deprecated Use ConnectWebviewsGetRequest instead.
  */
 export type ConnectWebviewsGetResponse = { connect_webview: ConnectWebview }
 
+/**
+ * Request returned by `SeamHttpConnectWebviews.get`.
+ */
 export type ConnectWebviewsGetRequest = SeamHttpRequest<
   ConnectWebviewsGetResponse,
   'connect_webview'
 >
 
+/**
+ * Options for `SeamHttpConnectWebviews.get`.
+ */
 export interface ConnectWebviewsGetOptions {}
 
+/**
+ * Parameters for `SeamHttpConnectWebviews.list`.
+ */
 export type ConnectWebviewsListParameters = {
   /**
    * Custom metadata pairs by which you want to [filter Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/filtering-connect-webviews-by-custom-metadata). Returns Connect Webviews with `custom_metadata` that contains all of the provided key:value pairs.
@@ -435,15 +512,23 @@ export type ConnectWebviewsListParameters = {
 }
 
 /**
+ * Response from `SeamHttpConnectWebviews.list`.
+ *
  * @deprecated Use ConnectWebviewsListRequest instead.
  */
 export type ConnectWebviewsListResponse = {
   connect_webviews: Array<ConnectWebview>
 }
 
+/**
+ * Request returned by `SeamHttpConnectWebviews.list`.
+ */
 export type ConnectWebviewsListRequest = SeamHttpRequest<
   ConnectWebviewsListResponse,
   'connect_webviews'
 >
 
+/**
+ * Options for `SeamHttpConnectWebviews.list`.
+ */
 export interface ConnectWebviewsListOptions {}

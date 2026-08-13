@@ -30,8 +30,19 @@ import {
   type WorkspacesListRequest,
 } from './workspaces/index.js'
 
+/**
+ * HTTP client for the Seam API not scoped to a workspace
+ * with endpoints keyed by their path, e.g., `seam.get['/devices/list']()`.
+ */
 export class SeamHttpEndpointsWithoutWorkspace {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(options: SeamHttpWithoutWorkspaceOptions = {}) {
@@ -40,6 +51,9 @@ export class SeamHttpEndpointsWithoutWorkspace {
     this.defaults = limitToSeamHttpRequestOptions(opts)
   }
 
+  /**
+   * Creates a new SeamHttpEndpointsWithoutWorkspace from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpWithoutWorkspaceOptionsWithClient['client'],
     options: Omit<SeamHttpWithoutWorkspaceOptionsWithClient, 'client'> = {},
@@ -51,6 +65,10 @@ export class SeamHttpEndpointsWithoutWorkspace {
     return new SeamHttpEndpointsWithoutWorkspace(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpEndpointsWithoutWorkspace authenticated with a console session token
+   * and not scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken['consoleSessionToken'],
     options: Omit<
@@ -71,6 +89,10 @@ export class SeamHttpEndpointsWithoutWorkspace {
     return new SeamHttpEndpointsWithoutWorkspace(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpEndpointsWithoutWorkspace authenticated with a personal access token
+   * and not scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken['personalAccessToken'],
     options: Omit<
@@ -124,6 +146,12 @@ export class SeamHttpEndpointsWithoutWorkspace {
   }
 }
 
+/**
+ * Paths of the Seam API query endpoints available without a workspace.
+ */
 export type SeamHttpEndpointWithoutWorkspaceQueryPaths = '/workspaces/list'
 
+/**
+ * Paths of the Seam API mutation endpoints available without a workspace.
+ */
 export type SeamHttpEndpointWithoutWorkspaceMutationPaths = '/workspaces/create'

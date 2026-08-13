@@ -33,8 +33,18 @@ import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
+/**
+ * Client for the Seam API /noise_sensors/noise_thresholds routes.
+ */
 export class SeamHttpNoiseSensorsNoiseThresholds {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -43,6 +53,9 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpNoiseSensorsNoiseThresholds from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -54,6 +67,9 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return new SeamHttpNoiseSensorsNoiseThresholds(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpNoiseSensorsNoiseThresholds authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -65,6 +81,9 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return new SeamHttpNoiseSensorsNoiseThresholds(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpNoiseSensorsNoiseThresholds authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -79,6 +98,11 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return new SeamHttpNoiseSensorsNoiseThresholds(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpNoiseSensorsNoiseThresholds authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -102,6 +126,10 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     )
   }
 
+  /**
+   * Creates a new SeamHttpNoiseSensorsNoiseThresholds authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -119,6 +147,10 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return new SeamHttpNoiseSensorsNoiseThresholds(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpNoiseSensorsNoiseThresholds authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -136,12 +168,21 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
     return new SeamHttpNoiseSensorsNoiseThresholds(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -242,6 +283,9 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 }
 
+/**
+ * Parameters for `SeamHttpNoiseSensorsNoiseThresholds.create`.
+ */
 export type NoiseSensorsNoiseThresholdsCreateParameters = {
   /**
    * ID of the device for which you want to create a noise threshold.
@@ -272,19 +316,30 @@ export type NoiseSensorsNoiseThresholdsCreateParameters = {
 }
 
 /**
+ * Response from `SeamHttpNoiseSensorsNoiseThresholds.create`.
+ *
  * @deprecated Use NoiseSensorsNoiseThresholdsCreateRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsCreateResponse = {
   noise_threshold: NoiseThreshold
 }
 
+/**
+ * Request returned by `SeamHttpNoiseSensorsNoiseThresholds.create`.
+ */
 export type NoiseSensorsNoiseThresholdsCreateRequest = SeamHttpRequest<
   NoiseSensorsNoiseThresholdsCreateResponse,
   'noise_threshold'
 >
 
+/**
+ * Options for `SeamHttpNoiseSensorsNoiseThresholds.create`.
+ */
 export interface NoiseSensorsNoiseThresholdsCreateOptions {}
 
+/**
+ * Parameters for `SeamHttpNoiseSensorsNoiseThresholds.delete`.
+ */
 export type NoiseSensorsNoiseThresholdsDeleteParameters = {
   /**
    * ID of the device that contains the noise threshold that you want to delete.
@@ -298,17 +353,28 @@ export type NoiseSensorsNoiseThresholdsDeleteParameters = {
 }
 
 /**
+ * Response from `SeamHttpNoiseSensorsNoiseThresholds.delete`.
+ *
  * @deprecated Use NoiseSensorsNoiseThresholdsDeleteRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsDeleteResponse = void
 
+/**
+ * Request returned by `SeamHttpNoiseSensorsNoiseThresholds.delete`.
+ */
 export type NoiseSensorsNoiseThresholdsDeleteRequest = SeamHttpRequest<
   void,
   undefined
 >
 
+/**
+ * Options for `SeamHttpNoiseSensorsNoiseThresholds.delete`.
+ */
 export interface NoiseSensorsNoiseThresholdsDeleteOptions {}
 
+/**
+ * Parameters for `SeamHttpNoiseSensorsNoiseThresholds.get`.
+ */
 export type NoiseSensorsNoiseThresholdsGetParameters = {
   /**
    * ID of the noise threshold that you want to get.
@@ -317,19 +383,30 @@ export type NoiseSensorsNoiseThresholdsGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpNoiseSensorsNoiseThresholds.get`.
+ *
  * @deprecated Use NoiseSensorsNoiseThresholdsGetRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsGetResponse = {
   noise_threshold: NoiseThreshold
 }
 
+/**
+ * Request returned by `SeamHttpNoiseSensorsNoiseThresholds.get`.
+ */
 export type NoiseSensorsNoiseThresholdsGetRequest = SeamHttpRequest<
   NoiseSensorsNoiseThresholdsGetResponse,
   'noise_threshold'
 >
 
+/**
+ * Options for `SeamHttpNoiseSensorsNoiseThresholds.get`.
+ */
 export interface NoiseSensorsNoiseThresholdsGetOptions {}
 
+/**
+ * Parameters for `SeamHttpNoiseSensorsNoiseThresholds.list`.
+ */
 export type NoiseSensorsNoiseThresholdsListParameters = {
   /**
    * ID of the device for which you want to list noise thresholds.
@@ -338,19 +415,30 @@ export type NoiseSensorsNoiseThresholdsListParameters = {
 }
 
 /**
+ * Response from `SeamHttpNoiseSensorsNoiseThresholds.list`.
+ *
  * @deprecated Use NoiseSensorsNoiseThresholdsListRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsListResponse = {
   noise_thresholds: Array<NoiseThreshold>
 }
 
+/**
+ * Request returned by `SeamHttpNoiseSensorsNoiseThresholds.list`.
+ */
 export type NoiseSensorsNoiseThresholdsListRequest = SeamHttpRequest<
   NoiseSensorsNoiseThresholdsListResponse,
   'noise_thresholds'
 >
 
+/**
+ * Options for `SeamHttpNoiseSensorsNoiseThresholds.list`.
+ */
 export interface NoiseSensorsNoiseThresholdsListOptions {}
 
+/**
+ * Parameters for `SeamHttpNoiseSensorsNoiseThresholds.update`.
+ */
 export type NoiseSensorsNoiseThresholdsUpdateParameters = {
   /**
    * ID of the device that contains the noise threshold that you want to update.
@@ -385,13 +473,21 @@ export type NoiseSensorsNoiseThresholdsUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpNoiseSensorsNoiseThresholds.update`.
+ *
  * @deprecated Use NoiseSensorsNoiseThresholdsUpdateRequest instead.
  */
 export type NoiseSensorsNoiseThresholdsUpdateResponse = void
 
+/**
+ * Request returned by `SeamHttpNoiseSensorsNoiseThresholds.update`.
+ */
 export type NoiseSensorsNoiseThresholdsUpdateRequest = SeamHttpRequest<
   void,
   undefined
 >
 
+/**
+ * Options for `SeamHttpNoiseSensorsNoiseThresholds.update`.
+ */
 export interface NoiseSensorsNoiseThresholdsUpdateOptions {}

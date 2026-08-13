@@ -37,8 +37,18 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
 import { SeamHttpDevicesSimulate } from './simulate/index.js'
 import { SeamHttpDevicesUnmanaged } from './unmanaged/index.js'
 
+/**
+ * Client for the Seam API /devices routes.
+ */
 export class SeamHttpDevices {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -47,6 +57,9 @@ export class SeamHttpDevices {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpDevices from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -58,6 +71,9 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpDevices authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -69,6 +85,9 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpDevices authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -83,6 +102,11 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpDevices authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -103,6 +127,10 @@ export class SeamHttpDevices {
     return SeamHttpDevices.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpDevices authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -120,6 +148,10 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpDevices authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -137,12 +169,21 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -162,10 +203,16 @@ export class SeamHttpDevices {
     await clientSessions.get()
   }
 
+  /**
+   * Client for the Seam API /devices/simulate routes.
+   */
   get simulate(): SeamHttpDevicesSimulate {
     return SeamHttpDevicesSimulate.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /devices/unmanaged routes.
+   */
   get unmanaged(): SeamHttpDevicesUnmanaged {
     return SeamHttpDevicesUnmanaged.fromClient(this.client, this.defaults)
   }
@@ -259,6 +306,9 @@ export class SeamHttpDevices {
   }
 }
 
+/**
+ * Parameters for `SeamHttpDevices.get`.
+ */
 export type DevicesGetParameters = {
   /**
    * ID of the device that you want to get.
@@ -271,14 +321,25 @@ export type DevicesGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpDevices.get`.
+ *
  * @deprecated Use DevicesGetRequest instead.
  */
 export type DevicesGetResponse = { device: Device }
 
+/**
+ * Request returned by `SeamHttpDevices.get`.
+ */
 export type DevicesGetRequest = SeamHttpRequest<DevicesGetResponse, 'device'>
 
+/**
+ * Options for `SeamHttpDevices.get`.
+ */
 export interface DevicesGetOptions {}
 
+/**
+ * Parameters for `SeamHttpDevices.list`.
+ */
 export type DevicesListParameters = {
   /**
    * ID of the Connect Webview for which you want to list devices.
@@ -487,14 +548,25 @@ export type DevicesListParameters = {
 }
 
 /**
+ * Response from `SeamHttpDevices.list`.
+ *
  * @deprecated Use DevicesListRequest instead.
  */
 export type DevicesListResponse = { devices: Array<Device> }
 
+/**
+ * Request returned by `SeamHttpDevices.list`.
+ */
 export type DevicesListRequest = SeamHttpRequest<DevicesListResponse, 'devices'>
 
+/**
+ * Options for `SeamHttpDevices.list`.
+ */
 export interface DevicesListOptions {}
 
+/**
+ * Parameters for `SeamHttpDevices.listDeviceProviders`.
+ */
 export type DevicesListDeviceProvidersParameters = {
   /**
    * Category for which you want to list providers.
@@ -512,19 +584,30 @@ export type DevicesListDeviceProvidersParameters = {
 }
 
 /**
+ * Response from `SeamHttpDevices.listDeviceProviders`.
+ *
  * @deprecated Use DevicesListDeviceProvidersRequest instead.
  */
 export type DevicesListDeviceProvidersResponse = {
   device_providers: Array<DeviceProvider>
 }
 
+/**
+ * Request returned by `SeamHttpDevices.listDeviceProviders`.
+ */
 export type DevicesListDeviceProvidersRequest = SeamHttpRequest<
   DevicesListDeviceProvidersResponse,
   'device_providers'
 >
 
+/**
+ * Options for `SeamHttpDevices.listDeviceProviders`.
+ */
 export interface DevicesListDeviceProvidersOptions {}
 
+/**
+ * Parameters for `SeamHttpDevices.reportProviderMetadata`.
+ */
 export type DevicesReportProviderMetadataParameters = {
   /**
    * Array of devices with provider metadata to update
@@ -1861,17 +1944,28 @@ export type DevicesReportProviderMetadataParameters = {
 }
 
 /**
+ * Response from `SeamHttpDevices.reportProviderMetadata`.
+ *
  * @deprecated Use DevicesReportProviderMetadataRequest instead.
  */
 export type DevicesReportProviderMetadataResponse = void
 
+/**
+ * Request returned by `SeamHttpDevices.reportProviderMetadata`.
+ */
 export type DevicesReportProviderMetadataRequest = SeamHttpRequest<
   void,
   undefined
 >
 
+/**
+ * Options for `SeamHttpDevices.reportProviderMetadata`.
+ */
 export interface DevicesReportProviderMetadataOptions {}
 
+/**
+ * Parameters for `SeamHttpDevices.update`.
+ */
 export type DevicesUpdateParameters = {
   /**
    * Indicates whether the device's [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) is enabled. Set to `false` to disable the pool: Seam stops refilling it and removes any backup codes that have not yet been pulled into active use.
@@ -1906,10 +2000,18 @@ export type DevicesUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpDevices.update`.
+ *
  * @deprecated Use DevicesUpdateRequest instead.
  */
 export type DevicesUpdateResponse = void
 
+/**
+ * Request returned by `SeamHttpDevices.update`.
+ */
 export type DevicesUpdateRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpDevices.update`.
+ */
 export interface DevicesUpdateOptions {}

@@ -33,8 +33,18 @@ import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
+/**
+ * Client for the Seam API /thermostats/schedules routes.
+ */
 export class SeamHttpThermostatsSchedules {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -43,6 +53,9 @@ export class SeamHttpThermostatsSchedules {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpThermostatsSchedules from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -54,6 +67,9 @@ export class SeamHttpThermostatsSchedules {
     return new SeamHttpThermostatsSchedules(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpThermostatsSchedules authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -65,6 +81,9 @@ export class SeamHttpThermostatsSchedules {
     return new SeamHttpThermostatsSchedules(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpThermostatsSchedules authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -79,6 +98,11 @@ export class SeamHttpThermostatsSchedules {
     return new SeamHttpThermostatsSchedules(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpThermostatsSchedules authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -99,6 +123,10 @@ export class SeamHttpThermostatsSchedules {
     return SeamHttpThermostatsSchedules.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpThermostatsSchedules authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -116,6 +144,10 @@ export class SeamHttpThermostatsSchedules {
     return new SeamHttpThermostatsSchedules(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpThermostatsSchedules authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -133,12 +165,21 @@ export class SeamHttpThermostatsSchedules {
     return new SeamHttpThermostatsSchedules(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -239,6 +280,9 @@ export class SeamHttpThermostatsSchedules {
   }
 }
 
+/**
+ * Parameters for `SeamHttpThermostatsSchedules.create`.
+ */
 export type ThermostatsSchedulesCreateParameters = {
   /**
    * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the new thermostat schedule.
@@ -274,19 +318,30 @@ export type ThermostatsSchedulesCreateParameters = {
 }
 
 /**
+ * Response from `SeamHttpThermostatsSchedules.create`.
+ *
  * @deprecated Use ThermostatsSchedulesCreateRequest instead.
  */
 export type ThermostatsSchedulesCreateResponse = {
   thermostat_schedule: ThermostatSchedule
 }
 
+/**
+ * Request returned by `SeamHttpThermostatsSchedules.create`.
+ */
 export type ThermostatsSchedulesCreateRequest = SeamHttpRequest<
   ThermostatsSchedulesCreateResponse,
   'thermostat_schedule'
 >
 
+/**
+ * Options for `SeamHttpThermostatsSchedules.create`.
+ */
 export interface ThermostatsSchedulesCreateOptions {}
 
+/**
+ * Parameters for `SeamHttpThermostatsSchedules.delete`.
+ */
 export type ThermostatsSchedulesDeleteParameters = {
   /**
    * ID of the thermostat schedule that you want to delete.
@@ -295,14 +350,25 @@ export type ThermostatsSchedulesDeleteParameters = {
 }
 
 /**
+ * Response from `SeamHttpThermostatsSchedules.delete`.
+ *
  * @deprecated Use ThermostatsSchedulesDeleteRequest instead.
  */
 export type ThermostatsSchedulesDeleteResponse = void
 
+/**
+ * Request returned by `SeamHttpThermostatsSchedules.delete`.
+ */
 export type ThermostatsSchedulesDeleteRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpThermostatsSchedules.delete`.
+ */
 export interface ThermostatsSchedulesDeleteOptions {}
 
+/**
+ * Parameters for `SeamHttpThermostatsSchedules.get`.
+ */
 export type ThermostatsSchedulesGetParameters = {
   /**
    * ID of the thermostat schedule that you want to get.
@@ -311,19 +377,30 @@ export type ThermostatsSchedulesGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpThermostatsSchedules.get`.
+ *
  * @deprecated Use ThermostatsSchedulesGetRequest instead.
  */
 export type ThermostatsSchedulesGetResponse = {
   thermostat_schedule: ThermostatSchedule
 }
 
+/**
+ * Request returned by `SeamHttpThermostatsSchedules.get`.
+ */
 export type ThermostatsSchedulesGetRequest = SeamHttpRequest<
   ThermostatsSchedulesGetResponse,
   'thermostat_schedule'
 >
 
+/**
+ * Options for `SeamHttpThermostatsSchedules.get`.
+ */
 export interface ThermostatsSchedulesGetOptions {}
 
+/**
+ * Parameters for `SeamHttpThermostatsSchedules.list`.
+ */
 export type ThermostatsSchedulesListParameters = {
   /**
    * ID of the thermostat device for which you want to list schedules.
@@ -337,19 +414,30 @@ export type ThermostatsSchedulesListParameters = {
 }
 
 /**
+ * Response from `SeamHttpThermostatsSchedules.list`.
+ *
  * @deprecated Use ThermostatsSchedulesListRequest instead.
  */
 export type ThermostatsSchedulesListResponse = {
   thermostat_schedules: Array<ThermostatSchedule>
 }
 
+/**
+ * Request returned by `SeamHttpThermostatsSchedules.list`.
+ */
 export type ThermostatsSchedulesListRequest = SeamHttpRequest<
   ThermostatsSchedulesListResponse,
   'thermostat_schedules'
 >
 
+/**
+ * Options for `SeamHttpThermostatsSchedules.list`.
+ */
 export interface ThermostatsSchedulesListOptions {}
 
+/**
+ * Parameters for `SeamHttpThermostatsSchedules.update`.
+ */
 export type ThermostatsSchedulesUpdateParameters = {
   /**
    * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the thermostat schedule.
@@ -382,10 +470,18 @@ export type ThermostatsSchedulesUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpThermostatsSchedules.update`.
+ *
  * @deprecated Use ThermostatsSchedulesUpdateRequest instead.
  */
 export type ThermostatsSchedulesUpdateResponse = void
 
+/**
+ * Request returned by `SeamHttpThermostatsSchedules.update`.
+ */
 export type ThermostatsSchedulesUpdateRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpThermostatsSchedules.update`.
+ */
 export interface ThermostatsSchedulesUpdateOptions {}

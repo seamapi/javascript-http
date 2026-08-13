@@ -52,8 +52,23 @@ import { SeamHttpUserIdentities } from './user-identities/index.js'
 import { SeamHttpWebhooks } from './webhooks/index.js'
 import { SeamHttpWorkspaces } from './workspaces/index.js'
 
+/**
+ * HTTP client for the Seam API.
+ *
+ * Create a client with the constructor
+ * or one of the static factory methods, e.g., `fromApiKey`.
+ * Each Seam API route is available under its corresponding property,
+ * e.g., use `seam.devices.list()` to call the `/devices/list` endpoint.
+ */
 export class SeamHttp {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -62,6 +77,9 @@ export class SeamHttp {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttp from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -73,6 +91,9 @@ export class SeamHttp {
     return new SeamHttp(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttp authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -84,6 +105,9 @@ export class SeamHttp {
     return new SeamHttp(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttp authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -98,6 +122,11 @@ export class SeamHttp {
     return new SeamHttp(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttp authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -118,6 +147,10 @@ export class SeamHttp {
     return SeamHttp.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttp authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -135,6 +168,10 @@ export class SeamHttp {
     return new SeamHttp(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttp authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -152,12 +189,21 @@ export class SeamHttp {
     return new SeamHttp(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -177,82 +223,142 @@ export class SeamHttp {
     await clientSessions.get()
   }
 
+  /**
+   * Client for the Seam API /access_codes routes.
+   */
   get accessCodes(): SeamHttpAccessCodes {
     return SeamHttpAccessCodes.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /access_grants routes.
+   */
   get accessGrants(): SeamHttpAccessGrants {
     return SeamHttpAccessGrants.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /access_methods routes.
+   */
   get accessMethods(): SeamHttpAccessMethods {
     return SeamHttpAccessMethods.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /acs routes.
+   */
   get acs(): SeamHttpAcs {
     return SeamHttpAcs.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /action_attempts routes.
+   */
   get actionAttempts(): SeamHttpActionAttempts {
     return SeamHttpActionAttempts.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /client_sessions routes.
+   */
   get clientSessions(): SeamHttpClientSessions {
     return SeamHttpClientSessions.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /connect_webviews routes.
+   */
   get connectWebviews(): SeamHttpConnectWebviews {
     return SeamHttpConnectWebviews.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /connected_accounts routes.
+   */
   get connectedAccounts(): SeamHttpConnectedAccounts {
     return SeamHttpConnectedAccounts.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /customers routes.
+   */
   get customers(): SeamHttpCustomers {
     return SeamHttpCustomers.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /devices routes.
+   */
   get devices(): SeamHttpDevices {
     return SeamHttpDevices.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /events routes.
+   */
   get events(): SeamHttpEvents {
     return SeamHttpEvents.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /instant_keys routes.
+   */
   get instantKeys(): SeamHttpInstantKeys {
     return SeamHttpInstantKeys.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /locks routes.
+   */
   get locks(): SeamHttpLocks {
     return SeamHttpLocks.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /noise_sensors routes.
+   */
   get noiseSensors(): SeamHttpNoiseSensors {
     return SeamHttpNoiseSensors.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /phones routes.
+   */
   get phones(): SeamHttpPhones {
     return SeamHttpPhones.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /spaces routes.
+   */
   get spaces(): SeamHttpSpaces {
     return SeamHttpSpaces.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /thermostats routes.
+   */
   get thermostats(): SeamHttpThermostats {
     return SeamHttpThermostats.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /user_identities routes.
+   */
   get userIdentities(): SeamHttpUserIdentities {
     return SeamHttpUserIdentities.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /webhooks routes.
+   */
   get webhooks(): SeamHttpWebhooks {
     return SeamHttpWebhooks.fromClient(this.client, this.defaults)
   }
 
+  /**
+   * Client for the Seam API /workspaces routes.
+   */
   get workspaces(): SeamHttpWorkspaces {
     return SeamHttpWorkspaces.fromClient(this.client, this.defaults)
   }

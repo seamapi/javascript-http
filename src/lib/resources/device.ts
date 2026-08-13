@@ -560,6 +560,7 @@ export type Device = {
         time_zone?: string | undefined
         /**
          * Time zone of the device location.
+         *
          * @deprecated Use `time_zone` instead.
          */
         timezone?: string | undefined
@@ -680,6 +681,7 @@ export type Device = {
 
     /**
      * Name of the device.
+     *
      * @deprecated use device.display_name instead
      */
     name: string
@@ -690,6 +692,7 @@ export type Device = {
     noise_level_decibels?: number | undefined
     /**
      * Indicates whether it is currently possible to use offline access codes for the device.
+     *
      * @deprecated use device.can_program_offline_access_codes
      */
     offline_access_codes_enabled?: boolean | undefined
@@ -700,6 +703,7 @@ export type Device = {
 
     /**
      * Indicates whether it is currently possible to use online access codes for the device.
+     *
      * @deprecated use device.can_program_online_access_codes
      */
     online_access_codes_enabled?: boolean | undefined
@@ -1003,6 +1007,7 @@ export type Device = {
             | undefined
           /**
            * Site ID for a dormakaba Oracode device.
+           *
            * @deprecated Previously marked as "@DEPRECATED."
            */
           site_id?: number | null | undefined
@@ -1582,6 +1587,7 @@ export type Device = {
       | undefined
     /**
      * Metada for a Salto device.
+     *
      * @deprecated Use `salto_ks_metadata ` instead.
      */
     salto_metadata?:
@@ -2113,6 +2119,7 @@ export type Device = {
     supports_backup_access_code_pool?: boolean | undefined
     /**
      * Active [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+     *
      * @deprecated Use `active_thermostat_schedule_id` with `/thermostats/schedules/get` instead.
      */
     active_thermostat_schedule?:
@@ -2283,6 +2290,7 @@ export type Device = {
             'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
           /**
            * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+           *
            * @deprecated Use 'thermostat_schedule.is_override_allowed'
            */
           manual_override_allowed: boolean
@@ -2384,6 +2392,7 @@ export type Device = {
             'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
           /**
            * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+           *
            * @deprecated Use 'thermostat_schedule.is_override_allowed'
            */
           manual_override_allowed?: boolean | undefined
@@ -2475,6 +2484,7 @@ export type Device = {
             'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
           /**
            * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+           *
            * @deprecated Use 'thermostat_schedule.is_override_allowed'
            */
           manual_override_allowed?: boolean | undefined

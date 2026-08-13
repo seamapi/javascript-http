@@ -35,8 +35,18 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpConnectedAccountsSimulate } from './simulate/index.js'
 
+/**
+ * Client for the Seam API /connected_accounts routes.
+ */
 export class SeamHttpConnectedAccounts {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -45,6 +55,9 @@ export class SeamHttpConnectedAccounts {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpConnectedAccounts from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -56,6 +69,9 @@ export class SeamHttpConnectedAccounts {
     return new SeamHttpConnectedAccounts(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpConnectedAccounts authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -67,6 +83,9 @@ export class SeamHttpConnectedAccounts {
     return new SeamHttpConnectedAccounts(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpConnectedAccounts authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -81,6 +100,11 @@ export class SeamHttpConnectedAccounts {
     return new SeamHttpConnectedAccounts(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpConnectedAccounts authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -101,6 +125,10 @@ export class SeamHttpConnectedAccounts {
     return SeamHttpConnectedAccounts.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpConnectedAccounts authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -118,6 +146,10 @@ export class SeamHttpConnectedAccounts {
     return new SeamHttpConnectedAccounts(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpConnectedAccounts authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -135,12 +167,21 @@ export class SeamHttpConnectedAccounts {
     return new SeamHttpConnectedAccounts(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -160,6 +201,9 @@ export class SeamHttpConnectedAccounts {
     await clientSessions.get()
   }
 
+  /**
+   * Client for the Seam API /connected_accounts/simulate routes.
+   */
   get simulate(): SeamHttpConnectedAccountsSimulate {
     return SeamHttpConnectedAccountsSimulate.fromClient(
       this.client,
@@ -252,6 +296,9 @@ export class SeamHttpConnectedAccounts {
   }
 }
 
+/**
+ * Parameters for `SeamHttpConnectedAccounts.delete`.
+ */
 export type ConnectedAccountsDeleteParameters = {
   /**
    * ID of the connected account that you want to delete.
@@ -260,14 +307,25 @@ export type ConnectedAccountsDeleteParameters = {
 }
 
 /**
+ * Response from `SeamHttpConnectedAccounts.delete`.
+ *
  * @deprecated Use ConnectedAccountsDeleteRequest instead.
  */
 export type ConnectedAccountsDeleteResponse = void
 
+/**
+ * Request returned by `SeamHttpConnectedAccounts.delete`.
+ */
 export type ConnectedAccountsDeleteRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpConnectedAccounts.delete`.
+ */
 export interface ConnectedAccountsDeleteOptions {}
 
+/**
+ * Parameters for `SeamHttpConnectedAccounts.get`.
+ */
 export type ConnectedAccountsGetParameters = {
   /**
    * ID of the connected account that you want to get.
@@ -280,19 +338,30 @@ export type ConnectedAccountsGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpConnectedAccounts.get`.
+ *
  * @deprecated Use ConnectedAccountsGetRequest instead.
  */
 export type ConnectedAccountsGetResponse = {
   connected_account: ConnectedAccount
 }
 
+/**
+ * Request returned by `SeamHttpConnectedAccounts.get`.
+ */
 export type ConnectedAccountsGetRequest = SeamHttpRequest<
   ConnectedAccountsGetResponse,
   'connected_account'
 >
 
+/**
+ * Options for `SeamHttpConnectedAccounts.get`.
+ */
 export interface ConnectedAccountsGetOptions {}
 
+/**
+ * Parameters for `SeamHttpConnectedAccounts.list`.
+ */
 export type ConnectedAccountsListParameters = {
   /**
    * Custom metadata pairs by which you want to filter connected accounts. Returns connected accounts with `custom_metadata` that contains all of the provided key:value pairs.
@@ -325,19 +394,30 @@ export type ConnectedAccountsListParameters = {
 }
 
 /**
+ * Response from `SeamHttpConnectedAccounts.list`.
+ *
  * @deprecated Use ConnectedAccountsListRequest instead.
  */
 export type ConnectedAccountsListResponse = {
   connected_accounts: Array<ConnectedAccount>
 }
 
+/**
+ * Request returned by `SeamHttpConnectedAccounts.list`.
+ */
 export type ConnectedAccountsListRequest = SeamHttpRequest<
   ConnectedAccountsListResponse,
   'connected_accounts'
 >
 
+/**
+ * Options for `SeamHttpConnectedAccounts.list`.
+ */
 export interface ConnectedAccountsListOptions {}
 
+/**
+ * Parameters for `SeamHttpConnectedAccounts.sync`.
+ */
 export type ConnectedAccountsSyncParameters = {
   /**
    * ID of the connected account that you want to sync.
@@ -346,14 +426,25 @@ export type ConnectedAccountsSyncParameters = {
 }
 
 /**
+ * Response from `SeamHttpConnectedAccounts.sync`.
+ *
  * @deprecated Use ConnectedAccountsSyncRequest instead.
  */
 export type ConnectedAccountsSyncResponse = void
 
+/**
+ * Request returned by `SeamHttpConnectedAccounts.sync`.
+ */
 export type ConnectedAccountsSyncRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpConnectedAccounts.sync`.
+ */
 export interface ConnectedAccountsSyncOptions {}
 
+/**
+ * Parameters for `SeamHttpConnectedAccounts.update`.
+ */
 export type ConnectedAccountsUpdateParameters = {
   /**
    * List of accepted device capabilities that restrict the types of devices that can be connected through this connected account. Valid values are `lock`, `thermostat`, `noise_sensor`, and `access_control`.
@@ -387,10 +478,18 @@ export type ConnectedAccountsUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpConnectedAccounts.update`.
+ *
  * @deprecated Use ConnectedAccountsUpdateRequest instead.
  */
 export type ConnectedAccountsUpdateResponse = void
 
+/**
+ * Request returned by `SeamHttpConnectedAccounts.update`.
+ */
 export type ConnectedAccountsUpdateRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpConnectedAccounts.update`.
+ */
 export interface ConnectedAccountsUpdateOptions {}

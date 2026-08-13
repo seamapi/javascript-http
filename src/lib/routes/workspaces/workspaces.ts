@@ -35,8 +35,18 @@ import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
+/**
+ * Client for the Seam API /workspaces routes.
+ */
 export class SeamHttpWorkspaces {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -45,6 +55,9 @@ export class SeamHttpWorkspaces {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpWorkspaces from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -56,6 +69,9 @@ export class SeamHttpWorkspaces {
     return new SeamHttpWorkspaces(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpWorkspaces authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -67,6 +83,9 @@ export class SeamHttpWorkspaces {
     return new SeamHttpWorkspaces(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpWorkspaces authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -81,6 +100,11 @@ export class SeamHttpWorkspaces {
     return new SeamHttpWorkspaces(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpWorkspaces authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -101,6 +125,10 @@ export class SeamHttpWorkspaces {
     return SeamHttpWorkspaces.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpWorkspaces authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -118,6 +146,10 @@ export class SeamHttpWorkspaces {
     return new SeamHttpWorkspaces(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpWorkspaces authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -135,12 +167,21 @@ export class SeamHttpWorkspaces {
     return new SeamHttpWorkspaces(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -245,6 +286,9 @@ export class SeamHttpWorkspaces {
   }
 }
 
+/**
+ * Parameters for `SeamHttpWorkspaces.create`.
+ */
 export type WorkspacesCreateParameters = {
   /**
    * Company name for the new workspace.
@@ -252,6 +296,7 @@ export type WorkspacesCreateParameters = {
   company_name?: string | undefined
   /**
    * Connect partner name for the new workspace.
+   *
    * @deprecated Use `company_name` instead.
    */
   connect_partner_name?: string | undefined
@@ -310,62 +355,106 @@ export type WorkspacesCreateParameters = {
 }
 
 /**
+ * Response from `SeamHttpWorkspaces.create`.
+ *
  * @deprecated Use WorkspacesCreateRequest instead.
  */
 export type WorkspacesCreateResponse = { workspace: Workspace }
 
+/**
+ * Request returned by `SeamHttpWorkspaces.create`.
+ */
 export type WorkspacesCreateRequest = SeamHttpRequest<
   WorkspacesCreateResponse,
   'workspace'
 >
 
+/**
+ * Options for `SeamHttpWorkspaces.create`.
+ */
 export interface WorkspacesCreateOptions {}
 
+/**
+ * Parameters for `SeamHttpWorkspaces.get`.
+ */
 export type WorkspacesGetParameters = {}
 
 /**
+ * Response from `SeamHttpWorkspaces.get`.
+ *
  * @deprecated Use WorkspacesGetRequest instead.
  */
 export type WorkspacesGetResponse = { workspace: Workspace }
 
+/**
+ * Request returned by `SeamHttpWorkspaces.get`.
+ */
 export type WorkspacesGetRequest = SeamHttpRequest<
   WorkspacesGetResponse,
   'workspace'
 >
 
+/**
+ * Options for `SeamHttpWorkspaces.get`.
+ */
 export interface WorkspacesGetOptions {}
 
+/**
+ * Parameters for `SeamHttpWorkspaces.list`.
+ */
 export type WorkspacesListParameters = {}
 
 /**
+ * Response from `SeamHttpWorkspaces.list`.
+ *
  * @deprecated Use WorkspacesListRequest instead.
  */
 export type WorkspacesListResponse = { workspaces: Array<Workspace> }
 
+/**
+ * Request returned by `SeamHttpWorkspaces.list`.
+ */
 export type WorkspacesListRequest = SeamHttpRequest<
   WorkspacesListResponse,
   'workspaces'
 >
 
+/**
+ * Options for `SeamHttpWorkspaces.list`.
+ */
 export interface WorkspacesListOptions {}
 
+/**
+ * Parameters for `SeamHttpWorkspaces.resetSandbox`.
+ */
 export type WorkspacesResetSandboxParameters = {}
 
 /**
+ * Response from `SeamHttpWorkspaces.resetSandbox`.
+ *
  * @deprecated Use WorkspacesResetSandboxRequest instead.
  */
 export type WorkspacesResetSandboxResponse = { action_attempt: ActionAttempt }
 
+/**
+ * Request returned by `SeamHttpWorkspaces.resetSandbox`.
+ */
 export type WorkspacesResetSandboxRequest = SeamHttpRequest<
   WorkspacesResetSandboxResponse,
   'action_attempt'
 >
 
+/**
+ * Options for `SeamHttpWorkspaces.resetSandbox`.
+ */
 export type WorkspacesResetSandboxOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
+/**
+ * Parameters for `SeamHttpWorkspaces.update`.
+ */
 export type WorkspacesUpdateParameters = {
   /**
    * Connect partner name for the workspace.
@@ -413,10 +502,18 @@ export type WorkspacesUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpWorkspaces.update`.
+ *
  * @deprecated Use WorkspacesUpdateRequest instead.
  */
 export type WorkspacesUpdateResponse = void
 
+/**
+ * Request returned by `SeamHttpWorkspaces.update`.
+ */
 export type WorkspacesUpdateRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpWorkspaces.update`.
+ */
 export interface WorkspacesUpdateOptions {}

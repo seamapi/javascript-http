@@ -37,8 +37,18 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpAcsEncodersSimulate } from './simulate/index.js'
 
+/**
+ * Client for the Seam API /acs/encoders routes.
+ */
 export class SeamHttpAcsEncoders {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -47,6 +57,9 @@ export class SeamHttpAcsEncoders {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpAcsEncoders from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -58,6 +71,9 @@ export class SeamHttpAcsEncoders {
     return new SeamHttpAcsEncoders(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAcsEncoders authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -69,6 +85,9 @@ export class SeamHttpAcsEncoders {
     return new SeamHttpAcsEncoders(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAcsEncoders authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -83,6 +102,11 @@ export class SeamHttpAcsEncoders {
     return new SeamHttpAcsEncoders(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAcsEncoders authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -103,6 +127,10 @@ export class SeamHttpAcsEncoders {
     return SeamHttpAcsEncoders.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpAcsEncoders authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -120,6 +148,10 @@ export class SeamHttpAcsEncoders {
     return new SeamHttpAcsEncoders(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpAcsEncoders authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -137,12 +169,21 @@ export class SeamHttpAcsEncoders {
     return new SeamHttpAcsEncoders(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -162,6 +203,9 @@ export class SeamHttpAcsEncoders {
     await clientSessions.get()
   }
 
+  /**
+   * Client for the Seam API /acs/encoders/simulate routes.
+   */
   get simulate(): SeamHttpAcsEncodersSimulate {
     return SeamHttpAcsEncodersSimulate.fromClient(this.client, this.defaults)
   }
@@ -259,6 +303,9 @@ export class SeamHttpAcsEncoders {
   }
 }
 
+/**
+ * Parameters for `SeamHttpAcsEncoders.encodeCredential`.
+ */
 export type AcsEncodersEncodeCredentialParameters = {
   /**
    * ID of the `access_method` to encode onto a card.
@@ -275,22 +322,33 @@ export type AcsEncodersEncodeCredentialParameters = {
 }
 
 /**
+ * Response from `SeamHttpAcsEncoders.encodeCredential`.
+ *
  * @deprecated Use AcsEncodersEncodeCredentialRequest instead.
  */
 export type AcsEncodersEncodeCredentialResponse = {
   action_attempt: ActionAttempt
 }
 
+/**
+ * Request returned by `SeamHttpAcsEncoders.encodeCredential`.
+ */
 export type AcsEncodersEncodeCredentialRequest = SeamHttpRequest<
   AcsEncodersEncodeCredentialResponse,
   'action_attempt'
 >
 
+/**
+ * Options for `SeamHttpAcsEncoders.encodeCredential`.
+ */
 export type AcsEncodersEncodeCredentialOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
+/**
+ * Parameters for `SeamHttpAcsEncoders.get`.
+ */
 export type AcsEncodersGetParameters = {
   /**
    * ID of the encoder that you want to get.
@@ -299,17 +357,28 @@ export type AcsEncodersGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpAcsEncoders.get`.
+ *
  * @deprecated Use AcsEncodersGetRequest instead.
  */
 export type AcsEncodersGetResponse = { acs_encoder: AcsEncoder }
 
+/**
+ * Request returned by `SeamHttpAcsEncoders.get`.
+ */
 export type AcsEncodersGetRequest = SeamHttpRequest<
   AcsEncodersGetResponse,
   'acs_encoder'
 >
 
+/**
+ * Options for `SeamHttpAcsEncoders.get`.
+ */
 export interface AcsEncodersGetOptions {}
 
+/**
+ * Parameters for `SeamHttpAcsEncoders.list`.
+ */
 export type AcsEncodersListParameters = {
   /**
    * ID of the access system for which you want to retrieve all encoders.
@@ -334,17 +403,28 @@ export type AcsEncodersListParameters = {
 }
 
 /**
+ * Response from `SeamHttpAcsEncoders.list`.
+ *
  * @deprecated Use AcsEncodersListRequest instead.
  */
 export type AcsEncodersListResponse = { acs_encoders: Array<AcsEncoder> }
 
+/**
+ * Request returned by `SeamHttpAcsEncoders.list`.
+ */
 export type AcsEncodersListRequest = SeamHttpRequest<
   AcsEncodersListResponse,
   'acs_encoders'
 >
 
+/**
+ * Options for `SeamHttpAcsEncoders.list`.
+ */
 export interface AcsEncodersListOptions {}
 
+/**
+ * Parameters for `SeamHttpAcsEncoders.scanCredential`.
+ */
 export type AcsEncodersScanCredentialParameters = {
   /**
    * ID of the encoder to use for the scan.
@@ -365,22 +445,33 @@ export type AcsEncodersScanCredentialParameters = {
 }
 
 /**
+ * Response from `SeamHttpAcsEncoders.scanCredential`.
+ *
  * @deprecated Use AcsEncodersScanCredentialRequest instead.
  */
 export type AcsEncodersScanCredentialResponse = {
   action_attempt: ActionAttempt
 }
 
+/**
+ * Request returned by `SeamHttpAcsEncoders.scanCredential`.
+ */
 export type AcsEncodersScanCredentialRequest = SeamHttpRequest<
   AcsEncodersScanCredentialResponse,
   'action_attempt'
 >
 
+/**
+ * Options for `SeamHttpAcsEncoders.scanCredential`.
+ */
 export type AcsEncodersScanCredentialOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >
 
+/**
+ * Parameters for `SeamHttpAcsEncoders.scanToAssignCredential`.
+ */
 export type AcsEncodersScanToAssignCredentialParameters = {
   /**
    * ID of the `acs_encoder` to use to scan the credential.
@@ -409,17 +500,25 @@ export type AcsEncodersScanToAssignCredentialParameters = {
 }
 
 /**
+ * Response from `SeamHttpAcsEncoders.scanToAssignCredential`.
+ *
  * @deprecated Use AcsEncodersScanToAssignCredentialRequest instead.
  */
 export type AcsEncodersScanToAssignCredentialResponse = {
   action_attempt: ActionAttempt
 }
 
+/**
+ * Request returned by `SeamHttpAcsEncoders.scanToAssignCredential`.
+ */
 export type AcsEncodersScanToAssignCredentialRequest = SeamHttpRequest<
   AcsEncodersScanToAssignCredentialResponse,
   'action_attempt'
 >
 
+/**
+ * Options for `SeamHttpAcsEncoders.scanToAssignCredential`.
+ */
 export type AcsEncodersScanToAssignCredentialOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'

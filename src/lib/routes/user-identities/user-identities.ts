@@ -40,8 +40,18 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpUserIdentitiesUnmanaged } from './unmanaged/index.js'
 
+/**
+ * Client for the Seam API /user_identities routes.
+ */
 export class SeamHttpUserIdentities {
+  /**
+   * The client used to make HTTP requests to the Seam API.
+   */
   client: Client
+
+  /**
+   * Default request options used for requests made by this client.
+   */
   readonly defaults: Required<SeamHttpRequestOptions>
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
@@ -50,6 +60,9 @@ export class SeamHttpUserIdentities {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentities from an existing HTTP client.
+   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -61,6 +74,9 @@ export class SeamHttpUserIdentities {
     return new SeamHttpUserIdentities(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentities authenticated with an API key.
+   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -72,6 +88,9 @@ export class SeamHttpUserIdentities {
     return new SeamHttpUserIdentities(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentities authenticated with a client session token.
+   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -86,6 +105,11 @@ export class SeamHttpUserIdentities {
     return new SeamHttpUserIdentities(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentities authenticated with a client session token
+   * for the user identified by the user identifier key.
+   * The client session is created with the publishable key if it does not exist.
+   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -106,6 +130,10 @@ export class SeamHttpUserIdentities {
     return SeamHttpUserIdentities.fromClientSessionToken(token, options)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentities authenticated with a console session token
+   * and scoped to a workspace.
+   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -123,6 +151,10 @@ export class SeamHttpUserIdentities {
     return new SeamHttpUserIdentities(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamHttpUserIdentities authenticated with a personal access token
+   * and scoped to a workspace.
+   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -140,12 +172,21 @@ export class SeamHttpUserIdentities {
     return new SeamHttpUserIdentities(constructorOptions)
   }
 
+  /**
+   * Creates a new SeamPaginator to iterate over the paginated results
+   * of the request.
+   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
+  /**
+   * Updates the client session token used by this client for authentication.
+   *
+   * @throws If this client was not created with a client session token.
+   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -165,6 +206,9 @@ export class SeamHttpUserIdentities {
     await clientSessions.get()
   }
 
+  /**
+   * Client for the Seam API /user_identities/unmanaged routes.
+   */
   get unmanaged(): SeamHttpUserIdentitiesUnmanaged {
     return SeamHttpUserIdentitiesUnmanaged.fromClient(
       this.client,
@@ -401,6 +445,9 @@ export class SeamHttpUserIdentities {
   }
 }
 
+/**
+ * Parameters for `SeamHttpUserIdentities.addAcsUser`.
+ */
 export type UserIdentitiesAddAcsUserParameters = {
   /**
    * ID of the access system user that you want to add to the user identity.
@@ -418,14 +465,25 @@ export type UserIdentitiesAddAcsUserParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.addAcsUser`.
+ *
  * @deprecated Use UserIdentitiesAddAcsUserRequest instead.
  */
 export type UserIdentitiesAddAcsUserResponse = void
 
+/**
+ * Request returned by `SeamHttpUserIdentities.addAcsUser`.
+ */
 export type UserIdentitiesAddAcsUserRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpUserIdentities.addAcsUser`.
+ */
 export interface UserIdentitiesAddAcsUserOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.create`.
+ */
 export type UserIdentitiesCreateParameters = {
   /**
    * List of access system IDs to associate with the new user identity through access system users. If there's no user with the same email address or phone number in the specified access systems, a new access system user is created. If there is an existing user with the same email or phone number in the specified access systems, the user is linked to the user identity.
@@ -450,17 +508,28 @@ export type UserIdentitiesCreateParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.create`.
+ *
  * @deprecated Use UserIdentitiesCreateRequest instead.
  */
 export type UserIdentitiesCreateResponse = { user_identity: UserIdentity }
 
+/**
+ * Request returned by `SeamHttpUserIdentities.create`.
+ */
 export type UserIdentitiesCreateRequest = SeamHttpRequest<
   UserIdentitiesCreateResponse,
   'user_identity'
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.create`.
+ */
 export interface UserIdentitiesCreateOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.delete`.
+ */
 export type UserIdentitiesDeleteParameters = {
   /**
    * ID of the user identity that you want to delete.
@@ -469,14 +538,25 @@ export type UserIdentitiesDeleteParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.delete`.
+ *
  * @deprecated Use UserIdentitiesDeleteRequest instead.
  */
 export type UserIdentitiesDeleteResponse = void
 
+/**
+ * Request returned by `SeamHttpUserIdentities.delete`.
+ */
 export type UserIdentitiesDeleteRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpUserIdentities.delete`.
+ */
 export interface UserIdentitiesDeleteOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.generateInstantKey`.
+ */
 export type UserIdentitiesGenerateInstantKeyParameters = {
   customization_profile_id?: string | undefined
   /**
@@ -490,19 +570,30 @@ export type UserIdentitiesGenerateInstantKeyParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.generateInstantKey`.
+ *
  * @deprecated Use UserIdentitiesGenerateInstantKeyRequest instead.
  */
 export type UserIdentitiesGenerateInstantKeyResponse = {
   instant_key: InstantKey
 }
 
+/**
+ * Request returned by `SeamHttpUserIdentities.generateInstantKey`.
+ */
 export type UserIdentitiesGenerateInstantKeyRequest = SeamHttpRequest<
   UserIdentitiesGenerateInstantKeyResponse,
   'instant_key'
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.generateInstantKey`.
+ */
 export interface UserIdentitiesGenerateInstantKeyOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.get`.
+ */
 export type UserIdentitiesGetParameters = {
   /**
    * ID of the user identity that you want to get.
@@ -513,17 +604,28 @@ export type UserIdentitiesGetParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.get`.
+ *
  * @deprecated Use UserIdentitiesGetRequest instead.
  */
 export type UserIdentitiesGetResponse = { user_identity: UserIdentity }
 
+/**
+ * Request returned by `SeamHttpUserIdentities.get`.
+ */
 export type UserIdentitiesGetRequest = SeamHttpRequest<
   UserIdentitiesGetResponse,
   'user_identity'
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.get`.
+ */
 export interface UserIdentitiesGetOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.grantAccessToDevice`.
+ */
 export type UserIdentitiesGrantAccessToDeviceParameters = {
   /**
    * ID of the managed device to which you want to grant access to the user identity.
@@ -537,17 +639,28 @@ export type UserIdentitiesGrantAccessToDeviceParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.grantAccessToDevice`.
+ *
  * @deprecated Use UserIdentitiesGrantAccessToDeviceRequest instead.
  */
 export type UserIdentitiesGrantAccessToDeviceResponse = void
 
+/**
+ * Request returned by `SeamHttpUserIdentities.grantAccessToDevice`.
+ */
 export type UserIdentitiesGrantAccessToDeviceRequest = SeamHttpRequest<
   void,
   undefined
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.grantAccessToDevice`.
+ */
 export interface UserIdentitiesGrantAccessToDeviceOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.list`.
+ */
 export type UserIdentitiesListParameters = {
   /**
    * Timestamp by which to limit returned user identities. Returns user identities created before this timestamp.
@@ -576,19 +689,30 @@ export type UserIdentitiesListParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.list`.
+ *
  * @deprecated Use UserIdentitiesListRequest instead.
  */
 export type UserIdentitiesListResponse = {
   user_identities: Array<UserIdentity>
 }
 
+/**
+ * Request returned by `SeamHttpUserIdentities.list`.
+ */
 export type UserIdentitiesListRequest = SeamHttpRequest<
   UserIdentitiesListResponse,
   'user_identities'
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.list`.
+ */
 export interface UserIdentitiesListOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.listAccessibleDevices`.
+ */
 export type UserIdentitiesListAccessibleDevicesParameters = {
   /**
    * ID of the user identity for which you want to retrieve all accessible devices.
@@ -597,19 +721,30 @@ export type UserIdentitiesListAccessibleDevicesParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.listAccessibleDevices`.
+ *
  * @deprecated Use UserIdentitiesListAccessibleDevicesRequest instead.
  */
 export type UserIdentitiesListAccessibleDevicesResponse = {
   devices: Array<Device>
 }
 
+/**
+ * Request returned by `SeamHttpUserIdentities.listAccessibleDevices`.
+ */
 export type UserIdentitiesListAccessibleDevicesRequest = SeamHttpRequest<
   UserIdentitiesListAccessibleDevicesResponse,
   'devices'
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.listAccessibleDevices`.
+ */
 export interface UserIdentitiesListAccessibleDevicesOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.listAccessibleEntrances`.
+ */
 export type UserIdentitiesListAccessibleEntrancesParameters = {
   /**
    * ID of the user identity for which you want to retrieve all accessible entrances.
@@ -618,19 +753,30 @@ export type UserIdentitiesListAccessibleEntrancesParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.listAccessibleEntrances`.
+ *
  * @deprecated Use UserIdentitiesListAccessibleEntrancesRequest instead.
  */
 export type UserIdentitiesListAccessibleEntrancesResponse = {
   acs_entrances: Array<AcsEntrance>
 }
 
+/**
+ * Request returned by `SeamHttpUserIdentities.listAccessibleEntrances`.
+ */
 export type UserIdentitiesListAccessibleEntrancesRequest = SeamHttpRequest<
   UserIdentitiesListAccessibleEntrancesResponse,
   'acs_entrances'
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.listAccessibleEntrances`.
+ */
 export interface UserIdentitiesListAccessibleEntrancesOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.listAcsSystems`.
+ */
 export type UserIdentitiesListAcsSystemsParameters = {
   /**
    * ID of the user identity for which you want to retrieve all access systems.
@@ -639,19 +785,30 @@ export type UserIdentitiesListAcsSystemsParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.listAcsSystems`.
+ *
  * @deprecated Use UserIdentitiesListAcsSystemsRequest instead.
  */
 export type UserIdentitiesListAcsSystemsResponse = {
   acs_systems: Array<AcsSystem>
 }
 
+/**
+ * Request returned by `SeamHttpUserIdentities.listAcsSystems`.
+ */
 export type UserIdentitiesListAcsSystemsRequest = SeamHttpRequest<
   UserIdentitiesListAcsSystemsResponse,
   'acs_systems'
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.listAcsSystems`.
+ */
 export interface UserIdentitiesListAcsSystemsOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.listAcsUsers`.
+ */
 export type UserIdentitiesListAcsUsersParameters = {
   /**
    * ID of the user identity for which you want to retrieve all access system users.
@@ -660,17 +817,28 @@ export type UserIdentitiesListAcsUsersParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.listAcsUsers`.
+ *
  * @deprecated Use UserIdentitiesListAcsUsersRequest instead.
  */
 export type UserIdentitiesListAcsUsersResponse = { acs_users: Array<AcsUser> }
 
+/**
+ * Request returned by `SeamHttpUserIdentities.listAcsUsers`.
+ */
 export type UserIdentitiesListAcsUsersRequest = SeamHttpRequest<
   UserIdentitiesListAcsUsersResponse,
   'acs_users'
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.listAcsUsers`.
+ */
 export interface UserIdentitiesListAcsUsersOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.removeAcsUser`.
+ */
 export type UserIdentitiesRemoveAcsUserParameters = {
   /**
    * ID of the access system user that you want to remove from the user identity..
@@ -684,17 +852,28 @@ export type UserIdentitiesRemoveAcsUserParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.removeAcsUser`.
+ *
  * @deprecated Use UserIdentitiesRemoveAcsUserRequest instead.
  */
 export type UserIdentitiesRemoveAcsUserResponse = void
 
+/**
+ * Request returned by `SeamHttpUserIdentities.removeAcsUser`.
+ */
 export type UserIdentitiesRemoveAcsUserRequest = SeamHttpRequest<
   void,
   undefined
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.removeAcsUser`.
+ */
 export interface UserIdentitiesRemoveAcsUserOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.revokeAccessToDevice`.
+ */
 export type UserIdentitiesRevokeAccessToDeviceParameters = {
   /**
    * ID of the managed device to which you want to revoke access from the user identity.
@@ -708,17 +887,28 @@ export type UserIdentitiesRevokeAccessToDeviceParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.revokeAccessToDevice`.
+ *
  * @deprecated Use UserIdentitiesRevokeAccessToDeviceRequest instead.
  */
 export type UserIdentitiesRevokeAccessToDeviceResponse = void
 
+/**
+ * Request returned by `SeamHttpUserIdentities.revokeAccessToDevice`.
+ */
 export type UserIdentitiesRevokeAccessToDeviceRequest = SeamHttpRequest<
   void,
   undefined
 >
 
+/**
+ * Options for `SeamHttpUserIdentities.revokeAccessToDevice`.
+ */
 export interface UserIdentitiesRevokeAccessToDeviceOptions {}
 
+/**
+ * Parameters for `SeamHttpUserIdentities.update`.
+ */
 export type UserIdentitiesUpdateParameters = {
   /**
    * Unique email address for the user identity.
@@ -744,10 +934,18 @@ export type UserIdentitiesUpdateParameters = {
 }
 
 /**
+ * Response from `SeamHttpUserIdentities.update`.
+ *
  * @deprecated Use UserIdentitiesUpdateRequest instead.
  */
 export type UserIdentitiesUpdateResponse = void
 
+/**
+ * Request returned by `SeamHttpUserIdentities.update`.
+ */
 export type UserIdentitiesUpdateRequest = SeamHttpRequest<void, undefined>
 
+/**
+ * Options for `SeamHttpUserIdentities.update`.
+ */
 export interface UserIdentitiesUpdateOptions {}
