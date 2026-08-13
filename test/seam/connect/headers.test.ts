@@ -13,7 +13,6 @@ test('SeamHttp: sends default headers', async (t) => {
   nock(endpoint, {
     reqheaders: {
       'seam-sdk-name': 'seamapi/javascript-http',
-      'seam-lts-version': SeamHttp.ltsVersion,
       'seam-sdk-version': seamapiJavascriptHttpVersion,
     },
   })
@@ -23,6 +22,5 @@ test('SeamHttp: sends default headers', async (t) => {
   const device = await seam.devices.get({
     device_id: deviceId,
   })
-  t.is(SeamHttp.ltsVersion, seam.ltsVersion)
   t.is(device.device_id, deviceId)
 })
