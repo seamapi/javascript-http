@@ -17,6 +17,7 @@ test('SeamPaginator: cannot paginate a request with an empty response', async (t
   t.throws(
     () =>
       seam.createPaginator(
+        // @ts-expect-error Testing validation of a non-paginated request.
         seam.devices.update({ device_id: 'test-device-id' }),
       ),
     { message: /does not support pagination/ },
