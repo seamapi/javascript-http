@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { ConnectedAccount } from 'lib/resources/connected-account.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -178,6 +182,8 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsDeleteParameters,
     options: ConnectedAccountsDeleteOptions = {},
   ): ConnectedAccountsDeleteRequest {
+    assertValidRequestParameters(parameters, '/connected_accounts/delete', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/delete',
       method: 'DELETE',
@@ -191,9 +197,11 @@ export class SeamHttpConnectedAccounts {
    * Returns a specified [connected account](https://docs.seam.co/core-concepts/connected-accounts).
    */
   get(
-    parameters?: ConnectedAccountsGetParameters,
+    parameters: ConnectedAccountsGetParameters,
     options: ConnectedAccountsGetOptions = {},
   ): ConnectedAccountsGetRequest {
+    assertValidRequestParameters(parameters, '/connected_accounts/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/get',
       method: 'GET',
@@ -210,6 +218,8 @@ export class SeamHttpConnectedAccounts {
     parameters?: ConnectedAccountsListParameters,
     options: ConnectedAccountsListOptions = {},
   ): ConnectedAccountsListRequest {
+    assertValidRequestParameters(parameters, '/connected_accounts/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/list',
       method: 'POST',
@@ -226,6 +236,8 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsSyncParameters,
     options: ConnectedAccountsSyncOptions = {},
   ): ConnectedAccountsSyncRequest {
+    assertValidRequestParameters(parameters, '/connected_accounts/sync', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/sync',
       method: 'POST',
@@ -242,6 +254,8 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsUpdateParameters,
     options: ConnectedAccountsUpdateOptions = {},
   ): ConnectedAccountsUpdateRequest {
+    assertValidRequestParameters(parameters, '/connected_accounts/update', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/update',
       method: 'PATCH',
@@ -268,7 +282,7 @@ export type ConnectedAccountsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface ConnectedAccountsDeleteOptions {}
 
-export type ConnectedAccountsGetParameters = {
+export type ConnectedAccountsGetParameters = RequireAtLeastOne<{
   /**
    * ID of the connected account that you want to get.
    */
@@ -277,7 +291,7 @@ export type ConnectedAccountsGetParameters = {
    * Email address associated with the connected account that you want to get.
    */
   email?: string | undefined
-}
+}>
 
 /**
  * @deprecated Use ConnectedAccountsGetRequest instead.

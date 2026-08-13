@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import type { Device } from 'lib/resources/device.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
@@ -173,6 +177,8 @@ export class SeamHttpLocks {
     parameters: LocksConfigureAutoLockParameters,
     options: LocksConfigureAutoLockOptions = {},
   ): LocksConfigureAutoLockRequest {
+    assertValidRequestParameters(parameters, '/locks/configure_auto_lock', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/locks/configure_auto_lock',
       method: 'POST',
@@ -191,9 +197,11 @@ export class SeamHttpLocks {
    * @deprecated Use `/devices/get` instead.
    */
   get(
-    parameters?: LocksGetParameters,
+    parameters: LocksGetParameters,
     options: LocksGetOptions = {},
   ): LocksGetRequest {
+    assertValidRequestParameters(parameters, '/locks/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/locks/get',
       method: 'GET',
@@ -210,6 +218,8 @@ export class SeamHttpLocks {
     parameters?: LocksListParameters,
     options: LocksListOptions = {},
   ): LocksListRequest {
+    assertValidRequestParameters(parameters, '/locks/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/locks/list',
       method: 'POST',
@@ -226,6 +236,8 @@ export class SeamHttpLocks {
     parameters: LocksLockDoorParameters,
     options: LocksLockDoorOptions = {},
   ): LocksLockDoorRequest {
+    assertValidRequestParameters(parameters, '/locks/lock_door', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/locks/lock_door',
       method: 'POST',
@@ -246,6 +258,8 @@ export class SeamHttpLocks {
     parameters: LocksUnlockDoorParameters,
     options: LocksUnlockDoorOptions = {},
   ): LocksUnlockDoorRequest {
+    assertValidRequestParameters(parameters, '/locks/unlock_door', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/locks/unlock_door',
       method: 'POST',
@@ -291,7 +305,7 @@ export type LocksConfigureAutoLockOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type LocksGetParameters = {
+export type LocksGetParameters = RequireAtLeastOne<{
   /**
    * ID of the lock that you want to get.
    */
@@ -300,7 +314,7 @@ export type LocksGetParameters = {
    * Name of the lock that you want to get.
    */
   name?: string | undefined
-}
+}>
 
 /**
  * @deprecated Use LocksGetRequest instead.

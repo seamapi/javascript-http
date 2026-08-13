@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { AcsSystem } from 'lib/resources/acs-system.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -165,6 +166,8 @@ export class SeamHttpAcsSystems {
     parameters: AcsSystemsGetParameters,
     options: AcsSystemsGetOptions = {},
   ): AcsSystemsGetRequest {
+    assertValidRequestParameters(parameters, '/acs/systems/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/get',
       method: 'GET',
@@ -183,6 +186,8 @@ export class SeamHttpAcsSystems {
     parameters?: AcsSystemsListParameters,
     options: AcsSystemsListOptions = {},
   ): AcsSystemsListRequest {
+    assertValidRequestParameters(parameters, '/acs/systems/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/list',
       method: 'GET',
@@ -201,6 +206,12 @@ export class SeamHttpAcsSystems {
     parameters: AcsSystemsListCompatibleCredentialManagerAcsSystemsParameters,
     options: AcsSystemsListCompatibleCredentialManagerAcsSystemsOptions = {},
   ): AcsSystemsListCompatibleCredentialManagerAcsSystemsRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/acs/systems/list_compatible_credential_manager_acs_systems',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/list_compatible_credential_manager_acs_systems',
       method: 'GET',
@@ -217,6 +228,12 @@ export class SeamHttpAcsSystems {
     parameters: AcsSystemsReportDevicesParameters,
     options: AcsSystemsReportDevicesOptions = {},
   ): AcsSystemsReportDevicesRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/acs/systems/report_devices',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/report_devices',
       method: 'POST',

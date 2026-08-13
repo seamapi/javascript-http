@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import type { ThermostatDailyProgram } from 'lib/resources/thermostat-daily-program.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
@@ -170,6 +171,12 @@ export class SeamHttpThermostatsDailyPrograms {
     parameters: ThermostatsDailyProgramsCreateParameters,
     options: ThermostatsDailyProgramsCreateOptions = {},
   ): ThermostatsDailyProgramsCreateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/daily_programs/create',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/create',
       method: 'POST',
@@ -186,6 +193,12 @@ export class SeamHttpThermostatsDailyPrograms {
     parameters: ThermostatsDailyProgramsDeleteParameters,
     options: ThermostatsDailyProgramsDeleteOptions = {},
   ): ThermostatsDailyProgramsDeleteRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/daily_programs/delete',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/delete',
       method: 'DELETE',
@@ -202,6 +215,12 @@ export class SeamHttpThermostatsDailyPrograms {
     parameters: ThermostatsDailyProgramsUpdateParameters,
     options: ThermostatsDailyProgramsUpdateOptions = {},
   ): ThermostatsDailyProgramsUpdateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/daily_programs/update',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/update',
       method: 'PATCH',

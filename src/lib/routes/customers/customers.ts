@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { CustomerPortal } from 'lib/resources/customer-portal.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -165,6 +166,8 @@ export class SeamHttpCustomers {
     parameters?: CustomersCreatePortalParameters,
     options: CustomersCreatePortalOptions = {},
   ): CustomersCreatePortalRequest {
+    assertValidRequestParameters(parameters, '/customers/create_portal', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/customers/create_portal',
       method: 'POST',
@@ -182,6 +185,8 @@ export class SeamHttpCustomers {
     parameters?: CustomersDeleteDataParameters,
     options: CustomersDeleteDataOptions = {},
   ): CustomersDeleteDataRequest {
+    assertValidRequestParameters(parameters, '/customers/delete_data', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/customers/delete_data',
       method: 'POST',
@@ -198,6 +203,8 @@ export class SeamHttpCustomers {
     parameters: CustomersPushDataParameters,
     options: CustomersPushDataOptions = {},
   ): CustomersPushDataRequest {
+    assertValidRequestParameters(parameters, '/customers/push_data', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/customers/push_data',
       method: 'POST',

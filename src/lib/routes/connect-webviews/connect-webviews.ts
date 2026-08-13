@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ConnectWebview } from 'lib/resources/connect-webview.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -171,6 +172,8 @@ export class SeamHttpConnectWebviews {
     parameters?: ConnectWebviewsCreateParameters,
     options: ConnectWebviewsCreateOptions = {},
   ): ConnectWebviewsCreateRequest {
+    assertValidRequestParameters(parameters, '/connect_webviews/create', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/create',
       method: 'POST',
@@ -189,6 +192,8 @@ export class SeamHttpConnectWebviews {
     parameters: ConnectWebviewsDeleteParameters,
     options: ConnectWebviewsDeleteOptions = {},
   ): ConnectWebviewsDeleteRequest {
+    assertValidRequestParameters(parameters, '/connect_webviews/delete', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/delete',
       method: 'DELETE',
@@ -207,6 +212,8 @@ export class SeamHttpConnectWebviews {
     parameters: ConnectWebviewsGetParameters,
     options: ConnectWebviewsGetOptions = {},
   ): ConnectWebviewsGetRequest {
+    assertValidRequestParameters(parameters, '/connect_webviews/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/get',
       method: 'GET',
@@ -223,6 +230,8 @@ export class SeamHttpConnectWebviews {
     parameters?: ConnectWebviewsListParameters,
     options: ConnectWebviewsListOptions = {},
   ): ConnectWebviewsListRequest {
+    assertValidRequestParameters(parameters, '/connect_webviews/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/list',
       method: 'POST',

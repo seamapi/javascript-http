@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { InstantKey } from 'lib/resources/instant-key.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -165,6 +169,8 @@ export class SeamHttpInstantKeys {
     parameters: InstantKeysDeleteParameters,
     options: InstantKeysDeleteOptions = {},
   ): InstantKeysDeleteRequest {
+    assertValidRequestParameters(parameters, '/instant_keys/delete', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/delete',
       method: 'DELETE',
@@ -178,9 +184,11 @@ export class SeamHttpInstantKeys {
    * Gets an [instant key](https://docs.seam.co/capability-guides/instant-keys).
    */
   get(
-    parameters?: InstantKeysGetParameters,
+    parameters: InstantKeysGetParameters,
     options: InstantKeysGetOptions = {},
   ): InstantKeysGetRequest {
+    assertValidRequestParameters(parameters, '/instant_keys/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/get',
       method: 'GET',
@@ -197,6 +205,8 @@ export class SeamHttpInstantKeys {
     parameters?: InstantKeysListParameters,
     options: InstantKeysListOptions = {},
   ): InstantKeysListRequest {
+    assertValidRequestParameters(parameters, '/instant_keys/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/list',
       method: 'GET',
@@ -223,7 +233,7 @@ export type InstantKeysDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface InstantKeysDeleteOptions {}
 
-export type InstantKeysGetParameters = {
+export type InstantKeysGetParameters = RequireAtLeastOne<{
   /**
    * ID of the instant key to get.
    */
@@ -232,7 +242,7 @@ export type InstantKeysGetParameters = {
    * URL of the instant key to get.
    */
   instant_key_url?: string | undefined
-}
+}>
 
 /**
  * @deprecated Use InstantKeysGetRequest instead.

@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import type { Workspace } from 'lib/resources/workspace.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
@@ -167,6 +168,8 @@ export class SeamHttpWorkspaces {
     parameters: WorkspacesCreateParameters,
     options: WorkspacesCreateOptions = {},
   ): WorkspacesCreateRequest {
+    assertValidRequestParameters(parameters, '/workspaces/create', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/create',
       method: 'POST',
@@ -183,6 +186,8 @@ export class SeamHttpWorkspaces {
     parameters?: WorkspacesGetParameters,
     options: WorkspacesGetOptions = {},
   ): WorkspacesGetRequest {
+    assertValidRequestParameters(parameters, '/workspaces/get', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/get',
       method: 'GET',
@@ -199,6 +204,8 @@ export class SeamHttpWorkspaces {
     parameters?: WorkspacesListParameters,
     options: WorkspacesListOptions = {},
   ): WorkspacesListRequest {
+    assertValidRequestParameters(parameters, '/workspaces/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/list',
       method: 'GET',
@@ -215,6 +222,8 @@ export class SeamHttpWorkspaces {
     parameters?: WorkspacesResetSandboxParameters,
     options: WorkspacesResetSandboxOptions = {},
   ): WorkspacesResetSandboxRequest {
+    assertValidRequestParameters(parameters, '/workspaces/reset_sandbox', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/reset_sandbox',
       method: 'POST',
@@ -235,6 +244,8 @@ export class SeamHttpWorkspaces {
     parameters?: WorkspacesUpdateParameters,
     options: WorkspacesUpdateOptions = {},
   ): WorkspacesUpdateRequest {
+    assertValidRequestParameters(parameters, '/workspaces/update', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/update',
       method: 'PATCH',

@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { Device } from 'lib/resources/device.js'
 import type { DeviceProvider } from 'lib/resources/device-provider.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
@@ -176,9 +180,11 @@ export class SeamHttpDevices {
    * You must specify either `device_id` or `name`.
    */
   get(
-    parameters?: DevicesGetParameters,
+    parameters: DevicesGetParameters,
     options: DevicesGetOptions = {},
   ): DevicesGetRequest {
+    assertValidRequestParameters(parameters, '/devices/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/get',
       method: 'GET',
@@ -195,6 +201,8 @@ export class SeamHttpDevices {
     parameters?: DevicesListParameters,
     options: DevicesListOptions = {},
   ): DevicesListRequest {
+    assertValidRequestParameters(parameters, '/devices/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/list',
       method: 'POST',
@@ -215,6 +223,12 @@ export class SeamHttpDevices {
     parameters?: DevicesListDeviceProvidersParameters,
     options: DevicesListDeviceProvidersOptions = {},
   ): DevicesListDeviceProvidersRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/devices/list_device_providers',
+      false,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/list_device_providers',
       method: 'GET',
@@ -231,6 +245,12 @@ export class SeamHttpDevices {
     parameters: DevicesReportProviderMetadataParameters,
     options: DevicesReportProviderMetadataOptions = {},
   ): DevicesReportProviderMetadataRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/devices/report_provider_metadata',
+      true,
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/report_provider_metadata',
       method: 'POST',
@@ -249,6 +269,8 @@ export class SeamHttpDevices {
     parameters: DevicesUpdateParameters,
     options: DevicesUpdateOptions = {},
   ): DevicesUpdateRequest {
+    assertValidRequestParameters(parameters, '/devices/update', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/update',
       method: 'PATCH',
@@ -259,7 +281,7 @@ export class SeamHttpDevices {
   }
 }
 
-export type DevicesGetParameters = {
+export type DevicesGetParameters = RequireAtLeastOne<{
   /**
    * ID of the device that you want to get.
    */
@@ -268,7 +290,7 @@ export type DevicesGetParameters = {
    * Name of the device that you want to get.
    */
   name?: string | undefined
-}
+}>
 
 /**
  * @deprecated Use DevicesGetRequest instead.

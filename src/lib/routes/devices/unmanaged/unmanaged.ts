@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { UnmanagedDevice } from 'lib/resources/unmanaged-device.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -166,9 +170,11 @@ export class SeamHttpDevicesUnmanaged {
    * You must specify either `device_id` or `name`.
    */
   get(
-    parameters?: DevicesUnmanagedGetParameters,
+    parameters: DevicesUnmanagedGetParameters,
     options: DevicesUnmanagedGetOptions = {},
   ): DevicesUnmanagedGetRequest {
+    assertValidRequestParameters(parameters, '/devices/unmanaged/get', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/get',
       method: 'GET',
@@ -187,6 +193,8 @@ export class SeamHttpDevicesUnmanaged {
     parameters?: DevicesUnmanagedListParameters,
     options: DevicesUnmanagedListOptions = {},
   ): DevicesUnmanagedListRequest {
+    assertValidRequestParameters(parameters, '/devices/unmanaged/list', false)
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/list',
       method: 'POST',
@@ -205,6 +213,8 @@ export class SeamHttpDevicesUnmanaged {
     parameters: DevicesUnmanagedUpdateParameters,
     options: DevicesUnmanagedUpdateOptions = {},
   ): DevicesUnmanagedUpdateRequest {
+    assertValidRequestParameters(parameters, '/devices/unmanaged/update', true)
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/update',
       method: 'PATCH',
@@ -215,7 +225,7 @@ export class SeamHttpDevicesUnmanaged {
   }
 }
 
-export type DevicesUnmanagedGetParameters = {
+export type DevicesUnmanagedGetParameters = RequireAtLeastOne<{
   /**
    * ID of the unmanaged device that you want to get.
    */
@@ -224,7 +234,7 @@ export type DevicesUnmanagedGetParameters = {
    * Name of the unmanaged device that you want to get.
    */
   name?: string | undefined
-}
+}>
 
 /**
  * @deprecated Use DevicesUnmanagedGetRequest instead.
