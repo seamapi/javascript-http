@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ThermostatSchedule } from 'lib/resources/thermostat-schedule.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -206,6 +207,13 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesCreateParameters,
     options: ThermostatsSchedulesCreateOptions = {},
   ): ThermostatsSchedulesCreateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/schedules/create',
+      true,
+      ['climate_preset_key', 'device_id', 'ends_at', 'starts_at'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/create',
       method: 'POST',
@@ -222,10 +230,17 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesDeleteParameters,
     options: ThermostatsSchedulesDeleteOptions = {},
   ): ThermostatsSchedulesDeleteRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/schedules/delete',
+      true,
+      ['thermostat_schedule_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -238,10 +253,17 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesGetParameters,
     options: ThermostatsSchedulesGetOptions = {},
   ): ThermostatsSchedulesGetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/schedules/get',
+      true,
+      ['thermostat_schedule_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'thermostat_schedule',
       options,
     })
@@ -254,10 +276,17 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesListParameters,
     options: ThermostatsSchedulesListOptions = {},
   ): ThermostatsSchedulesListRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/schedules/list',
+      true,
+      ['device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'thermostat_schedules',
       options,
     })
@@ -270,6 +299,13 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesUpdateParameters,
     options: ThermostatsSchedulesUpdateOptions = {},
   ): ThermostatsSchedulesUpdateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/schedules/update',
+      true,
+      ['thermostat_schedule_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/update',
       method: 'PATCH',
@@ -306,7 +342,7 @@ export type ThermostatsSchedulesCreateParameters = {
   /**
    * Number of minutes for which a person at the thermostat or using the API can change the thermostat's settings after the activation of the scheduled climate preset. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
    */
-  max_override_period_minutes?: number | undefined
+  max_override_period_minutes?: number | null | undefined
   /**
    * Name of the thermostat schedule.
    */
@@ -454,7 +490,7 @@ export type ThermostatsSchedulesUpdateParameters = {
   /**
    * Number of minutes for which a person at the thermostat or using the API can change the thermostat's settings after the activation of the scheduled climate preset. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
    */
-  max_override_period_minutes?: number | undefined
+  max_override_period_minutes?: number | null | undefined
   /**
    * Name of the thermostat schedule.
    */

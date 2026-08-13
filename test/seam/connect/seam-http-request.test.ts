@@ -13,7 +13,7 @@ test('SeamHttp: returns a SeamHttpRequest', async (t) => {
   t.true(request instanceof SeamHttpRequest)
   t.truthy(request.url)
   t.is(request.responseKey, 'device')
-  t.deepEqual(request.body, {
+  t.deepEqual(request.params, {
     device_id: seed.august_device_1,
   })
 
@@ -83,7 +83,9 @@ test('SeamHttpRequest: url is a URL when endpoint is a url without a path', asyn
   t.true(url instanceof URL)
   t.deepEqual(
     toPlainUrlObject(url),
-    toPlainUrlObject(new URL('https://example.com/devices/get')),
+    toPlainUrlObject(
+      new URL('https://example.com/devices/get?device_id=abc123'),
+    ),
   )
 })
 
@@ -98,7 +100,9 @@ test('SeamHttpRequest: url is a URL when endpoint is a url with a path', async (
   t.true(url instanceof URL)
   t.deepEqual(
     toPlainUrlObject(url),
-    toPlainUrlObject(new URL('https://example.com/some/sub/path/devices/get')),
+    toPlainUrlObject(
+      new URL('https://example.com/some/sub/path/devices/get?device_id=abc123'),
+    ),
   )
 })
 

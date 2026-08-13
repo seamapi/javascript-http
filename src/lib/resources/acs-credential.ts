@@ -37,6 +37,17 @@ export type AcsCredential = {
    */
   acs_user_id?: string | undefined
   /**
+   * Akiles-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   */
+  akiles_metadata?:
+    | {
+        /**
+         * ID of the Akiles member PIN.
+         */
+        member_pin_id?: string | undefined
+      }
+    | undefined
+  /**
    * Vostio-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
    */
   assa_abloy_vostio_metadata?:
@@ -125,6 +136,7 @@ export type AcsCredential = {
     | 'salto_ks_tag'
     | 'avigilon_alta_credential'
     | 'kisi_credential'
+    | 'akiles_credential'
     | undefined
   /**
    * Display name that corresponds to the brand-specific terminology for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type.
@@ -322,6 +334,34 @@ export type AcsCredential = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'needs_to_be_reissued'
+      } /**
+     * Indicates that the requested PIN code could not be used, so the access system assigned a different code. Give the guest the assigned code.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * The PIN code that was assigned instead.
+         */
+        new_code: string
+
+        /**
+         * The originally requested PIN code that could not be used.
+         */
+        original_code: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'requested_code_unavailable'
       }
   >
 

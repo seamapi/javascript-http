@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { UnmanagedAccessGrant } from 'lib/resources/unmanaged-access-grant.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -206,10 +207,17 @@ export class SeamHttpAccessGrantsUnmanaged {
     parameters: AccessGrantsUnmanagedGetParameters,
     options: AccessGrantsUnmanagedGetOptions = {},
   ): AccessGrantsUnmanagedGetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_grants/unmanaged/get',
+      true,
+      ['access_grant_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_grant',
       options,
     })
@@ -222,10 +230,17 @@ export class SeamHttpAccessGrantsUnmanaged {
     parameters?: AccessGrantsUnmanagedListParameters,
     options: AccessGrantsUnmanagedListOptions = {},
   ): AccessGrantsUnmanagedListRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_grants/unmanaged/list',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_grants',
       options,
     })
@@ -242,6 +257,13 @@ export class SeamHttpAccessGrantsUnmanaged {
     parameters: AccessGrantsUnmanagedUpdateParameters,
     options: AccessGrantsUnmanagedUpdateOptions = {},
   ): AccessGrantsUnmanagedUpdateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_grants/unmanaged/update',
+      true,
+      ['access_grant_id', 'is_managed'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/unmanaged/update',
       method: 'PATCH',
@@ -303,7 +325,7 @@ export type AccessGrantsUnmanagedListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * Filter unmanaged Access Grants by reservation_key.
    */

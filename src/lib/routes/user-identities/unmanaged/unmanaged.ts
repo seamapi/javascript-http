@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { UnmanagedUserIdentity } from 'lib/resources/unmanaged-user-identity.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -209,10 +210,17 @@ export class SeamHttpUserIdentitiesUnmanaged {
     parameters: UserIdentitiesUnmanagedGetParameters,
     options: UserIdentitiesUnmanagedGetOptions = {},
   ): UserIdentitiesUnmanagedGetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/user_identities/unmanaged/get',
+      true,
+      ['user_identity_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'user_identity',
       options,
     })
@@ -225,10 +233,17 @@ export class SeamHttpUserIdentitiesUnmanaged {
     parameters?: UserIdentitiesUnmanagedListParameters,
     options: UserIdentitiesUnmanagedListOptions = {},
   ): UserIdentitiesUnmanagedListRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/user_identities/unmanaged/list',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'user_identities',
       options,
     })
@@ -243,6 +258,13 @@ export class SeamHttpUserIdentitiesUnmanaged {
     parameters: UserIdentitiesUnmanagedUpdateParameters,
     options: UserIdentitiesUnmanagedUpdateOptions = {},
   ): UserIdentitiesUnmanagedUpdateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/user_identities/unmanaged/update',
+      true,
+      ['is_managed', 'user_identity_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/update',
       method: 'PATCH',
@@ -300,7 +322,7 @@ export type UserIdentitiesUnmanagedListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned unmanaged user identities to include all records that satisfy a partial match using `full_name`, `phone_number`, `email_address`,  `user_identity_id` or `acs_system_id`.
    */

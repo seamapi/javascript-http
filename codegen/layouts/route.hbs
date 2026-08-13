@@ -5,6 +5,13 @@
 
 {{> route-imports }}
 
+{{#if endpoints}}
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
+{{/if}}
+{{#if needsRequireAtLeastOneImport}}
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
+{{/if}}
+
 {{#if routePath}}
 /**
  * Client for the Seam API {{routePath}} routes.

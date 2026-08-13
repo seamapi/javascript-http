@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { ClientSession } from 'lib/resources/client-session.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
@@ -205,6 +209,13 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsCreateParameters,
     options: ClientSessionsCreateOptions = {},
   ): ClientSessionsCreateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/client_sessions/create',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/create',
       method: 'PUT',
@@ -221,10 +232,14 @@ export class SeamHttpClientSessions {
     parameters: ClientSessionsDeleteParameters,
     options: ClientSessionsDeleteOptions = {},
   ): ClientSessionsDeleteRequest {
+    assertValidRequestParameters(parameters, '/client_sessions/delete', true, [
+      'client_session_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -237,10 +252,12 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsGetParameters,
     options: ClientSessionsGetOptions = {},
   ): ClientSessionsGetRequest {
+    assertValidRequestParameters(parameters, '/client_sessions/get', false, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'client_session',
       options,
     })
@@ -253,6 +270,13 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsGetOrCreateParameters,
     options: ClientSessionsGetOrCreateOptions = {},
   ): ClientSessionsGetOrCreateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/client_sessions/get_or_create',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/get_or_create',
       method: 'POST',
@@ -266,9 +290,16 @@ export class SeamHttpClientSessions {
    * Grants a [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens) access to one or more resources, such as [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews), [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity), and so on.
    */
   grantAccess(
-    parameters?: ClientSessionsGrantAccessParameters,
+    parameters: ClientSessionsGrantAccessParameters,
     options: ClientSessionsGrantAccessOptions = {},
   ): ClientSessionsGrantAccessRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/client_sessions/grant_access',
+      true,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/grant_access',
       method: 'PATCH',
@@ -285,10 +316,12 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsListParameters,
     options: ClientSessionsListOptions = {},
   ): ClientSessionsListRequest {
+    assertValidRequestParameters(parameters, '/client_sessions/list', false, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'client_sessions',
       options,
     })
@@ -303,6 +336,10 @@ export class SeamHttpClientSessions {
     parameters: ClientSessionsRevokeParameters,
     options: ClientSessionsRevokeOptions = {},
   ): ClientSessionsRevokeRequest {
+    assertValidRequestParameters(parameters, '/client_sessions/revoke', true, [
+      'client_session_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/revoke',
       method: 'POST',
@@ -491,7 +528,7 @@ export interface ClientSessionsGetOrCreateOptions {}
 /**
  * Parameters for `SeamHttpClientSessions.grantAccess`.
  */
-export type ClientSessionsGrantAccessParameters = {
+export type ClientSessionsGrantAccessParameters = RequireAtLeastOne<{
   /**
    * ID of the client session to which you want to grant access to resources.
    */
@@ -518,7 +555,7 @@ export type ClientSessionsGrantAccessParameters = {
    * @deprecated Use `user_identity_id`.
    */
   user_identity_ids?: Array<string> | undefined
-}
+}>
 
 /**
  * Response from `SeamHttpClientSessions.grantAccess`.

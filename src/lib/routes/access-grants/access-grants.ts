@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { AccessGrant } from 'lib/resources/access-grant.js'
 import type { Batch } from 'lib/resources/batch.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
@@ -216,6 +220,10 @@ export class SeamHttpAccessGrants {
     parameters: AccessGrantsCreateParameters,
     options: AccessGrantsCreateOptions = {},
   ): AccessGrantsCreateRequest {
+    assertValidRequestParameters(parameters, '/access_grants/create', true, [
+      'requested_access_methods',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/create',
       method: 'POST',
@@ -232,10 +240,14 @@ export class SeamHttpAccessGrants {
     parameters: AccessGrantsDeleteParameters,
     options: AccessGrantsDeleteOptions = {},
   ): AccessGrantsDeleteRequest {
+    assertValidRequestParameters(parameters, '/access_grants/delete', true, [
+      'access_grant_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -245,9 +257,11 @@ export class SeamHttpAccessGrants {
    * Get an Access Grant.
    */
   get(
-    parameters?: AccessGrantsGetParameters,
+    parameters: AccessGrantsGetParameters,
     options: AccessGrantsGetOptions = {},
   ): AccessGrantsGetRequest {
+    assertValidRequestParameters(parameters, '/access_grants/get', true, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/get',
       method: 'GET',
@@ -261,9 +275,16 @@ export class SeamHttpAccessGrants {
    * Gets all related resources for one or more Access Grants.
    */
   getRelated(
-    parameters?: AccessGrantsGetRelatedParameters,
+    parameters: AccessGrantsGetRelatedParameters,
     options: AccessGrantsGetRelatedOptions = {},
   ): AccessGrantsGetRelatedRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_grants/get_related',
+      true,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/get_related',
       method: 'POST',
@@ -280,6 +301,8 @@ export class SeamHttpAccessGrants {
     parameters?: AccessGrantsListParameters,
     options: AccessGrantsListOptions = {},
   ): AccessGrantsListRequest {
+    assertValidRequestParameters(parameters, '/access_grants/list', false, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/list',
       method: 'POST',
@@ -296,6 +319,13 @@ export class SeamHttpAccessGrants {
     parameters: AccessGrantsRequestAccessMethodsParameters,
     options: AccessGrantsRequestAccessMethodsOptions = {},
   ): AccessGrantsRequestAccessMethodsRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_grants/request_access_methods',
+      true,
+      ['access_grant_id', 'requested_access_methods'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/request_access_methods',
       method: 'POST',
@@ -309,9 +339,11 @@ export class SeamHttpAccessGrants {
    * Updates an existing Access Grant's time window.
    */
   update(
-    parameters?: AccessGrantsUpdateParameters,
+    parameters: AccessGrantsUpdateParameters,
     options: AccessGrantsUpdateOptions = {},
   ): AccessGrantsUpdateRequest {
+    assertValidRequestParameters(parameters, '/access_grants/update', true, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/update',
       method: 'PATCH',
@@ -338,19 +370,19 @@ export type AccessGrantsCreateParameters = {
         /**
          * Unique email address for the user identity.
          */
-        email_address?: string | undefined
+        email_address?: string | null | undefined
         /**
          * Full name of the user associated with the user identity.
          */
-        full_name?: string | undefined
+        full_name?: string | null | undefined
         /**
          * Unique phone number for the user identity in [E.164 format](https://www.itu.int/rec/T-REC-E.164/en) (for example, +15555550100).
          */
-        phone_number?: string | undefined
+        phone_number?: string | null | undefined
         /**
          * Unique key for the user identity.
          */
-        user_identity_key?: string | undefined
+        user_identity_key?: string | null | undefined
       }
     | undefined
   /**
@@ -372,7 +404,7 @@ export type AccessGrantsCreateParameters = {
   /**
    * Date and time at which the validity of the new grant ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
    */
-  ends_at?: string | undefined
+  ends_at?: string | null | undefined
   /**
    * @deprecated Create a space first, then reference it using `space_ids`.
    */
@@ -399,7 +431,7 @@ export type AccessGrantsCreateParameters = {
   /**
    * Name for the access grant.
    */
-  name?: string | undefined
+  name?: string | null | undefined
 
   requested_access_methods: Array<{
     /**
@@ -484,7 +516,7 @@ export interface AccessGrantsDeleteOptions {}
 /**
  * Parameters for `SeamHttpAccessGrants.get`.
  */
-export type AccessGrantsGetParameters = {
+export type AccessGrantsGetParameters = RequireAtLeastOne<{
   /**
    * ID of Access Grant to get.
    */
@@ -493,7 +525,7 @@ export type AccessGrantsGetParameters = {
    * Unique key of Access Grant to get.
    */
   access_grant_key?: string | undefined
-}
+}>
 
 /**
  * Response from `SeamHttpAccessGrants.get`.
@@ -518,7 +550,7 @@ export interface AccessGrantsGetOptions {}
 /**
  * Parameters for `SeamHttpAccessGrants.getRelated`.
  */
-export type AccessGrantsGetRelatedParameters = {
+export type AccessGrantsGetRelatedParameters = RequireAtLeastOne<{
   /**
    * IDs of the access grants that you want to get along with their related resources.
    */
@@ -553,7 +585,7 @@ export type AccessGrantsGetRelatedParameters = {
         | 'access_methods'
       >
     | undefined
-}
+}>
 
 /**
  * Response from `SeamHttpAccessGrants.getRelated`.
@@ -601,7 +633,7 @@ export type AccessGrantsListParameters = {
   /**
    * Filter Access Grants by access_grant_key. Use null to filter for Access Grants without an access_grant_key.
    */
-  access_grant_key?: string | undefined
+  access_grant_key?: string | null | undefined
   /**
    * ID of the entrance by which you want to filter the list of Access Grants.
    */
@@ -629,7 +661,7 @@ export type AccessGrantsListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * Filter Access Grants by reservation_key.
    */
@@ -717,7 +749,7 @@ export interface AccessGrantsRequestAccessMethodsOptions {}
 /**
  * Parameters for `SeamHttpAccessGrants.update`.
  */
-export type AccessGrantsUpdateParameters = {
+export type AccessGrantsUpdateParameters = RequireAtLeastOne<{
   /**
    * ID of the Access Grant to update. Provide either `access_grant_id` or `access_grant_key`.
    */
@@ -729,16 +761,16 @@ export type AccessGrantsUpdateParameters = {
   /**
    * Date and time at which the validity of the grant ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
    */
-  ends_at?: string | undefined
+  ends_at?: string | null | undefined
   /**
    * Display name for the access grant.
    */
-  name?: string | undefined
+  name?: string | null | undefined
   /**
    * Date and time at which the validity of the grant starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
    */
   starts_at?: string | undefined
-}
+}>
 
 /**
  * Response from `SeamHttpAccessGrants.update`.

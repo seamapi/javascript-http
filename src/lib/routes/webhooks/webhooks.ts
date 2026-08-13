@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { Webhook } from 'lib/resources/webhook.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -206,6 +207,8 @@ export class SeamHttpWebhooks {
     parameters: WebhooksCreateParameters,
     options: WebhooksCreateOptions = {},
   ): WebhooksCreateRequest {
+    assertValidRequestParameters(parameters, '/webhooks/create', true, ['url'])
+
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/create',
       method: 'POST',
@@ -222,10 +225,14 @@ export class SeamHttpWebhooks {
     parameters: WebhooksDeleteParameters,
     options: WebhooksDeleteOptions = {},
   ): WebhooksDeleteRequest {
+    assertValidRequestParameters(parameters, '/webhooks/delete', true, [
+      'webhook_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -238,10 +245,14 @@ export class SeamHttpWebhooks {
     parameters: WebhooksGetParameters,
     options: WebhooksGetOptions = {},
   ): WebhooksGetRequest {
+    assertValidRequestParameters(parameters, '/webhooks/get', true, [
+      'webhook_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'webhook',
       options,
     })
@@ -254,6 +265,8 @@ export class SeamHttpWebhooks {
     parameters?: WebhooksListParameters,
     options: WebhooksListOptions = {},
   ): WebhooksListRequest {
+    assertValidRequestParameters(parameters, '/webhooks/list', false, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/list',
       method: 'GET',
@@ -270,6 +283,11 @@ export class SeamHttpWebhooks {
     parameters: WebhooksUpdateParameters,
     options: WebhooksUpdateOptions = {},
   ): WebhooksUpdateRequest {
+    assertValidRequestParameters(parameters, '/webhooks/update', true, [
+      'event_types',
+      'webhook_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/update',
       method: 'PUT',

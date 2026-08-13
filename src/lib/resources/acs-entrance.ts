@@ -429,7 +429,7 @@ export type AcsEntrance = {
          */
         warning_code: 'entrance_setup_required'
       } /**
-     * deprecated: Use `privacy_mode` instead. Indicates that this entrance is in privacy mode. When privacy mode is enabled, access codes, mobile keys, and remote unlocks will not work unless the user has admin access.
+     * Indicates that this entrance is in privacy mode. When privacy mode is enabled, access codes, mobile keys, and remote unlocks will not work unless the user has admin access.
      */
     | {
         /**

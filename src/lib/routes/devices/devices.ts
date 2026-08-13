@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { Device } from 'lib/resources/device.js'
 import type { DeviceProvider } from 'lib/resources/device-provider.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
@@ -223,13 +227,15 @@ export class SeamHttpDevices {
    * You must specify either `device_id` or `name`.
    */
   get(
-    parameters?: DevicesGetParameters,
+    parameters: DevicesGetParameters,
     options: DevicesGetOptions = {},
   ): DevicesGetRequest {
+    assertValidRequestParameters(parameters, '/devices/get', true, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'device',
       options,
     })
@@ -242,6 +248,8 @@ export class SeamHttpDevices {
     parameters?: DevicesListParameters,
     options: DevicesListOptions = {},
   ): DevicesListRequest {
+    assertValidRequestParameters(parameters, '/devices/list', false, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/list',
       method: 'POST',
@@ -262,10 +270,17 @@ export class SeamHttpDevices {
     parameters?: DevicesListDeviceProvidersParameters,
     options: DevicesListDeviceProvidersOptions = {},
   ): DevicesListDeviceProvidersRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/devices/list_device_providers',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/list_device_providers',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'device_providers',
       options,
     })
@@ -278,6 +293,13 @@ export class SeamHttpDevices {
     parameters: DevicesReportProviderMetadataParameters,
     options: DevicesReportProviderMetadataOptions = {},
   ): DevicesReportProviderMetadataRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/devices/report_provider_metadata',
+      true,
+      ['devices'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/report_provider_metadata',
       method: 'POST',
@@ -296,6 +318,10 @@ export class SeamHttpDevices {
     parameters: DevicesUpdateParameters,
     options: DevicesUpdateOptions = {},
   ): DevicesUpdateRequest {
+    assertValidRequestParameters(parameters, '/devices/update', true, [
+      'device_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/devices/update',
       method: 'PATCH',
@@ -309,7 +335,7 @@ export class SeamHttpDevices {
 /**
  * Parameters for `SeamHttpDevices.get`.
  */
-export type DevicesGetParameters = {
+export type DevicesGetParameters = RequireAtLeastOne<{
   /**
    * ID of the device that you want to get.
    */
@@ -318,7 +344,7 @@ export type DevicesGetParameters = {
    * Name of the device that you want to get.
    */
   name?: string | undefined
-}
+}>
 
 /**
  * Response from `SeamHttpDevices.get`.
@@ -399,6 +425,7 @@ export type DevicesListParameters = {
     | 'tedee_lock'
     | 'akiles_lock'
     | 'ultraloq_lock'
+    | 'yacan_lock'
     | 'keyincode_lock'
     | 'omnitec_lock'
     | 'kisi_lock'
@@ -447,6 +474,7 @@ export type DevicesListParameters = {
         | 'tedee_lock'
         | 'akiles_lock'
         | 'ultraloq_lock'
+        | 'yacan_lock'
         | 'keyincode_lock'
         | 'omnitec_lock'
         | 'kisi_lock'
@@ -524,11 +552,12 @@ export type DevicesListParameters = {
     | 'omnitec'
     | 'kisi'
     | 'slack'
+    | 'yacan'
     | undefined
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned devices to include all records that satisfy a partial match using `device_id` (full or partial UUID prefix, minimum 4 characters), `connected_account_id`, `display_name`, `custom_metadata` or `location.location_name`.
    */
@@ -540,7 +569,7 @@ export type DevicesListParameters = {
   /**
    * @deprecated Use `space_id`.
    */
-  unstable_location_id?: string | undefined
+  unstable_location_id?: string | null | undefined
   /**
    * Your own internal user ID for the user for which you want to list devices.
    */
@@ -1987,14 +2016,14 @@ export type DevicesUpdateParameters = {
   /**
    * Name for the device.
    */
-  name?: string | undefined
+  name?: string | null | undefined
 
   properties?:
     | {
         /**
          * Name for the device.
          */
-        name?: string | undefined
+        name?: string | null | undefined
       }
     | undefined
 }

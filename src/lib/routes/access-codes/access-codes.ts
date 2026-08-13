@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { AccessCode } from 'lib/resources/access-code.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -223,6 +227,10 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesCreateParameters,
     options: AccessCodesCreateOptions = {},
   ): AccessCodesCreateRequest {
+    assertValidRequestParameters(parameters, '/access_codes/create', true, [
+      'device_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/create',
       method: 'POST',
@@ -249,6 +257,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesCreateMultipleParameters,
     options: AccessCodesCreateMultipleOptions = {},
   ): AccessCodesCreateMultipleRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/create_multiple',
+      true,
+      ['device_ids'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/create_multiple',
       method: 'PUT',
@@ -265,10 +280,14 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesDeleteParameters,
     options: AccessCodesDeleteOptions = {},
   ): AccessCodesDeleteRequest {
+    assertValidRequestParameters(parameters, '/access_codes/delete', true, [
+      'access_code_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -281,10 +300,17 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesGenerateCodeParameters,
     options: AccessCodesGenerateCodeOptions = {},
   ): AccessCodesGenerateCodeRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/generate_code',
+      true,
+      ['device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/generate_code',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'generated_code',
       options,
     })
@@ -296,13 +322,15 @@ export class SeamHttpAccessCodes {
    * You must specify either `access_code_id` or both `device_id` and `code`.
    */
   get(
-    parameters?: AccessCodesGetParameters,
+    parameters: AccessCodesGetParameters,
     options: AccessCodesGetOptions = {},
   ): AccessCodesGetRequest {
+    assertValidRequestParameters(parameters, '/access_codes/get', true, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_code',
       options,
     })
@@ -314,9 +342,11 @@ export class SeamHttpAccessCodes {
    * Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
    */
   list(
-    parameters?: AccessCodesListParameters,
+    parameters: AccessCodesListParameters,
     options: AccessCodesListOptions = {},
   ): AccessCodesListRequest {
+    assertValidRequestParameters(parameters, '/access_codes/list', true, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/list',
       method: 'POST',
@@ -341,6 +371,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesPullBackupAccessCodeParameters,
     options: AccessCodesPullBackupAccessCodeOptions = {},
   ): AccessCodesPullBackupAccessCodeRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/pull_backup_access_code',
+      true,
+      ['access_code_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/pull_backup_access_code',
       method: 'POST',
@@ -359,6 +396,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesReportDeviceConstraintsParameters,
     options: AccessCodesReportDeviceConstraintsOptions = {},
   ): AccessCodesReportDeviceConstraintsRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/report_device_constraints',
+      true,
+      ['device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/report_device_constraints',
       method: 'POST',
@@ -377,6 +421,10 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesUpdateParameters,
     options: AccessCodesUpdateOptions = {},
   ): AccessCodesUpdateRequest {
+    assertValidRequestParameters(parameters, '/access_codes/update', true, [
+      'access_code_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/update',
       method: 'PUT',
@@ -397,6 +445,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesUpdateMultipleParameters,
     options: AccessCodesUpdateMultipleOptions = {},
   ): AccessCodesUpdateMultipleRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/update_multiple',
+      true,
+      ['common_code_key'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/update_multiple',
       method: 'PATCH',
@@ -649,7 +704,7 @@ export interface AccessCodesGenerateCodeOptions {}
 /**
  * Parameters for `SeamHttpAccessCodes.get`.
  */
-export type AccessCodesGetParameters = {
+export type AccessCodesGetParameters = RequireAtLeastOne<{
   /**
    * ID of the access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
    */
@@ -662,7 +717,7 @@ export type AccessCodesGetParameters = {
    * ID of the device containing the access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
    */
   device_id?: string | undefined
-}
+}>
 
 /**
  * Response from `SeamHttpAccessCodes.get`.
@@ -687,7 +742,7 @@ export interface AccessCodesGetOptions {}
 /**
  * Parameters for `SeamHttpAccessCodes.list`.
  */
-export type AccessCodesListParameters = {
+export type AccessCodesListParameters = RequireAtLeastOne<{
   /**
    * IDs of the access codes that you want to retrieve. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
    */
@@ -719,7 +774,7 @@ export type AccessCodesListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned access codes to include all records that satisfy a partial match using `name`, `code` or `access_code_id`.
    */
@@ -728,7 +783,7 @@ export type AccessCodesListParameters = {
    * Your user ID for the user by which to filter access codes.
    */
   user_identifier_key?: string | undefined
-}
+}>
 
 /**
  * Response from `SeamHttpAccessCodes.list`.
@@ -861,18 +916,6 @@ export type AccessCodesUpdateParameters = {
    */
   is_managed?: boolean | undefined
   /**
-   * Indicates whether the access code is an [offline access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/offline-access-codes).
-   */
-  is_offline_access_code?: boolean | undefined
-  /**
-   * Indicates whether the [offline access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/offline-access-codes) is a single-use access code.
-   */
-  is_one_time_use?: boolean | undefined
-  /**
-   * Maximum rounding adjustment. To create a daily-bound [offline access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/offline-access-codes) for devices that support this feature, set this parameter to `1d`.
-   */
-  max_time_rounding?: '1hour' | '1day' | '1h' | '1d' | undefined
-  /**
    * Name of the new access code. Enables administrators and users to identify the access code easily, especially when there are numerous access codes.
    *
    * Note that the name provided on Seam is used to identify the code on Seam and is not necessarily the name that will appear in the lock provider's app or on the device. This is because lock providers may have constraints on names, such as length, uniqueness, or characters that can be used. In addition, some lock providers may break down names into components such as `first_name` and `last_name`.
@@ -883,14 +926,6 @@ export type AccessCodesUpdateParameters = {
    */
   name?: string | undefined
   /**
-   * Indicates whether [native scheduling](https://docs.seam.co/low-level-apis/smart-locks/access-codes#native-scheduling) should be used for time-bound codes when supported by the provider. Default: `true`.
-   */
-  prefer_native_scheduling?: boolean | undefined
-  /**
-   * Preferred code length. Only applicable if you do not specify a `code`. If the affected device does not support the preferred code length, Seam reverts to using the shortest supported code length.
-   */
-  preferred_code_length?: number | undefined
-  /**
    * Date and time at which the validity of the new access code starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
    */
   starts_at?: string | undefined
@@ -898,14 +933,6 @@ export type AccessCodesUpdateParameters = {
    * Type to which you want to convert the access code. To convert a time-bound access code to an ongoing access code, set `type` to `ongoing`. See also [Changing a time-bound access code to permanent access](https://docs.seam.co/low-level-apis/smart-locks/access-codes/modifying-access-codes#special-case-2-changing-a-time-bound-access-code-to-permanent-access).
    */
   type?: 'ongoing' | 'time_bound' | undefined
-  /**
-   * Indicates whether to use a [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) provided by Seam. If `true`, you can use [`/access_codes/pull_backup_access_code`](https://docs.seam.co/api/access_codes/pull_backup_access_code).
-   */
-  use_backup_access_code_pool?: boolean | undefined
-  /**
-   * @deprecated Use `is_offline_access_code` instead.
-   */
-  use_offline_access_code?: boolean | undefined
 }
 
 /**

@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
@@ -205,6 +206,13 @@ export class SeamHttpNoiseSensorsSimulate {
     parameters: NoiseSensorsSimulateTriggerNoiseThresholdParameters,
     options: NoiseSensorsSimulateTriggerNoiseThresholdOptions = {},
   ): NoiseSensorsSimulateTriggerNoiseThresholdRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/noise_sensors/simulate/trigger_noise_threshold',
+      true,
+      ['device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/simulate/trigger_noise_threshold',
       method: 'POST',

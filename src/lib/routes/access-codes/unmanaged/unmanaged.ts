@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { UnmanagedAccessCode } from 'lib/resources/unmanaged-access-code.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -210,6 +214,13 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedConvertToManagedParameters,
     options: AccessCodesUnmanagedConvertToManagedOptions = {},
   ): AccessCodesUnmanagedConvertToManagedRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/unmanaged/convert_to_managed',
+      true,
+      ['access_code_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/convert_to_managed',
       method: 'PATCH',
@@ -226,10 +237,17 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedDeleteParameters,
     options: AccessCodesUnmanagedDeleteOptions = {},
   ): AccessCodesUnmanagedDeleteRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/unmanaged/delete',
+      true,
+      ['access_code_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -241,13 +259,20 @@ export class SeamHttpAccessCodesUnmanaged {
    * You must specify either `access_code_id` or both `device_id` and `code`.
    */
   get(
-    parameters?: AccessCodesUnmanagedGetParameters,
+    parameters: AccessCodesUnmanagedGetParameters,
     options: AccessCodesUnmanagedGetOptions = {},
   ): AccessCodesUnmanagedGetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/unmanaged/get',
+      true,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_code',
       options,
     })
@@ -260,10 +285,17 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedListParameters,
     options: AccessCodesUnmanagedListOptions = {},
   ): AccessCodesUnmanagedListRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/unmanaged/list',
+      true,
+      ['device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_codes',
       options,
     })
@@ -276,6 +308,13 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedUpdateParameters,
     options: AccessCodesUnmanagedUpdateOptions = {},
   ): AccessCodesUnmanagedUpdateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/unmanaged/update',
+      true,
+      ['access_code_id', 'is_managed'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/update',
       method: 'PATCH',
@@ -359,7 +398,7 @@ export interface AccessCodesUnmanagedDeleteOptions {}
 /**
  * Parameters for `SeamHttpAccessCodesUnmanaged.get`.
  */
-export type AccessCodesUnmanagedGetParameters = {
+export type AccessCodesUnmanagedGetParameters = RequireAtLeastOne<{
   /**
    * ID of the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
    */
@@ -372,7 +411,7 @@ export type AccessCodesUnmanagedGetParameters = {
    * ID of the device containing the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
    */
   device_id?: string | undefined
-}
+}>
 
 /**
  * Response from `SeamHttpAccessCodesUnmanaged.get`.
@@ -412,7 +451,7 @@ export type AccessCodesUnmanagedListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned access codes to include all records that satisfy a partial match using `name`, `code` or `access_code_id`.
    */

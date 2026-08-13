@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { UnmanagedAccessCode } from 'lib/resources/unmanaged-access-code.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -206,6 +207,13 @@ export class SeamHttpAccessCodesSimulate {
     parameters: AccessCodesSimulateCreateUnmanagedAccessCodeParameters,
     options: AccessCodesSimulateCreateUnmanagedAccessCodeOptions = {},
   ): AccessCodesSimulateCreateUnmanagedAccessCodeRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/access_codes/simulate/create_unmanaged_access_code',
+      true,
+      ['code', 'device_id', 'name'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/simulate/create_unmanaged_access_code',
       method: 'POST',

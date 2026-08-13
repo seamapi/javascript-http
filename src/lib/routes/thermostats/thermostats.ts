@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import type { Device } from 'lib/resources/device.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
@@ -236,6 +237,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsActivateClimatePresetParameters,
     options: ThermostatsActivateClimatePresetOptions = {},
   ): ThermostatsActivateClimatePresetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/activate_climate_preset',
+      true,
+      ['climate_preset_key', 'device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/activate_climate_preset',
       method: 'POST',
@@ -256,6 +264,10 @@ export class SeamHttpThermostats {
     parameters: ThermostatsCoolParameters,
     options: ThermostatsCoolOptions = {},
   ): ThermostatsCoolRequest {
+    assertValidRequestParameters(parameters, '/thermostats/cool', true, [
+      'device_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/cool',
       method: 'POST',
@@ -276,6 +288,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsCreateClimatePresetParameters,
     options: ThermostatsCreateClimatePresetOptions = {},
   ): ThermostatsCreateClimatePresetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/create_climate_preset',
+      true,
+      ['climate_preset_key', 'device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/create_climate_preset',
       method: 'POST',
@@ -292,10 +311,17 @@ export class SeamHttpThermostats {
     parameters: ThermostatsDeleteClimatePresetParameters,
     options: ThermostatsDeleteClimatePresetOptions = {},
   ): ThermostatsDeleteClimatePresetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/delete_climate_preset',
+      true,
+      ['climate_preset_key', 'device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/delete_climate_preset',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -308,6 +334,10 @@ export class SeamHttpThermostats {
     parameters: ThermostatsHeatParameters,
     options: ThermostatsHeatOptions = {},
   ): ThermostatsHeatRequest {
+    assertValidRequestParameters(parameters, '/thermostats/heat', true, [
+      'device_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/heat',
       method: 'POST',
@@ -328,6 +358,10 @@ export class SeamHttpThermostats {
     parameters: ThermostatsHeatCoolParameters,
     options: ThermostatsHeatCoolOptions = {},
   ): ThermostatsHeatCoolRequest {
+    assertValidRequestParameters(parameters, '/thermostats/heat_cool', true, [
+      'device_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/heat_cool',
       method: 'POST',
@@ -348,6 +382,8 @@ export class SeamHttpThermostats {
     parameters?: ThermostatsListParameters,
     options: ThermostatsListOptions = {},
   ): ThermostatsListRequest {
+    assertValidRequestParameters(parameters, '/thermostats/list', false, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/list',
       method: 'POST',
@@ -364,6 +400,10 @@ export class SeamHttpThermostats {
     parameters: ThermostatsOffParameters,
     options: ThermostatsOffOptions = {},
   ): ThermostatsOffRequest {
+    assertValidRequestParameters(parameters, '/thermostats/off', true, [
+      'device_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/off',
       method: 'POST',
@@ -384,6 +424,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetFallbackClimatePresetParameters,
     options: ThermostatsSetFallbackClimatePresetOptions = {},
   ): ThermostatsSetFallbackClimatePresetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/set_fallback_climate_preset',
+      true,
+      ['climate_preset_key', 'device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_fallback_climate_preset',
       method: 'POST',
@@ -400,6 +447,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetFanModeParameters,
     options: ThermostatsSetFanModeOptions = {},
   ): ThermostatsSetFanModeRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/set_fan_mode',
+      true,
+      ['device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_fan_mode',
       method: 'POST',
@@ -420,6 +474,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetHvacModeParameters,
     options: ThermostatsSetHvacModeOptions = {},
   ): ThermostatsSetHvacModeRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/set_hvac_mode',
+      true,
+      ['device_id', 'hvac_mode_setting'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_hvac_mode',
       method: 'POST',
@@ -440,6 +501,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetTemperatureThresholdParameters,
     options: ThermostatsSetTemperatureThresholdOptions = {},
   ): ThermostatsSetTemperatureThresholdRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/set_temperature_threshold',
+      true,
+      ['device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_temperature_threshold',
       method: 'PATCH',
@@ -456,6 +524,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsUpdateClimatePresetParameters,
     options: ThermostatsUpdateClimatePresetOptions = {},
   ): ThermostatsUpdateClimatePresetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/update_climate_preset',
+      true,
+      ['climate_preset_key', 'device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/update_climate_preset',
       method: 'PATCH',
@@ -472,6 +547,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsUpdateWeeklyProgramParameters,
     options: ThermostatsUpdateWeeklyProgramOptions = {},
   ): ThermostatsUpdateWeeklyProgramRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/update_weekly_program',
+      true,
+      ['device_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/update_weekly_program',
       method: 'POST',
@@ -638,7 +720,7 @@ export type ThermostatsCreateClimatePresetParameters = {
   /**
    * User-friendly name to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
    */
-  name?: string | undefined
+  name?: string | null | undefined
 }
 
 /**
@@ -801,25 +883,9 @@ export type ThermostatsListParameters = {
    */
   connected_account_id?: string | undefined
   /**
-   * Array of IDs of the connected accounts for which you want to list devices.
-   */
-  connected_account_ids?: Array<string> | undefined
-  /**
-   * Timestamp by which to limit returned devices. Returns devices created before this timestamp.
-   */
-  created_before?: string | undefined
-  /**
-   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices.
-   */
-  custom_metadata_has?: Record<string, unknown> | undefined
-  /**
    * Customer key for which you want to list devices.
    */
   customer_key?: string | undefined
-  /**
-   * Array of device IDs for which you want to list devices.
-   */
-  device_ids?: Array<string> | undefined
   /**
    * Device type by which you want to filter thermostat devices.
    */
@@ -845,10 +911,6 @@ export type ThermostatsListParameters = {
       >
     | undefined
   /**
-   * Numerical limit on the number of devices to return.
-   */
-  limit?: number | undefined
-  /**
    * Manufacturer by which you want to filter thermostat devices.
    */
   manufacturer?:
@@ -859,26 +921,6 @@ export type ThermostatsListParameters = {
     | 'smartthings'
     | 'tado'
     | undefined
-  /**
-   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
-   */
-  page_cursor?: string | undefined
-  /**
-   * String for which to search. Filters returned devices to include all records that satisfy a partial match using `device_id` (full or partial UUID prefix, minimum 4 characters), `connected_account_id`, `display_name`, `custom_metadata` or `location.location_name`.
-   */
-  search?: string | undefined
-  /**
-   * ID of the space for which you want to list devices.
-   */
-  space_id?: string | undefined
-  /**
-   * @deprecated Use `space_id`.
-   */
-  unstable_location_id?: string | undefined
-  /**
-   * Your own internal user ID for the user for which you want to list devices.
-   */
-  user_identifier_key?: string | undefined
 }
 
 /**
@@ -1077,19 +1119,19 @@ export type ThermostatsSetTemperatureThresholdParameters = {
   /**
    * Lower temperature limit in in °C. Seam alerts you if the reported temperature is lower than this value. You can specify either `lower_limit` but not both.
    */
-  lower_limit_celsius?: number | undefined
+  lower_limit_celsius?: number | null | undefined
   /**
    * Lower temperature limit in in °F. Seam alerts you if the reported temperature is lower than this value. You can specify either `lower_limit` but not both.
    */
-  lower_limit_fahrenheit?: number | undefined
+  lower_limit_fahrenheit?: number | null | undefined
   /**
    * Upper temperature limit in in °C. Seam alerts you if the reported temperature is higher than this value. You can specify either `upper_limit` but not both.
    */
-  upper_limit_celsius?: number | undefined
+  upper_limit_celsius?: number | null | undefined
   /**
    * Upper temperature limit in in °C. Seam alerts you if the reported temperature is higher than this value. You can specify either `upper_limit` but not both.
    */
-  upper_limit_fahrenheit?: number | undefined
+  upper_limit_fahrenheit?: number | null | undefined
 }
 
 /**
@@ -1183,7 +1225,7 @@ export type ThermostatsUpdateClimatePresetParameters = {
   /**
    * User-friendly name to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
    */
-  name?: string | undefined
+  name?: string | null | undefined
 }
 
 /**
@@ -1218,31 +1260,31 @@ export type ThermostatsUpdateWeeklyProgramParameters = {
   /**
    * ID of the thermostat daily program to run on Fridays.
    */
-  friday_program_id?: string | undefined
+  friday_program_id?: string | null | undefined
   /**
    * ID of the thermostat daily program to run on Mondays.
    */
-  monday_program_id?: string | undefined
+  monday_program_id?: string | null | undefined
   /**
    * ID of the thermostat daily program to run on Saturdays.
    */
-  saturday_program_id?: string | undefined
+  saturday_program_id?: string | null | undefined
   /**
    * ID of the thermostat daily program to run on Sundays.
    */
-  sunday_program_id?: string | undefined
+  sunday_program_id?: string | null | undefined
   /**
    * ID of the thermostat daily program to run on Thursdays.
    */
-  thursday_program_id?: string | undefined
+  thursday_program_id?: string | null | undefined
   /**
    * ID of the thermostat daily program to run on Tuesdays.
    */
-  tuesday_program_id?: string | undefined
+  tuesday_program_id?: string | null | undefined
   /**
    * ID of the thermostat daily program to run on Wednesdays.
    */
-  wednesday_program_id?: string | undefined
+  wednesday_program_id?: string | null | undefined
 }
 
 /**

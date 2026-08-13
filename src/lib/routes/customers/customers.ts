@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { CustomerPortal } from 'lib/resources/customer-portal.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -206,6 +207,13 @@ export class SeamHttpCustomers {
     parameters?: CustomersCreatePortalParameters,
     options: CustomersCreatePortalOptions = {},
   ): CustomersCreatePortalRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/customers/create_portal',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/customers/create_portal',
       method: 'POST',
@@ -223,6 +231,13 @@ export class SeamHttpCustomers {
     parameters?: CustomersDeleteDataParameters,
     options: CustomersDeleteDataOptions = {},
   ): CustomersDeleteDataRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/customers/delete_data',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/customers/delete_data',
       method: 'POST',
@@ -239,6 +254,10 @@ export class SeamHttpCustomers {
     parameters: CustomersPushDataParameters,
     options: CustomersPushDataOptions = {},
   ): CustomersPushDataRequest {
+    assertValidRequestParameters(parameters, '/customers/push_data', true, [
+      'customer_key',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/customers/push_data',
       method: 'POST',
@@ -269,7 +288,7 @@ export type CustomersCreatePortalParameters = {
         /**
          * The value to compare against.
          */
-        value?: {} | undefined
+        value?: string | undefined
       }>
     | undefined
   /**
@@ -927,19 +946,19 @@ export type CustomersCreatePortalParameters = {
                     /**
                      * Postal address for the space.
                      */
-                    address?: string | undefined
+                    address?: string | null | undefined
                     /**
                      * Default check-in time for reservations at the space, as HH:mm or HH:mm:ss.
                      */
-                    default_checkin_time?: string | undefined
+                    default_checkin_time?: string | null | undefined
                     /**
                      * Default check-out time for reservations at the space, as HH:mm or HH:mm:ss.
                      */
-                    default_checkout_time?: string | undefined
+                    default_checkout_time?: string | null | undefined
                     /**
                      * IANA time zone for the space, e.g. America/Los_Angeles.
                      */
-                    time_zone?: string | undefined
+                    time_zone?: string | null | undefined
                   }
                 | undefined
               /**
@@ -1690,19 +1709,19 @@ export type CustomersPushDataParameters = {
               /**
                * Postal address for the space.
                */
-              address?: string | undefined
+              address?: string | null | undefined
               /**
                * Default check-in time for reservations at the space, as HH:mm or HH:mm:ss.
                */
-              default_checkin_time?: string | undefined
+              default_checkin_time?: string | null | undefined
               /**
                * Default check-out time for reservations at the space, as HH:mm or HH:mm:ss.
                */
-              default_checkout_time?: string | undefined
+              default_checkout_time?: string | null | undefined
               /**
                * IANA time zone for the space, e.g. America/Los_Angeles.
                */
-              time_zone?: string | undefined
+              time_zone?: string | null | undefined
             }
           | undefined
         /**

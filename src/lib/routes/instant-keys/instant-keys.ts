@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { InstantKey } from 'lib/resources/instant-key.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -206,10 +210,14 @@ export class SeamHttpInstantKeys {
     parameters: InstantKeysDeleteParameters,
     options: InstantKeysDeleteOptions = {},
   ): InstantKeysDeleteRequest {
+    assertValidRequestParameters(parameters, '/instant_keys/delete', true, [
+      'instant_key_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -219,13 +227,15 @@ export class SeamHttpInstantKeys {
    * Gets an [instant key](https://docs.seam.co/capability-guides/instant-keys).
    */
   get(
-    parameters?: InstantKeysGetParameters,
+    parameters: InstantKeysGetParameters,
     options: InstantKeysGetOptions = {},
   ): InstantKeysGetRequest {
+    assertValidRequestParameters(parameters, '/instant_keys/get', true, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'instant_key',
       options,
     })
@@ -238,10 +248,12 @@ export class SeamHttpInstantKeys {
     parameters?: InstantKeysListParameters,
     options: InstantKeysListOptions = {},
   ): InstantKeysListRequest {
+    assertValidRequestParameters(parameters, '/instant_keys/list', false, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'instant_keys',
       options,
     })
@@ -278,7 +290,7 @@ export interface InstantKeysDeleteOptions {}
 /**
  * Parameters for `SeamHttpInstantKeys.get`.
  */
-export type InstantKeysGetParameters = {
+export type InstantKeysGetParameters = RequireAtLeastOne<{
   /**
    * ID of the instant key to get.
    */
@@ -287,7 +299,7 @@ export type InstantKeysGetParameters = {
    * URL of the instant key to get.
    */
   instant_key_url?: string | undefined
-}
+}>
 
 /**
  * Response from `SeamHttpInstantKeys.get`.

@@ -28,6 +28,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import {
+  assertValidRequestParameters,
+  type RequireAtLeastOne,
+} from 'lib/request-parameters.js'
 import type { ConnectedAccount } from 'lib/resources/connected-account.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -222,10 +226,17 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsDeleteParameters,
     options: ConnectedAccountsDeleteOptions = {},
   ): ConnectedAccountsDeleteRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/connected_accounts/delete',
+      true,
+      ['connected_account_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -235,9 +246,16 @@ export class SeamHttpConnectedAccounts {
    * Returns a specified [connected account](https://docs.seam.co/core-concepts/connected-accounts).
    */
   get(
-    parameters?: ConnectedAccountsGetParameters,
+    parameters: ConnectedAccountsGetParameters,
     options: ConnectedAccountsGetOptions = {},
   ): ConnectedAccountsGetRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/connected_accounts/get',
+      true,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/get',
       method: 'GET',
@@ -254,6 +272,13 @@ export class SeamHttpConnectedAccounts {
     parameters?: ConnectedAccountsListParameters,
     options: ConnectedAccountsListOptions = {},
   ): ConnectedAccountsListRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/connected_accounts/list',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/list',
       method: 'POST',
@@ -270,6 +295,10 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsSyncParameters,
     options: ConnectedAccountsSyncOptions = {},
   ): ConnectedAccountsSyncRequest {
+    assertValidRequestParameters(parameters, '/connected_accounts/sync', true, [
+      'connected_account_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/sync',
       method: 'POST',
@@ -286,6 +315,13 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsUpdateParameters,
     options: ConnectedAccountsUpdateOptions = {},
   ): ConnectedAccountsUpdateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/connected_accounts/update',
+      true,
+      ['connected_account_id'],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/update',
       method: 'PATCH',
@@ -326,7 +362,7 @@ export interface ConnectedAccountsDeleteOptions {}
 /**
  * Parameters for `SeamHttpConnectedAccounts.get`.
  */
-export type ConnectedAccountsGetParameters = {
+export type ConnectedAccountsGetParameters = RequireAtLeastOne<{
   /**
    * ID of the connected account that you want to get.
    */
@@ -335,7 +371,7 @@ export type ConnectedAccountsGetParameters = {
    * Email address associated with the connected account that you want to get.
    */
   email?: string | undefined
-}
+}>
 
 /**
  * Response from `SeamHttpConnectedAccounts.get`.
@@ -378,7 +414,7 @@ export type ConnectedAccountsListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned connected accounts to include all records that satisfy a partial match using `connected_account_id`, `account_type`, `customer_key`, `custom_metadata`, `user_identifier.username`, `user_identifier.email` or `user_identifier.phone`.
    */

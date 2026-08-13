@@ -1005,7 +1005,7 @@ export class SeamHttpEndpoints {
    * You must specify either `access_code_id` or both `device_id` and `code`.
    */
   get '/access_codes/get'(): (
-    parameters?: AccessCodesGetParameters,
+    parameters: AccessCodesGetParameters,
     options?: AccessCodesGetOptions,
   ) => AccessCodesGetRequest {
     const { client, defaults } = this
@@ -1023,7 +1023,7 @@ export class SeamHttpEndpoints {
    * Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
    */
   get '/access_codes/list'(): (
-    parameters?: AccessCodesListParameters,
+    parameters: AccessCodesListParameters,
     options?: AccessCodesListOptions,
   ) => AccessCodesListRequest {
     const { client, defaults } = this
@@ -1175,7 +1175,7 @@ export class SeamHttpEndpoints {
    * You must specify either `access_code_id` or both `device_id` and `code`.
    */
   get '/access_codes/unmanaged/get'(): (
-    parameters?: AccessCodesUnmanagedGetParameters,
+    parameters: AccessCodesUnmanagedGetParameters,
     options?: AccessCodesUnmanagedGetOptions,
   ) => AccessCodesUnmanagedGetRequest {
     const { client, defaults } = this
@@ -1255,7 +1255,7 @@ export class SeamHttpEndpoints {
    * Get an Access Grant.
    */
   get '/access_grants/get'(): (
-    parameters?: AccessGrantsGetParameters,
+    parameters: AccessGrantsGetParameters,
     options?: AccessGrantsGetOptions,
   ) => AccessGrantsGetRequest {
     const { client, defaults } = this
@@ -1271,7 +1271,7 @@ export class SeamHttpEndpoints {
    * Gets all related resources for one or more Access Grants.
    */
   get '/access_grants/get_related'(): (
-    parameters?: AccessGrantsGetRelatedParameters,
+    parameters: AccessGrantsGetRelatedParameters,
     options?: AccessGrantsGetRelatedOptions,
   ) => AccessGrantsGetRelatedRequest {
     const { client, defaults } = this
@@ -1319,7 +1319,7 @@ export class SeamHttpEndpoints {
    * Updates an existing Access Grant's time window.
    */
   get '/access_grants/update'(): (
-    parameters?: AccessGrantsUpdateParameters,
+    parameters: AccessGrantsUpdateParameters,
     options?: AccessGrantsUpdateOptions,
   ) => AccessGrantsUpdateRequest {
     const { client, defaults } = this
@@ -1403,7 +1403,7 @@ export class SeamHttpEndpoints {
    * Deletes an access method.
    */
   get '/access_methods/delete'(): (
-    parameters?: AccessMethodsDeleteParameters,
+    parameters: AccessMethodsDeleteParameters,
     options?: AccessMethodsDeleteOptions,
   ) => AccessMethodsDeleteRequest {
     const { client, defaults } = this
@@ -1467,7 +1467,7 @@ export class SeamHttpEndpoints {
    * Lists all access methods, usually filtered by Access Grant.
    */
   get '/access_methods/list'(): (
-    parameters?: AccessMethodsListParameters,
+    parameters: AccessMethodsListParameters,
     options?: AccessMethodsListOptions,
   ) => AccessMethodsListRequest {
     const { client, defaults } = this
@@ -2111,7 +2111,7 @@ export class SeamHttpEndpoints {
    * Deletes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) and invalidates the access system user's [credentials](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
    */
   get '/acs/users/delete'(): (
-    parameters?: AcsUsersDeleteParameters,
+    parameters: AcsUsersDeleteParameters,
     options?: AcsUsersDeleteOptions,
   ) => AcsUsersDeleteRequest {
     const { client, defaults } = this
@@ -2127,7 +2127,7 @@ export class SeamHttpEndpoints {
    * Returns a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
    */
   get '/acs/users/get'(): (
-    parameters?: AcsUsersGetParameters,
+    parameters: AcsUsersGetParameters,
     options?: AcsUsersGetOptions,
   ) => AcsUsersGetRequest {
     const { client, defaults } = this
@@ -2159,7 +2159,7 @@ export class SeamHttpEndpoints {
    * Lists the [entrances](https://docs.seam.co/api/acs/entrances) to which a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) has access.
    */
   get '/acs/users/list_accessible_entrances'(): (
-    parameters?: AcsUsersListAccessibleEntrancesParameters,
+    parameters: AcsUsersListAccessibleEntrancesParameters,
     options?: AcsUsersListAccessibleEntrancesOptions,
   ) => AcsUsersListAccessibleEntrancesRequest {
     const { client, defaults } = this
@@ -2191,7 +2191,7 @@ export class SeamHttpEndpoints {
    * Revokes access to all [entrances](https://docs.seam.co/api/acs/entrances) for a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
    */
   get '/acs/users/revoke_access_to_all_entrances'(): (
-    parameters?: AcsUsersRevokeAccessToAllEntrancesParameters,
+    parameters: AcsUsersRevokeAccessToAllEntrancesParameters,
     options?: AcsUsersRevokeAccessToAllEntrancesOptions,
   ) => AcsUsersRevokeAccessToAllEntrancesRequest {
     const { client, defaults } = this
@@ -2207,7 +2207,7 @@ export class SeamHttpEndpoints {
    * [Suspends](https://docs.seam.co/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users#suspend-an-acs-user) a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management). Suspending an access system user revokes their access temporarily. To restore an access system user's access, you can [unsuspend](https://docs.seam.co/api/acs/users/unsuspend) them.
    */
   get '/acs/users/suspend'(): (
-    parameters?: AcsUsersSuspendParameters,
+    parameters: AcsUsersSuspendParameters,
     options?: AcsUsersSuspendOptions,
   ) => AcsUsersSuspendRequest {
     const { client, defaults } = this
@@ -2223,7 +2223,7 @@ export class SeamHttpEndpoints {
    * [Unsuspends](https://docs.seam.co/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users#unsuspend-an-acs-user) a specified suspended [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management). While [suspending an access system user](https://docs.seam.co/api/acs/users/suspend) revokes their access temporarily, unsuspending the access system user restores their access.
    */
   get '/acs/users/unsuspend'(): (
-    parameters?: AcsUsersUnsuspendParameters,
+    parameters: AcsUsersUnsuspendParameters,
     options?: AcsUsersUnsuspendOptions,
   ) => AcsUsersUnsuspendRequest {
     const { client, defaults } = this
@@ -2239,7 +2239,7 @@ export class SeamHttpEndpoints {
    * Updates the properties of a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
    */
   get '/acs/users/update'(): (
-    parameters?: AcsUsersUpdateParameters,
+    parameters: AcsUsersUpdateParameters,
     options?: AcsUsersUpdateOptions,
   ) => AcsUsersUpdateRequest {
     const { client, defaults } = this
@@ -2351,7 +2351,7 @@ export class SeamHttpEndpoints {
    * Grants a [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens) access to one or more resources, such as [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews), [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity), and so on.
    */
   get '/client_sessions/grant_access'(): (
-    parameters?: ClientSessionsGrantAccessParameters,
+    parameters: ClientSessionsGrantAccessParameters,
     options?: ClientSessionsGrantAccessOptions,
   ) => ClientSessionsGrantAccessRequest {
     const { client, defaults } = this
@@ -2495,7 +2495,7 @@ export class SeamHttpEndpoints {
    * Returns a specified [connected account](https://docs.seam.co/core-concepts/connected-accounts).
    */
   get '/connected_accounts/get'(): (
-    parameters?: ConnectedAccountsGetParameters,
+    parameters: ConnectedAccountsGetParameters,
     options?: ConnectedAccountsGetOptions,
   ) => ConnectedAccountsGetRequest {
     const { client, defaults } = this
@@ -2629,7 +2629,7 @@ export class SeamHttpEndpoints {
    * You must specify either `device_id` or `name`.
    */
   get '/devices/get'(): (
-    parameters?: DevicesGetParameters,
+    parameters: DevicesGetParameters,
     options?: DevicesGetOptions,
   ) => DevicesGetRequest {
     const { client, defaults } = this
@@ -2824,7 +2824,7 @@ export class SeamHttpEndpoints {
    * You must specify either `device_id` or `name`.
    */
   get '/devices/unmanaged/get'(): (
-    parameters?: DevicesUnmanagedGetParameters,
+    parameters: DevicesUnmanagedGetParameters,
     options?: DevicesUnmanagedGetOptions,
   ) => DevicesUnmanagedGetRequest {
     const { client, defaults } = this
@@ -2876,7 +2876,7 @@ export class SeamHttpEndpoints {
    * Returns a specified event. This endpoint returns the same event that would be sent to a [webhook](https://docs.seam.co/developer-tools/webhooks), but it enables you to retrieve an event that already took place.
    */
   get '/events/get'(): (
-    parameters?: EventsGetParameters,
+    parameters: EventsGetParameters,
     options?: EventsGetOptions,
   ) => EventsGetRequest {
     const { client, defaults } = this
@@ -2892,7 +2892,7 @@ export class SeamHttpEndpoints {
    * Returns a list of all events. This endpoint returns the same events that would be sent to a [webhook](https://docs.seam.co/developer-tools/webhooks), but it enables you to filter or see events that already took place.
    */
   get '/events/list'(): (
-    parameters?: EventsListParameters,
+    parameters: EventsListParameters,
     options?: EventsListOptions,
   ) => EventsListRequest {
     const { client, defaults } = this
@@ -2924,7 +2924,7 @@ export class SeamHttpEndpoints {
    * Gets an [instant key](https://docs.seam.co/capability-guides/instant-keys).
    */
   get '/instant_keys/get'(): (
-    parameters?: InstantKeysGetParameters,
+    parameters: InstantKeysGetParameters,
     options?: InstantKeysGetOptions,
   ) => InstantKeysGetRequest {
     const { client, defaults } = this
@@ -2974,7 +2974,7 @@ export class SeamHttpEndpoints {
    * @deprecated Use `/devices/get` instead.
    */
   get '/locks/get'(): (
-    parameters?: LocksGetParameters,
+    parameters: LocksGetParameters,
     options?: LocksGetOptions,
   ) => LocksGetRequest {
     const { client, defaults } = this
@@ -3341,7 +3341,7 @@ export class SeamHttpEndpoints {
    * Gets a space.
    */
   get '/spaces/get'(): (
-    parameters?: SpacesGetParameters,
+    parameters: SpacesGetParameters,
     options?: SpacesGetOptions,
   ) => SpacesGetRequest {
     const { client, defaults } = this
@@ -3357,7 +3357,7 @@ export class SeamHttpEndpoints {
    * Gets all related resources for one or more Spaces.
    */
   get '/spaces/get_related'(): (
-    parameters?: SpacesGetRelatedParameters,
+    parameters: SpacesGetRelatedParameters,
     options?: SpacesGetRelatedOptions,
   ) => SpacesGetRelatedRequest {
     const { client, defaults } = this
@@ -3905,7 +3905,7 @@ export class SeamHttpEndpoints {
    * Returns a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   get '/user_identities/get'(): (
-    parameters?: UserIdentitiesGetParameters,
+    parameters: UserIdentitiesGetParameters,
     options?: UserIdentitiesGetOptions,
   ) => UserIdentitiesGetRequest {
     const { client, defaults } = this

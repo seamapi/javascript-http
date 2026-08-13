@@ -14,10 +14,14 @@ test('SeamPaginator: cannot paginate a request with an empty response', async (t
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
 
-  // @ts-expect-error Testing validation
-  t.throws(() => seam.createPaginator(seam.devices.update()), {
-    message: /does not support pagination/,
-  })
+  t.throws(
+    () =>
+      seam.createPaginator(
+        // @ts-expect-error Testing validation of a non-paginated request.
+        seam.devices.update({ device_id: 'test-device-id' }),
+      ),
+    { message: /does not support pagination/ },
+  )
 })
 
 // TODO: Validate the request supports pagination by extending SeamHttpRequest with this knowledge via codegen.

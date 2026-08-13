@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import type { Workspace } from 'lib/resources/workspace.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
@@ -208,6 +209,10 @@ export class SeamHttpWorkspaces {
     parameters: WorkspacesCreateParameters,
     options: WorkspacesCreateOptions = {},
   ): WorkspacesCreateRequest {
+    assertValidRequestParameters(parameters, '/workspaces/create', true, [
+      'name',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/create',
       method: 'POST',
@@ -224,6 +229,8 @@ export class SeamHttpWorkspaces {
     parameters?: WorkspacesGetParameters,
     options: WorkspacesGetOptions = {},
   ): WorkspacesGetRequest {
+    assertValidRequestParameters(parameters, '/workspaces/get', false, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/get',
       method: 'GET',
@@ -240,6 +247,8 @@ export class SeamHttpWorkspaces {
     parameters?: WorkspacesListParameters,
     options: WorkspacesListOptions = {},
   ): WorkspacesListRequest {
+    assertValidRequestParameters(parameters, '/workspaces/list', false, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/list',
       method: 'GET',
@@ -256,6 +265,13 @@ export class SeamHttpWorkspaces {
     parameters?: WorkspacesResetSandboxParameters,
     options: WorkspacesResetSandboxOptions = {},
   ): WorkspacesResetSandboxRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/workspaces/reset_sandbox',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/reset_sandbox',
       method: 'POST',
@@ -276,6 +292,8 @@ export class SeamHttpWorkspaces {
     parameters?: WorkspacesUpdateParameters,
     options: WorkspacesUpdateOptions = {},
   ): WorkspacesUpdateRequest {
+    assertValidRequestParameters(parameters, '/workspaces/update', false, [])
+
     return new SeamHttpRequest(this, {
       pathname: '/workspaces/update',
       method: 'PATCH',
@@ -299,7 +317,7 @@ export type WorkspacesCreateParameters = {
    *
    * @deprecated Use `company_name` instead.
    */
-  connect_partner_name?: string | undefined
+  connect_partner_name?: string | null | undefined
   /**
    * [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews) customizations for the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
    */
@@ -308,19 +326,19 @@ export type WorkspacesCreateParameters = {
         /**
          * Logo shape for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        logo_shape?: 'circle' | 'square' | undefined
+        logo_shape?: 'circle' | 'square' | null | undefined
         /**
          * Primary button color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        primary_button_color?: string | undefined
+        primary_button_color?: string | null | undefined
         /**
          * Primary button text color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        primary_button_text_color?: string | undefined
+        primary_button_text_color?: string | null | undefined
         /**
          * Success message for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the new workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        success_message?: string | undefined
+        success_message?: string | null | undefined
       }
     | undefined
   /**
@@ -468,19 +486,19 @@ export type WorkspacesUpdateParameters = {
         /**
          * Logo shape for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        logo_shape?: 'circle' | 'square' | undefined
+        logo_shape?: 'circle' | 'square' | null | undefined
         /**
          * Primary button color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        primary_button_color?: string | undefined
+        primary_button_color?: string | null | undefined
         /**
          * Primary button text color for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        primary_button_text_color?: string | undefined
+        primary_button_text_color?: string | null | undefined
         /**
          * Success message for [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) in the workspace. See also [Customize the Look and Feel of Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-look-and-feel-of-your-connect-webviews).
          */
-        success_message?: string | undefined
+        success_message?: string | null | undefined
       }
     | undefined
   /**

@@ -28,6 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ConnectWebview } from 'lib/resources/connect-webview.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -212,6 +213,13 @@ export class SeamHttpConnectWebviews {
     parameters?: ConnectWebviewsCreateParameters,
     options: ConnectWebviewsCreateOptions = {},
   ): ConnectWebviewsCreateRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/connect_webviews/create',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/create',
       method: 'POST',
@@ -230,10 +238,14 @@ export class SeamHttpConnectWebviews {
     parameters: ConnectWebviewsDeleteParameters,
     options: ConnectWebviewsDeleteOptions = {},
   ): ConnectWebviewsDeleteRequest {
+    assertValidRequestParameters(parameters, '/connect_webviews/delete', true, [
+      'connect_webview_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -248,10 +260,14 @@ export class SeamHttpConnectWebviews {
     parameters: ConnectWebviewsGetParameters,
     options: ConnectWebviewsGetOptions = {},
   ): ConnectWebviewsGetRequest {
+    assertValidRequestParameters(parameters, '/connect_webviews/get', true, [
+      'connect_webview_id',
+    ])
+
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'connect_webview',
       options,
     })
@@ -264,6 +280,13 @@ export class SeamHttpConnectWebviews {
     parameters?: ConnectWebviewsListParameters,
     options: ConnectWebviewsListOptions = {},
   ): ConnectWebviewsListRequest {
+    assertValidRequestParameters(
+      parameters,
+      '/connect_webviews/list',
+      false,
+      [],
+    )
+
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/list',
       method: 'POST',
@@ -342,6 +365,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'keyincode'
         | 'dormakaba_ambiance'
         | 'ultraloq'
+        | 'yacan'
         | 'dusaw'
         | 'sifely'
         | 'thirty_three_lock'
@@ -500,7 +524,7 @@ export type ConnectWebviewsListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned Connect Webviews to include all records that satisfy a partial match using `connect_webview_id`, `accepted_providers`, `custom_metadata`, or `customer_key`.
    */
