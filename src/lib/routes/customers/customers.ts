@@ -166,7 +166,12 @@ export class SeamHttpCustomers {
     parameters?: CustomersCreatePortalParameters,
     options: CustomersCreatePortalOptions = {},
   ): CustomersCreatePortalRequest {
-    assertValidRequestParameters(parameters, '/customers/create_portal', false)
+    assertValidRequestParameters(
+      parameters,
+      '/customers/create_portal',
+      false,
+      [],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/customers/create_portal',
@@ -185,7 +190,12 @@ export class SeamHttpCustomers {
     parameters?: CustomersDeleteDataParameters,
     options: CustomersDeleteDataOptions = {},
   ): CustomersDeleteDataRequest {
-    assertValidRequestParameters(parameters, '/customers/delete_data', false)
+    assertValidRequestParameters(
+      parameters,
+      '/customers/delete_data',
+      false,
+      [],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/customers/delete_data',
@@ -203,7 +213,9 @@ export class SeamHttpCustomers {
     parameters: CustomersPushDataParameters,
     options: CustomersPushDataOptions = {},
   ): CustomersPushDataRequest {
-    assertValidRequestParameters(parameters, '/customers/push_data', true)
+    assertValidRequestParameters(parameters, '/customers/push_data', true, [
+      'customer_key',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/customers/push_data',

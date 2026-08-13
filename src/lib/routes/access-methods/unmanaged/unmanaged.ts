@@ -170,6 +170,7 @@ export class SeamHttpAccessMethodsUnmanaged {
       parameters,
       '/access_methods/unmanaged/get',
       true,
+      ['access_method_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -192,6 +193,7 @@ export class SeamHttpAccessMethodsUnmanaged {
       parameters,
       '/access_methods/unmanaged/list',
       true,
+      ['access_grant_id'],
     )
 
     return new SeamHttpRequest(this, {

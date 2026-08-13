@@ -175,6 +175,7 @@ export class SeamHttpThermostatsDailyPrograms {
       parameters,
       '/thermostats/daily_programs/create',
       true,
+      ['device_id', 'name', 'periods'],
     )
 
     return new SeamHttpRequest(this, {
@@ -197,6 +198,7 @@ export class SeamHttpThermostatsDailyPrograms {
       parameters,
       '/thermostats/daily_programs/delete',
       true,
+      ['thermostat_daily_program_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -219,6 +221,7 @@ export class SeamHttpThermostatsDailyPrograms {
       parameters,
       '/thermostats/daily_programs/update',
       true,
+      ['name', 'periods', 'thermostat_daily_program_id'],
     )
 
     return new SeamHttpRequest(this, {

@@ -191,6 +191,7 @@ export class SeamHttpThermostats {
       parameters,
       '/thermostats/activate_climate_preset',
       true,
+      ['climate_preset_key', 'device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -213,7 +214,9 @@ export class SeamHttpThermostats {
     parameters: ThermostatsCoolParameters,
     options: ThermostatsCoolOptions = {},
   ): ThermostatsCoolRequest {
-    assertValidRequestParameters(parameters, '/thermostats/cool', true)
+    assertValidRequestParameters(parameters, '/thermostats/cool', true, [
+      'device_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/cool',
@@ -239,6 +242,7 @@ export class SeamHttpThermostats {
       parameters,
       '/thermostats/create_climate_preset',
       true,
+      ['climate_preset_key', 'device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -261,6 +265,7 @@ export class SeamHttpThermostats {
       parameters,
       '/thermostats/delete_climate_preset',
       true,
+      ['climate_preset_key', 'device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -279,7 +284,9 @@ export class SeamHttpThermostats {
     parameters: ThermostatsHeatParameters,
     options: ThermostatsHeatOptions = {},
   ): ThermostatsHeatRequest {
-    assertValidRequestParameters(parameters, '/thermostats/heat', true)
+    assertValidRequestParameters(parameters, '/thermostats/heat', true, [
+      'device_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/heat',
@@ -301,7 +308,9 @@ export class SeamHttpThermostats {
     parameters: ThermostatsHeatCoolParameters,
     options: ThermostatsHeatCoolOptions = {},
   ): ThermostatsHeatCoolRequest {
-    assertValidRequestParameters(parameters, '/thermostats/heat_cool', true)
+    assertValidRequestParameters(parameters, '/thermostats/heat_cool', true, [
+      'device_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/heat_cool',
@@ -323,7 +332,7 @@ export class SeamHttpThermostats {
     parameters?: ThermostatsListParameters,
     options: ThermostatsListOptions = {},
   ): ThermostatsListRequest {
-    assertValidRequestParameters(parameters, '/thermostats/list', false)
+    assertValidRequestParameters(parameters, '/thermostats/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/list',
@@ -341,7 +350,9 @@ export class SeamHttpThermostats {
     parameters: ThermostatsOffParameters,
     options: ThermostatsOffOptions = {},
   ): ThermostatsOffRequest {
-    assertValidRequestParameters(parameters, '/thermostats/off', true)
+    assertValidRequestParameters(parameters, '/thermostats/off', true, [
+      'device_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/off',
@@ -367,6 +378,7 @@ export class SeamHttpThermostats {
       parameters,
       '/thermostats/set_fallback_climate_preset',
       true,
+      ['climate_preset_key', 'device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -385,7 +397,12 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetFanModeParameters,
     options: ThermostatsSetFanModeOptions = {},
   ): ThermostatsSetFanModeRequest {
-    assertValidRequestParameters(parameters, '/thermostats/set_fan_mode', true)
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/set_fan_mode',
+      true,
+      ['device_id'],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_fan_mode',
@@ -407,7 +424,12 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetHvacModeParameters,
     options: ThermostatsSetHvacModeOptions = {},
   ): ThermostatsSetHvacModeRequest {
-    assertValidRequestParameters(parameters, '/thermostats/set_hvac_mode', true)
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/set_hvac_mode',
+      true,
+      ['device_id', 'hvac_mode_setting'],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_hvac_mode',
@@ -433,6 +455,7 @@ export class SeamHttpThermostats {
       parameters,
       '/thermostats/set_temperature_threshold',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -455,6 +478,7 @@ export class SeamHttpThermostats {
       parameters,
       '/thermostats/update_climate_preset',
       true,
+      ['climate_preset_key', 'device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -477,6 +501,7 @@ export class SeamHttpThermostats {
       parameters,
       '/thermostats/update_weekly_program',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {

@@ -169,6 +169,7 @@ export class SeamHttpAcsEncodersSimulate {
       parameters,
       '/acs/encoders/simulate/next_credential_encode_will_fail',
       true,
+      ['acs_encoder_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -191,6 +192,7 @@ export class SeamHttpAcsEncodersSimulate {
       parameters,
       '/acs/encoders/simulate/next_credential_encode_will_succeed',
       true,
+      ['acs_encoder_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -213,6 +215,7 @@ export class SeamHttpAcsEncodersSimulate {
       parameters,
       '/acs/encoders/simulate/next_credential_scan_will_fail',
       true,
+      ['acs_encoder_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -235,6 +238,7 @@ export class SeamHttpAcsEncodersSimulate {
       parameters,
       '/acs/encoders/simulate/next_credential_scan_will_succeed',
       true,
+      ['acs_encoder_id'],
     )
 
     return new SeamHttpRequest(this, {

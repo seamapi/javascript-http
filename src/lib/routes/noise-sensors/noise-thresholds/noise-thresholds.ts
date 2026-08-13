@@ -173,6 +173,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
       parameters,
       '/noise_sensors/noise_thresholds/create',
       true,
+      ['device_id', 'ends_daily_at', 'starts_daily_at'],
     )
 
     return new SeamHttpRequest(this, {
@@ -195,6 +196,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
       parameters,
       '/noise_sensors/noise_thresholds/delete',
       true,
+      ['device_id', 'noise_threshold_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -217,6 +219,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
       parameters,
       '/noise_sensors/noise_thresholds/get',
       true,
+      ['noise_threshold_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -239,6 +242,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
       parameters,
       '/noise_sensors/noise_thresholds/list',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -261,6 +265,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
       parameters,
       '/noise_sensors/noise_thresholds/update',
       true,
+      ['device_id', 'noise_threshold_id'],
     )
 
     return new SeamHttpRequest(this, {

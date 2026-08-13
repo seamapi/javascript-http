@@ -166,7 +166,7 @@ export class SeamHttpWebhooks {
     parameters: WebhooksCreateParameters,
     options: WebhooksCreateOptions = {},
   ): WebhooksCreateRequest {
-    assertValidRequestParameters(parameters, '/webhooks/create', true)
+    assertValidRequestParameters(parameters, '/webhooks/create', true, ['url'])
 
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/create',
@@ -184,7 +184,9 @@ export class SeamHttpWebhooks {
     parameters: WebhooksDeleteParameters,
     options: WebhooksDeleteOptions = {},
   ): WebhooksDeleteRequest {
-    assertValidRequestParameters(parameters, '/webhooks/delete', true)
+    assertValidRequestParameters(parameters, '/webhooks/delete', true, [
+      'webhook_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/delete',
@@ -202,7 +204,9 @@ export class SeamHttpWebhooks {
     parameters: WebhooksGetParameters,
     options: WebhooksGetOptions = {},
   ): WebhooksGetRequest {
-    assertValidRequestParameters(parameters, '/webhooks/get', true)
+    assertValidRequestParameters(parameters, '/webhooks/get', true, [
+      'webhook_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/get',
@@ -220,7 +224,7 @@ export class SeamHttpWebhooks {
     parameters?: WebhooksListParameters,
     options: WebhooksListOptions = {},
   ): WebhooksListRequest {
-    assertValidRequestParameters(parameters, '/webhooks/list', false)
+    assertValidRequestParameters(parameters, '/webhooks/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/list',
@@ -238,7 +242,10 @@ export class SeamHttpWebhooks {
     parameters: WebhooksUpdateParameters,
     options: WebhooksUpdateOptions = {},
   ): WebhooksUpdateRequest {
-    assertValidRequestParameters(parameters, '/webhooks/update', true)
+    assertValidRequestParameters(parameters, '/webhooks/update', true, [
+      'event_types',
+      'webhook_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/webhooks/update',

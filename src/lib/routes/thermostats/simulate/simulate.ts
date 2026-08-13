@@ -169,6 +169,7 @@ export class SeamHttpThermostatsSimulate {
       parameters,
       '/thermostats/simulate/hvac_mode_adjusted',
       true,
+      ['device_id', 'hvac_mode'],
     )
 
     return new SeamHttpRequest(this, {
@@ -191,6 +192,7 @@ export class SeamHttpThermostatsSimulate {
       parameters,
       '/thermostats/simulate/temperature_reached',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {

@@ -183,7 +183,7 @@ export class SeamHttpDevices {
     parameters: DevicesGetParameters,
     options: DevicesGetOptions = {},
   ): DevicesGetRequest {
-    assertValidRequestParameters(parameters, '/devices/get', true)
+    assertValidRequestParameters(parameters, '/devices/get', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/devices/get',
@@ -201,7 +201,7 @@ export class SeamHttpDevices {
     parameters?: DevicesListParameters,
     options: DevicesListOptions = {},
   ): DevicesListRequest {
-    assertValidRequestParameters(parameters, '/devices/list', false)
+    assertValidRequestParameters(parameters, '/devices/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/devices/list',
@@ -227,6 +227,7 @@ export class SeamHttpDevices {
       parameters,
       '/devices/list_device_providers',
       false,
+      [],
     )
 
     return new SeamHttpRequest(this, {
@@ -249,6 +250,7 @@ export class SeamHttpDevices {
       parameters,
       '/devices/report_provider_metadata',
       true,
+      ['devices'],
     )
 
     return new SeamHttpRequest(this, {
@@ -269,7 +271,9 @@ export class SeamHttpDevices {
     parameters: DevicesUpdateParameters,
     options: DevicesUpdateOptions = {},
   ): DevicesUpdateRequest {
-    assertValidRequestParameters(parameters, '/devices/update', true)
+    assertValidRequestParameters(parameters, '/devices/update', true, [
+      'device_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/devices/update',

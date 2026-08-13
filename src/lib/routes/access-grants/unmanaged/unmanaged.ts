@@ -170,6 +170,7 @@ export class SeamHttpAccessGrantsUnmanaged {
       parameters,
       '/access_grants/unmanaged/get',
       true,
+      ['access_grant_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -192,6 +193,7 @@ export class SeamHttpAccessGrantsUnmanaged {
       parameters,
       '/access_grants/unmanaged/list',
       false,
+      [],
     )
 
     return new SeamHttpRequest(this, {
@@ -218,6 +220,7 @@ export class SeamHttpAccessGrantsUnmanaged {
       parameters,
       '/access_grants/unmanaged/update',
       true,
+      ['access_grant_id', 'is_managed'],
     )
 
     return new SeamHttpRequest(this, {

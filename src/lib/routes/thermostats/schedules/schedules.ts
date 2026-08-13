@@ -170,6 +170,7 @@ export class SeamHttpThermostatsSchedules {
       parameters,
       '/thermostats/schedules/create',
       true,
+      ['climate_preset_key', 'device_id', 'ends_at', 'starts_at'],
     )
 
     return new SeamHttpRequest(this, {
@@ -192,6 +193,7 @@ export class SeamHttpThermostatsSchedules {
       parameters,
       '/thermostats/schedules/delete',
       true,
+      ['thermostat_schedule_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -210,7 +212,12 @@ export class SeamHttpThermostatsSchedules {
     parameters: ThermostatsSchedulesGetParameters,
     options: ThermostatsSchedulesGetOptions = {},
   ): ThermostatsSchedulesGetRequest {
-    assertValidRequestParameters(parameters, '/thermostats/schedules/get', true)
+    assertValidRequestParameters(
+      parameters,
+      '/thermostats/schedules/get',
+      true,
+      ['thermostat_schedule_id'],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/schedules/get',
@@ -232,6 +239,7 @@ export class SeamHttpThermostatsSchedules {
       parameters,
       '/thermostats/schedules/list',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -254,6 +262,7 @@ export class SeamHttpThermostatsSchedules {
       parameters,
       '/thermostats/schedules/update',
       true,
+      ['thermostat_schedule_id'],
     )
 
     return new SeamHttpRequest(this, {

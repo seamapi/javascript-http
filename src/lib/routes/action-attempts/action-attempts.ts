@@ -166,7 +166,9 @@ export class SeamHttpActionAttempts {
     parameters: ActionAttemptsGetParameters,
     options: ActionAttemptsGetOptions = {},
   ): ActionAttemptsGetRequest {
-    assertValidRequestParameters(parameters, '/action_attempts/get', true)
+    assertValidRequestParameters(parameters, '/action_attempts/get', true, [
+      'action_attempt_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/action_attempts/get',
@@ -188,7 +190,7 @@ export class SeamHttpActionAttempts {
     parameters?: ActionAttemptsListParameters,
     options: ActionAttemptsListOptions = {},
   ): ActionAttemptsListRequest {
-    assertValidRequestParameters(parameters, '/action_attempts/list', false)
+    assertValidRequestParameters(parameters, '/action_attempts/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/action_attempts/list',

@@ -169,7 +169,7 @@ export class SeamHttpEvents {
     parameters: EventsGetParameters,
     options: EventsGetOptions = {},
   ): EventsGetRequest {
-    assertValidRequestParameters(parameters, '/events/get', true)
+    assertValidRequestParameters(parameters, '/events/get', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/events/get',
@@ -187,7 +187,7 @@ export class SeamHttpEvents {
     parameters: EventsListParameters,
     options: EventsListOptions = {},
   ): EventsListRequest {
-    assertValidRequestParameters(parameters, '/events/list', true)
+    assertValidRequestParameters(parameters, '/events/list', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/events/list',

@@ -171,6 +171,7 @@ export class SeamHttpLocksSimulate {
       parameters,
       '/locks/simulate/keypad_code_entry',
       true,
+      ['code', 'device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -197,6 +198,7 @@ export class SeamHttpLocksSimulate {
       parameters,
       '/locks/simulate/manual_lock_via_keypad',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {

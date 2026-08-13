@@ -180,7 +180,7 @@ export class SeamHttpNoiseSensors {
     parameters?: NoiseSensorsListParameters,
     options: NoiseSensorsListOptions = {},
   ): NoiseSensorsListRequest {
-    assertValidRequestParameters(parameters, '/noise_sensors/list', false)
+    assertValidRequestParameters(parameters, '/noise_sensors/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/list',

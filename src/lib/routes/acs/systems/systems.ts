@@ -166,7 +166,9 @@ export class SeamHttpAcsSystems {
     parameters: AcsSystemsGetParameters,
     options: AcsSystemsGetOptions = {},
   ): AcsSystemsGetRequest {
-    assertValidRequestParameters(parameters, '/acs/systems/get', true)
+    assertValidRequestParameters(parameters, '/acs/systems/get', true, [
+      'acs_system_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/get',
@@ -186,7 +188,7 @@ export class SeamHttpAcsSystems {
     parameters?: AcsSystemsListParameters,
     options: AcsSystemsListOptions = {},
   ): AcsSystemsListRequest {
-    assertValidRequestParameters(parameters, '/acs/systems/list', false)
+    assertValidRequestParameters(parameters, '/acs/systems/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/systems/list',
@@ -210,6 +212,7 @@ export class SeamHttpAcsSystems {
       parameters,
       '/acs/systems/list_compatible_credential_manager_acs_systems',
       true,
+      ['acs_system_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -232,6 +235,7 @@ export class SeamHttpAcsSystems {
       parameters,
       '/acs/systems/report_devices',
       true,
+      ['acs_system_id'],
     )
 
     return new SeamHttpRequest(this, {

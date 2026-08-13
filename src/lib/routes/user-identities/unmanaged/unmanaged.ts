@@ -173,6 +173,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
       parameters,
       '/user_identities/unmanaged/get',
       true,
+      ['user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -195,6 +196,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
       parameters,
       '/user_identities/unmanaged/list',
       false,
+      [],
     )
 
     return new SeamHttpRequest(this, {
@@ -219,6 +221,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
       parameters,
       '/user_identities/unmanaged/update',
       true,
+      ['is_managed', 'user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {

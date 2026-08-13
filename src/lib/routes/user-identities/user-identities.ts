@@ -191,6 +191,7 @@ export class SeamHttpUserIdentities {
       parameters,
       '/user_identities/add_acs_user',
       true,
+      ['acs_user_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -209,7 +210,12 @@ export class SeamHttpUserIdentities {
     parameters?: UserIdentitiesCreateParameters,
     options: UserIdentitiesCreateOptions = {},
   ): UserIdentitiesCreateRequest {
-    assertValidRequestParameters(parameters, '/user_identities/create', false)
+    assertValidRequestParameters(
+      parameters,
+      '/user_identities/create',
+      false,
+      [],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/create',
@@ -227,7 +233,9 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesDeleteParameters,
     options: UserIdentitiesDeleteOptions = {},
   ): UserIdentitiesDeleteRequest {
-    assertValidRequestParameters(parameters, '/user_identities/delete', true)
+    assertValidRequestParameters(parameters, '/user_identities/delete', true, [
+      'user_identity_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/delete',
@@ -249,6 +257,7 @@ export class SeamHttpUserIdentities {
       parameters,
       '/user_identities/generate_instant_key',
       true,
+      ['user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -267,7 +276,7 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesGetParameters,
     options: UserIdentitiesGetOptions = {},
   ): UserIdentitiesGetRequest {
-    assertValidRequestParameters(parameters, '/user_identities/get', true)
+    assertValidRequestParameters(parameters, '/user_identities/get', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/get',
@@ -289,6 +298,7 @@ export class SeamHttpUserIdentities {
       parameters,
       '/user_identities/grant_access_to_device',
       true,
+      ['device_id', 'user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -307,7 +317,7 @@ export class SeamHttpUserIdentities {
     parameters?: UserIdentitiesListParameters,
     options: UserIdentitiesListOptions = {},
   ): UserIdentitiesListRequest {
-    assertValidRequestParameters(parameters, '/user_identities/list', false)
+    assertValidRequestParameters(parameters, '/user_identities/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list',
@@ -329,6 +339,7 @@ export class SeamHttpUserIdentities {
       parameters,
       '/user_identities/list_accessible_devices',
       true,
+      ['user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -351,6 +362,7 @@ export class SeamHttpUserIdentities {
       parameters,
       '/user_identities/list_accessible_entrances',
       true,
+      ['user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -373,6 +385,7 @@ export class SeamHttpUserIdentities {
       parameters,
       '/user_identities/list_acs_systems',
       true,
+      ['user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -395,6 +408,7 @@ export class SeamHttpUserIdentities {
       parameters,
       '/user_identities/list_acs_users',
       true,
+      ['user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -417,6 +431,7 @@ export class SeamHttpUserIdentities {
       parameters,
       '/user_identities/remove_acs_user',
       true,
+      ['acs_user_id', 'user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -439,6 +454,7 @@ export class SeamHttpUserIdentities {
       parameters,
       '/user_identities/revoke_access_to_device',
       true,
+      ['device_id', 'user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -457,7 +473,9 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesUpdateParameters,
     options: UserIdentitiesUpdateOptions = {},
   ): UserIdentitiesUpdateRequest {
-    assertValidRequestParameters(parameters, '/user_identities/update', true)
+    assertValidRequestParameters(parameters, '/user_identities/update', true, [
+      'user_identity_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/update',

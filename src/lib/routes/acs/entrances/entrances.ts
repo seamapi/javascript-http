@@ -169,7 +169,9 @@ export class SeamHttpAcsEntrances {
     parameters: AcsEntrancesGetParameters,
     options: AcsEntrancesGetOptions = {},
   ): AcsEntrancesGetRequest {
-    assertValidRequestParameters(parameters, '/acs/entrances/get', true)
+    assertValidRequestParameters(parameters, '/acs/entrances/get', true, [
+      'acs_entrance_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/get',
@@ -191,6 +193,7 @@ export class SeamHttpAcsEntrances {
       parameters,
       '/acs/entrances/grant_access',
       true,
+      ['acs_entrance_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -209,7 +212,7 @@ export class SeamHttpAcsEntrances {
     parameters?: AcsEntrancesListParameters,
     options: AcsEntrancesListOptions = {},
   ): AcsEntrancesListRequest {
-    assertValidRequestParameters(parameters, '/acs/entrances/list', false)
+    assertValidRequestParameters(parameters, '/acs/entrances/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/list',
@@ -231,6 +234,7 @@ export class SeamHttpAcsEntrances {
       parameters,
       '/acs/entrances/list_credentials_with_access',
       true,
+      ['acs_entrance_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -249,7 +253,10 @@ export class SeamHttpAcsEntrances {
     parameters: AcsEntrancesUnlockParameters,
     options: AcsEntrancesUnlockOptions = {},
   ): AcsEntrancesUnlockRequest {
-    assertValidRequestParameters(parameters, '/acs/entrances/unlock', true)
+    assertValidRequestParameters(parameters, '/acs/entrances/unlock', true, [
+      'acs_credential_id',
+      'acs_entrance_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/unlock',

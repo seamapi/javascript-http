@@ -169,6 +169,7 @@ export class SeamHttpNoiseSensorsSimulate {
       parameters,
       '/noise_sensors/simulate/trigger_noise_threshold',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {

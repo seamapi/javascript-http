@@ -182,6 +182,7 @@ export class SeamHttpAccessMethods {
       parameters,
       '/access_methods/assign_card',
       true,
+      ['access_method_id', 'card_number'],
     )
 
     return new SeamHttpRequest(this, {
@@ -204,7 +205,7 @@ export class SeamHttpAccessMethods {
     parameters: AccessMethodsDeleteParameters,
     options: AccessMethodsDeleteOptions = {},
   ): AccessMethodsDeleteRequest {
-    assertValidRequestParameters(parameters, '/access_methods/delete', true)
+    assertValidRequestParameters(parameters, '/access_methods/delete', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/delete',
@@ -222,7 +223,10 @@ export class SeamHttpAccessMethods {
     parameters: AccessMethodsEncodeParameters,
     options: AccessMethodsEncodeOptions = {},
   ): AccessMethodsEncodeRequest {
-    assertValidRequestParameters(parameters, '/access_methods/encode', true)
+    assertValidRequestParameters(parameters, '/access_methods/encode', true, [
+      'access_method_id',
+      'acs_encoder_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/encode',
@@ -244,7 +248,9 @@ export class SeamHttpAccessMethods {
     parameters: AccessMethodsGetParameters,
     options: AccessMethodsGetOptions = {},
   ): AccessMethodsGetRequest {
-    assertValidRequestParameters(parameters, '/access_methods/get', true)
+    assertValidRequestParameters(parameters, '/access_methods/get', true, [
+      'access_method_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/get',
@@ -266,6 +272,7 @@ export class SeamHttpAccessMethods {
       parameters,
       '/access_methods/get_related',
       true,
+      ['access_method_ids'],
     )
 
     return new SeamHttpRequest(this, {
@@ -284,7 +291,7 @@ export class SeamHttpAccessMethods {
     parameters: AccessMethodsListParameters,
     options: AccessMethodsListOptions = {},
   ): AccessMethodsListRequest {
-    assertValidRequestParameters(parameters, '/access_methods/list', true)
+    assertValidRequestParameters(parameters, '/access_methods/list', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/list',
@@ -306,6 +313,7 @@ export class SeamHttpAccessMethods {
       parameters,
       '/access_methods/unlock_door',
       true,
+      ['access_method_id', 'acs_entrance_id'],
     )
 
     return new SeamHttpRequest(this, {

@@ -172,7 +172,9 @@ export class SeamHttpPhones {
     parameters: PhonesDeactivateParameters,
     options: PhonesDeactivateOptions = {},
   ): PhonesDeactivateRequest {
-    assertValidRequestParameters(parameters, '/phones/deactivate', true)
+    assertValidRequestParameters(parameters, '/phones/deactivate', true, [
+      'device_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/phones/deactivate',
@@ -190,7 +192,7 @@ export class SeamHttpPhones {
     parameters: PhonesGetParameters,
     options: PhonesGetOptions = {},
   ): PhonesGetRequest {
-    assertValidRequestParameters(parameters, '/phones/get', true)
+    assertValidRequestParameters(parameters, '/phones/get', true, ['device_id'])
 
     return new SeamHttpRequest(this, {
       pathname: '/phones/get',
@@ -208,7 +210,7 @@ export class SeamHttpPhones {
     parameters?: PhonesListParameters,
     options: PhonesListOptions = {},
   ): PhonesListRequest {
-    assertValidRequestParameters(parameters, '/phones/list', false)
+    assertValidRequestParameters(parameters, '/phones/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/phones/list',
