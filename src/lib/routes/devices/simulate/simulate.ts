@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
@@ -165,17 +164,13 @@ export class SeamHttpDevicesSimulate {
     parameters: DevicesSimulateConnectParameters,
     options: DevicesSimulateConnectOptions = {},
   ): DevicesSimulateConnectRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/simulate/connect',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/connect',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: undefined,
       options,
     })
@@ -191,17 +186,13 @@ export class SeamHttpDevicesSimulate {
     parameters: DevicesSimulateConnectToHubParameters,
     options: DevicesSimulateConnectToHubOptions = {},
   ): DevicesSimulateConnectToHubRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/simulate/connect_to_hub',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/connect_to_hub',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: undefined,
       options,
     })
@@ -214,17 +205,13 @@ export class SeamHttpDevicesSimulate {
     parameters: DevicesSimulateDisconnectParameters,
     options: DevicesSimulateDisconnectOptions = {},
   ): DevicesSimulateDisconnectRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/simulate/disconnect',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/disconnect',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: undefined,
       options,
     })
@@ -241,17 +228,13 @@ export class SeamHttpDevicesSimulate {
     parameters: DevicesSimulateDisconnectFromHubParameters,
     options: DevicesSimulateDisconnectFromHubOptions = {},
   ): DevicesSimulateDisconnectFromHubRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/simulate/disconnect_from_hub',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/disconnect_from_hub',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: undefined,
       options,
     })
@@ -266,17 +249,13 @@ export class SeamHttpDevicesSimulate {
     parameters: DevicesSimulatePaidSubscriptionParameters,
     options: DevicesSimulatePaidSubscriptionOptions = {},
   ): DevicesSimulatePaidSubscriptionRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/simulate/paid_subscription',
-      true,
-      ['device_id', 'is_expired'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/paid_subscription',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id', 'is_expired'],
       responseKey: undefined,
       options,
     })
@@ -289,14 +268,13 @@ export class SeamHttpDevicesSimulate {
     parameters: DevicesSimulateRemoveParameters,
     options: DevicesSimulateRemoveOptions = {},
   ): DevicesSimulateRemoveRequest {
-    assertValidRequestParameters(parameters, '/devices/simulate/remove', true, [
-      'device_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/remove',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: undefined,
       options,
     })

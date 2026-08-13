@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { SeamEvent } from 'lib/resources/event.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -169,12 +166,13 @@ export class SeamHttpEvents {
     parameters: EventsGetParameters,
     options: EventsGetOptions = {},
   ): EventsGetRequest {
-    assertValidRequestParameters(parameters, '/events/get', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/events/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'event',
       options,
     })
@@ -187,12 +185,13 @@ export class SeamHttpEvents {
     parameters: EventsListParameters,
     options: EventsListOptions = {},
   ): EventsListRequest {
-    assertValidRequestParameters(parameters, '/events/list', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/events/list',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'events',
       options,
     })

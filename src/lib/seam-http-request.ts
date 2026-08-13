@@ -3,6 +3,7 @@ import type { Method } from 'axios'
 
 import type { Client } from './client.js'
 import type { SeamHttpRequestOptions } from './options.js'
+import { assertValidRequestParameters } from './request-parameters.js'
 import {
   type ActionAttemptsClient,
   resolveActionAttempt,
@@ -22,6 +23,9 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly responseKey: TResponseKey
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
   readonly actionAttempts?: ActionAttemptsClient
+  readonly parameters?: unknown
+  readonly hasRequiredParameters?: boolean
+  readonly requiredParameterNames?: readonly string[]
 }
 
 export class SeamHttpRequest<
@@ -122,6 +126,13 @@ export class SeamHttpRequest<
   }
 
   async fetchResponse(): Promise<TResponse> {
+    assertValidRequestParameters(
+      this.#config.parameters,
+      this.pathname,
+      this.#config.hasRequiredParameters ?? false,
+      this.#config.requiredParameterNames ?? [],
+    )
+
     const { client } = this.#parent
     const response = await client.request({
       url: this.pathname,

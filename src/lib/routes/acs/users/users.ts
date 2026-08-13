@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { AcsEntrance } from 'lib/resources/acs-entrance.js'
 import type { AcsUser } from 'lib/resources/acs-user.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
@@ -170,17 +167,13 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersAddToAccessGroupParameters,
     options: AcsUsersAddToAccessGroupOptions = {},
   ): AcsUsersAddToAccessGroupRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/users/add_to_access_group',
-      true,
-      ['acs_access_group_id', 'acs_user_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/add_to_access_group',
       method: 'PUT',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_access_group_id', 'acs_user_id'],
       responseKey: undefined,
       options,
     })
@@ -193,15 +186,13 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersCreateParameters,
     options: AcsUsersCreateOptions = {},
   ): AcsUsersCreateRequest {
-    assertValidRequestParameters(parameters, '/acs/users/create', true, [
-      'acs_system_id',
-      'full_name',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/create',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_system_id', 'full_name'],
       responseKey: 'acs_user',
       options,
     })
@@ -214,12 +205,13 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersDeleteParameters,
     options: AcsUsersDeleteOptions = {},
   ): AcsUsersDeleteRequest {
-    assertValidRequestParameters(parameters, '/acs/users/delete', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -232,12 +224,13 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersGetParameters,
     options: AcsUsersGetOptions = {},
   ): AcsUsersGetRequest {
-    assertValidRequestParameters(parameters, '/acs/users/get', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'acs_user',
       options,
     })
@@ -250,12 +243,13 @@ export class SeamHttpAcsUsers {
     parameters?: AcsUsersListParameters,
     options: AcsUsersListOptions = {},
   ): AcsUsersListRequest {
-    assertValidRequestParameters(parameters, '/acs/users/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/list',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'acs_users',
       options,
     })
@@ -268,17 +262,13 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersListAccessibleEntrancesParameters,
     options: AcsUsersListAccessibleEntrancesOptions = {},
   ): AcsUsersListAccessibleEntrancesRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/users/list_accessible_entrances',
-      true,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/list_accessible_entrances',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'acs_entrances',
       options,
     })
@@ -291,17 +281,13 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersRemoveFromAccessGroupParameters,
     options: AcsUsersRemoveFromAccessGroupOptions = {},
   ): AcsUsersRemoveFromAccessGroupRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/users/remove_from_access_group',
-      true,
-      ['acs_access_group_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/remove_from_access_group',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_access_group_id'],
       responseKey: undefined,
       options,
     })
@@ -314,17 +300,13 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersRevokeAccessToAllEntrancesParameters,
     options: AcsUsersRevokeAccessToAllEntrancesOptions = {},
   ): AcsUsersRevokeAccessToAllEntrancesRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/users/revoke_access_to_all_entrances',
-      true,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/revoke_access_to_all_entrances',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -337,12 +319,13 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersSuspendParameters,
     options: AcsUsersSuspendOptions = {},
   ): AcsUsersSuspendRequest {
-    assertValidRequestParameters(parameters, '/acs/users/suspend', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/suspend',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -355,12 +338,13 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersUnsuspendParameters,
     options: AcsUsersUnsuspendOptions = {},
   ): AcsUsersUnsuspendRequest {
-    assertValidRequestParameters(parameters, '/acs/users/unsuspend', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/unsuspend',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -373,12 +357,13 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersUpdateParameters,
     options: AcsUsersUpdateOptions = {},
   ): AcsUsersUpdateRequest {
-    assertValidRequestParameters(parameters, '/acs/users/update', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: undefined,
       options,
     })

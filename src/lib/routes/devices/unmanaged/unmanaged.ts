@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { UnmanagedDevice } from 'lib/resources/unmanaged-device.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -173,12 +170,13 @@ export class SeamHttpDevicesUnmanaged {
     parameters: DevicesUnmanagedGetParameters,
     options: DevicesUnmanagedGetOptions = {},
   ): DevicesUnmanagedGetRequest {
-    assertValidRequestParameters(parameters, '/devices/unmanaged/get', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'device',
       options,
     })
@@ -193,17 +191,13 @@ export class SeamHttpDevicesUnmanaged {
     parameters?: DevicesUnmanagedListParameters,
     options: DevicesUnmanagedListOptions = {},
   ): DevicesUnmanagedListRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/unmanaged/list',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/list',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'devices',
       options,
     })
@@ -218,17 +212,13 @@ export class SeamHttpDevicesUnmanaged {
     parameters: DevicesUnmanagedUpdateParameters,
     options: DevicesUnmanagedUpdateOptions = {},
   ): DevicesUnmanagedUpdateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/unmanaged/update',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: undefined,
       options,
     })

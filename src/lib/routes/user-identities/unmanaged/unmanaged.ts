@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { UnmanagedUserIdentity } from 'lib/resources/unmanaged-user-identity.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -169,17 +168,13 @@ export class SeamHttpUserIdentitiesUnmanaged {
     parameters: UserIdentitiesUnmanagedGetParameters,
     options: UserIdentitiesUnmanagedGetOptions = {},
   ): UserIdentitiesUnmanagedGetRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/unmanaged/get',
-      true,
-      ['user_identity_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['user_identity_id'],
       responseKey: 'user_identity',
       options,
     })
@@ -192,17 +187,13 @@ export class SeamHttpUserIdentitiesUnmanaged {
     parameters?: UserIdentitiesUnmanagedListParameters,
     options: UserIdentitiesUnmanagedListOptions = {},
   ): UserIdentitiesUnmanagedListRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/unmanaged/list',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/list',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'user_identities',
       options,
     })
@@ -217,17 +208,13 @@ export class SeamHttpUserIdentitiesUnmanaged {
     parameters: UserIdentitiesUnmanagedUpdateParameters,
     options: UserIdentitiesUnmanagedUpdateOptions = {},
   ): UserIdentitiesUnmanagedUpdateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/unmanaged/update',
-      true,
-      ['is_managed', 'user_identity_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/unmanaged/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['is_managed', 'user_identity_id'],
       responseKey: undefined,
       options,
     })
