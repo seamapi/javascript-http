@@ -106,9 +106,6 @@ test('endpoint accepts required parameters', (t) => {
 })
 
 test('endpoint defers parameter validation until the request is made', (t) => {
-  // A request is a value: callers may build one before deciding to send it, or
-  // to derive a cache key from it, so building must not throw on parameters
-  // that are not ready yet.
   t.notThrows(() => {
     // @ts-expect-error Verify an invalid request still builds.
     seam.devices.get({ device_id: undefined })
