@@ -39,7 +39,7 @@ const isApiErrorResponse = (
 
   if (headers == null) return false
 
-  const contentType = headers['Content-Type']
+  const contentType = headers['content-type']
   if (
     typeof contentType === 'string' &&
     !contentType.startsWith('application/json')

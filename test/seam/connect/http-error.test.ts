@@ -1,13 +1,43 @@
 import test from 'ava'
-import { AxiosError } from 'axios'
+import { AxiosError, AxiosHeaders } from 'axios'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 
 import {
+  errorInterceptor,
   SeamHttp,
   SeamHttpApiError,
   SeamHttpInvalidInputError,
   SeamHttpUnauthorizedError,
 } from '@seamapi/http/connect'
+
+test('SeamHttp: preserves AxiosError for JSON-shaped non-JSON response', async (t) => {
+  const data = {
+    error: {
+      type: 'bad_gateway',
+      message: 'A middlebox returned this error page',
+    },
+  }
+  const err = new AxiosError(
+    'Request failed with status code 502',
+    AxiosError.ERR_BAD_RESPONSE,
+    undefined,
+    undefined,
+    {
+      data,
+      status: 502,
+      statusText: 'Bad Gateway',
+      headers: new AxiosHeaders({ 'content-type': 'text/html; charset=utf-8' }),
+      config: { headers: new AxiosHeaders() },
+    },
+  )
+
+  const thrown = await t.throwsAsync(errorInterceptor(err), {
+    instanceOf: AxiosError,
+  })
+
+  t.is(thrown, err)
+  t.deepEqual(thrown.response?.data, data)
+})
 
 test('SeamHttp: throws AxiosError on non-standard response', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
