@@ -220,8 +220,8 @@ export class SeamHttpAccessCodes {
   ): AccessCodesDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -236,8 +236,8 @@ export class SeamHttpAccessCodes {
   ): AccessCodesGenerateCodeRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/generate_code',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'generated_code',
       options,
     })
@@ -254,8 +254,8 @@ export class SeamHttpAccessCodes {
   ): AccessCodesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_code',
       options,
     })
@@ -614,7 +614,7 @@ export type AccessCodesListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned access codes to include all records that satisfy a partial match using `name`, `code` or `access_code_id`.
    */
@@ -723,18 +723,6 @@ export type AccessCodesUpdateParameters = {
    */
   is_managed?: boolean | undefined
   /**
-   * Indicates whether the access code is an [offline access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/offline-access-codes).
-   */
-  is_offline_access_code?: boolean | undefined
-  /**
-   * Indicates whether the [offline access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/offline-access-codes) is a single-use access code.
-   */
-  is_one_time_use?: boolean | undefined
-  /**
-   * Maximum rounding adjustment. To create a daily-bound [offline access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/offline-access-codes) for devices that support this feature, set this parameter to `1d`.
-   */
-  max_time_rounding?: '1hour' | '1day' | '1h' | '1d' | undefined
-  /**
    * Name of the new access code. Enables administrators and users to identify the access code easily, especially when there are numerous access codes.
    *
    * Note that the name provided on Seam is used to identify the code on Seam and is not necessarily the name that will appear in the lock provider's app or on the device. This is because lock providers may have constraints on names, such as length, uniqueness, or characters that can be used. In addition, some lock providers may break down names into components such as `first_name` and `last_name`.
@@ -745,14 +733,6 @@ export type AccessCodesUpdateParameters = {
    */
   name?: string | undefined
   /**
-   * Indicates whether [native scheduling](https://docs.seam.co/low-level-apis/smart-locks/access-codes#native-scheduling) should be used for time-bound codes when supported by the provider. Default: `true`.
-   */
-  prefer_native_scheduling?: boolean | undefined
-  /**
-   * Preferred code length. Only applicable if you do not specify a `code`. If the affected device does not support the preferred code length, Seam reverts to using the shortest supported code length.
-   */
-  preferred_code_length?: number | undefined
-  /**
    * Date and time at which the validity of the new access code starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
    */
   starts_at?: string | undefined
@@ -760,14 +740,6 @@ export type AccessCodesUpdateParameters = {
    * Type to which you want to convert the access code. To convert a time-bound access code to an ongoing access code, set `type` to `ongoing`. See also [Changing a time-bound access code to permanent access](https://docs.seam.co/low-level-apis/smart-locks/access-codes/modifying-access-codes#special-case-2-changing-a-time-bound-access-code-to-permanent-access).
    */
   type?: 'ongoing' | 'time_bound' | undefined
-  /**
-   * Indicates whether to use a [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) provided by Seam. If `true`, you can use [`/access_codes/pull_backup_access_code`](https://docs.seam.co/api/access_codes/pull_backup_access_code).
-   */
-  use_backup_access_code_pool?: boolean | undefined
-  /**
-   * @deprecated Use `is_offline_access_code` instead.
-   */
-  use_offline_access_code?: boolean | undefined
 }
 
 /**

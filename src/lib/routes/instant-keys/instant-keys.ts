@@ -167,8 +167,8 @@ export class SeamHttpInstantKeys {
   ): InstantKeysDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -183,8 +183,8 @@ export class SeamHttpInstantKeys {
   ): InstantKeysGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'instant_key',
       options,
     })
@@ -199,8 +199,8 @@ export class SeamHttpInstantKeys {
   ): InstantKeysListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'instant_keys',
       options,
     })

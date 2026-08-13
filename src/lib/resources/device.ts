@@ -194,6 +194,7 @@ export type Device = {
     | 'tedee_lock'
     | 'akiles_lock'
     | 'ultraloq_lock'
+    | 'yacan_lock'
     | 'keyincode_lock'
     | 'omnitec_lock'
     | 'kisi_lock'
@@ -261,6 +262,34 @@ export type Device = {
          * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
          */
         error_code: 'salto_ks_subscription_limit_exceeded'
+
+        /**
+         * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
+         */
+        is_connected_account_error: boolean
+
+        /**
+         * Indicates that the error is not a device error.
+         */
+        is_device_error: boolean
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      } /**
+     * Indicates that Seam's integration user does not have sufficient permissions on the provider's system to which this device belongs, so Seam cannot manage access codes or unlock the device. See the error message for specifics, then either reauthorize the connected account in Seam or grant the integration user the required permissions in the provider's system.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at: string
+
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'insufficient_permissions'
 
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
@@ -554,6 +583,10 @@ export type Device = {
          * Name of the device location.
          */
         location_name?: string | undefined
+        /**
+         * Name of the room within the device location, when the provider reports one.
+         */
+        room_name?: string | undefined
         /**
          * Time zone of the device location.
          */
@@ -937,7 +970,7 @@ export type Device = {
           /**
            * Device ID for a dormakaba Oracode device.
            */
-          device_id?: {} | undefined
+          device_id?: string | undefined
           /**
            * Door ID for a dormakaba Oracode device.
            */
@@ -1431,6 +1464,14 @@ export type Device = {
            * Device ID for a Google Nest device.
            */
           nest_device_id?: string | undefined
+          /**
+           * ID of the Google Nest structure containing the device.
+           */
+          nest_structure_id?: string | undefined
+          /**
+           * Name of the Google Nest structure containing the device. The device owner sets this value.
+           */
+          structure_name?: string | undefined
         }
       | undefined
     /**
@@ -1582,7 +1623,7 @@ export type Device = {
       | undefined
     /**
      * Metada for a Salto device.
-     * @deprecated Use `salto_ks_metadata ` instead.
+     * @deprecated Use `salto_ks_metadata` instead.
      */
     salto_metadata?:
       | {
@@ -1675,6 +1716,10 @@ export type Device = {
            * Set to true when the device does not support the /dual-setpoints API endpoint.
            */
           dual_setpoints_not_supported?: boolean | undefined
+          /**
+           * Enforced setpoint range in Celsius for a Sensi device, derived from an OutOfRange API error.
+           */
+          enforced_setpoint_range_celsius?: Array<number> | undefined
           /**
            * Product type for a Sensi device.
            */
@@ -1917,6 +1962,29 @@ export type Device = {
            * Product type for a Wyze device.
            */
           product_type?: string | undefined
+        }
+      | undefined
+    /**
+     * Metadata for a Yacan device.
+     */
+    yacan_metadata?:
+      | {
+          /**
+           * Device ID for a Yacan device.
+           */
+          device_id?: string | undefined
+          /**
+           * Device name for a Yacan device.
+           */
+          device_name?: string | undefined
+          /**
+           * Device type for a Yacan device.
+           */
+          device_type?: string | undefined
+          /**
+           * Serial number for a Yacan device.
+           */
+          serial_number?: string | undefined
         }
       | undefined
     /**
@@ -3189,24 +3257,6 @@ export type Device = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'max_access_codes_reached'
-      } /**
-     * Indicates that the connected Kwikset account has member-level access to this lock's home. Admin or owner access is required to manage access codes and control the lock remotely.
-     */
-    | {
-        /**
-         * Date and time at which Seam created the warning.
-         */
-        created_at: string
-
-        /**
-         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
-         */
-        message: string
-
-        /**
-         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
-         */
-        warning_code: 'insufficient_permissions'
       }
   >
 

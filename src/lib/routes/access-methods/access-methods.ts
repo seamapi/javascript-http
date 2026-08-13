@@ -232,8 +232,8 @@ export class SeamHttpAccessMethods {
   ): AccessMethodsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_method',
       options,
     })
@@ -264,8 +264,8 @@ export class SeamHttpAccessMethods {
   ): AccessMethodsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_methods',
       options,
     })
@@ -473,7 +473,7 @@ export type AccessMethodsListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * ID of the space by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
    */

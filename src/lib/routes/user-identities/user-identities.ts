@@ -217,8 +217,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -297,8 +297,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesListAccessibleDevicesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_accessible_devices',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'devices',
       options,
     })
@@ -313,8 +313,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesListAccessibleEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_accessible_entrances',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_entrances',
       options,
     })
@@ -329,8 +329,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesListAcsSystemsRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_acs_systems',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_systems',
       options,
     })
@@ -345,8 +345,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesListAcsUsersRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_acs_users',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_users',
       options,
     })
@@ -361,8 +361,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesRemoveAcsUserRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/remove_acs_user',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -377,8 +377,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesRevokeAccessToDeviceRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/revoke_access_to_device',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -434,19 +434,19 @@ export type UserIdentitiesCreateParameters = {
   /**
    * Unique email address for the new user identity.
    */
-  email_address?: string | undefined
+  email_address?: string | null | undefined
   /**
    * Full name of the user associated with the new user identity.
    */
-  full_name?: string | undefined
+  full_name?: string | null | undefined
   /**
    * Unique phone number for the new user identity in E.164 format (for example, +15555550100).
    */
-  phone_number?: string | undefined
+  phone_number?: string | null | undefined
   /**
    * Unique key for the new user identity.
    */
-  user_identity_key?: string | undefined
+  user_identity_key?: string | null | undefined
 }
 
 /**
@@ -564,7 +564,7 @@ export type UserIdentitiesListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned user identities to include all records that satisfy a partial match using `full_name`, `phone_number`, `email_address` or `user_identity_id`.
    */
@@ -723,15 +723,15 @@ export type UserIdentitiesUpdateParameters = {
   /**
    * Unique email address for the user identity.
    */
-  email_address?: string | undefined
+  email_address?: string | null | undefined
   /**
    * Full name of the user associated with the user identity.
    */
-  full_name?: string | undefined
+  full_name?: string | null | undefined
   /**
    * Unique phone number for the user identity.
    */
-  phone_number?: string | undefined
+  phone_number?: string | null | undefined
   /**
    * ID of the user identity that you want to update.
    */
@@ -740,7 +740,7 @@ export type UserIdentitiesUpdateParameters = {
   /**
    * Unique key for the user identity.
    */
-  user_identity_key?: string | undefined
+  user_identity_key?: string | null | undefined
 }
 
 /**

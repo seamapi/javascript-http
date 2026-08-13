@@ -170,8 +170,8 @@ export class SeamHttpAcsEntrances {
   ): AcsEntrancesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_entrance',
       options,
     })
@@ -322,11 +322,11 @@ export type AcsEntrancesListParameters = {
   /**
    * @deprecated Use `space_id`.
    */
-  location_id?: string | undefined
+  location_id?: string | null | undefined
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned entrances to include all records that satisfy a partial match using `display_name`.
    */

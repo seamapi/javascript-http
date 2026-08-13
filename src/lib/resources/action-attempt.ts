@@ -224,6 +224,17 @@ export type ActionAttempt =
            */
           acs_user_id?: string | undefined
           /**
+           * Akiles-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           */
+          akiles_metadata?:
+            | {
+                /**
+                 * ID of the Akiles member PIN.
+                 */
+                member_pin_id?: string | undefined
+              }
+            | undefined
+          /**
            * Vostio-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
            */
           assa_abloy_vostio_metadata?:
@@ -312,6 +323,7 @@ export type ActionAttempt =
             | 'salto_ks_tag'
             | 'avigilon_alta_credential'
             | 'kisi_credential'
+            | 'akiles_credential'
             | undefined
           /**
            * Display name that corresponds to the brand-specific terminology for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type.
@@ -421,14 +433,23 @@ export type ActionAttempt =
               | 'being_deleted'
               | 'unknown_issue_with_acs_credential'
               | 'needs_to_be_reissued'
+              | 'requested_code_unavailable'
+
+            /**
+             * The PIN code that was assigned instead.
+             */
+            new_code?: string | undefined
+            /**
+             * The originally requested PIN code that could not be used.
+             */
+            original_code?: string | undefined
           }>
 
           /**
            * ID of the workspace that contains the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
            */
           workspace_id: string
-        }
-
+        } | null
         /**
          * Warnings related to scanning the credential, such as mismatches between the credential data currently encoded on the card and the corresponding data stored on Seam and the access system.
          */
@@ -509,6 +530,17 @@ export type ActionAttempt =
          * ID of the [ACS user](https://docs.seam.co/low-level-apis/access-systems/user-management) to whom the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
          */
         acs_user_id?: string | undefined
+        /**
+         * Akiles-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         */
+        akiles_metadata?:
+          | {
+              /**
+               * ID of the Akiles member PIN.
+               */
+              member_pin_id?: string | undefined
+            }
+          | undefined
         /**
          * Vostio-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
          */
@@ -598,6 +630,7 @@ export type ActionAttempt =
           | 'salto_ks_tag'
           | 'avigilon_alta_credential'
           | 'kisi_credential'
+          | 'akiles_credential'
           | undefined
         /**
          * Display name that corresponds to the brand-specific terminology for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type.
@@ -706,6 +739,16 @@ export type ActionAttempt =
             | 'being_deleted'
             | 'unknown_issue_with_acs_credential'
             | 'needs_to_be_reissued'
+            | 'requested_code_unavailable'
+
+          /**
+           * The PIN code that was assigned instead.
+           */
+          new_code?: string | undefined
+          /**
+           * The originally requested PIN code that could not be used.
+           */
+          original_code?: string | undefined
         }>
 
         /**
@@ -769,6 +812,17 @@ export type ActionAttempt =
          * ID of the [ACS user](https://docs.seam.co/low-level-apis/access-systems/user-management) to whom the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
          */
         acs_user_id?: string | undefined
+        /**
+         * Akiles-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         */
+        akiles_metadata?:
+          | {
+              /**
+               * ID of the Akiles member PIN.
+               */
+              member_pin_id?: string | undefined
+            }
+          | undefined
         /**
          * Vostio-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
          */
@@ -858,6 +912,7 @@ export type ActionAttempt =
           | 'salto_ks_tag'
           | 'avigilon_alta_credential'
           | 'kisi_credential'
+          | 'akiles_credential'
           | undefined
         /**
          * Display name that corresponds to the brand-specific terminology for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type.
@@ -968,6 +1023,16 @@ export type ActionAttempt =
             | 'being_deleted'
             | 'unknown_issue_with_acs_credential'
             | 'needs_to_be_reissued'
+            | 'requested_code_unavailable'
+
+          /**
+           * The PIN code that was assigned instead.
+           */
+          new_code?: string | undefined
+          /**
+           * The originally requested PIN code that could not be used.
+           */
+          original_code?: string | undefined
         }>
 
         /**
@@ -1501,7 +1566,12 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {}
+      result: {
+        /**
+         * Created access code.
+         */
+        access_code: Record<string, unknown>
+      }
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1567,7 +1637,12 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {}
+      result: {
+        /**
+         * Updated access code.
+         */
+        access_code?: Record<string, unknown> | undefined
+      }
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1600,7 +1675,12 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {}
+      result: {
+        /**
+         * Created noise threshold.
+         */
+        noise_threshold: Record<string, unknown>
+      }
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1666,7 +1746,12 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {}
+      result: {
+        /**
+         * Updated noise threshold.
+         */
+        noise_threshold: Record<string, unknown>
+      }
 
       status: 'success' | 'pending' | 'error'
     }

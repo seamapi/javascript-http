@@ -191,8 +191,8 @@ export class SeamHttpConnectWebviews {
   ): ConnectWebviewsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -209,8 +209,8 @@ export class SeamHttpConnectWebviews {
   ): ConnectWebviewsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'connect_webview',
       options,
     })
@@ -298,6 +298,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'keyincode'
         | 'dormakaba_ambiance'
         | 'ultraloq'
+        | 'yacan'
         | 'dusaw'
         | 'sifely'
         | 'thirty_three_lock'
@@ -423,7 +424,7 @@ export type ConnectWebviewsListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned Connect Webviews to include all records that satisfy a partial match using `connect_webview_id`, `accepted_providers`, `custom_metadata`, or `customer_key`.
    */

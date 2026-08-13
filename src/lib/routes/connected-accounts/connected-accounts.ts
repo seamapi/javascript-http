@@ -180,8 +180,8 @@ export class SeamHttpConnectedAccounts {
   ): ConnectedAccountsDeleteRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/delete',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       responseKey: undefined,
       options,
     })
@@ -309,7 +309,7 @@ export type ConnectedAccountsListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned connected accounts to include all records that satisfy a partial match using `connected_account_id`, `account_type`, `customer_key`, `custom_metadata`, `user_identifier.username`, `user_identifier.email` or `user_identifier.phone`.
    */

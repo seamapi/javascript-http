@@ -195,8 +195,8 @@ export class SeamHttpAcsEncoders {
   ): AcsEncodersGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'acs_encoder',
       options,
     })
@@ -211,8 +211,8 @@ export class SeamHttpAcsEncoders {
   ): AcsEncodersListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/list',
-      method: 'GET',
-      params: parameters,
+      method: 'POST',
+      body: parameters,
       responseKey: 'acs_encoders',
       options,
     })
@@ -330,7 +330,7 @@ export type AcsEncodersListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
 }
 
 /**

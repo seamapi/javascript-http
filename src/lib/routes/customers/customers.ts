@@ -225,7 +225,7 @@ export type CustomersCreatePortalParameters = {
         /**
          * The value to compare against.
          */
-        value?: {} | undefined
+        value?: string | undefined
       }>
     | undefined
   /**
@@ -883,19 +883,19 @@ export type CustomersCreatePortalParameters = {
                     /**
                      * Postal address for the space.
                      */
-                    address?: string | undefined
+                    address?: string | null | undefined
                     /**
                      * Default check-in time for reservations at the space, as HH:mm or HH:mm:ss.
                      */
-                    default_checkin_time?: string | undefined
+                    default_checkin_time?: string | null | undefined
                     /**
                      * Default check-out time for reservations at the space, as HH:mm or HH:mm:ss.
                      */
-                    default_checkout_time?: string | undefined
+                    default_checkout_time?: string | null | undefined
                     /**
                      * IANA time zone for the space, e.g. America/Los_Angeles.
                      */
-                    time_zone?: string | undefined
+                    time_zone?: string | null | undefined
                   }
                 | undefined
               /**
@@ -1624,19 +1624,19 @@ export type CustomersPushDataParameters = {
               /**
                * Postal address for the space.
                */
-              address?: string | undefined
+              address?: string | null | undefined
               /**
                * Default check-in time for reservations at the space, as HH:mm or HH:mm:ss.
                */
-              default_checkin_time?: string | undefined
+              default_checkin_time?: string | null | undefined
               /**
                * Default check-out time for reservations at the space, as HH:mm or HH:mm:ss.
                */
-              default_checkout_time?: string | undefined
+              default_checkout_time?: string | null | undefined
               /**
                * IANA time zone for the space, e.g. America/Los_Angeles.
                */
-              time_zone?: string | undefined
+              time_zone?: string | null | undefined
             }
           | undefined
         /**

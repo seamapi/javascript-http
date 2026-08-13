@@ -167,8 +167,8 @@ export class SeamHttpActionAttempts {
   ): ActionAttemptsGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/action_attempts/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -233,7 +233,7 @@ export type ActionAttemptsListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
 }
 
 /**

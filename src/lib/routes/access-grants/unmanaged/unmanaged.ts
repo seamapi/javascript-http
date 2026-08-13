@@ -167,8 +167,8 @@ export class SeamHttpAccessGrantsUnmanaged {
   ): AccessGrantsUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_grant',
       options,
     })
@@ -183,8 +183,8 @@ export class SeamHttpAccessGrantsUnmanaged {
   ): AccessGrantsUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_grants',
       options,
     })
@@ -248,7 +248,7 @@ export type AccessGrantsUnmanagedListParameters = {
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * Filter unmanaged Access Grants by reservation_key.
    */

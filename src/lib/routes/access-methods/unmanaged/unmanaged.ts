@@ -167,8 +167,8 @@ export class SeamHttpAccessMethodsUnmanaged {
   ): AccessMethodsUnmanagedGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/unmanaged/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_method',
       options,
     })
@@ -183,8 +183,8 @@ export class SeamHttpAccessMethodsUnmanaged {
   ): AccessMethodsUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'access_methods',
       options,
     })

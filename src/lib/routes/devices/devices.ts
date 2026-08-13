@@ -181,8 +181,8 @@ export class SeamHttpDevices {
   ): DevicesGetRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/get',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'device',
       options,
     })
@@ -217,8 +217,8 @@ export class SeamHttpDevices {
   ): DevicesListDeviceProvidersRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/list_device_providers',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       responseKey: 'device_providers',
       options,
     })
@@ -338,6 +338,7 @@ export type DevicesListParameters = {
     | 'tedee_lock'
     | 'akiles_lock'
     | 'ultraloq_lock'
+    | 'yacan_lock'
     | 'keyincode_lock'
     | 'omnitec_lock'
     | 'kisi_lock'
@@ -386,6 +387,7 @@ export type DevicesListParameters = {
         | 'tedee_lock'
         | 'akiles_lock'
         | 'ultraloq_lock'
+        | 'yacan_lock'
         | 'keyincode_lock'
         | 'omnitec_lock'
         | 'kisi_lock'
@@ -463,11 +465,12 @@ export type DevicesListParameters = {
     | 'omnitec'
     | 'kisi'
     | 'slack'
+    | 'yacan'
     | undefined
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
-  page_cursor?: string | undefined
+  page_cursor?: string | null | undefined
   /**
    * String for which to search. Filters returned devices to include all records that satisfy a partial match using `device_id` (full or partial UUID prefix, minimum 4 characters), `connected_account_id`, `display_name`, `custom_metadata` or `location.location_name`.
    */
@@ -479,7 +482,7 @@ export type DevicesListParameters = {
   /**
    * @deprecated Use `space_id`.
    */
-  unstable_location_id?: string | undefined
+  unstable_location_id?: string | null | undefined
   /**
    * Your own internal user ID for the user for which you want to list devices.
    */
@@ -1893,14 +1896,14 @@ export type DevicesUpdateParameters = {
   /**
    * Name for the device.
    */
-  name?: string | undefined
+  name?: string | null | undefined
 
   properties?:
     | {
         /**
          * Name for the device.
          */
-        name?: string | undefined
+        name?: string | null | undefined
       }
     | undefined
 }
