@@ -2,6 +2,8 @@
 {{methodName}}
 {{> endpont-method-signature }}
 {
+  assertValidRequestParameters(parameters, '{{path}}', {{hasRequiredParameters}})
+
   return new SeamHttpRequest(this, {
     pathname: '{{path}}',
     method: '{{method}}',

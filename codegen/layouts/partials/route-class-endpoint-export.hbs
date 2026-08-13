@@ -1,4 +1,4 @@
-export type {{parametersTypeName}} = {{> request-object parameters=parameters}}
+export type {{parametersTypeName}} = {{#if requiresAtLeastOneParameter}}RequireAtLeastOne<{{/if}}{{> request-object parameters=parameters}}{{#if requiresAtLeastOneParameter}}>{{/if}}
 
 /**
  * @deprecated Use {{requestTypeName}} instead.
