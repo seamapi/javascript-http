@@ -9,6 +9,7 @@ export const assertValidRequestParameters = (
   parameters: unknown,
   path: string,
   hasRequiredParameters: boolean,
+  requiredParameterNames: string[],
 ): void => {
   if (parameters === undefined) {
     if (hasRequiredParameters) {
@@ -25,9 +26,16 @@ export const assertValidRequestParameters = (
     throw new TypeError(`Parameters for ${path} must be an object`)
   }
 
+  const parameterValues = parameters as Record<string, unknown>
+  for (const name of requiredParameterNames) {
+    if (parameterValues[name] === undefined) {
+      throw new TypeError(`Parameter ${name} is required for ${path}`)
+    }
+  }
+
   if (
     hasRequiredParameters &&
-    Object.values(parameters).every((value) => value === undefined)
+    Object.values(parameterValues).every((value) => value === undefined)
   ) {
     throw new TypeError(`At least one parameter is required for ${path}`)
   }

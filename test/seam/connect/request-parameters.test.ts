@@ -28,6 +28,32 @@ test('endpoint rejects missing required parameters', (t) => {
   )
 })
 
+test('endpoint rejects missing individually required parameters', (t) => {
+  t.throws(
+    () => {
+      // @ts-expect-error Verify required schema properties at runtime.
+      seam.devices.reportProviderMetadata({})
+    },
+    {
+      instanceOf: TypeError,
+      message:
+        'Parameter devices is required for /devices/report_provider_metadata',
+    },
+  )
+
+  t.throws(
+    () => {
+      // @ts-expect-error Verify required schema properties cannot be undefined.
+      seam.devices.reportProviderMetadata({ devices: undefined })
+    },
+    {
+      instanceOf: TypeError,
+      message:
+        'Parameter devices is required for /devices/report_provider_metadata',
+    },
+  )
+})
+
 test('endpoint rejects an empty required parameters object', (t) => {
   t.throws(
     () => {

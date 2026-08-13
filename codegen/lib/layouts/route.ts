@@ -37,6 +37,7 @@ export interface EndpointLayoutContext {
   returnsVoid: boolean
   isOptionalParamsOk: boolean
   hasRequiredParameters: boolean
+  requiredParameterNames: string[]
   requiresAtLeastOneParameter: boolean
   parameters: Parameter[]
   responseIsList: boolean
@@ -149,6 +150,9 @@ export const getEndpointLayoutContext = (
     requestTypeName: `${prefix}Request`,
     isOptionalParamsOk: !endpoint.request.hasRequiredParameters,
     hasRequiredParameters: endpoint.request.hasRequiredParameters,
+    requiredParameterNames: endpoint.request.parameters
+      .filter(({ isRequired }) => isRequired)
+      .map(({ name }) => name),
     requiresAtLeastOneParameter: requiresAtLeastOneParameter(endpoint),
     parameters: endpoint.request.parameters,
     responseIsList: endpoint.response.responseType === 'resource_list',
