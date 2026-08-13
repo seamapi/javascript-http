@@ -27,10 +27,13 @@ export const assertValidRequestParameters = (
   }
 
   const parameterValues = parameters as Record<string, unknown>
-  for (const name of requiredParameterNames) {
-    if (parameterValues[name] === undefined) {
-      throw new TypeError(`Parameter ${name} is required for ${path}`)
-    }
+  const missingParameterNames = requiredParameterNames.filter(
+    (name) => parameterValues[name] === undefined,
+  )
+  if (missingParameterNames.length > 0) {
+    throw new TypeError(
+      `Required parameters missing for ${path}: ${missingParameterNames.join(', ')}`,
+    )
   }
 
   if (

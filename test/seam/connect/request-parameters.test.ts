@@ -37,7 +37,7 @@ test('endpoint rejects missing individually required parameters', (t) => {
     {
       instanceOf: TypeError,
       message:
-        'Parameter devices is required for /devices/report_provider_metadata',
+        'Required parameters missing for /devices/report_provider_metadata: devices',
     },
   )
 
@@ -49,7 +49,19 @@ test('endpoint rejects missing individually required parameters', (t) => {
     {
       instanceOf: TypeError,
       message:
-        'Parameter devices is required for /devices/report_provider_metadata',
+        'Required parameters missing for /devices/report_provider_metadata: devices',
+    },
+  )
+
+  t.throws(
+    () => {
+      // @ts-expect-error Verify all missing required parameters are reported.
+      seam.accessCodes.simulate.createUnmanagedAccessCode({ code: '1234' })
+    },
+    {
+      instanceOf: TypeError,
+      message:
+        'Required parameters missing for /access_codes/simulate/create_unmanaged_access_code: device_id, name',
     },
   )
 })
