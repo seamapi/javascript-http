@@ -172,7 +172,12 @@ export class SeamHttpConnectWebviews {
     parameters?: ConnectWebviewsCreateParameters,
     options: ConnectWebviewsCreateOptions = {},
   ): ConnectWebviewsCreateRequest {
-    assertValidRequestParameters(parameters, '/connect_webviews/create', false)
+    assertValidRequestParameters(
+      parameters,
+      '/connect_webviews/create',
+      false,
+      [],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/create',
@@ -192,7 +197,9 @@ export class SeamHttpConnectWebviews {
     parameters: ConnectWebviewsDeleteParameters,
     options: ConnectWebviewsDeleteOptions = {},
   ): ConnectWebviewsDeleteRequest {
-    assertValidRequestParameters(parameters, '/connect_webviews/delete', true)
+    assertValidRequestParameters(parameters, '/connect_webviews/delete', true, [
+      'connect_webview_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/delete',
@@ -212,7 +219,9 @@ export class SeamHttpConnectWebviews {
     parameters: ConnectWebviewsGetParameters,
     options: ConnectWebviewsGetOptions = {},
   ): ConnectWebviewsGetRequest {
-    assertValidRequestParameters(parameters, '/connect_webviews/get', true)
+    assertValidRequestParameters(parameters, '/connect_webviews/get', true, [
+      'connect_webview_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/get',
@@ -230,7 +239,12 @@ export class SeamHttpConnectWebviews {
     parameters?: ConnectWebviewsListParameters,
     options: ConnectWebviewsListOptions = {},
   ): ConnectWebviewsListRequest {
-    assertValidRequestParameters(parameters, '/connect_webviews/list', false)
+    assertValidRequestParameters(
+      parameters,
+      '/connect_webviews/list',
+      false,
+      [],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/list',

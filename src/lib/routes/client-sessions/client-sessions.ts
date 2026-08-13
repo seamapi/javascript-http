@@ -168,7 +168,12 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsCreateParameters,
     options: ClientSessionsCreateOptions = {},
   ): ClientSessionsCreateRequest {
-    assertValidRequestParameters(parameters, '/client_sessions/create', false)
+    assertValidRequestParameters(
+      parameters,
+      '/client_sessions/create',
+      false,
+      [],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/create',
@@ -186,7 +191,9 @@ export class SeamHttpClientSessions {
     parameters: ClientSessionsDeleteParameters,
     options: ClientSessionsDeleteOptions = {},
   ): ClientSessionsDeleteRequest {
-    assertValidRequestParameters(parameters, '/client_sessions/delete', true)
+    assertValidRequestParameters(parameters, '/client_sessions/delete', true, [
+      'client_session_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/delete',
@@ -204,7 +211,7 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsGetParameters,
     options: ClientSessionsGetOptions = {},
   ): ClientSessionsGetRequest {
-    assertValidRequestParameters(parameters, '/client_sessions/get', false)
+    assertValidRequestParameters(parameters, '/client_sessions/get', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/get',
@@ -226,6 +233,7 @@ export class SeamHttpClientSessions {
       parameters,
       '/client_sessions/get_or_create',
       false,
+      [],
     )
 
     return new SeamHttpRequest(this, {
@@ -248,6 +256,7 @@ export class SeamHttpClientSessions {
       parameters,
       '/client_sessions/grant_access',
       true,
+      [],
     )
 
     return new SeamHttpRequest(this, {
@@ -266,7 +275,7 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsListParameters,
     options: ClientSessionsListOptions = {},
   ): ClientSessionsListRequest {
-    assertValidRequestParameters(parameters, '/client_sessions/list', false)
+    assertValidRequestParameters(parameters, '/client_sessions/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/list',
@@ -286,7 +295,9 @@ export class SeamHttpClientSessions {
     parameters: ClientSessionsRevokeParameters,
     options: ClientSessionsRevokeOptions = {},
   ): ClientSessionsRevokeRequest {
-    assertValidRequestParameters(parameters, '/client_sessions/revoke', true)
+    assertValidRequestParameters(parameters, '/client_sessions/revoke', true, [
+      'client_session_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/revoke',

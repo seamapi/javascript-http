@@ -172,6 +172,7 @@ export class SeamHttpConnectedAccountsSimulate {
       parameters,
       '/connected_accounts/simulate/disconnect',
       true,
+      ['connected_account_id'],
     )
 
     return new SeamHttpRequest(this, {

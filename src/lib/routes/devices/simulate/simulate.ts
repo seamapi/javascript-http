@@ -165,7 +165,12 @@ export class SeamHttpDevicesSimulate {
     parameters: DevicesSimulateConnectParameters,
     options: DevicesSimulateConnectOptions = {},
   ): DevicesSimulateConnectRequest {
-    assertValidRequestParameters(parameters, '/devices/simulate/connect', true)
+    assertValidRequestParameters(
+      parameters,
+      '/devices/simulate/connect',
+      true,
+      ['device_id'],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/connect',
@@ -190,6 +195,7 @@ export class SeamHttpDevicesSimulate {
       parameters,
       '/devices/simulate/connect_to_hub',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -212,6 +218,7 @@ export class SeamHttpDevicesSimulate {
       parameters,
       '/devices/simulate/disconnect',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -238,6 +245,7 @@ export class SeamHttpDevicesSimulate {
       parameters,
       '/devices/simulate/disconnect_from_hub',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -262,6 +270,7 @@ export class SeamHttpDevicesSimulate {
       parameters,
       '/devices/simulate/paid_subscription',
       true,
+      ['device_id', 'is_expired'],
     )
 
     return new SeamHttpRequest(this, {
@@ -280,7 +289,9 @@ export class SeamHttpDevicesSimulate {
     parameters: DevicesSimulateRemoveParameters,
     options: DevicesSimulateRemoveOptions = {},
   ): DevicesSimulateRemoveRequest {
-    assertValidRequestParameters(parameters, '/devices/simulate/remove', true)
+    assertValidRequestParameters(parameters, '/devices/simulate/remove', true, [
+      'device_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/devices/simulate/remove',

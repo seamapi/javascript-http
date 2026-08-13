@@ -170,7 +170,12 @@ export class SeamHttpSpaces {
     parameters: SpacesAddAcsEntrancesParameters,
     options: SpacesAddAcsEntrancesOptions = {},
   ): SpacesAddAcsEntrancesRequest {
-    assertValidRequestParameters(parameters, '/spaces/add_acs_entrances', true)
+    assertValidRequestParameters(
+      parameters,
+      '/spaces/add_acs_entrances',
+      true,
+      ['acs_entrance_ids', 'space_id'],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/spaces/add_acs_entrances',
@@ -192,6 +197,7 @@ export class SeamHttpSpaces {
       parameters,
       '/spaces/add_connected_account',
       true,
+      ['connected_account_id', 'space_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -210,7 +216,10 @@ export class SeamHttpSpaces {
     parameters: SpacesAddDevicesParameters,
     options: SpacesAddDevicesOptions = {},
   ): SpacesAddDevicesRequest {
-    assertValidRequestParameters(parameters, '/spaces/add_devices', true)
+    assertValidRequestParameters(parameters, '/spaces/add_devices', true, [
+      'device_ids',
+      'space_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/spaces/add_devices',
@@ -228,7 +237,7 @@ export class SeamHttpSpaces {
     parameters: SpacesCreateParameters,
     options: SpacesCreateOptions = {},
   ): SpacesCreateRequest {
-    assertValidRequestParameters(parameters, '/spaces/create', true)
+    assertValidRequestParameters(parameters, '/spaces/create', true, ['name'])
 
     return new SeamHttpRequest(this, {
       pathname: '/spaces/create',
@@ -246,7 +255,9 @@ export class SeamHttpSpaces {
     parameters: SpacesDeleteParameters,
     options: SpacesDeleteOptions = {},
   ): SpacesDeleteRequest {
-    assertValidRequestParameters(parameters, '/spaces/delete', true)
+    assertValidRequestParameters(parameters, '/spaces/delete', true, [
+      'space_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/spaces/delete',
@@ -264,7 +275,7 @@ export class SeamHttpSpaces {
     parameters: SpacesGetParameters,
     options: SpacesGetOptions = {},
   ): SpacesGetRequest {
-    assertValidRequestParameters(parameters, '/spaces/get', true)
+    assertValidRequestParameters(parameters, '/spaces/get', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/spaces/get',
@@ -282,7 +293,7 @@ export class SeamHttpSpaces {
     parameters: SpacesGetRelatedParameters,
     options: SpacesGetRelatedOptions = {},
   ): SpacesGetRelatedRequest {
-    assertValidRequestParameters(parameters, '/spaces/get_related', true)
+    assertValidRequestParameters(parameters, '/spaces/get_related', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/spaces/get_related',
@@ -300,7 +311,7 @@ export class SeamHttpSpaces {
     parameters?: SpacesListParameters,
     options: SpacesListOptions = {},
   ): SpacesListRequest {
-    assertValidRequestParameters(parameters, '/spaces/list', false)
+    assertValidRequestParameters(parameters, '/spaces/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/spaces/list',
@@ -322,6 +333,7 @@ export class SeamHttpSpaces {
       parameters,
       '/spaces/remove_acs_entrances',
       true,
+      ['acs_entrance_ids', 'space_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -344,6 +356,7 @@ export class SeamHttpSpaces {
       parameters,
       '/spaces/remove_connected_account',
       true,
+      ['connected_account_id', 'space_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -362,7 +375,10 @@ export class SeamHttpSpaces {
     parameters: SpacesRemoveDevicesParameters,
     options: SpacesRemoveDevicesOptions = {},
   ): SpacesRemoveDevicesRequest {
-    assertValidRequestParameters(parameters, '/spaces/remove_devices', true)
+    assertValidRequestParameters(parameters, '/spaces/remove_devices', true, [
+      'device_ids',
+      'space_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_devices',
@@ -380,7 +396,7 @@ export class SeamHttpSpaces {
     parameters?: SpacesUpdateParameters,
     options: SpacesUpdateOptions = {},
   ): SpacesUpdateRequest {
-    assertValidRequestParameters(parameters, '/spaces/update', false)
+    assertValidRequestParameters(parameters, '/spaces/update', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/spaces/update',

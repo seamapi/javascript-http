@@ -174,6 +174,7 @@ export class SeamHttpAcsUsers {
       parameters,
       '/acs/users/add_to_access_group',
       true,
+      ['acs_access_group_id', 'acs_user_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -192,7 +193,10 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersCreateParameters,
     options: AcsUsersCreateOptions = {},
   ): AcsUsersCreateRequest {
-    assertValidRequestParameters(parameters, '/acs/users/create', true)
+    assertValidRequestParameters(parameters, '/acs/users/create', true, [
+      'acs_system_id',
+      'full_name',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/create',
@@ -210,7 +214,7 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersDeleteParameters,
     options: AcsUsersDeleteOptions = {},
   ): AcsUsersDeleteRequest {
-    assertValidRequestParameters(parameters, '/acs/users/delete', true)
+    assertValidRequestParameters(parameters, '/acs/users/delete', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/delete',
@@ -228,7 +232,7 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersGetParameters,
     options: AcsUsersGetOptions = {},
   ): AcsUsersGetRequest {
-    assertValidRequestParameters(parameters, '/acs/users/get', true)
+    assertValidRequestParameters(parameters, '/acs/users/get', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/get',
@@ -246,7 +250,7 @@ export class SeamHttpAcsUsers {
     parameters?: AcsUsersListParameters,
     options: AcsUsersListOptions = {},
   ): AcsUsersListRequest {
-    assertValidRequestParameters(parameters, '/acs/users/list', false)
+    assertValidRequestParameters(parameters, '/acs/users/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/list',
@@ -268,6 +272,7 @@ export class SeamHttpAcsUsers {
       parameters,
       '/acs/users/list_accessible_entrances',
       true,
+      [],
     )
 
     return new SeamHttpRequest(this, {
@@ -290,6 +295,7 @@ export class SeamHttpAcsUsers {
       parameters,
       '/acs/users/remove_from_access_group',
       true,
+      ['acs_access_group_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -312,6 +318,7 @@ export class SeamHttpAcsUsers {
       parameters,
       '/acs/users/revoke_access_to_all_entrances',
       true,
+      [],
     )
 
     return new SeamHttpRequest(this, {
@@ -330,7 +337,7 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersSuspendParameters,
     options: AcsUsersSuspendOptions = {},
   ): AcsUsersSuspendRequest {
-    assertValidRequestParameters(parameters, '/acs/users/suspend', true)
+    assertValidRequestParameters(parameters, '/acs/users/suspend', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/suspend',
@@ -348,7 +355,7 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersUnsuspendParameters,
     options: AcsUsersUnsuspendOptions = {},
   ): AcsUsersUnsuspendRequest {
-    assertValidRequestParameters(parameters, '/acs/users/unsuspend', true)
+    assertValidRequestParameters(parameters, '/acs/users/unsuspend', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/unsuspend',
@@ -366,7 +373,7 @@ export class SeamHttpAcsUsers {
     parameters: AcsUsersUpdateParameters,
     options: AcsUsersUpdateOptions = {},
   ): AcsUsersUpdateRequest {
-    assertValidRequestParameters(parameters, '/acs/users/update', true)
+    assertValidRequestParameters(parameters, '/acs/users/update', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/users/update',

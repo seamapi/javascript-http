@@ -170,6 +170,7 @@ export class SeamHttpAccessCodesSimulate {
       parameters,
       '/access_codes/simulate/create_unmanaged_access_code',
       true,
+      ['code', 'device_id', 'name'],
     )
 
     return new SeamHttpRequest(this, {

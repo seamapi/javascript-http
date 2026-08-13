@@ -177,6 +177,7 @@ export class SeamHttpAccessCodesUnmanaged {
       parameters,
       '/access_codes/unmanaged/convert_to_managed',
       true,
+      ['access_code_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -199,6 +200,7 @@ export class SeamHttpAccessCodesUnmanaged {
       parameters,
       '/access_codes/unmanaged/delete',
       true,
+      ['access_code_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -223,6 +225,7 @@ export class SeamHttpAccessCodesUnmanaged {
       parameters,
       '/access_codes/unmanaged/get',
       true,
+      [],
     )
 
     return new SeamHttpRequest(this, {
@@ -245,6 +248,7 @@ export class SeamHttpAccessCodesUnmanaged {
       parameters,
       '/access_codes/unmanaged/list',
       true,
+      ['device_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -267,6 +271,7 @@ export class SeamHttpAccessCodesUnmanaged {
       parameters,
       '/access_codes/unmanaged/update',
       true,
+      ['access_code_id', 'is_managed'],
     )
 
     return new SeamHttpRequest(this, {

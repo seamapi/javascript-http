@@ -177,7 +177,12 @@ export class SeamHttpLocks {
     parameters: LocksConfigureAutoLockParameters,
     options: LocksConfigureAutoLockOptions = {},
   ): LocksConfigureAutoLockRequest {
-    assertValidRequestParameters(parameters, '/locks/configure_auto_lock', true)
+    assertValidRequestParameters(
+      parameters,
+      '/locks/configure_auto_lock',
+      true,
+      ['auto_lock_enabled', 'device_id'],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/locks/configure_auto_lock',
@@ -200,7 +205,7 @@ export class SeamHttpLocks {
     parameters: LocksGetParameters,
     options: LocksGetOptions = {},
   ): LocksGetRequest {
-    assertValidRequestParameters(parameters, '/locks/get', true)
+    assertValidRequestParameters(parameters, '/locks/get', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/locks/get',
@@ -218,7 +223,7 @@ export class SeamHttpLocks {
     parameters?: LocksListParameters,
     options: LocksListOptions = {},
   ): LocksListRequest {
-    assertValidRequestParameters(parameters, '/locks/list', false)
+    assertValidRequestParameters(parameters, '/locks/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/locks/list',
@@ -236,7 +241,9 @@ export class SeamHttpLocks {
     parameters: LocksLockDoorParameters,
     options: LocksLockDoorOptions = {},
   ): LocksLockDoorRequest {
-    assertValidRequestParameters(parameters, '/locks/lock_door', true)
+    assertValidRequestParameters(parameters, '/locks/lock_door', true, [
+      'device_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/locks/lock_door',
@@ -258,7 +265,9 @@ export class SeamHttpLocks {
     parameters: LocksUnlockDoorParameters,
     options: LocksUnlockDoorOptions = {},
   ): LocksUnlockDoorRequest {
-    assertValidRequestParameters(parameters, '/locks/unlock_door', true)
+    assertValidRequestParameters(parameters, '/locks/unlock_door', true, [
+      'device_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/locks/unlock_door',

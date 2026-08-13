@@ -182,7 +182,12 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsDeleteParameters,
     options: ConnectedAccountsDeleteOptions = {},
   ): ConnectedAccountsDeleteRequest {
-    assertValidRequestParameters(parameters, '/connected_accounts/delete', true)
+    assertValidRequestParameters(
+      parameters,
+      '/connected_accounts/delete',
+      true,
+      ['connected_account_id'],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/delete',
@@ -200,7 +205,12 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsGetParameters,
     options: ConnectedAccountsGetOptions = {},
   ): ConnectedAccountsGetRequest {
-    assertValidRequestParameters(parameters, '/connected_accounts/get', true)
+    assertValidRequestParameters(
+      parameters,
+      '/connected_accounts/get',
+      true,
+      [],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/get',
@@ -218,7 +228,12 @@ export class SeamHttpConnectedAccounts {
     parameters?: ConnectedAccountsListParameters,
     options: ConnectedAccountsListOptions = {},
   ): ConnectedAccountsListRequest {
-    assertValidRequestParameters(parameters, '/connected_accounts/list', false)
+    assertValidRequestParameters(
+      parameters,
+      '/connected_accounts/list',
+      false,
+      [],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/list',
@@ -236,7 +251,9 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsSyncParameters,
     options: ConnectedAccountsSyncOptions = {},
   ): ConnectedAccountsSyncRequest {
-    assertValidRequestParameters(parameters, '/connected_accounts/sync', true)
+    assertValidRequestParameters(parameters, '/connected_accounts/sync', true, [
+      'connected_account_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/sync',
@@ -254,7 +271,12 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsUpdateParameters,
     options: ConnectedAccountsUpdateOptions = {},
   ): ConnectedAccountsUpdateRequest {
-    assertValidRequestParameters(parameters, '/connected_accounts/update', true)
+    assertValidRequestParameters(
+      parameters,
+      '/connected_accounts/update',
+      true,
+      ['connected_account_id'],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/update',

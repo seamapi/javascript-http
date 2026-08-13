@@ -170,6 +170,7 @@ export class SeamHttpPhonesSimulate {
       parameters,
       '/phones/simulate/create_sandbox_phone',
       true,
+      ['user_identity_id'],
     )
 
     return new SeamHttpRequest(this, {

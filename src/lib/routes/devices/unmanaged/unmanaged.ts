@@ -173,7 +173,7 @@ export class SeamHttpDevicesUnmanaged {
     parameters: DevicesUnmanagedGetParameters,
     options: DevicesUnmanagedGetOptions = {},
   ): DevicesUnmanagedGetRequest {
-    assertValidRequestParameters(parameters, '/devices/unmanaged/get', true)
+    assertValidRequestParameters(parameters, '/devices/unmanaged/get', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/get',
@@ -193,7 +193,12 @@ export class SeamHttpDevicesUnmanaged {
     parameters?: DevicesUnmanagedListParameters,
     options: DevicesUnmanagedListOptions = {},
   ): DevicesUnmanagedListRequest {
-    assertValidRequestParameters(parameters, '/devices/unmanaged/list', false)
+    assertValidRequestParameters(
+      parameters,
+      '/devices/unmanaged/list',
+      false,
+      [],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/list',
@@ -213,7 +218,12 @@ export class SeamHttpDevicesUnmanaged {
     parameters: DevicesUnmanagedUpdateParameters,
     options: DevicesUnmanagedUpdateOptions = {},
   ): DevicesUnmanagedUpdateRequest {
-    assertValidRequestParameters(parameters, '/devices/unmanaged/update', true)
+    assertValidRequestParameters(
+      parameters,
+      '/devices/unmanaged/update',
+      true,
+      ['device_id'],
+    )
 
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/update',

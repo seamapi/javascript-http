@@ -178,6 +178,7 @@ export class SeamHttpAcsEncoders {
       parameters,
       '/acs/encoders/encode_credential',
       true,
+      ['acs_encoder_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -200,7 +201,9 @@ export class SeamHttpAcsEncoders {
     parameters: AcsEncodersGetParameters,
     options: AcsEncodersGetOptions = {},
   ): AcsEncodersGetRequest {
-    assertValidRequestParameters(parameters, '/acs/encoders/get', true)
+    assertValidRequestParameters(parameters, '/acs/encoders/get', true, [
+      'acs_encoder_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/get',
@@ -218,7 +221,7 @@ export class SeamHttpAcsEncoders {
     parameters?: AcsEncodersListParameters,
     options: AcsEncodersListOptions = {},
   ): AcsEncodersListRequest {
-    assertValidRequestParameters(parameters, '/acs/encoders/list', false)
+    assertValidRequestParameters(parameters, '/acs/encoders/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/list',
@@ -240,6 +243,7 @@ export class SeamHttpAcsEncoders {
       parameters,
       '/acs/encoders/scan_credential',
       true,
+      ['acs_encoder_id'],
     )
 
     return new SeamHttpRequest(this, {
@@ -266,6 +270,7 @@ export class SeamHttpAcsEncoders {
       parameters,
       '/acs/encoders/scan_to_assign_credential',
       true,
+      ['acs_encoder_id'],
     )
 
     return new SeamHttpRequest(this, {

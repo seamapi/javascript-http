@@ -28,6 +28,44 @@ test('endpoint rejects missing required parameters', (t) => {
   )
 })
 
+test('endpoint rejects missing individually required parameters', (t) => {
+  t.throws(
+    () => {
+      // @ts-expect-error Verify required schema properties at runtime.
+      seam.devices.reportProviderMetadata({})
+    },
+    {
+      instanceOf: TypeError,
+      message:
+        'Required parameters missing for /devices/report_provider_metadata: devices',
+    },
+  )
+
+  t.throws(
+    () => {
+      // @ts-expect-error Verify required schema properties cannot be undefined.
+      seam.devices.reportProviderMetadata({ devices: undefined })
+    },
+    {
+      instanceOf: TypeError,
+      message:
+        'Required parameters missing for /devices/report_provider_metadata: devices',
+    },
+  )
+
+  t.throws(
+    () => {
+      // @ts-expect-error Verify all missing required parameters are reported.
+      seam.accessCodes.simulate.createUnmanagedAccessCode({ code: '1234' })
+    },
+    {
+      instanceOf: TypeError,
+      message:
+        'Required parameters missing for /access_codes/simulate/create_unmanaged_access_code: device_id, name',
+    },
+  )
+})
+
 test('endpoint rejects an empty required parameters object', (t) => {
   t.throws(
     () => {

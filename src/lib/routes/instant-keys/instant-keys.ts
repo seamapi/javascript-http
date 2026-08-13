@@ -169,7 +169,9 @@ export class SeamHttpInstantKeys {
     parameters: InstantKeysDeleteParameters,
     options: InstantKeysDeleteOptions = {},
   ): InstantKeysDeleteRequest {
-    assertValidRequestParameters(parameters, '/instant_keys/delete', true)
+    assertValidRequestParameters(parameters, '/instant_keys/delete', true, [
+      'instant_key_id',
+    ])
 
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/delete',
@@ -187,7 +189,7 @@ export class SeamHttpInstantKeys {
     parameters: InstantKeysGetParameters,
     options: InstantKeysGetOptions = {},
   ): InstantKeysGetRequest {
-    assertValidRequestParameters(parameters, '/instant_keys/get', true)
+    assertValidRequestParameters(parameters, '/instant_keys/get', true, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/get',
@@ -205,7 +207,7 @@ export class SeamHttpInstantKeys {
     parameters?: InstantKeysListParameters,
     options: InstantKeysListOptions = {},
   ): InstantKeysListRequest {
-    assertValidRequestParameters(parameters, '/instant_keys/list', false)
+    assertValidRequestParameters(parameters, '/instant_keys/list', false, [])
 
     return new SeamHttpRequest(this, {
       pathname: '/instant_keys/list',
