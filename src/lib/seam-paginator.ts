@@ -9,14 +9,37 @@ interface SeamPaginatorParent {
 
 declare const $brand: unique symbol
 
+/**
+ * Opaque cursor identifying a page of results returned by the Seam API.
+ */
 export type SeamPageCursor = string & { [$brand]: 'SeamPageCursor' }
 
 interface Pagination {
+  /**
+   * Indicates whether there is another page of results after this one.
+   */
   readonly hasNextPage: boolean
+
+  /**
+   * Cursor to fetch the next page of results, or null if there is no next page.
+   */
   readonly nextPageCursor: SeamPageCursor | null
+
+  /**
+   * URL to fetch the next page of results, or null if there is no next page.
+   */
   readonly nextPageUrl: string | null
 }
 
+/**
+ * Iterates over paginated results from Seam API list endpoints.
+ *
+ * Create a SeamPaginator with the client's `createPaginator` method.
+ * Fetch pages manually with `firstPage` and `nextPage`,
+ * iterate over pages with `for await`,
+ * iterate over items across all pages with `flatten`,
+ * or collect every item into a single array with `flattenToArray`.
+ */
 export class SeamPaginator<
   const TResponse,
   const TResponseKey extends keyof TResponse,
@@ -37,12 +60,19 @@ export class SeamPaginator<
     this.#request = request
   }
 
+  /**
+   * Fetches the first page of results along with the pagination state.
+   */
   async firstPage(): Promise<
     [EnsureReadonlyArray<TResponse[TResponseKey]>, Pagination]
   > {
     return await this.#fetch()
   }
 
+  /**
+   * Fetches the next page of results
+   * using the nextPageCursor returned with a previous page.
+   */
   async nextPage(
     nextPageCursor: Pagination['nextPageCursor'],
   ): Promise<[EnsureReadonlyArray<TResponse[TResponseKey]>, Pagination]> {
@@ -104,6 +134,9 @@ export class SeamPaginator<
     ] as const
   }
 
+  /**
+   * Fetches every page and returns all items in a single array.
+   */
   async flattenToArray(): Promise<
     EnsureReadonlyArray<TResponse[TResponseKey]>
   > {
@@ -117,6 +150,9 @@ export class SeamPaginator<
     return items as EnsureReadonlyArray<TResponse[TResponseKey]>
   }
 
+  /**
+   * Yields each item across all pages, fetching the next page as needed.
+   */
   async *flatten(): AsyncGenerator<
     EnsureReadonlyArray<TResponse[TResponseKey]>
   > {
@@ -132,6 +168,9 @@ export class SeamPaginator<
     }
   }
 
+  /**
+   * Yields each page of items, fetching the next page as needed.
+   */
   async *[Symbol.asyncIterator](): AsyncGenerator<
     EnsureReadonlyArray<TResponse[TResponseKey]>
   > {

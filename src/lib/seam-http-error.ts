@@ -1,9 +1,28 @@
 import type { ApiError } from './api-error-types.js'
 
+/**
+ * Error thrown when the Seam API returns an error response.
+ */
 export class SeamHttpApiError extends Error {
+  /**
+   * Error type returned by the Seam API, e.g., `invalid_input`.
+   */
   code: string
+
+  /**
+   * HTTP status code of the error response.
+   */
   statusCode: number
+
+  /**
+   * Unique identifier of the request that failed.
+   * Provide this to Seam support when reporting an issue.
+   */
   requestId: string
+
+  /**
+   * Additional error-specific data returned by the Seam API, if any.
+   */
   data?: unknown
 
   constructor(error: ApiError, statusCode: number, requestId: string) {
@@ -17,14 +36,27 @@ export class SeamHttpApiError extends Error {
   }
 }
 
+/**
+ * Returns true if the error is a {@link SeamHttpApiError}.
+ */
 export const isSeamHttpApiError = (
   error: unknown,
 ): error is SeamHttpApiError => {
   return error instanceof SeamHttpApiError
 }
 
+/**
+ * Error thrown when the Seam API returns a 401 Unauthorized error response.
+ */
 export class SeamHttpUnauthorizedError extends SeamHttpApiError {
+  /**
+   * Error type returned by the Seam API, always `unauthorized`.
+   */
   override code: 'unauthorized'
+
+  /**
+   * HTTP status code of the error response, always 401.
+   */
   override statusCode: 401
 
   constructor(requestId: string) {
@@ -38,14 +70,24 @@ export class SeamHttpUnauthorizedError extends SeamHttpApiError {
   }
 }
 
+/**
+ * Returns true if the error is a {@link SeamHttpUnauthorizedError}.
+ */
 export const isSeamHttpUnauthorizedError = (
   error: unknown,
 ): error is SeamHttpUnauthorizedError => {
   return error instanceof SeamHttpUnauthorizedError
 }
 
+/**
+ * Error thrown when the Seam API returns an `invalid_input` error response.
+ */
 export class SeamHttpInvalidInputError extends SeamHttpApiError {
+  /**
+   * Error type returned by the Seam API, always `invalid_input`.
+   */
   override code: 'invalid_input'
+
   readonly #validationErrors: NonNullable<ApiError['validation_errors']>
 
   constructor(error: ApiError, statusCode: number, requestId: string) {
@@ -55,11 +97,20 @@ export class SeamHttpInvalidInputError extends SeamHttpApiError {
     this.#validationErrors = error.validation_errors ?? {}
   }
 
+  /**
+   * Returns the validation error messages for the request parameter,
+   * or an empty array if the parameter had no validation errors.
+   *
+   * @param paramName - Name of the request parameter.
+   */
   getValidationErrorMessages(paramName: string): string[] {
     return this.#validationErrors[paramName]?._errors ?? []
   }
 }
 
+/**
+ * Returns true if the error is a {@link SeamHttpInvalidInputError}.
+ */
 export const isSeamHttpInvalidInputError = (
   error: unknown,
 ): error is SeamHttpInvalidInputError => {

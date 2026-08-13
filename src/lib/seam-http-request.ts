@@ -24,12 +24,29 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly actionAttempts?: ActionAttemptsClient
 }
 
+/**
+ * A lazy request to the Seam API.
+ *
+ * Creating a SeamHttpRequest does not send anything over the network.
+ * The request is sent once `execute` is called,
+ * or when the request is awaited like a Promise,
+ * e.g., with `await`, `then`, `catch`, or `finally`.
+ * When the response contains an action attempt,
+ * awaiting the request also waits for the action attempt to resolve
+ * according to the `waitForActionAttempt` option.
+ *
+ * Before sending, the request may be inspected
+ * with `url`, `pathname`, `method`, `params`, and `body`.
+ */
 export class SeamHttpRequest<
   const TResponse,
   const TResponseKey extends keyof TResponse | undefined,
 > implements Promise<
   TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
 > {
+  /**
+   * String tag used by `Object.prototype.toString`, always `SeamHttpRequest`.
+   */
   readonly [Symbol.toStringTag]: string = 'SeamHttpRequest'
 
   readonly #parent: SeamHttpRequestParent
@@ -43,10 +60,17 @@ export class SeamHttpRequest<
     this.#config = config
   }
 
+  /**
+   * The key of the API response object containing the response data,
+   * or undefined if the endpoint returns an empty response.
+   */
   public get responseKey(): TResponseKey {
     return this.#config.responseKey
   }
 
+  /**
+   * The full request URL including any serialized query parameters.
+   */
   public get url(): URL {
     const { client } = this.#parent
 
@@ -65,24 +89,42 @@ export class SeamHttpRequest<
     return new URL(`${origin}${path}`)
   }
 
+  /**
+   * The request pathname, e.g., `/devices/get`.
+   */
   public get pathname(): string {
     return this.#config.pathname.startsWith('/')
       ? this.#config.pathname
       : `/${this.#config.pathname}`
   }
 
+  /**
+   * The HTTP request method.
+   */
   public get method(): Method {
     return this.#config.method
   }
 
+  /**
+   * The query parameters sent with the request, if any.
+   */
   public get params(): undefined | Record<string, unknown> {
     return this.#config.params
   }
 
+  /**
+   * The body sent with the request, if any.
+   */
   public get body(): unknown {
     return this.#config.body
   }
 
+  /**
+   * Sends the request and returns the response data.
+   * If the response contains an action attempt,
+   * waits for the action attempt to resolve
+   * according to the `waitForActionAttempt` option.
+   */
   async execute(): Promise<
     TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
   > {
@@ -121,6 +163,10 @@ export class SeamHttpRequest<
     return data
   }
 
+  /**
+   * Sends the request and returns the entire response body
+   * without waiting for any action attempt to resolve.
+   */
   async fetchResponse(): Promise<TResponse> {
     const { client } = this.#parent
     const response = await client.request({
@@ -132,6 +178,10 @@ export class SeamHttpRequest<
     return response.data as unknown as TResponse
   }
 
+  /**
+   * Executes the request and resolves with the response data.
+   * Enables awaiting a SeamHttpRequest like a Promise.
+   */
   async then<
     TResult1 = TResponseKey extends keyof TResponse
       ? TResponse[TResponseKey]
@@ -154,6 +204,10 @@ export class SeamHttpRequest<
     return await this.execute().then(onfulfilled, onrejected)
   }
 
+  /**
+   * Executes the request and handles any rejection with `onrejected`.
+   * Enables awaiting a SeamHttpRequest like a Promise.
+   */
   async catch<TResult = never>(
     onrejected?:
       ((reason: unknown) => TResult | PromiseLike<TResult>) | null | undefined,
@@ -166,6 +220,10 @@ export class SeamHttpRequest<
     return await this.execute().catch(onrejected)
   }
 
+  /**
+   * Executes the request and calls `onfinally` once the request settles.
+   * Enables awaiting a SeamHttpRequest like a Promise.
+   */
   async finally(
     onfinally?: (() => void) | null | undefined,
   ): Promise<
