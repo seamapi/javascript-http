@@ -8,7 +8,6 @@ import {
   warnOnInsecureuserIdentifierKey,
 } from 'lib/auth.js'
 import { type Client, createClient } from 'lib/client.js'
-import { seamApiLtsVersion } from 'lib/lts-version.js'
 import {
   isSeamHttpOptionsWithApiKey,
   isSeamHttpOptionsWithClient,
@@ -39,8 +38,6 @@ import { SeamHttpConnectedAccountsSimulate } from './simulate/index.js'
 export class SeamHttpConnectedAccounts {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
-  readonly ltsVersion = seamApiLtsVersion
-  static ltsVersion = seamApiLtsVersion
 
   constructor(apiKeyOrOptions: string | SeamHttpOptions = {}) {
     const options = parseOptions(apiKeyOrOptions)

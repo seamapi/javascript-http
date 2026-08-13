@@ -4,7 +4,6 @@
  */
 
 import { type Client, createClient } from 'lib/client.js'
-import { seamApiLtsVersion } from 'lib/lts-version.js'
 import {
   isSeamHttpWithoutWorkspaceOptionsWithClient,
   isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken,
@@ -25,8 +24,6 @@ import { SeamHttpWorkspaces } from 'lib/routes/workspaces/index.js'
 export class SeamHttpWithoutWorkspace {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
-  readonly ltsVersion = seamApiLtsVersion
-  static ltsVersion = seamApiLtsVersion
 
   constructor(options: SeamHttpWithoutWorkspaceOptions = {}) {
     const opts = parseOptions(options)
