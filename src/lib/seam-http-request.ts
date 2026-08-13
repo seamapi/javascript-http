@@ -3,6 +3,7 @@ import type { Method } from 'axios'
 
 import type { Client } from './client.js'
 import type { SeamHttpRequestOptions } from './options.js'
+import { assertValidRequestParameters } from './request-parameters.js'
 import {
   type ActionAttemptsClient,
   resolveActionAttempt,
@@ -22,6 +23,14 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly responseKey: TResponseKey
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
   readonly actionAttempts?: ActionAttemptsClient
+  /**
+   * The parameters as given to the endpoint method, validated when the request
+   * is made. Held separately from `body` and `params` so that `undefined` and
+   * `null` stay distinguishable from an endpoint that takes no parameters.
+   */
+  readonly parameters?: unknown
+  readonly hasRequiredParameters?: boolean
+  readonly requiredParameterNames?: readonly string[]
 }
 
 export class SeamHttpRequest<
@@ -122,6 +131,18 @@ export class SeamHttpRequest<
   }
 
   async fetchResponse(): Promise<TResponse> {
+    // Validated here, not when the endpoint method builds this request:
+    // requests are values, and callers may build one well before deciding to
+    // send it. Reporting a bad parameter at build time surprises anyone who
+    // constructs a request up front, e.g. to derive a cache key from it, and
+    // then only sends it once the data it needs is available.
+    assertValidRequestParameters(
+      this.#config.parameters,
+      this.pathname,
+      this.#config.hasRequiredParameters ?? false,
+      this.#config.requiredParameterNames ?? [],
+    )
+
     const { client } = this.#parent
     const response = await client.request({
       url: this.pathname,

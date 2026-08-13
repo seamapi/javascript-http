@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
@@ -165,17 +164,13 @@ export class SeamHttpAcsEncodersSimulate {
     parameters: AcsEncodersSimulateNextCredentialEncodeWillFailParameters,
     options: AcsEncodersSimulateNextCredentialEncodeWillFailOptions = {},
   ): AcsEncodersSimulateNextCredentialEncodeWillFailRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/encoders/simulate/next_credential_encode_will_fail',
-      true,
-      ['acs_encoder_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_encode_will_fail',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_encoder_id'],
       responseKey: undefined,
       options,
     })
@@ -188,17 +183,13 @@ export class SeamHttpAcsEncodersSimulate {
     parameters: AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters,
     options: AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions = {},
   ): AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/encoders/simulate/next_credential_encode_will_succeed',
-      true,
-      ['acs_encoder_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_encode_will_succeed',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_encoder_id'],
       responseKey: undefined,
       options,
     })
@@ -211,17 +202,13 @@ export class SeamHttpAcsEncodersSimulate {
     parameters: AcsEncodersSimulateNextCredentialScanWillFailParameters,
     options: AcsEncodersSimulateNextCredentialScanWillFailOptions = {},
   ): AcsEncodersSimulateNextCredentialScanWillFailRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/encoders/simulate/next_credential_scan_will_fail',
-      true,
-      ['acs_encoder_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_scan_will_fail',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_encoder_id'],
       responseKey: undefined,
       options,
     })
@@ -234,17 +221,13 @@ export class SeamHttpAcsEncodersSimulate {
     parameters: AcsEncodersSimulateNextCredentialScanWillSucceedParameters,
     options: AcsEncodersSimulateNextCredentialScanWillSucceedOptions = {},
   ): AcsEncodersSimulateNextCredentialScanWillSucceedRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/encoders/simulate/next_credential_scan_will_succeed',
-      true,
-      ['acs_encoder_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/simulate/next_credential_scan_will_succeed',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_encoder_id'],
       responseKey: undefined,
       options,
     })

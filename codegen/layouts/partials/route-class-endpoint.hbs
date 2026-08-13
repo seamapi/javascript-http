@@ -2,12 +2,13 @@
 {{methodName}}
 {{> endpont-method-signature }}
 {
-  assertValidRequestParameters(parameters, '{{path}}', {{hasRequiredParameters}}, [{{#each requiredParameterNames}}{{json .}}{{#unless @last}}, {{/unless}}{{/each}}])
-
   return new SeamHttpRequest(this, {
     pathname: '{{path}}',
     method: '{{method}}',
     {{requestFormat}}: parameters,
+    parameters,
+    hasRequiredParameters: {{hasRequiredParameters}},
+    requiredParameterNames: [{{#each requiredParameterNames}}{{json .}}{{#unless @last}}, {{/unless}}{{/each}}],
     responseKey: {{#if returnsVoid}}undefined{{else}}'{{responseKey}}'{{/if}},
     options,
     {{#if returnsActionAttempt}}

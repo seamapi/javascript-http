@@ -9,7 +9,7 @@ export const assertValidRequestParameters = (
   parameters: unknown,
   path: string,
   hasRequiredParameters: boolean,
-  requiredParameterNames: string[],
+  requiredParameterNames: readonly string[],
 ): void => {
   if (parameters === undefined) {
     if (hasRequiredParameters) {

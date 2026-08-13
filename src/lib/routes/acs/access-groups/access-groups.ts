@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { AcsAccessGroup } from 'lib/resources/acs-access-group.js'
 import type { AcsEntrance } from 'lib/resources/acs-entrance.js'
 import type { AcsUser } from 'lib/resources/acs-user.js'
@@ -168,17 +167,13 @@ export class SeamHttpAcsAccessGroups {
     parameters: AcsAccessGroupsAddUserParameters,
     options: AcsAccessGroupsAddUserOptions = {},
   ): AcsAccessGroupsAddUserRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/access_groups/add_user',
-      true,
-      ['acs_access_group_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/add_user',
       method: 'PUT',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_access_group_id'],
       responseKey: undefined,
       options,
     })
@@ -191,17 +186,13 @@ export class SeamHttpAcsAccessGroups {
     parameters: AcsAccessGroupsDeleteParameters,
     options: AcsAccessGroupsDeleteOptions = {},
   ): AcsAccessGroupsDeleteRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/access_groups/delete',
-      true,
-      ['acs_access_group_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_access_group_id'],
       responseKey: undefined,
       options,
     })
@@ -214,14 +205,13 @@ export class SeamHttpAcsAccessGroups {
     parameters: AcsAccessGroupsGetParameters,
     options: AcsAccessGroupsGetOptions = {},
   ): AcsAccessGroupsGetRequest {
-    assertValidRequestParameters(parameters, '/acs/access_groups/get', true, [
-      'acs_access_group_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_access_group_id'],
       responseKey: 'acs_access_group',
       options,
     })
@@ -234,17 +224,13 @@ export class SeamHttpAcsAccessGroups {
     parameters?: AcsAccessGroupsListParameters,
     options: AcsAccessGroupsListOptions = {},
   ): AcsAccessGroupsListRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/access_groups/list',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'acs_access_groups',
       options,
     })
@@ -257,17 +243,13 @@ export class SeamHttpAcsAccessGroups {
     parameters: AcsAccessGroupsListAccessibleEntrancesParameters,
     options: AcsAccessGroupsListAccessibleEntrancesOptions = {},
   ): AcsAccessGroupsListAccessibleEntrancesRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/access_groups/list_accessible_entrances',
-      true,
-      ['acs_access_group_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list_accessible_entrances',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_access_group_id'],
       responseKey: 'acs_entrances',
       options,
     })
@@ -280,17 +262,13 @@ export class SeamHttpAcsAccessGroups {
     parameters: AcsAccessGroupsListUsersParameters,
     options: AcsAccessGroupsListUsersOptions = {},
   ): AcsAccessGroupsListUsersRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/access_groups/list_users',
-      true,
-      ['acs_access_group_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/list_users',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_access_group_id'],
       responseKey: 'acs_users',
       options,
     })
@@ -303,17 +281,13 @@ export class SeamHttpAcsAccessGroups {
     parameters: AcsAccessGroupsRemoveUserParameters,
     options: AcsAccessGroupsRemoveUserOptions = {},
   ): AcsAccessGroupsRemoveUserRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/access_groups/remove_user',
-      true,
-      ['acs_access_group_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/access_groups/remove_user',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_access_group_id'],
       responseKey: undefined,
       options,
     })

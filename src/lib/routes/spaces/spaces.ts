@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { Batch } from 'lib/resources/batch.js'
 import type { Space } from 'lib/resources/space.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
@@ -170,17 +167,13 @@ export class SeamHttpSpaces {
     parameters: SpacesAddAcsEntrancesParameters,
     options: SpacesAddAcsEntrancesOptions = {},
   ): SpacesAddAcsEntrancesRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/spaces/add_acs_entrances',
-      true,
-      ['acs_entrance_ids', 'space_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/add_acs_entrances',
       method: 'PUT',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_entrance_ids', 'space_id'],
       responseKey: undefined,
       options,
     })
@@ -193,17 +186,13 @@ export class SeamHttpSpaces {
     parameters: SpacesAddConnectedAccountParameters,
     options: SpacesAddConnectedAccountOptions = {},
   ): SpacesAddConnectedAccountRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/spaces/add_connected_account',
-      true,
-      ['connected_account_id', 'space_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/add_connected_account',
       method: 'PUT',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['connected_account_id', 'space_id'],
       responseKey: undefined,
       options,
     })
@@ -216,15 +205,13 @@ export class SeamHttpSpaces {
     parameters: SpacesAddDevicesParameters,
     options: SpacesAddDevicesOptions = {},
   ): SpacesAddDevicesRequest {
-    assertValidRequestParameters(parameters, '/spaces/add_devices', true, [
-      'device_ids',
-      'space_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/add_devices',
       method: 'PUT',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_ids', 'space_id'],
       responseKey: undefined,
       options,
     })
@@ -237,12 +224,13 @@ export class SeamHttpSpaces {
     parameters: SpacesCreateParameters,
     options: SpacesCreateOptions = {},
   ): SpacesCreateRequest {
-    assertValidRequestParameters(parameters, '/spaces/create', true, ['name'])
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/create',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['name'],
       responseKey: 'space',
       options,
     })
@@ -255,14 +243,13 @@ export class SeamHttpSpaces {
     parameters: SpacesDeleteParameters,
     options: SpacesDeleteOptions = {},
   ): SpacesDeleteRequest {
-    assertValidRequestParameters(parameters, '/spaces/delete', true, [
-      'space_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['space_id'],
       responseKey: undefined,
       options,
     })
@@ -275,12 +262,13 @@ export class SeamHttpSpaces {
     parameters: SpacesGetParameters,
     options: SpacesGetOptions = {},
   ): SpacesGetRequest {
-    assertValidRequestParameters(parameters, '/spaces/get', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'space',
       options,
     })
@@ -293,12 +281,13 @@ export class SeamHttpSpaces {
     parameters: SpacesGetRelatedParameters,
     options: SpacesGetRelatedOptions = {},
   ): SpacesGetRelatedRequest {
-    assertValidRequestParameters(parameters, '/spaces/get_related', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/get_related',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'batch',
       options,
     })
@@ -311,12 +300,13 @@ export class SeamHttpSpaces {
     parameters?: SpacesListParameters,
     options: SpacesListOptions = {},
   ): SpacesListRequest {
-    assertValidRequestParameters(parameters, '/spaces/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/list',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'spaces',
       options,
     })
@@ -329,17 +319,13 @@ export class SeamHttpSpaces {
     parameters: SpacesRemoveAcsEntrancesParameters,
     options: SpacesRemoveAcsEntrancesOptions = {},
   ): SpacesRemoveAcsEntrancesRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/spaces/remove_acs_entrances',
-      true,
-      ['acs_entrance_ids', 'space_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_acs_entrances',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_entrance_ids', 'space_id'],
       responseKey: undefined,
       options,
     })
@@ -352,17 +338,13 @@ export class SeamHttpSpaces {
     parameters: SpacesRemoveConnectedAccountParameters,
     options: SpacesRemoveConnectedAccountOptions = {},
   ): SpacesRemoveConnectedAccountRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/spaces/remove_connected_account',
-      true,
-      ['connected_account_id', 'space_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_connected_account',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['connected_account_id', 'space_id'],
       responseKey: undefined,
       options,
     })
@@ -375,15 +357,13 @@ export class SeamHttpSpaces {
     parameters: SpacesRemoveDevicesParameters,
     options: SpacesRemoveDevicesOptions = {},
   ): SpacesRemoveDevicesRequest {
-    assertValidRequestParameters(parameters, '/spaces/remove_devices', true, [
-      'device_ids',
-      'space_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_devices',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_ids', 'space_id'],
       responseKey: undefined,
       options,
     })
@@ -396,12 +376,13 @@ export class SeamHttpSpaces {
     parameters?: SpacesUpdateParameters,
     options: SpacesUpdateOptions = {},
   ): SpacesUpdateRequest {
-    assertValidRequestParameters(parameters, '/spaces/update', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/spaces/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'space',
       options,
     })

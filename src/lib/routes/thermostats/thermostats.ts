@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import type { Device } from 'lib/resources/device.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
@@ -187,17 +186,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsActivateClimatePresetParameters,
     options: ThermostatsActivateClimatePresetOptions = {},
   ): ThermostatsActivateClimatePresetRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/activate_climate_preset',
-      true,
-      ['climate_preset_key', 'device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/activate_climate_preset',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['climate_preset_key', 'device_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -214,14 +209,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsCoolParameters,
     options: ThermostatsCoolOptions = {},
   ): ThermostatsCoolRequest {
-    assertValidRequestParameters(parameters, '/thermostats/cool', true, [
-      'device_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/cool',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -238,17 +232,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsCreateClimatePresetParameters,
     options: ThermostatsCreateClimatePresetOptions = {},
   ): ThermostatsCreateClimatePresetRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/create_climate_preset',
-      true,
-      ['climate_preset_key', 'device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/create_climate_preset',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['climate_preset_key', 'device_id'],
       responseKey: undefined,
       options,
     })
@@ -261,17 +251,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsDeleteClimatePresetParameters,
     options: ThermostatsDeleteClimatePresetOptions = {},
   ): ThermostatsDeleteClimatePresetRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/delete_climate_preset',
-      true,
-      ['climate_preset_key', 'device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/delete_climate_preset',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['climate_preset_key', 'device_id'],
       responseKey: undefined,
       options,
     })
@@ -284,14 +270,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsHeatParameters,
     options: ThermostatsHeatOptions = {},
   ): ThermostatsHeatRequest {
-    assertValidRequestParameters(parameters, '/thermostats/heat', true, [
-      'device_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/heat',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -308,14 +293,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsHeatCoolParameters,
     options: ThermostatsHeatCoolOptions = {},
   ): ThermostatsHeatCoolRequest {
-    assertValidRequestParameters(parameters, '/thermostats/heat_cool', true, [
-      'device_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/heat_cool',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -332,12 +316,13 @@ export class SeamHttpThermostats {
     parameters?: ThermostatsListParameters,
     options: ThermostatsListOptions = {},
   ): ThermostatsListRequest {
-    assertValidRequestParameters(parameters, '/thermostats/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/list',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'devices',
       options,
     })
@@ -350,14 +335,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsOffParameters,
     options: ThermostatsOffOptions = {},
   ): ThermostatsOffRequest {
-    assertValidRequestParameters(parameters, '/thermostats/off', true, [
-      'device_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/off',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -374,17 +358,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetFallbackClimatePresetParameters,
     options: ThermostatsSetFallbackClimatePresetOptions = {},
   ): ThermostatsSetFallbackClimatePresetRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/set_fallback_climate_preset',
-      true,
-      ['climate_preset_key', 'device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_fallback_climate_preset',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['climate_preset_key', 'device_id'],
       responseKey: undefined,
       options,
     })
@@ -397,17 +377,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetFanModeParameters,
     options: ThermostatsSetFanModeOptions = {},
   ): ThermostatsSetFanModeRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/set_fan_mode',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_fan_mode',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -424,17 +400,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetHvacModeParameters,
     options: ThermostatsSetHvacModeOptions = {},
   ): ThermostatsSetHvacModeRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/set_hvac_mode',
-      true,
-      ['device_id', 'hvac_mode_setting'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_hvac_mode',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id', 'hvac_mode_setting'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -451,17 +423,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsSetTemperatureThresholdParameters,
     options: ThermostatsSetTemperatureThresholdOptions = {},
   ): ThermostatsSetTemperatureThresholdRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/set_temperature_threshold',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/set_temperature_threshold',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: undefined,
       options,
     })
@@ -474,17 +442,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsUpdateClimatePresetParameters,
     options: ThermostatsUpdateClimatePresetOptions = {},
   ): ThermostatsUpdateClimatePresetRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/update_climate_preset',
-      true,
-      ['climate_preset_key', 'device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/update_climate_preset',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['climate_preset_key', 'device_id'],
       responseKey: undefined,
       options,
     })
@@ -497,17 +461,13 @@ export class SeamHttpThermostats {
     parameters: ThermostatsUpdateWeeklyProgramParameters,
     options: ThermostatsUpdateWeeklyProgramOptions = {},
   ): ThermostatsUpdateWeeklyProgramRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/update_weekly_program',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/update_weekly_program',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
