@@ -526,6 +526,53 @@ console.log(`${request.method} ${request.url}`, JSON.stringify(request.body))
 const devices = await request.execute()
 ```
 
+#### Serializing URL search params
+
+The Seam API parses URL search params as complex types.
+If you call it with your own HTTP client, use `serializeUrlSearchParams`:
+
+```ts
+import axios from 'axios'
+import { serializeUrlSearchParams } from '@seamapi/http'
+
+await axios.get('https://connect.getseam.com/devices/list', {
+  params: { device_ids: ['device1', 'device2'] },
+  paramsSerializer: serializeUrlSearchParams,
+  headers: { Authorization: 'Bearer your-api-key' },
+})
+```
+
+or `updateUrlSearchParams`:
+
+```ts
+import { updateUrlSearchParams } from '@seamapi/http'
+
+const searchParams = new URLSearchParams()
+updateUrlSearchParams(searchParams, { device_ids: ['device1', 'device2'] })
+
+Array.from(searchParams)
+// => [['device_ids', 'device1'], ['device_ids', 'device2'], ['_strict', 'true']]
+
+searchParams.toString()
+// => 'device_ids=device1&device_ids=device2&_strict=true'
+```
+
+The helpers wrap the [reference implementation].
+The serialization defines the name and string value of each search param.
+[`URLSearchParams`][URLSearchParams] holds those pairs and renders the query string:
+The `_strict=true` parameter is added to any non-empty query so the Seam API uses
+strict, schema-aware parsing.
+A query with no serializable params remains empty.
+
+A param set to `undefined` is omitted, while a param set to `null` is serialized
+to an empty value, which the Seam API reads as null.
+A param that cannot be represented raises an `UnserializableParamError`.
+The Seam API parses these params with the corresponding [parser].
+
+[URLSearchParams]: https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+[reference implementation]: https://github.com/seamapi/url-search-params-serializer
+[parser]: https://github.com/seamapi/url-search-params-parser
+
 ## Development and Testing
 
 ### Quickstart

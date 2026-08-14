@@ -1,8 +1,8 @@
-import { serializeUrlSearchParams } from '@seamapi/url-search-params-serializer'
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
 import axiosRetry, { type AxiosRetry, exponentialDelay } from 'axios-retry'
 
 import { errorInterceptor } from './error-interceptor.js'
+import { serializeUrlSearchParams } from './url-search-params-serializer.js'
 
 export type Client = AxiosInstance
 

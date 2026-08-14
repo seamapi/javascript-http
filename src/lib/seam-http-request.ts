@@ -1,4 +1,3 @@
-import { serializeUrlSearchParams } from '@seamapi/url-search-params-serializer'
 import type { Method } from 'axios'
 
 import type { Client } from './client.js'
@@ -9,6 +8,7 @@ import {
   resolveActionAttempt,
 } from './resolve-action-attempt.js'
 import type { ActionAttempt } from './resources/action-attempt.js'
+import { serializeUrlSearchParams } from './url-search-params-serializer.js'
 
 interface SeamHttpRequestParent {
   readonly client: Client

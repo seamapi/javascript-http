@@ -65,7 +65,7 @@ test.failing(
       toPlainUrlObject(url),
       toPlainUrlObject(
         new URL(
-          `${endpoint}/devices/get?device_ids=${seed.august_device_1}&device_ids=${seed.ecobee_device_1}&limit=10`,
+          `${endpoint}/devices/get?device_ids=${seed.august_device_1}&device_ids=${seed.ecobee_device_1}&limit=10&_strict=true`,
         ),
       ),
     )
@@ -84,7 +84,7 @@ test('SeamHttpRequest: url is a URL when endpoint is a url without a path', asyn
   t.deepEqual(
     toPlainUrlObject(url),
     toPlainUrlObject(
-      new URL('https://example.com/devices/get?device_id=abc123'),
+      new URL('https://example.com/devices/get?device_id=abc123&_strict=true'),
     ),
   )
 })
@@ -101,7 +101,9 @@ test('SeamHttpRequest: url is a URL when endpoint is a url with a path', async (
   t.deepEqual(
     toPlainUrlObject(url),
     toPlainUrlObject(
-      new URL('https://example.com/some/sub/path/devices/get?device_id=abc123'),
+      new URL(
+        'https://example.com/some/sub/path/devices/get?device_id=abc123&_strict=true',
+      ),
     ),
   )
 })
