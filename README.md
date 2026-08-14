@@ -474,6 +474,17 @@ The Axios client and retry behavior may be configured with custom initiation opt
 via [`axiosOptions`][axiosOptions] and [`axiosRetryOptions`][axiosRetryOptions].
 Options are deep merged with the default options.
 
+By default, up to 2 retries are attempted for a failure that is either
+a retryable status code (`429` or `5xx`) or a network-level error,
+e.g., a timeout or a connection reset,
+but only for HTTP methods considered idempotent (`GET`, `HEAD`, `OPTIONS`, `PUT`, `DELETE`).
+`POST` requests, e.g., most write operations against the Seam API,
+are not retried by default:
+since the client cannot tell whether the server received and processed
+the request before the connection was lost,
+automatically resending it could repeat a side effect, such as unlocking a door twice.
+Pass a custom `retryCondition` in `axiosRetryOptions` to change this behavior.
+
 [axiosOptions]: https://axios-http.com/docs/config_defaults
 [axiosRetryOptions]: https://github.com/softonic/axios-retry
 
