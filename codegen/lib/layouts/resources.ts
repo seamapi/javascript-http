@@ -25,8 +25,19 @@ export const getResourceTypeName = (resourceType: string): string =>
 export const getResourceLayoutContexts = (
   blueprint: Blueprint,
 ): ResourceLayoutContext[] => {
+  // Events and action attempts are discriminated unions built from the
+  // top-level blueprint collections. The generic resources sharing those
+  // resource types have all-optional properties, and including one as a union
+  // member would defeat narrowing on the discriminant.
+  const discriminatedResourceTypes = new Set(
+    [...blueprint.events, ...blueprint.actionAttempts].map(
+      ({ resourceType }) => resourceType,
+    ),
+  )
   const resources = [
-    ...blueprint.resources,
+    ...blueprint.resources.filter(
+      ({ resourceType }) => !discriminatedResourceTypes.has(resourceType),
+    ),
     ...blueprint.events,
     ...blueprint.actionAttempts,
   ]
