@@ -29,7 +29,7 @@ export const getResourceLayoutContexts = (
   // top-level blueprint collections. The generic resources sharing those
   // resource types have all-optional properties, and including one as a union
   // member would defeat narrowing on the discriminant.
-  const discriminatedResourceTypes = new Set(
+  const discriminatedResourceTypes = new Set<string>(
     [...blueprint.events, ...blueprint.actionAttempts].map(
       ({ resourceType }) => resourceType,
     ),
