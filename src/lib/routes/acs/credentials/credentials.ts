@@ -471,17 +471,13 @@ export interface AcsCredentialsGetOptions {}
 
 export type AcsCredentialsListParameters = {
   /**
-   * ID of the access system user for which you want to retrieve all credentials.
-   */
-  acs_user_id?: string | undefined
-  /**
    * ID of the access system for which you want to retrieve all credentials.
    */
   acs_system_id?: string | undefined
   /**
-   * ID of the user identity for which you want to retrieve all credentials.
+   * ID of the access system user for which you want to retrieve all credentials.
    */
-  user_identity_id?: string | undefined
+  acs_user_id?: string | undefined
   /**
    * Date and time, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format, before which events to return were created.
    */
@@ -502,6 +498,10 @@ export type AcsCredentialsListParameters = {
    * String for which to search. Filters returned credentials to include all records that satisfy a partial match using `display_name`, `code`, `card_number`, `acs_user_id` or `acs_credential_id`.
    */
   search?: string | undefined
+  /**
+   * ID of the user identity for which you want to retrieve all credentials.
+   */
+  user_identity_id?: string | undefined
 }
 
 /**

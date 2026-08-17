@@ -275,6 +275,28 @@ export type AccessCode = {
          */
         message: string
       } /**
+     * The code cannot be set on the device because it violates the device's code constraints (for example, its length, digits, or a too-simple value). The code will not be retried until you change it. See the device's `code_constraints` and `supported_code_lengths`.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at?: string | undefined
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'code_constraints_violated'
+
+        /**
+         * Indicates that this is an access code error.
+         */
+        is_access_code_error: boolean
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      } /**
      * Indicates that the account is disconnected.
      */
     | {

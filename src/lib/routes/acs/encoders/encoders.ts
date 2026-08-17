@@ -327,6 +327,10 @@ export interface AcsEncodersGetOptions {}
 
 export type AcsEncodersListParameters = {
   /**
+   * IDs of the encoders that you want to retrieve.
+   */
+  acs_encoder_ids?: Array<string> | undefined
+  /**
    * ID of the access system for which you want to retrieve all encoders.
    */
   acs_system_id?: string | undefined
@@ -334,10 +338,6 @@ export type AcsEncodersListParameters = {
    * IDs of the access systems for which you want to retrieve all encoders.
    */
   acs_system_ids?: Array<string> | undefined
-  /**
-   * IDs of the encoders that you want to retrieve.
-   */
-  acs_encoder_ids?: Array<string> | undefined
   /**
    * Number of encoders to return.
    */

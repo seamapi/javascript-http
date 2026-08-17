@@ -699,6 +699,9 @@ import {
   type UserIdentitiesListOptions,
   type UserIdentitiesListParameters,
   type UserIdentitiesListRequest,
+  type UserIdentitiesMergeOptions,
+  type UserIdentitiesMergeParameters,
+  type UserIdentitiesMergeRequest,
   type UserIdentitiesRemoveAcsUserOptions,
   type UserIdentitiesRemoveAcsUserParameters,
   type UserIdentitiesRemoveAcsUserRequest,
@@ -3971,6 +3974,28 @@ export class SeamHttpEndpoints {
   }
 
   /**
+   * Merges one or more [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) into a primary user identity, for when the same person ended up with more than one user identity.
+   *
+   * The primary user identity takes on any email address or phone number it was missing from the user identities merged into it, and the merged user identities are then deleted. Their IDs and keys keep working: looking one up returns the primary user identity, and they are listed on it as `merged_user_identity_ids` and `merged_user_identity_keys`.
+   *
+   * Access grants, access system users, client sessions and other resources belonging to the merged user identities are moved to the primary user identity.
+   *
+   * Identify the user identities either by ID or by key, but not both in the same request. Repeating a merge that has already been applied makes no further changes.
+   */
+  get '/user_identities/merge'(): (
+    parameters: UserIdentitiesMergeParameters,
+    options?: UserIdentitiesMergeOptions,
+  ) => UserIdentitiesMergeRequest {
+    const { client, defaults } = this
+    return function userIdentitiesMerge(
+      ...args: Parameters<SeamHttpUserIdentities['merge']>
+    ): ReturnType<SeamHttpUserIdentities['merge']> {
+      const seam = SeamHttpUserIdentities.fromClient(client, defaults)
+      return seam.merge(...args)
+    }
+  }
+
+  /**
    * Removes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) from a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   get '/user_identities/remove_acs_user'(): (
@@ -4442,6 +4467,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/user_identities/delete'
   | '/user_identities/generate_instant_key'
   | '/user_identities/grant_access_to_device'
+  | '/user_identities/merge'
   | '/user_identities/remove_acs_user'
   | '/user_identities/revoke_access_to_device'
   | '/user_identities/update'
