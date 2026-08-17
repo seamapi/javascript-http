@@ -474,7 +474,6 @@ The Axios client and retry behavior may be configured with custom initiation opt
 via [`axiosOptions`][axiosOptions] and [`axiosRetryOptions`][axiosRetryOptions].
 Options are deep merged with the default options.
 
-
 [axiosOptions]: https://axios-http.com/docs/config_defaults
 [axiosRetryOptions]: https://github.com/softonic/axios-retry
 
