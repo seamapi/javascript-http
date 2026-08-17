@@ -387,6 +387,31 @@ export class SeamHttpUserIdentities {
   }
 
   /**
+   * Merges one or more [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) into a primary user identity, for when the same person ended up with more than one user identity.
+   *
+   * The primary user identity takes on any email address or phone number it was missing from the user identities merged into it, and the merged user identities are then deleted. Their IDs and keys keep working: looking one up returns the primary user identity, and they are listed on it as `merged_user_identity_ids` and `merged_user_identity_keys`.
+   *
+   * Access grants, access system users, client sessions and other resources belonging to the merged user identities are moved to the primary user identity.
+   *
+   * Identify the user identities either by ID or by key, but not both in the same request. Repeating a merge that has already been applied makes no further changes.
+   */
+  merge(
+    parameters: UserIdentitiesMergeParameters,
+    options: UserIdentitiesMergeOptions = {},
+  ): UserIdentitiesMergeRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/user_identities/merge',
+      method: 'POST',
+      body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
+      responseKey: undefined,
+      options,
+    })
+  }
+
+  /**
    * Removes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) from a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   removeAcsUser(
@@ -713,6 +738,34 @@ export type UserIdentitiesListAcsUsersRequest = SeamHttpRequest<
 >
 
 export interface UserIdentitiesListAcsUsersOptions {}
+
+export type UserIdentitiesMergeParameters = RequireAtLeastOne<{
+  /**
+   * IDs of the user identities to merge into the primary user identity. These user identities are deleted.
+   */
+  merged_user_identity_ids?: Array<string> | undefined
+  /**
+   * ID of the primary user identity to keep.
+   */
+  user_identity_id?: string | undefined
+  /**
+   * Keys of the user identities to merge into the primary user identity. These user identities are deleted.
+   */
+  merged_user_identity_keys?: Array<string> | undefined
+  /**
+   * Key of the primary user identity to keep.
+   */
+  user_identity_key?: string | undefined
+}>
+
+/**
+ * @deprecated Use UserIdentitiesMergeRequest instead.
+ */
+export type UserIdentitiesMergeResponse = void
+
+export type UserIdentitiesMergeRequest = SeamHttpRequest<void, undefined>
+
+export interface UserIdentitiesMergeOptions {}
 
 export type UserIdentitiesRemoveAcsUserParameters = {
   /**
