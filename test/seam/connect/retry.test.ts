@@ -55,8 +55,6 @@ test('SeamHttp: does not retry POST requests by default', async (t) => {
     routes: ['/devices/list'],
   })
 
-  // devices.list is a POST under the hood, so a mid-flight failure here must
-  // not be replayed.
   const err = await t.throwsAsync(async () => await seam.devices.list(), {
     instanceOf: AxiosError,
   })
