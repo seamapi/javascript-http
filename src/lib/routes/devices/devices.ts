@@ -313,7 +313,7 @@ export type DevicesListParameters = {
    */
   created_before?: string | undefined
   /**
-   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices.
+   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices. Specify an empty string to match a key that is unset or set to an empty string.
    */
   custom_metadata_has?: Record<string, unknown> | undefined
   /**
@@ -1897,7 +1897,7 @@ export type DevicesUpdateParameters = {
    */
   backup_access_code_pool_enabled?: boolean | undefined
   /**
-   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs. [Adding custom metadata to a device](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter devices by the desired metadata](https://docs.seam.co/core-concepts/devices/filtering-devices-by-custom-metadata).
+   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs. [Adding custom metadata to a device](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter devices by the desired metadata](https://docs.seam.co/core-concepts/devices/filtering-devices-by-custom-metadata). Set a key to `null` or to an empty string to remove that key from the custom metadata.
    */
   custom_metadata?: Record<string, unknown> | undefined
   /**
