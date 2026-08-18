@@ -2,26 +2,23 @@ import test from 'ava'
 
 import type { AccessCode, UnmanagedAccessCode } from '@seamapi/http/connect'
 
+const expectType = <Expected>(_value: Expected): void => {}
+
 const assertAccessCodeNarrowing = (
   code: AccessCode | UnmanagedAccessCode,
-): AccessCode | UnmanagedAccessCode => {
+): void => {
   if (code.is_managed) {
-    const managedAccessCode: AccessCode = code
+    expectType<AccessCode>(code)
 
     // @ts-expect-error A managed access code cannot be the unmanaged variant.
-    const unmanagedAccessCode: UnmanagedAccessCode = code
-    void unmanagedAccessCode
-
-    return managedAccessCode
+    expectType<UnmanagedAccessCode>(code)
+    return
   }
 
-  const unmanagedAccessCode: UnmanagedAccessCode = code
+  expectType<UnmanagedAccessCode>(code)
 
   // @ts-expect-error An unmanaged access code cannot be the managed variant.
-  const managedAccessCode: AccessCode = code
-  void managedAccessCode
-
-  return unmanagedAccessCode
+  expectType<AccessCode>(code)
 }
 
 test('access code resources narrow on is_managed', (t) => {
