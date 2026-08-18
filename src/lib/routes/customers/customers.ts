@@ -726,7 +726,7 @@ export type CustomersCreatePortalParameters = {
         property_listings?:
           | Array<{
               /**
-               * Set key:value pairs. Accepts string or Boolean values. Adding custom metadata to a property listing enables you to store custom information, like customer details or internal IDs from your application.
+               * Set key:value pairs. Accepts string or Boolean values. Adding custom metadata to a property listing enables you to store custom information, like customer details or internal IDs from your application. Set a key to `null` or to an empty string to remove that key from the custom metadata.
                */
               custom_metadata?: Record<string, unknown> | undefined
               /**
@@ -753,7 +753,7 @@ export type CustomersCreatePortalParameters = {
                */
               common_area_keys?: Array<string> | undefined
               /**
-               * Set key:value pairs for filtering reservations by custom criteria.
+               * Set key:value pairs for filtering reservations by custom criteria. Set a key to `null` or to an empty string to remove that key from the custom metadata.
                */
               custom_metadata?: Record<string, unknown> | undefined
               /**
@@ -1467,7 +1467,7 @@ export type CustomersPushDataParameters = {
   property_listings?:
     | Array<{
         /**
-         * Set key:value pairs. Accepts string or Boolean values. Adding custom metadata to a property listing enables you to store custom information, like customer details or internal IDs from your application.
+         * Set key:value pairs. Accepts string or Boolean values. Adding custom metadata to a property listing enables you to store custom information, like customer details or internal IDs from your application. Set a key to `null` or to an empty string to remove that key from the custom metadata.
          */
         custom_metadata?: Record<string, unknown> | undefined
         /**
@@ -1494,7 +1494,7 @@ export type CustomersPushDataParameters = {
          */
         common_area_keys?: Array<string> | undefined
         /**
-         * Set key:value pairs for filtering reservations by custom criteria.
+         * Set key:value pairs for filtering reservations by custom criteria. Set a key to `null` or to an empty string to remove that key from the custom metadata.
          */
         custom_metadata?: Record<string, unknown> | undefined
         /**
