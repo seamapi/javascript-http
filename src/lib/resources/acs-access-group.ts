@@ -119,7 +119,7 @@ export type AcsAccessGroup = {
   /**
    * Indicates whether Seam manages the access group.
    */
-  is_managed: boolean
+  is_managed: true
 
   /**
    * Name of the access group.

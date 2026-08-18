@@ -188,12 +188,12 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -216,12 +216,12 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -244,12 +244,12 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -272,12 +272,12 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -300,7 +300,7 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -323,7 +323,7 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -346,7 +346,7 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -369,7 +369,7 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -392,7 +392,7 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -415,7 +415,7 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -438,7 +438,7 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -461,7 +461,7 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -484,7 +484,7 @@ export type UnmanagedDevice = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -522,7 +522,7 @@ export type UnmanagedDevice = {
   /**
    * Indicates that Seam does not manage the device.
    */
-  is_managed: boolean
+  is_managed: false
 
   /**
    * Location information for the device.

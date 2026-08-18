@@ -153,7 +153,7 @@ export type AcsCredential = {
   /**
    * Indicates whether Seam manages the credential.
    */
-  is_managed: boolean
+  is_managed: true
 
   /**
    * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).

@@ -25,11 +25,11 @@ export type UnmanagedAccessCode = {
   /**
    * Indicates that Seam cannot convert this unmanaged access code to a managed access code. Some providers do not support management of unmanaged access codes through API integrations.
    */
-  cannot_be_managed?: boolean | undefined
+  cannot_be_managed?: true | undefined
   /**
    * Indicates that Seam cannot delete this unmanaged access code through the provider. If this access code needs to be deleted, it will only be possible from the manufacturer app.
    */
-  cannot_delete_unmanaged_access_code?: boolean | undefined
+  cannot_delete_unmanaged_access_code?: true | undefined
   /**
    * Code used for access. Typically, a numeric or alphanumeric string.
    */
@@ -108,7 +108,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -130,7 +130,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -152,7 +152,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -174,7 +174,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * ID of the managed access code that conflicts with this managed access code, when Seam can identify it.
@@ -205,7 +205,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -231,7 +231,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -274,7 +274,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -296,7 +296,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -319,12 +319,12 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -347,12 +347,12 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -375,12 +375,12 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -403,12 +403,12 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -431,7 +431,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -454,7 +454,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -477,7 +477,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -500,7 +500,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -523,7 +523,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -546,7 +546,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -569,7 +569,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -592,7 +592,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -615,7 +615,7 @@ export type UnmanagedAccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -653,7 +653,7 @@ export type UnmanagedAccessCode = {
   /**
    * Indicates that Seam does not manage the access code.
    */
-  is_managed: boolean
+  is_managed: false
 
   /**
    * Name of the access code. Enables administrators and users to identify the access code easily, especially when there are numerous access codes. Note that the name provided on Seam is used to identify the code on Seam and is not necessarily the name that will appear in the lock provider's app or on the device. This is because lock providers may have constraints on names, such as length, uniqueness, or characters that can be used. In addition, some lock providers may break down names into components such as `first_name` and `last_name`. To provide a consistent experience, Seam identifies the code on Seam by its name but may modify the name that appears on the lock provider's app or on the device. For example, Seam may add additional characters or truncate the name to meet provider constraints. To help your users identify codes set by Seam, Seam provides the name exactly as it appears on the lock provider's app or on the device as a separate property called `appearance`. This is an object with a `name` property and, optionally, `first_name` and `last_name` properties (for providers that break down a name into components).

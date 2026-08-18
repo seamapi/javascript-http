@@ -102,7 +102,7 @@ export type AccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -124,7 +124,7 @@ export type AccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -146,7 +146,7 @@ export type AccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -168,7 +168,7 @@ export type AccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * ID of the managed access code that conflicts with this managed access code, when Seam can identify it.
@@ -199,7 +199,7 @@ export type AccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -225,7 +225,7 @@ export type AccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -268,7 +268,7 @@ export type AccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -290,7 +290,7 @@ export type AccessCode = {
         /**
          * Indicates that this is an access code error.
          */
-        is_access_code_error: boolean
+        is_access_code_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -313,12 +313,12 @@ export type AccessCode = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -341,12 +341,12 @@ export type AccessCode = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -369,12 +369,12 @@ export type AccessCode = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -397,12 +397,12 @@ export type AccessCode = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -425,7 +425,7 @@ export type AccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -448,7 +448,7 @@ export type AccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -471,7 +471,7 @@ export type AccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -494,7 +494,7 @@ export type AccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -517,7 +517,7 @@ export type AccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -540,7 +540,7 @@ export type AccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -563,7 +563,7 @@ export type AccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -586,7 +586,7 @@ export type AccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -609,7 +609,7 @@ export type AccessCode = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -661,7 +661,7 @@ export type AccessCode = {
   /**
    * Indicates whether Seam manages the access code.
    */
-  is_managed: boolean
+  is_managed: true
 
   /**
    * Indicates whether the access code is intended for use in offline scenarios. If `true`, this code can be created on a device without a network connection.

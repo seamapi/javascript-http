@@ -295,7 +295,7 @@ export type AccessGrantsUnmanagedUpdateParameters = {
   /**
    * Must be set to true to convert the unmanaged access grant to managed.
    */
-  is_managed: boolean
+  is_managed: true
 }
 
 /**
