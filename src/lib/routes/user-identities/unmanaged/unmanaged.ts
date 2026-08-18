@@ -279,7 +279,7 @@ export type UserIdentitiesUnmanagedUpdateParameters = {
   /**
    * Must be set to true to convert the unmanaged user identity to managed.
    */
-  is_managed: boolean
+  is_managed: true
 
   /**
    * ID of the unmanaged user identity that you want to update.

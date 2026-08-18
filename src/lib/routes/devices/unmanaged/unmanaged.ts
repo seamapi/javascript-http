@@ -467,7 +467,7 @@ export type DevicesUnmanagedUpdateParameters = {
   /**
    * Indicates whether the device is managed. Set this parameter to `true` to convert an unmanaged device to managed.
    */
-  is_managed?: boolean | undefined
+  is_managed?: true | undefined
 }
 
 /**
