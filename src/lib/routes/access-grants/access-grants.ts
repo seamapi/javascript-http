@@ -638,7 +638,7 @@ export type AccessGrantsUpdateParameters = RequireAtLeastOne<{
   /**
    * Date and time at which the validity of the grant ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
    */
-  ends_at?: string | null | undefined
+  ends_at?: string | Date | Temporal.Instant | null | undefined
   /**
    * Display name for the access grant.
    */
@@ -646,7 +646,7 @@ export type AccessGrantsUpdateParameters = RequireAtLeastOne<{
   /**
    * Date and time at which the validity of the grant starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
    */
-  starts_at?: string | undefined
+  starts_at?: string | Date | Temporal.Instant | undefined
 }>
 
 /**

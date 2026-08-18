@@ -4,6 +4,15 @@ import { SeamHttp } from '@seamapi/http/connect'
 
 const seam = SeamHttp.fromApiKey('seam_apikey1_token')
 
+const assertDatetimeParameterTypes = (instant: Temporal.Instant): void => {
+  seam.clientSessions.create({ expires_at: new Date() })
+  seam.devices.list({ created_before: instant })
+}
+
+test('datetime parameters accept Date and Temporal.Instant', (t) => {
+  t.is(typeof assertDatetimeParameterTypes, 'function')
+})
+
 test('endpoint rejects missing required parameters', async (t) => {
   await t.throwsAsync(
     // @ts-expect-error Verify requiredness in the generated method signature.

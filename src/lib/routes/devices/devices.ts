@@ -311,7 +311,7 @@ export type DevicesListParameters = {
   /**
    * Timestamp by which to limit returned devices. Returns devices created before this timestamp.
    */
-  created_before?: string | undefined
+  created_before?: string | Date | Temporal.Instant | undefined
   /**
    * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices. Key names cannot contain a period (.). Specify `null` to match a key that is unset. A key given an empty string is omitted from the filter.
    */
