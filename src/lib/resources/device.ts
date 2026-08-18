@@ -1717,7 +1717,15 @@ export type Device = {
            */
           dual_setpoints_not_supported?: boolean | undefined
           /**
-           * Enforced setpoint range in Celsius for a Sensi device, derived from an OutOfRange API error.
+           * Enforced cooling setpoint range in Celsius for a Sensi device, derived from an OutOfRange API error.
+           */
+          enforced_cooling_setpoint_range_celsius?: Array<number> | undefined
+          /**
+           * Enforced heating setpoint range in Celsius for a Sensi device, derived from an OutOfRange API error.
+           */
+          enforced_heating_setpoint_range_celsius?: Array<number> | undefined
+          /**
+           * Legacy combined enforced setpoint range in Celsius for a Sensi device, derived from an OutOfRange API error. Read as a fallback for the per-mode ranges below; no longer written.
            */
           enforced_setpoint_range_celsius?: Array<number> | undefined
           /**
