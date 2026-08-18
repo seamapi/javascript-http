@@ -456,7 +456,7 @@ export interface DevicesUnmanagedListOptions {}
 
 export type DevicesUnmanagedUpdateParameters = {
   /**
-   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs. Set a key to `null` or to an empty string to remove that key from the custom metadata.
+   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs, with key names up to 40 characters long that cannot contain a period (.). Set a key to `null` or to an empty string to remove that key from the custom metadata.
    */
   custom_metadata?: Record<string, unknown> | undefined
   /**
