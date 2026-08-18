@@ -15,7 +15,7 @@ export type Phone = {
   /**
    * Optional [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) for the phone.
    */
-  custom_metadata: Record<string, unknown>
+  custom_metadata: Record<string, string | boolean>
 
   /**
    * ID of the phone.
