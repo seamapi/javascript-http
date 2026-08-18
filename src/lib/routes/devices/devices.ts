@@ -315,7 +315,7 @@ export type DevicesListParameters = {
   /**
    * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices. Key names cannot contain a period (.). Specify `null` to match a key that is unset. A key given an empty string is omitted from the filter.
    */
-  custom_metadata_has?: Record<string, unknown> | undefined
+  custom_metadata_has?: Record<string, string | boolean> | undefined
   /**
    * Customer key for which you want to list devices.
    */
@@ -1899,7 +1899,7 @@ export type DevicesUpdateParameters = {
   /**
    * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs, with key names up to 40 characters long that cannot contain a period (.). [Adding custom metadata to a device](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter devices by the desired metadata](https://docs.seam.co/core-concepts/devices/filtering-devices-by-custom-metadata). Set a key to `null` or to an empty string to remove that key from the custom metadata.
    */
-  custom_metadata?: Record<string, unknown> | undefined
+  custom_metadata?: Record<string, string | boolean> | undefined
   /**
    * ID of the device that you want to update.
    */

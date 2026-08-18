@@ -16,7 +16,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -30,7 +31,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -90,7 +91,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -104,7 +106,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -140,7 +142,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -159,7 +162,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -215,7 +218,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -234,7 +238,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -290,7 +294,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -309,7 +314,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -373,7 +378,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -387,7 +393,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -453,7 +459,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -467,7 +474,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -508,7 +515,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -522,7 +530,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -558,7 +566,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -572,7 +581,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -648,7 +657,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -702,7 +712,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * Errors associated with the device.
        */
@@ -818,7 +828,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -872,7 +883,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * Errors associated with the device.
        */
@@ -952,7 +963,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -966,7 +978,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -1042,7 +1054,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -1096,7 +1109,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * Errors associated with the device.
        */
@@ -1212,7 +1225,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -1266,7 +1280,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * Errors associated with the device.
        */
@@ -1342,7 +1356,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -1356,7 +1371,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -1392,7 +1407,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -1406,7 +1422,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -1447,7 +1463,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -1461,7 +1478,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -1497,7 +1514,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -1511,7 +1529,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -1587,7 +1605,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -1641,7 +1660,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * Errors associated with the device.
        */
@@ -1717,7 +1736,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -1731,7 +1751,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -1767,7 +1787,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the affected access code.
        */
@@ -1781,7 +1802,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the device associated with the affected access code.
        */
@@ -3086,7 +3107,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the affected connected account.
        */
@@ -3131,7 +3153,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the affected connected account.
        */
@@ -3172,7 +3195,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the affected connected account.
        */
@@ -3208,7 +3232,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -3284,7 +3309,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the affected connected account.
        */
@@ -3320,7 +3346,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the affected connected account.
        */
@@ -3360,7 +3387,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the affected connected account.
        */
@@ -3396,7 +3424,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -3877,7 +3906,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account; present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -3949,7 +3979,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -3967,7 +3998,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -3998,7 +4029,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4016,7 +4048,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4047,7 +4079,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4065,7 +4098,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4096,7 +4129,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4114,7 +4148,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4145,7 +4179,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4163,7 +4198,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4194,7 +4229,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -4252,7 +4288,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * Errors associated with the device.
        */
@@ -4329,7 +4365,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -4387,7 +4424,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * Errors associated with the device.
        */
@@ -4464,7 +4501,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4482,7 +4520,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4518,7 +4556,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4536,7 +4575,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4577,7 +4616,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4595,7 +4635,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4626,7 +4666,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4644,7 +4685,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4675,7 +4716,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4693,7 +4735,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4728,7 +4770,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4746,7 +4789,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4777,7 +4820,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4795,7 +4839,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4826,7 +4870,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4844,7 +4889,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4875,7 +4920,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -4893,7 +4939,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -4924,7 +4970,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -4982,7 +5029,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * Errors associated with the device.
        */
@@ -5053,7 +5100,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5071,7 +5119,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -5102,7 +5150,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -5160,7 +5209,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * Errors associated with the device.
        */
@@ -5231,7 +5280,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5249,7 +5299,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -5280,7 +5330,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5298,7 +5349,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -5329,7 +5380,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * Errors associated with the connected account.
        */
@@ -5387,7 +5439,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * Errors associated with the device.
        */
@@ -5458,7 +5510,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5476,7 +5529,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -5547,7 +5600,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5565,7 +5619,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -5625,7 +5679,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5643,7 +5698,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -5690,7 +5745,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5708,7 +5764,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -5765,7 +5821,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5783,7 +5840,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -5823,7 +5880,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5849,7 +5907,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -5902,7 +5960,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5920,7 +5979,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -5977,7 +6036,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -5995,7 +6055,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -6052,7 +6112,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -6078,7 +6139,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -6119,7 +6180,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -6137,7 +6199,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -6178,7 +6240,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -6196,7 +6259,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -6237,7 +6300,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -6255,7 +6319,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -6298,7 +6362,8 @@ export type SeamEvent =
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
-      connected_account_custom_metadata?: Record<string, unknown> | undefined
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
       /**
        * ID of the connected account associated with the event.
        */
@@ -6316,7 +6381,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device, present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected device.
        */
@@ -6360,7 +6425,7 @@ export type SeamEvent =
       /**
        * Custom metadata of the device; present when device_id is provided.
        */
-      device_custom_metadata?: Record<string, unknown> | undefined
+      device_custom_metadata?: Record<string, string | boolean> | undefined
       /**
        * ID of the affected phone device.
        */
