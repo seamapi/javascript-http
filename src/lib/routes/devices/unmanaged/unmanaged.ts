@@ -264,7 +264,7 @@ export type DevicesUnmanagedListParameters = {
   /**
    * Timestamp by which to limit returned devices. Returns devices created before this timestamp.
    */
-  created_before?: string | undefined
+  created_before?: string | Date | Temporal.Instant | undefined
   /**
    * Customer key for which you want to list devices.
    */

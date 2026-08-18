@@ -314,7 +314,7 @@ export type ClientSessionsCreateParameters = {
   /**
    * Date and time at which the client session should expire, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
    */
-  expires_at?: string | undefined
+  expires_at?: string | Date | Temporal.Instant | undefined
   /**
    * Your user ID for the user for whom you want to create a client session.
    */
@@ -393,7 +393,7 @@ export type ClientSessionsGetOrCreateParameters = {
   /**
    * Date and time at which the client session should expire in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. If the client session already exists, this will update the expiration before returning it.
    */
-  expires_at?: string | undefined
+  expires_at?: string | Date | Temporal.Instant | undefined
   /**
    * Your user ID for the user that you want to associate with the client session (or that is already associated with the existing client session).
    */

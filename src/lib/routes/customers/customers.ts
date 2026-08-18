@@ -476,7 +476,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Ending date and time for the access grant.
                */
-              ends_at?: string | undefined
+              ends_at?: string | Date | Temporal.Instant | undefined
               /**
                * Facility keys associated with the access grant.
                */
@@ -516,7 +516,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Starting date and time for the access grant.
                */
-              starts_at?: string | undefined
+              starts_at?: string | Date | Temporal.Instant | undefined
               /**
                * Tenant key associated with the access grant.
                */
@@ -555,7 +555,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Ending date and time for the access grant.
                */
-              ends_at?: string | undefined
+              ends_at?: string | Date | Temporal.Instant | undefined
               /**
                * Facility keys associated with the access grant.
                */
@@ -595,7 +595,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Starting date and time for the access grant.
                */
-              starts_at?: string | undefined
+              starts_at?: string | Date | Temporal.Instant | undefined
               /**
                * Tenant key associated with the access grant.
                */
@@ -759,7 +759,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Ending date and time for the access grant.
                */
-              ends_at?: string | undefined
+              ends_at?: string | Date | Temporal.Instant | undefined
               /**
                * Facility keys associated with the access grant.
                */
@@ -803,7 +803,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Starting date and time for the access grant.
                */
-              starts_at?: string | undefined
+              starts_at?: string | Date | Temporal.Instant | undefined
               /**
                * Tenant key associated with the access grant.
                */
@@ -1216,7 +1216,7 @@ export type CustomersPushDataParameters = {
         /**
          * Ending date and time for the access grant.
          */
-        ends_at?: string | undefined
+        ends_at?: string | Date | Temporal.Instant | undefined
         /**
          * Facility keys associated with the access grant.
          */
@@ -1256,7 +1256,7 @@ export type CustomersPushDataParameters = {
         /**
          * Starting date and time for the access grant.
          */
-        starts_at?: string | undefined
+        starts_at?: string | Date | Temporal.Instant | undefined
         /**
          * Tenant key associated with the access grant.
          */
@@ -1295,7 +1295,7 @@ export type CustomersPushDataParameters = {
         /**
          * Ending date and time for the access grant.
          */
-        ends_at?: string | undefined
+        ends_at?: string | Date | Temporal.Instant | undefined
         /**
          * Facility keys associated with the access grant.
          */
@@ -1335,7 +1335,7 @@ export type CustomersPushDataParameters = {
         /**
          * Starting date and time for the access grant.
          */
-        starts_at?: string | undefined
+        starts_at?: string | Date | Temporal.Instant | undefined
         /**
          * Tenant key associated with the access grant.
          */
@@ -1500,7 +1500,7 @@ export type CustomersPushDataParameters = {
         /**
          * Ending date and time for the access grant.
          */
-        ends_at?: string | undefined
+        ends_at?: string | Date | Temporal.Instant | undefined
         /**
          * Facility keys associated with the access grant.
          */
@@ -1544,7 +1544,7 @@ export type CustomersPushDataParameters = {
         /**
          * Starting date and time for the access grant.
          */
-        starts_at?: string | undefined
+        starts_at?: string | Date | Temporal.Instant | undefined
         /**
          * Tenant key associated with the access grant.
          */

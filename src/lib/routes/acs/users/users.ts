@@ -400,11 +400,11 @@ export type AcsUsersCreateParameters = {
         /**
          * Ending timestamp for the new access system user's access.
          */
-        ends_at?: string | null | undefined
+        ends_at?: string | Date | Temporal.Instant | null | undefined
         /**
          * Starting timestamp for the new access system user's access.
          */
-        starts_at?: string | undefined
+        starts_at?: string | Date | Temporal.Instant | undefined
       }
     | undefined
   /**
@@ -510,7 +510,7 @@ export type AcsUsersListParameters = {
   /**
    * Timestamp by which to limit returned access system users. Returns users created before this timestamp.
    */
-  created_before?: string | undefined
+  created_before?: string | Date | Temporal.Instant | undefined
   /**
    * Maximum number of records to return per page.
    */
@@ -690,11 +690,11 @@ export type AcsUsersUpdateParameters = RequireAtLeastOne<{
         /**
          * Ending timestamp for the access system user's access.
          */
-        ends_at?: string | undefined
+        ends_at?: string | Date | Temporal.Instant | undefined
         /**
          * Starting timestamp for the access system user's access.
          */
-        starts_at?: string | undefined
+        starts_at?: string | Date | Temporal.Instant | undefined
       }
     | null
     | undefined

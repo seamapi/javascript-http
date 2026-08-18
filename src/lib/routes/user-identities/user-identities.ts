@@ -620,7 +620,7 @@ export type UserIdentitiesListParameters = {
   /**
    * Timestamp by which to limit returned user identities. Returns user identities created before this timestamp.
    */
-  created_before?: string | undefined
+  created_before?: string | Date | Temporal.Instant | undefined
   /**
    * `acs_system_id` of the credential manager by which you want to filter the list of user identities.
    */

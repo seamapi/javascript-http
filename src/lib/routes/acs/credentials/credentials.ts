@@ -380,7 +380,7 @@ export type AcsCredentialsCreateParameters = {
   /**
    * Date and time at which the validity of the new credential ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
    */
-  ends_at?: string | undefined
+  ends_at?: string | Date | Temporal.Instant | undefined
   /**
    * Indicates whether the new credential is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
    */
@@ -399,7 +399,7 @@ export type AcsCredentialsCreateParameters = {
   /**
    * Date and time at which the validity of the new credential starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
    */
-  starts_at?: string | undefined
+  starts_at?: string | Date | Temporal.Instant | undefined
   /**
    * ID of the user identity to whom the new credential belongs. You must provide either `acs_user_id` or the combination of `user_identity_id` and `acs_system_id`. If the access system contains a user with the same `email_address` or `phone_number` as the user identity that you specify, they are linked, and the credential belongs to the access system user. If the access system does not have a corresponding user, one is created.
    */
@@ -481,7 +481,7 @@ export type AcsCredentialsListParameters = {
   /**
    * Date and time, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format, before which events to return were created.
    */
-  created_before?: string | undefined
+  created_before?: string | Date | Temporal.Instant | undefined
   /**
    * Indicates whether you want to retrieve only multi-phone sync credentials or non-multi-phone sync credentials.
    */
@@ -577,7 +577,7 @@ export type AcsCredentialsUpdateParameters = {
   /**
    * Replacement date and time at which the validity of the credential ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after the `starts_at` value that you set when creating the credential.
    */
-  ends_at?: string | undefined
+  ends_at?: string | Date | Temporal.Instant | undefined
 }
 
 /**

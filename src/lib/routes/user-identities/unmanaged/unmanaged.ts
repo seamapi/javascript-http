@@ -246,7 +246,7 @@ export type UserIdentitiesUnmanagedListParameters = {
   /**
    * Timestamp by which to limit returned unmanaged user identities. Returns user identities created before this timestamp.
    */
-  created_before?: string | undefined
+  created_before?: string | Date | Temporal.Instant | undefined
   /**
    * Maximum number of records to return per page.
    */
