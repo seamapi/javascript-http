@@ -313,7 +313,7 @@ export type DevicesListParameters = {
    */
   created_before?: string | undefined
   /**
-   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices. Key names cannot contain a period (.). Specify an empty string to match a key that is unset or set to an empty string.
+   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices. Key names cannot contain a period (.). Specify `null` to match a key that is unset. A key given an empty string is omitted from the filter.
    */
   custom_metadata_has?: Record<string, unknown> | undefined
   /**
