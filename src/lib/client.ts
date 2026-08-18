@@ -20,6 +20,18 @@ export interface ClientOptions {
 
 type AxiosRetryConfig = Parameters<AxiosRetry>[1]
 
+type RequiredAxiosRetryConfig = Required<NonNullable<AxiosRetryConfig>>
+
+const defaultAxiosRetryOptions = {
+  retries: 2,
+  retryCondition: isIdempotentRequestError,
+  retryDelay: exponentialDelay,
+  shouldResetTimeout: true,
+  onRetry: () => undefined,
+  onMaxRetryTimesExceeded: () => undefined,
+  validateResponse: null,
+} satisfies RequiredAxiosRetryConfig
+
 export const createClient = (options: ClientOptions): AxiosInstance => {
   const client = axios.create({
     paramsSerializer: serializeUrlSearchParams,
@@ -29,9 +41,7 @@ export const createClient = (options: ClientOptions): AxiosInstance => {
   })
 
   axiosRetry(client, {
-    retries: 2,
-    retryDelay: exponentialDelay,
-    retryCondition: isIdempotentRequestError,
+    ...defaultAxiosRetryOptions,
     ...options.axiosRetryOptions,
   })
 

@@ -465,14 +465,25 @@ const seam = new SeamHttp({
 ```
 
 Set `timeout` to `0` to disable the timeout entirely.
-A request that times out rejects with an Axios `ETIMEDOUT` error,
-and is retried according to the retry options.
+A request that times out rejects with an Axios `ETIMEDOUT` error.
+Timed-out idempotent requests are retried according to the retry options, with
+the timeout reset for each attempt. Non-idempotent requests are not retried by
+default.
 
 #### Configuring the Axios Client
 
 The Axios client and retry behavior may be configured with custom initiation options
 via [`axiosOptions`][axiosOptions] and [`axiosRetryOptions`][axiosRetryOptions].
 Options are deep merged with the default options.
+
+By default, the SDK makes up to three attempts: the initial request and two
+retries. Retries are limited to `GET`, `HEAD`, `OPTIONS`, `PUT`, and `DELETE`
+requests that fail because of a transport error, timeout, HTTP 429 response, or
+HTTP 5xx response. `POST` and `PATCH` requests are not retried.
+
+Retries use exponential backoff with jitter: approximately 200–240 ms before
+the first retry and 400–480 ms before the second. A longer `Retry-After` header
+is honored. The request timeout is reset for each attempt.
 
 [axiosOptions]: https://axios-http.com/docs/config_defaults
 [axiosRetryOptions]: https://github.com/softonic/axios-retry
