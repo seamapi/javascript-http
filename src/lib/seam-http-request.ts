@@ -194,7 +194,9 @@ const getUrlPrefix = (input: string): string => {
   }
   if (globalThis.location != null) {
     const pathname = input.startsWith('/') ? input : `/${input}`
-    return new URL(`${globalThis.location.origin}${pathname}`).toString()
+    return new URL(`${globalThis.location.origin}${pathname}`)
+      .toString()
+      .replace(/\/$/, '')
   }
   throw new Error(
     `Cannot resolve origin from ${input} in a non-browser environment`,
