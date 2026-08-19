@@ -297,6 +297,72 @@ export type AccessCode = {
          */
         message: string
       } /**
+     * Seam was unable to issue this access code before its start time, so the recipient may be unable to unlock the device. This usually points to a problem that needs attention, such as an offline or disconnected device. Seam keeps retrying, and this error clears automatically if the access code is eventually issued.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at?: string | undefined
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'failed_to_issue'
+
+        /**
+         * Indicates that this is an access code error.
+         */
+        is_access_code_error: true
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      } /**
+     * Seam was unable to apply this access code's pending mutations to the device, so the code on the device does not match its requested state. Seam keeps retrying, and this error clears automatically once the mutations are applied.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at?: string | undefined
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'failed_to_apply_mutations'
+
+        /**
+         * Indicates that this is an access code error.
+         */
+        is_access_code_error: true
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      } /**
+     * This access code is still active on the device even though its `ends_at` has passed, so the recipient may still be able to unlock the device after their access window ended. Seam is attempting to remove it, and this error clears automatically once the access code is no longer active.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at?: string | undefined
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'failed_to_expire'
+
+        /**
+         * Indicates that this is an access code error.
+         */
+        is_access_code_error: true
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      } /**
      * Indicates that the account is disconnected.
      */
     | {
@@ -1004,6 +1070,40 @@ export type AccessCode = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'delay_in_removing_from_device'
+      } /**
+     * Seam has not yet issued this access code, even though its start time is approaching, so access may not be ready when the recipient arrives. Seam is still attempting to issue it, and this warning clears automatically once issuance succeeds.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at?: string | undefined
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'delay_in_issuing'
+      } /**
+     * Seam has not yet applied this access code's pending mutations to the device, so the code on the device does not yet match its requested state. Seam is still attempting to apply them, and this warning clears automatically once the mutations are applied.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at?: string | undefined
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'delay_in_applying_mutations'
       } /**
      * Third-party integration detected that may cause access codes to fail.
      */
