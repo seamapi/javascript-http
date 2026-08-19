@@ -308,6 +308,7 @@ export class SeamHttpSpaces {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'spaces',
+      hasPagination: true,
       options,
     })
   }

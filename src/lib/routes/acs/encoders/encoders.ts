@@ -223,6 +223,7 @@ export class SeamHttpAcsEncoders {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'acs_encoders',
+      hasPagination: true,
       options,
     })
   }

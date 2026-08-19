@@ -237,6 +237,7 @@ export class SeamHttpAccessCodesUnmanaged {
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
       responseKey: 'access_codes',
+      hasPagination: true,
       options,
     })
   }

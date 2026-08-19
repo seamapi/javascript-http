@@ -294,6 +294,7 @@ export class SeamHttpAccessCodes {
       hasRequiredParameters: true,
       requiredParameterNames: [],
       responseKey: 'access_codes',
+      hasPagination: true,
       options,
     })
   }

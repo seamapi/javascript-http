@@ -251,6 +251,7 @@ export class SeamHttpAcsUsers {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'acs_users',
+      hasPagination: true,
       options,
     })
   }

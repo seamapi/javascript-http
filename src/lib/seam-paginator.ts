@@ -28,7 +28,7 @@ export class SeamPaginator<
     parent: SeamPaginatorParent,
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ) {
-    if (request.responseKey == null) {
+    if (!request.hasPagination) {
       throw new Error(
         `The ${request.pathname} endpoint does not support pagination`,
       )

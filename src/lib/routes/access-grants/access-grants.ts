@@ -257,6 +257,7 @@ export class SeamHttpAccessGrants {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'access_grants',
+      hasPagination: true,
       options,
     })
   }

@@ -286,6 +286,7 @@ export class SeamHttpAccessMethods {
       hasRequiredParameters: true,
       requiredParameterNames: [],
       responseKey: 'access_methods',
+      hasPagination: true,
       options,
     })
   }

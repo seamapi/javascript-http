@@ -240,6 +240,7 @@ export class SeamHttpConnectWebviews {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'connect_webviews',
+      hasPagination: true,
       options,
     })
   }
