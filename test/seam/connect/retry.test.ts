@@ -55,9 +55,10 @@ test('SeamHttp: does not retry POST requests by default', async (t) => {
     routes: ['/devices/list'],
   })
 
-  const err = await t.throwsAsync(async () => await seam.devices.list(), {
-    instanceOf: AxiosError,
-  })
+  const err = await t.throwsAsync(
+    async () => await seam.client.post('/devices/list'),
+    { instanceOf: AxiosError },
+  )
 
   t.is(err?.response?.status, 503)
 })
@@ -94,7 +95,7 @@ test('SeamHttp: does not replay a POST after a mid-flight connection reset', asy
     endpoint: `http://127.0.0.1:${address.port}`,
   })
 
-  await t.throwsAsync(async () => await seam.devices.list())
+  await t.throwsAsync(async () => await seam.client.post('/devices/list'))
 
   t.is(attempts, 1)
 })
