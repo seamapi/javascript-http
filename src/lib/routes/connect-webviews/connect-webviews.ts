@@ -234,8 +234,8 @@ export class SeamHttpConnectWebviews {
   ): ConnectWebviewsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],

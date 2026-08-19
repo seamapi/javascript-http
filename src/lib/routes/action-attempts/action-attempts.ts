@@ -190,8 +190,8 @@ export class SeamHttpActionAttempts {
   ): ActionAttemptsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/action_attempts/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],

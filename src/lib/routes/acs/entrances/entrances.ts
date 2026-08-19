@@ -208,8 +208,8 @@ export class SeamHttpAcsEntrances {
   ): AcsEntrancesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
@@ -227,8 +227,8 @@ export class SeamHttpAcsEntrances {
   ): AcsEntrancesListCredentialsWithAccessRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/entrances/list_credentials_with_access',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_entrance_id'],

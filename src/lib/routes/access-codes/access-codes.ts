@@ -288,8 +288,8 @@ export class SeamHttpAccessCodes {
   ): AccessCodesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],

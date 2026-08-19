@@ -219,8 +219,8 @@ export class SeamHttpConnectedAccounts {
   ): ConnectedAccountsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],

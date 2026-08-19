@@ -201,8 +201,8 @@ export class SeamHttpDevices {
   ): DevicesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],

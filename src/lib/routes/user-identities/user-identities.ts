@@ -300,8 +300,8 @@ export class SeamHttpUserIdentities {
   ): UserIdentitiesListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],

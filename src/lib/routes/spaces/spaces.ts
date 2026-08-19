@@ -283,8 +283,8 @@ export class SeamHttpSpaces {
   ): SpacesGetRelatedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/get_related',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
@@ -321,8 +321,8 @@ export class SeamHttpSpaces {
   ): SpacesRemoveAcsEntrancesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_acs_entrances',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_entrance_ids', 'space_id'],
@@ -359,8 +359,8 @@ export class SeamHttpSpaces {
   ): SpacesRemoveDevicesRequest {
     return new SeamHttpRequest(this, {
       pathname: '/spaces/remove_devices',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_ids', 'space_id'],
