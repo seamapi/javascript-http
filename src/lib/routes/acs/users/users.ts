@@ -524,17 +524,17 @@ export type AcsUsersListParameters = {
    */
   search?: string | undefined
   /**
-   * Email address of the user identity for which you want to retrieve all access system users.
+   * Email address of the user identity for which you want to retrieve all access system users. Specify `null` to retrieve access system users whose user identity has no email address.
    */
-  user_identity_email_address?: string | undefined
+  user_identity_email_address?: string | null | undefined
   /**
    * ID of the user identity for which you want to retrieve all access system users.
    */
   user_identity_id?: string | undefined
   /**
-   * Phone number of the user identity for which you want to retrieve all access system users, in [E.164 format](https://www.itu.int/rec/T-REC-E.164/en) (for example, `+15555550100`).
+   * Phone number of the user identity for which you want to retrieve all access system users, in [E.164 format](https://www.itu.int/rec/T-REC-E.164/en) (for example, `+15555550100`). Specify `null` to retrieve access system users whose user identity has no phone number.
    */
-  user_identity_phone_number?: string | undefined
+  user_identity_phone_number?: string | null | undefined
 }
 
 /**
