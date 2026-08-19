@@ -466,17 +466,17 @@ export type ClientSessionsListParameters = {
    */
   client_session_id?: string | undefined
   /**
-   * ID of the [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews) for which you want to retrieve client sessions.
+   * ID of the [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews) for which you want to retrieve client sessions. Specify `null` to retrieve client sessions that are not associated with a Connect Webview.
    */
-  connect_webview_id?: string | undefined
+  connect_webview_id?: string | null | undefined
   /**
    * Your user ID for the user by which you want to filter client sessions.
    */
   user_identifier_key?: string | undefined
   /**
-   * ID of the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) for which you want to retrieve client sessions.
+   * ID of the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) for which you want to retrieve client sessions. Specify `null` to retrieve client sessions that are not associated with a user identity.
    */
-  user_identity_id?: string | undefined
+  user_identity_id?: string | null | undefined
   /**
    * Indicates whether to retrieve only client sessions without associated user identifier keys.
    */
