@@ -50,27 +50,23 @@ test('SeamHttpRequest: url is a URL for requests without query string', async (t
   )
 })
 
-// UPSTREAM: The Seam API does not yet consistently support GET requests, so only POST is used.
-test.failing(
-  'SeamHttpRequest: url is a URL for requests with query string',
-  async (t) => {
-    const { seed, endpoint } = await getTestServer(t)
-    const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
-    const { url } = seam.devices.list({
-      limit: 10,
-      device_ids: [seed.august_device_1, seed.ecobee_device_1],
-    })
-    t.true(url instanceof URL)
-    t.deepEqual(
-      toPlainUrlObject(url),
-      toPlainUrlObject(
-        new URL(
-          `${endpoint}/devices/get?device_ids=${seed.august_device_1}&device_ids=${seed.ecobee_device_1}&limit=10`,
-        ),
+test('SeamHttpRequest: url is a URL for requests with query string', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+  const { url } = seam.devices.list({
+    limit: 10,
+    device_ids: [seed.august_device_1, seed.ecobee_device_1],
+  })
+  t.true(url instanceof URL)
+  t.deepEqual(
+    toPlainUrlObject(url),
+    toPlainUrlObject(
+      new URL(
+        `${endpoint}/devices/list?device_ids=${seed.august_device_1}&device_ids=${seed.ecobee_device_1}&limit=10&_strict=true`,
       ),
-    )
-  },
-)
+    ),
+  )
+})
 
 test('SeamHttpRequest: url is a URL when endpoint is a url without a path', async (t) => {
   const { seed } = await getTestServer(t)
@@ -84,7 +80,7 @@ test('SeamHttpRequest: url is a URL when endpoint is a url without a path', asyn
   t.deepEqual(
     toPlainUrlObject(url),
     toPlainUrlObject(
-      new URL('https://example.com/devices/get?device_id=abc123'),
+      new URL('https://example.com/devices/get?device_id=abc123&_strict=true'),
     ),
   )
 })
@@ -101,61 +97,80 @@ test('SeamHttpRequest: url is a URL when endpoint is a url with a path', async (
   t.deepEqual(
     toPlainUrlObject(url),
     toPlainUrlObject(
-      new URL('https://example.com/some/sub/path/devices/get?device_id=abc123'),
+      new URL(
+        'https://example.com/some/sub/path/devices/get?device_id=abc123&_strict=true',
+      ),
     ),
   )
 })
 
-test.failing(
+test.serial(
   'SeamHttpRequest: url is a URL when endpoint is path',
   async (t) => {
     const { seed } = await getTestServer(t)
+    Object.defineProperty(globalThis, 'location', {
+      configurable: true,
+      value: { origin: 'https://example.com' },
+    })
+    t.teardown(() => Reflect.deleteProperty(globalThis, 'location'))
+
     const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
       endpoint: '/some/sub/path',
     })
-
     const { url } = seam.devices.get({ device_id: 'abc123' })
 
     t.true(url instanceof URL)
     t.deepEqual(
       toPlainUrlObject(url),
       toPlainUrlObject(
-        new URL('https://example.com/some/sub/path/devices/get'),
+        new URL(
+          'https://example.com/some/sub/path/devices/get?device_id=abc123&_strict=true',
+        ),
       ),
     )
   },
 )
 
-test.failing(
+test.serial(
   'SeamHttpRequest: url is a URL when endpoint is empty',
+  async (t) => {
+    const { seed } = await getTestServer(t)
+    Object.defineProperty(globalThis, 'location', {
+      configurable: true,
+      value: { origin: 'https://example.com' },
+    })
+    t.teardown(() => Reflect.deleteProperty(globalThis, 'location'))
+
+    const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+      endpoint: '',
+    })
+    const { url } = seam.devices.get({ device_id: 'abc123' })
+
+    t.true(url instanceof URL)
+    t.deepEqual(
+      toPlainUrlObject(url),
+      toPlainUrlObject(
+        new URL(
+          'https://example.com/devices/get?device_id=abc123&_strict=true',
+        ),
+      ),
+    )
+  },
+)
+
+test.serial(
+  'SeamHttpRequest: url throws if unable to resolve origin',
   async (t) => {
     const { seed } = await getTestServer(t)
     const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
       endpoint: '',
     })
 
-    // TODO: Set globalThis.location.origin = 'https://example.com'
+    const request = seam.devices.get({ device_id: 'abc123' })
 
-    const { url } = seam.devices.get({ device_id: 'abc123' })
-
-    t.true(url instanceof URL)
-    t.deepEqual(
-      toPlainUrlObject(url),
-      toPlainUrlObject(new URL('https://example.com/devices/get')),
-    )
+    t.throws(() => request.url, { message: /Cannot resolve origin/ })
   },
 )
-
-test('SeamHttpRequest: url throws if unable to resolve origin', async (t) => {
-  const { seed } = await getTestServer(t)
-  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
-    endpoint: '',
-  })
-
-  const request = seam.devices.get({ device_id: 'abc123' })
-
-  t.throws(() => request.url, { message: /Cannot resolve origin/ })
-})
 
 const toPlainUrlObject = (url: URL): Omit<URL, 'searchParams' | 'toJSON'> => {
   return {

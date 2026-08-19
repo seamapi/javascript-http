@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { AcsCredential } from 'lib/resources/acs-credential.js'
 import type { AcsEntrance } from 'lib/resources/acs-entrance.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
@@ -201,14 +200,13 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsAssignParameters,
     options: AcsCredentialsAssignOptions = {},
   ): AcsCredentialsAssignRequest {
-    assertValidRequestParameters(parameters, '/acs/credentials/assign', true, [
-      'acs_credential_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/assign',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_credential_id'],
       responseKey: undefined,
       options,
     })
@@ -221,14 +219,13 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsCreateParameters,
     options: AcsCredentialsCreateOptions = {},
   ): AcsCredentialsCreateRequest {
-    assertValidRequestParameters(parameters, '/acs/credentials/create', true, [
-      'access_method',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/create',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_method'],
       responseKey: 'acs_credential',
       options,
     })
@@ -241,14 +238,13 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsDeleteParameters,
     options: AcsCredentialsDeleteOptions = {},
   ): AcsCredentialsDeleteRequest {
-    assertValidRequestParameters(parameters, '/acs/credentials/delete', true, [
-      'acs_credential_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_credential_id'],
       responseKey: undefined,
       options,
     })
@@ -261,14 +257,13 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsGetParameters,
     options: AcsCredentialsGetOptions = {},
   ): AcsCredentialsGetRequest {
-    assertValidRequestParameters(parameters, '/acs/credentials/get', true, [
-      'acs_credential_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_credential_id'],
       responseKey: 'acs_credential',
       options,
     })
@@ -281,13 +276,15 @@ export class SeamHttpAcsCredentials {
     parameters?: AcsCredentialsListParameters,
     options: AcsCredentialsListOptions = {},
   ): AcsCredentialsListRequest {
-    assertValidRequestParameters(parameters, '/acs/credentials/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/list',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'acs_credentials',
+      hasPagination: true,
       options,
     })
   }
@@ -299,17 +296,13 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsListAccessibleEntrancesParameters,
     options: AcsCredentialsListAccessibleEntrancesOptions = {},
   ): AcsCredentialsListAccessibleEntrancesRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/credentials/list_accessible_entrances',
-      true,
-      ['acs_credential_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/list_accessible_entrances',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_credential_id'],
       responseKey: 'acs_entrances',
       options,
     })
@@ -322,17 +315,13 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsUnassignParameters,
     options: AcsCredentialsUnassignOptions = {},
   ): AcsCredentialsUnassignRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/credentials/unassign',
-      true,
-      ['acs_credential_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/unassign',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_credential_id'],
       responseKey: undefined,
       options,
     })
@@ -345,14 +334,13 @@ export class SeamHttpAcsCredentials {
     parameters: AcsCredentialsUpdateParameters,
     options: AcsCredentialsUpdateOptions = {},
   ): AcsCredentialsUpdateRequest {
-    assertValidRequestParameters(parameters, '/acs/credentials/update', true, [
-      'acs_credential_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/credentials/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_credential_id'],
       responseKey: undefined,
       options,
     })
@@ -427,7 +415,7 @@ export type AcsCredentialsCreateParameters = {
   /**
    * Date and time at which the validity of the new credential ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
    */
-  ends_at?: string | undefined
+  ends_at?: string | Date | Temporal.Instant | undefined
   /**
    * Indicates whether the new credential is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
    */
@@ -446,7 +434,7 @@ export type AcsCredentialsCreateParameters = {
   /**
    * Date and time at which the validity of the new credential starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
    */
-  starts_at?: string | undefined
+  starts_at?: string | Date | Temporal.Instant | undefined
   /**
    * ID of the user identity to whom the new credential belongs. You must provide either `acs_user_id` or the combination of `user_identity_id` and `acs_system_id`. If the access system contains a user with the same `email_address` or `phone_number` as the user identity that you specify, they are linked, and the credential belongs to the access system user. If the access system does not have a corresponding user, one is created.
    */
@@ -518,21 +506,17 @@ export interface AcsCredentialsGetOptions {}
 
 export type AcsCredentialsListParameters = {
   /**
-   * ID of the access system user for which you want to retrieve all credentials.
-   */
-  acs_user_id?: string | undefined
-  /**
    * ID of the access system for which you want to retrieve all credentials.
    */
   acs_system_id?: string | undefined
   /**
-   * ID of the user identity for which you want to retrieve all credentials.
+   * ID of the access system user for which you want to retrieve all credentials.
    */
-  user_identity_id?: string | undefined
+  acs_user_id?: string | undefined
   /**
    * Date and time, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format, before which events to return were created.
    */
-  created_before?: string | undefined
+  created_before?: string | Date | Temporal.Instant | undefined
   /**
    * Indicates whether you want to retrieve only multi-phone sync credentials or non-multi-phone sync credentials.
    */
@@ -549,6 +533,10 @@ export type AcsCredentialsListParameters = {
    * String for which to search. Filters returned credentials to include all records that satisfy a partial match using `display_name`, `code`, `card_number`, `acs_user_id` or `acs_credential_id`.
    */
   search?: string | undefined
+  /**
+   * ID of the user identity for which you want to retrieve all credentials.
+   */
+  user_identity_id?: string | undefined
 }
 
 /**
@@ -624,7 +612,7 @@ export type AcsCredentialsUpdateParameters = {
   /**
    * Replacement date and time at which the validity of the credential ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after the `starts_at` value that you set when creating the credential.
    */
-  ends_at?: string | undefined
+  ends_at?: string | Date | Temporal.Instant | undefined
 }
 
 /**

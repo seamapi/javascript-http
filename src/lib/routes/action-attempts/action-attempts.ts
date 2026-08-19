@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -200,14 +199,13 @@ export class SeamHttpActionAttempts {
     parameters: ActionAttemptsGetParameters,
     options: ActionAttemptsGetOptions = {},
   ): ActionAttemptsGetRequest {
-    assertValidRequestParameters(parameters, '/action_attempts/get', true, [
-      'action_attempt_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/action_attempts/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['action_attempt_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -224,13 +222,15 @@ export class SeamHttpActionAttempts {
     parameters?: ActionAttemptsListParameters,
     options: ActionAttemptsListOptions = {},
   ): ActionAttemptsListRequest {
-    assertValidRequestParameters(parameters, '/action_attempts/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/action_attempts/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'action_attempts',
+      hasPagination: true,
       options,
     })
   }

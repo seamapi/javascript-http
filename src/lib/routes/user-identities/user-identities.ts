@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { AcsEntrance } from 'lib/resources/acs-entrance.js'
 import type { AcsSystem } from 'lib/resources/acs-system.js'
 import type { AcsUser } from 'lib/resources/acs-user.js'
@@ -224,17 +221,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesAddAcsUserParameters,
     options: UserIdentitiesAddAcsUserOptions = {},
   ): UserIdentitiesAddAcsUserRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/add_acs_user',
-      true,
-      ['acs_user_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/add_acs_user',
       method: 'PUT',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_user_id'],
       responseKey: undefined,
       options,
     })
@@ -247,17 +240,13 @@ export class SeamHttpUserIdentities {
     parameters?: UserIdentitiesCreateParameters,
     options: UserIdentitiesCreateOptions = {},
   ): UserIdentitiesCreateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/create',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/create',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'user_identity',
       options,
     })
@@ -270,14 +259,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesDeleteParameters,
     options: UserIdentitiesDeleteOptions = {},
   ): UserIdentitiesDeleteRequest {
-    assertValidRequestParameters(parameters, '/user_identities/delete', true, [
-      'user_identity_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['user_identity_id'],
       responseKey: undefined,
       options,
     })
@@ -290,17 +278,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesGenerateInstantKeyParameters,
     options: UserIdentitiesGenerateInstantKeyOptions = {},
   ): UserIdentitiesGenerateInstantKeyRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/generate_instant_key',
-      true,
-      ['user_identity_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/generate_instant_key',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['user_identity_id'],
       responseKey: 'instant_key',
       options,
     })
@@ -313,12 +297,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesGetParameters,
     options: UserIdentitiesGetOptions = {},
   ): UserIdentitiesGetRequest {
-    assertValidRequestParameters(parameters, '/user_identities/get', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'user_identity',
       options,
     })
@@ -331,17 +316,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesGrantAccessToDeviceParameters,
     options: UserIdentitiesGrantAccessToDeviceOptions = {},
   ): UserIdentitiesGrantAccessToDeviceRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/grant_access_to_device',
-      true,
-      ['device_id', 'user_identity_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/grant_access_to_device',
       method: 'PUT',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id', 'user_identity_id'],
       responseKey: undefined,
       options,
     })
@@ -354,13 +335,15 @@ export class SeamHttpUserIdentities {
     parameters?: UserIdentitiesListParameters,
     options: UserIdentitiesListOptions = {},
   ): UserIdentitiesListRequest {
-    assertValidRequestParameters(parameters, '/user_identities/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'user_identities',
+      hasPagination: true,
       options,
     })
   }
@@ -372,17 +355,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesListAccessibleDevicesParameters,
     options: UserIdentitiesListAccessibleDevicesOptions = {},
   ): UserIdentitiesListAccessibleDevicesRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/list_accessible_devices',
-      true,
-      ['user_identity_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_accessible_devices',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['user_identity_id'],
       responseKey: 'devices',
       options,
     })
@@ -395,17 +374,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesListAccessibleEntrancesParameters,
     options: UserIdentitiesListAccessibleEntrancesOptions = {},
   ): UserIdentitiesListAccessibleEntrancesRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/list_accessible_entrances',
-      true,
-      ['user_identity_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_accessible_entrances',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['user_identity_id'],
       responseKey: 'acs_entrances',
       options,
     })
@@ -418,17 +393,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesListAcsSystemsParameters,
     options: UserIdentitiesListAcsSystemsOptions = {},
   ): UserIdentitiesListAcsSystemsRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/list_acs_systems',
-      true,
-      ['user_identity_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_acs_systems',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['user_identity_id'],
       responseKey: 'acs_systems',
       options,
     })
@@ -441,18 +412,39 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesListAcsUsersParameters,
     options: UserIdentitiesListAcsUsersOptions = {},
   ): UserIdentitiesListAcsUsersRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/list_acs_users',
-      true,
-      ['user_identity_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/list_acs_users',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['user_identity_id'],
       responseKey: 'acs_users',
+      options,
+    })
+  }
+
+  /**
+   * Merges one or more [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) into a primary user identity, for when the same person ended up with more than one user identity.
+   *
+   * The primary user identity takes on any email address or phone number it was missing from the user identities merged into it, and the merged user identities are then deleted. Their IDs and keys keep working: looking one up returns the primary user identity, and they are listed on it as `merged_user_identity_ids` and `merged_user_identity_keys`.
+   *
+   * Access grants, access system users, client sessions and other resources belonging to the merged user identities are moved to the primary user identity.
+   *
+   * Identify the user identities either by ID or by key, but not both in the same request. Repeating a merge that has already been applied makes no further changes.
+   */
+  merge(
+    parameters: UserIdentitiesMergeParameters,
+    options: UserIdentitiesMergeOptions = {},
+  ): UserIdentitiesMergeRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/user_identities/merge',
+      method: 'POST',
+      body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
+      responseKey: undefined,
       options,
     })
   }
@@ -464,17 +456,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesRemoveAcsUserParameters,
     options: UserIdentitiesRemoveAcsUserOptions = {},
   ): UserIdentitiesRemoveAcsUserRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/remove_acs_user',
-      true,
-      ['acs_user_id', 'user_identity_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/remove_acs_user',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_user_id', 'user_identity_id'],
       responseKey: undefined,
       options,
     })
@@ -487,17 +475,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesRevokeAccessToDeviceParameters,
     options: UserIdentitiesRevokeAccessToDeviceOptions = {},
   ): UserIdentitiesRevokeAccessToDeviceRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/user_identities/revoke_access_to_device',
-      true,
-      ['device_id', 'user_identity_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/revoke_access_to_device',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id', 'user_identity_id'],
       responseKey: undefined,
       options,
     })
@@ -510,14 +494,13 @@ export class SeamHttpUserIdentities {
     parameters: UserIdentitiesUpdateParameters,
     options: UserIdentitiesUpdateOptions = {},
   ): UserIdentitiesUpdateRequest {
-    assertValidRequestParameters(parameters, '/user_identities/update', true, [
-      'user_identity_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/user_identities/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['user_identity_id'],
       responseKey: undefined,
       options,
     })
@@ -675,7 +658,7 @@ export type UserIdentitiesListParameters = {
   /**
    * Timestamp by which to limit returned user identities. Returns user identities created before this timestamp.
    */
-  created_before?: string | undefined
+  created_before?: string | Date | Temporal.Instant | undefined
   /**
    * `acs_system_id` of the credential manager by which you want to filter the list of user identities.
    */
@@ -793,6 +776,34 @@ export type UserIdentitiesListAcsUsersRequest = SeamHttpRequest<
 >
 
 export interface UserIdentitiesListAcsUsersOptions {}
+
+export type UserIdentitiesMergeParameters = RequireAtLeastOne<{
+  /**
+   * IDs of the user identities to merge into the primary user identity. These user identities are deleted.
+   */
+  merged_user_identity_ids?: Array<string> | undefined
+  /**
+   * ID of the primary user identity to keep.
+   */
+  user_identity_id?: string | undefined
+  /**
+   * Keys of the user identities to merge into the primary user identity. These user identities are deleted.
+   */
+  merged_user_identity_keys?: Array<string> | undefined
+  /**
+   * Key of the primary user identity to keep.
+   */
+  user_identity_key?: string | undefined
+}>
+
+/**
+ * @deprecated Use UserIdentitiesMergeRequest instead.
+ */
+export type UserIdentitiesMergeResponse = void
+
+export type UserIdentitiesMergeRequest = SeamHttpRequest<void, undefined>
+
+export interface UserIdentitiesMergeOptions {}
 
 export type UserIdentitiesRemoveAcsUserParameters = {
   /**

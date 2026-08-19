@@ -29,6 +29,7 @@ export interface EndpointLayoutContext {
   className: string
   method: Method
   responseKey: string
+  hasPagination: boolean
   requestFormat: 'params' | 'body'
   parametersTypeName: string
   responseTypeName: string
@@ -145,6 +146,7 @@ export const getEndpointLayoutContext = (
     methodName,
     functionName: camelCase(prefix),
     method: endpoint.request.preferredMethod,
+    hasPagination: endpoint.hasPagination,
     className: getClassName(route.path),
     requestFormat,
     returnsActionAttempt,

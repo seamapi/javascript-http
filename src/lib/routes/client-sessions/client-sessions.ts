@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { ClientSession } from 'lib/resources/client-session.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
@@ -202,17 +199,13 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsCreateParameters,
     options: ClientSessionsCreateOptions = {},
   ): ClientSessionsCreateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/client_sessions/create',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/create',
       method: 'PUT',
       body: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'client_session',
       options,
     })
@@ -225,14 +218,13 @@ export class SeamHttpClientSessions {
     parameters: ClientSessionsDeleteParameters,
     options: ClientSessionsDeleteOptions = {},
   ): ClientSessionsDeleteRequest {
-    assertValidRequestParameters(parameters, '/client_sessions/delete', true, [
-      'client_session_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['client_session_id'],
       responseKey: undefined,
       options,
     })
@@ -245,12 +237,13 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsGetParameters,
     options: ClientSessionsGetOptions = {},
   ): ClientSessionsGetRequest {
-    assertValidRequestParameters(parameters, '/client_sessions/get', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'client_session',
       options,
     })
@@ -263,17 +256,13 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsGetOrCreateParameters,
     options: ClientSessionsGetOrCreateOptions = {},
   ): ClientSessionsGetOrCreateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/client_sessions/get_or_create',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/get_or_create',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'client_session',
       options,
     })
@@ -286,17 +275,13 @@ export class SeamHttpClientSessions {
     parameters: ClientSessionsGrantAccessParameters,
     options: ClientSessionsGrantAccessOptions = {},
   ): ClientSessionsGrantAccessRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/client_sessions/grant_access',
-      true,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/grant_access',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -309,12 +294,13 @@ export class SeamHttpClientSessions {
     parameters?: ClientSessionsListParameters,
     options: ClientSessionsListOptions = {},
   ): ClientSessionsListRequest {
-    assertValidRequestParameters(parameters, '/client_sessions/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/list',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'client_sessions',
       options,
     })
@@ -329,14 +315,13 @@ export class SeamHttpClientSessions {
     parameters: ClientSessionsRevokeParameters,
     options: ClientSessionsRevokeOptions = {},
   ): ClientSessionsRevokeRequest {
-    assertValidRequestParameters(parameters, '/client_sessions/revoke', true, [
-      'client_session_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/client_sessions/revoke',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['client_session_id'],
       responseKey: undefined,
       options,
     })
@@ -363,7 +348,7 @@ export type ClientSessionsCreateParameters = {
   /**
    * Date and time at which the client session should expire, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
    */
-  expires_at?: string | undefined
+  expires_at?: string | Date | Temporal.Instant | undefined
   /**
    * Your user ID for the user for whom you want to create a client session.
    */
@@ -443,7 +428,7 @@ export type ClientSessionsGetOrCreateParameters = {
   /**
    * Date and time at which the client session should expire in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. If the client session already exists, this will update the expiration before returning it.
    */
-  expires_at?: string | undefined
+  expires_at?: string | Date | Temporal.Instant | undefined
   /**
    * Your user ID for the user that you want to associate with the client session (or that is already associated with the existing client session).
    */
@@ -518,17 +503,17 @@ export type ClientSessionsListParameters = {
    */
   client_session_id?: string | undefined
   /**
-   * ID of the [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews) for which you want to retrieve client sessions.
+   * ID of the [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews) for which you want to retrieve client sessions. Specify `null` to retrieve client sessions that are not associated with a Connect Webview.
    */
-  connect_webview_id?: string | undefined
+  connect_webview_id?: string | null | undefined
   /**
    * Your user ID for the user by which you want to filter client sessions.
    */
   user_identifier_key?: string | undefined
   /**
-   * ID of the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) for which you want to retrieve client sessions.
+   * ID of the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) for which you want to retrieve client sessions. Specify `null` to retrieve client sessions that are not associated with a user identity.
    */
-  user_identity_id?: string | undefined
+  user_identity_id?: string | null | undefined
   /**
    * Indicates whether to retrieve only client sessions without associated user identifier keys.
    */

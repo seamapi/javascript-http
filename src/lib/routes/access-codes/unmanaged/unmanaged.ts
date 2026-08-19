@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { UnmanagedAccessCode } from 'lib/resources/unmanaged-access-code.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -207,17 +204,13 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedConvertToManagedParameters,
     options: AccessCodesUnmanagedConvertToManagedOptions = {},
   ): AccessCodesUnmanagedConvertToManagedRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_codes/unmanaged/convert_to_managed',
-      true,
-      ['access_code_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/convert_to_managed',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_code_id'],
       responseKey: undefined,
       options,
     })
@@ -230,17 +223,13 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedDeleteParameters,
     options: AccessCodesUnmanagedDeleteOptions = {},
   ): AccessCodesUnmanagedDeleteRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_codes/unmanaged/delete',
-      true,
-      ['access_code_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_code_id'],
       responseKey: undefined,
       options,
     })
@@ -255,17 +244,13 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedGetParameters,
     options: AccessCodesUnmanagedGetOptions = {},
   ): AccessCodesUnmanagedGetRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_codes/unmanaged/get',
-      true,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'access_code',
       options,
     })
@@ -278,18 +263,15 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedListParameters,
     options: AccessCodesUnmanagedListOptions = {},
   ): AccessCodesUnmanagedListRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_codes/unmanaged/list',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/list',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: 'access_codes',
+      hasPagination: true,
       options,
     })
   }
@@ -301,17 +283,13 @@ export class SeamHttpAccessCodesUnmanaged {
     parameters: AccessCodesUnmanagedUpdateParameters,
     options: AccessCodesUnmanagedUpdateOptions = {},
   ): AccessCodesUnmanagedUpdateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_codes/unmanaged/update',
-      true,
-      ['access_code_id', 'is_managed'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/unmanaged/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_code_id', 'is_managed'],
       responseKey: undefined,
       options,
     })

@@ -339,7 +339,7 @@ export type ActionAttempt =
           is_latest_desired_state_synced_with_provider?:
             boolean | null | undefined
 
-          is_managed: boolean
+          is_managed: true | false
 
           /**
            * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
@@ -646,7 +646,7 @@ export type ActionAttempt =
         is_latest_desired_state_synced_with_provider?:
           boolean | null | undefined
 
-        is_managed: boolean
+        is_managed: true | false
 
         /**
          * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
@@ -930,7 +930,7 @@ export type ActionAttempt =
         /**
          * Indicates whether Seam manages the credential.
          */
-        is_managed: boolean
+        is_managed: true
 
         /**
          * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
@@ -1099,6 +1099,11 @@ export type ActionAttempt =
          * Display name of the access method.
          */
         display_name: string
+
+        /**
+         * Human-readable sentence describing where the access method sits in its relationship with the device or access system, for example `Awaiting encoding`. For display only. The wording is not stable and is not an enumeration — it may change at any time, so never compare against or branch on it. To make decisions, read `is_issued`, `errors`, and `pending_mutations`.
+         */
+        display_status: string
 
         /**
          * Errors associated with the [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant).

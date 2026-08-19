@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { Device } from 'lib/resources/device.js'
 import type { DeviceProvider } from 'lib/resources/device-provider.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
@@ -223,12 +220,13 @@ export class SeamHttpDevices {
     parameters: DevicesGetParameters,
     options: DevicesGetOptions = {},
   ): DevicesGetRequest {
-    assertValidRequestParameters(parameters, '/devices/get', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'device',
       options,
     })
@@ -241,13 +239,15 @@ export class SeamHttpDevices {
     parameters?: DevicesListParameters,
     options: DevicesListOptions = {},
   ): DevicesListRequest {
-    assertValidRequestParameters(parameters, '/devices/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'devices',
+      hasPagination: true,
       options,
     })
   }
@@ -263,17 +263,13 @@ export class SeamHttpDevices {
     parameters?: DevicesListDeviceProvidersParameters,
     options: DevicesListDeviceProvidersOptions = {},
   ): DevicesListDeviceProvidersRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/list_device_providers',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/list_device_providers',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'device_providers',
       options,
     })
@@ -286,17 +282,13 @@ export class SeamHttpDevices {
     parameters: DevicesReportProviderMetadataParameters,
     options: DevicesReportProviderMetadataOptions = {},
   ): DevicesReportProviderMetadataRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/report_provider_metadata',
-      true,
-      ['devices'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/report_provider_metadata',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['devices'],
       responseKey: undefined,
       options,
     })
@@ -311,14 +303,13 @@ export class SeamHttpDevices {
     parameters: DevicesUpdateParameters,
     options: DevicesUpdateOptions = {},
   ): DevicesUpdateRequest {
-    assertValidRequestParameters(parameters, '/devices/update', true, [
-      'device_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: undefined,
       options,
     })
@@ -361,11 +352,11 @@ export type DevicesListParameters = {
   /**
    * Timestamp by which to limit returned devices. Returns devices created before this timestamp.
    */
-  created_before?: string | undefined
+  created_before?: string | Date | Temporal.Instant | undefined
   /**
-   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices.
+   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices. Key names cannot contain a period (.). Specify `null` to match a key that is unset. A key given an empty string is omitted from the filter.
    */
-  custom_metadata_has?: Record<string, unknown> | undefined
+  custom_metadata_has?: Record<string, string | boolean> | undefined
   /**
    * Customer key for which you want to list devices.
    */
@@ -1947,9 +1938,9 @@ export type DevicesUpdateParameters = {
    */
   backup_access_code_pool_enabled?: boolean | undefined
   /**
-   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs. [Adding custom metadata to a device](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter devices by the desired metadata](https://docs.seam.co/core-concepts/devices/filtering-devices-by-custom-metadata).
+   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs, with key names up to 40 characters long that cannot contain a period (.). [Adding custom metadata to a device](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter devices by the desired metadata](https://docs.seam.co/core-concepts/devices/filtering-devices-by-custom-metadata). Set a key to `null` or to an empty string to remove that key from the custom metadata.
    */
-  custom_metadata?: Record<string, unknown> | undefined
+  custom_metadata?: Record<string, string | boolean> | undefined
   /**
    * ID of the device that you want to update.
    */

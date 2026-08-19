@@ -66,6 +66,16 @@ export type UserIdentity = {
    */
   full_name: string | null
   /**
+   * IDs that other user identities used to have before they were merged into this user identity. Looking up any of them returns this user identity.
+   */
+  merged_user_identity_ids: Array<string>
+
+  /**
+   * Keys that other user identities used to have before they were merged into this user identity. Looking up any of them returns this user identity.
+   */
+  merged_user_identity_keys: Array<string>
+
+  /**
    * Unique phone number for the user identity in [E.164 format](https://www.itu.int/rec/T-REC-E.164/en) (for example, +15555550100).
    */
   phone_number: string | null

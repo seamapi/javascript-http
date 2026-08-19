@@ -1,2 +1,2 @@
-{{#if (eq format "boolean")}}boolean{{else if (eq format "number")}}number{{else if (eq format "record")}}Record<string, unknown>{{else if (eq format "enum")}}{{#each values}}{{#unless @first}} | {{/unless}}{{> doc}}
+{{#if (eq format "boolean")}}{{#if values}}{{#each values}}{{#unless @first}} | {{/unless}}{{json this}}{{/each}}{{else}}boolean{{/if}}{{else if (eq format "number")}}number{{else if (eq format "datetime")}}string | Date | Temporal.Instant{{else if (eq format "record")}}Record<string, {{#if valueTypes}}{{#each valueTypes}}{{#unless @first}} | {{/unless}}{{jsonSchemaType this}}{{/each}}{{else}}unknown{{/if}}>{{else if (eq format "enum")}}{{#each values}}{{#unless @first}} | {{/unless}}{{> doc}}
 {{json name}}{{else}}string{{/each}}{{else}}string{{/if}}

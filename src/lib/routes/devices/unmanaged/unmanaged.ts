@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { UnmanagedDevice } from 'lib/resources/unmanaged-device.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -207,12 +204,13 @@ export class SeamHttpDevicesUnmanaged {
     parameters: DevicesUnmanagedGetParameters,
     options: DevicesUnmanagedGetOptions = {},
   ): DevicesUnmanagedGetRequest {
-    assertValidRequestParameters(parameters, '/devices/unmanaged/get', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'device',
       options,
     })
@@ -227,18 +225,15 @@ export class SeamHttpDevicesUnmanaged {
     parameters?: DevicesUnmanagedListParameters,
     options: DevicesUnmanagedListOptions = {},
   ): DevicesUnmanagedListRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/unmanaged/list',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'devices',
+      hasPagination: true,
       options,
     })
   }
@@ -252,17 +247,13 @@ export class SeamHttpDevicesUnmanaged {
     parameters: DevicesUnmanagedUpdateParameters,
     options: DevicesUnmanagedUpdateOptions = {},
   ): DevicesUnmanagedUpdateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/devices/unmanaged/update',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: undefined,
       options,
     })
@@ -308,7 +299,7 @@ export type DevicesUnmanagedListParameters = {
   /**
    * Timestamp by which to limit returned devices. Returns devices created before this timestamp.
    */
-  created_before?: string | undefined
+  created_before?: string | Date | Temporal.Instant | undefined
   /**
    * Customer key for which you want to list devices.
    */
@@ -500,9 +491,9 @@ export interface DevicesUnmanagedListOptions {}
 
 export type DevicesUnmanagedUpdateParameters = {
   /**
-   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs.
+   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs, with key names up to 40 characters long that cannot contain a period (.). Set a key to `null` or to an empty string to remove that key from the custom metadata.
    */
-  custom_metadata?: Record<string, unknown> | undefined
+  custom_metadata?: Record<string, string | boolean> | undefined
   /**
    * ID of the unmanaged device that you want to update.
    */
@@ -511,7 +502,7 @@ export type DevicesUnmanagedUpdateParameters = {
   /**
    * Indicates whether the device is managed. Set this parameter to `true` to convert an unmanaged device to managed.
    */
-  is_managed?: boolean | undefined
+  is_managed?: true | undefined
 }
 
 /**

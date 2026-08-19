@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { UnmanagedAccessGrant } from 'lib/resources/unmanaged-access-grant.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -200,17 +199,13 @@ export class SeamHttpAccessGrantsUnmanaged {
     parameters: AccessGrantsUnmanagedGetParameters,
     options: AccessGrantsUnmanagedGetOptions = {},
   ): AccessGrantsUnmanagedGetRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_grants/unmanaged/get',
-      true,
-      ['access_grant_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/unmanaged/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_grant_id'],
       responseKey: 'access_grant',
       options,
     })
@@ -223,18 +218,15 @@ export class SeamHttpAccessGrantsUnmanaged {
     parameters?: AccessGrantsUnmanagedListParameters,
     options: AccessGrantsUnmanagedListOptions = {},
   ): AccessGrantsUnmanagedListRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_grants/unmanaged/list',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/unmanaged/list',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'access_grants',
+      hasPagination: true,
       options,
     })
   }
@@ -250,17 +242,13 @@ export class SeamHttpAccessGrantsUnmanaged {
     parameters: AccessGrantsUnmanagedUpdateParameters,
     options: AccessGrantsUnmanagedUpdateOptions = {},
   ): AccessGrantsUnmanagedUpdateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_grants/unmanaged/update',
-      true,
-      ['access_grant_id', 'is_managed'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/unmanaged/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_grant_id', 'is_managed'],
       responseKey: undefined,
       options,
     })
@@ -342,7 +330,7 @@ export type AccessGrantsUnmanagedUpdateParameters = {
   /**
    * Must be set to true to convert the unmanaged access grant to managed.
    */
-  is_managed: boolean
+  is_managed: true
 }
 
 /**

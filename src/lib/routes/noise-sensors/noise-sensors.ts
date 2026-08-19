@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { Device } from 'lib/resources/device.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -220,12 +219,13 @@ export class SeamHttpNoiseSensors {
     parameters?: NoiseSensorsListParameters,
     options: NoiseSensorsListOptions = {},
   ): NoiseSensorsListRequest {
-    assertValidRequestParameters(parameters, '/noise_sensors/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'devices',
       options,
     })

@@ -25,3 +25,4 @@ export {
   isPersonalAccessToken,
   isPublishableKey,
 } from './token.js'
+export * from './url-search-params-serializer.js'

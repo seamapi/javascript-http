@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { AccessGrant } from 'lib/resources/access-grant.js'
 import type { Batch } from 'lib/resources/batch.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
@@ -213,14 +210,13 @@ export class SeamHttpAccessGrants {
     parameters: AccessGrantsCreateParameters,
     options: AccessGrantsCreateOptions = {},
   ): AccessGrantsCreateRequest {
-    assertValidRequestParameters(parameters, '/access_grants/create', true, [
-      'requested_access_methods',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/create',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['requested_access_methods'],
       responseKey: 'access_grant',
       options,
     })
@@ -233,14 +229,13 @@ export class SeamHttpAccessGrants {
     parameters: AccessGrantsDeleteParameters,
     options: AccessGrantsDeleteOptions = {},
   ): AccessGrantsDeleteRequest {
-    assertValidRequestParameters(parameters, '/access_grants/delete', true, [
-      'access_grant_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_grant_id'],
       responseKey: undefined,
       options,
     })
@@ -253,12 +248,13 @@ export class SeamHttpAccessGrants {
     parameters: AccessGrantsGetParameters,
     options: AccessGrantsGetOptions = {},
   ): AccessGrantsGetRequest {
-    assertValidRequestParameters(parameters, '/access_grants/get', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'access_grant',
       options,
     })
@@ -271,17 +267,13 @@ export class SeamHttpAccessGrants {
     parameters: AccessGrantsGetRelatedParameters,
     options: AccessGrantsGetRelatedOptions = {},
   ): AccessGrantsGetRelatedRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_grants/get_related',
-      true,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/get_related',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'batch',
       options,
     })
@@ -294,13 +286,15 @@ export class SeamHttpAccessGrants {
     parameters?: AccessGrantsListParameters,
     options: AccessGrantsListOptions = {},
   ): AccessGrantsListRequest {
-    assertValidRequestParameters(parameters, '/access_grants/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'access_grants',
+      hasPagination: true,
       options,
     })
   }
@@ -312,17 +306,13 @@ export class SeamHttpAccessGrants {
     parameters: AccessGrantsRequestAccessMethodsParameters,
     options: AccessGrantsRequestAccessMethodsOptions = {},
   ): AccessGrantsRequestAccessMethodsRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_grants/request_access_methods',
-      true,
-      ['access_grant_id', 'requested_access_methods'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/request_access_methods',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_grant_id', 'requested_access_methods'],
       responseKey: 'access_grant',
       options,
     })
@@ -335,12 +325,13 @@ export class SeamHttpAccessGrants {
     parameters: AccessGrantsUpdateParameters,
     options: AccessGrantsUpdateOptions = {},
   ): AccessGrantsUpdateRequest {
-    assertValidRequestParameters(parameters, '/access_grants/update', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -685,7 +676,7 @@ export type AccessGrantsUpdateParameters = RequireAtLeastOne<{
   /**
    * Date and time at which the validity of the grant ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
    */
-  ends_at?: string | null | undefined
+  ends_at?: string | Date | Temporal.Instant | null | undefined
   /**
    * Display name for the access grant.
    */
@@ -693,7 +684,7 @@ export type AccessGrantsUpdateParameters = RequireAtLeastOne<{
   /**
    * Date and time at which the validity of the grant starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
    */
-  starts_at?: string | undefined
+  starts_at?: string | Date | Temporal.Instant | undefined
 }>
 
 /**

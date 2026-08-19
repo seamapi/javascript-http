@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
@@ -202,17 +201,13 @@ export class SeamHttpConnectedAccountsSimulate {
     parameters: ConnectedAccountsSimulateDisconnectParameters,
     options: ConnectedAccountsSimulateDisconnectOptions = {},
   ): ConnectedAccountsSimulateDisconnectRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/connected_accounts/simulate/disconnect',
-      true,
-      ['connected_account_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/simulate/disconnect',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['connected_account_id'],
       responseKey: undefined,
       options,
     })

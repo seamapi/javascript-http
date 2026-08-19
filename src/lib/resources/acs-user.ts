@@ -185,7 +185,7 @@ export type AcsUser = {
   /**
    * Indicates whether Seam manages the access system user.
    */
-  is_managed: boolean
+  is_managed: true
 
   /**
    * Indicates whether the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) is currently [suspended](https://docs.seam.co/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users).

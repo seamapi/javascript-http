@@ -110,9 +110,9 @@ export type Device = {
   created_at: string
 
   /**
-   * Set of key:value pairs. Adding custom metadata to a resource, such as a [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews/attaching-custom-data-to-the-connect-webview), [connected account](https://docs.seam.co/core-concepts/connected-accounts/adding-custom-metadata-to-a-connected-account), or [device](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device), enables you to store custom information, like customer details or internal IDs from your application.
+   * Set of key:value pairs. Adding custom metadata to a resource, such as a [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews/attaching-custom-data-to-the-connect-webview), [connected account](https://docs.seam.co/core-concepts/connected-accounts/adding-custom-metadata-to-a-connected-account), or [device](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device), enables you to store custom information, like customer details or internal IDs from your application. Keys set to `null` or to an empty string are omitted.
    */
-  custom_metadata: Record<string, unknown>
+  custom_metadata: Record<string, string | boolean>
 
   /**
    * ID of the device.
@@ -238,12 +238,12 @@ export type Device = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -266,12 +266,12 @@ export type Device = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -294,12 +294,12 @@ export type Device = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -322,12 +322,12 @@ export type Device = {
         /**
          * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
          */
-        is_connected_account_error: boolean
+        is_connected_account_error: true
 
         /**
          * Indicates that the error is not a device error.
          */
-        is_device_error: boolean
+        is_device_error: false
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -350,7 +350,7 @@ export type Device = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -373,7 +373,7 @@ export type Device = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -396,7 +396,7 @@ export type Device = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -419,7 +419,7 @@ export type Device = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -442,7 +442,7 @@ export type Device = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -465,7 +465,7 @@ export type Device = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -488,7 +488,7 @@ export type Device = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -511,7 +511,7 @@ export type Device = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -534,7 +534,7 @@ export type Device = {
         /**
          * Indicates that the error is a device error.
          */
-        is_device_error: boolean
+        is_device_error: true
 
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -572,7 +572,7 @@ export type Device = {
   /**
    * Indicates whether Seam manages the device. See also [Managed and Unmanaged Devices](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
    */
-  is_managed: boolean
+  is_managed: true
 
   /**
    * Location information for the device.
@@ -1723,7 +1723,15 @@ export type Device = {
            */
           dual_setpoints_not_supported?: boolean | undefined
           /**
-           * Enforced setpoint range in Celsius for a Sensi device, derived from an OutOfRange API error.
+           * Enforced cooling setpoint range in Celsius for a Sensi device, derived from an OutOfRange API error.
+           */
+          enforced_cooling_setpoint_range_celsius?: Array<number> | undefined
+          /**
+           * Enforced heating setpoint range in Celsius for a Sensi device, derived from an OutOfRange API error.
+           */
+          enforced_heating_setpoint_range_celsius?: Array<number> | undefined
+          /**
+           * Legacy combined enforced setpoint range in Celsius for a Sensi device, derived from an OutOfRange API error. Read as a fallback for the per-mode ranges below; no longer written.
            */
           enforced_setpoint_range_celsius?: Array<number> | undefined
           /**
@@ -2080,7 +2088,7 @@ export type Device = {
           /**
            * When `true`, the start and end must fall at the same time of day (the caller picks which). Mutually exclusive with `time_pairs`.
            */
-          matching_start_end_time?: boolean | undefined
+          matching_start_end_time?: true | undefined
           /**
            * Maximum duration this option covers, as an ISO 8601 duration (for example, `PT672H` or `P367D`). Omitted when there is no maximum.
            */
@@ -2137,7 +2145,7 @@ export type Device = {
           /**
            * When `true`, the start and end must fall at the same time of day (the caller picks which). Mutually exclusive with `time_pairs`.
            */
-          matching_start_end_time?: boolean | undefined
+          matching_start_end_time?: true | undefined
           /**
            * Maximum duration this option covers, as an ISO 8601 duration (for example, `PT672H` or `P367D`). Omitted when there is no maximum.
            */

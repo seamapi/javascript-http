@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ConnectWebview } from 'lib/resources/connect-webview.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -206,17 +205,13 @@ export class SeamHttpConnectWebviews {
     parameters?: ConnectWebviewsCreateParameters,
     options: ConnectWebviewsCreateOptions = {},
   ): ConnectWebviewsCreateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/connect_webviews/create',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/create',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'connect_webview',
       options,
     })
@@ -231,14 +226,13 @@ export class SeamHttpConnectWebviews {
     parameters: ConnectWebviewsDeleteParameters,
     options: ConnectWebviewsDeleteOptions = {},
   ): ConnectWebviewsDeleteRequest {
-    assertValidRequestParameters(parameters, '/connect_webviews/delete', true, [
-      'connect_webview_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['connect_webview_id'],
       responseKey: undefined,
       options,
     })
@@ -253,14 +247,13 @@ export class SeamHttpConnectWebviews {
     parameters: ConnectWebviewsGetParameters,
     options: ConnectWebviewsGetOptions = {},
   ): ConnectWebviewsGetRequest {
-    assertValidRequestParameters(parameters, '/connect_webviews/get', true, [
-      'connect_webview_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['connect_webview_id'],
       responseKey: 'connect_webview',
       options,
     })
@@ -273,18 +266,15 @@ export class SeamHttpConnectWebviews {
     parameters?: ConnectWebviewsListParameters,
     options: ConnectWebviewsListOptions = {},
   ): ConnectWebviewsListRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/connect_webviews/list',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/connect_webviews/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'connect_webviews',
+      hasPagination: true,
       options,
     })
   }
@@ -379,9 +369,9 @@ export type ConnectWebviewsCreateParameters = {
    */
   automatically_manage_new_devices?: boolean | undefined
   /**
-   * Custom metadata that you want to associate with the Connect Webview. Supports up to 50 JSON key:value pairs. [Adding custom metadata to a Connect Webview](https://docs.seam.co/core-concepts/connect-webviews/attaching-custom-data-to-the-connect-webview) enables you to store custom information, like customer details or internal IDs from your application. The custom metadata is then transferred to any [connected accounts](https://docs.seam.co/core-concepts/connected-accounts) that were connected using the Connect Webview, making it easy to find and filter these resources in your [workspace](https://docs.seam.co/core-concepts/workspaces). You can also [filter Connect Webviews by custom metadata](https://docs.seam.co/core-concepts/connect-webviews/filtering-connect-webviews-by-custom-metadata).
+   * Custom metadata that you want to associate with the Connect Webview. Supports up to 50 JSON key:value pairs, with key names up to 40 characters long that cannot contain a period (.). [Adding custom metadata to a Connect Webview](https://docs.seam.co/core-concepts/connect-webviews/attaching-custom-data-to-the-connect-webview) enables you to store custom information, like customer details or internal IDs from your application. The custom metadata is then transferred to any [connected accounts](https://docs.seam.co/core-concepts/connected-accounts) that were connected using the Connect Webview, making it easy to find and filter these resources in your [workspace](https://docs.seam.co/core-concepts/workspaces). You can also [filter Connect Webviews by custom metadata](https://docs.seam.co/core-concepts/connect-webviews/filtering-connect-webviews-by-custom-metadata). Set a key to `null` or to an empty string to remove that key from the custom metadata.
    */
-  custom_metadata?: Record<string, unknown> | undefined
+  custom_metadata?: Record<string, string | boolean> | undefined
   /**
    * Alternative URL that you want to redirect the user to on an error. If you do not set this parameter, the Connect Webview falls back to the `custom_redirect_url`.
    */
@@ -467,9 +457,9 @@ export interface ConnectWebviewsGetOptions {}
 
 export type ConnectWebviewsListParameters = {
   /**
-   * Custom metadata pairs by which you want to [filter Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/filtering-connect-webviews-by-custom-metadata). Returns Connect Webviews with `custom_metadata` that contains all of the provided key:value pairs.
+   * Custom metadata pairs by which you want to [filter Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/filtering-connect-webviews-by-custom-metadata). Returns Connect Webviews with `custom_metadata` that contains all of the provided key:value pairs. Key names cannot contain a period (.). Specify `null` to match a key that is unset. A key given an empty string is omitted from the filter.
    */
-  custom_metadata_has?: Record<string, unknown> | undefined
+  custom_metadata_has?: Record<string, string | boolean> | undefined
   /**
    * Customer key for which you want to list connect webviews.
    */

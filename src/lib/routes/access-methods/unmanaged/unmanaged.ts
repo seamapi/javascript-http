@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { UnmanagedAccessMethod } from 'lib/resources/unmanaged-access-method.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -200,17 +199,13 @@ export class SeamHttpAccessMethodsUnmanaged {
     parameters: AccessMethodsUnmanagedGetParameters,
     options: AccessMethodsUnmanagedGetOptions = {},
   ): AccessMethodsUnmanagedGetRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_methods/unmanaged/get',
-      true,
-      ['access_method_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/unmanaged/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_method_id'],
       responseKey: 'access_method',
       options,
     })
@@ -223,17 +218,13 @@ export class SeamHttpAccessMethodsUnmanaged {
     parameters: AccessMethodsUnmanagedListParameters,
     options: AccessMethodsUnmanagedListOptions = {},
   ): AccessMethodsUnmanagedListRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_methods/unmanaged/list',
-      true,
-      ['access_grant_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/unmanaged/list',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_grant_id'],
       responseKey: 'access_methods',
       options,
     })

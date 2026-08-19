@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { AccessCode } from 'lib/resources/access-code.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -220,14 +217,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesCreateParameters,
     options: AccessCodesCreateOptions = {},
   ): AccessCodesCreateRequest {
-    assertValidRequestParameters(parameters, '/access_codes/create', true, [
-      'device_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/create',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: 'access_code',
       options,
     })
@@ -250,17 +246,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesCreateMultipleParameters,
     options: AccessCodesCreateMultipleOptions = {},
   ): AccessCodesCreateMultipleRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_codes/create_multiple',
-      true,
-      ['device_ids'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/create_multiple',
       method: 'PUT',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_ids'],
       responseKey: 'access_codes',
       options,
     })
@@ -273,14 +265,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesDeleteParameters,
     options: AccessCodesDeleteOptions = {},
   ): AccessCodesDeleteRequest {
-    assertValidRequestParameters(parameters, '/access_codes/delete', true, [
-      'access_code_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_code_id'],
       responseKey: undefined,
       options,
     })
@@ -293,17 +284,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesGenerateCodeParameters,
     options: AccessCodesGenerateCodeOptions = {},
   ): AccessCodesGenerateCodeRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_codes/generate_code',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/generate_code',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: 'generated_code',
       options,
     })
@@ -318,12 +305,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesGetParameters,
     options: AccessCodesGetOptions = {},
   ): AccessCodesGetRequest {
-    assertValidRequestParameters(parameters, '/access_codes/get', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'access_code',
       options,
     })
@@ -338,13 +326,15 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesListParameters,
     options: AccessCodesListOptions = {},
   ): AccessCodesListRequest {
-    assertValidRequestParameters(parameters, '/access_codes/list', true, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'access_codes',
+      hasPagination: true,
       options,
     })
   }
@@ -364,17 +354,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesPullBackupAccessCodeParameters,
     options: AccessCodesPullBackupAccessCodeOptions = {},
   ): AccessCodesPullBackupAccessCodeRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_codes/pull_backup_access_code',
-      true,
-      ['access_code_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/pull_backup_access_code',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_code_id'],
       responseKey: 'access_code',
       options,
     })
@@ -389,17 +375,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesReportDeviceConstraintsParameters,
     options: AccessCodesReportDeviceConstraintsOptions = {},
   ): AccessCodesReportDeviceConstraintsRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_codes/report_device_constraints',
-      true,
-      ['device_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/report_device_constraints',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
       responseKey: undefined,
       options,
     })
@@ -414,14 +396,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesUpdateParameters,
     options: AccessCodesUpdateOptions = {},
   ): AccessCodesUpdateRequest {
-    assertValidRequestParameters(parameters, '/access_codes/update', true, [
-      'access_code_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/update',
       method: 'PUT',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['access_code_id'],
       responseKey: undefined,
       options,
     })
@@ -438,17 +419,13 @@ export class SeamHttpAccessCodes {
     parameters: AccessCodesUpdateMultipleParameters,
     options: AccessCodesUpdateMultipleOptions = {},
   ): AccessCodesUpdateMultipleRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/access_codes/update_multiple',
-      true,
-      ['common_code_key'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/update_multiple',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['common_code_key'],
       responseKey: undefined,
       options,
     })

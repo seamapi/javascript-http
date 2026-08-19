@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { AcsEncoder } from 'lib/resources/acs-encoder.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
@@ -211,17 +210,13 @@ export class SeamHttpAcsEncoders {
     parameters: AcsEncodersEncodeCredentialParameters,
     options: AcsEncodersEncodeCredentialOptions = {},
   ): AcsEncodersEncodeCredentialRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/encoders/encode_credential',
-      true,
-      ['acs_encoder_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/encode_credential',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_encoder_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -238,14 +233,13 @@ export class SeamHttpAcsEncoders {
     parameters: AcsEncodersGetParameters,
     options: AcsEncodersGetOptions = {},
   ): AcsEncodersGetRequest {
-    assertValidRequestParameters(parameters, '/acs/encoders/get', true, [
-      'acs_encoder_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_encoder_id'],
       responseKey: 'acs_encoder',
       options,
     })
@@ -258,13 +252,15 @@ export class SeamHttpAcsEncoders {
     parameters?: AcsEncodersListParameters,
     options: AcsEncodersListOptions = {},
   ): AcsEncodersListRequest {
-    assertValidRequestParameters(parameters, '/acs/encoders/list', false, [])
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'acs_encoders',
+      hasPagination: true,
       options,
     })
   }
@@ -276,17 +272,13 @@ export class SeamHttpAcsEncoders {
     parameters: AcsEncodersScanCredentialParameters,
     options: AcsEncodersScanCredentialOptions = {},
   ): AcsEncodersScanCredentialRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/encoders/scan_credential',
-      true,
-      ['acs_encoder_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/scan_credential',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_encoder_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -303,17 +295,13 @@ export class SeamHttpAcsEncoders {
     parameters: AcsEncodersScanToAssignCredentialParameters,
     options: AcsEncodersScanToAssignCredentialOptions = {},
   ): AcsEncodersScanToAssignCredentialRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/acs/encoders/scan_to_assign_credential',
-      true,
-      ['acs_encoder_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/scan_to_assign_credential',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['acs_encoder_id'],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -377,6 +365,10 @@ export interface AcsEncodersGetOptions {}
 
 export type AcsEncodersListParameters = {
   /**
+   * IDs of the encoders that you want to retrieve.
+   */
+  acs_encoder_ids?: Array<string> | undefined
+  /**
    * ID of the access system for which you want to retrieve all encoders.
    */
   acs_system_id?: string | undefined
@@ -384,10 +376,6 @@ export type AcsEncodersListParameters = {
    * IDs of the access systems for which you want to retrieve all encoders.
    */
   acs_system_ids?: Array<string> | undefined
-  /**
-   * IDs of the encoders that you want to retrieve.
-   */
-  acs_encoder_ids?: Array<string> | undefined
   /**
    * Number of encoders to return.
    */

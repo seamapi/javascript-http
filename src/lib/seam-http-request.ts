@@ -1,13 +1,14 @@
-import { serializeUrlSearchParams } from '@seamapi/url-search-params-serializer'
 import type { Method } from 'axios'
 
 import type { Client } from './client.js'
 import type { SeamHttpRequestOptions } from './options.js'
+import { assertValidRequestParameters } from './request-parameters.js'
 import {
   type ActionAttemptsClient,
   resolveActionAttempt,
 } from './resolve-action-attempt.js'
 import type { ActionAttempt } from './resources/action-attempt.js'
+import { serializeUrlSearchParams } from './url-search-params-serializer.js'
 
 interface SeamHttpRequestParent {
   readonly client: Client
@@ -20,8 +21,12 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly body?: unknown
   readonly params?: undefined | Record<string, unknown>
   readonly responseKey: TResponseKey
+  readonly hasPagination?: boolean
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
   readonly actionAttempts?: ActionAttemptsClient
+  readonly parameters?: unknown
+  readonly hasRequiredParameters?: boolean
+  readonly requiredParameterNames?: readonly string[]
 }
 
 /**
@@ -63,6 +68,10 @@ export class SeamHttpRequest<
    */
   public get responseKey(): TResponseKey {
     return this.#config.responseKey
+  }
+
+  public get hasPagination(): boolean {
+    return this.#config.hasPagination ?? false
   }
 
   /**
@@ -153,6 +162,13 @@ export class SeamHttpRequest<
    * without waiting for any action attempt to resolve.
    */
   async fetchResponse(): Promise<TResponse> {
+    assertValidRequestParameters(
+      this.#config.parameters,
+      this.pathname,
+      this.#config.hasRequiredParameters ?? false,
+      this.#config.requiredParameterNames ?? [],
+    )
+
     const { client } = this.#parent
     const response = await client.request({
       url: this.pathname,
@@ -214,7 +230,9 @@ const getUrlPrefix = (input: string): string => {
   }
   if (globalThis.location != null) {
     const pathname = input.startsWith('/') ? input : `/${input}`
-    return new URL(`${globalThis.location.origin}${pathname}`).toString()
+    return new URL(`${globalThis.location.origin}${pathname}`)
+      .toString()
+      .replace(/\/$/, '')
   }
   throw new Error(
     `Cannot resolve origin from ${input} in a non-browser environment`,

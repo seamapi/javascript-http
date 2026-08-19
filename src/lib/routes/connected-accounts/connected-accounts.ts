@@ -28,10 +28,7 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import {
-  assertValidRequestParameters,
-  type RequireAtLeastOne,
-} from 'lib/request-parameters.js'
+import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { ConnectedAccount } from 'lib/resources/connected-account.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -219,17 +216,13 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsDeleteParameters,
     options: ConnectedAccountsDeleteOptions = {},
   ): ConnectedAccountsDeleteRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/connected_accounts/delete',
-      true,
-      ['connected_account_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['connected_account_id'],
       responseKey: undefined,
       options,
     })
@@ -242,17 +235,13 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsGetParameters,
     options: ConnectedAccountsGetOptions = {},
   ): ConnectedAccountsGetRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/connected_accounts/get',
-      true,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/get',
       method: 'GET',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
       responseKey: 'connected_account',
       options,
     })
@@ -265,18 +254,15 @@ export class SeamHttpConnectedAccounts {
     parameters?: ConnectedAccountsListParameters,
     options: ConnectedAccountsListOptions = {},
   ): ConnectedAccountsListRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/connected_accounts/list',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'connected_accounts',
+      hasPagination: true,
       options,
     })
   }
@@ -288,14 +274,13 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsSyncParameters,
     options: ConnectedAccountsSyncOptions = {},
   ): ConnectedAccountsSyncRequest {
-    assertValidRequestParameters(parameters, '/connected_accounts/sync', true, [
-      'connected_account_id',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/sync',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['connected_account_id'],
       responseKey: undefined,
       options,
     })
@@ -308,17 +293,13 @@ export class SeamHttpConnectedAccounts {
     parameters: ConnectedAccountsUpdateParameters,
     options: ConnectedAccountsUpdateOptions = {},
   ): ConnectedAccountsUpdateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/connected_accounts/update',
-      true,
-      ['connected_account_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/connected_accounts/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['connected_account_id'],
       responseKey: undefined,
       options,
     })
@@ -368,9 +349,9 @@ export interface ConnectedAccountsGetOptions {}
 
 export type ConnectedAccountsListParameters = {
   /**
-   * Custom metadata pairs by which you want to filter connected accounts. Returns connected accounts with `custom_metadata` that contains all of the provided key:value pairs.
+   * Custom metadata pairs by which you want to filter connected accounts. Returns connected accounts with `custom_metadata` that contains all of the provided key:value pairs. Key names cannot contain a period (.). Specify `null` to match a key that is unset. A key given an empty string is omitted from the filter.
    */
-  custom_metadata_has?: Record<string, unknown> | undefined
+  custom_metadata_has?: Record<string, string | boolean> | undefined
   /**
    * Customer key by which you want to filter connected accounts.
    */
@@ -446,9 +427,9 @@ export type ConnectedAccountsUpdateParameters = {
   connected_account_id: string
 
   /**
-   * Custom metadata that you want to associate with the connected account. Entirely replaces the existing custom metadata object. If a new Connect Webview contains custom metadata and is used to reconnect a connected account, the custom metadata from the Connect Webview will entirely replace the entire custom metadata object on the connected account. Supports up to 50 JSON key:value pairs. [Adding custom metadata to a connected account](https://docs.seam.co/core-concepts/connected-accounts/adding-custom-metadata-to-a-connected-account) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter connected accounts by the desired metadata](https://docs.seam.co/core-concepts/connected-accounts/filtering-connected-accounts-by-custom-metadata).
+   * Custom metadata that you want to associate with the connected account. Entirely replaces the existing custom metadata object. If a new Connect Webview contains custom metadata and is used to reconnect a connected account, the custom metadata from the Connect Webview will entirely replace the entire custom metadata object on the connected account. Supports up to 50 JSON key:value pairs, with key names up to 40 characters long that cannot contain a period (.). [Adding custom metadata to a connected account](https://docs.seam.co/core-concepts/connected-accounts/adding-custom-metadata-to-a-connected-account) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter connected accounts by the desired metadata](https://docs.seam.co/core-concepts/connected-accounts/filtering-connected-accounts-by-custom-metadata). Set a key to `null` or to an empty string to remove that key from the custom metadata.
    */
-  custom_metadata?: Record<string, unknown> | undefined
+  custom_metadata?: Record<string, string | boolean> | undefined
   /**
    * The customer key to associate with this connected account. If provided, the connected account and all resources under the connected account will be moved to this customer. May only be provided if the connected account is not already associated with a customer.
    */

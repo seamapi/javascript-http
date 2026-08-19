@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { CustomerPortal } from 'lib/resources/customer-portal.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
@@ -200,17 +199,13 @@ export class SeamHttpCustomers {
     parameters?: CustomersCreatePortalParameters,
     options: CustomersCreatePortalOptions = {},
   ): CustomersCreatePortalRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/customers/create_portal',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/customers/create_portal',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: 'customer_portal',
       options,
     })
@@ -224,17 +219,13 @@ export class SeamHttpCustomers {
     parameters?: CustomersDeleteDataParameters,
     options: CustomersDeleteDataOptions = {},
   ): CustomersDeleteDataRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/customers/delete_data',
-      false,
-      [],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/customers/delete_data',
-      method: 'POST',
-      body: parameters,
+      method: 'DELETE',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: false,
+      requiredParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -247,14 +238,13 @@ export class SeamHttpCustomers {
     parameters: CustomersPushDataParameters,
     options: CustomersPushDataOptions = {},
   ): CustomersPushDataRequest {
-    assertValidRequestParameters(parameters, '/customers/push_data', true, [
-      'customer_key',
-    ])
-
     return new SeamHttpRequest(this, {
       pathname: '/customers/push_data',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['customer_key'],
       responseKey: undefined,
       options,
     })
@@ -520,7 +510,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Ending date and time for the access grant.
                */
-              ends_at?: string | undefined
+              ends_at?: string | Date | Temporal.Instant | undefined
               /**
                * Facility keys associated with the access grant.
                */
@@ -560,7 +550,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Starting date and time for the access grant.
                */
-              starts_at?: string | undefined
+              starts_at?: string | Date | Temporal.Instant | undefined
               /**
                * Tenant key associated with the access grant.
                */
@@ -599,7 +589,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Ending date and time for the access grant.
                */
-              ends_at?: string | undefined
+              ends_at?: string | Date | Temporal.Instant | undefined
               /**
                * Facility keys associated with the access grant.
                */
@@ -639,7 +629,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Starting date and time for the access grant.
                */
-              starts_at?: string | undefined
+              starts_at?: string | Date | Temporal.Instant | undefined
               /**
                * Tenant key associated with the access grant.
                */
@@ -770,9 +760,9 @@ export type CustomersCreatePortalParameters = {
         property_listings?:
           | Array<{
               /**
-               * Set key:value pairs. Accepts string or Boolean values. Adding custom metadata to a property listing enables you to store custom information, like customer details or internal IDs from your application.
+               * Set key:value pairs. Accepts string or Boolean values. Adding custom metadata to a property listing enables you to store custom information, like customer details or internal IDs from your application. Set a key to `null` or to an empty string to remove that key from the custom metadata.
                */
-              custom_metadata?: Record<string, unknown> | undefined
+              custom_metadata?: Record<string, string | boolean> | undefined
               /**
                * Your display name for this location resource.
                */
@@ -797,13 +787,13 @@ export type CustomersCreatePortalParameters = {
                */
               common_area_keys?: Array<string> | undefined
               /**
-               * Set key:value pairs for filtering reservations by custom criteria.
+               * Set key:value pairs for filtering reservations by custom criteria. Set a key to `null` or to an empty string to remove that key from the custom metadata.
                */
-              custom_metadata?: Record<string, unknown> | undefined
+              custom_metadata?: Record<string, string | boolean> | undefined
               /**
                * Ending date and time for the access grant.
                */
-              ends_at?: string | undefined
+              ends_at?: string | Date | Temporal.Instant | undefined
               /**
                * Facility keys associated with the access grant.
                */
@@ -847,7 +837,7 @@ export type CustomersCreatePortalParameters = {
               /**
                * Starting date and time for the access grant.
                */
-              starts_at?: string | undefined
+              starts_at?: string | Date | Temporal.Instant | undefined
               /**
                * Tenant key associated with the access grant.
                */
@@ -1260,7 +1250,7 @@ export type CustomersPushDataParameters = {
         /**
          * Ending date and time for the access grant.
          */
-        ends_at?: string | undefined
+        ends_at?: string | Date | Temporal.Instant | undefined
         /**
          * Facility keys associated with the access grant.
          */
@@ -1300,7 +1290,7 @@ export type CustomersPushDataParameters = {
         /**
          * Starting date and time for the access grant.
          */
-        starts_at?: string | undefined
+        starts_at?: string | Date | Temporal.Instant | undefined
         /**
          * Tenant key associated with the access grant.
          */
@@ -1339,7 +1329,7 @@ export type CustomersPushDataParameters = {
         /**
          * Ending date and time for the access grant.
          */
-        ends_at?: string | undefined
+        ends_at?: string | Date | Temporal.Instant | undefined
         /**
          * Facility keys associated with the access grant.
          */
@@ -1379,7 +1369,7 @@ export type CustomersPushDataParameters = {
         /**
          * Starting date and time for the access grant.
          */
-        starts_at?: string | undefined
+        starts_at?: string | Date | Temporal.Instant | undefined
         /**
          * Tenant key associated with the access grant.
          */
@@ -1511,9 +1501,9 @@ export type CustomersPushDataParameters = {
   property_listings?:
     | Array<{
         /**
-         * Set key:value pairs. Accepts string or Boolean values. Adding custom metadata to a property listing enables you to store custom information, like customer details or internal IDs from your application.
+         * Set key:value pairs. Accepts string or Boolean values. Adding custom metadata to a property listing enables you to store custom information, like customer details or internal IDs from your application. Set a key to `null` or to an empty string to remove that key from the custom metadata.
          */
-        custom_metadata?: Record<string, unknown> | undefined
+        custom_metadata?: Record<string, string | boolean> | undefined
         /**
          * Your display name for this location resource.
          */
@@ -1538,13 +1528,13 @@ export type CustomersPushDataParameters = {
          */
         common_area_keys?: Array<string> | undefined
         /**
-         * Set key:value pairs for filtering reservations by custom criteria.
+         * Set key:value pairs for filtering reservations by custom criteria. Set a key to `null` or to an empty string to remove that key from the custom metadata.
          */
-        custom_metadata?: Record<string, unknown> | undefined
+        custom_metadata?: Record<string, string | boolean> | undefined
         /**
          * Ending date and time for the access grant.
          */
-        ends_at?: string | undefined
+        ends_at?: string | Date | Temporal.Instant | undefined
         /**
          * Facility keys associated with the access grant.
          */
@@ -1588,7 +1578,7 @@ export type CustomersPushDataParameters = {
         /**
          * Starting date and time for the access grant.
          */
-        starts_at?: string | undefined
+        starts_at?: string | Date | Temporal.Instant | undefined
         /**
          * Tenant key associated with the access grant.
          */

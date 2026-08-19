@@ -28,7 +28,6 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import { assertValidRequestParameters } from 'lib/request-parameters.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import type { ThermostatDailyProgram } from 'lib/resources/thermostat-daily-program.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
@@ -205,17 +204,13 @@ export class SeamHttpThermostatsDailyPrograms {
     parameters: ThermostatsDailyProgramsCreateParameters,
     options: ThermostatsDailyProgramsCreateOptions = {},
   ): ThermostatsDailyProgramsCreateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/daily_programs/create',
-      true,
-      ['device_id', 'name', 'periods'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/create',
       method: 'POST',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id', 'name', 'periods'],
       responseKey: 'thermostat_daily_program',
       options,
     })
@@ -228,17 +223,13 @@ export class SeamHttpThermostatsDailyPrograms {
     parameters: ThermostatsDailyProgramsDeleteParameters,
     options: ThermostatsDailyProgramsDeleteOptions = {},
   ): ThermostatsDailyProgramsDeleteRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/daily_programs/delete',
-      true,
-      ['thermostat_daily_program_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/delete',
       method: 'DELETE',
       params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['thermostat_daily_program_id'],
       responseKey: undefined,
       options,
     })
@@ -251,17 +242,17 @@ export class SeamHttpThermostatsDailyPrograms {
     parameters: ThermostatsDailyProgramsUpdateParameters,
     options: ThermostatsDailyProgramsUpdateOptions = {},
   ): ThermostatsDailyProgramsUpdateRequest {
-    assertValidRequestParameters(
-      parameters,
-      '/thermostats/daily_programs/update',
-      true,
-      ['name', 'periods', 'thermostat_daily_program_id'],
-    )
-
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/daily_programs/update',
       method: 'PATCH',
       body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: [
+        'name',
+        'periods',
+        'thermostat_daily_program_id',
+      ],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
