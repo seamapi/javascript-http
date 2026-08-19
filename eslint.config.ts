@@ -7,30 +7,18 @@ import neostandard, { resolveIgnoresFromGitignore } from 'neostandard'
 
 const files = ['**/*.{ts,tsx}']
 
-// The public API is the export closure of src/index.ts.
-// Only these files contain exports reachable from the package entrypoint,
-// so only they must document their exports.
-// Errors in src/lib/resources and src/lib/routes must be fixed
-// in the codegen/layouts templates followed by npm run generate.
+// Documentation is required only for the core client modules
+// covering the concepts in the README:
+// client options, authentication, action attempts, pagination,
+// requests, and errors.
 const publicApiFiles = [
-  'src/lib/auth.ts',
-  'src/lib/error-interceptor.ts',
-  'src/lib/openapi.ts',
   'src/lib/options.ts',
   'src/lib/request-options.ts',
   'src/lib/resolve-action-attempt.ts',
-  'src/lib/resources/**/*.ts',
-  'src/lib/routes/**/*.ts',
   'src/lib/seam-http-error.ts',
   'src/lib/seam-http-request.ts',
   'src/lib/seam-paginator.ts',
-  'src/lib/token.ts',
 ]
-
-// The generated endpoint Parameters, Response, Request, and Options types
-// are self-describing, so exported types in generated route files
-// do not require documentation.
-const generatedRouteFiles = ['src/lib/routes/**/*.ts']
 
 export default [
   globalIgnores(resolveIgnoresFromGitignore()),
@@ -142,29 +130,6 @@ export default [
       'jsdoc/tag-lines': ['error', 'never', { startLines: 1 }],
       // Conflicts with how Prettier formats JSDoc inside union types.
       'jsdoc/check-alignment': 'off',
-    },
-  },
-  {
-    files: generatedRouteFiles,
-    rules: {
-      'jsdoc/require-jsdoc': [
-        'error',
-        {
-          publicOnly: true,
-          require: {
-            ArrowFunctionExpression: true,
-            ClassDeclaration: true,
-            ClassExpression: true,
-            FunctionDeclaration: true,
-            FunctionExpression: true,
-            MethodDefinition: false,
-          },
-          checkConstructors: false,
-          checkGetters: false,
-          checkSetters: false,
-          enableFixer: false,
-        },
-      ],
     },
   },
   {

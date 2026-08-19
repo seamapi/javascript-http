@@ -7,12 +7,6 @@ import {
   SeamHttpUnauthorizedError,
 } from './seam-http-error.js'
 
-/**
- * Axios response interceptor that converts errors from the Seam API
- * into the corresponding {@link SeamHttpApiError},
- * e.g., {@link SeamHttpUnauthorizedError} or {@link SeamHttpInvalidInputError}.
- * Rethrows non-Axios errors and errors without a Seam API error response unchanged.
- */
 export const errorInterceptor = async (err: unknown): Promise<void> => {
   if (!isAxiosError(err)) throw err
 

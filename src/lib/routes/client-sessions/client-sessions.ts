@@ -33,9 +33,6 @@ import type { ClientSession } from 'lib/resources/client-session.js'
 import { SeamHttpRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
-/**
- * Client for the Seam API /client_sessions routes.
- */
 export class SeamHttpClientSessions {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
@@ -46,9 +43,6 @@ export class SeamHttpClientSessions {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
-  /**
-   * Creates a new SeamHttpClientSessions from an existing HTTP client.
-   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -60,9 +54,6 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpClientSessions authenticated with an API key.
-   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -74,9 +65,6 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpClientSessions authenticated with a client session token.
-   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -91,11 +79,6 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpClientSessions authenticated with a client session token
-   * for the user identified by the user identifier key.
-   * The client session is created with the publishable key if it does not exist.
-   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -116,10 +99,6 @@ export class SeamHttpClientSessions {
     return SeamHttpClientSessions.fromClientSessionToken(token, options)
   }
 
-  /**
-   * Creates a new SeamHttpClientSessions authenticated with a console session token
-   * and scoped to a workspace.
-   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -137,10 +116,6 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpClientSessions authenticated with a personal access token
-   * and scoped to a workspace.
-   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -158,21 +133,12 @@ export class SeamHttpClientSessions {
     return new SeamHttpClientSessions(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamPaginator to iterate over the paginated results
-   * of the request.
-   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
-  /**
-   * Updates the client session token used by this client for authentication.
-   *
-   * @throws If this client was not created with a client session token.
-   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -359,7 +325,6 @@ export type ClientSessionsCreateParameters = {
   user_identity_id?: string | undefined
   /**
    * IDs of the [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
-   *
    * @deprecated Use `user_identity_id` instead.
    */
   user_identity_ids?: Array<string> | undefined
@@ -439,7 +404,6 @@ export type ClientSessionsGetOrCreateParameters = {
   user_identity_id?: string | undefined
   /**
    * IDs of the [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
-   *
    * @deprecated Use `user_identity_id`.
    */
   user_identity_ids?: Array<string> | undefined
@@ -482,7 +446,6 @@ export type ClientSessionsGrantAccessParameters = RequireAtLeastOne<{
   user_identity_id?: string | undefined
   /**
    * IDs of the [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
-   *
    * @deprecated Use `user_identity_id`.
    */
   user_identity_ids?: Array<string> | undefined

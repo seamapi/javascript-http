@@ -217,7 +217,6 @@ export type ConnectedAccount = {
   time_zone?: string | undefined
   /**
    * User identifier associated with the connected account.
-   *
    * @deprecated Use `display_name` instead.
    */
   user_identifier?:

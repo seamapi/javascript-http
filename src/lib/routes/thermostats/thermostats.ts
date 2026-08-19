@@ -39,9 +39,6 @@ import { SeamHttpThermostatsDailyPrograms } from './daily-programs/index.js'
 import { SeamHttpThermostatsSchedules } from './schedules/index.js'
 import { SeamHttpThermostatsSimulate } from './simulate/index.js'
 
-/**
- * Client for the Seam API /thermostats routes.
- */
 export class SeamHttpThermostats {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
@@ -52,9 +49,6 @@ export class SeamHttpThermostats {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
-  /**
-   * Creates a new SeamHttpThermostats from an existing HTTP client.
-   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -66,9 +60,6 @@ export class SeamHttpThermostats {
     return new SeamHttpThermostats(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpThermostats authenticated with an API key.
-   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -80,9 +71,6 @@ export class SeamHttpThermostats {
     return new SeamHttpThermostats(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpThermostats authenticated with a client session token.
-   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -97,11 +85,6 @@ export class SeamHttpThermostats {
     return new SeamHttpThermostats(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpThermostats authenticated with a client session token
-   * for the user identified by the user identifier key.
-   * The client session is created with the publishable key if it does not exist.
-   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -122,10 +105,6 @@ export class SeamHttpThermostats {
     return SeamHttpThermostats.fromClientSessionToken(token, options)
   }
 
-  /**
-   * Creates a new SeamHttpThermostats authenticated with a console session token
-   * and scoped to a workspace.
-   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -143,10 +122,6 @@ export class SeamHttpThermostats {
     return new SeamHttpThermostats(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpThermostats authenticated with a personal access token
-   * and scoped to a workspace.
-   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -164,21 +139,12 @@ export class SeamHttpThermostats {
     return new SeamHttpThermostats(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamPaginator to iterate over the paginated results
-   * of the request.
-   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
-  /**
-   * Updates the client session token used by this client for authentication.
-   *
-   * @throws If this client was not created with a client session token.
-   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -198,9 +164,6 @@ export class SeamHttpThermostats {
     await clientSessions.get()
   }
 
-  /**
-   * Client for the Seam API /thermostats/daily_programs routes.
-   */
   get dailyPrograms(): SeamHttpThermostatsDailyPrograms {
     return SeamHttpThermostatsDailyPrograms.fromClient(
       this.client,
@@ -208,16 +171,10 @@ export class SeamHttpThermostats {
     )
   }
 
-  /**
-   * Client for the Seam API /thermostats/schedules routes.
-   */
   get schedules(): SeamHttpThermostatsSchedules {
     return SeamHttpThermostatsSchedules.fromClient(this.client, this.defaults)
   }
 
-  /**
-   * Client for the Seam API /thermostats/simulate routes.
-   */
   get simulate(): SeamHttpThermostatsSimulate {
     return SeamHttpThermostatsSimulate.fromClient(this.client, this.defaults)
   }
@@ -641,7 +598,6 @@ export type ThermostatsCreateClimatePresetParameters = {
   hvac_mode_setting?: 'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
   /**
    * Indicates whether a person at the thermostat or using the API can change the thermostat's settings.
-   *
    * @deprecated Use 'thermostat_schedule.is_override_allowed'
    */
   manual_override_allowed?: boolean | undefined
@@ -873,7 +829,6 @@ export type ThermostatsSetFanModeParameters = {
 
   /**
    * Fan mode setting for the thermostat, such as `auto`, `on`, or `circulate`.
-   *
    * @deprecated Use `fan_mode_setting` instead.
    */
   fan_mode?: 'auto' | 'on' | 'circulate' | undefined
@@ -1036,7 +991,6 @@ export type ThermostatsUpdateClimatePresetParameters = {
   hvac_mode_setting?: 'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
   /**
    * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
-   *
    * @deprecated Use 'thermostat_schedule.is_override_allowed'
    */
   manual_override_allowed?: boolean | undefined

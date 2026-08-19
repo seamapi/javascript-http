@@ -9,20 +9,6 @@
 import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 {{/if}}
 
-{{#if routePath}}
-/**
- * Client for the Seam API {{routePath}} routes.
- */
-{{else}}
-/**
- * HTTP client for the Seam API.
- *
- * Create a client with the constructor
- * or one of the static factory methods, e.g., `fromApiKey`.
- * Each Seam API route is available under its corresponding property,
- * e.g., use `seam.devices.list()` to call the `/devices/list` endpoint.
- */
-{{/if}}
 export class {{className}} {
   {{> route-class-methods }}
 

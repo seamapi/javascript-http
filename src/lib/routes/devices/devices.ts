@@ -38,9 +38,6 @@ import { SeamPaginator } from 'lib/seam-paginator.js'
 import { SeamHttpDevicesSimulate } from './simulate/index.js'
 import { SeamHttpDevicesUnmanaged } from './unmanaged/index.js'
 
-/**
- * Client for the Seam API /devices routes.
- */
 export class SeamHttpDevices {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
@@ -51,9 +48,6 @@ export class SeamHttpDevices {
     this.defaults = limitToSeamHttpRequestOptions(options)
   }
 
-  /**
-   * Creates a new SeamHttpDevices from an existing HTTP client.
-   */
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
@@ -65,9 +59,6 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpDevices authenticated with an API key.
-   */
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
@@ -79,9 +70,6 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpDevices authenticated with a client session token.
-   */
   static fromClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
     options: Omit<
@@ -96,11 +84,6 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpDevices authenticated with a client session token
-   * for the user identified by the user identifier key.
-   * The client session is created with the publishable key if it does not exist.
-   */
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
@@ -121,10 +104,6 @@ export class SeamHttpDevices {
     return SeamHttpDevices.fromClientSessionToken(token, options)
   }
 
-  /**
-   * Creates a new SeamHttpDevices authenticated with a console session token
-   * and scoped to a workspace.
-   */
   static fromConsoleSessionToken(
     consoleSessionToken: SeamHttpOptionsWithConsoleSessionToken['consoleSessionToken'],
     workspaceId: SeamHttpOptionsWithConsoleSessionToken['workspaceId'],
@@ -142,10 +121,6 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamHttpDevices authenticated with a personal access token
-   * and scoped to a workspace.
-   */
   static fromPersonalAccessToken(
     personalAccessToken: SeamHttpOptionsWithPersonalAccessToken['personalAccessToken'],
     workspaceId: SeamHttpOptionsWithPersonalAccessToken['workspaceId'],
@@ -163,21 +138,12 @@ export class SeamHttpDevices {
     return new SeamHttpDevices(constructorOptions)
   }
 
-  /**
-   * Creates a new SeamPaginator to iterate over the paginated results
-   * of the request.
-   */
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
 
-  /**
-   * Updates the client session token used by this client for authentication.
-   *
-   * @throws If this client was not created with a client session token.
-   */
   async updateClientSessionToken(
     clientSessionToken: SeamHttpOptionsWithClientSessionToken['clientSessionToken'],
   ): Promise<void> {
@@ -197,16 +163,10 @@ export class SeamHttpDevices {
     await clientSessions.get()
   }
 
-  /**
-   * Client for the Seam API /devices/simulate routes.
-   */
   get simulate(): SeamHttpDevicesSimulate {
     return SeamHttpDevicesSimulate.fromClient(this.client, this.defaults)
   }
 
-  /**
-   * Client for the Seam API /devices/unmanaged routes.
-   */
   get unmanaged(): SeamHttpDevicesUnmanaged {
     return SeamHttpDevicesUnmanaged.fromClient(this.client, this.defaults)
   }

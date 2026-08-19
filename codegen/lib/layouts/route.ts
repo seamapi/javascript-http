@@ -6,7 +6,6 @@ import { getResourceTypeName } from './resources.js'
 
 export interface RouteLayoutContext {
   className: string
-  routePath: string | null
   endpoints: EndpointLayoutContext[]
   subroutes: SubrouteLayoutContext[]
   skipClientSessionImport: boolean
@@ -50,7 +49,6 @@ export interface SubrouteLayoutContext {
   methodName: string
   className: string
   fileName: string
-  routePath: string
 }
 
 interface ResourceTypeImport {
@@ -64,7 +62,6 @@ export const setRouteLayoutContext = (
   nodes: Array<Route | Namespace>,
 ): void => {
   file.className = getClassName(node?.path ?? null)
-  file.routePath = node?.path ?? null
   file.skipClientSessionImport =
     node == null || node?.path === '/client_sessions'
   file.needsActionAttemptsImport =
@@ -106,7 +103,6 @@ const getSubrouteLayoutContext = (
     fileName: `${kebabCase(route.name)}/index.js`,
     methodName: camelCase(route.name),
     className: getClassName(route.path),
-    routePath: route.path,
   }
 }
 

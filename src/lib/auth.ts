@@ -33,13 +33,6 @@ type Options =
   | SeamHttpWithoutWorkspaceOptions
   | (SeamHttpOptions & { publishableKey?: string })
 
-/**
- * Returns the HTTP headers used to authenticate with the Seam API
- * for the given options.
- *
- * @throws {@link SeamHttpInvalidOptionsError} if no authentication option is set.
- * @throws {@link SeamHttpInvalidTokenError} if a token has an unexpected format.
- */
 export const getAuthHeaders = (options: Options): Headers => {
   if ('publishableKey' in options && options.publishableKey != null) {
     return getAuthHeadersForPublishableKey(options.publishableKey)
@@ -116,12 +109,6 @@ const getAuthHeadersForApiKey = ({
   }
 }
 
-/**
- * Returns the HTTP headers used to authenticate with the Seam API
- * using a client session token.
- *
- * @throws {@link SeamHttpInvalidTokenError} if the token has an unexpected format.
- */
 export const getAuthHeadersForClientSessionToken = ({
   clientSessionToken,
 }: SeamHttpOptionsWithClientSessionToken): Headers => {
@@ -261,10 +248,6 @@ const getAuthHeadersForPublishableKey = (publishableKey: string): Headers => {
   }
 }
 
-/**
- * Error thrown when SeamHttp receives a token with an unexpected format,
- * e.g., a client session token passed as the apiKey option.
- */
 export class SeamHttpInvalidTokenError extends Error {
   constructor(message: string) {
     super(`SeamHttp received an invalid token: ${message}`)
@@ -272,11 +255,6 @@ export class SeamHttpInvalidTokenError extends Error {
   }
 }
 
-/**
- * Logs a warning to the console when the user identifier key is an email address.
- * An email is common knowledge or easily guessed,
- * so it is an insecure user identifier key.
- */
 export const warnOnInsecureuserIdentifierKey = (
   userIdentifierKey: string,
 ): void => {

@@ -15,10 +15,6 @@ import {
 } from './{{fileName}}'
 {{/each}}
 
-/**
- * HTTP client for the Seam API{{#if withoutWorkspace}} not scoped to a workspace{{/if}}
- * with endpoints keyed by their path, e.g., `seam.get['/devices/list']()`.
- */
 export class {{className}} {
 {{#if withoutWorkspace}}
   {{> route-class-methods-without-workspace }}

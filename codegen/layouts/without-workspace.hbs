@@ -7,19 +7,9 @@
 
 import { SeamHttpWorkspaces } from 'lib/routes/workspaces/index.js'
 
-/**
- * HTTP client for the Seam API not scoped to a workspace.
- *
- * Use this client to list or create workspaces,
- * e.g., when authenticated with a personal access token
- * or console session token.
- */
 export class SeamHttpWithoutWorkspace {
   {{> route-class-methods-without-workspace }}
 
-  /**
-   * Client for the Seam API /workspaces routes available without a workspace.
-   */
   get workspaces(): Pick<SeamHttpWorkspaces, 'create' | 'list'> {
     return SeamHttpWorkspaces.fromClient(this.client, this.defaults)
   }

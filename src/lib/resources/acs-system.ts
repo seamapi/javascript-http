@@ -31,7 +31,6 @@ export type AcsSystem = {
 
   /**
    * IDs of the [connected accounts](https://docs.seam.co/core-concepts/connected-accounts) associated with the [access control system](https://docs.seam.co/low-level-apis/access-systems).
-   *
    * @deprecated Use `connected_account_id`.
    */
   connected_account_ids: Array<string>
