@@ -29,6 +29,20 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly requiredParameterNames?: readonly string[]
 }
 
+/**
+ * A lazy request to the Seam API.
+ *
+ * Creating a SeamHttpRequest does not send anything over the network.
+ * The request is sent once `execute` is called,
+ * or when the request is awaited like a Promise,
+ * e.g., with `await`, `then`, `catch`, or `finally`.
+ * When the response contains an action attempt,
+ * awaiting the request also waits for the action attempt to resolve
+ * according to the `waitForActionAttempt` option.
+ *
+ * Before sending, the request may be inspected
+ * with `url`, `pathname`, `method`, `params`, and `body`.
+ */
 export class SeamHttpRequest<
   const TResponse,
   const TResponseKey extends keyof TResponse | undefined,
@@ -48,6 +62,10 @@ export class SeamHttpRequest<
     this.#config = config
   }
 
+  /**
+   * The key of the API response object containing the response data,
+   * or undefined if the endpoint returns an empty response.
+   */
   public get responseKey(): TResponseKey {
     return this.#config.responseKey
   }
@@ -56,6 +74,9 @@ export class SeamHttpRequest<
     return this.#config.hasPagination ?? false
   }
 
+  /**
+   * The full request URL including any serialized query parameters.
+   */
   public get url(): URL {
     const { client } = this.#parent
 
@@ -92,6 +113,12 @@ export class SeamHttpRequest<
     return this.#config.body
   }
 
+  /**
+   * Sends the request and returns the response data.
+   * If the response contains an action attempt,
+   * waits for the action attempt to resolve
+   * according to the `waitForActionAttempt` option.
+   */
   async execute(): Promise<
     TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
   > {
@@ -130,6 +157,10 @@ export class SeamHttpRequest<
     return data
   }
 
+  /**
+   * Sends the request and returns the entire response body
+   * without waiting for any action attempt to resolve.
+   */
   async fetchResponse(): Promise<TResponse> {
     assertValidRequestParameters(
       this.#config.parameters,

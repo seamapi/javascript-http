@@ -13,8 +13,22 @@ export type Client = AxiosInstance
 export const defaultTimeout = 30_000
 
 export interface ClientOptions {
+  /**
+   * Request timeout in milliseconds, applied per attempt.
+   * Set to 0 to disable the timeout. Defaults to 30 seconds.
+   */
   timeout?: number
+
+  /**
+   * Options passed to the underlying Axios client.
+   */
   axiosOptions?: AxiosRequestConfig
+
+  /**
+   * Options passed to axios-retry,
+   * which retries idempotent requests that fail
+   * because of a transport error, timeout, or HTTP 429 response.
+   */
   axiosRetryOptions?: AxiosRetryConfig
 }
 

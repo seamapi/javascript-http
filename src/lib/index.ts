@@ -3,12 +3,15 @@ export * from './error-interceptor.js'
 export * from './openapi.js'
 export * from './options.js'
 export {
+  type FailedActionAttempt,
   isSeamActionAttemptError,
   isSeamActionAttemptFailedError,
   isSeamActionAttemptTimeoutError,
+  type ResolveActionAttemptOptions,
   SeamActionAttemptError,
   SeamActionAttemptFailedError,
   SeamActionAttemptTimeoutError,
+  type SucceededActionAttempt,
 } from './resolve-action-attempt.js'
 export * from './resources/index.js'
 export * from './routes/index.js'

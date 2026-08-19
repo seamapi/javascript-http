@@ -6,12 +6,19 @@ import {
 
 export type { SeamHttpRequestOptions } from './request-options.js'
 
+/**
+ * Options for creating a SeamHttpWithoutWorkspace client,
+ * which is not scoped to a single workspace.
+ */
 export type SeamHttpWithoutWorkspaceOptions =
   | SeamHttpWithoutWorkspaceOptionsFromEnv
   | SeamHttpWithoutWorkspaceOptionsWithClient
   | SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken
   | SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken
 
+/**
+ * Options for creating a SeamHttp client.
+ */
 export type SeamHttpOptions =
   | SeamHttpOptionsFromEnv
   | SeamHttpOptionsWithClient
@@ -21,28 +28,62 @@ export type SeamHttpOptions =
   | SeamHttpOptionsWithPersonalAccessToken
 
 interface SeamHttpCommonOptions extends ClientOptions, SeamHttpRequestOptions {
+  /**
+   * The Seam API endpoint, e.g., `https://connect.getseam.com`.
+   * Defaults to the SEAM_ENDPOINT or SEAM_API_URL environment variable, if set.
+   */
   endpoint?: string
 }
 
+/**
+ * Options for creating a SeamHttp client with `SeamHttp.fromPublishableKey`.
+ */
 export interface SeamHttpFromPublishableKeyOptions extends SeamHttpCommonOptions {}
 
+/**
+ * Options for creating a SeamHttp client that reads its configuration
+ * from the environment, e.g., the SEAM_API_KEY environment variable.
+ */
 export interface SeamHttpOptionsFromEnv extends SeamHttpCommonOptions {}
 
+/**
+ * Options for creating a SeamHttpWithoutWorkspace client that reads
+ * its configuration from the environment,
+ * e.g., the SEAM_PERSONAL_ACCESS_TOKEN environment variable.
+ */
 export interface SeamHttpWithoutWorkspaceOptionsFromEnv extends SeamHttpCommonOptions {}
 
+/**
+ * Options for creating a SeamHttpWithoutWorkspace client from an existing client.
+ */
 export interface SeamHttpWithoutWorkspaceOptionsWithClient extends SeamHttpCommonOptions {
   client: Client
 }
 
+/**
+ * Returns true if the options include a client.
+ *
+ * @throws {@link SeamHttpInvalidOptionsError} if the client option
+ * is used with any other option.
+ */
 export const isSeamHttpWithoutWorkspaceOptionsWithClient = (
   options: SeamHttpOptions,
 ): options is SeamHttpWithoutWorkspaceOptionsWithClient =>
   isSeamHttpOptionsWithClient(options)
 
+/**
+ * Options for creating a SeamHttp client from an existing client.
+ */
 export interface SeamHttpOptionsWithClient extends SeamHttpRequestOptions {
   client: Client
 }
 
+/**
+ * Returns true if the options include a client.
+ *
+ * @throws {@link SeamHttpInvalidOptionsError} if the client option
+ * is used with any other option.
+ */
 export const isSeamHttpOptionsWithClient = (
   options: SeamHttpOptions,
 ): options is SeamHttpOptionsWithClient => {
@@ -61,10 +102,19 @@ export const isSeamHttpOptionsWithClient = (
   return true
 }
 
+/**
+ * Options for creating a SeamHttp client authenticated with an API key.
+ */
 export interface SeamHttpOptionsWithApiKey extends SeamHttpCommonOptions {
   apiKey: string
 }
 
+/**
+ * Returns true if the options include an apiKey.
+ *
+ * @throws {@link SeamHttpInvalidOptionsError} if the apiKey option
+ * is used with another authentication option.
+ */
 export const isSeamHttpOptionsWithApiKey = (
   options: SeamHttpOptions,
 ): options is SeamHttpOptionsWithApiKey => {
@@ -92,10 +142,19 @@ export const isSeamHttpOptionsWithApiKey = (
   return true
 }
 
+/**
+ * Options for creating a SeamHttp client authenticated with a client session token.
+ */
 export interface SeamHttpOptionsWithClientSessionToken extends SeamHttpCommonOptions {
   clientSessionToken: string
 }
 
+/**
+ * Returns true if the options include a clientSessionToken.
+ *
+ * @throws {@link SeamHttpInvalidOptionsError} if the clientSessionToken option
+ * is used with another authentication option.
+ */
 export const isSeamHttpOptionsWithClientSessionToken = (
   options: SeamHttpOptions,
 ): options is SeamHttpOptionsWithClientSessionToken => {
@@ -123,10 +182,20 @@ export const isSeamHttpOptionsWithClientSessionToken = (
   return true
 }
 
+/**
+ * Options for creating a SeamHttpWithoutWorkspace client
+ * authenticated with a console session token.
+ */
 export interface SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken extends SeamHttpCommonOptions {
   consoleSessionToken: string
 }
 
+/**
+ * Returns true if the options include a consoleSessionToken.
+ *
+ * @throws {@link SeamHttpInvalidOptionsError} if the consoleSessionToken option
+ * is used with another authentication option.
+ */
 export const isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken = (
   options: SeamHttpOptions,
 ): options is SeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken => {
@@ -154,11 +223,21 @@ export const isSeamHttpWithoutWorkspaceOptionsWithConsoleSessionToken = (
   return true
 }
 
+/**
+ * Options for creating a SeamHttp client
+ * authenticated with a console session token and scoped to a workspace.
+ */
 export interface SeamHttpOptionsWithConsoleSessionToken extends SeamHttpCommonOptions {
   consoleSessionToken: string
   workspaceId: string
 }
 
+/**
+ * Returns true if the options include a consoleSessionToken and a workspaceId.
+ *
+ * @throws {@link SeamHttpInvalidOptionsError} if the consoleSessionToken option
+ * is used with another authentication option or without the workspaceId option.
+ */
 export const isSeamHttpOptionsWithConsoleSessionToken = (
   options: SeamHttpOptions,
 ): options is SeamHttpOptionsWithConsoleSessionToken => {
@@ -175,10 +254,20 @@ export const isSeamHttpOptionsWithConsoleSessionToken = (
   return true
 }
 
+/**
+ * Options for creating a SeamHttpWithoutWorkspace client
+ * authenticated with a personal access token.
+ */
 export interface SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken extends SeamHttpCommonOptions {
   personalAccessToken: string
 }
 
+/**
+ * Returns true if the options include a personalAccessToken.
+ *
+ * @throws {@link SeamHttpInvalidOptionsError} if the personalAccessToken option
+ * is used with another authentication option.
+ */
 export const isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken = (
   options: SeamHttpOptions,
 ): options is SeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken => {
@@ -206,11 +295,21 @@ export const isSeamHttpWithoutWorkspaceOptionsWithPersonalAccessToken = (
   return true
 }
 
+/**
+ * Options for creating a SeamHttp client
+ * authenticated with a personal access token and scoped to a workspace.
+ */
 export interface SeamHttpOptionsWithPersonalAccessToken extends SeamHttpCommonOptions {
   personalAccessToken: string
   workspaceId: string
 }
 
+/**
+ * Returns true if the options include a personalAccessToken and a workspaceId.
+ *
+ * @throws {@link SeamHttpInvalidOptionsError} if the personalAccessToken option
+ * is used with another authentication option or without the workspaceId option.
+ */
 export const isSeamHttpOptionsWithPersonalAccessToken = (
   options: SeamHttpOptions,
 ): options is SeamHttpOptionsWithPersonalAccessToken => {
@@ -227,6 +326,9 @@ export const isSeamHttpOptionsWithPersonalAccessToken = (
   return true
 }
 
+/**
+ * Error thrown when a SeamHttp client is created with invalid options.
+ */
 export class SeamHttpInvalidOptionsError extends Error {
   constructor(message: string) {
     super(`SeamHttp received invalid options: ${message}`)
@@ -234,6 +336,9 @@ export class SeamHttpInvalidOptionsError extends Error {
   }
 }
 
+/**
+ * Error thrown when a SeamHttpWithoutWorkspace client is created with invalid options.
+ */
 export class SeamHttpWithoutWorkspaceInvalidOptionsError extends Error {
   constructor(message: string) {
     super(`SeamHttpWithoutWorkspace received invalid options: ${message}`)
