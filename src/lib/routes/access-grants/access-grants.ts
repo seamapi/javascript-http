@@ -232,8 +232,8 @@ export class SeamHttpAccessGrants {
   ): AccessGrantsGetRelatedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/get_related',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
@@ -251,8 +251,8 @@ export class SeamHttpAccessGrants {
   ): AccessGrantsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_grants/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],

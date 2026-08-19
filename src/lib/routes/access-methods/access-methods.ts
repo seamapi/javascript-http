@@ -261,8 +261,8 @@ export class SeamHttpAccessMethods {
   ): AccessMethodsGetRelatedRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_methods/get_related',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_method_ids'],

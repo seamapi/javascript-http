@@ -318,8 +318,8 @@ export class SeamHttpThermostats {
   ): ThermostatsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/thermostats/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],

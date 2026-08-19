@@ -187,8 +187,8 @@ export class SeamHttpEvents {
   ): EventsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/events/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],

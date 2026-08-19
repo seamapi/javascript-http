@@ -217,8 +217,8 @@ export class SeamHttpAcsEncoders {
   ): AcsEncodersListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/acs/encoders/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],

@@ -193,8 +193,8 @@ export class SeamHttpDevicesUnmanaged {
   ): DevicesUnmanagedListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/devices/unmanaged/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],

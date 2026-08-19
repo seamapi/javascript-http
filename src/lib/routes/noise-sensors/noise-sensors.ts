@@ -181,8 +181,8 @@ export class SeamHttpNoiseSensors {
   ): NoiseSensorsListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],

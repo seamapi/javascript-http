@@ -219,8 +219,8 @@ export class SeamHttpLocks {
   ): LocksListRequest {
     return new SeamHttpRequest(this, {
       pathname: '/locks/list',
-      method: 'POST',
-      body: parameters,
+      method: 'GET',
+      params: parameters,
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
