@@ -21,6 +21,7 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly body?: unknown
   readonly params?: undefined | Record<string, unknown>
   readonly responseKey: TResponseKey
+  readonly hasPagination?: boolean
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
   readonly actionAttempts?: ActionAttemptsClient
   readonly parameters?: unknown
@@ -49,6 +50,10 @@ export class SeamHttpRequest<
 
   public get responseKey(): TResponseKey {
     return this.#config.responseKey
+  }
+
+  public get hasPagination(): boolean {
+    return this.#config.hasPagination ?? false
   }
 
   public get url(): URL {

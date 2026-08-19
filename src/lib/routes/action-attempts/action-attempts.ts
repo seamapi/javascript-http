@@ -196,6 +196,7 @@ export class SeamHttpActionAttempts {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'action_attempts',
+      hasPagination: true,
       options,
     })
   }

@@ -306,6 +306,7 @@ export class SeamHttpUserIdentities {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'user_identities',
+      hasPagination: true,
       options,
     })
   }

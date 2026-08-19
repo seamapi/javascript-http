@@ -199,6 +199,7 @@ export class SeamHttpDevicesUnmanaged {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'devices',
+      hasPagination: true,
       options,
     })
   }

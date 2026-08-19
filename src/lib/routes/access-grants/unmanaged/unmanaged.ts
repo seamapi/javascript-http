@@ -192,6 +192,7 @@ export class SeamHttpAccessGrantsUnmanaged {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'access_grants',
+      hasPagination: true,
       options,
     })
   }

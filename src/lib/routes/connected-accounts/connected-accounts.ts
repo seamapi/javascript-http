@@ -225,6 +225,7 @@ export class SeamHttpConnectedAccounts {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'connected_accounts',
+      hasPagination: true,
       options,
     })
   }

@@ -250,6 +250,7 @@ export class SeamHttpAcsCredentials {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'acs_credentials',
+      hasPagination: true,
       options,
     })
   }

@@ -207,6 +207,7 @@ export class SeamHttpDevices {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'devices',
+      hasPagination: true,
       options,
     })
   }

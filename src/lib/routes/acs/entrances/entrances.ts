@@ -214,6 +214,7 @@ export class SeamHttpAcsEntrances {
       hasRequiredParameters: false,
       requiredParameterNames: [],
       responseKey: 'acs_entrances',
+      hasPagination: true,
       options,
     })
   }
