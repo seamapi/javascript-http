@@ -1122,6 +1122,24 @@ export type UnmanagedDevice = {
          */
         warning_code: 'accessory_keypad_setup_required'
       } /**
+     * Indicates that the accessory keypad paired with this lock has a low or critically low battery. Replace its batteries so guests can keep entering their access codes.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'accessory_keypad_low_battery'
+      } /**
      * Indicates that the device may optimistically be reported as online because the provider does not reliably report its online status.
      */
     | {
