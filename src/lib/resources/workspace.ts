@@ -9,11 +9,12 @@
 export type Workspace = {
   /**
    * Company name associated with the [workspace](https://docs.seam.co/core-concepts/workspaces).
+   * @deprecated Use `connect_partner_name` instead.
    */
   company_name: string
 
   /**
-   * @deprecated Use `company_name` instead.
+   * Seam Connect partner name associated with the [workspace](https://docs.seam.co/core-concepts/workspaces).
    */
   connect_partner_name: string | null
 
