@@ -325,7 +325,7 @@ export type UnmanagedAccessCode = {
          */
         message: string
       } /**
-     * Seam was unable to apply this access code's pending mutations to the device, so the code on the device does not match its requested state. Seam keeps retrying, and this error clears automatically once the mutations are applied.
+     * Seam was unable to apply this access code's requested update to the device, so the code on the device does not match its requested state. Seam keeps retrying, and this error clears automatically once the update is applied.
      */
     | {
         /**
@@ -335,7 +335,7 @@ export type UnmanagedAccessCode = {
         /**
          * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
          */
-        error_code: 'failed_to_apply_mutations'
+        error_code: 'failed_to_update'
 
         /**
          * Indicates that this is an access code error.
@@ -869,23 +869,6 @@ export type UnmanagedAccessCode = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'delay_in_issuing'
-      } /**
-     * Seam has not yet applied this access code's pending mutations to the device, so the code on the device does not yet match its requested state. Seam is still attempting to apply them, and this warning clears automatically once the mutations are applied.
-     */
-    | {
-        /**
-         * Date and time at which Seam created the warning.
-         */
-        created_at?: string | undefined
-        /**
-         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
-         */
-        message: string
-
-        /**
-         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
-         */
-        warning_code: 'delay_in_applying_mutations'
       } /**
      * Third-party integration detected that may cause access codes to fail.
      */
