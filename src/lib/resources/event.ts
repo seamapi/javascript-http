@@ -4554,6 +4554,10 @@ export type SeamEvent =
       battery_level: number
 
       /**
+       * Battery that dropped below the low threshold. `lock`: the lock's own battery. `accessory_keypad`: a paired accessory keypad's battery. Omitted for events emitted before this field existed, which always refer to the lock's own battery.
+       */
+      battery_source?: 'lock' | 'accessory_keypad' | undefined
+      /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
       connected_account_custom_metadata?:
