@@ -78,6 +78,7 @@
       "version": "^11.0.0 || ^10.0.0"
     }
   },
+  "packageManager": "npm@11.19.0",
   "dependencies": {
     "@seamapi/url-search-params-serializer": "^3.0.3",
     "axios": "^1.9.0",
