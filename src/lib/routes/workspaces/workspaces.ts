@@ -263,11 +263,11 @@ export class SeamHttpWorkspaces {
 export type WorkspacesCreateParameters = {
   /**
    * Company name for the new workspace.
+   * @deprecated Use `connect_partner_name` instead.
    */
   company_name?: string | undefined
   /**
    * Connect partner name for the new workspace.
-   * @deprecated Use `company_name` instead.
    */
   connect_partner_name?: string | null | undefined
   /**
