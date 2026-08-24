@@ -62,9 +62,7 @@ export const getResourceLayoutContexts = (
   }))
 }
 
-// The blueprint merges the per-status action attempt variants and keeps the
-// non-nullable definitions of error and result, but the API sends null for
-// both unless the status is error or success respectively.
+// The blueprint merges the per-status variants and drops the nullability.
 const nullWhilePendingDoc =
   'Null while the action attempt is pending or when this value does not apply.'
 
