@@ -136,7 +136,7 @@ export class SeamHttpSpaces {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey, true>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -630,7 +630,11 @@ export type SpacesListParameters = {
  */
 export type SpacesListResponse = { spaces: Array<Space> }
 
-export type SpacesListRequest = SeamHttpRequest<SpacesListResponse, 'spaces'>
+export type SpacesListRequest = SeamHttpRequest<
+  SpacesListResponse,
+  'spaces',
+  true
+>
 
 export interface SpacesListOptions {}
 

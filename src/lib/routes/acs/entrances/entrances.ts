@@ -137,7 +137,7 @@ export class SeamHttpAcsEntrances {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey, true>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -360,7 +360,8 @@ export type AcsEntrancesListResponse = { acs_entrances: Array<AcsEntrance> }
 
 export type AcsEntrancesListRequest = SeamHttpRequest<
   AcsEntrancesListResponse,
-  'acs_entrances'
+  'acs_entrances',
+  true
 >
 
 export interface AcsEntrancesListOptions {}

@@ -137,7 +137,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey, true>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -350,7 +350,8 @@ export type ConnectedAccountsListResponse = {
 
 export type ConnectedAccountsListRequest = SeamHttpRequest<
   ConnectedAccountsListResponse,
-  'connected_accounts'
+  'connected_accounts',
+  true
 >
 
 export interface ConnectedAccountsListOptions {}

@@ -138,7 +138,7 @@ export class SeamHttpAcsEncoders {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey, true>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -356,7 +356,8 @@ export type AcsEncodersListResponse = { acs_encoders: Array<AcsEncoder> }
 
 export type AcsEncodersListRequest = SeamHttpRequest<
   AcsEncodersListResponse,
-  'acs_encoders'
+  'acs_encoders',
+  true
 >
 
 export interface AcsEncodersListOptions {}

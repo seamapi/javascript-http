@@ -46,6 +46,7 @@ interface SeamHttpRequestConfig<TResponseKey> {
 export class SeamHttpRequest<
   const TResponse,
   const TResponseKey extends keyof TResponse | undefined,
+  const THasPagination extends boolean = boolean,
 > implements Promise<
   TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
 > {
@@ -70,8 +71,8 @@ export class SeamHttpRequest<
     return this.#config.responseKey
   }
 
-  public get hasPagination(): boolean {
-    return this.#config.hasPagination ?? false
+  public get hasPagination(): THasPagination {
+    return (this.#config.hasPagination ?? false) as THasPagination
   }
 
   /**

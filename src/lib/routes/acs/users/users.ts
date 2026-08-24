@@ -136,7 +136,7 @@ export class SeamHttpAcsUsers {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey, true>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -545,7 +545,8 @@ export type AcsUsersListResponse = { acs_users: Array<AcsUser> }
 
 export type AcsUsersListRequest = SeamHttpRequest<
   AcsUsersListResponse,
-  'acs_users'
+  'acs_users',
+  true
 >
 
 export interface AcsUsersListOptions {}

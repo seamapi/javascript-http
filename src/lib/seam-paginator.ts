@@ -33,12 +33,12 @@ export class SeamPaginator<
   const TResponse,
   const TResponseKey extends keyof TResponse,
 > implements AsyncIterable<EnsureReadonlyArray<TResponse[TResponseKey]>> {
-  readonly #request: SeamHttpRequest<TResponse, TResponseKey>
+  readonly #request: SeamHttpRequest<TResponse, TResponseKey, true>
   readonly #parent: SeamPaginatorParent
 
   constructor(
     parent: SeamPaginatorParent,
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey, true>,
   ) {
     if (!request.hasPagination) {
       throw new Error(

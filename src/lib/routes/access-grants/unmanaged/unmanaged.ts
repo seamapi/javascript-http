@@ -134,7 +134,7 @@ export class SeamHttpAccessGrantsUnmanaged {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey, true>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -278,7 +278,8 @@ export type AccessGrantsUnmanagedListResponse = {
 
 export type AccessGrantsUnmanagedListRequest = SeamHttpRequest<
   AccessGrantsUnmanagedListResponse,
-  'access_grants'
+  'access_grants',
+  true
 >
 
 export interface AccessGrantsUnmanagedListOptions {}

@@ -134,7 +134,7 @@ export class SeamHttpConnectWebviews {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey, true>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -457,7 +457,8 @@ export type ConnectWebviewsListResponse = {
 
 export type ConnectWebviewsListRequest = SeamHttpRequest<
   ConnectWebviewsListResponse,
-  'connect_webviews'
+  'connect_webviews',
+  true
 >
 
 export interface ConnectWebviewsListOptions {}

@@ -138,7 +138,7 @@ export class SeamHttpAccessCodes {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey, true>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -664,7 +664,8 @@ export type AccessCodesListResponse = { access_codes: Array<AccessCode> }
 
 export type AccessCodesListRequest = SeamHttpRequest<
   AccessCodesListResponse,
-  'access_codes'
+  'access_codes',
+  true
 >
 
 export interface AccessCodesListOptions {}

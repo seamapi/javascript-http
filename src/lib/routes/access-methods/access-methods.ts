@@ -140,7 +140,7 @@ export class SeamHttpAccessMethods {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamHttpRequest<TResponse, TResponseKey, true>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -510,7 +510,8 @@ export type AccessMethodsListResponse = { access_methods: Array<AccessMethod> }
 
 export type AccessMethodsListRequest = SeamHttpRequest<
   AccessMethodsListResponse,
-  'access_methods'
+  'access_methods',
+  true
 >
 
 export interface AccessMethodsListOptions {}
