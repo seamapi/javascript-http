@@ -1,6 +1,7 @@
 import type { Client } from './client.js'
 import type { SeamHttpRequestOptions } from './options.js'
-import { SeamHttpRequest } from './seam-http-request.js'
+import { SeamHttpInvalidResponseError } from './seam-http-error.js'
+import { readResponseData, SeamHttpRequest } from './seam-http-request.js'
 
 interface SeamPaginatorParent {
   readonly client: Client
@@ -96,25 +97,36 @@ export class SeamPaginator<
     })
 
     const response = await request.fetchResponse()
-    const data = response[responseKey]
-
-    const paginationData =
-      response != null &&
-      typeof response === 'object' &&
-      'pagination' in response
-        ? (response.pagination as PaginationData)
-        : null
-
-    const pagination: Pagination = {
-      hasNextPage: paginationData?.has_next_page ?? false,
-      nextPageCursor: paginationData?.next_page_cursor ?? null,
-      nextPageUrl: paginationData?.next_page_url ?? null,
-    }
+    const data = readResponseData(response, responseKey, request.pathname)
 
     if (!Array.isArray(data)) {
-      throw new Error(
-        `Expected an array response for ${String(responseKey)} but got ${String(typeof data)}`,
+      throw new SeamHttpInvalidResponseError(
+        request.pathname,
+        String(responseKey),
+        `got ${data === null ? 'null' : typeof data} instead of a list`,
       )
+    }
+
+    const paginationData = readResponseData(
+      response as { pagination: unknown },
+      'pagination',
+      request.pathname,
+    )
+
+    if (paginationData === null || typeof paginationData !== 'object') {
+      throw new SeamHttpInvalidResponseError(
+        request.pathname,
+        'pagination',
+        `got ${paginationData === null ? 'null' : typeof paginationData} instead of a pagination object`,
+      )
+    }
+
+    const paginationResponse = paginationData as PaginationData
+
+    const pagination: Pagination = {
+      hasNextPage: paginationResponse.has_next_page ?? false,
+      nextPageCursor: paginationResponse.next_page_cursor ?? null,
+      nextPageUrl: paginationResponse.next_page_url ?? null,
     }
 
     return [
