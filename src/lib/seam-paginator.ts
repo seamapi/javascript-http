@@ -170,12 +170,6 @@ export class SeamPaginator<
     }
   }
 
-  /**
-   * Yields each page along with its pagination state.
-   * Iteration stops when there is no next page,
-   * or when the next page cursor is null or repeats a previous cursor,
-   * so a server pinning one cursor cannot cause an infinite request loop.
-   */
   async *#walk(): AsyncGenerator<
     [EnsureReadonlyArray<TResponse[TResponseKey]>, Pagination]
   > {
