@@ -2,7 +2,7 @@ import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
 import nock from 'nock'
 
-import { SeamHttp, SeamPaginator } from '@seamapi/http/connect'
+import { type Device, SeamHttp, SeamPaginator } from '@seamapi/http/connect'
 
 test('SeamPaginator: creates a SeamPaginator', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
@@ -81,13 +81,20 @@ test('SeamPaginator: flatten allows iteration over all devices', async (t) => {
   const allDevices = await seam.devices.list()
   const pages = seam.createPaginator(seam.devices.list({ limit: 1 }))
 
-  const devices = []
+  const deviceIds = []
   for await (const device of pages.flatten()) {
-    devices.push(device)
+    expectType<Device>(device)
+
+    // @ts-expect-error Verify flatten yields single items, not pages.
+    expectType<Device[]>(device)
+
+    deviceIds.push(device.device_id)
   }
-  t.true(devices.length > 1)
-  t.is(devices.length, allDevices.length)
+  t.true(deviceIds.length > 1)
+  t.is(deviceIds.length, allDevices.length)
 })
+
+const expectType = <Expected>(_value: Expected): void => {}
 
 test('SeamPaginator: stops iterating when the page cursor repeats', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
