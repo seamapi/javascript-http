@@ -88,6 +88,42 @@ test('SeamPaginator: flatten allows iteration over all devices', async (t) => {
   t.is(devices.length, allDevices.length)
 })
 
+test('SeamPaginator: validates request parameters before fetching a page', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  let requestCount = 0
+  seam.client.interceptors.request.use((config) => {
+    if (config.url === '/access_codes/list') requestCount++
+    return config
+  })
+
+  const pages = seam.createPaginator(
+    // @ts-expect-error Verify an invalid request is rejected when paginated.
+    seam.accessCodes.list({}),
+  )
+
+  await t.throwsAsync(async () => await pages.firstPage(), {
+    instanceOf: TypeError,
+    message: 'At least one parameter is required for /access_codes/list',
+  })
+
+  t.is(requestCount, 0)
+})
+
+test('SeamPaginator: fetches pages for a request with valid parameters', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  const pages = seam.createPaginator(
+    seam.accessCodes.list({ device_id: seed.august_device_1 }),
+  )
+  const [accessCodes, pagination] = await pages.firstPage()
+
+  t.true(Array.isArray(accessCodes))
+  t.false(pagination.hasNextPage)
+})
+
 test('SeamPaginator: instance allows iteration over all pages', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })

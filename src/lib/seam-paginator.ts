@@ -1,6 +1,6 @@
 import type { Client } from './client.js'
 import type { SeamHttpRequestOptions } from './options.js'
-import { SeamHttpRequest } from './seam-http-request.js'
+import type { SeamHttpRequest } from './seam-http-request.js'
 
 interface SeamPaginatorParent {
   readonly client: Client
@@ -34,10 +34,9 @@ export class SeamPaginator<
   const TResponseKey extends keyof TResponse,
 > implements AsyncIterable<EnsureReadonlyArray<TResponse[TResponseKey]>> {
   readonly #request: SeamHttpRequest<TResponse, TResponseKey>
-  readonly #parent: SeamPaginatorParent
 
   constructor(
-    parent: SeamPaginatorParent,
+    _parent: SeamPaginatorParent,
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ) {
     if (!request.hasPagination) {
@@ -45,7 +44,6 @@ export class SeamPaginator<
         `The ${request.pathname} endpoint does not support pagination`,
       )
     }
-    this.#parent = parent
     this.#request = request
   }
 
@@ -81,19 +79,7 @@ export class SeamPaginator<
       throw new Error('Cannot paginate a response without a responseKey')
     }
 
-    const request = new SeamHttpRequest<TResponse, TResponseKey>(this.#parent, {
-      pathname: this.#request.pathname,
-      method: this.#request.method,
-      responseKey,
-      params:
-        this.#request.params != null
-          ? { ...this.#request.params, page_cursor: nextPageCursor }
-          : undefined,
-      body:
-        this.#request.body != null
-          ? { ...this.#request.body, page_cursor: nextPageCursor }
-          : undefined,
-    })
+    const request = this.#request.withPageCursor(nextPageCursor ?? undefined)
 
     const response = await request.fetchResponse()
     const data = response[responseKey]

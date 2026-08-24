@@ -114,6 +114,32 @@ export class SeamHttpRequest<
   }
 
   /**
+   * Returns a copy of this request with the page_cursor parameter set,
+   * keeping the entire request configuration,
+   * so every page is built and validated exactly like the original request.
+   * Used by SeamPaginator to fetch pages.
+   */
+  withPageCursor(
+    pageCursor?: string,
+  ): SeamHttpRequest<TResponse, TResponseKey> {
+    const usesParams = ['GET', 'DELETE'].includes(this.method.toUpperCase())
+
+    const requestData = {
+      ...(usesParams
+        ? (this.#config.params ?? {})
+        : ((this.#config.body as Record<string, unknown> | null) ?? {})),
+      page_cursor: pageCursor,
+    }
+
+    return new SeamHttpRequest(this.#parent, {
+      ...this.#config,
+      parameters: requestData,
+      params: usesParams ? requestData : undefined,
+      body: usesParams ? undefined : requestData,
+    })
+  }
+
+  /**
    * Sends the request and returns the response data.
    * If the response contains an action attempt,
    * waits for the action attempt to resolve
