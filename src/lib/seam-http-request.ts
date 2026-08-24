@@ -8,6 +8,7 @@ import {
   resolveActionAttempt,
 } from './resolve-action-attempt.js'
 import type { ActionAttempt } from './resources/action-attempt.js'
+import { SeamHttpInvalidResponseError } from './seam-http-error.js'
 import { serializeUrlSearchParams } from './url-search-params-serializer.js'
 
 interface SeamHttpRequestParent {
@@ -158,7 +159,11 @@ export class SeamHttpRequest<
       return undefined as Response
     }
 
-    const data = response[this.responseKey] as unknown as Response
+    const data = readResponseData(
+      response,
+      this.responseKey,
+      this.pathname,
+    ) as Response
 
     if (this.responseKey === 'action_attempt') {
       const waitForActionAttempt =
@@ -248,8 +253,40 @@ export class SeamHttpRequest<
   }
 }
 
+/**
+ * Reads the response data at the response key,
+ * throwing a {@link SeamHttpInvalidResponseError} for a success response
+ * that is not an object or does not contain the response key.
+ */
+export const readResponseData = <
+  TResponse,
+  TResponseKey extends keyof TResponse,
+>(
+  response: TResponse,
+  responseKey: TResponseKey,
+  path: string,
+): TResponse[TResponseKey] => {
+  if (response == null || typeof response !== 'object') {
+    throw new SeamHttpInvalidResponseError(
+      path,
+      String(responseKey),
+      `got ${response === null ? 'null' : typeof response} instead of a response object`,
+    )
+  }
+
+  if (!(responseKey in response)) {
+    throw new SeamHttpInvalidResponseError(
+      path,
+      String(responseKey),
+      'which the response does not contain',
+    )
+  }
+
+  return response[responseKey]
+}
+
 const getUrlPrefix = (input: string): string => {
-  if (canParseUrl(input)) {
+  if (isAbsoluteHttpUrl(input)) {
     const url = new URL(input).toString()
     if (url.endsWith('/')) return url.slice(0, -1)
     return url
@@ -265,11 +302,13 @@ const getUrlPrefix = (input: string): string => {
   )
 }
 
-// UPSTREAM: Prefer URL.canParse when it has wider support.
-// https://caniuse.com/mdn-api_url_canparse_static
-const canParseUrl = (input: string): boolean => {
+// An input without an http or https scheme, e.g., localhost:3000,
+// may still parse as a URL with an unintended scheme, e.g., localhost:,
+// and must not be treated as an absolute URL.
+const isAbsoluteHttpUrl = (input: string): boolean => {
   try {
-    return new URL(input) != null
+    const { protocol } = new URL(input)
+    return protocol === 'http:' || protocol === 'https:'
   } catch {
     return false
   }

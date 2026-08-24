@@ -1,5 +1,6 @@
 import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
+import nock from 'nock'
 
 import { SeamHttp, SeamPaginator } from '@seamapi/http/connect'
 
@@ -115,12 +116,25 @@ test('SeamPaginator: fetches pages for a request with valid parameters', async (
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
 
+  // UPSTREAM: The fake does not return a pagination object for this endpoint.
+  nock(endpoint)
+    .get('/access_codes/list')
+    .query(true)
+    .reply(200, {
+      access_codes: [{ access_code_id: 'access-code-1' }],
+      pagination: {
+        has_next_page: false,
+        next_page_cursor: null,
+        next_page_url: null,
+      },
+    })
+
   const pages = seam.createPaginator(
     seam.accessCodes.list({ device_id: seed.august_device_1 }),
   )
   const [accessCodes, pagination] = await pages.firstPage()
 
-  t.true(Array.isArray(accessCodes))
+  t.is(accessCodes.length, 1)
   t.false(pagination.hasNextPage)
 })
 
