@@ -259,7 +259,6 @@ export class SeamHttpRequest<
 
 /**
  * A SeamHttpRequest for an endpoint that supports pagination.
- * Only these requests are accepted by `createPaginator`.
  */
 export type SeamPaginatedRequest<
   TResponse,
