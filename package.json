@@ -1,6 +1,6 @@
 {
   "name": "@seamapi/http",
-  "version": "2.23.0",
+  "version": "2.23.5",
   "description": "JavaScript HTTP client for the Seam API written in TypeScript.",
   "type": "module",
   "main": "index.js",
@@ -8,7 +8,7 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./index.js"
+      "default": "./index.js"
     },
     "./connect": {
       "types": "./index.d.ts",
