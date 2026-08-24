@@ -22,9 +22,14 @@ export class SeamHttpApiError extends Error {
    */
   data?: unknown
 
-  constructor(error: ApiError, statusCode: number, requestId: string) {
+  constructor(
+    error: ApiError,
+    statusCode: number,
+    requestId: string,
+    options: ErrorOptions = {},
+  ) {
     const { type, message, data } = error
-    super(message)
+    super(message, options)
     this.name = this.constructor.name
     this.code = type
     this.statusCode = statusCode
@@ -49,10 +54,15 @@ export class SeamHttpUnauthorizedError extends SeamHttpApiError {
   override code: 'unauthorized'
   override statusCode: 401
 
-  constructor(requestId: string) {
+  constructor(requestId: string, error?: ApiError, options: ErrorOptions = {}) {
     const type = 'unauthorized'
     const status = 401
-    super({ type, message: 'Unauthorized' }, status, requestId)
+    super(
+      error ?? { type, message: 'Unauthorized' },
+      status,
+      requestId,
+      options,
+    )
     this.name = this.constructor.name
     this.code = type
     this.statusCode = status
@@ -77,11 +87,34 @@ export class SeamHttpInvalidInputError extends SeamHttpApiError {
 
   readonly #validationErrors: NonNullable<ApiError['validation_errors']>
 
-  constructor(error: ApiError, statusCode: number, requestId: string) {
-    super(error, statusCode, requestId)
+  constructor(
+    error: ApiError,
+    statusCode: number,
+    requestId: string,
+    options: ErrorOptions = {},
+  ) {
+    super(error, statusCode, requestId, options)
     this.name = this.constructor.name
     this.code = 'invalid_input'
     this.#validationErrors = error.validation_errors ?? {}
+  }
+
+  /**
+   * Validation errors returned by the Seam API, keyed by parameter name.
+   * Use this to enumerate the parameters that failed validation
+   * or to read nested validation errors.
+   */
+  get validationErrors(): NonNullable<ApiError['validation_errors']> {
+    return this.#validationErrors
+  }
+
+  /**
+   * Names of the request parameters that failed validation.
+   */
+  get validationErrorParamNames(): string[] {
+    return Object.keys(this.#validationErrors).filter(
+      (name) => name !== '_errors',
+    )
   }
 
   /**

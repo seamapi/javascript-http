@@ -18,14 +18,18 @@ export const errorInterceptor = async (err: unknown): Promise<void> => {
   if (status == null) throw err
 
   if (status === 401) {
-    throw new SeamHttpUnauthorizedError(requestId)
+    throw new SeamHttpUnauthorizedError(
+      requestId,
+      isApiErrorResponse(response) ? response.data.error : undefined,
+      { cause: err },
+    )
   }
 
   if (!isApiErrorResponse(response)) throw err
 
   const { type } = response.data.error
 
-  const args = [response.data.error, status, requestId] as const
+  const args = [response.data.error, status, requestId, { cause: err }] as const
 
   if (type === 'invalid_input') throw new SeamHttpInvalidInputError(...args)
   throw new SeamHttpApiError(...args)

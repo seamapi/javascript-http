@@ -1,6 +1,7 @@
 import test from 'ava'
-import { AxiosError, AxiosHeaders } from 'axios'
+import { AxiosError, AxiosHeaders, isAxiosError } from 'axios'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
+import nock from 'nock'
 
 import {
   errorInterceptor,
@@ -126,4 +127,98 @@ test('SeamHttp: throws SeamHttpInvalidInputError on invalid input', async (t) =>
   t.deepEqual(err?.getValidationErrorMessages('device_ids'), [
     'Expected array, received number',
   ])
+  t.deepEqual(err?.validationErrorParamNames, ['device_ids'])
+  t.deepEqual(err?.validationErrors['device_ids']?._errors, [
+    'Expected array, received number',
+  ])
+})
+
+test('SeamHttp: errors retain the AxiosError as cause', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+    axiosRetryOptions: {
+      retries: 0,
+    },
+  })
+
+  const err = await t.throwsAsync(
+    async () => await seam.devices.get({ device_id: 'unknown-device' }),
+    {
+      instanceOf: SeamHttpApiError,
+    },
+  )
+
+  if (!isAxiosError(err?.cause)) {
+    t.fail('Expected cause to be the AxiosError')
+    return
+  }
+
+  t.is(err.cause.response?.status, 404)
+  t.truthy(err.cause.config)
+})
+
+test('SeamHttp: unauthorized error surfaces the API error message', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+    axiosRetryOptions: {
+      retries: 0,
+    },
+  })
+
+  nock(endpoint)
+    .get('/devices/get')
+    .query(true)
+    .reply(
+      401,
+      {
+        error: {
+          type: 'unauthorized',
+          message: 'Custom unauthorized message from the server',
+        },
+      },
+      { 'Content-Type': 'application/json', 'seam-request-id': 'request-1' },
+    )
+
+  const err = await t.throwsAsync(
+    async () => await seam.devices.get({ device_id: 'unknown-device' }),
+    {
+      instanceOf: SeamHttpUnauthorizedError,
+      message: 'Custom unauthorized message from the server',
+    },
+  )
+
+  t.is(err?.code, 'unauthorized')
+  t.is(err?.statusCode, 401)
+  t.is(err?.requestId, 'request-1')
+  t.true(isAxiosError(err?.cause))
+})
+
+test('SeamHttp: unauthorized error falls back without an API error body', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+    axiosRetryOptions: {
+      retries: 0,
+    },
+  })
+
+  nock(endpoint)
+    .get('/devices/get')
+    .query(true)
+    .reply(401, 'Unauthorized', { 'Content-Type': 'text/plain' })
+
+  const err = await t.throwsAsync(
+    async () => await seam.devices.get({ device_id: 'unknown-device' }),
+    {
+      instanceOf: SeamHttpUnauthorizedError,
+      message: 'Unauthorized',
+    },
+  )
+
+  t.is(err?.code, 'unauthorized')
 })
