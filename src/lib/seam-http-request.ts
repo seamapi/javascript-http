@@ -115,10 +115,7 @@ export class SeamHttpRequest<
   }
 
   /**
-   * Returns a copy of this request with the page_cursor parameter set,
-   * keeping the entire request configuration,
-   * so every page is built and validated exactly like the original request.
-   * Used by SeamPaginator to fetch pages.
+   * Returns a copy of this request with the page cursor set.
    */
   withPageCursor(
     pageCursor?: string,
