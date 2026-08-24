@@ -80,14 +80,7 @@ export class SeamHttpRequest<
   public get url(): URL {
     const { client } = this.#parent
 
-    const { paramsSerializer } = client.defaults
-
-    const serializer =
-      typeof paramsSerializer === 'function'
-        ? paramsSerializer
-        : typeof paramsSerializer?.serialize === 'function'
-          ? paramsSerializer.serialize
-          : serializeUrlSearchParams
+    const serializer = getParamsSerializer(client.defaults.paramsSerializer)
 
     const origin = getUrlPrefix(client.defaults.baseURL ?? '')
 
@@ -224,6 +217,16 @@ export class SeamHttpRequest<
   > {
     return await this.execute().finally(onfinally)
   }
+}
+
+const getParamsSerializer = (
+  paramsSerializer: Client['defaults']['paramsSerializer'],
+): ((params: Record<string, unknown>) => string) => {
+  if (typeof paramsSerializer === 'function') return paramsSerializer
+  if (typeof paramsSerializer?.serialize === 'function') {
+    return paramsSerializer.serialize
+  }
+  return serializeUrlSearchParams
 }
 
 const getUrlPrefix = (input: string): string => {
