@@ -474,7 +474,8 @@ default.
 
 The Axios client and retry behavior may be configured with custom initiation options
 via [`axiosOptions`][axiosOptions] and [`axiosRetryOptions`][axiosRetryOptions].
-Options are deep merged with the default options.
+Options are shallow merged with the default options:
+each provided top-level option replaces the default value.
 
 By default, the SDK makes up to three attempts: the initial request and two
 retries. Retries are limited to `GET`, `HEAD`, `OPTIONS`, `PUT`, and `DELETE`
