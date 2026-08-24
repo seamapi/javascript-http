@@ -258,6 +258,15 @@ export class SeamHttpRequest<
 }
 
 /**
+ * A SeamHttpRequest for an endpoint that supports pagination.
+ * Only these requests are accepted by `createPaginator`.
+ */
+export type SeamPaginatedRequest<
+  TResponse,
+  TResponseKey extends keyof TResponse | undefined,
+> = SeamHttpRequest<TResponse, TResponseKey, true>
+
+/**
  * Reads the response data at the response key,
  * throwing a {@link SeamHttpInvalidResponseError} for a success response
  * that is not an object or does not contain the response key.

@@ -31,7 +31,10 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions
 } from 'lib/parse-options.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  type SeamPaginatedRequest,
+  SeamHttpRequest
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 {{#if needsActionAttemptsImport}}

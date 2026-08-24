@@ -31,7 +31,10 @@ import {
 import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { AccessCode } from 'lib/resources/access-code.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpAccessCodesSimulate } from './simulate/index.js'
@@ -138,7 +141,7 @@ export class SeamHttpAccessCodes {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey, true>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -662,10 +665,9 @@ export type AccessCodesListParameters = RequireAtLeastOne<{
  */
 export type AccessCodesListResponse = { access_codes: Array<AccessCode> }
 
-export type AccessCodesListRequest = SeamHttpRequest<
+export type AccessCodesListRequest = SeamPaginatedRequest<
   AccessCodesListResponse,
-  'access_codes',
-  true
+  'access_codes'
 >
 
 export interface AccessCodesListOptions {}

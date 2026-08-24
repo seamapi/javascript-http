@@ -29,7 +29,7 @@ import {
   parseOptions,
 } from 'lib/parse-options.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import type { SeamHttpRequest } from 'lib/seam-http-request.js'
+import type { SeamPaginatedRequest } from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpAcsAccessGroups } from './access-groups/index.js'
@@ -140,7 +140,7 @@ export class SeamHttpAcs {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey, true>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }

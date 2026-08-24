@@ -30,7 +30,10 @@ import {
 } from 'lib/parse-options.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 export class SeamHttpActionAttempts {
@@ -134,7 +137,7 @@ export class SeamHttpActionAttempts {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey, true>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -250,10 +253,9 @@ export type ActionAttemptsListResponse = {
   action_attempts: Array<ActionAttempt>
 }
 
-export type ActionAttemptsListRequest = SeamHttpRequest<
+export type ActionAttemptsListRequest = SeamPaginatedRequest<
   ActionAttemptsListResponse,
-  'action_attempts',
-  true
+  'action_attempts'
 >
 
 export interface ActionAttemptsListOptions {}

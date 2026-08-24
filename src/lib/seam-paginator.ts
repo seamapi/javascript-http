@@ -1,7 +1,11 @@
 import type { Client } from './client.js'
 import type { SeamHttpRequestOptions } from './options.js'
 import { SeamHttpInvalidResponseError } from './seam-http-error.js'
-import { readResponseData, SeamHttpRequest } from './seam-http-request.js'
+import {
+  readResponseData,
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from './seam-http-request.js'
 
 interface SeamPaginatorParent {
   readonly client: Client
@@ -34,12 +38,12 @@ export class SeamPaginator<
   const TResponse,
   const TResponseKey extends keyof TResponse,
 > implements AsyncIterable<EnsureReadonlyArray<TResponse[TResponseKey]>> {
-  readonly #request: SeamHttpRequest<TResponse, TResponseKey, true>
+  readonly #request: SeamPaginatedRequest<TResponse, TResponseKey>
   readonly #parent: SeamPaginatorParent
 
   constructor(
     parent: SeamPaginatorParent,
-    request: SeamHttpRequest<TResponse, TResponseKey, true>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ) {
     if (!request.hasPagination) {
       throw new Error(

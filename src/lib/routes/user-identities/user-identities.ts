@@ -36,7 +36,10 @@ import type { Device } from 'lib/resources/device.js'
 import type { InstantKey } from 'lib/resources/instant-key.js'
 import type { UserIdentity } from 'lib/resources/user-identity.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpUserIdentitiesUnmanaged } from './unmanaged/index.js'
@@ -142,7 +145,7 @@ export class SeamHttpUserIdentities {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey, true>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -651,10 +654,9 @@ export type UserIdentitiesListResponse = {
   user_identities: Array<UserIdentity>
 }
 
-export type UserIdentitiesListRequest = SeamHttpRequest<
+export type UserIdentitiesListRequest = SeamPaginatedRequest<
   UserIdentitiesListResponse,
-  'user_identities',
-  true
+  'user_identities'
 >
 
 export interface UserIdentitiesListOptions {}

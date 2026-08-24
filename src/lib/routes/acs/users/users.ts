@@ -32,7 +32,10 @@ import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { AcsEntrance } from 'lib/resources/acs-entrance.js'
 import type { AcsUser } from 'lib/resources/acs-user.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 export class SeamHttpAcsUsers {
@@ -136,7 +139,7 @@ export class SeamHttpAcsUsers {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey, true>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -543,10 +546,9 @@ export type AcsUsersListParameters = {
  */
 export type AcsUsersListResponse = { acs_users: Array<AcsUser> }
 
-export type AcsUsersListRequest = SeamHttpRequest<
+export type AcsUsersListRequest = SeamPaginatedRequest<
   AcsUsersListResponse,
-  'acs_users',
-  true
+  'acs_users'
 >
 
 export interface AcsUsersListOptions {}
