@@ -101,8 +101,6 @@ export class SeamHttpInvalidInputError extends SeamHttpApiError {
 
   /**
    * Validation errors returned by the Seam API, keyed by parameter name.
-   * Use this to enumerate the parameters that failed validation
-   * or to read nested validation errors.
    */
   get validationErrors(): NonNullable<ApiError['validation_errors']> {
     return this.#validationErrors
