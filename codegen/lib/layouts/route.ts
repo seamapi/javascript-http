@@ -181,8 +181,6 @@ const requiresAtLeastOneParameter = (endpoint: Endpoint): boolean =>
   endpoint.request.hasRequiredParameters &&
   endpoint.request.parameters.every(({ isRequired }) => !isRequired)
 
-// Pagination knobs are not filters: the at least one parameter guard must
-// count filter parameters only, and is dropped when that leaves nothing.
 const paginationParameterNames = new Set(['limit', 'page_cursor'])
 
 const getAtLeastOneParameterNames = (endpoint: Endpoint): string[] =>
