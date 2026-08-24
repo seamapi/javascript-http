@@ -186,6 +186,7 @@ export class SeamHttpNoiseSensors {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'devices',
       options,
     })

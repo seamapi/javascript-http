@@ -9,6 +9,7 @@
     parameters,
     hasRequiredParameters: {{hasRequiredParameters}},
     requiredParameterNames: [{{#each requiredParameterNames}}{{json .}}{{#unless @last}}, {{/unless}}{{/each}}],
+    atLeastOneParameterNames: [{{#each atLeastOneParameterNames}}{{json .}}{{#unless @last}}, {{/unless}}{{/each}}],
     responseKey: {{#if returnsVoid}}undefined{{else}}'{{responseKey}}'{{/if}},
     {{#if hasPagination}}hasPagination: true,
     {{/if}}options,

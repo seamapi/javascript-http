@@ -193,6 +193,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['climate_preset_key', 'device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -216,6 +217,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -239,6 +241,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['climate_preset_key', 'device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -258,6 +261,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['climate_preset_key', 'device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -277,6 +281,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -300,6 +305,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -323,6 +329,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'devices',
       options,
     })
@@ -342,6 +349,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -365,6 +373,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['climate_preset_key', 'device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -384,6 +393,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -407,6 +417,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id', 'hvac_mode_setting'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -430,6 +441,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -449,6 +461,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['climate_preset_key', 'device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -468,6 +481,7 @@ export class SeamHttpThermostats {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {

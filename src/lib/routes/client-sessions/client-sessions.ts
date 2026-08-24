@@ -172,6 +172,7 @@ export class SeamHttpClientSessions {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'client_session',
       options,
     })
@@ -191,6 +192,7 @@ export class SeamHttpClientSessions {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['client_session_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -210,6 +212,7 @@ export class SeamHttpClientSessions {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'client_session',
       options,
     })
@@ -229,6 +232,7 @@ export class SeamHttpClientSessions {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'client_session',
       options,
     })
@@ -248,6 +252,14 @@ export class SeamHttpClientSessions {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'client_session_id',
+        'connect_webview_ids',
+        'connected_account_ids',
+        'user_identifier_key',
+        'user_identity_id',
+        'user_identity_ids',
+      ],
       responseKey: undefined,
       options,
     })
@@ -267,6 +279,7 @@ export class SeamHttpClientSessions {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'client_sessions',
       options,
     })
@@ -288,6 +301,7 @@ export class SeamHttpClientSessions {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['client_session_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -423,33 +437,41 @@ export type ClientSessionsGetOrCreateRequest = SeamHttpRequest<
 
 export interface ClientSessionsGetOrCreateOptions {}
 
-export type ClientSessionsGrantAccessParameters = RequireAtLeastOne<{
-  /**
-   * ID of the client session to which you want to grant access to resources.
-   */
-  client_session_id?: string | undefined
-  /**
-   * IDs of the [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) that you want to associate with the client session.
-   */
-  connect_webview_ids?: Array<string> | undefined
-  /**
-   * IDs of the [connected accounts](https://docs.seam.co/core-concepts/connected-accounts) that you want to associate with the client session.
-   */
-  connected_account_ids?: Array<string> | undefined
-  /**
-   * Your user ID for the user that you want to associate with the client session.
-   */
-  user_identifier_key?: string | undefined
-  /**
-   * ID of the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
-   */
-  user_identity_id?: string | undefined
-  /**
-   * IDs of the [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
-   * @deprecated Use `user_identity_id`.
-   */
-  user_identity_ids?: Array<string> | undefined
-}>
+export type ClientSessionsGrantAccessParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the client session to which you want to grant access to resources.
+     */
+    client_session_id?: string | undefined
+    /**
+     * IDs of the [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) that you want to associate with the client session.
+     */
+    connect_webview_ids?: Array<string> | undefined
+    /**
+     * IDs of the [connected accounts](https://docs.seam.co/core-concepts/connected-accounts) that you want to associate with the client session.
+     */
+    connected_account_ids?: Array<string> | undefined
+    /**
+     * Your user ID for the user that you want to associate with the client session.
+     */
+    user_identifier_key?: string | undefined
+    /**
+     * ID of the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
+     */
+    user_identity_id?: string | undefined
+    /**
+     * IDs of the [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
+     * @deprecated Use `user_identity_id`.
+     */
+    user_identity_ids?: Array<string> | undefined
+  },
+  | 'client_session_id'
+  | 'connect_webview_ids'
+  | 'connected_account_ids'
+  | 'user_identifier_key'
+  | 'user_identity_id'
+  | 'user_identity_ids'
+>
 
 /**
  * @deprecated Use ClientSessionsGrantAccessRequest instead.

@@ -181,6 +181,7 @@ export class SeamHttpLocks {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['auto_lock_enabled', 'device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -205,6 +206,7 @@ export class SeamHttpLocks {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: ['device_id', 'name'],
       responseKey: 'device',
       options,
     })
@@ -224,6 +226,7 @@ export class SeamHttpLocks {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'devices',
       options,
     })
@@ -243,6 +246,7 @@ export class SeamHttpLocks {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -266,6 +270,7 @@ export class SeamHttpLocks {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
@@ -307,16 +312,19 @@ export type LocksConfigureAutoLockOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type LocksGetParameters = RequireAtLeastOne<{
-  /**
-   * ID of the lock that you want to get.
-   */
-  device_id?: string | undefined
-  /**
-   * Name of the lock that you want to get.
-   */
-  name?: string | undefined
-}>
+export type LocksGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the lock that you want to get.
+     */
+    device_id?: string | undefined
+    /**
+     * Name of the lock that you want to get.
+     */
+    name?: string | undefined
+  },
+  'device_id' | 'name'
+>
 
 /**
  * @deprecated Use LocksGetRequest instead.

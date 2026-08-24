@@ -27,6 +27,7 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly parameters?: unknown
   readonly hasRequiredParameters?: boolean
   readonly requiredParameterNames?: readonly string[]
+  readonly atLeastOneParameterNames?: readonly string[]
 }
 
 /**
@@ -167,6 +168,7 @@ export class SeamHttpRequest<
       this.pathname,
       this.#config.hasRequiredParameters ?? false,
       this.#config.requiredParameterNames ?? [],
+      this.#config.atLeastOneParameterNames ?? [],
     )
 
     const { client } = this.#parent

@@ -172,6 +172,7 @@ export class SeamHttpCustomers {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'customer_portal',
       options,
     })
@@ -192,6 +193,7 @@ export class SeamHttpCustomers {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -211,6 +213,7 @@ export class SeamHttpCustomers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['customer_key'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
