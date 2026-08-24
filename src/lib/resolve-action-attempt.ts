@@ -26,10 +26,6 @@ export interface ResolveActionAttemptOptions {
 /**
  * Polls a pending action attempt until it succeeds, fails, or times out.
  *
- * Polling stops as soon as the deadline set by the `timeout` option passes,
- * and every wait polls at least once,
- * even when the `timeout` is shorter than the `pollingInterval`.
- *
  * @returns The succeeded action attempt.
  * @throws {@link SeamActionAttemptFailedError} if the action attempt fails.
  * @throws {@link SeamActionAttemptTimeoutError} if the action attempt
