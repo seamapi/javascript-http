@@ -103,3 +103,38 @@ export const isSeamHttpInvalidInputError = (
 ): error is SeamHttpInvalidInputError => {
   return error instanceof SeamHttpInvalidInputError
 }
+
+/**
+ * Error thrown when the Seam API returns a success response
+ * with an unexpected shape,
+ * e.g., a response missing the expected response key.
+ */
+export class SeamHttpInvalidResponseError extends Error {
+  /**
+   * Path of the endpoint that returned the invalid response.
+   */
+  path: string
+
+  /**
+   * Key expected to contain the response data.
+   */
+  responseKey: string
+
+  constructor(path: string, responseKey: string, reason: string) {
+    super(
+      `Seam returned an invalid response for ${path}: expected "${responseKey}", ${reason}`,
+    )
+    this.name = this.constructor.name
+    this.path = path
+    this.responseKey = responseKey
+  }
+}
+
+/**
+ * Returns true if the error is a {@link SeamHttpInvalidResponseError}.
+ */
+export const isSeamHttpInvalidResponseError = (
+  error: unknown,
+): error is SeamHttpInvalidResponseError => {
+  return error instanceof SeamHttpInvalidResponseError
+}
