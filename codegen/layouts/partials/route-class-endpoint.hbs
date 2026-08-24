@@ -13,10 +13,11 @@
     {{#if hasPagination}}hasPagination: true,
     {{/if}}options,
     {{#if returnsActionAttempt}}
-    actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-      ...this.defaults,
-      waitForActionAttempt: false,
-    }),
+    actionAttempts: () =>
+      SeamHttpActionAttempts.fromClient(this.client, {
+        ...this.defaults,
+        waitForActionAttempt: false,
+      }),
     {{/if}}
   })
 }
