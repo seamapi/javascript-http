@@ -223,7 +223,7 @@ export class SeamHttpRequest<
 }
 
 const getUrlPrefix = (input: string): string => {
-  if (canParseUrl(input)) {
+  if (isAbsoluteHttpUrl(input)) {
     const url = new URL(input).toString()
     if (url.endsWith('/')) return url.slice(0, -1)
     return url
@@ -239,11 +239,13 @@ const getUrlPrefix = (input: string): string => {
   )
 }
 
-// UPSTREAM: Prefer URL.canParse when it has wider support.
-// https://caniuse.com/mdn-api_url_canparse_static
-const canParseUrl = (input: string): boolean => {
+// An input without an http or https scheme, e.g., localhost:3000,
+// may still parse as a URL with an unintended scheme, e.g., localhost:,
+// and must not be treated as an absolute URL.
+const isAbsoluteHttpUrl = (input: string): boolean => {
   try {
-    return new URL(input) != null
+    const { protocol } = new URL(input)
+    return protocol === 'http:' || protocol === 'https:'
   } catch {
     return false
   }

@@ -158,6 +158,39 @@ test.serial(
   },
 )
 
+test('SeamHttpRequest: url is a URL when endpoint has an explicit scheme and port', async (t) => {
+  const { seed } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint: 'http://localhost:3000',
+  })
+
+  const { url } = seam.devices.get({ device_id: 'abc123' })
+
+  t.true(url instanceof URL)
+  t.deepEqual(
+    toPlainUrlObject(url),
+    toPlainUrlObject(
+      new URL(
+        'http://localhost:3000/devices/get?device_id=abc123&_strict=true',
+      ),
+    ),
+  )
+})
+
+test.serial(
+  'SeamHttpRequest: url throws for a scheme-less host in a non-browser environment',
+  async (t) => {
+    const { seed } = await getTestServer(t)
+    const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+      endpoint: 'localhost:3000',
+    })
+
+    const request = seam.devices.get({ device_id: 'abc123' })
+
+    t.throws(() => request.url, { message: /Cannot resolve origin/ })
+  },
+)
+
 test.serial(
   'SeamHttpRequest: url throws if unable to resolve origin',
   async (t) => {
