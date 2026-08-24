@@ -123,9 +123,10 @@ export class SeamActionAttemptFailedError<
   code: string
 
   constructor(actionAttempt: FailedActionAttempt<T>) {
-    super(actionAttempt.error.message, actionAttempt)
+    const { error } = actionAttempt as T
+    super(error?.message ?? 'Action attempt failed', actionAttempt)
     this.name = this.constructor.name
-    this.code = actionAttempt.error.type
+    this.code = error?.type ?? 'unknown'
   }
 }
 
@@ -167,6 +168,8 @@ const isFailedActionAttempt = <T extends ActionAttempt>(
  */
 export type SucceededActionAttempt<T extends ActionAttempt> = T & {
   status: 'success'
+  result: NonNullable<T['result']>
+  error: null
 }
 
 /**
@@ -174,4 +177,6 @@ export type SucceededActionAttempt<T extends ActionAttempt> = T & {
  */
 export type FailedActionAttempt<T extends ActionAttempt> = T & {
   status: 'error'
+  error: NonNullable<T['error']>
+  result: null
 }

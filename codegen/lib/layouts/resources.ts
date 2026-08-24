@@ -1,4 +1,9 @@
-import type { Blueprint, Resource } from '@seamapi/blueprint'
+import type {
+  ActionAttempt,
+  Blueprint,
+  Property,
+  Resource,
+} from '@seamapi/blueprint'
 import { kebabCase, pascalCase } from 'change-case'
 
 export interface ResourceLayoutContext {
@@ -39,7 +44,7 @@ export const getResourceLayoutContexts = (
       ({ resourceType }) => !discriminatedResourceTypes.has(resourceType),
     ),
     ...blueprint.events,
-    ...blueprint.actionAttempts,
+    ...blueprint.actionAttempts.map(normalizeActionAttempt),
   ]
   const resourceTypes = [
     ...new Set(resources.map(({ resourceType }) => resourceType)),
@@ -56,6 +61,29 @@ export const getResourceLayoutContexts = (
     batchResources: resourceType === 'batch' ? batchResources : [],
   }))
 }
+
+// The blueprint merges the per-status action attempt variants and keeps the
+// non-nullable definitions of error and result, but the API sends null for
+// both unless the status is error or success respectively.
+const nullWhilePendingDoc =
+  'Null while the action attempt is pending or when this value does not apply.'
+
+const normalizeActionAttempt = (resource: ActionAttempt): ActionAttempt => ({
+  ...resource,
+  properties: resource.properties.map((property) =>
+    property.name === 'error' || property.name === 'result'
+      ? toStatusDependentProperty(property)
+      : property,
+  ),
+})
+
+const toStatusDependentProperty = (property: Property): Property => ({
+  ...property,
+  isNullable: true,
+  description: [property.description, nullWhilePendingDoc]
+    .filter((part) => part !== '')
+    .join(' '),
+})
 
 const getBatchResourceLayoutContexts = (
   resources: Resource[],

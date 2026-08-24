@@ -19,7 +19,7 @@ export type ActionAttempt =
       action_type: 'LOCK_DOOR'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -31,17 +31,16 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
       result: {
         /**
          * Indicates whether the device confirmed that the lock action occurred.
          */
         was_confirmed_by_device?: boolean | undefined
-      }
+      } | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -57,7 +56,7 @@ export type ActionAttempt =
       action_type: 'UNLOCK_DOOR'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -69,17 +68,16 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
       result: {
         /**
          * Indicates whether the device confirmed that the unlock action occurred.
          */
         was_confirmed_by_device?: boolean | undefined
-      }
+      } | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -94,6 +92,9 @@ export type ActionAttempt =
        */
       action_type: 'SCAN_CREDENTIAL'
 
+      /**
+       * Null while the action attempt is pending or when this value does not apply.
+       */
       error: {
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -110,10 +111,9 @@ export type ActionAttempt =
           | 'encoder_not_online'
           | 'encoder_communication_timeout'
           | 'bridge_disconnected'
-      }
-
+      } | null
       /**
-       * Result of scanning a card. If the attempt was successful, includes a snapshot of credential data read from the physical encoder, the corresponding data stored on Seam and the access system, and any associated warnings.
+       * Result of scanning a card. If the attempt was successful, includes a snapshot of credential data read from the physical encoder, the corresponding data stored on Seam and the access system, and any associated warnings. Null while the action attempt is pending or when this value does not apply.
        */
       result: {
         /**
@@ -466,7 +466,7 @@ export type ActionAttempt =
            */
           warning_message: string
         }>
-      }
+      } | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -481,6 +481,9 @@ export type ActionAttempt =
        */
       action_type: 'ENCODE_CREDENTIAL'
 
+      /**
+       * Null while the action attempt is pending or when this value does not apply.
+       */
       error: {
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -501,10 +504,9 @@ export type ActionAttempt =
           | 'bridge_disconnected'
           | 'encoding_interrupted'
           | 'credential_deleted'
-      }
-
+      } | null
       /**
-       * Result of an encoding attempt. If the attempt was successful, includes the credential data that was encoded onto the card.
+       * Result of an encoding attempt. If the attempt was successful, includes the credential data that was encoded onto the card. Null while the action attempt is pending or when this value does not apply.
        */
       result: {
         /**
@@ -755,7 +757,7 @@ export type ActionAttempt =
          * ID of the workspace that contains the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
          */
         workspace_id: string
-      }
+      } | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -770,6 +772,9 @@ export type ActionAttempt =
        */
       action_type: 'SCAN_TO_ASSIGN_CREDENTIAL'
 
+      /**
+       * Null while the action attempt is pending or when this value does not apply.
+       */
       error: {
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -783,10 +788,9 @@ export type ActionAttempt =
           | 'uncategorized_error'
           | 'action_attempt_expired'
           | 'no_credential_on_encoder'
-      }
-
+      } | null
       /**
-       * Result of a scan to assign attempt. If the attempt was successful, includes the credential data that was scanned and assigned.
+       * Result of a scan to assign attempt. If the attempt was successful, includes the credential data that was scanned and assigned. Null while the action attempt is pending or when this value does not apply.
        */
       result: {
         /**
@@ -1039,7 +1043,7 @@ export type ActionAttempt =
          * ID of the workspace that contains the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
          */
         workspace_id: string
-      }
+      } | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1054,6 +1058,9 @@ export type ActionAttempt =
        */
       action_type: 'ASSIGN_CREDENTIAL'
 
+      /**
+       * Null while the action attempt is pending or when this value does not apply.
+       */
       error: {
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -1067,10 +1074,9 @@ export type ActionAttempt =
           | 'uncategorized_error'
           | 'action_attempt_expired'
           | 'credential_not_found'
-      }
-
+      } | null
       /**
-       * Result of assigning a credential. If successful, includes the updated access method with the assigned credential.
+       * Result of assigning a credential. If successful, includes the updated access method with the assigned credential. Null while the action attempt is pending or when this value does not apply.
        */
       result: {
         /**
@@ -1241,7 +1247,7 @@ export type ActionAttempt =
          * ID of the Seam workspace associated with the access method.
          */
         workspace_id: string
-      }
+      } | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1257,7 +1263,7 @@ export type ActionAttempt =
       action_type: 'RESET_SANDBOX_WORKSPACE'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1269,12 +1275,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1290,7 +1295,7 @@ export type ActionAttempt =
       action_type: 'SET_FAN_MODE'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1302,12 +1307,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1323,7 +1327,7 @@ export type ActionAttempt =
       action_type: 'SET_HVAC_MODE'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1335,12 +1339,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1356,7 +1359,7 @@ export type ActionAttempt =
       action_type: 'ACTIVATE_CLIMATE_PRESET'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1368,12 +1371,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1389,7 +1391,7 @@ export type ActionAttempt =
       action_type: 'SIMULATE_KEYPAD_CODE_ENTRY'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1401,12 +1403,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1422,7 +1423,7 @@ export type ActionAttempt =
       action_type: 'SIMULATE_MANUAL_LOCK_VIA_KEYPAD'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1434,12 +1435,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1455,7 +1455,7 @@ export type ActionAttempt =
       action_type: 'PUSH_THERMOSTAT_PROGRAMS'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1467,12 +1467,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1488,7 +1487,7 @@ export type ActionAttempt =
       action_type: 'CONFIGURE_AUTO_LOCK'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1500,12 +1499,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1521,7 +1519,7 @@ export type ActionAttempt =
       action_type: 'SYNC_ACCESS_CODES'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1533,12 +1531,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1554,7 +1551,7 @@ export type ActionAttempt =
       action_type: 'CREATE_ACCESS_CODE'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1566,17 +1563,16 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
       result: {
         /**
          * Created access code.
          */
         access_code: Record<string, unknown>
-      }
+      } | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1592,7 +1588,7 @@ export type ActionAttempt =
       action_type: 'DELETE_ACCESS_CODE'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1604,12 +1600,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1625,7 +1620,7 @@ export type ActionAttempt =
       action_type: 'UPDATE_ACCESS_CODE'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1637,17 +1632,16 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
       result: {
         /**
          * Updated access code.
          */
         access_code?: Record<string, unknown> | undefined
-      }
+      } | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1663,7 +1657,7 @@ export type ActionAttempt =
       action_type: 'CREATE_NOISE_THRESHOLD'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1675,17 +1669,16 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
       result: {
         /**
          * Created noise threshold.
          */
         noise_threshold: Record<string, unknown>
-      }
+      } | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1701,7 +1694,7 @@ export type ActionAttempt =
       action_type: 'DELETE_NOISE_THRESHOLD'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1713,12 +1706,11 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
-      result: {}
+      result: {} | null
 
       status: 'success' | 'pending' | 'error'
     }
@@ -1734,7 +1726,7 @@ export type ActionAttempt =
       action_type: 'UPDATE_NOISE_THRESHOLD'
 
       /**
-       * Error associated with the action.
+       * Error associated with the action. Null while the action attempt is pending or when this value does not apply.
        */
       error: {
         /**
@@ -1746,17 +1738,16 @@ export type ActionAttempt =
          * Type of the error.
          */
         type: string
-      }
-
+      } | null
       /**
-       * Result of the action.
+       * Result of the action. Null while the action attempt is pending or when this value does not apply.
        */
       result: {
         /**
          * Updated noise threshold.
          */
         noise_threshold: Record<string, unknown>
-      }
+      } | null
 
       status: 'success' | 'pending' | 'error'
     }

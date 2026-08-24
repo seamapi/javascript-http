@@ -2,7 +2,10 @@ import test from 'ava'
 
 import type {
   AccessCode,
+  ActionAttempt,
   Device,
+  FailedActionAttempt,
+  SucceededActionAttempt,
   UnmanagedAccessCode,
 } from '@seamapi/http/connect'
 
@@ -27,6 +30,34 @@ const assertAccessCodeNarrowing = (
 
 test('access code resources narrow on is_managed', (t) => {
   t.is(typeof assertAccessCodeNarrowing, 'function')
+})
+
+const assertActionAttemptNullability = (actionAttempt: ActionAttempt): void => {
+  expectType<object | null>(actionAttempt.error)
+  expectType<object | null>(actionAttempt.result)
+
+  // @ts-expect-error The result is null unless the action attempt succeeded.
+  Object.keys(actionAttempt.result)
+
+  // @ts-expect-error The error is null unless the action attempt failed.
+  expectType<string>(actionAttempt.error.message)
+}
+
+const assertResolvedActionAttemptNarrowing = (
+  succeeded: SucceededActionAttempt<ActionAttempt>,
+  failed: FailedActionAttempt<ActionAttempt>,
+): void => {
+  expectType<object>(succeeded.result)
+  expectType<null>(succeeded.error)
+
+  expectType<string>(failed.error.message)
+  expectType<string>(failed.error.type)
+  expectType<null>(failed.result)
+}
+
+test('action attempt error and result are null unless resolved', (t) => {
+  t.is(typeof assertActionAttemptNullability, 'function')
+  t.is(typeof assertResolvedActionAttemptNarrowing, 'function')
 })
 
 const assertCustomMetadataValueTypes = (device: Device): void => {

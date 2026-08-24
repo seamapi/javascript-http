@@ -1,5 +1,6 @@
 import test from 'ava'
 import { getTestServer } from 'fixtures/seam/connect/api.js'
+import nock from 'nock'
 
 import {
   SeamActionAttemptFailedError,
@@ -202,6 +203,38 @@ test('waitForActionAttempt: times out if waiting for polling interval', async (t
   )
 
   t.deepEqual(err?.actionAttempt, actionAttempt)
+})
+
+test('waitForActionAttempt: rejects when a failed action attempt has no error object', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  nock(endpoint)
+    .post('/locks/unlock_door')
+    .reply(200, {
+      action_attempt: {
+        action_attempt_id: 'e2192660-0e45-4a11-9800-eb4d086cca09',
+        action_type: 'UNLOCK_DOOR',
+        status: 'error',
+        error: null,
+        result: null,
+      },
+    })
+
+  const err = await t.throwsAsync(
+    async () =>
+      await seam.locks.unlockDoor(
+        { device_id: seed.august_device_1 },
+        { waitForActionAttempt: true },
+      ),
+    {
+      instanceOf: SeamActionAttemptFailedError,
+      message: 'Action attempt failed',
+    },
+  )
+
+  t.is(err?.code, 'unknown')
 })
 
 test('waitForActionAttempt: waits directly on returned action attempt', async (t) => {
