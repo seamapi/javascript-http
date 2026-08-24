@@ -36,6 +36,11 @@ interface SeamHttpRequestConfig<TResponseKey> {
  * The request is sent once `execute` is called,
  * or when the request is awaited like a Promise,
  * e.g., with `await`, `then`, `catch`, or `finally`.
+ * The request is sent at most once:
+ * awaiting the same SeamHttpRequest again,
+ * or calling `execute`, `then`, `catch`, or `finally` more than once,
+ * always returns the result of the first execution
+ * and never repeats the HTTP request.
  * When the response contains an action attempt,
  * awaiting the request also waits for the action attempt to resolve
  * according to the `waitForActionAttempt` option.
@@ -53,6 +58,12 @@ export class SeamHttpRequest<
 
   readonly #parent: SeamHttpRequestParent
   readonly #config: SeamHttpRequestConfig<TResponseKey>
+
+  #executePromise: Promise<
+    TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
+  > | null = null
+
+  #fetchResponsePromise: Promise<TResponse> | null = null
 
   constructor(
     parent: SeamHttpRequestParent,
@@ -118,8 +129,18 @@ export class SeamHttpRequest<
    * If the response contains an action attempt,
    * waits for the action attempt to resolve
    * according to the `waitForActionAttempt` option.
+   * The request is sent at most once:
+   * calling this method again returns the result of the first call
+   * and never repeats the HTTP request.
    */
   async execute(): Promise<
+    TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
+  > {
+    this.#executePromise ??= this.#execute()
+    return await this.#executePromise
+  }
+
+  async #execute(): Promise<
     TResponseKey extends keyof TResponse ? TResponse[TResponseKey] : undefined
   > {
     const response = await this.fetchResponse()
@@ -160,8 +181,16 @@ export class SeamHttpRequest<
   /**
    * Sends the request and returns the entire response body
    * without waiting for any action attempt to resolve.
+   * The request is sent at most once:
+   * calling this method again returns the result of the first call
+   * and never repeats the HTTP request.
    */
   async fetchResponse(): Promise<TResponse> {
+    this.#fetchResponsePromise ??= this.#fetchResponse()
+    return await this.#fetchResponsePromise
+  }
+
+  async #fetchResponse(): Promise<TResponse> {
     assertValidRequestParameters(
       this.#config.parameters,
       this.pathname,
