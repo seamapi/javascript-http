@@ -1,6 +1,5 @@
 {
   "exclude": [
-    "**/index.ts",
     "package/**/*.ts",
     "examples/**/*.ts",
     "**/*.test.ts",
