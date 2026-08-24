@@ -80,10 +80,14 @@ export class SeamHttpRequest<
   public get url(): URL {
     const { client } = this.#parent
 
+    const { paramsSerializer } = client.defaults
+
     const serializer =
-      typeof client.defaults.paramsSerializer === 'function'
-        ? client.defaults.paramsSerializer
-        : serializeUrlSearchParams
+      typeof paramsSerializer === 'function'
+        ? paramsSerializer
+        : typeof paramsSerializer?.serialize === 'function'
+          ? paramsSerializer.serialize
+          : serializeUrlSearchParams
 
     const origin = getUrlPrefix(client.defaults.baseURL ?? '')
 
