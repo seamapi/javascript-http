@@ -142,9 +142,7 @@ export class SeamPaginator<
   /**
    * Yields each item across all pages, fetching the next page as needed.
    */
-  async *flatten(): AsyncGenerator<
-    EnsureReadonlyArray<TResponse[TResponseKey]>
-  > {
+  async *flatten(): AsyncGenerator<ElementOfArray<TResponse[TResponseKey]>> {
     let [current, pagination] = await this.firstPage()
     for (const item of current) {
       yield item
@@ -174,6 +172,8 @@ export class SeamPaginator<
 
 type EnsureReadonlyArray<T> = T extends readonly any[] ? T : never
 type EnsureMutableArray<T> = T extends any[] ? T : never
+type ElementOfArray<T> =
+  T extends ReadonlyArray<infer TElement> ? TElement : never
 
 interface PaginationData {
   has_next_page: boolean

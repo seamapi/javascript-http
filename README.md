@@ -350,7 +350,7 @@ const pages = seam.createPaginator(
 )
 
 for await (const device of pages.flatten()) {
-  console.log(devices.name)
+  console.log(device.display_name)
 }
 ```
 
