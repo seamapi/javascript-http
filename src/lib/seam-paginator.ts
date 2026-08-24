@@ -36,7 +36,6 @@ export class SeamPaginator<
   readonly #request: SeamHttpRequest<TResponse, TResponseKey>
 
   constructor(
-    _parent: SeamPaginatorParent,
     request: SeamHttpRequest<TResponse, TResponseKey>,
   ) {
     if (!request.hasPagination) {
