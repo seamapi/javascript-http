@@ -205,6 +205,36 @@ test.serial(
   },
 )
 
+test('SeamHttpRequest: url uses a custom function form paramsSerializer', async (t) => {
+  const { seed } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint: 'https://example.com',
+    axiosOptions: {
+      paramsSerializer: () => 'custom=function',
+    },
+  })
+
+  const { url } = seam.devices.get({ device_id: 'abc123' })
+
+  t.is(url.search, '?custom=function')
+})
+
+test('SeamHttpRequest: url uses a custom object form paramsSerializer', async (t) => {
+  const { seed } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint: 'https://example.com',
+    axiosOptions: {
+      paramsSerializer: {
+        serialize: () => 'custom=object',
+      },
+    },
+  })
+
+  const { url } = seam.devices.get({ device_id: 'abc123' })
+
+  t.is(url.search, '?custom=object')
+})
+
 test('SeamHttpRequest: sends the request at most once when awaited more than once', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
