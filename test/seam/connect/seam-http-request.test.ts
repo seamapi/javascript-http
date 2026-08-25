@@ -205,6 +205,113 @@ test.serial(
   },
 )
 
+test('SeamHttpRequest: sends the request at most once when awaited more than once', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  let requestCount = 0
+  seam.client.interceptors.request.use((config) => {
+    requestCount++
+    return config
+  })
+
+  const request = seam.devices.get({ device_id: seed.august_device_1 })
+
+  const device = await request
+  const deviceAgain = await request
+  const [deviceOnceMore] = await Promise.all([request, request])
+
+  t.is(requestCount, 1)
+  t.is(device.device_id, seed.august_device_1)
+  t.is(deviceAgain.device_id, seed.august_device_1)
+  t.is(deviceOnceMore?.device_id, seed.august_device_1)
+})
+
+test('SeamHttpRequest: catch does not send the request again', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  let requestCount = 0
+  seam.client.interceptors.request.use((config) => {
+    requestCount++
+    return config
+  })
+
+  const request = seam.devices.get({ device_id: seed.august_device_1 })
+
+  const device = await request
+  await request.catch(() => {
+    t.fail('should not reject')
+  })
+
+  t.is(requestCount, 1)
+  t.is(device.device_id, seed.august_device_1)
+})
+
+test('SeamHttpRequest: finally does not send the request again', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  let requestCount = 0
+  seam.client.interceptors.request.use((config) => {
+    requestCount++
+    return config
+  })
+
+  const request = seam.devices.get({ device_id: seed.august_device_1 })
+
+  const device = await request
+  const deviceAgain = await request.finally(() => {})
+
+  t.is(requestCount, 1)
+  t.is(device.device_id, seed.august_device_1)
+  t.is(deviceAgain.device_id, seed.august_device_1)
+})
+
+test('SeamHttpRequest: sends a write request at most once', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+    waitForActionAttempt: false,
+  })
+
+  let writeCount = 0
+  seam.client.interceptors.request.use((config) => {
+    if (config.url === '/locks/unlock_door') writeCount++
+    return config
+  })
+
+  const request = seam.locks.unlockDoor({ device_id: seed.august_device_1 })
+
+  const actionAttempt = await request
+  request.catch(() => {
+    t.fail('should not reject')
+  })
+  const actionAttemptAgain = await request
+
+  t.is(writeCount, 1)
+  t.is(actionAttempt.action_attempt_id, actionAttemptAgain.action_attempt_id)
+})
+
+test('SeamHttpRequest: a rejected request stays rejected when awaited again', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  let requestCount = 0
+  seam.client.interceptors.request.use((config) => {
+    requestCount++
+    return config
+  })
+
+  const request = seam.devices.get({ device_id: 'unknown-device-id' })
+
+  const err = await t.throwsAsync(async () => await request)
+  const errAgain = await t.throwsAsync(async () => await request)
+
+  t.is(requestCount, 1)
+  t.is(err, errAgain)
+})
+
 const toPlainUrlObject = (url: URL): Omit<URL, 'searchParams' | 'toJSON'> => {
   return {
     pathname: url.pathname,

@@ -350,7 +350,7 @@ const pages = seam.createPaginator(
 )
 
 for await (const device of pages.flatten()) {
-  console.log(devices.name)
+  console.log(device.display_name)
 }
 ```
 
@@ -537,6 +537,12 @@ console.log(`${request.method} ${request.url}`, JSON.stringify(request.body))
 
 const devices = await request.execute()
 ```
+
+A `SeamHttpRequest` is sent at most once.
+Awaiting the same request again,
+or calling `execute`, `then`, `catch`, or `finally` more than once,
+always returns the result of the first execution
+and never repeats the HTTP request.
 
 #### Serializing URL search params
 

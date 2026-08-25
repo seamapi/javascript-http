@@ -118,10 +118,7 @@ export class SeamPaginator<
     EnsureReadonlyArray<TResponse[TResponseKey]>
   > {
     const items = [] as EnsureMutableArray<TResponse[TResponseKey]>
-    let [current, pagination] = await this.firstPage()
-    items.push(...current)
-    while (pagination.hasNextPage) {
-      ;[current, pagination] = await this.nextPage(pagination.nextPageCursor)
+    for await (const [current] of this.#walk()) {
       items.push(...current)
     }
     return items as EnsureReadonlyArray<TResponse[TResponseKey]>
@@ -130,15 +127,8 @@ export class SeamPaginator<
   /**
    * Yields each item across all pages, fetching the next page as needed.
    */
-  async *flatten(): AsyncGenerator<
-    EnsureReadonlyArray<TResponse[TResponseKey]>
-  > {
-    let [current, pagination] = await this.firstPage()
-    for (const item of current) {
-      yield item
-    }
-    while (pagination.hasNextPage) {
-      ;[current, pagination] = await this.nextPage(pagination.nextPageCursor)
+  async *flatten(): AsyncGenerator<ElementOfArray<TResponse[TResponseKey]>> {
+    for await (const [current] of this.#walk()) {
       for (const item of current) {
         yield item
       }
@@ -151,17 +141,31 @@ export class SeamPaginator<
   async *[Symbol.asyncIterator](): AsyncGenerator<
     EnsureReadonlyArray<TResponse[TResponseKey]>
   > {
-    let [current, pagination] = await this.firstPage()
-    yield current
-    while (pagination.hasNextPage) {
-      ;[current, pagination] = await this.nextPage(pagination.nextPageCursor)
+    for await (const [current] of this.#walk()) {
       yield current
+    }
+  }
+
+  async *#walk(): AsyncGenerator<
+    [EnsureReadonlyArray<TResponse[TResponseKey]>, Pagination]
+  > {
+    const seenCursors = new Set<SeamPageCursor>()
+    let page = await this.firstPage()
+    yield page
+    while (page[1].hasNextPage) {
+      const cursor = page[1].nextPageCursor
+      if (cursor == null || seenCursors.has(cursor)) return
+      seenCursors.add(cursor)
+      page = await this.nextPage(cursor)
+      yield page
     }
   }
 }
 
 type EnsureReadonlyArray<T> = T extends readonly any[] ? T : never
 type EnsureMutableArray<T> = T extends any[] ? T : never
+type ElementOfArray<T> =
+  T extends ReadonlyArray<infer TElement> ? TElement : never
 
 interface PaginationData {
   has_next_page: boolean
