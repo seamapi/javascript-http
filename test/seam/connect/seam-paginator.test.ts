@@ -130,6 +130,68 @@ test('SeamPaginator: sends the page cursor when the request has no parameters', 
   )
 })
 
+test('SeamPaginator: stops iterating when the page cursor repeats', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  nock(endpoint)
+    .get('/devices/list')
+    .query({ limit: '1', _strict: 'true' })
+    .reply(200, {
+      devices: [{ device_id: 'device-1' }],
+      pagination: {
+        has_next_page: true,
+        next_page_cursor: 'repeated-cursor',
+        next_page_url: null,
+      },
+    })
+    .get('/devices/list')
+    .query({ limit: '1', page_cursor: 'repeated-cursor', _strict: 'true' })
+    .reply(200, {
+      devices: [{ device_id: 'device-2' }],
+      pagination: {
+        has_next_page: true,
+        next_page_cursor: 'repeated-cursor',
+        next_page_url: null,
+      },
+    })
+
+  const pages = seam.createPaginator(seam.devices.list({ limit: 1 }))
+  const devices = await pages.flattenToArray()
+
+  t.deepEqual(
+    devices.map(({ device_id: deviceId }) => deviceId),
+    ['device-1', 'device-2'],
+  )
+})
+
+test('SeamPaginator: stops iterating when there is a next page without a cursor', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  nock(endpoint)
+    .get('/devices/list')
+    .query({ limit: '1', _strict: 'true' })
+    .reply(200, {
+      devices: [{ device_id: 'device-1' }],
+      pagination: {
+        has_next_page: true,
+        next_page_cursor: null,
+        next_page_url: null,
+      },
+    })
+
+  const pages = seam.createPaginator(seam.devices.list({ limit: 1 }))
+
+  const seenPages = []
+  for await (const page of pages) {
+    seenPages.push(page)
+  }
+
+  t.is(seenPages.length, 1)
+  t.is(seenPages[0]?.[0]?.device_id, 'device-1')
+})
+
 test('SeamPaginator: instance allows iteration over all pages', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
