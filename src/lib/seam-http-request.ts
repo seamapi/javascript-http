@@ -24,7 +24,7 @@ interface SeamHttpRequestConfig<TResponseKey> {
   readonly responseKey: TResponseKey
   readonly hasPagination?: boolean
   readonly options?: Pick<SeamHttpRequestOptions, 'waitForActionAttempt'>
-  readonly actionAttempts?: ActionAttemptsClient
+  readonly actionAttempts?: ActionAttemptsClient | (() => ActionAttemptsClient)
   readonly parameters?: unknown
   readonly hasRequiredParameters?: boolean
   readonly requiredParameterNames?: readonly string[]
@@ -171,9 +171,13 @@ export class SeamHttpRequest<
             'Cannot wait for an action attempt without an action attempts client',
           )
         }
+        const actionAttempts =
+          typeof this.#config.actionAttempts === 'function'
+            ? this.#config.actionAttempts()
+            : this.#config.actionAttempts
         const actionAttempt = await resolveActionAttempt(
           data as unknown as ActionAttempt,
-          this.#config.actionAttempts,
+          actionAttempts,
           typeof waitForActionAttempt === 'boolean' ? {} : waitForActionAttempt,
         )
         return actionAttempt as Response

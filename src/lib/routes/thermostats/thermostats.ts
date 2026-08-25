@@ -195,10 +195,11 @@ export class SeamHttpThermostats {
       requiredParameterNames: ['climate_preset_key', 'device_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -218,10 +219,11 @@ export class SeamHttpThermostats {
       requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -279,10 +281,11 @@ export class SeamHttpThermostats {
       requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -302,10 +305,11 @@ export class SeamHttpThermostats {
       requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -344,10 +348,11 @@ export class SeamHttpThermostats {
       requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -386,10 +391,11 @@ export class SeamHttpThermostats {
       requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -409,10 +415,11 @@ export class SeamHttpThermostats {
       requiredParameterNames: ['device_id', 'hvac_mode_setting'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -470,10 +477,11 @@ export class SeamHttpThermostats {
       requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 }
