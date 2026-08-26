@@ -40,6 +40,8 @@ export interface EndpointLayoutContext {
   hasRequiredParameters: boolean
   requiredParameterNames: string[]
   requiresAtLeastOneParameter: boolean
+  atLeastOneParameterNames: string[]
+  atLeastOneParameterNamesUnion: string
   parameters: Parameter[]
   responseIsList: boolean
   responseResourceTypeName: string
@@ -72,7 +74,9 @@ export const setRouteLayoutContext = (
   file.needsRequireAtLeastOneImport =
     node != null &&
     'endpoints' in node &&
-    node.endpoints.some(requiresAtLeastOneParameter)
+    node.endpoints.some(
+      (endpoint) => getAtLeastOneParameterNames(endpoint).length > 0,
+    )
   file.resourceTypeImports =
     node != null && 'endpoints' in node
       ? [
@@ -155,7 +159,12 @@ export const getEndpointLayoutContext = (
     requiredParameterNames: endpoint.request.parameters
       .filter(({ isRequired }) => isRequired)
       .map(({ name }) => name),
-    requiresAtLeastOneParameter: requiresAtLeastOneParameter(endpoint),
+    requiresAtLeastOneParameter:
+      getAtLeastOneParameterNames(endpoint).length > 0,
+    atLeastOneParameterNames: getAtLeastOneParameterNames(endpoint),
+    atLeastOneParameterNamesUnion: getAtLeastOneParameterNames(endpoint)
+      .map((name) => `'${name}'`)
+      .join(' | '),
     parameters: endpoint.request.parameters,
     responseIsList: endpoint.response.responseType === 'resource_list',
     responseResourceTypeName:
@@ -171,6 +180,15 @@ export const getEndpointLayoutContext = (
 const requiresAtLeastOneParameter = (endpoint: Endpoint): boolean =>
   endpoint.request.hasRequiredParameters &&
   endpoint.request.parameters.every(({ isRequired }) => !isRequired)
+
+const paginationParameterNames = new Set(['limit', 'page_cursor'])
+
+const getAtLeastOneParameterNames = (endpoint: Endpoint): string[] =>
+  requiresAtLeastOneParameter(endpoint)
+    ? endpoint.request.parameters
+        .map(({ name }) => name)
+        .filter((name) => !paginationParameterNames.has(name))
+    : []
 
 const isActionAttemptEndpoint = (endpoint: Endpoint): boolean =>
   endpoint.response.responseType === 'resource' &&

@@ -1,3 +1,4 @@
+import { SeamHttpInvalidOptionsError } from './options.js'
 import type { ActionAttempt } from './resources/action-attempt.js'
 
 /**
@@ -29,55 +30,51 @@ export interface ResolveActionAttemptOptions {
  * @throws {@link SeamActionAttemptFailedError} if the action attempt fails.
  * @throws {@link SeamActionAttemptTimeoutError} if the action attempt
  * does not resolve within the timeout.
+ * @throws {@link SeamHttpInvalidOptionsError} if the timeout is negative
+ * or the pollingInterval is not greater than zero.
  */
 export const resolveActionAttempt = async <T extends ActionAttempt>(
   actionAttempt: T,
   actionAttempts: ActionAttemptsClient,
   { timeout = 10_000, pollingInterval = 1_000 }: ResolveActionAttemptOptions,
 ): Promise<SucceededActionAttempt<T>> => {
-  let timeoutRef
-  const timeoutPromise = new Promise<SucceededActionAttempt<T>>(
-    (_resolve, reject) => {
-      timeoutRef = globalThis.setTimeout(() => {
-        reject(new SeamActionAttemptTimeoutError<T>(actionAttempt, timeout))
-      }, timeout)
-    },
-  )
-
-  try {
-    return await Promise.race([
-      pollActionAttempt<T>(actionAttempt, actionAttempts, { pollingInterval }),
-      timeoutPromise,
-    ])
-  } finally {
-    if (timeoutRef != null) globalThis.clearTimeout(timeoutRef)
-  }
-}
-
-const pollActionAttempt = async <T extends ActionAttempt>(
-  actionAttempt: T,
-  actionAttempts: ActionAttemptsClient,
-  options: Pick<ResolveActionAttemptOptions, 'pollingInterval'>,
-): Promise<SucceededActionAttempt<T>> => {
-  if (isSuccessfulActionAttempt(actionAttempt)) {
-    return actionAttempt
+  if (Number.isNaN(timeout) || timeout < 0) {
+    throw new SeamHttpInvalidOptionsError(
+      `The timeout option must not be negative, got ${timeout}`,
+    )
   }
 
-  if (isFailedActionAttempt(actionAttempt)) {
-    throw new SeamActionAttemptFailedError(actionAttempt)
+  if (Number.isNaN(pollingInterval) || pollingInterval <= 0) {
+    throw new SeamHttpInvalidOptionsError(
+      `The pollingInterval option must be greater than zero, got ${pollingInterval}`,
+    )
   }
 
-  await new Promise((resolve) => setTimeout(resolve, options.pollingInterval))
+  const deadline = Date.now() + timeout
+  let currentActionAttempt = actionAttempt
 
-  const nextActionAttempt = await actionAttempts.get({
-    action_attempt_id: actionAttempt.action_attempt_id,
-  })
+  while (true) {
+    if (isSuccessfulActionAttempt(currentActionAttempt)) {
+      return currentActionAttempt
+    }
 
-  return await pollActionAttempt(
-    nextActionAttempt as unknown as T,
-    actionAttempts,
-    options,
-  )
+    if (isFailedActionAttempt(currentActionAttempt)) {
+      throw new SeamActionAttemptFailedError(currentActionAttempt)
+    }
+
+    const remaining = deadline - Date.now()
+    if (remaining <= 0) {
+      throw new SeamActionAttemptTimeoutError<T>(currentActionAttempt, timeout)
+    }
+
+    await new Promise((resolve) =>
+      setTimeout(resolve, Math.min(pollingInterval, remaining)),
+    )
+
+    currentActionAttempt = (await actionAttempts.get({
+      action_attempt_id: currentActionAttempt.action_attempt_id,
+    })) as unknown as T
+  }
 }
 
 /**
@@ -147,7 +144,7 @@ export class SeamActionAttemptTimeoutError<
 > extends SeamActionAttemptError<T> {
   constructor(actionAttempt: T, timeout: number) {
     super(
-      `Timed out waiting for action action attempt after ${timeout}ms`,
+      `Timed out waiting for action attempt after ${timeout}ms`,
       actionAttempt,
     )
     this.name = this.constructor.name

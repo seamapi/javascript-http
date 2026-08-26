@@ -173,6 +173,7 @@ export class SeamHttpEvents {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: ['device_id', 'event_id', 'event_type'],
       responseKey: 'event',
       options,
     })
@@ -192,26 +193,58 @@ export class SeamHttpEvents {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'access_code_id',
+        'access_code_ids',
+        'access_grant_id',
+        'access_grant_ids',
+        'access_method_id',
+        'access_method_ids',
+        'acs_access_group_id',
+        'acs_credential_id',
+        'acs_encoder_id',
+        'acs_entrance_id',
+        'acs_system_id',
+        'acs_system_ids',
+        'acs_user_id',
+        'between',
+        'connect_webview_id',
+        'connected_account_id',
+        'customer_key',
+        'device_id',
+        'device_ids',
+        'event_ids',
+        'event_type',
+        'event_types',
+        'since',
+        'space_id',
+        'space_ids',
+        'unstable_offset',
+        'user_identity_id',
+      ],
       responseKey: 'events',
       options,
     })
   }
 }
 
-export type EventsGetParameters = RequireAtLeastOne<{
-  /**
-   * Unique identifier for the device that triggered the event that you want to get.
-   */
-  device_id?: string | undefined
-  /**
-   * Unique identifier for the event that you want to get.
-   */
-  event_id?: string | undefined
-  /**
-   * Type of the event that you want to get.
-   */
-  event_type?: string | undefined
-}>
+export type EventsGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * Unique identifier for the device that triggered the event that you want to get.
+     */
+    device_id?: string | undefined
+    /**
+     * Unique identifier for the event that you want to get.
+     */
+    event_id?: string | undefined
+    /**
+     * Type of the event that you want to get.
+     */
+    event_type?: string | undefined
+  },
+  'device_id' | 'event_id' | 'event_type'
+>
 
 /**
  * @deprecated Use EventsGetRequest instead.
@@ -222,352 +255,381 @@ export type EventsGetRequest = SeamHttpRequest<EventsGetResponse, 'event'>
 
 export interface EventsGetOptions {}
 
-export type EventsListParameters = RequireAtLeastOne<{
-  /**
-   * ID of the access code for which you want to list events.
-   */
-  access_code_id?: string | undefined
-  /**
-   * IDs of the access codes for which you want to list events.
-   */
-  access_code_ids?: Array<string> | undefined
-  /**
-   * ID of the access grant for which you want to list events.
-   */
-  access_grant_id?: string | undefined
-  /**
-   * IDs of the access grants for which you want to list events.
-   */
-  access_grant_ids?: Array<string> | undefined
-  /**
-   * ID of the access method for which you want to list events.
-   */
-  access_method_id?: string | undefined
-  /**
-   * IDs of the access methods for which you want to list events.
-   */
-  access_method_ids?: Array<string> | undefined
-  /**
-   * ID of the ACS access group for which you want to list events.
-   */
-  acs_access_group_id?: string | undefined
-  /**
-   * ID of the ACS credential for which you want to list events.
-   */
-  acs_credential_id?: string | undefined
-  /**
-   * ID of the ACS encoder for which you want to list events.
-   */
-  acs_encoder_id?: string | undefined
-  /**
-   * ID of the ACS entrance for which you want to list events.
-   */
-  acs_entrance_id?: string | undefined
-  /**
-   * ID of the access system for which you want to list events.
-   */
-  acs_system_id?: string | undefined
-  /**
-   * IDs of the access systems for which you want to list events.
-   */
-  acs_system_ids?: Array<string> | undefined
-  /**
-   * ID of the ACS user for which you want to list events.
-   */
-  acs_user_id?: string | undefined
-  /**
-   * Lower and upper timestamps to define an exclusive interval containing the events that you want to list. You must include `since` or `between`.
-   */
-  between?: Array<string> | undefined
-  /**
-   * ID of the Connect Webview for which you want to list events.
-   */
-  connect_webview_id?: string | undefined
-  /**
-   * ID of the connected account for which you want to list events.
-   */
-  connected_account_id?: string | undefined
-  /**
-   * Customer key for which you want to list events.
-   */
-  customer_key?: string | undefined
-  /**
-   * ID of the device for which you want to list events.
-   */
-  device_id?: string | undefined
-  /**
-   * IDs of the devices for which you want to list events.
-   */
-  device_ids?: Array<string> | undefined
-  /**
-   * IDs of the events that you want to list.
-   */
-  event_ids?: Array<string> | undefined
-  /**
-   * Type of the events that you want to list.
-   */
-  event_type?:
-    | 'access_code.created'
-    | 'access_code.changed'
-    | 'access_code.name_changed'
-    | 'access_code.code_changed'
-    | 'access_code.time_frame_changed'
-    | 'access_code.mutations_requested'
-    | 'access_code.scheduled_on_device'
-    | 'access_code.set_on_device'
-    | 'access_code.removed_from_device'
-    | 'access_code.delay_in_setting_on_device'
-    | 'access_code.failed_to_set_on_device'
-    | 'access_code.issued'
-    | 'access_code.delay_in_issuing'
-    | 'access_code.failed_to_issue'
-    | 'access_code.failed_to_update'
-    | 'access_code.failed_to_expire'
-    | 'access_code.deleted'
-    | 'access_code.delay_in_removing_from_device'
-    | 'access_code.failed_to_remove_from_device'
-    | 'access_code.modified_external_to_seam'
-    | 'access_code.deleted_external_to_seam'
-    | 'access_code.backup_access_code_pulled'
-    | 'access_code.unmanaged.converted_to_managed'
-    | 'access_code.unmanaged.failed_to_convert_to_managed'
-    | 'access_code.unmanaged.created'
-    | 'access_code.unmanaged.removed'
-    | 'access_grant.created'
-    | 'access_grant.deleted'
-    | 'access_grant.access_granted_to_all_doors'
-    | 'access_grant.access_granted_to_door'
-    | 'access_grant.access_to_door_lost'
-    | 'access_grant.access_times_changed'
-    | 'access_grant.could_not_create_requested_access_methods'
-    | 'access_method.issued'
-    | 'access_method.revoked'
-    | 'access_method.card_encoding_required'
-    | 'access_method.deleted'
-    | 'access_method.reissued'
-    | 'access_method.created'
-    | 'access_method.delay_in_issuing'
-    | 'access_method.failed_to_issue'
-    | 'acs_system.connected'
-    | 'acs_system.added'
-    | 'acs_system.disconnected'
-    | 'acs_credential.deleted'
-    | 'acs_credential.issued'
-    | 'acs_credential.reissued'
-    | 'acs_credential.invalidated'
-    | 'acs_user.created'
-    | 'acs_user.deleted'
-    | 'acs_encoder.added'
-    | 'acs_encoder.removed'
-    | 'acs_access_group.deleted'
-    | 'acs_entrance.added'
-    | 'acs_entrance.removed'
-    | 'client_session.deleted'
-    | 'connected_account.connected'
-    | 'connected_account.created'
-    | 'connected_account.successful_login'
-    | 'connected_account.disconnected'
-    | 'connected_account.completed_first_sync'
-    | 'connected_account.deleted'
-    | 'connected_account.completed_first_sync_after_reconnection'
-    | 'connected_account.reauthorization_requested'
-    | 'action_attempt.lock_door.succeeded'
-    | 'action_attempt.lock_door.failed'
-    | 'action_attempt.unlock_door.succeeded'
-    | 'action_attempt.unlock_door.failed'
-    | 'action_attempt.simulate_keypad_code_entry.succeeded'
-    | 'action_attempt.simulate_keypad_code_entry.failed'
-    | 'action_attempt.simulate_manual_lock_via_keypad.succeeded'
-    | 'action_attempt.simulate_manual_lock_via_keypad.failed'
-    | 'connect_webview.login_succeeded'
-    | 'connect_webview.login_failed'
-    | 'device.connected'
-    | 'device.added'
-    | 'device.converted_to_unmanaged'
-    | 'device.unmanaged.converted_to_managed'
-    | 'device.unmanaged.connected'
-    | 'device.disconnected'
-    | 'device.unmanaged.disconnected'
-    | 'device.tampered'
-    | 'device.low_battery'
-    | 'device.battery_status_changed'
-    | 'device.removed'
-    | 'device.deleted'
-    | 'device.third_party_integration_detected'
-    | 'device.third_party_integration_no_longer_detected'
-    | 'device.salto.privacy_mode_activated'
-    | 'device.salto.privacy_mode_deactivated'
-    | 'device.connection_became_flaky'
-    | 'device.connection_stabilized'
-    | 'device.error.subscription_required'
-    | 'device.error.subscription_required.resolved'
-    | 'device.accessory_keypad_connected'
-    | 'device.accessory_keypad_disconnected'
-    | 'noise_sensor.noise_threshold_triggered'
-    | 'lock.locked'
-    | 'lock.unlocked'
-    | 'lock.access_denied'
-    | 'thermostat.climate_preset_activated'
-    | 'thermostat.manually_adjusted'
-    | 'thermostat.temperature_threshold_exceeded'
-    | 'thermostat.temperature_threshold_no_longer_exceeded'
-    | 'thermostat.temperature_reached_set_point'
-    | 'thermostat.temperature_changed'
-    | 'device.name_changed'
-    | 'camera.activated'
-    | 'device.doorbell_rang'
-    | 'enrollment_automation.deleted'
-    | 'phone.deactivated'
-    | 'space.device_membership_changed'
-    | 'space.created'
-    | 'space.deleted'
-    | undefined
-  /**
-   * Types of the events that you want to list.
-   */
-  event_types?:
-    | Array<
-        | 'access_code.created'
-        | 'access_code.changed'
-        | 'access_code.name_changed'
-        | 'access_code.code_changed'
-        | 'access_code.time_frame_changed'
-        | 'access_code.mutations_requested'
-        | 'access_code.scheduled_on_device'
-        | 'access_code.set_on_device'
-        | 'access_code.removed_from_device'
-        | 'access_code.delay_in_setting_on_device'
-        | 'access_code.failed_to_set_on_device'
-        | 'access_code.issued'
-        | 'access_code.delay_in_issuing'
-        | 'access_code.failed_to_issue'
-        | 'access_code.failed_to_update'
-        | 'access_code.failed_to_expire'
-        | 'access_code.deleted'
-        | 'access_code.delay_in_removing_from_device'
-        | 'access_code.failed_to_remove_from_device'
-        | 'access_code.modified_external_to_seam'
-        | 'access_code.deleted_external_to_seam'
-        | 'access_code.backup_access_code_pulled'
-        | 'access_code.unmanaged.converted_to_managed'
-        | 'access_code.unmanaged.failed_to_convert_to_managed'
-        | 'access_code.unmanaged.created'
-        | 'access_code.unmanaged.removed'
-        | 'access_grant.created'
-        | 'access_grant.deleted'
-        | 'access_grant.access_granted_to_all_doors'
-        | 'access_grant.access_granted_to_door'
-        | 'access_grant.access_to_door_lost'
-        | 'access_grant.access_times_changed'
-        | 'access_grant.could_not_create_requested_access_methods'
-        | 'access_method.issued'
-        | 'access_method.revoked'
-        | 'access_method.card_encoding_required'
-        | 'access_method.deleted'
-        | 'access_method.reissued'
-        | 'access_method.created'
-        | 'access_method.delay_in_issuing'
-        | 'access_method.failed_to_issue'
-        | 'acs_system.connected'
-        | 'acs_system.added'
-        | 'acs_system.disconnected'
-        | 'acs_credential.deleted'
-        | 'acs_credential.issued'
-        | 'acs_credential.reissued'
-        | 'acs_credential.invalidated'
-        | 'acs_user.created'
-        | 'acs_user.deleted'
-        | 'acs_encoder.added'
-        | 'acs_encoder.removed'
-        | 'acs_access_group.deleted'
-        | 'acs_entrance.added'
-        | 'acs_entrance.removed'
-        | 'client_session.deleted'
-        | 'connected_account.connected'
-        | 'connected_account.created'
-        | 'connected_account.successful_login'
-        | 'connected_account.disconnected'
-        | 'connected_account.completed_first_sync'
-        | 'connected_account.deleted'
-        | 'connected_account.completed_first_sync_after_reconnection'
-        | 'connected_account.reauthorization_requested'
-        | 'action_attempt.lock_door.succeeded'
-        | 'action_attempt.lock_door.failed'
-        | 'action_attempt.unlock_door.succeeded'
-        | 'action_attempt.unlock_door.failed'
-        | 'action_attempt.simulate_keypad_code_entry.succeeded'
-        | 'action_attempt.simulate_keypad_code_entry.failed'
-        | 'action_attempt.simulate_manual_lock_via_keypad.succeeded'
-        | 'action_attempt.simulate_manual_lock_via_keypad.failed'
-        | 'connect_webview.login_succeeded'
-        | 'connect_webview.login_failed'
-        | 'device.connected'
-        | 'device.added'
-        | 'device.converted_to_unmanaged'
-        | 'device.unmanaged.converted_to_managed'
-        | 'device.unmanaged.connected'
-        | 'device.disconnected'
-        | 'device.unmanaged.disconnected'
-        | 'device.tampered'
-        | 'device.low_battery'
-        | 'device.battery_status_changed'
-        | 'device.removed'
-        | 'device.deleted'
-        | 'device.third_party_integration_detected'
-        | 'device.third_party_integration_no_longer_detected'
-        | 'device.salto.privacy_mode_activated'
-        | 'device.salto.privacy_mode_deactivated'
-        | 'device.connection_became_flaky'
-        | 'device.connection_stabilized'
-        | 'device.error.subscription_required'
-        | 'device.error.subscription_required.resolved'
-        | 'device.accessory_keypad_connected'
-        | 'device.accessory_keypad_disconnected'
-        | 'noise_sensor.noise_threshold_triggered'
-        | 'lock.locked'
-        | 'lock.unlocked'
-        | 'lock.access_denied'
-        | 'thermostat.climate_preset_activated'
-        | 'thermostat.manually_adjusted'
-        | 'thermostat.temperature_threshold_exceeded'
-        | 'thermostat.temperature_threshold_no_longer_exceeded'
-        | 'thermostat.temperature_reached_set_point'
-        | 'thermostat.temperature_changed'
-        | 'device.name_changed'
-        | 'camera.activated'
-        | 'device.doorbell_rang'
-        | 'enrollment_automation.deleted'
-        | 'phone.deactivated'
-        | 'space.device_membership_changed'
-        | 'space.created'
-        | 'space.deleted'
-      >
-    | undefined
-  /**
-   * Numerical limit on the number of events to return.
-   */
-  limit?: number | undefined
-  /**
-   * Timestamp to indicate the beginning generation time for the events that you want to list. You must include `since` or `between`.
-   */
-  since?: string | undefined
-  /**
-   * ID of the space for which you want to list events.
-   */
-  space_id?: string | undefined
-  /**
-   * IDs of the spaces for which you want to list events.
-   */
-  space_ids?: Array<string> | undefined
-  /**
-   * Offset for the events that you want to list.
-   */
-  unstable_offset?: number | undefined
-  /**
-   * ID of the user identity for which you want to list events.
-   */
-  user_identity_id?: string | undefined
-}>
+export type EventsListParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the access code for which you want to list events.
+     */
+    access_code_id?: string | undefined
+    /**
+     * IDs of the access codes for which you want to list events.
+     */
+    access_code_ids?: Array<string> | undefined
+    /**
+     * ID of the access grant for which you want to list events.
+     */
+    access_grant_id?: string | undefined
+    /**
+     * IDs of the access grants for which you want to list events.
+     */
+    access_grant_ids?: Array<string> | undefined
+    /**
+     * ID of the access method for which you want to list events.
+     */
+    access_method_id?: string | undefined
+    /**
+     * IDs of the access methods for which you want to list events.
+     */
+    access_method_ids?: Array<string> | undefined
+    /**
+     * ID of the ACS access group for which you want to list events.
+     */
+    acs_access_group_id?: string | undefined
+    /**
+     * ID of the ACS credential for which you want to list events.
+     */
+    acs_credential_id?: string | undefined
+    /**
+     * ID of the ACS encoder for which you want to list events.
+     */
+    acs_encoder_id?: string | undefined
+    /**
+     * ID of the ACS entrance for which you want to list events.
+     */
+    acs_entrance_id?: string | undefined
+    /**
+     * ID of the access system for which you want to list events.
+     */
+    acs_system_id?: string | undefined
+    /**
+     * IDs of the access systems for which you want to list events.
+     */
+    acs_system_ids?: Array<string> | undefined
+    /**
+     * ID of the ACS user for which you want to list events.
+     */
+    acs_user_id?: string | undefined
+    /**
+     * Lower and upper timestamps to define an exclusive interval containing the events that you want to list. You must include `since` or `between`.
+     */
+    between?: Array<string> | undefined
+    /**
+     * ID of the Connect Webview for which you want to list events.
+     */
+    connect_webview_id?: string | undefined
+    /**
+     * ID of the connected account for which you want to list events.
+     */
+    connected_account_id?: string | undefined
+    /**
+     * Customer key for which you want to list events.
+     */
+    customer_key?: string | undefined
+    /**
+     * ID of the device for which you want to list events.
+     */
+    device_id?: string | undefined
+    /**
+     * IDs of the devices for which you want to list events.
+     */
+    device_ids?: Array<string> | undefined
+    /**
+     * IDs of the events that you want to list.
+     */
+    event_ids?: Array<string> | undefined
+    /**
+     * Type of the events that you want to list.
+     */
+    event_type?:
+      | 'access_code.created'
+      | 'access_code.changed'
+      | 'access_code.name_changed'
+      | 'access_code.code_changed'
+      | 'access_code.time_frame_changed'
+      | 'access_code.mutations_requested'
+      | 'access_code.scheduled_on_device'
+      | 'access_code.set_on_device'
+      | 'access_code.removed_from_device'
+      | 'access_code.delay_in_setting_on_device'
+      | 'access_code.failed_to_set_on_device'
+      | 'access_code.issued'
+      | 'access_code.delay_in_issuing'
+      | 'access_code.failed_to_issue'
+      | 'access_code.failed_to_update'
+      | 'access_code.failed_to_expire'
+      | 'access_code.deleted'
+      | 'access_code.delay_in_removing_from_device'
+      | 'access_code.failed_to_remove_from_device'
+      | 'access_code.modified_external_to_seam'
+      | 'access_code.deleted_external_to_seam'
+      | 'access_code.backup_access_code_pulled'
+      | 'access_code.unmanaged.converted_to_managed'
+      | 'access_code.unmanaged.failed_to_convert_to_managed'
+      | 'access_code.unmanaged.created'
+      | 'access_code.unmanaged.removed'
+      | 'access_grant.created'
+      | 'access_grant.deleted'
+      | 'access_grant.access_granted_to_all_doors'
+      | 'access_grant.access_granted_to_door'
+      | 'access_grant.access_to_door_lost'
+      | 'access_grant.access_times_changed'
+      | 'access_grant.could_not_create_requested_access_methods'
+      | 'access_method.issued'
+      | 'access_method.revoked'
+      | 'access_method.card_encoding_required'
+      | 'access_method.deleted'
+      | 'access_method.reissued'
+      | 'access_method.created'
+      | 'access_method.delay_in_issuing'
+      | 'access_method.failed_to_issue'
+      | 'acs_system.connected'
+      | 'acs_system.added'
+      | 'acs_system.disconnected'
+      | 'acs_credential.deleted'
+      | 'acs_credential.issued'
+      | 'acs_credential.reissued'
+      | 'acs_credential.invalidated'
+      | 'acs_user.created'
+      | 'acs_user.deleted'
+      | 'acs_encoder.added'
+      | 'acs_encoder.removed'
+      | 'acs_access_group.deleted'
+      | 'acs_entrance.added'
+      | 'acs_entrance.removed'
+      | 'client_session.deleted'
+      | 'connected_account.connected'
+      | 'connected_account.created'
+      | 'connected_account.successful_login'
+      | 'connected_account.disconnected'
+      | 'connected_account.completed_first_sync'
+      | 'connected_account.deleted'
+      | 'connected_account.completed_first_sync_after_reconnection'
+      | 'connected_account.reauthorization_requested'
+      | 'action_attempt.lock_door.succeeded'
+      | 'action_attempt.lock_door.failed'
+      | 'action_attempt.unlock_door.succeeded'
+      | 'action_attempt.unlock_door.failed'
+      | 'action_attempt.simulate_keypad_code_entry.succeeded'
+      | 'action_attempt.simulate_keypad_code_entry.failed'
+      | 'action_attempt.simulate_manual_lock_via_keypad.succeeded'
+      | 'action_attempt.simulate_manual_lock_via_keypad.failed'
+      | 'connect_webview.login_succeeded'
+      | 'connect_webview.login_failed'
+      | 'device.connected'
+      | 'device.added'
+      | 'device.converted_to_unmanaged'
+      | 'device.unmanaged.converted_to_managed'
+      | 'device.unmanaged.connected'
+      | 'device.disconnected'
+      | 'device.unmanaged.disconnected'
+      | 'device.tampered'
+      | 'device.low_battery'
+      | 'device.battery_status_changed'
+      | 'device.removed'
+      | 'device.deleted'
+      | 'device.third_party_integration_detected'
+      | 'device.third_party_integration_no_longer_detected'
+      | 'device.salto.privacy_mode_activated'
+      | 'device.salto.privacy_mode_deactivated'
+      | 'device.connection_became_flaky'
+      | 'device.connection_stabilized'
+      | 'device.error.subscription_required'
+      | 'device.error.subscription_required.resolved'
+      | 'device.accessory_keypad_connected'
+      | 'device.accessory_keypad_disconnected'
+      | 'noise_sensor.noise_threshold_triggered'
+      | 'lock.locked'
+      | 'lock.unlocked'
+      | 'lock.access_denied'
+      | 'thermostat.climate_preset_activated'
+      | 'thermostat.manually_adjusted'
+      | 'thermostat.temperature_threshold_exceeded'
+      | 'thermostat.temperature_threshold_no_longer_exceeded'
+      | 'thermostat.temperature_reached_set_point'
+      | 'thermostat.temperature_changed'
+      | 'device.name_changed'
+      | 'camera.activated'
+      | 'device.doorbell_rang'
+      | 'enrollment_automation.deleted'
+      | 'phone.deactivated'
+      | 'space.device_membership_changed'
+      | 'space.created'
+      | 'space.deleted'
+      | undefined
+    /**
+     * Types of the events that you want to list.
+     */
+    event_types?:
+      | Array<
+          | 'access_code.created'
+          | 'access_code.changed'
+          | 'access_code.name_changed'
+          | 'access_code.code_changed'
+          | 'access_code.time_frame_changed'
+          | 'access_code.mutations_requested'
+          | 'access_code.scheduled_on_device'
+          | 'access_code.set_on_device'
+          | 'access_code.removed_from_device'
+          | 'access_code.delay_in_setting_on_device'
+          | 'access_code.failed_to_set_on_device'
+          | 'access_code.issued'
+          | 'access_code.delay_in_issuing'
+          | 'access_code.failed_to_issue'
+          | 'access_code.failed_to_update'
+          | 'access_code.failed_to_expire'
+          | 'access_code.deleted'
+          | 'access_code.delay_in_removing_from_device'
+          | 'access_code.failed_to_remove_from_device'
+          | 'access_code.modified_external_to_seam'
+          | 'access_code.deleted_external_to_seam'
+          | 'access_code.backup_access_code_pulled'
+          | 'access_code.unmanaged.converted_to_managed'
+          | 'access_code.unmanaged.failed_to_convert_to_managed'
+          | 'access_code.unmanaged.created'
+          | 'access_code.unmanaged.removed'
+          | 'access_grant.created'
+          | 'access_grant.deleted'
+          | 'access_grant.access_granted_to_all_doors'
+          | 'access_grant.access_granted_to_door'
+          | 'access_grant.access_to_door_lost'
+          | 'access_grant.access_times_changed'
+          | 'access_grant.could_not_create_requested_access_methods'
+          | 'access_method.issued'
+          | 'access_method.revoked'
+          | 'access_method.card_encoding_required'
+          | 'access_method.deleted'
+          | 'access_method.reissued'
+          | 'access_method.created'
+          | 'access_method.delay_in_issuing'
+          | 'access_method.failed_to_issue'
+          | 'acs_system.connected'
+          | 'acs_system.added'
+          | 'acs_system.disconnected'
+          | 'acs_credential.deleted'
+          | 'acs_credential.issued'
+          | 'acs_credential.reissued'
+          | 'acs_credential.invalidated'
+          | 'acs_user.created'
+          | 'acs_user.deleted'
+          | 'acs_encoder.added'
+          | 'acs_encoder.removed'
+          | 'acs_access_group.deleted'
+          | 'acs_entrance.added'
+          | 'acs_entrance.removed'
+          | 'client_session.deleted'
+          | 'connected_account.connected'
+          | 'connected_account.created'
+          | 'connected_account.successful_login'
+          | 'connected_account.disconnected'
+          | 'connected_account.completed_first_sync'
+          | 'connected_account.deleted'
+          | 'connected_account.completed_first_sync_after_reconnection'
+          | 'connected_account.reauthorization_requested'
+          | 'action_attempt.lock_door.succeeded'
+          | 'action_attempt.lock_door.failed'
+          | 'action_attempt.unlock_door.succeeded'
+          | 'action_attempt.unlock_door.failed'
+          | 'action_attempt.simulate_keypad_code_entry.succeeded'
+          | 'action_attempt.simulate_keypad_code_entry.failed'
+          | 'action_attempt.simulate_manual_lock_via_keypad.succeeded'
+          | 'action_attempt.simulate_manual_lock_via_keypad.failed'
+          | 'connect_webview.login_succeeded'
+          | 'connect_webview.login_failed'
+          | 'device.connected'
+          | 'device.added'
+          | 'device.converted_to_unmanaged'
+          | 'device.unmanaged.converted_to_managed'
+          | 'device.unmanaged.connected'
+          | 'device.disconnected'
+          | 'device.unmanaged.disconnected'
+          | 'device.tampered'
+          | 'device.low_battery'
+          | 'device.battery_status_changed'
+          | 'device.removed'
+          | 'device.deleted'
+          | 'device.third_party_integration_detected'
+          | 'device.third_party_integration_no_longer_detected'
+          | 'device.salto.privacy_mode_activated'
+          | 'device.salto.privacy_mode_deactivated'
+          | 'device.connection_became_flaky'
+          | 'device.connection_stabilized'
+          | 'device.error.subscription_required'
+          | 'device.error.subscription_required.resolved'
+          | 'device.accessory_keypad_connected'
+          | 'device.accessory_keypad_disconnected'
+          | 'noise_sensor.noise_threshold_triggered'
+          | 'lock.locked'
+          | 'lock.unlocked'
+          | 'lock.access_denied'
+          | 'thermostat.climate_preset_activated'
+          | 'thermostat.manually_adjusted'
+          | 'thermostat.temperature_threshold_exceeded'
+          | 'thermostat.temperature_threshold_no_longer_exceeded'
+          | 'thermostat.temperature_reached_set_point'
+          | 'thermostat.temperature_changed'
+          | 'device.name_changed'
+          | 'camera.activated'
+          | 'device.doorbell_rang'
+          | 'enrollment_automation.deleted'
+          | 'phone.deactivated'
+          | 'space.device_membership_changed'
+          | 'space.created'
+          | 'space.deleted'
+        >
+      | undefined
+    /**
+     * Numerical limit on the number of events to return.
+     */
+    limit?: number | undefined
+    /**
+     * Timestamp to indicate the beginning generation time for the events that you want to list. You must include `since` or `between`.
+     */
+    since?: string | undefined
+    /**
+     * ID of the space for which you want to list events.
+     */
+    space_id?: string | undefined
+    /**
+     * IDs of the spaces for which you want to list events.
+     */
+    space_ids?: Array<string> | undefined
+    /**
+     * Offset for the events that you want to list.
+     */
+    unstable_offset?: number | undefined
+    /**
+     * ID of the user identity for which you want to list events.
+     */
+    user_identity_id?: string | undefined
+  },
+  | 'access_code_id'
+  | 'access_code_ids'
+  | 'access_grant_id'
+  | 'access_grant_ids'
+  | 'access_method_id'
+  | 'access_method_ids'
+  | 'acs_access_group_id'
+  | 'acs_credential_id'
+  | 'acs_encoder_id'
+  | 'acs_entrance_id'
+  | 'acs_system_id'
+  | 'acs_system_ids'
+  | 'acs_user_id'
+  | 'between'
+  | 'connect_webview_id'
+  | 'connected_account_id'
+  | 'customer_key'
+  | 'device_id'
+  | 'device_ids'
+  | 'event_ids'
+  | 'event_type'
+  | 'event_types'
+  | 'since'
+  | 'space_id'
+  | 'space_ids'
+  | 'unstable_offset'
+  | 'user_identity_id'
+>
 
 /**
  * @deprecated Use EventsListRequest instead.

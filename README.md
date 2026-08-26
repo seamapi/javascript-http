@@ -193,6 +193,11 @@ When the `waitForActionAttempt` option is enabled, the SDK:
 
 - Polls the action attempt up to the `timeout`
   at the `pollingInterval` (both in milliseconds).
+  Polling stops as soon as the `timeout` passes,
+  and every wait polls at least once,
+  even when the `timeout` is shorter than the `pollingInterval`.
+  The `timeout` must not be negative,
+  and the `pollingInterval` must be greater than zero.
 - Resolves with a fresh copy of the successful action attempt.
 - Rejects with a `SeamActionAttemptFailedError` if the action attempt is unsuccessful.
 - Rejects with a `SeamActionAttemptTimeoutError` if the action attempt is still pending when the `timeout` is reached.

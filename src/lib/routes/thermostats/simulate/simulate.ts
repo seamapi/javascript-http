@@ -171,6 +171,7 @@ export class SeamHttpThermostatsSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id', 'hvac_mode'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -190,6 +191,7 @@ export class SeamHttpThermostatsSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

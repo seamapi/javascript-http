@@ -6,6 +6,7 @@ import {
   SeamActionAttemptFailedError,
   SeamActionAttemptTimeoutError,
   SeamHttp,
+  SeamHttpInvalidOptionsError,
 } from '@seamapi/http/connect'
 
 test('waitForActionAttempt: waits for pending action attempt', async (t) => {
@@ -235,6 +236,135 @@ test('waitForActionAttempt: rejects when a failed action attempt has no error ob
   )
 
   t.is(err?.code, 'unknown')
+})
+
+test('waitForActionAttempt: stops polling after the timeout', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+    waitForActionAttempt: false,
+  })
+
+  const actionAttempt = await seam.locks.unlockDoor({
+    device_id: seed.august_device_1,
+  })
+
+  await seam.client.post('/_fake/update_action_attempt', {
+    action_attempt_id: actionAttempt.action_attempt_id,
+    status: 'pending',
+  })
+
+  let pollCount = 0
+  seam.client.interceptors.request.use((config) => {
+    if (config.url === '/action_attempts/get') pollCount++
+    return config
+  })
+
+  const err = await t.throwsAsync(
+    async () =>
+      await seam.actionAttempts.get(
+        { action_attempt_id: actionAttempt.action_attempt_id },
+        { waitForActionAttempt: { timeout: 300, pollingInterval: 100 } },
+      ),
+    { instanceOf: SeamActionAttemptTimeoutError },
+  )
+
+  t.regex(err?.message ?? '', /Timed out waiting for action attempt/)
+
+  const pollCountAtTimeout = pollCount
+  t.true(pollCountAtTimeout > 0)
+
+  await new Promise((resolve) => setTimeout(resolve, 500))
+  t.is(pollCount, pollCountAtTimeout)
+})
+
+test('waitForActionAttempt: polls at least once when the timeout is shorter than the pollingInterval', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+    waitForActionAttempt: false,
+  })
+
+  const actionAttempt = await seam.locks.unlockDoor({
+    device_id: seed.august_device_1,
+  })
+
+  await seam.client.post('/_fake/update_action_attempt', {
+    action_attempt_id: actionAttempt.action_attempt_id,
+    status: 'pending',
+  })
+
+  let requestCount = 0
+  seam.client.interceptors.request.use((config) => {
+    if (config.url === '/action_attempts/get') requestCount++
+    return config
+  })
+
+  const start = Date.now()
+  await t.throwsAsync(
+    async () =>
+      await seam.actionAttempts.get(
+        { action_attempt_id: actionAttempt.action_attempt_id },
+        { waitForActionAttempt: { timeout: 300, pollingInterval: 60_000 } },
+      ),
+    { instanceOf: SeamActionAttemptTimeoutError },
+  )
+
+  // The initial request plus exactly one poll before the deadline.
+  t.is(requestCount, 2)
+  t.true(Date.now() - start < 10_000)
+})
+
+test('waitForActionAttempt: rejects a negative timeout', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+    waitForActionAttempt: false,
+  })
+
+  const actionAttempt = await seam.locks.unlockDoor({
+    device_id: seed.august_device_1,
+  })
+
+  await t.throwsAsync(
+    async () =>
+      await seam.actionAttempts.get(
+        { action_attempt_id: actionAttempt.action_attempt_id },
+        { waitForActionAttempt: { timeout: -1 } },
+      ),
+    {
+      instanceOf: SeamHttpInvalidOptionsError,
+      message: /timeout option must not be negative/,
+    },
+  )
+})
+
+test('waitForActionAttempt: rejects a pollingInterval of zero', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, {
+    endpoint,
+    waitForActionAttempt: false,
+  })
+
+  const actionAttempt = await seam.locks.unlockDoor({
+    device_id: seed.august_device_1,
+  })
+
+  await t.throwsAsync(
+    async () =>
+      await seam.actionAttempts.get(
+        { action_attempt_id: actionAttempt.action_attempt_id },
+        { waitForActionAttempt: { pollingInterval: 0 } },
+      ),
+    {
+      instanceOf: SeamHttpInvalidOptionsError,
+      message: /pollingInterval option must be greater than zero/,
+    },
+  )
 })
 
 test('waitForActionAttempt: waits directly on returned action attempt', async (t) => {
