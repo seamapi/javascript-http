@@ -32,7 +32,10 @@ import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { Batch } from 'lib/resources/batch.js'
 import type { Space } from 'lib/resources/space.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 export class SeamHttpSpaces {
@@ -136,7 +139,7 @@ export class SeamHttpSpaces {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -653,7 +656,10 @@ export type SpacesListParameters = {
  */
 export type SpacesListResponse = { spaces: Array<Space> }
 
-export type SpacesListRequest = SeamHttpRequest<SpacesListResponse, 'spaces'>
+export type SpacesListRequest = SeamPaginatedRequest<
+  SpacesListResponse,
+  'spaces'
+>
 
 export interface SpacesListOptions {}
 

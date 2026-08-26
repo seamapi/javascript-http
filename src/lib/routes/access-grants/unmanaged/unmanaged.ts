@@ -30,7 +30,10 @@ import {
 } from 'lib/parse-options.js'
 import type { UnmanagedAccessGrant } from 'lib/resources/unmanaged-access-grant.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 export class SeamHttpAccessGrantsUnmanaged {
@@ -134,7 +137,7 @@ export class SeamHttpAccessGrantsUnmanaged {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -279,7 +282,7 @@ export type AccessGrantsUnmanagedListResponse = {
   access_grants: Array<UnmanagedAccessGrant>
 }
 
-export type AccessGrantsUnmanagedListRequest = SeamHttpRequest<
+export type AccessGrantsUnmanagedListRequest = SeamPaginatedRequest<
   AccessGrantsUnmanagedListResponse,
   'access_grants'
 >

@@ -31,7 +31,10 @@ import {
 import type { AcsCredential } from 'lib/resources/acs-credential.js'
 import type { AcsEntrance } from 'lib/resources/acs-entrance.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 export class SeamHttpAcsCredentials {
@@ -135,7 +138,7 @@ export class SeamHttpAcsCredentials {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -520,7 +523,7 @@ export type AcsCredentialsListResponse = {
   acs_credentials: Array<AcsCredential>
 }
 
-export type AcsCredentialsListRequest = SeamHttpRequest<
+export type AcsCredentialsListRequest = SeamPaginatedRequest<
   AcsCredentialsListResponse,
   'acs_credentials'
 >
