@@ -30,7 +30,10 @@ import {
 } from 'lib/parse-options.js'
 import type { UnmanagedUserIdentity } from 'lib/resources/unmanaged-user-identity.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 export class SeamHttpUserIdentitiesUnmanaged {
@@ -137,7 +140,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(request)
   }
@@ -272,7 +275,7 @@ export type UserIdentitiesUnmanagedListResponse = {
   user_identities: Array<UnmanagedUserIdentity>
 }
 
-export type UserIdentitiesUnmanagedListRequest = SeamHttpRequest<
+export type UserIdentitiesUnmanagedListRequest = SeamPaginatedRequest<
   UserIdentitiesUnmanagedListResponse,
   'user_identities'
 >

@@ -34,7 +34,10 @@ import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import type { Batch } from 'lib/resources/batch.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpAccessMethodsUnmanaged } from './unmanaged/index.js'
@@ -140,7 +143,7 @@ export class SeamHttpAccessMethods {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(request)
   }
@@ -540,7 +543,7 @@ export type AccessMethodsListParameters = RequireAtLeastOne<
  */
 export type AccessMethodsListResponse = { access_methods: Array<AccessMethod> }
 
-export type AccessMethodsListRequest = SeamHttpRequest<
+export type AccessMethodsListRequest = SeamPaginatedRequest<
   AccessMethodsListResponse,
   'access_methods'
 >

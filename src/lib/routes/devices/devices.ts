@@ -32,7 +32,10 @@ import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { Device } from 'lib/resources/device.js'
 import type { DeviceProvider } from 'lib/resources/device-provider.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpDevicesSimulate } from './simulate/index.js'
@@ -139,7 +142,7 @@ export class SeamHttpDevices {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(request)
   }
@@ -519,7 +522,10 @@ export type DevicesListParameters = {
  */
 export type DevicesListResponse = { devices: Array<Device> }
 
-export type DevicesListRequest = SeamHttpRequest<DevicesListResponse, 'devices'>
+export type DevicesListRequest = SeamPaginatedRequest<
+  DevicesListResponse,
+  'devices'
+>
 
 export interface DevicesListOptions {}
 

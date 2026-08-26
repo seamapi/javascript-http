@@ -5,7 +5,7 @@ export type {{parametersTypeName}} = {{#if requiresAtLeastOneParameter}}RequireA
  */
 export type {{responseTypeName}} = {{#if returnsVoid}}void{{else}}{ {{json responseKey}}: {{#if responseIsList}}Array<{{responseResourceTypeName}}>{{else}}{{responseResourceTypeName}}{{/if}} }{{/if}}
 
-export type {{requestTypeName}} = SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>
+export type {{requestTypeName}} = {{#if hasPagination}}SeamPaginatedRequest<{{responseTypeName}}, '{{responseKey}}'>{{else}}SeamHttpRequest<{{#if returnsVoid}}void, undefined{{else}}{{responseTypeName}}, '{{responseKey}}'{{/if}}>{{/if}}
 
 
 {{#if returnsActionAttempt}}

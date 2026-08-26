@@ -32,7 +32,10 @@ import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { AccessGrant } from 'lib/resources/access-grant.js'
 import type { Batch } from 'lib/resources/batch.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpAccessGrantsUnmanaged } from './unmanaged/index.js'
@@ -138,7 +141,7 @@ export class SeamHttpAccessGrants {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(request)
   }
@@ -605,7 +608,7 @@ export type AccessGrantsListParameters = {
  */
 export type AccessGrantsListResponse = { access_grants: Array<AccessGrant> }
 
-export type AccessGrantsListRequest = SeamHttpRequest<
+export type AccessGrantsListRequest = SeamPaginatedRequest<
   AccessGrantsListResponse,
   'access_grants'
 >

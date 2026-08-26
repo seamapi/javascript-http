@@ -1,5 +1,8 @@
 import { SeamHttpInvalidResponseError } from './seam-http-error.js'
-import { readResponseData, type SeamHttpRequest } from './seam-http-request.js'
+import {
+  readResponseData,
+  type SeamPaginatedRequest,
+} from './seam-http-request.js'
 
 declare const $brand: unique symbol
 
@@ -27,9 +30,9 @@ export class SeamPaginator<
   const TResponse,
   const TResponseKey extends keyof TResponse,
 > implements AsyncIterable<EnsureReadonlyArray<TResponse[TResponseKey]>> {
-  readonly #request: SeamHttpRequest<TResponse, TResponseKey>
+  readonly #request: SeamPaginatedRequest<TResponse, TResponseKey>
 
-  constructor(request: SeamHttpRequest<TResponse, TResponseKey>) {
+  constructor(request: SeamPaginatedRequest<TResponse, TResponseKey>) {
     if (!request.hasPagination) {
       throw new Error(
         `The ${request.pathname} endpoint does not support pagination`,

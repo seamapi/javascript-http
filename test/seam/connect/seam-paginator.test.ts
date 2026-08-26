@@ -29,9 +29,32 @@ test('SeamPaginator: cannot paginate a request that does not return pagination d
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
 
-  t.throws(() => seam.createPaginator(seam.workspaces.list()), {
-    message: /does not support pagination/,
-  })
+  t.throws(
+    () =>
+      seam.createPaginator(
+        // @ts-expect-error Verify only paginated requests are accepted.
+        seam.workspaces.list(),
+      ),
+    {
+      message: /does not support pagination/,
+    },
+  )
+})
+
+test('SeamPaginator: only accepts paginated requests at the type level', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  const assertOnlyPaginatedRequestsAccepted = (): void => {
+    seam.createPaginator(seam.devices.list())
+
+    seam.createPaginator(
+      // @ts-expect-error A non-paginated request is rejected at compile time.
+      seam.devices.get({ device_id: 'device-id' }),
+    )
+  }
+
+  t.is(typeof assertOnlyPaginatedRequestsAccepted, 'function')
 })
 
 test('SeamPaginator: firstPage returns the first page', async (t) => {
