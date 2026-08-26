@@ -127,7 +127,6 @@ test('SeamHttp: throws SeamHttpInvalidInputError on invalid input', async (t) =>
   t.deepEqual(err?.getValidationErrorMessages('device_ids'), [
     'Expected array, received number',
   ])
-  t.deepEqual(err?.validationErrorParamNames, ['device_ids'])
   t.deepEqual(err?.validationErrors['device_ids']?._errors, [
     'Expected array, received number',
   ])
