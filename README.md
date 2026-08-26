@@ -371,6 +371,43 @@ const pages = seam.createPaginator(
 const devices = await pages.flattenToArray()
 ```
 
+### Error Handling
+
+Requests rejected by the Seam API throw a `SeamHttpApiError` subclass
+carrying the `statusCode`, the API error `code`, and the `requestId`.
+The originating Axios error is retained as the standard `cause`.
+
+#### Validation errors
+
+When the API rejects a request because a parameter is invalid,
+it throws a `SeamHttpInvalidInputError`.
+
+Look up the messages for a parameter you are already rendering,
+for example a field in a form:
+
+```ts
+import { isSeamHttpInvalidInputError } from '@seamapi/http'
+
+try {
+  await seam.devices.list({ device_ids: ['not-a-uuid'] })
+} catch (err) {
+  if (isSeamHttpInvalidInputError(err)) {
+    console.log(err.getValidationErrorMessages('device_ids'))
+  }
+}
+```
+
+Or read every parameter that failed validation,
+for example to show a summary of what went wrong:
+
+```ts
+if (isSeamHttpInvalidInputError(err)) {
+  for (const { parameterName, errorMessages } of err.validationErrors) {
+    console.log(`${parameterName}: ${errorMessages.join(', ')}`)
+  }
+}
+```
+
 ### Requests without a Workspace in scope
 
 Some Seam API endpoints do not require a workspace in scope.

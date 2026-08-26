@@ -22,9 +22,14 @@ export class SeamHttpApiError extends Error {
    */
   data?: unknown
 
-  constructor(error: ApiError, statusCode: number, requestId: string) {
+  constructor(
+    error: ApiError,
+    statusCode: number,
+    requestId: string,
+    options: ErrorOptions = {},
+  ) {
     const { type, message, data } = error
-    super(message)
+    super(message, options)
     this.name = this.constructor.name
     this.code = type
     this.statusCode = statusCode
@@ -49,10 +54,15 @@ export class SeamHttpUnauthorizedError extends SeamHttpApiError {
   override code: 'unauthorized'
   override statusCode: 401
 
-  constructor(requestId: string) {
+  constructor(requestId: string, error?: ApiError, options: ErrorOptions = {}) {
     const type = 'unauthorized'
     const status = 401
-    super({ type, message: 'Unauthorized' }, status, requestId)
+    super(
+      error ?? { type, message: 'Unauthorized' },
+      status,
+      requestId,
+      options,
+    )
     this.name = this.constructor.name
     this.code = type
     this.statusCode = status
@@ -70,6 +80,15 @@ export const isSeamHttpUnauthorizedError = (
 }
 
 /**
+ * A request parameter that failed validation,
+ * along with the messages explaining why.
+ */
+export interface SeamValidationError {
+  parameterName: string
+  errorMessages: string[]
+}
+
+/**
  * Error thrown when the Seam API returns an `invalid_input` error response.
  */
 export class SeamHttpInvalidInputError extends SeamHttpApiError {
@@ -77,11 +96,29 @@ export class SeamHttpInvalidInputError extends SeamHttpApiError {
 
   readonly #validationErrors: NonNullable<ApiError['validation_errors']>
 
-  constructor(error: ApiError, statusCode: number, requestId: string) {
-    super(error, statusCode, requestId)
+  constructor(
+    error: ApiError,
+    statusCode: number,
+    requestId: string,
+    options: ErrorOptions = {},
+  ) {
+    super(error, statusCode, requestId, options)
     this.name = this.constructor.name
     this.code = 'invalid_input'
     this.#validationErrors = error.validation_errors ?? {}
+  }
+
+  /**
+   * Validation errors returned by the Seam API,
+   * one entry per request parameter that failed validation.
+   */
+  get validationErrors(): SeamValidationError[] {
+    return Object.entries(this.#validationErrors)
+      .filter(([parameterName]) => parameterName !== '_errors')
+      .map(([parameterName, { _errors }]) => ({
+        parameterName,
+        errorMessages: _errors,
+      }))
   }
 
   /**
