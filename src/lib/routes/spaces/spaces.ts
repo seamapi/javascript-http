@@ -177,6 +177,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_entrance_ids', 'space_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -196,6 +197,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['connected_account_id', 'space_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -215,6 +217,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_ids', 'space_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -234,6 +237,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['name'],
+      atLeastOneParameterNames: [],
       responseKey: 'space',
       options,
     })
@@ -253,6 +257,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['space_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -272,6 +277,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: ['space_id', 'space_key'],
       responseKey: 'space',
       options,
     })
@@ -291,6 +297,12 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'exclude',
+        'include',
+        'space_ids',
+        'space_keys',
+      ],
       responseKey: 'batch',
       options,
     })
@@ -310,6 +322,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'spaces',
       hasPagination: true,
       options,
@@ -330,6 +343,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_entrance_ids', 'space_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -349,6 +363,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['connected_account_id', 'space_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -368,6 +383,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_ids', 'space_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -387,6 +403,7 @@ export class SeamHttpSpaces {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'space',
       options,
     })
@@ -532,16 +549,19 @@ export type SpacesDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface SpacesDeleteOptions {}
 
-export type SpacesGetParameters = RequireAtLeastOne<{
-  /**
-   * ID of the space that you want to get.
-   */
-  space_id?: string | undefined
-  /**
-   * Unique key of the space that you want to get.
-   */
-  space_key?: string | undefined
-}>
+export type SpacesGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the space that you want to get.
+     */
+    space_id?: string | undefined
+    /**
+     * Unique key of the space that you want to get.
+     */
+    space_key?: string | undefined
+  },
+  'space_id' | 'space_key'
+>
 
 /**
  * @deprecated Use SpacesGetRequest instead.
@@ -552,37 +572,40 @@ export type SpacesGetRequest = SeamHttpRequest<SpacesGetResponse, 'space'>
 
 export interface SpacesGetOptions {}
 
-export type SpacesGetRelatedParameters = RequireAtLeastOne<{
-  exclude?:
-    | Array<
-        | 'spaces'
-        | 'devices'
-        | 'acs_entrances'
-        | 'connected_accounts'
-        | 'acs_systems'
-        | 'access_methods'
-      >
-    | undefined
+export type SpacesGetRelatedParameters = RequireAtLeastOne<
+  {
+    exclude?:
+      | Array<
+          | 'spaces'
+          | 'devices'
+          | 'acs_entrances'
+          | 'connected_accounts'
+          | 'acs_systems'
+          | 'access_methods'
+        >
+      | undefined
 
-  include?:
-    | Array<
-        | 'spaces'
-        | 'devices'
-        | 'acs_entrances'
-        | 'connected_accounts'
-        | 'acs_systems'
-        | 'access_methods'
-      >
-    | undefined
-  /**
-   * IDs of the spaces that you want to get along with their related resources.
-   */
-  space_ids?: Array<string> | undefined
-  /**
-   * Keys of the spaces that you want to get along with their related resources.
-   */
-  space_keys?: Array<string> | undefined
-}>
+    include?:
+      | Array<
+          | 'spaces'
+          | 'devices'
+          | 'acs_entrances'
+          | 'connected_accounts'
+          | 'acs_systems'
+          | 'access_methods'
+        >
+      | undefined
+    /**
+     * IDs of the spaces that you want to get along with their related resources.
+     */
+    space_ids?: Array<string> | undefined
+    /**
+     * Keys of the spaces that you want to get along with their related resources.
+     */
+    space_keys?: Array<string> | undefined
+  },
+  'exclude' | 'include' | 'space_ids' | 'space_keys'
+>
 
 /**
  * @deprecated Use SpacesGetRelatedRequest instead.

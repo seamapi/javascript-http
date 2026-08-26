@@ -177,6 +177,7 @@ export class SeamHttpWorkspaces {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['name'],
+      atLeastOneParameterNames: [],
       responseKey: 'workspace',
       options,
     })
@@ -196,6 +197,7 @@ export class SeamHttpWorkspaces {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'workspace',
       options,
     })
@@ -215,6 +217,7 @@ export class SeamHttpWorkspaces {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'workspaces',
       options,
     })
@@ -234,6 +237,7 @@ export class SeamHttpWorkspaces {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>
@@ -258,6 +262,7 @@ export class SeamHttpWorkspaces {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

@@ -181,6 +181,7 @@ export class SeamHttpPhones {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -200,6 +201,7 @@ export class SeamHttpPhones {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'phone',
       options,
     })
@@ -219,6 +221,7 @@ export class SeamHttpPhones {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'phones',
       options,
     })

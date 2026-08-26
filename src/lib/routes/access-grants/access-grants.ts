@@ -183,6 +183,7 @@ export class SeamHttpAccessGrants {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['requested_access_methods'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_grant',
       options,
     })
@@ -202,6 +203,7 @@ export class SeamHttpAccessGrants {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_grant_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -221,6 +223,7 @@ export class SeamHttpAccessGrants {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: ['access_grant_id', 'access_grant_key'],
       responseKey: 'access_grant',
       options,
     })
@@ -240,6 +243,12 @@ export class SeamHttpAccessGrants {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'access_grant_ids',
+        'access_grant_keys',
+        'exclude',
+        'include',
+      ],
       responseKey: 'batch',
       options,
     })
@@ -259,6 +268,7 @@ export class SeamHttpAccessGrants {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'access_grants',
       hasPagination: true,
       options,
@@ -279,6 +289,7 @@ export class SeamHttpAccessGrants {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_grant_id', 'requested_access_methods'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_grant',
       options,
     })
@@ -298,6 +309,13 @@ export class SeamHttpAccessGrants {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'access_grant_id',
+        'access_grant_key',
+        'ends_at',
+        'name',
+        'starts_at',
+      ],
       responseKey: undefined,
       options,
     })
@@ -441,16 +459,19 @@ export type AccessGrantsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface AccessGrantsDeleteOptions {}
 
-export type AccessGrantsGetParameters = RequireAtLeastOne<{
-  /**
-   * ID of Access Grant to get.
-   */
-  access_grant_id?: string | undefined
-  /**
-   * Unique key of Access Grant to get.
-   */
-  access_grant_key?: string | undefined
-}>
+export type AccessGrantsGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of Access Grant to get.
+     */
+    access_grant_id?: string | undefined
+    /**
+     * Unique key of Access Grant to get.
+     */
+    access_grant_key?: string | undefined
+  },
+  'access_grant_id' | 'access_grant_key'
+>
 
 /**
  * @deprecated Use AccessGrantsGetRequest instead.
@@ -464,42 +485,45 @@ export type AccessGrantsGetRequest = SeamHttpRequest<
 
 export interface AccessGrantsGetOptions {}
 
-export type AccessGrantsGetRelatedParameters = RequireAtLeastOne<{
-  /**
-   * IDs of the access grants that you want to get along with their related resources.
-   */
-  access_grant_ids?: Array<string> | undefined
-  /**
-   * Keys of the access grants that you want to get along with their related resources.
-   */
-  access_grant_keys?: Array<string> | undefined
+export type AccessGrantsGetRelatedParameters = RequireAtLeastOne<
+  {
+    /**
+     * IDs of the access grants that you want to get along with their related resources.
+     */
+    access_grant_ids?: Array<string> | undefined
+    /**
+     * Keys of the access grants that you want to get along with their related resources.
+     */
+    access_grant_keys?: Array<string> | undefined
 
-  exclude?:
-    | Array<
-        | 'spaces'
-        | 'devices'
-        | 'acs_entrances'
-        | 'connected_accounts'
-        | 'acs_systems'
-        | 'user_identities'
-        | 'acs_access_groups'
-        | 'access_methods'
-      >
-    | undefined
+    exclude?:
+      | Array<
+          | 'spaces'
+          | 'devices'
+          | 'acs_entrances'
+          | 'connected_accounts'
+          | 'acs_systems'
+          | 'user_identities'
+          | 'acs_access_groups'
+          | 'access_methods'
+        >
+      | undefined
 
-  include?:
-    | Array<
-        | 'spaces'
-        | 'devices'
-        | 'acs_entrances'
-        | 'connected_accounts'
-        | 'acs_systems'
-        | 'user_identities'
-        | 'acs_access_groups'
-        | 'access_methods'
-      >
-    | undefined
-}>
+    include?:
+      | Array<
+          | 'spaces'
+          | 'devices'
+          | 'acs_entrances'
+          | 'connected_accounts'
+          | 'acs_systems'
+          | 'user_identities'
+          | 'acs_access_groups'
+          | 'access_methods'
+        >
+      | undefined
+  },
+  'access_grant_ids' | 'access_grant_keys' | 'exclude' | 'include'
+>
 
 /**
  * @deprecated Use AccessGrantsGetRelatedRequest instead.
@@ -630,28 +654,31 @@ export type AccessGrantsRequestAccessMethodsRequest = SeamHttpRequest<
 
 export interface AccessGrantsRequestAccessMethodsOptions {}
 
-export type AccessGrantsUpdateParameters = RequireAtLeastOne<{
-  /**
-   * ID of the Access Grant to update. Provide either `access_grant_id` or `access_grant_key`.
-   */
-  access_grant_id?: string | undefined
-  /**
-   * Key of the Access Grant to update. Provide either `access_grant_id` or `access_grant_key`.
-   */
-  access_grant_key?: string | undefined
-  /**
-   * Date and time at which the validity of the grant ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
-   */
-  ends_at?: string | Date | Temporal.Instant | null | undefined
-  /**
-   * Display name for the access grant.
-   */
-  name?: string | null | undefined
-  /**
-   * Date and time at which the validity of the grant starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-   */
-  starts_at?: string | Date | Temporal.Instant | undefined
-}>
+export type AccessGrantsUpdateParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the Access Grant to update. Provide either `access_grant_id` or `access_grant_key`.
+     */
+    access_grant_id?: string | undefined
+    /**
+     * Key of the Access Grant to update. Provide either `access_grant_id` or `access_grant_key`.
+     */
+    access_grant_key?: string | undefined
+    /**
+     * Date and time at which the validity of the grant ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
+     */
+    ends_at?: string | Date | Temporal.Instant | null | undefined
+    /**
+     * Display name for the access grant.
+     */
+    name?: string | null | undefined
+    /**
+     * Date and time at which the validity of the grant starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+     */
+    starts_at?: string | Date | Temporal.Instant | undefined
+  },
+  'access_grant_id' | 'access_grant_key' | 'ends_at' | 'name' | 'starts_at'
+>
 
 /**
  * @deprecated Use AccessGrantsUpdateRequest instead.

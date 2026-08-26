@@ -178,6 +178,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id', 'ends_daily_at', 'starts_daily_at'],
+      atLeastOneParameterNames: [],
       responseKey: 'noise_threshold',
       options,
     })
@@ -197,6 +198,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id', 'noise_threshold_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -216,6 +218,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['noise_threshold_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'noise_threshold',
       options,
     })
@@ -235,6 +238,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'noise_thresholds',
       options,
     })
@@ -254,6 +258,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id', 'noise_threshold_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

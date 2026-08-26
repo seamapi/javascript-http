@@ -181,6 +181,7 @@ export class SeamHttpConnectWebviews {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'connect_webview',
       options,
     })
@@ -202,6 +203,7 @@ export class SeamHttpConnectWebviews {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['connect_webview_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -223,6 +225,7 @@ export class SeamHttpConnectWebviews {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['connect_webview_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'connect_webview',
       options,
     })
@@ -242,6 +245,7 @@ export class SeamHttpConnectWebviews {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'connect_webviews',
       hasPagination: true,
       options,

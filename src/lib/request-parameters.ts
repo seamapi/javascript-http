@@ -10,6 +10,7 @@ export const assertValidRequestParameters = (
   path: string,
   hasRequiredParameters: boolean,
   requiredParameterNames: readonly string[],
+  atLeastOneParameterNames: readonly string[],
 ): void => {
   if (parameters === undefined) {
     if (hasRequiredParameters) {
@@ -37,8 +38,10 @@ export const assertValidRequestParameters = (
   }
 
   if (
-    hasRequiredParameters &&
-    Object.values(parameterValues).every((value) => value === undefined)
+    atLeastOneParameterNames.length > 0 &&
+    atLeastOneParameterNames.every(
+      (name) => parameterValues[name] === undefined,
+    )
   ) {
     throw new TypeError(`At least one parameter is required for ${path}`)
   }

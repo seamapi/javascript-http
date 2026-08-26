@@ -190,6 +190,7 @@ export class SeamHttpDevices {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: ['device_id', 'name'],
       responseKey: 'device',
       options,
     })
@@ -209,6 +210,7 @@ export class SeamHttpDevices {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'devices',
       hasPagination: true,
       options,
@@ -233,6 +235,7 @@ export class SeamHttpDevices {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'device_providers',
       options,
     })
@@ -252,6 +255,7 @@ export class SeamHttpDevices {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['devices'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -273,22 +277,26 @@ export class SeamHttpDevices {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
   }
 }
 
-export type DevicesGetParameters = RequireAtLeastOne<{
-  /**
-   * ID of the device that you want to get.
-   */
-  device_id?: string | undefined
-  /**
-   * Name of the device that you want to get.
-   */
-  name?: string | undefined
-}>
+export type DevicesGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the device that you want to get.
+     */
+    device_id?: string | undefined
+    /**
+     * Name of the device that you want to get.
+     */
+    name?: string | undefined
+  },
+  'device_id' | 'name'
+>
 
 /**
  * @deprecated Use DevicesGetRequest instead.

@@ -175,6 +175,7 @@ export class SeamHttpPhonesSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'phone',
       options,
     })

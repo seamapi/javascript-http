@@ -178,6 +178,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'user_identity',
       options,
     })
@@ -197,6 +198,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'user_identities',
       hasPagination: true,
       options,
@@ -219,6 +221,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['is_managed', 'user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

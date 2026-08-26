@@ -177,6 +177,7 @@ export class SeamHttpAcsAccessGroups {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_access_group_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -196,6 +197,7 @@ export class SeamHttpAcsAccessGroups {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_access_group_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -215,6 +217,7 @@ export class SeamHttpAcsAccessGroups {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_access_group_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_access_group',
       options,
     })
@@ -234,6 +237,7 @@ export class SeamHttpAcsAccessGroups {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_access_groups',
       options,
     })
@@ -253,6 +257,7 @@ export class SeamHttpAcsAccessGroups {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_access_group_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_entrances',
       options,
     })
@@ -272,6 +277,7 @@ export class SeamHttpAcsAccessGroups {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_access_group_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_users',
       options,
     })
@@ -291,6 +297,7 @@ export class SeamHttpAcsAccessGroups {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_access_group_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

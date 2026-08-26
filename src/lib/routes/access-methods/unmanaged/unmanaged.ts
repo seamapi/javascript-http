@@ -175,6 +175,7 @@ export class SeamHttpAccessMethodsUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_method_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_method',
       options,
     })
@@ -194,6 +195,7 @@ export class SeamHttpAccessMethodsUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_grant_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_methods',
       options,
     })

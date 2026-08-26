@@ -176,6 +176,7 @@ export class SeamHttpInstantKeys {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['instant_key_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -195,6 +196,7 @@ export class SeamHttpInstantKeys {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: ['instant_key_id', 'instant_key_url'],
       responseKey: 'instant_key',
       options,
     })
@@ -214,6 +216,7 @@ export class SeamHttpInstantKeys {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'instant_keys',
       options,
     })
@@ -236,16 +239,19 @@ export type InstantKeysDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface InstantKeysDeleteOptions {}
 
-export type InstantKeysGetParameters = RequireAtLeastOne<{
-  /**
-   * ID of the instant key to get.
-   */
-  instant_key_id?: string | undefined
-  /**
-   * URL of the instant key to get.
-   */
-  instant_key_url?: string | undefined
-}>
+export type InstantKeysGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the instant key to get.
+     */
+    instant_key_id?: string | undefined
+    /**
+     * URL of the instant key to get.
+     */
+    instant_key_url?: string | undefined
+  },
+  'instant_key_id' | 'instant_key_url'
+>
 
 /**
  * @deprecated Use InstantKeysGetRequest instead.

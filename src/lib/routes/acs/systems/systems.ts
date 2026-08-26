@@ -175,6 +175,7 @@ export class SeamHttpAcsSystems {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_system_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_system',
       options,
     })
@@ -196,6 +197,7 @@ export class SeamHttpAcsSystems {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_systems',
       options,
     })
@@ -217,6 +219,7 @@ export class SeamHttpAcsSystems {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_system_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_systems',
       options,
     })
@@ -236,6 +239,7 @@ export class SeamHttpAcsSystems {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_system_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

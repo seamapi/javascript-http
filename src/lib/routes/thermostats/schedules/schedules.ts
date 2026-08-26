@@ -180,6 +180,7 @@ export class SeamHttpThermostatsSchedules {
         'ends_at',
         'starts_at',
       ],
+      atLeastOneParameterNames: [],
       responseKey: 'thermostat_schedule',
       options,
     })
@@ -199,6 +200,7 @@ export class SeamHttpThermostatsSchedules {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['thermostat_schedule_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -218,6 +220,7 @@ export class SeamHttpThermostatsSchedules {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['thermostat_schedule_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'thermostat_schedule',
       options,
     })
@@ -237,6 +240,7 @@ export class SeamHttpThermostatsSchedules {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'thermostat_schedules',
       options,
     })
@@ -256,6 +260,7 @@ export class SeamHttpThermostatsSchedules {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['thermostat_schedule_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

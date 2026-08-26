@@ -175,6 +175,7 @@ export class SeamHttpWebhooks {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['url'],
+      atLeastOneParameterNames: [],
       responseKey: 'webhook',
       options,
     })
@@ -194,6 +195,7 @@ export class SeamHttpWebhooks {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['webhook_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -213,6 +215,7 @@ export class SeamHttpWebhooks {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['webhook_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'webhook',
       options,
     })
@@ -232,6 +235,7 @@ export class SeamHttpWebhooks {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'webhooks',
       options,
     })
@@ -251,6 +255,7 @@ export class SeamHttpWebhooks {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['event_types', 'webhook_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

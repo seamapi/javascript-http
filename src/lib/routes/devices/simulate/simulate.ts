@@ -174,6 +174,7 @@ export class SeamHttpDevicesSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -196,6 +197,7 @@ export class SeamHttpDevicesSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -215,6 +217,7 @@ export class SeamHttpDevicesSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -238,6 +241,7 @@ export class SeamHttpDevicesSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -259,6 +263,7 @@ export class SeamHttpDevicesSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id', 'is_expired'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -278,6 +283,7 @@ export class SeamHttpDevicesSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

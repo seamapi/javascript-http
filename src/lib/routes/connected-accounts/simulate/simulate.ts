@@ -177,6 +177,7 @@ export class SeamHttpConnectedAccountsSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['connected_account_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

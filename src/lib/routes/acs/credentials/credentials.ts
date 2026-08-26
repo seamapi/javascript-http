@@ -176,6 +176,7 @@ export class SeamHttpAcsCredentials {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_credential_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -195,6 +196,7 @@ export class SeamHttpAcsCredentials {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_method'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_credential',
       options,
     })
@@ -214,6 +216,7 @@ export class SeamHttpAcsCredentials {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_credential_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -233,6 +236,7 @@ export class SeamHttpAcsCredentials {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_credential_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_credential',
       options,
     })
@@ -252,6 +256,7 @@ export class SeamHttpAcsCredentials {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_credentials',
       hasPagination: true,
       options,
@@ -272,6 +277,7 @@ export class SeamHttpAcsCredentials {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_credential_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_entrances',
       options,
     })
@@ -291,6 +297,7 @@ export class SeamHttpAcsCredentials {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_credential_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -310,6 +317,7 @@ export class SeamHttpAcsCredentials {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_credential_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

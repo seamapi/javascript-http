@@ -177,6 +177,7 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_access_group_id', 'acs_user_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -196,6 +197,7 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_system_id', 'full_name'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_user',
       options,
     })
@@ -215,6 +217,11 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'acs_system_id',
+        'acs_user_id',
+        'user_identity_id',
+      ],
       responseKey: undefined,
       options,
     })
@@ -234,6 +241,11 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'acs_system_id',
+        'acs_user_id',
+        'user_identity_id',
+      ],
       responseKey: 'acs_user',
       options,
     })
@@ -253,6 +265,7 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_users',
       hasPagination: true,
       options,
@@ -273,6 +286,11 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'acs_system_id',
+        'acs_user_id',
+        'user_identity_id',
+      ],
       responseKey: 'acs_entrances',
       options,
     })
@@ -292,6 +310,7 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_access_group_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -311,6 +330,11 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'acs_system_id',
+        'acs_user_id',
+        'user_identity_id',
+      ],
       responseKey: undefined,
       options,
     })
@@ -330,6 +354,11 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'acs_system_id',
+        'acs_user_id',
+        'user_identity_id',
+      ],
       responseKey: undefined,
       options,
     })
@@ -349,6 +378,11 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'acs_system_id',
+        'acs_user_id',
+        'user_identity_id',
+      ],
       responseKey: undefined,
       options,
     })
@@ -368,6 +402,17 @@ export class SeamHttpAcsUsers {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'access_schedule',
+        'acs_system_id',
+        'acs_user_id',
+        'email',
+        'email_address',
+        'full_name',
+        'hid_acs_system_id',
+        'phone_number',
+        'user_identity_id',
+      ],
       responseKey: undefined,
       options,
     })
@@ -455,20 +500,23 @@ export type AcsUsersCreateRequest = SeamHttpRequest<
 
 export interface AcsUsersCreateOptions {}
 
-export type AcsUsersDeleteParameters = RequireAtLeastOne<{
-  /**
-   * ID of the access system that you want to delete. You must provide acs_system_id with user_identity_id.
-   */
-  acs_system_id?: string | undefined
-  /**
-   * ID of the access system user that you want to delete. You must provide either acs_user_id or user_identity_id
-   */
-  acs_user_id?: string | undefined
-  /**
-   * ID of the user identity that you want to delete. You must provide either acs_user_id or user_identity_id. If you provide user_identity_id, you must also provide acs_system_id.
-   */
-  user_identity_id?: string | undefined
-}>
+export type AcsUsersDeleteParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the access system that you want to delete. You must provide acs_system_id with user_identity_id.
+     */
+    acs_system_id?: string | undefined
+    /**
+     * ID of the access system user that you want to delete. You must provide either acs_user_id or user_identity_id
+     */
+    acs_user_id?: string | undefined
+    /**
+     * ID of the user identity that you want to delete. You must provide either acs_user_id or user_identity_id. If you provide user_identity_id, you must also provide acs_system_id.
+     */
+    user_identity_id?: string | undefined
+  },
+  'acs_system_id' | 'acs_user_id' | 'user_identity_id'
+>
 
 /**
  * @deprecated Use AcsUsersDeleteRequest instead.
@@ -479,20 +527,23 @@ export type AcsUsersDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface AcsUsersDeleteOptions {}
 
-export type AcsUsersGetParameters = RequireAtLeastOne<{
-  /**
-   * ID of the access system that you want to get. You can only provide acs_user_id or user_identity_id.
-   */
-  acs_system_id?: string | undefined
-  /**
-   * ID of the access system user that you want to get. You can only provide acs_user_id or user_identity_id.
-   */
-  acs_user_id?: string | undefined
-  /**
-   * ID of the user identity that you want to get. You can only provide acs_user_id or user_identity_id.
-   */
-  user_identity_id?: string | undefined
-}>
+export type AcsUsersGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the access system that you want to get. You can only provide acs_user_id or user_identity_id.
+     */
+    acs_system_id?: string | undefined
+    /**
+     * ID of the access system user that you want to get. You can only provide acs_user_id or user_identity_id.
+     */
+    acs_user_id?: string | undefined
+    /**
+     * ID of the user identity that you want to get. You can only provide acs_user_id or user_identity_id.
+     */
+    user_identity_id?: string | undefined
+  },
+  'acs_system_id' | 'acs_user_id' | 'user_identity_id'
+>
 
 /**
  * @deprecated Use AcsUsersGetRequest instead.
@@ -553,20 +604,23 @@ export type AcsUsersListRequest = SeamPaginatedRequest<
 
 export interface AcsUsersListOptions {}
 
-export type AcsUsersListAccessibleEntrancesParameters = RequireAtLeastOne<{
-  /**
-   * ID of the access system for which you want to list accessible entrances. You can only provide acs_system_id with user_identity_id.
-   */
-  acs_system_id?: string | undefined
-  /**
-   * ID of the access system user for whom you want to list accessible entrances. You can only provide acs_user_id or user_identity_id.
-   */
-  acs_user_id?: string | undefined
-  /**
-   * ID of the user identity for whom you want to list accessible entrances. You can only provide acs_user_id or user_identity_id.
-   */
-  user_identity_id?: string | undefined
-}>
+export type AcsUsersListAccessibleEntrancesParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the access system for which you want to list accessible entrances. You can only provide acs_system_id with user_identity_id.
+     */
+    acs_system_id?: string | undefined
+    /**
+     * ID of the access system user for whom you want to list accessible entrances. You can only provide acs_user_id or user_identity_id.
+     */
+    acs_user_id?: string | undefined
+    /**
+     * ID of the user identity for whom you want to list accessible entrances. You can only provide acs_user_id or user_identity_id.
+     */
+    user_identity_id?: string | undefined
+  },
+  'acs_system_id' | 'acs_user_id' | 'user_identity_id'
+>
 
 /**
  * @deprecated Use AcsUsersListAccessibleEntrancesRequest instead.
@@ -610,20 +664,23 @@ export type AcsUsersRemoveFromAccessGroupRequest = SeamHttpRequest<
 
 export interface AcsUsersRemoveFromAccessGroupOptions {}
 
-export type AcsUsersRevokeAccessToAllEntrancesParameters = RequireAtLeastOne<{
-  /**
-   * ID of the access system for which you want to revoke access. You can only provide acs_system_id with user_identity_id.
-   */
-  acs_system_id?: string | undefined
-  /**
-   * ID of the access system user for whom you want to revoke access. You can only provide acs_user_id or user_identity_id.
-   */
-  acs_user_id?: string | undefined
-  /**
-   * ID of the user identity for whom you want to revoke access. You can only provide acs_user_id or user_identity_id.
-   */
-  user_identity_id?: string | undefined
-}>
+export type AcsUsersRevokeAccessToAllEntrancesParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the access system for which you want to revoke access. You can only provide acs_system_id with user_identity_id.
+     */
+    acs_system_id?: string | undefined
+    /**
+     * ID of the access system user for whom you want to revoke access. You can only provide acs_user_id or user_identity_id.
+     */
+    acs_user_id?: string | undefined
+    /**
+     * ID of the user identity for whom you want to revoke access. You can only provide acs_user_id or user_identity_id.
+     */
+    user_identity_id?: string | undefined
+  },
+  'acs_system_id' | 'acs_user_id' | 'user_identity_id'
+>
 
 /**
  * @deprecated Use AcsUsersRevokeAccessToAllEntrancesRequest instead.
@@ -637,20 +694,23 @@ export type AcsUsersRevokeAccessToAllEntrancesRequest = SeamHttpRequest<
 
 export interface AcsUsersRevokeAccessToAllEntrancesOptions {}
 
-export type AcsUsersSuspendParameters = RequireAtLeastOne<{
-  /**
-   * ID of the access system that you want to suspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
-   */
-  acs_system_id?: string | undefined
-  /**
-   * ID of the access system user that you want to suspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
-   */
-  acs_user_id?: string | undefined
-  /**
-   * ID of the user identity that you want to suspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
-   */
-  user_identity_id?: string | undefined
-}>
+export type AcsUsersSuspendParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the access system that you want to suspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
+     */
+    acs_system_id?: string | undefined
+    /**
+     * ID of the access system user that you want to suspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
+     */
+    acs_user_id?: string | undefined
+    /**
+     * ID of the user identity that you want to suspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
+     */
+    user_identity_id?: string | undefined
+  },
+  'acs_system_id' | 'acs_user_id' | 'user_identity_id'
+>
 
 /**
  * @deprecated Use AcsUsersSuspendRequest instead.
@@ -661,20 +721,23 @@ export type AcsUsersSuspendRequest = SeamHttpRequest<void, undefined>
 
 export interface AcsUsersSuspendOptions {}
 
-export type AcsUsersUnsuspendParameters = RequireAtLeastOne<{
-  /**
-   * ID of the access system of the user that you want to unsuspend. You can only provide acs_system_id with user_identity_id.
-   */
-  acs_system_id?: string | undefined
-  /**
-   * ID of the access system user that you want to unsuspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
-   */
-  acs_user_id?: string | undefined
-  /**
-   * ID of the user identity that you want to unsuspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
-   */
-  user_identity_id?: string | undefined
-}>
+export type AcsUsersUnsuspendParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the access system of the user that you want to unsuspend. You can only provide acs_system_id with user_identity_id.
+     */
+    acs_system_id?: string | undefined
+    /**
+     * ID of the access system user that you want to unsuspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
+     */
+    acs_user_id?: string | undefined
+    /**
+     * ID of the user identity that you want to unsuspend. You can only provide acs_user_id or the combination of acs_system_id and user_identity_id.
+     */
+    user_identity_id?: string | undefined
+  },
+  'acs_system_id' | 'acs_user_id' | 'user_identity_id'
+>
 
 /**
  * @deprecated Use AcsUsersUnsuspendRequest instead.
@@ -685,56 +748,67 @@ export type AcsUsersUnsuspendRequest = SeamHttpRequest<void, undefined>
 
 export interface AcsUsersUnsuspendOptions {}
 
-export type AcsUsersUpdateParameters = RequireAtLeastOne<{
-  /**
-   * `starts_at` and `ends_at` timestamps for the access system user's access. If you specify an `access_schedule`, you may include both `starts_at` and `ends_at`. If you omit `starts_at`, it defaults to the current time. `ends_at` is optional and must be a time in the future and after `starts_at`.
-   */
-  access_schedule?:
-    | {
-        /**
-         * Ending timestamp for the access system user's access.
-         */
-        ends_at?: string | Date | Temporal.Instant | undefined
-        /**
-         * Starting timestamp for the access system user's access.
-         */
-        starts_at?: string | Date | Temporal.Instant | undefined
-      }
-    | null
-    | undefined
-  /**
-   * ID of the access system that you want to update. You can only provide acs_system_id with user_identity_id.
-   */
-  acs_system_id?: string | undefined
-  /**
-   * ID of the access system user that you want to update. You can only provide acs_user_id or user_identity_id.
-   */
-  acs_user_id?: string | undefined
-  /**
-   * @deprecated use email_address.
-   */
-  email?: string | undefined
-  /**
-   * Email address of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
-   */
-  email_address?: string | undefined
-  /**
-   * Full name of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
-   */
-  full_name?: string | undefined
-  /**
-   * ID of the HID access control system associated with the user.
-   */
-  hid_acs_system_id?: string | undefined
-  /**
-   * Phone number of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) in E.164 format (for example, `+15555550100`).
-   */
-  phone_number?: string | undefined
-  /**
-   * ID of the user identity that you want to update. You can only provide acs_user_id or user_identity_id. If you provide user_identity_id, you must also provide acs_system_id.
-   */
-  user_identity_id?: string | undefined
-}>
+export type AcsUsersUpdateParameters = RequireAtLeastOne<
+  {
+    /**
+     * `starts_at` and `ends_at` timestamps for the access system user's access. If you specify an `access_schedule`, you may include both `starts_at` and `ends_at`. If you omit `starts_at`, it defaults to the current time. `ends_at` is optional and must be a time in the future and after `starts_at`.
+     */
+    access_schedule?:
+      | {
+          /**
+           * Ending timestamp for the access system user's access.
+           */
+          ends_at?: string | Date | Temporal.Instant | undefined
+          /**
+           * Starting timestamp for the access system user's access.
+           */
+          starts_at?: string | Date | Temporal.Instant | undefined
+        }
+      | null
+      | undefined
+    /**
+     * ID of the access system that you want to update. You can only provide acs_system_id with user_identity_id.
+     */
+    acs_system_id?: string | undefined
+    /**
+     * ID of the access system user that you want to update. You can only provide acs_user_id or user_identity_id.
+     */
+    acs_user_id?: string | undefined
+    /**
+     * @deprecated use email_address.
+     */
+    email?: string | undefined
+    /**
+     * Email address of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+     */
+    email_address?: string | undefined
+    /**
+     * Full name of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+     */
+    full_name?: string | undefined
+    /**
+     * ID of the HID access control system associated with the user.
+     */
+    hid_acs_system_id?: string | undefined
+    /**
+     * Phone number of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) in E.164 format (for example, `+15555550100`).
+     */
+    phone_number?: string | undefined
+    /**
+     * ID of the user identity that you want to update. You can only provide acs_user_id or user_identity_id. If you provide user_identity_id, you must also provide acs_system_id.
+     */
+    user_identity_id?: string | undefined
+  },
+  | 'access_schedule'
+  | 'acs_system_id'
+  | 'acs_user_id'
+  | 'email'
+  | 'email_address'
+  | 'full_name'
+  | 'hid_acs_system_id'
+  | 'phone_number'
+  | 'user_identity_id'
+>
 
 /**
  * @deprecated Use AcsUsersUpdateRequest instead.

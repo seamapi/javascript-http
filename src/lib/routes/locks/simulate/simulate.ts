@@ -176,6 +176,7 @@ export class SeamHttpLocksSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['code', 'device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>
@@ -200,6 +201,7 @@ export class SeamHttpLocksSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>
