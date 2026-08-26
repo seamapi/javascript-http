@@ -80,6 +80,15 @@ export const isSeamHttpUnauthorizedError = (
 }
 
 /**
+ * A request parameter that failed validation,
+ * along with the messages explaining why.
+ */
+export interface SeamValidationError {
+  parameterName: string
+  errorMessages: string[]
+}
+
+/**
  * Error thrown when the Seam API returns an `invalid_input` error response.
  */
 export class SeamHttpInvalidInputError extends SeamHttpApiError {
@@ -100,11 +109,16 @@ export class SeamHttpInvalidInputError extends SeamHttpApiError {
   }
 
   /**
-   * Validation errors returned by the Seam API, keyed by parameter name.
-   * The `_errors` key holds errors that apply to the request as a whole.
+   * Validation errors returned by the Seam API,
+   * one entry per request parameter that failed validation.
    */
-  get validationErrors(): NonNullable<ApiError['validation_errors']> {
-    return this.#validationErrors
+  get validationErrors(): SeamValidationError[] {
+    return Object.entries(this.#validationErrors)
+      .filter(([parameterName]) => parameterName !== '_errors')
+      .map(([parameterName, { _errors }]) => ({
+        parameterName,
+        errorMessages: _errors,
+      }))
   }
 
   /**
