@@ -96,6 +96,40 @@ test('SeamPaginator: flatten allows iteration over all devices', async (t) => {
 
 const expectType = <Expected>(_value: Expected): void => {}
 
+test('SeamPaginator: sends the page cursor when the request has no parameters', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  nock(endpoint)
+    .get('/devices/list')
+    .reply(200, {
+      devices: [{ device_id: 'device-1' }],
+      pagination: {
+        has_next_page: true,
+        next_page_cursor: 'page-cursor-1',
+        next_page_url: `${endpoint}/devices/list?page_cursor=page-cursor-1`,
+      },
+    })
+    .get('/devices/list')
+    .query({ page_cursor: 'page-cursor-1', _strict: 'true' })
+    .reply(200, {
+      devices: [{ device_id: 'device-2' }],
+      pagination: {
+        has_next_page: false,
+        next_page_cursor: null,
+        next_page_url: null,
+      },
+    })
+
+  const pages = seam.createPaginator(seam.devices.list())
+  const devices = await pages.flattenToArray()
+
+  t.deepEqual(
+    devices.map(({ device_id: deviceId }) => deviceId),
+    ['device-1', 'device-2'],
+  )
+})
+
 test('SeamPaginator: stops iterating when the page cursor repeats', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
