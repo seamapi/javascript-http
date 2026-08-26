@@ -423,8 +423,8 @@ export class SeamHttpUserIdentities {
       requiredParameterNames: [],
       atLeastOneParameterNames: [
         'merged_user_identity_ids',
-        'user_identity_id',
         'merged_user_identity_keys',
+        'user_identity_id',
         'user_identity_key',
       ],
       responseKey: undefined,
@@ -773,21 +773,21 @@ export type UserIdentitiesMergeParameters = RequireAtLeastOne<
      */
     merged_user_identity_ids?: Array<string> | undefined
     /**
-     * ID of the primary user identity to keep.
-     */
-    user_identity_id?: string | undefined
-    /**
      * Keys of the user identities to merge into the primary user identity. These user identities are deleted.
      */
     merged_user_identity_keys?: Array<string> | undefined
+    /**
+     * ID of the primary user identity to keep.
+     */
+    user_identity_id?: string | undefined
     /**
      * Key of the primary user identity to keep.
      */
     user_identity_key?: string | undefined
   },
   | 'merged_user_identity_ids'
-  | 'user_identity_id'
   | 'merged_user_identity_keys'
+  | 'user_identity_id'
   | 'user_identity_key'
 >
 

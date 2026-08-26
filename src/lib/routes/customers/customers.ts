@@ -224,242 +224,6 @@ export class SeamHttpCustomers {
 }
 
 export type CustomersCreatePortalParameters = {
-  /**
-   * Filter configuration for resources based on their custom_metadata. Each filter specifies a field, operation, and value to match against resource custom_metadata.
-   */
-  customer_resources_filters?:
-    | Array<{
-        /**
-         * The custom_metadata field name to filter on.
-         */
-        field?: string | undefined
-        /**
-         * The comparison operation. Currently only '=' is supported.
-         */
-        operation?: '=' | undefined
-        /**
-         * The value to compare against.
-         */
-        value?: string | undefined
-      }>
-    | undefined
-  /**
-   * The ID of the customization profile to use for the portal.
-   */
-  customization_profile_id?: string | undefined
-  /**
-   * Deep link target resource for initial redirect. When set, the portal will navigate directly to the specified resource.
-   */
-  deep_link?:
-    | {
-        resource_key?: string | undefined
-
-        resource_type?: 'reservation' | 'space' | 'device' | undefined
-
-        resource_id?: string | undefined
-      }
-    | undefined
-  /**
-   * Whether to exclude the option to select a locale within the portal UI.
-   */
-  exclude_locale_picker?: boolean | undefined
-
-  features?:
-    | {
-        /**
-         * Configuration for the configure feature.
-         */
-        configure?:
-          | {
-              /**
-               * Indicates whether the customer can customize the access automation rules for their properties.
-               */
-              allow_access_automation_rule_customization?: boolean | undefined
-              /**
-               * Indicates whether the customer can customize the climate automation rules for their properties.
-               */
-              allow_climate_automation_rule_customization?: boolean | undefined
-              /**
-               * Indicates whether the customer can customize the Instant Key profile for their properties.
-               */
-              allow_instant_key_customization?: boolean | undefined
-              /**
-               * Whether to exclude this feature from the portal.
-               */
-              exclude?: boolean | undefined
-            }
-          | undefined
-        /**
-         * Configuration for the connect accounts feature.
-         */
-        connect?:
-          | {
-              /**
-               * List of provider keys to allow for the connect feature. These providers will be shown when the customer tries to connect an account.
-               */
-              accepted_providers?: Array<string> | undefined
-              /**
-               * Whether to exclude this feature from the portal.
-               */
-              exclude?: boolean | undefined
-              /**
-               * List of provider keys to exclude from the connect feature. These providers will not be shown when the customer tries to connect an account.
-               */
-              excluded_providers?: Array<string> | undefined
-            }
-          | undefined
-        /**
-         * Configuration for the manage feature.
-         */
-        manage?:
-          | {
-              /**
-               * Custom copy for the confirmation modal shown before unmanaged devices are added to a space and begin being managed (and billed). Only takes effect when the MANAGE_DEVICES_CONFIRMATION_MODAL feature flag is enabled for the workspace. Any omitted string falls back to a localized default.
-               */
-              device_management_confirmation?:
-                | {
-                    /**
-                     * Custom body text for the confirmation modal. May include the {count} token, which is replaced with the number of devices that will begin being managed.
-                     */
-                    body?: string | undefined
-                    /**
-                     * Custom label for the cancel button.
-                     */
-                    cancel_button_label?: string | undefined
-                    /**
-                     * Custom label for the confirm button.
-                     */
-                    confirm_button_label?: string | undefined
-                    /**
-                     * Custom title for the confirmation modal.
-                     */
-                    title?: string | undefined
-                  }
-                | undefined
-              /**
-               * Configuration for event type filtering in the manage feature.
-               */
-              events?:
-                | {
-                    /**
-                     * List of event types to show in the events filter. When set, only these event types will be available. Leave empty to show all events.
-                     */
-                    allowed_events?: Array<string> | undefined
-                    /**
-                     * List of event types that are pre-selected in the events filter when the user first loads the events tab.
-                     */
-                    default_events?: Array<string> | undefined
-                  }
-                | undefined
-              /**
-               * Whether to exclude this feature from the portal.
-               */
-              exclude?: boolean | undefined
-              /**
-               * Indicates whether the customer can manage reservations for their properties.
-               */
-              exclude_reservation_management?: boolean | undefined
-              /**
-               * Indicates whether to exclude technical details from reservation views.
-               */
-              exclude_reservation_technical_details?: boolean | undefined
-              /**
-               * Indicates whether the customer can manage staff for their properties.
-               */
-              exclude_staff_management?: boolean | undefined
-            }
-          | undefined
-        /**
-         * Configuration for the manage devices feature.
-         * ---
-         * deprecated: Use `manage` instead.
-         * ---
-         */
-        manage_devices?:
-          | {
-              /**
-               * Whether to exclude this feature from the portal.
-               */
-              exclude?: boolean | undefined
-            }
-          | undefined
-        /**
-         * Configuration for the organize feature.
-         */
-        organize?:
-          | {
-              /**
-               * Whether to exclude this feature from the portal.
-               */
-              exclude?: boolean | undefined
-            }
-          | undefined
-      }
-    | undefined
-  /**
-   * Whether the portal is embedded in another application.
-   */
-  is_embedded?: boolean | undefined
-  /**
-   * Configuration for the landing page when the portal loads.
-   */
-  landing_page?:
-    | {
-        manage?:
-          | {
-              space_key?: string | undefined
-
-              property_key?: string | undefined
-
-              room_key?: string | undefined
-
-              common_area_key?: string | undefined
-
-              unit_key?: string | undefined
-
-              facility_key?: string | undefined
-
-              building_key?: string | undefined
-
-              listing_key?: string | undefined
-
-              property_listing_key?: string | undefined
-
-              site_key?: string | undefined
-
-              reservation_key?: string | undefined
-
-              booking_key?: string | undefined
-
-              access_grant_key?: string | undefined
-            }
-          | undefined
-      }
-    | undefined
-  /**
-   * The locale to use for the portal.
-   */
-  locale?:
-    | 'en-US'
-    | 'pt-PT'
-    | 'fr-FR'
-    | 'it-IT'
-    | 'es-ES'
-    | 'de-DE'
-    | 'nl-NL'
-    | 'el-GR'
-    | 'pl-PL'
-    | 'ru-RU'
-    | undefined
-  /**
-   * Navigation mode for the portal. 'restricted' tells frontend to hide navigation UI, typically used for embedded deep links.
-   */
-  navigation_mode?: 'full' | 'restricted' | undefined
-  /**
-   * Whether the portal is read-only. When true, the customer can browse the portal but cannot perform any mutating action; write requests made with the portal's client session are rejected.
-   */
-  read_only?: boolean | undefined
-
   customer_data?:
     | {
         /**
@@ -1099,6 +863,241 @@ export type CustomersCreatePortalParameters = {
           | undefined
       }
     | undefined
+  /**
+   * Filter configuration for resources based on their custom_metadata. Each filter specifies a field, operation, and value to match against resource custom_metadata.
+   */
+  customer_resources_filters?:
+    | Array<{
+        /**
+         * The custom_metadata field name to filter on.
+         */
+        field?: string | undefined
+        /**
+         * The comparison operation. Currently only '=' is supported.
+         */
+        operation?: '=' | undefined
+        /**
+         * The value to compare against.
+         */
+        value?: string | undefined
+      }>
+    | undefined
+  /**
+   * The ID of the customization profile to use for the portal.
+   */
+  customization_profile_id?: string | undefined
+  /**
+   * Deep link target resource for initial redirect. When set, the portal will navigate directly to the specified resource.
+   */
+  deep_link?:
+    | {
+        resource_id?: string | undefined
+
+        resource_key?: string | undefined
+
+        resource_type?: 'reservation' | 'space' | 'device' | undefined
+      }
+    | undefined
+  /**
+   * Whether to exclude the option to select a locale within the portal UI.
+   */
+  exclude_locale_picker?: boolean | undefined
+
+  features?:
+    | {
+        /**
+         * Configuration for the configure feature.
+         */
+        configure?:
+          | {
+              /**
+               * Indicates whether the customer can customize the access automation rules for their properties.
+               */
+              allow_access_automation_rule_customization?: boolean | undefined
+              /**
+               * Indicates whether the customer can customize the climate automation rules for their properties.
+               */
+              allow_climate_automation_rule_customization?: boolean | undefined
+              /**
+               * Indicates whether the customer can customize the Instant Key profile for their properties.
+               */
+              allow_instant_key_customization?: boolean | undefined
+              /**
+               * Whether to exclude this feature from the portal.
+               */
+              exclude?: boolean | undefined
+            }
+          | undefined
+        /**
+         * Configuration for the connect accounts feature.
+         */
+        connect?:
+          | {
+              /**
+               * List of provider keys to allow for the connect feature. These providers will be shown when the customer tries to connect an account.
+               */
+              accepted_providers?: Array<string> | undefined
+              /**
+               * Whether to exclude this feature from the portal.
+               */
+              exclude?: boolean | undefined
+              /**
+               * List of provider keys to exclude from the connect feature. These providers will not be shown when the customer tries to connect an account.
+               */
+              excluded_providers?: Array<string> | undefined
+            }
+          | undefined
+        /**
+         * Configuration for the manage feature.
+         */
+        manage?:
+          | {
+              /**
+               * Custom copy for the confirmation modal shown before unmanaged devices are added to a space and begin being managed (and billed). Only takes effect when the MANAGE_DEVICES_CONFIRMATION_MODAL feature flag is enabled for the workspace. Any omitted string falls back to a localized default.
+               */
+              device_management_confirmation?:
+                | {
+                    /**
+                     * Custom body text for the confirmation modal. May include the {count} token, which is replaced with the number of devices that will begin being managed.
+                     */
+                    body?: string | undefined
+                    /**
+                     * Custom label for the cancel button.
+                     */
+                    cancel_button_label?: string | undefined
+                    /**
+                     * Custom label for the confirm button.
+                     */
+                    confirm_button_label?: string | undefined
+                    /**
+                     * Custom title for the confirmation modal.
+                     */
+                    title?: string | undefined
+                  }
+                | undefined
+              /**
+               * Configuration for event type filtering in the manage feature.
+               */
+              events?:
+                | {
+                    /**
+                     * List of event types to show in the events filter. When set, only these event types will be available. Leave empty to show all events.
+                     */
+                    allowed_events?: Array<string> | undefined
+                    /**
+                     * List of event types that are pre-selected in the events filter when the user first loads the events tab.
+                     */
+                    default_events?: Array<string> | undefined
+                  }
+                | undefined
+              /**
+               * Whether to exclude this feature from the portal.
+               */
+              exclude?: boolean | undefined
+              /**
+               * Indicates whether the customer can manage reservations for their properties.
+               */
+              exclude_reservation_management?: boolean | undefined
+              /**
+               * Indicates whether to exclude technical details from reservation views.
+               */
+              exclude_reservation_technical_details?: boolean | undefined
+              /**
+               * Indicates whether the customer can manage staff for their properties.
+               */
+              exclude_staff_management?: boolean | undefined
+            }
+          | undefined
+        /**
+         * Configuration for the manage devices feature.
+         * ---
+         * deprecated: Use `manage` instead.
+         * ---
+         */
+        manage_devices?:
+          | {
+              /**
+               * Whether to exclude this feature from the portal.
+               */
+              exclude?: boolean | undefined
+            }
+          | undefined
+        /**
+         * Configuration for the organize feature.
+         */
+        organize?:
+          | {
+              /**
+               * Whether to exclude this feature from the portal.
+               */
+              exclude?: boolean | undefined
+            }
+          | undefined
+      }
+    | undefined
+  /**
+   * Whether the portal is embedded in another application.
+   */
+  is_embedded?: boolean | undefined
+  /**
+   * Configuration for the landing page when the portal loads.
+   */
+  landing_page?:
+    | {
+        manage?:
+          | {
+              access_grant_key?: string | undefined
+
+              booking_key?: string | undefined
+
+              building_key?: string | undefined
+
+              common_area_key?: string | undefined
+
+              facility_key?: string | undefined
+
+              listing_key?: string | undefined
+
+              property_key?: string | undefined
+
+              property_listing_key?: string | undefined
+
+              reservation_key?: string | undefined
+
+              room_key?: string | undefined
+
+              site_key?: string | undefined
+
+              space_key?: string | undefined
+
+              unit_key?: string | undefined
+            }
+          | undefined
+      }
+    | undefined
+  /**
+   * The locale to use for the portal.
+   */
+  locale?:
+    | 'en-US'
+    | 'pt-PT'
+    | 'fr-FR'
+    | 'it-IT'
+    | 'es-ES'
+    | 'de-DE'
+    | 'nl-NL'
+    | 'el-GR'
+    | 'pl-PL'
+    | 'ru-RU'
+    | undefined
+  /**
+   * Navigation mode for the portal. 'restricted' tells frontend to hide navigation UI, typically used for embedded deep links.
+   */
+  navigation_mode?: 'full' | 'restricted' | undefined
+  /**
+   * Whether the portal is read-only. When true, the customer can browse the portal but cannot perform any mutating action; write requests made with the portal's client session are rejected.
+   */
+  read_only?: boolean | undefined
 }
 
 /**

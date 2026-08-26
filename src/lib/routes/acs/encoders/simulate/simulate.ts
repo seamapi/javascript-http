@@ -243,6 +243,10 @@ export class SeamHttpAcsEncodersSimulate {
 
 export type AcsEncodersSimulateNextCredentialEncodeWillFailParameters = {
   /**
+   * ID of the `acs_credential` that will fail to be encoded onto a card in the next request.
+   */
+  acs_credential_id?: string | undefined
+  /**
    * ID of the `acs_encoder` that will be used in the next request to encode the `acs_credential`.
    */
   acs_encoder_id: string
@@ -256,10 +260,6 @@ export type AcsEncodersSimulateNextCredentialEncodeWillFailParameters = {
     | 'uncategorized_error'
     | 'action_attempt_expired'
     | undefined
-  /**
-   * ID of the `acs_credential` that will fail to be encoded onto a card in the next request.
-   */
-  acs_credential_id?: string | undefined
 }
 
 /**
@@ -295,6 +295,7 @@ export type AcsEncodersSimulateNextCredentialEncodeWillSucceedRequest =
 export interface AcsEncodersSimulateNextCredentialEncodeWillSucceedOptions {}
 
 export type AcsEncodersSimulateNextCredentialScanWillFailParameters = {
+  acs_credential_id_on_seam?: string | undefined
   /**
    * ID of the `acs_encoder` that will fail to scan the `acs_credential` in the next request.
    */
@@ -305,8 +306,6 @@ export type AcsEncodersSimulateNextCredentialScanWillFailParameters = {
     | 'uncategorized_error'
     | 'action_attempt_expired'
     | undefined
-
-  acs_credential_id_on_seam?: string | undefined
 }
 
 /**

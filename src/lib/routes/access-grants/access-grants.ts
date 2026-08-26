@@ -324,33 +324,6 @@ export class SeamHttpAccessGrants {
 
 export type AccessGrantsCreateParameters = {
   /**
-   * ID of user identity for whom access is being granted.
-   */
-  user_identity_id?: string | undefined
-  /**
-   * When used, creates a new user identity with the given details, and grants them access.
-   */
-  user_identity?:
-    | {
-        /**
-         * Unique email address for the user identity.
-         */
-        email_address?: string | null | undefined
-        /**
-         * Full name of the user associated with the user identity.
-         */
-        full_name?: string | null | undefined
-        /**
-         * Unique phone number for the user identity in [E.164 format](https://www.itu.int/rec/T-REC-E.164/en) (for example, +15555550100).
-         */
-        phone_number?: string | null | undefined
-        /**
-         * Unique key for the user identity.
-         */
-        user_identity_key?: string | null | undefined
-      }
-    | undefined
-  /**
    * Unique key for the access grant within the workspace.
    */
   access_grant_key?: string | undefined
@@ -429,6 +402,33 @@ export type AccessGrantsCreateParameters = {
    * Date and time at which the validity of the new grant starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
    */
   starts_at?: string | undefined
+  /**
+   * When used, creates a new user identity with the given details, and grants them access.
+   */
+  user_identity?:
+    | {
+        /**
+         * Unique email address for the user identity.
+         */
+        email_address?: string | null | undefined
+        /**
+         * Full name of the user associated with the user identity.
+         */
+        full_name?: string | null | undefined
+        /**
+         * Unique phone number for the user identity in [E.164 format](https://www.itu.int/rec/T-REC-E.164/en) (for example, +15555550100).
+         */
+        phone_number?: string | null | undefined
+        /**
+         * Unique key for the user identity.
+         */
+        user_identity_key?: string | null | undefined
+      }
+    | undefined
+  /**
+   * ID of user identity for whom access is being granted.
+   */
+  user_identity_id?: string | undefined
 }
 
 /**

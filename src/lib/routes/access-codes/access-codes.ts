@@ -378,7 +378,7 @@ export class SeamHttpAccessCodes {
   ): AccessCodesUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/access_codes/update',
-      method: 'PUT',
+      method: 'PATCH',
       body: parameters,
       parameters,
       hasRequiredParameters: true,

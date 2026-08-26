@@ -880,13 +880,6 @@ export type ThermostatsSetFanModeOptions = Pick<
 
 export type ThermostatsSetHvacModeParameters = {
   /**
-   * ID of the thermostat device for which you want to set the HVAC mode.
-   */
-  device_id: string
-
-  hvac_mode_setting: 'off' | 'cool' | 'heat' | 'heat_cool' | 'eco'
-
-  /**
    * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
    */
   cooling_set_point_celsius?: number | undefined
@@ -895,6 +888,11 @@ export type ThermostatsSetHvacModeParameters = {
    */
   cooling_set_point_fahrenheit?: number | undefined
   /**
+   * ID of the thermostat device for which you want to set the HVAC mode.
+   */
+  device_id: string
+
+  /**
    * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
    */
   heating_set_point_celsius?: number | undefined
@@ -902,6 +900,8 @@ export type ThermostatsSetHvacModeParameters = {
    * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
    */
   heating_set_point_fahrenheit?: number | undefined
+
+  hvac_mode_setting: 'off' | 'cool' | 'heat' | 'heat_cool' | 'eco'
 }
 
 /**

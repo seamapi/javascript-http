@@ -253,7 +253,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   ): NoiseSensorsNoiseThresholdsUpdateRequest {
     return new SeamHttpRequest(this, {
       pathname: '/noise_sensors/noise_thresholds/update',
-      method: 'PUT',
+      method: 'PATCH',
       body: parameters,
       parameters,
       hasRequiredParameters: true,
