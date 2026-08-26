@@ -30,7 +30,10 @@ import {
 } from 'lib/parse-options.js'
 import type { ConnectWebview } from 'lib/resources/connect-webview.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 export class SeamHttpConnectWebviews {
@@ -134,7 +137,7 @@ export class SeamHttpConnectWebviews {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -459,7 +462,7 @@ export type ConnectWebviewsListResponse = {
   connect_webviews: Array<ConnectWebview>
 }
 
-export type ConnectWebviewsListRequest = SeamHttpRequest<
+export type ConnectWebviewsListRequest = SeamPaginatedRequest<
   ConnectWebviewsListResponse,
   'connect_webviews'
 >

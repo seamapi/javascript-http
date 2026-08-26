@@ -33,7 +33,10 @@ import type { AcsEntrance } from 'lib/resources/acs-entrance.js'
 import type { ActionAttempt } from 'lib/resources/action-attempt.js'
 import { SeamHttpActionAttempts } from 'lib/routes/action-attempts/index.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 export class SeamHttpAcsEntrances {
@@ -137,7 +140,7 @@ export class SeamHttpAcsEntrances {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -364,7 +367,7 @@ export type AcsEntrancesListParameters = {
  */
 export type AcsEntrancesListResponse = { acs_entrances: Array<AcsEntrance> }
 
-export type AcsEntrancesListRequest = SeamHttpRequest<
+export type AcsEntrancesListRequest = SeamPaginatedRequest<
   AcsEntrancesListResponse,
   'acs_entrances'
 >
