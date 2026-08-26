@@ -312,7 +312,7 @@ export type WorkspacesCreateParameters = {
   name: string
 
   /**
-   * ID of the organization to associate with the new workspace.
+   * ID of the organization to associate with the new workspace. If omitted, the new workspace is associated with the organization that you administer, if you administer exactly one.
    */
   organization_id?: string | undefined
   /**

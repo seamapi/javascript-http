@@ -203,16 +203,6 @@ export class SeamHttpThermostatsSimulate {
 
 export type ThermostatsSimulateHvacModeAdjustedParameters = {
   /**
-   * ID of the thermostat device for which you want to simulate having adjusted the HVAC mode.
-   */
-  device_id: string
-
-  /**
-   * HVAC mode that you want to simulate.
-   */
-  hvac_mode: 'off' | 'cool' | 'heat' | 'heat_cool'
-
-  /**
    * Cooling [set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to simulate. You must set `cooling_set_point_celsius` or `cooling_set_point_fahrenheit`.
    */
   cooling_set_point_celsius?: number | undefined
@@ -221,6 +211,11 @@ export type ThermostatsSimulateHvacModeAdjustedParameters = {
    */
   cooling_set_point_fahrenheit?: number | undefined
   /**
+   * ID of the thermostat device for which you want to simulate having adjusted the HVAC mode.
+   */
+  device_id: string
+
+  /**
    * Heating [set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to simulate. You must set `heating_set_point_celsius` or `heating_set_point_fahrenheit`.
    */
   heating_set_point_celsius?: number | undefined
@@ -228,6 +223,10 @@ export type ThermostatsSimulateHvacModeAdjustedParameters = {
    * Heating [set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to simulate. You must set `heating_set_point_fahrenheit` or `heating_set_point_celsius`.
    */
   heating_set_point_fahrenheit?: number | undefined
+  /**
+   * HVAC mode that you want to simulate.
+   */
+  hvac_mode: 'off' | 'cool' | 'heat' | 'heat_cool'
 }
 
 /**

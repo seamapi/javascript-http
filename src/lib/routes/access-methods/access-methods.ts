@@ -211,8 +211,8 @@ export class SeamHttpAccessMethods {
       hasRequiredParameters: true,
       requiredParameterNames: [],
       atLeastOneParameterNames: [
-        'access_method_id',
         'access_grant_id',
+        'access_method_id',
         'reservation_key',
       ],
       responseKey: undefined,
@@ -369,19 +369,19 @@ export type AccessMethodsAssignCardOptions = Pick<
 export type AccessMethodsDeleteParameters = RequireAtLeastOne<
   {
     /**
-     * ID of access method to delete.
-     */
-    access_method_id?: string | undefined
-    /**
      * ID of access grant whose access methods should be deleted.
      */
     access_grant_id?: string | undefined
+    /**
+     * ID of access method to delete.
+     */
+    access_method_id?: string | undefined
     /**
      * Reservation key of the access grant whose access methods should be deleted.
      */
     reservation_key?: string | undefined
   },
-  'access_method_id' | 'access_grant_id' | 'reservation_key'
+  'access_grant_id' | 'access_method_id' | 'reservation_key'
 >
 
 /**

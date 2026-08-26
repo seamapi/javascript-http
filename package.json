@@ -85,10 +85,10 @@
     "axios-retry": "^4.4.2"
   },
   "devDependencies": {
-    "@seamapi/blueprint": "^1.8.0",
+    "@seamapi/blueprint": "^1.9.1",
     "@seamapi/fake-seam-connect": "^2.0.4",
     "@seamapi/smith": "^1.1.0",
-    "@seamapi/types": "1.1037.0",
+    "@seamapi/types": "1.1047.0",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^24.10.9",
     "ava": "^8.0.1",
