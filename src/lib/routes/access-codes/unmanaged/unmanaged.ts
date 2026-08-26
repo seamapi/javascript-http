@@ -177,6 +177,7 @@ export class SeamHttpAccessCodesUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_code_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -196,6 +197,7 @@ export class SeamHttpAccessCodesUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_code_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -217,6 +219,7 @@ export class SeamHttpAccessCodesUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: ['access_code_id', 'code', 'device_id'],
       responseKey: 'access_code',
       options,
     })
@@ -236,6 +239,7 @@ export class SeamHttpAccessCodesUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_codes',
       hasPagination: true,
       options,
@@ -256,6 +260,7 @@ export class SeamHttpAccessCodesUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_code_id', 'is_managed'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -310,20 +315,23 @@ export type AccessCodesUnmanagedDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface AccessCodesUnmanagedDeleteOptions {}
 
-export type AccessCodesUnmanagedGetParameters = RequireAtLeastOne<{
-  /**
-   * ID of the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
-   */
-  access_code_id?: string | undefined
-  /**
-   * Code of the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
-   */
-  code?: string | undefined
-  /**
-   * ID of the device containing the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
-   */
-  device_id?: string | undefined
-}>
+export type AccessCodesUnmanagedGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
+     */
+    access_code_id?: string | undefined
+    /**
+     * Code of the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
+     */
+    code?: string | undefined
+    /**
+     * ID of the device containing the unmanaged access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
+     */
+    device_id?: string | undefined
+  },
+  'access_code_id' | 'code' | 'device_id'
+>
 
 /**
  * @deprecated Use AccessCodesUnmanagedGetRequest instead.

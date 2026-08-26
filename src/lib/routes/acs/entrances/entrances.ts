@@ -175,6 +175,7 @@ export class SeamHttpAcsEntrances {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_entrance_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_entrance',
       options,
     })
@@ -194,6 +195,7 @@ export class SeamHttpAcsEntrances {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_entrance_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -213,6 +215,7 @@ export class SeamHttpAcsEntrances {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_entrances',
       hasPagination: true,
       options,
@@ -233,6 +236,7 @@ export class SeamHttpAcsEntrances {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_entrance_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_credentials',
       options,
     })
@@ -252,6 +256,7 @@ export class SeamHttpAcsEntrances {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_credential_id', 'acs_entrance_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>
