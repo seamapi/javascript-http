@@ -171,6 +171,7 @@ export class SeamHttpAcsEncodersSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_encoder_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -190,6 +191,7 @@ export class SeamHttpAcsEncodersSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_encoder_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -209,6 +211,7 @@ export class SeamHttpAcsEncodersSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_encoder_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -228,6 +231,7 @@ export class SeamHttpAcsEncodersSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_encoder_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

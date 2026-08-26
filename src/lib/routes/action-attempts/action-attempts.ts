@@ -172,6 +172,7 @@ export class SeamHttpActionAttempts {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['action_attempt_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>
@@ -196,6 +197,7 @@ export class SeamHttpActionAttempts {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempts',
       hasPagination: true,
       options,
