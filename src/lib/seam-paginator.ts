@@ -1,16 +1,8 @@
-import type { Client } from './client.js'
-import type { SeamHttpRequestOptions } from './options.js'
 import { SeamHttpInvalidResponseError } from './seam-http-error.js'
 import {
   readResponseData,
-  SeamHttpRequest,
   type SeamPaginatedRequest,
 } from './seam-http-request.js'
-
-interface SeamPaginatorParent {
-  readonly client: Client
-  readonly defaults: Required<SeamHttpRequestOptions>
-}
 
 declare const $brand: unique symbol
 
@@ -39,18 +31,13 @@ export class SeamPaginator<
   const TResponseKey extends keyof TResponse,
 > implements AsyncIterable<EnsureReadonlyArray<TResponse[TResponseKey]>> {
   readonly #request: SeamPaginatedRequest<TResponse, TResponseKey>
-  readonly #parent: SeamPaginatorParent
 
-  constructor(
-    parent: SeamPaginatorParent,
-    request: SeamPaginatedRequest<TResponse, TResponseKey>,
-  ) {
+  constructor(request: SeamPaginatedRequest<TResponse, TResponseKey>) {
     if (!request.hasPagination) {
       throw new Error(
         `The ${request.pathname} endpoint does not support pagination`,
       )
     }
-    this.#parent = parent
     this.#request = request
   }
 
@@ -86,22 +73,7 @@ export class SeamPaginator<
       throw new Error('Cannot paginate a response without a responseKey')
     }
 
-    const method = this.#request.method
-
-    const requestData = {
-      ...(usesParams(method)
-        ? (this.#request.params ?? {})
-        : ((this.#request.body as Record<string, unknown> | null) ?? {})),
-      page_cursor: nextPageCursor,
-    }
-
-    const request = new SeamHttpRequest<TResponse, TResponseKey>(this.#parent, {
-      pathname: this.#request.pathname,
-      method,
-      responseKey,
-      params: usesParams(method) ? requestData : undefined,
-      body: usesParams(method) ? undefined : requestData,
-    })
+    const request = this.#request.withPageCursor(nextPageCursor ?? undefined)
 
     const response = await request.fetchResponse()
     const data = readResponseData(response, responseKey, request.pathname)
@@ -192,9 +164,6 @@ export class SeamPaginator<
     }
   }
 }
-
-const usesParams = (method: string): boolean =>
-  ['GET', 'DELETE'].includes(method.toUpperCase())
 
 type EnsureReadonlyArray<T> = T extends readonly any[] ? T : never
 type EnsureMutableArray<T> = T extends any[] ? T : never

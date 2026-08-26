@@ -215,6 +215,55 @@ test('SeamPaginator: stops iterating when there is a next page without a cursor'
   t.is(seenPages[0]?.[0]?.device_id, 'device-1')
 })
 
+test('SeamPaginator: validates request parameters before fetching a page', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  let requestCount = 0
+  seam.client.interceptors.request.use((config) => {
+    if (config.url === '/access_codes/list') requestCount++
+    return config
+  })
+
+  const pages = seam.createPaginator(
+    // @ts-expect-error Verify an invalid request is rejected when paginated.
+    seam.accessCodes.list({}),
+  )
+
+  await t.throwsAsync(async () => await pages.firstPage(), {
+    instanceOf: TypeError,
+    message: 'At least one parameter is required for /access_codes/list',
+  })
+
+  t.is(requestCount, 0)
+})
+
+test('SeamPaginator: fetches pages for a request with valid parameters', async (t) => {
+  const { seed, endpoint } = await getTestServer(t)
+  const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
+
+  // UPSTREAM: The fake does not return a pagination object for this endpoint.
+  nock(endpoint)
+    .get('/access_codes/list')
+    .query(true)
+    .reply(200, {
+      access_codes: [{ access_code_id: 'access-code-1' }],
+      pagination: {
+        has_next_page: false,
+        next_page_cursor: null,
+        next_page_url: null,
+      },
+    })
+
+  const pages = seam.createPaginator(
+    seam.accessCodes.list({ device_id: seed.august_device_1 }),
+  )
+  const [accessCodes, pagination] = await pages.firstPage()
+
+  t.is(accessCodes.length, 1)
+  t.false(pagination.hasNextPage)
+})
+
 test('SeamPaginator: instance allows iteration over all pages', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
