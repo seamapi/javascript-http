@@ -184,10 +184,11 @@ export class SeamHttpAccessMethods {
       requiredParameterNames: ['access_method_id', 'card_number'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -226,10 +227,11 @@ export class SeamHttpAccessMethods {
       requiredParameterNames: ['access_method_id', 'acs_encoder_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -307,10 +309,11 @@ export class SeamHttpAccessMethods {
       requiredParameterNames: ['access_method_id', 'acs_entrance_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 }
