@@ -186,10 +186,11 @@ export class SeamHttpLocks {
       requiredParameterNames: ['auto_lock_enabled', 'device_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -248,10 +249,11 @@ export class SeamHttpLocks {
       requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -271,10 +273,11 @@ export class SeamHttpLocks {
       requiredParameterNames: ['device_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 }

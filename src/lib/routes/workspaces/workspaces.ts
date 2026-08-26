@@ -236,10 +236,11 @@ export class SeamHttpWorkspaces {
       requiredParameterNames: [],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 

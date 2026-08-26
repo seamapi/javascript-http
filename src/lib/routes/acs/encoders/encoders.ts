@@ -185,10 +185,11 @@ export class SeamHttpAcsEncoders {
       requiredParameterNames: ['acs_encoder_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -247,10 +248,11 @@ export class SeamHttpAcsEncoders {
       requiredParameterNames: ['acs_encoder_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 
@@ -270,10 +272,11 @@ export class SeamHttpAcsEncoders {
       requiredParameterNames: ['acs_encoder_id'],
       responseKey: 'action_attempt',
       options,
-      actionAttempts: SeamHttpActionAttempts.fromClient(this.client, {
-        ...this.defaults,
-        waitForActionAttempt: false,
-      }),
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
     })
   }
 }
