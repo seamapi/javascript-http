@@ -140,7 +140,7 @@ export class SeamHttpDevicesUnmanaged {
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
     request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
-    return new SeamPaginator<TResponse, TResponseKey>(this, request)
+    return new SeamPaginator<TResponse, TResponseKey>(request)
   }
 
   async updateClientSessionToken(
