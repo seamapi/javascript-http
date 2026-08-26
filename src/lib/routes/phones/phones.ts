@@ -30,7 +30,10 @@ import {
 } from 'lib/parse-options.js'
 import type { Phone } from 'lib/resources/phone.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 import { SeamHttpPhonesSimulate } from './simulate/index.js'
@@ -136,7 +139,7 @@ export class SeamHttpPhones {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }

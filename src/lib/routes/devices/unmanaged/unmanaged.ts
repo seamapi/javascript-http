@@ -31,7 +31,10 @@ import {
 import type { RequireAtLeastOne } from 'lib/request-parameters.js'
 import type { UnmanagedDevice } from 'lib/resources/unmanaged-device.js'
 import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
-import { SeamHttpRequest } from 'lib/seam-http-request.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
 export class SeamHttpDevicesUnmanaged {
@@ -135,7 +138,7 @@ export class SeamHttpDevicesUnmanaged {
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
-    request: SeamHttpRequest<TResponse, TResponseKey>,
+    request: SeamPaginatedRequest<TResponse, TResponseKey>,
   ): SeamPaginator<TResponse, TResponseKey> {
     return new SeamPaginator<TResponse, TResponseKey>(this, request)
   }
@@ -454,7 +457,7 @@ export type DevicesUnmanagedListParameters = {
  */
 export type DevicesUnmanagedListResponse = { devices: Array<UnmanagedDevice> }
 
-export type DevicesUnmanagedListRequest = SeamHttpRequest<
+export type DevicesUnmanagedListRequest = SeamPaginatedRequest<
   DevicesUnmanagedListResponse,
   'devices'
 >
