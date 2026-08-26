@@ -180,6 +180,7 @@ export class SeamHttpAcsEncoders {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_encoder_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>
@@ -204,6 +205,7 @@ export class SeamHttpAcsEncoders {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_encoder_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_encoder',
       options,
     })
@@ -223,6 +225,7 @@ export class SeamHttpAcsEncoders {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_encoders',
       hasPagination: true,
       options,
@@ -243,6 +246,7 @@ export class SeamHttpAcsEncoders {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_encoder_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>
@@ -267,6 +271,7 @@ export class SeamHttpAcsEncoders {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_encoder_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>

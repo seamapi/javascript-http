@@ -172,6 +172,7 @@ export class SeamHttpAccessCodesSimulate {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['code', 'device_id', 'name'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_code',
       options,
     })

@@ -191,6 +191,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_user_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -210,6 +211,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'user_identity',
       options,
     })
@@ -229,6 +231,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -248,6 +251,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'instant_key',
       options,
     })
@@ -267,6 +271,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: ['user_identity_id', 'user_identity_key'],
       responseKey: 'user_identity',
       options,
     })
@@ -286,6 +291,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id', 'user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -305,6 +311,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'user_identities',
       hasPagination: true,
       options,
@@ -325,6 +332,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'devices',
       options,
     })
@@ -344,6 +352,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_entrances',
       options,
     })
@@ -363,6 +372,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_systems',
       options,
     })
@@ -382,6 +392,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'acs_users',
       options,
     })
@@ -407,6 +418,12 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'merged_user_identity_ids',
+        'user_identity_id',
+        'merged_user_identity_keys',
+        'user_identity_key',
+      ],
       responseKey: undefined,
       options,
     })
@@ -426,6 +443,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['acs_user_id', 'user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -445,6 +463,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id', 'user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -464,6 +483,7 @@ export class SeamHttpUserIdentities {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['user_identity_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -572,14 +592,17 @@ export type UserIdentitiesGenerateInstantKeyRequest = SeamHttpRequest<
 
 export interface UserIdentitiesGenerateInstantKeyOptions {}
 
-export type UserIdentitiesGetParameters = RequireAtLeastOne<{
-  /**
-   * ID of the user identity that you want to get.
-   */
-  user_identity_id?: string | undefined
+export type UserIdentitiesGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the user identity that you want to get.
+     */
+    user_identity_id?: string | undefined
 
-  user_identity_key?: string | undefined
-}>
+    user_identity_key?: string | undefined
+  },
+  'user_identity_id' | 'user_identity_key'
+>
 
 /**
  * @deprecated Use UserIdentitiesGetRequest instead.
@@ -740,24 +763,30 @@ export type UserIdentitiesListAcsUsersRequest = SeamHttpRequest<
 
 export interface UserIdentitiesListAcsUsersOptions {}
 
-export type UserIdentitiesMergeParameters = RequireAtLeastOne<{
-  /**
-   * IDs of the user identities to merge into the primary user identity. These user identities are deleted.
-   */
-  merged_user_identity_ids?: Array<string> | undefined
-  /**
-   * ID of the primary user identity to keep.
-   */
-  user_identity_id?: string | undefined
-  /**
-   * Keys of the user identities to merge into the primary user identity. These user identities are deleted.
-   */
-  merged_user_identity_keys?: Array<string> | undefined
-  /**
-   * Key of the primary user identity to keep.
-   */
-  user_identity_key?: string | undefined
-}>
+export type UserIdentitiesMergeParameters = RequireAtLeastOne<
+  {
+    /**
+     * IDs of the user identities to merge into the primary user identity. These user identities are deleted.
+     */
+    merged_user_identity_ids?: Array<string> | undefined
+    /**
+     * ID of the primary user identity to keep.
+     */
+    user_identity_id?: string | undefined
+    /**
+     * Keys of the user identities to merge into the primary user identity. These user identities are deleted.
+     */
+    merged_user_identity_keys?: Array<string> | undefined
+    /**
+     * Key of the primary user identity to keep.
+     */
+    user_identity_key?: string | undefined
+  },
+  | 'merged_user_identity_ids'
+  | 'user_identity_id'
+  | 'merged_user_identity_keys'
+  | 'user_identity_key'
+>
 
 /**
  * @deprecated Use UserIdentitiesMergeRequest instead.

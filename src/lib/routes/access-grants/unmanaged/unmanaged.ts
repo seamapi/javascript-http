@@ -172,6 +172,7 @@ export class SeamHttpAccessGrantsUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_grant_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_grant',
       options,
     })
@@ -191,6 +192,7 @@ export class SeamHttpAccessGrantsUnmanaged {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'access_grants',
       hasPagination: true,
       options,
@@ -215,6 +217,7 @@ export class SeamHttpAccessGrantsUnmanaged {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_grant_id', 'is_managed'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })

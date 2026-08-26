@@ -177,6 +177,7 @@ export class SeamHttpThermostatsDailyPrograms {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id', 'name', 'periods'],
+      atLeastOneParameterNames: [],
       responseKey: 'thermostat_daily_program',
       options,
     })
@@ -196,6 +197,7 @@ export class SeamHttpThermostatsDailyPrograms {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['thermostat_daily_program_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -219,6 +221,7 @@ export class SeamHttpThermostatsDailyPrograms {
         'periods',
         'thermostat_daily_program_id',
       ],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>

@@ -186,6 +186,7 @@ export class SeamHttpConnectedAccounts {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['connected_account_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -205,6 +206,7 @@ export class SeamHttpConnectedAccounts {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: ['connected_account_id', 'email'],
       responseKey: 'connected_account',
       options,
     })
@@ -224,6 +226,7 @@ export class SeamHttpConnectedAccounts {
       parameters,
       hasRequiredParameters: false,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [],
       responseKey: 'connected_accounts',
       hasPagination: true,
       options,
@@ -244,6 +247,7 @@ export class SeamHttpConnectedAccounts {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['connected_account_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -263,6 +267,7 @@ export class SeamHttpConnectedAccounts {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['connected_account_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -285,16 +290,19 @@ export type ConnectedAccountsDeleteRequest = SeamHttpRequest<void, undefined>
 
 export interface ConnectedAccountsDeleteOptions {}
 
-export type ConnectedAccountsGetParameters = RequireAtLeastOne<{
-  /**
-   * ID of the connected account that you want to get.
-   */
-  connected_account_id?: string | undefined
-  /**
-   * Email address associated with the connected account that you want to get.
-   */
-  email?: string | undefined
-}>
+export type ConnectedAccountsGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the connected account that you want to get.
+     */
+    connected_account_id?: string | undefined
+    /**
+     * Email address associated with the connected account that you want to get.
+     */
+    email?: string | undefined
+  },
+  'connected_account_id' | 'email'
+>
 
 /**
  * @deprecated Use ConnectedAccountsGetRequest instead.

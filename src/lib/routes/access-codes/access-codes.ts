@@ -184,6 +184,7 @@ export class SeamHttpAccessCodes {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_code',
       options,
     })
@@ -213,6 +214,7 @@ export class SeamHttpAccessCodes {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_ids'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_codes',
       options,
     })
@@ -232,6 +234,7 @@ export class SeamHttpAccessCodes {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_code_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -251,6 +254,7 @@ export class SeamHttpAccessCodes {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'generated_code',
       options,
     })
@@ -272,6 +276,7 @@ export class SeamHttpAccessCodes {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: ['access_code_id', 'code', 'device_id'],
       responseKey: 'access_code',
       options,
     })
@@ -293,6 +298,16 @@ export class SeamHttpAccessCodes {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'access_code_ids',
+        'access_grant_id',
+        'access_grant_key',
+        'access_method_id',
+        'customer_key',
+        'device_id',
+        'search',
+        'user_identifier_key',
+      ],
       responseKey: 'access_codes',
       hasPagination: true,
       options,
@@ -321,6 +336,7 @@ export class SeamHttpAccessCodes {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_code_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_code',
       options,
     })
@@ -342,6 +358,7 @@ export class SeamHttpAccessCodes {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -363,6 +380,7 @@ export class SeamHttpAccessCodes {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_code_id'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -386,6 +404,7 @@ export class SeamHttpAccessCodes {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['common_code_key'],
+      atLeastOneParameterNames: [],
       responseKey: undefined,
       options,
     })
@@ -587,20 +606,23 @@ export type AccessCodesGenerateCodeRequest = SeamHttpRequest<
 
 export interface AccessCodesGenerateCodeOptions {}
 
-export type AccessCodesGetParameters = RequireAtLeastOne<{
-  /**
-   * ID of the access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
-   */
-  access_code_id?: string | undefined
-  /**
-   * Code of the access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
-   */
-  code?: string | undefined
-  /**
-   * ID of the device containing the access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
-   */
-  device_id?: string | undefined
-}>
+export type AccessCodesGetParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
+     */
+    access_code_id?: string | undefined
+    /**
+     * Code of the access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
+     */
+    code?: string | undefined
+    /**
+     * ID of the device containing the access code that you want to get. You must specify either `access_code_id` or both `device_id` and `code`.
+     */
+    device_id?: string | undefined
+  },
+  'access_code_id' | 'code' | 'device_id'
+>
 
 /**
  * @deprecated Use AccessCodesGetRequest instead.
@@ -614,48 +636,58 @@ export type AccessCodesGetRequest = SeamHttpRequest<
 
 export interface AccessCodesGetOptions {}
 
-export type AccessCodesListParameters = RequireAtLeastOne<{
-  /**
-   * IDs of the access codes that you want to retrieve. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
-   */
-  access_code_ids?: Array<string> | undefined
-  /**
-   * ID of the access grant for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
-   */
-  access_grant_id?: string | undefined
-  /**
-   * Key of the access grant for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
-   */
-  access_grant_key?: string | undefined
-  /**
-   * ID of the access method for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
-   */
-  access_method_id?: string | undefined
-  /**
-   * Customer key for which you want to list access codes.
-   */
-  customer_key?: string | undefined
-  /**
-   * ID of the device for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
-   */
-  device_id?: string | undefined
-  /**
-   * Numerical limit on the number of access codes to return.
-   */
-  limit?: number | undefined
-  /**
-   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
-   */
-  page_cursor?: string | null | undefined
-  /**
-   * String for which to search. Filters returned access codes to include all records that satisfy a partial match using `name`, `code` or `access_code_id`.
-   */
-  search?: string | undefined
-  /**
-   * Your user ID for the user by which to filter access codes.
-   */
-  user_identifier_key?: string | undefined
-}>
+export type AccessCodesListParameters = RequireAtLeastOne<
+  {
+    /**
+     * IDs of the access codes that you want to retrieve. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
+     */
+    access_code_ids?: Array<string> | undefined
+    /**
+     * ID of the access grant for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
+     */
+    access_grant_id?: string | undefined
+    /**
+     * Key of the access grant for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
+     */
+    access_grant_key?: string | undefined
+    /**
+     * ID of the access method for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
+     */
+    access_method_id?: string | undefined
+    /**
+     * Customer key for which you want to list access codes.
+     */
+    customer_key?: string | undefined
+    /**
+     * ID of the device for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
+     */
+    device_id?: string | undefined
+    /**
+     * Numerical limit on the number of access codes to return.
+     */
+    limit?: number | undefined
+    /**
+     * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+     */
+    page_cursor?: string | null | undefined
+    /**
+     * String for which to search. Filters returned access codes to include all records that satisfy a partial match using `name`, `code` or `access_code_id`.
+     */
+    search?: string | undefined
+    /**
+     * Your user ID for the user by which to filter access codes.
+     */
+    user_identifier_key?: string | undefined
+  },
+  | 'access_code_ids'
+  | 'access_grant_id'
+  | 'access_grant_key'
+  | 'access_method_id'
+  | 'customer_key'
+  | 'device_id'
+  | 'search'
+  | 'user_identifier_key'
+>
 
 /**
  * @deprecated Use AccessCodesListRequest instead.

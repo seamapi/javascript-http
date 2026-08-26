@@ -182,6 +182,7 @@ export class SeamHttpAccessMethods {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_method_id', 'card_number'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>
@@ -206,6 +207,11 @@ export class SeamHttpAccessMethods {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'access_method_id',
+        'access_grant_id',
+        'reservation_key',
+      ],
       responseKey: undefined,
       options,
     })
@@ -225,6 +231,7 @@ export class SeamHttpAccessMethods {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_method_id', 'acs_encoder_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>
@@ -249,6 +256,7 @@ export class SeamHttpAccessMethods {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_method_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'access_method',
       options,
     })
@@ -268,6 +276,7 @@ export class SeamHttpAccessMethods {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_method_ids'],
+      atLeastOneParameterNames: [],
       responseKey: 'batch',
       options,
     })
@@ -287,6 +296,14 @@ export class SeamHttpAccessMethods {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: [],
+      atLeastOneParameterNames: [
+        'access_code_id',
+        'access_grant_id',
+        'access_grant_key',
+        'acs_entrance_id',
+        'device_id',
+        'space_id',
+      ],
       responseKey: 'access_methods',
       hasPagination: true,
       options,
@@ -307,6 +324,7 @@ export class SeamHttpAccessMethods {
       parameters,
       hasRequiredParameters: true,
       requiredParameterNames: ['access_method_id', 'acs_entrance_id'],
+      atLeastOneParameterNames: [],
       responseKey: 'action_attempt',
       options,
       actionAttempts: () =>
@@ -345,20 +363,23 @@ export type AccessMethodsAssignCardOptions = Pick<
   'waitForActionAttempt'
 >
 
-export type AccessMethodsDeleteParameters = RequireAtLeastOne<{
-  /**
-   * ID of access method to delete.
-   */
-  access_method_id?: string | undefined
-  /**
-   * ID of access grant whose access methods should be deleted.
-   */
-  access_grant_id?: string | undefined
-  /**
-   * Reservation key of the access grant whose access methods should be deleted.
-   */
-  reservation_key?: string | undefined
-}>
+export type AccessMethodsDeleteParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of access method to delete.
+     */
+    access_method_id?: string | undefined
+    /**
+     * ID of access grant whose access methods should be deleted.
+     */
+    access_grant_id?: string | undefined
+    /**
+     * Reservation key of the access grant whose access methods should be deleted.
+     */
+    reservation_key?: string | undefined
+  },
+  'access_method_id' | 'access_grant_id' | 'reservation_key'
+>
 
 /**
  * @deprecated Use AccessMethodsDeleteRequest instead.
@@ -471,40 +492,48 @@ export type AccessMethodsGetRelatedRequest = SeamHttpRequest<
 
 export interface AccessMethodsGetRelatedOptions {}
 
-export type AccessMethodsListParameters = RequireAtLeastOne<{
-  /**
-   * ID of the access code by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
-   */
-  access_code_id?: string | undefined
-  /**
-   * ID of Access Grant to list access methods for.
-   */
-  access_grant_id?: string | undefined
-  /**
-   * Key of Access Grant to list access methods for.
-   */
-  access_grant_key?: string | undefined
-  /**
-   * ID of the entrance for which you want to retrieve all access methods that grant access to it.
-   */
-  acs_entrance_id?: string | undefined
-  /**
-   * ID of the device by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
-   */
-  device_id?: string | undefined
-  /**
-   * Maximum number of records to return per page.
-   */
-  limit?: number | undefined
-  /**
-   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
-   */
-  page_cursor?: string | null | undefined
-  /**
-   * ID of the space by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
-   */
-  space_id?: string | undefined
-}>
+export type AccessMethodsListParameters = RequireAtLeastOne<
+  {
+    /**
+     * ID of the access code by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
+     */
+    access_code_id?: string | undefined
+    /**
+     * ID of Access Grant to list access methods for.
+     */
+    access_grant_id?: string | undefined
+    /**
+     * Key of Access Grant to list access methods for.
+     */
+    access_grant_key?: string | undefined
+    /**
+     * ID of the entrance for which you want to retrieve all access methods that grant access to it.
+     */
+    acs_entrance_id?: string | undefined
+    /**
+     * ID of the device by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
+     */
+    device_id?: string | undefined
+    /**
+     * Maximum number of records to return per page.
+     */
+    limit?: number | undefined
+    /**
+     * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+     */
+    page_cursor?: string | null | undefined
+    /**
+     * ID of the space by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
+     */
+    space_id?: string | undefined
+  },
+  | 'access_code_id'
+  | 'access_grant_id'
+  | 'access_grant_key'
+  | 'acs_entrance_id'
+  | 'device_id'
+  | 'space_id'
+>
 
 /**
  * @deprecated Use AccessMethodsListRequest instead.
