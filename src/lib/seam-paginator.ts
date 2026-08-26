@@ -86,18 +86,21 @@ export class SeamPaginator<
       throw new Error('Cannot paginate a response without a responseKey')
     }
 
+    const method = this.#request.method
+
+    const requestData = {
+      ...(usesParams(method)
+        ? (this.#request.params ?? {})
+        : ((this.#request.body as Record<string, unknown> | null) ?? {})),
+      page_cursor: nextPageCursor,
+    }
+
     const request = new SeamHttpRequest<TResponse, TResponseKey>(this.#parent, {
       pathname: this.#request.pathname,
-      method: this.#request.method,
+      method,
       responseKey,
-      params:
-        this.#request.params != null
-          ? { ...this.#request.params, page_cursor: nextPageCursor }
-          : undefined,
-      body:
-        this.#request.body != null
-          ? { ...this.#request.body, page_cursor: nextPageCursor }
-          : undefined,
+      params: usesParams(method) ? requestData : undefined,
+      body: usesParams(method) ? undefined : requestData,
     })
 
     const response = await request.fetchResponse()
@@ -189,6 +192,9 @@ export class SeamPaginator<
     }
   }
 }
+
+const usesParams = (method: string): boolean =>
+  ['GET', 'DELETE'].includes(method.toUpperCase())
 
 type EnsureReadonlyArray<T> = T extends readonly any[] ? T : never
 type EnsureMutableArray<T> = T extends any[] ? T : never
