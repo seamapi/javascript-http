@@ -21,6 +21,55 @@ export type ActionAttempt =
       /**
        * Error associated with the action.
        */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: {
+        /**
+         * Indicates whether the device confirmed that the lock action occurred.
+         */
+        was_confirmed_by_device?: boolean | undefined
+      }
+
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of locking a door.
+       */
+      action_type: 'LOCK_DOOR'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of locking a door.
+       */
+      action_type: 'LOCK_DOOR'
+
+      /**
+       * Error associated with the action.
+       */
       error: {
         /**
          * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -36,14 +85,58 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of unlocking a door.
+       */
+      action_type: 'UNLOCK_DOOR'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
       result: {
         /**
-         * Indicates whether the device confirmed that the lock action occurred.
+         * Indicates whether the device confirmed that the unlock action occurred.
          */
         was_confirmed_by_device?: boolean | undefined
       }
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of unlocking a door.
+       */
+      action_type: 'UNLOCK_DOOR'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -74,14 +167,9 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {
-        /**
-         * Indicates whether the device confirmed that the unlock action occurred.
-         */
-        was_confirmed_by_device?: boolean | undefined
-      }
+      result: null
 
-      status: 'success' | 'pending' | 'error'
+      status: 'error'
     }
   | {
       /**
@@ -94,24 +182,7 @@ export type ActionAttempt =
        */
       action_type: 'SCAN_CREDENTIAL'
 
-      error: {
-        /**
-         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
-         */
-        message: string
-
-        /**
-         * Error type to indicate that the Seam Bridge is disconnected or cannot reach the access control system.
-         */
-        type:
-          | 'uncategorized_error'
-          | 'action_attempt_expired'
-          | 'no_credential_on_encoder'
-          | 'encoder_not_online'
-          | 'encoder_communication_timeout'
-          | 'bridge_disconnected'
-      }
-
+      error: null
       /**
        * Result of scanning a card. If the attempt was successful, includes a snapshot of credential data read from the physical encoder, the corresponding data stored on Seam and the access system, and any associated warnings.
        */
@@ -468,7 +539,62 @@ export type ActionAttempt =
         }>
       }
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of scanning a credential.
+       */
+      action_type: 'SCAN_CREDENTIAL'
+
+      error: null
+      /**
+       * Result of scanning a card. If the attempt was successful, includes a snapshot of credential data read from the physical encoder, the corresponding data stored on Seam and the access system, and any associated warnings.
+       */
+      result: null
+
+      status: 'pending'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of scanning a credential.
+       */
+      action_type: 'SCAN_CREDENTIAL'
+
+      error: {
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Error type to indicate that the Seam Bridge is disconnected or cannot reach the access control system.
+         */
+        type:
+          | 'uncategorized_error'
+          | 'action_attempt_expired'
+          | 'no_credential_on_encoder'
+          | 'encoder_not_online'
+          | 'encoder_communication_timeout'
+          | 'bridge_disconnected'
+      }
+
+      /**
+       * Result of scanning a card. If the attempt was successful, includes a snapshot of credential data read from the physical encoder, the corresponding data stored on Seam and the access system, and any associated warnings.
+       */
+      result: null
+
+      status: 'error'
     }
   | {
       /**
@@ -481,28 +607,7 @@ export type ActionAttempt =
        */
       action_type: 'ENCODE_CREDENTIAL'
 
-      error: {
-        /**
-         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
-         */
-        message: string
-
-        /**
-         * Error type to indicate that the credential was deleted and can no longer be encoded.
-         */
-        type:
-          | 'uncategorized_error'
-          | 'action_attempt_expired'
-          | 'no_credential_on_encoder'
-          | 'incompatible_card_format'
-          | 'credential_cannot_be_reissued'
-          | 'encoder_not_online'
-          | 'encoder_communication_timeout'
-          | 'bridge_disconnected'
-          | 'encoding_interrupted'
-          | 'credential_deleted'
-      }
-
+      error: null
       /**
        * Result of an encoding attempt. If the attempt was successful, includes the credential data that was encoded onto the card.
        */
@@ -757,7 +862,66 @@ export type ActionAttempt =
         workspace_id: string
       }
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of encoding credential data from the physical encoder onto a card.
+       */
+      action_type: 'ENCODE_CREDENTIAL'
+
+      error: null
+      /**
+       * Result of an encoding attempt. If the attempt was successful, includes the credential data that was encoded onto the card.
+       */
+      result: null
+
+      status: 'pending'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of encoding credential data from the physical encoder onto a card.
+       */
+      action_type: 'ENCODE_CREDENTIAL'
+
+      error: {
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Error type to indicate that the credential was deleted and can no longer be encoded.
+         */
+        type:
+          | 'uncategorized_error'
+          | 'action_attempt_expired'
+          | 'no_credential_on_encoder'
+          | 'incompatible_card_format'
+          | 'credential_cannot_be_reissued'
+          | 'encoder_not_online'
+          | 'encoder_communication_timeout'
+          | 'bridge_disconnected'
+          | 'encoding_interrupted'
+          | 'credential_deleted'
+      }
+
+      /**
+       * Result of an encoding attempt. If the attempt was successful, includes the credential data that was encoded onto the card.
+       */
+      result: null
+
+      status: 'error'
     }
   | {
       /**
@@ -770,21 +934,7 @@ export type ActionAttempt =
        */
       action_type: 'SCAN_TO_ASSIGN_CREDENTIAL'
 
-      error: {
-        /**
-         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
-         */
-        message: string
-
-        /**
-         * Error type to indicate that there is no credential on the encoder.
-         */
-        type:
-          | 'uncategorized_error'
-          | 'action_attempt_expired'
-          | 'no_credential_on_encoder'
-      }
-
+      error: null
       /**
        * Result of a scan to assign attempt. If the attempt was successful, includes the credential data that was scanned and assigned.
        */
@@ -1041,7 +1191,59 @@ export type ActionAttempt =
         workspace_id: string
       }
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of scanning a physical card and assigning the credential to an ACS user.
+       */
+      action_type: 'SCAN_TO_ASSIGN_CREDENTIAL'
+
+      error: null
+      /**
+       * Result of a scan to assign attempt. If the attempt was successful, includes the credential data that was scanned and assigned.
+       */
+      result: null
+
+      status: 'pending'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of scanning a physical card and assigning the credential to an ACS user.
+       */
+      action_type: 'SCAN_TO_ASSIGN_CREDENTIAL'
+
+      error: {
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Error type to indicate that there is no credential on the encoder.
+         */
+        type:
+          | 'uncategorized_error'
+          | 'action_attempt_expired'
+          | 'no_credential_on_encoder'
+      }
+
+      /**
+       * Result of a scan to assign attempt. If the attempt was successful, includes the credential data that was scanned and assigned.
+       */
+      result: null
+
+      status: 'error'
     }
   | {
       /**
@@ -1054,21 +1256,7 @@ export type ActionAttempt =
        */
       action_type: 'ASSIGN_CREDENTIAL'
 
-      error: {
-        /**
-         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
-         */
-        message: string
-
-        /**
-         * Error type to indicate that no matching credential was found.
-         */
-        type:
-          | 'uncategorized_error'
-          | 'action_attempt_expired'
-          | 'credential_not_found'
-      }
-
+      error: null
       /**
        * Result of assigning a credential. If successful, includes the updated access method with the assigned credential.
        */
@@ -1243,7 +1431,103 @@ export type ActionAttempt =
         workspace_id: string
       }
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of assigning a pre-registered card credential to an access method.
+       */
+      action_type: 'ASSIGN_CREDENTIAL'
+
+      error: null
+      /**
+       * Result of assigning a credential. If successful, includes the updated access method with the assigned credential.
+       */
+      result: null
+
+      status: 'pending'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of assigning a pre-registered card credential to an access method.
+       */
+      action_type: 'ASSIGN_CREDENTIAL'
+
+      error: {
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Error type to indicate that no matching credential was found.
+         */
+        type:
+          | 'uncategorized_error'
+          | 'action_attempt_expired'
+          | 'credential_not_found'
+      }
+
+      /**
+       * Result of assigning a credential. If successful, includes the updated access method with the assigned credential.
+       */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of resetting a sandbox workspace.
+       */
+      action_type: 'RESET_SANDBOX_WORKSPACE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: {}
+
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of resetting a sandbox workspace.
+       */
+      action_type: 'RESET_SANDBOX_WORKSPACE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1274,9 +1558,53 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of setting the fan mode on a thermostat.
+       */
+      action_type: 'SET_FAN_MODE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
       result: {}
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of setting the fan mode on a thermostat.
+       */
+      action_type: 'SET_FAN_MODE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1307,9 +1635,53 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of setting the HVAC mode on a thermostat.
+       */
+      action_type: 'SET_HVAC_MODE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
       result: {}
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of setting the HVAC mode on a thermostat.
+       */
+      action_type: 'SET_HVAC_MODE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1340,9 +1712,53 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of a climate preset activation.
+       */
+      action_type: 'ACTIVATE_CLIMATE_PRESET'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
       result: {}
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of a climate preset activation.
+       */
+      action_type: 'ACTIVATE_CLIMATE_PRESET'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1373,9 +1789,53 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of simulating a keypad code entry.
+       */
+      action_type: 'SIMULATE_KEYPAD_CODE_ENTRY'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
       result: {}
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of simulating a keypad code entry.
+       */
+      action_type: 'SIMULATE_KEYPAD_CODE_ENTRY'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1406,9 +1866,53 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of simulating a manual lock action using a keypad.
+       */
+      action_type: 'SIMULATE_MANUAL_LOCK_VIA_KEYPAD'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
       result: {}
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of simulating a manual lock action using a keypad.
+       */
+      action_type: 'SIMULATE_MANUAL_LOCK_VIA_KEYPAD'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1439,9 +1943,53 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of pushing thermostat programs.
+       */
+      action_type: 'PUSH_THERMOSTAT_PROGRAMS'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
       result: {}
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of pushing thermostat programs.
+       */
+      action_type: 'PUSH_THERMOSTAT_PROGRAMS'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1472,9 +2020,53 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of configuring the auto-lock on a lock.
+       */
+      action_type: 'CONFIGURE_AUTO_LOCK'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
       result: {}
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of configuring the auto-lock on a lock.
+       */
+      action_type: 'CONFIGURE_AUTO_LOCK'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1505,9 +2097,53 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Syncing access codes is pending.
+       */
+      action_type: 'SYNC_ACCESS_CODES'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
       result: {}
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Syncing access codes is pending.
+       */
+      action_type: 'SYNC_ACCESS_CODES'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1538,9 +2174,58 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {}
+      result: null
 
-      status: 'success' | 'pending' | 'error'
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Creating an access code is pending.
+       */
+      action_type: 'CREATE_ACCESS_CODE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: {
+        /**
+         * Created access code.
+         */
+        access_code: Record<string, unknown>
+      }
+
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Creating an access code is pending.
+       */
+      action_type: 'CREATE_ACCESS_CODE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1571,14 +2256,53 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {
-        /**
-         * Created access code.
-         */
-        access_code: Record<string, unknown>
-      }
+      result: null
 
-      status: 'success' | 'pending' | 'error'
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Deleting an access code is pending.
+       */
+      action_type: 'DELETE_ACCESS_CODE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: {}
+
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Deleting an access code is pending.
+       */
+      action_type: 'DELETE_ACCESS_CODE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1609,9 +2333,58 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {}
+      result: null
 
-      status: 'success' | 'pending' | 'error'
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Updating an access code is pending.
+       */
+      action_type: 'UPDATE_ACCESS_CODE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: {
+        /**
+         * Updated access code.
+         */
+        access_code?: Record<string, unknown> | undefined
+      }
+
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Updating an access code is pending.
+       */
+      action_type: 'UPDATE_ACCESS_CODE'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1642,14 +2415,58 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Creating a noise threshold is pending.
+       */
+      action_type: 'CREATE_NOISE_THRESHOLD'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
       result: {
         /**
-         * Updated access code.
+         * Created noise threshold.
          */
-        access_code?: Record<string, unknown> | undefined
+        noise_threshold: Record<string, unknown>
       }
 
-      status: 'success' | 'pending' | 'error'
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Creating a noise threshold is pending.
+       */
+      action_type: 'CREATE_NOISE_THRESHOLD'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1680,14 +2497,53 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {
-        /**
-         * Created noise threshold.
-         */
-        noise_threshold: Record<string, unknown>
-      }
+      result: null
 
-      status: 'success' | 'pending' | 'error'
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Deleting a noise threshold is pending.
+       */
+      action_type: 'DELETE_NOISE_THRESHOLD'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: {}
+
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Deleting a noise threshold is pending.
+       */
+      action_type: 'DELETE_NOISE_THRESHOLD'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1718,9 +2574,58 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {}
+      result: null
 
-      status: 'success' | 'pending' | 'error'
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Updating a noise threshold is pending.
+       */
+      action_type: 'UPDATE_NOISE_THRESHOLD'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: {
+        /**
+         * Updated noise threshold.
+         */
+        noise_threshold: Record<string, unknown>
+      }
+
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Updating a noise threshold is pending.
+       */
+      action_type: 'UPDATE_NOISE_THRESHOLD'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
     }
   | {
       /**
@@ -1751,12 +2656,7 @@ export type ActionAttempt =
       /**
        * Result of the action.
        */
-      result: {
-        /**
-         * Updated noise threshold.
-         */
-        noise_threshold: Record<string, unknown>
-      }
+      result: null
 
-      status: 'success' | 'pending' | 'error'
+      status: 'error'
     }

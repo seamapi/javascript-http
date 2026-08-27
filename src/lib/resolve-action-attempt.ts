@@ -162,13 +162,15 @@ const isFailedActionAttempt = <T extends ActionAttempt>(
 /**
  * An action attempt that has succeeded.
  */
-export type SucceededActionAttempt<T extends ActionAttempt> = T & {
-  status: 'success'
-}
+export type SucceededActionAttempt<T extends ActionAttempt> = Extract<
+  T,
+  { status: 'success' }
+>
 
 /**
  * An action attempt that has failed.
  */
-export type FailedActionAttempt<T extends ActionAttempt> = T & {
-  status: 'error'
-}
+export type FailedActionAttempt<T extends ActionAttempt> = Extract<
+  T,
+  { status: 'error' }
+>
