@@ -63,10 +63,6 @@ export const getResourceLayoutContexts = (
   }))
 }
 
-// Expand an action attempt into one union member per status from its status
-// enum. In each member, the status property is rendered as the status literal,
-// and any property annotated with actionAttemptStatuses is rendered as null
-// for the statuses it does not list.
 const expandActionAttemptByStatus = (resource: Resource): Resource[] => {
   const statusProperty = resource.properties.find(
     (property): property is EnumProperty =>
