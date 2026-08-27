@@ -1,6 +1,6 @@
 {
 {{#each properties}}
   {{> doc}}
-  {{json name}}{{#if isOptional}}?{{/if}}: {{> resource-property-type }}{{#if isNullable}} | null{{/if}}{{#if isOptional}} | undefined{{/if}}
+  {{json name}}{{#if isOptional}}?{{/if}}: {{#if renderAsNull}}null{{else}}{{> resource-property-type }}{{#if isNullable}} | null{{/if}}{{/if}}{{#if isOptional}} | undefined{{/if}}
 {{/each}}
 }

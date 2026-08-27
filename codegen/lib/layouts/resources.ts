@@ -1,4 +1,10 @@
-import type { Blueprint, Resource } from '@seamapi/blueprint'
+import type {
+  ActionAttemptStatus,
+  Blueprint,
+  EnumProperty,
+  Property,
+  Resource,
+} from '@seamapi/blueprint'
 import { kebabCase, pascalCase } from 'change-case'
 
 export interface ResourceLayoutContext {
@@ -39,7 +45,7 @@ export const getResourceLayoutContexts = (
       ({ resourceType }) => !discriminatedResourceTypes.has(resourceType),
     ),
     ...blueprint.events,
-    ...blueprint.actionAttempts,
+    ...blueprint.actionAttempts.flatMap(expandActionAttemptByStatus),
   ]
   const resourceTypes = [
     ...new Set(resources.map(({ resourceType }) => resourceType)),
@@ -55,6 +61,44 @@ export const getResourceLayoutContexts = (
     isBatch: resourceType === 'batch',
     batchResources: resourceType === 'batch' ? batchResources : [],
   }))
+}
+
+// Expand an action attempt into one union member per status from its status
+// enum. In each member, the status property is rendered as the status literal,
+// and any property annotated with actionAttemptStatuses is rendered as null
+// for the statuses it does not list.
+const expandActionAttemptByStatus = (resource: Resource): Resource[] => {
+  const statusProperty = resource.properties.find(
+    (property): property is EnumProperty =>
+      property.name === 'status' && property.format === 'enum',
+  )
+  if (statusProperty == null) return [resource]
+
+  return statusProperty.values.map(({ name }) => {
+    const status = name as ActionAttemptStatus
+    return {
+      ...resource,
+      properties: resource.properties.map((property): Property => {
+        if (property === statusProperty) {
+          return {
+            ...statusProperty,
+            values: statusProperty.values.filter(
+              (value) => value.name === status,
+            ),
+          }
+        }
+        const { actionAttemptStatuses } = property
+        if (actionAttemptStatuses == null) return property
+        if (actionAttemptStatuses.includes(status)) return property
+        const nullRenderedProperty: Property & { renderAsNull: true } = {
+          ...property,
+          isNullable: false,
+          renderAsNull: true,
+        }
+        return nullRenderedProperty
+      }),
+    }
+  })
 }
 
 const getBatchResourceLayoutContexts = (
