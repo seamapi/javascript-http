@@ -473,6 +473,7 @@ export type DevicesListParameters = {
     | 'akiles'
     | 'aqara'
     | 'ecobee'
+    | 'dormakaba_oracode_iho'
     | 'honeywell_resideo'
     | 'keynest'
     | 'korelock'
