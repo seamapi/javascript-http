@@ -45,6 +45,11 @@ export type UnmanagedAccessCode = {
   device_id: string
 
   /**
+   * Human-readable label for the code's state: `Active` or `Not active`, based on whether the code is set on the device. For display only. The wording is not stable and is not an enumeration — never compare against or branch on it.
+   */
+  display_status: string
+
+  /**
    * Metadata for a dormakaba Oracode unmanaged access code. Only present for unmanaged access codes from dormakaba Oracode devices.
    */
   dormakaba_oracode_metadata?:
@@ -731,6 +736,7 @@ export type UnmanagedAccessCode = {
   starts_at?: string | null | undefined
   /**
    * Current status of the access code within the operational lifecycle. `set` indicates that the code is active and operational. `unset` indicates that the code exists on the provider but is not usable on the device.
+   * @deprecated Use `display_status` to show a person the code's state.
    */
   status: 'set' | 'unset'
 

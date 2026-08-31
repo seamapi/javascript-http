@@ -963,6 +963,41 @@ export type Device = {
         }
       | undefined
     /**
+     * Metadata for a dormakaba Oracode Homeowner's Portal device.
+     */
+    dormakaba_oracode_iho_metadata?:
+      | {
+          /**
+           * Door ID for a dormakaba Oracode Homeowner's Portal device.
+           */
+          door_id?: number | undefined
+          /**
+           * Name of the door for a dormakaba Oracode Homeowner's Portal device.
+           */
+          door_name?: string | undefined
+          /**
+           * IANA time zone for a dormakaba Oracode Homeowner's Portal device.
+           */
+          iana_timezone?: string | undefined
+          /**
+           * User levels for a dormakaba Oracode Homeowner's Portal device.
+           */
+          user_levels?:
+            | Array<{
+                userLevel?: number | undefined
+
+                userLevelCheckInTime?: string | undefined
+
+                userLevelCheckOutTime?: string | undefined
+
+                userLevelName?: string | undefined
+
+                userLevelType?: string | undefined
+              }>
+            | undefined
+        }
+      | undefined
+    /**
      * Metadata for a dormakaba Oracode device.
      */
     dormakaba_oracode_metadata?:

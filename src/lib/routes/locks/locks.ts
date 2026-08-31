@@ -458,6 +458,7 @@ export type LocksListParameters = {
     | 'keyincode'
     | 'akiles'
     | 'aqara'
+    | 'dormakaba_oracode_iho'
     | 'korelock'
     | 'lockly'
     | 'smartthings'
