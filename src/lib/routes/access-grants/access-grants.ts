@@ -594,6 +594,10 @@ export type AccessGrantsListParameters = {
    */
   reservation_key?: string | undefined
   /**
+   * String for which to search. Filters returned Access Grants to include all records that satisfy a partial match using `name`, `access_grant_key`, `reservation_key`, `access_grant_id`, `user_identity_id`, `user_identity_full_name`, `user_identity_email_address` or `user_identity_phone_number`.
+   */
+  search?: string | undefined
+  /**
    * ID of the space by which you want to filter the list of Access Grants.
    */
   space_id?: string | undefined

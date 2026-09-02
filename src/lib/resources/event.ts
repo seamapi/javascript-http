@@ -5656,7 +5656,14 @@ export type SeamEvent =
       /**
        * Method by which the lock was locked. `keycode`: an access code was used (see `access_code_id`). `manual`: a physical action such as a thumbturn or button press. `remote`: a remote action via an app, Bluetooth, or the Seam API (see `action_attempt_id` if Seam-initiated; see `is_via_bluetooth` or `is_via_nfc` for the transport). `automatic`: triggered automatically, for example by an auto-relock timer. `unknown`: could not be determined.
        */
-      method: 'keycode' | 'manual' | 'automatic' | 'unknown' | 'remote' | 'card'
+      method:
+        | 'keycode'
+        | 'manual'
+        | 'automatic'
+        | 'unknown'
+        | 'remote'
+        | 'card'
+        | 'mobile_key'
 
       /**
        * Date and time at which the event occurred.
@@ -5734,7 +5741,14 @@ export type SeamEvent =
       /**
        * Method by which the lock was unlocked. `keycode`: an [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes) was used (see `access_code_id`). `manual`: a physical action such as a thumbturn or handle press. `remote`: a remote action via an app, Bluetooth, or the Seam API (see `action_attempt_id` if Seam-initiated; see `is_via_bluetooth` or `is_via_nfc` for the transport). `automatic`: triggered automatically, for example by a time-based schedule. `unknown`: could not be determined.
        */
-      method: 'keycode' | 'manual' | 'automatic' | 'unknown' | 'remote' | 'card'
+      method:
+        | 'keycode'
+        | 'manual'
+        | 'automatic'
+        | 'unknown'
+        | 'remote'
+        | 'card'
+        | 'mobile_key'
 
       /**
        * Date and time at which the event occurred.
