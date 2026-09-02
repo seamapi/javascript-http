@@ -295,6 +295,42 @@ export type UnmanagedAccessMethod = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'delay_in_issuing'
+      } /**
+     * Indicates that the access system delivers this mobile key through an app invitation sent to the recipient's email address, but the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities) for this [access grant](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant) has no email address, so the mobile key cannot be delivered. Set an email address on the user identity when you create the access grant.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'user_identity_missing_email_address'
+      } /**
+     * Indicates that the access system delivers this mobile key to the recipient's phone number, but the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities) for this [access grant](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant) has no phone number, so the mobile key cannot be delivered. Set a phone number on the user identity when you create the access grant.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'user_identity_missing_phone_number'
       }
   >
 

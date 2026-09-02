@@ -984,15 +984,15 @@ export type Device = {
            */
           user_levels?:
             | Array<{
-                userLevel?: number | undefined
+                user_level?: number | undefined
 
-                userLevelCheckInTime?: string | undefined
+                user_level_check_in_time?: string | undefined
 
-                userLevelCheckOutTime?: string | undefined
+                user_level_check_out_time?: string | undefined
 
-                userLevelName?: string | undefined
+                user_level_name?: string | undefined
 
-                userLevelType?: string | undefined
+                user_level_type?: string | undefined
               }>
             | undefined
         }
