@@ -895,7 +895,8 @@ export type CustomersCreatePortalParameters = {
 
         resource_key?: string | undefined
 
-        resource_type?: 'reservation' | 'space' | 'device' | undefined
+        resource_type?:
+          'reservation' | 'space' | 'device' | 'acs_entrance' | undefined
       }
     | undefined
   /**
