@@ -791,10 +791,6 @@ export type Device = {
     akiles_metadata?:
       | {
           /**
-           * Group ID to which to add users for an Akiles device.
-           */
-          _member_group_id?: string | undefined
-          /**
            * Gadget ID for an Akiles device.
            */
           gadget_id?: string | undefined
