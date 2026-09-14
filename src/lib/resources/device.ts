@@ -1488,7 +1488,7 @@ export type Device = {
            */
           device_name?: string | undefined
           /**
-           * Display name for a Google Nest device.
+           * Name of the Google Home room containing the device. The device owner sets this value.
            */
           display_name?: string | undefined
           /**
