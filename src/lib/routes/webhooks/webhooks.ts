@@ -162,7 +162,7 @@ export class SeamHttpWebhooks {
   }
 
   /**
-   * Creates a new [webhook](https://docs.seam.co/developer-tools/webhooks).
+   * Creates a new [webhook](https://www.seam.co/docs/developer-tools/webhooks).
    */
   create(
     parameters: WebhooksCreateParameters,
@@ -182,7 +182,7 @@ export class SeamHttpWebhooks {
   }
 
   /**
-   * Deletes a specified [webhook](https://docs.seam.co/developer-tools/webhooks).
+   * Deletes a specified [webhook](https://www.seam.co/docs/developer-tools/webhooks).
    */
   delete(
     parameters: WebhooksDeleteParameters,
@@ -202,7 +202,7 @@ export class SeamHttpWebhooks {
   }
 
   /**
-   * Gets a specified [webhook](https://docs.seam.co/developer-tools/webhooks).
+   * Gets a specified [webhook](https://www.seam.co/docs/developer-tools/webhooks).
    */
   get(
     parameters: WebhooksGetParameters,
@@ -222,7 +222,7 @@ export class SeamHttpWebhooks {
   }
 
   /**
-   * Returns a list of all [webhooks](https://docs.seam.co/developer-tools/webhooks).
+   * Returns a list of all [webhooks](https://www.seam.co/docs/developer-tools/webhooks).
    */
   list(
     parameters?: WebhooksListParameters,
@@ -242,7 +242,7 @@ export class SeamHttpWebhooks {
   }
 
   /**
-   * Updates a specified [webhook](https://docs.seam.co/developer-tools/webhooks).
+   * Updates a specified [webhook](https://www.seam.co/docs/developer-tools/webhooks).
    */
   update(
     parameters: WebhooksUpdateParameters,

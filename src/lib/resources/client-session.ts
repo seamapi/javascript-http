@@ -4,7 +4,7 @@
  */
 
 /**
- * Represents a [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens). If you want to restrict your users' access to their own devices, use client sessions.
+ * Represents a [client session](https://www.seam.co/docs/core-concepts/authentication/client-session-tokens). If you want to restrict your users' access to their own devices, use client sessions.
  *
  * You create each client session with a custom `user_identifier_key`. Normally, the `user_identifier_key` is a user ID that your application provides.
  *
@@ -12,7 +12,7 @@
  *
  * A client session has a token that you can use with the Seam JavaScript SDK to make requests from the client (browser) directly to the Seam API. The token restricts the user's access to only the devices that they own.
  *
- * See also [Get Started with React](https://docs.seam.co/ui-components/overview/getting-started-with-seam-components/get-started-with-react-components-and-client-session-tokens).
+ * See also [Get Started with React](https://www.seam.co/docs/ui-components/overview/getting-started-with-seam-components/get-started-with-react-components-and-client-session-tokens).
  */
 export type ClientSession = {
   /**
@@ -21,49 +21,49 @@ export type ClientSession = {
   client_session_id: string
 
   /**
-   * IDs of the [Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews) associated with the [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   * IDs of the [Connect Webviews](https://www.seam.co/docs/core-concepts/connect-webviews) associated with the [client session](https://www.seam.co/docs/core-concepts/authentication/client-session-tokens).
    */
   connect_webview_ids: Array<string>
 
   /**
-   * IDs of the [connected accounts](https://docs.seam.co/core-concepts/connected-accounts) associated with the [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   * IDs of the [connected accounts](https://www.seam.co/docs/core-concepts/connected-accounts) associated with the [client session](https://www.seam.co/docs/core-concepts/authentication/client-session-tokens).
    */
   connected_account_ids: Array<string>
 
   /**
-   * Date and time at which the [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens) was created.
+   * Date and time at which the [client session](https://www.seam.co/docs/core-concepts/authentication/client-session-tokens) was created.
    */
   created_at: string
 
   /**
-   * Customer key associated with the [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   * Customer key associated with the [client session](https://www.seam.co/docs/core-concepts/authentication/client-session-tokens).
    */
   customer_key?: string | undefined
   /**
-   * Number of devices associated with the [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   * Number of devices associated with the [client session](https://www.seam.co/docs/core-concepts/authentication/client-session-tokens).
    */
   device_count: number
 
   /**
-   * Date and time at which the [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens) expires.
+   * Date and time at which the [client session](https://www.seam.co/docs/core-concepts/authentication/client-session-tokens) expires.
    */
   expires_at: string
 
   /**
-   * Client session token associated with the [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   * Client session token associated with the [client session](https://www.seam.co/docs/core-concepts/authentication/client-session-tokens).
    */
   token: string
 
   /**
-   * Your user ID for the user associated with the [client session](https://docs.seam.co/core-concepts/authentication/client-session-tokens).
+   * Your user ID for the user associated with the [client session](https://www.seam.co/docs/core-concepts/authentication/client-session-tokens).
    */
   user_identifier_key: string | null
   /**
-   * ID of the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) associated with the client session.
+   * ID of the [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) associated with the client session.
    */
   user_identity_id?: string | undefined
   /**
-   * IDs of the [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) associated with the client session.
+   * IDs of the [user identities](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) associated with the client session.
    * @deprecated Use `user_identity_id` instead.
    */
   user_identity_ids: Array<string>

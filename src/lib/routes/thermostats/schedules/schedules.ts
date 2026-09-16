@@ -162,7 +162,7 @@ export class SeamHttpThermostatsSchedules {
   }
 
   /**
-   * Creates a new [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   * Creates a new [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats).
    */
   create(
     parameters: ThermostatsSchedulesCreateParameters,
@@ -187,7 +187,7 @@ export class SeamHttpThermostatsSchedules {
   }
 
   /**
-   * Deletes a [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   * Deletes a [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats).
    */
   delete(
     parameters: ThermostatsSchedulesDeleteParameters,
@@ -207,7 +207,7 @@ export class SeamHttpThermostatsSchedules {
   }
 
   /**
-   * Returns a specified [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+   * Returns a specified [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
    */
   get(
     parameters: ThermostatsSchedulesGetParameters,
@@ -227,7 +227,7 @@ export class SeamHttpThermostatsSchedules {
   }
 
   /**
-   * Returns a list of all [thermostat schedules](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   * Returns a list of all [thermostat schedules](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) for a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats).
    */
   list(
     parameters: ThermostatsSchedulesListParameters,
@@ -247,7 +247,7 @@ export class SeamHttpThermostatsSchedules {
   }
 
   /**
-   * Updates a specified [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+   * Updates a specified [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
    */
   update(
     parameters: ThermostatsSchedulesUpdateParameters,
@@ -269,7 +269,7 @@ export class SeamHttpThermostatsSchedules {
 
 export type ThermostatsSchedulesCreateParameters = {
   /**
-   * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the new thermostat schedule.
+   * Key of the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the new thermostat schedule.
    */
   climate_preset_key: string
 
@@ -284,11 +284,11 @@ export type ThermostatsSchedulesCreateParameters = {
   ends_at: string
 
   /**
-   * Indicates whether a person at the thermostat or using the API can change the thermostat's settings while the new schedule is active. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+   * Indicates whether a person at the thermostat or using the API can change the thermostat's settings while the new schedule is active. See also [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
    */
   is_override_allowed?: boolean | undefined
   /**
-   * Number of minutes for which a person at the thermostat or using the API can change the thermostat's settings after the activation of the scheduled climate preset. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+   * Number of minutes for which a person at the thermostat or using the API can change the thermostat's settings after the activation of the scheduled climate preset. See also [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
    */
   max_override_period_minutes?: number | null | undefined
   /**
@@ -380,7 +380,7 @@ export interface ThermostatsSchedulesListOptions {}
 
 export type ThermostatsSchedulesUpdateParameters = {
   /**
-   * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the thermostat schedule.
+   * Key of the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the thermostat schedule.
    */
   climate_preset_key?: string | undefined
   /**
@@ -388,11 +388,11 @@ export type ThermostatsSchedulesUpdateParameters = {
    */
   ends_at?: string | undefined
   /**
-   * Indicates whether a person at the thermostat or using the API can change the thermostat's settings while the schedule is active. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+   * Indicates whether a person at the thermostat or using the API can change the thermostat's settings while the schedule is active. See also [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
    */
   is_override_allowed?: boolean | undefined
   /**
-   * Number of minutes for which a person at the thermostat or using the API can change the thermostat's settings after the activation of the scheduled climate preset. See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+   * Number of minutes for which a person at the thermostat or using the API can change the thermostat's settings after the activation of the scheduled climate preset. See also [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
    */
   max_override_period_minutes?: number | null | undefined
   /**

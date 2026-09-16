@@ -170,7 +170,7 @@ export class SeamHttpAccessGrants {
   }
 
   /**
-   * Creates a new [Access Grant](https://docs.seam.co/use-cases/granting-access/access-grants). Access Grants are the default and recommended way to grant a user access to any physical space, irrespective of the locking hardware. They work with both standalone smart locks (using `device_ids`) and access control systems (using `acs_entrance_ids` or `space_ids`), and can issue PIN codes, key cards, and mobile keys through a single request.
+   * Creates a new [Access Grant](https://www.seam.co/docs/use-cases/granting-access). Access Grants are the default and recommended way to grant a user access to any physical space, irrespective of the locking hardware. They work with both standalone smart locks (using `device_ids`) and access control systems (using `acs_entrance_ids` or `space_ids`), and can issue PIN codes, key cards, and mobile keys through a single request.
    */
   create(
     parameters: AccessGrantsCreateParameters,
@@ -328,7 +328,7 @@ export type AccessGrantsCreateParameters = {
    */
   access_grant_key?: string | undefined
   /**
-   * Set of IDs of the [entrances](https://docs.seam.co/api/acs/systems/list) to which access is being granted.
+   * Set of IDs of the [entrances](https://www.seam.co/docs/api/acs/systems/list) to which access is being granted.
    */
   acs_entrance_ids?: Array<string> | undefined
   /**
@@ -336,7 +336,7 @@ export type AccessGrantsCreateParameters = {
    */
   customization_profile_id?: string | undefined
   /**
-   * Set of IDs of the [devices](https://docs.seam.co/api/devices/list) to which access is being granted.
+   * Set of IDs of the [devices](https://www.seam.co/docs/api/devices/list) to which access is being granted.
    */
   device_ids?: Array<string> | undefined
   /**

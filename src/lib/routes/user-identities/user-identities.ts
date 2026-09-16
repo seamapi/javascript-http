@@ -177,7 +177,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Adds a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) to a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   * Adds a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) to a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    *
    * You must specify either `user_identity_id` or `user_identity_key` to identify the user identity.
    *
@@ -201,7 +201,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Creates a new [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   * Creates a new [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   create(
     parameters?: UserIdentitiesCreateParameters,
@@ -221,7 +221,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Deletes a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This deletes the user identity and all associated resources, including any [credentials](https://docs.seam.co/api/acs/credentials), [acs users](https://docs.seam.co/api/acs/users) and [client sessions](https://docs.seam.co/api/client_sessions).
+   * Deletes a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This deletes the user identity and all associated resources, including any [credentials](https://www.seam.co/docs/api/acs/credentials/object), [acs users](https://www.seam.co/docs/api/acs/users/object) and [client sessions](https://www.seam.co/docs/api/client_sessions/object).
    */
   delete(
     parameters: UserIdentitiesDeleteParameters,
@@ -241,7 +241,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Generates a new [instant key](https://docs.seam.co/capability-guides/instant-keys) for a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   * Generates a new [instant key](https://www.seam.co/docs/use-cases/granting-access/using-instant-keys) for a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   generateInstantKey(
     parameters: UserIdentitiesGenerateInstantKeyParameters,
@@ -261,7 +261,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Returns a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   * Returns a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   get(
     parameters: UserIdentitiesGetParameters,
@@ -281,7 +281,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Grants a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) access to a specified [device](https://docs.seam.co/core-concepts/devices/).
+   * Grants a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) access to a specified [device](https://www.seam.co/docs/core-concepts/devices).
    */
   grantAccessToDevice(
     parameters: UserIdentitiesGrantAccessToDeviceParameters,
@@ -301,7 +301,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Returns a list of all [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   * Returns a list of all [user identities](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   list(
     parameters?: UserIdentitiesListParameters,
@@ -322,7 +322,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Returns a list of all [devices](https://docs.seam.co/core-concepts/devices) associated with a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This includes devices derived from the access grants assigned to the user identity and devices directly linked to the user identity.
+   * Returns a list of all [devices](https://www.seam.co/docs/core-concepts/devices) associated with a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This includes devices derived from the access grants assigned to the user identity and devices directly linked to the user identity.
    */
   listAccessibleDevices(
     parameters: UserIdentitiesListAccessibleDevicesParameters,
@@ -342,7 +342,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Returns a list of all [ACS entrances](https://docs.seam.co/api/acs/entrances) accessible to a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This includes entrances derived from the access grants assigned to the user identity and entrances accessible through ACS users linked to the user identity.
+   * Returns a list of all [ACS entrances](https://www.seam.co/docs/api/acs/entrances/object) accessible to a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity). This includes entrances derived from the access grants assigned to the user identity and entrances accessible through ACS users linked to the user identity.
    */
   listAccessibleEntrances(
     parameters: UserIdentitiesListAccessibleEntrancesParameters,
@@ -362,7 +362,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Returns a list of all [access systems](https://docs.seam.co/low-level-apis/access-systems) associated with a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   * Returns a list of all [access systems](https://www.seam.co/docs/low-level-apis/access-systems) associated with a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   listAcsSystems(
     parameters: UserIdentitiesListAcsSystemsParameters,
@@ -382,7 +382,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Returns a list of all [access system users](https://docs.seam.co/low-level-apis/access-systems/user-management) assigned to a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   * Returns a list of all [access system users](https://www.seam.co/docs/low-level-apis/access-systems/user-management) assigned to a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   listAcsUsers(
     parameters: UserIdentitiesListAcsUsersParameters,
@@ -402,7 +402,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Merges one or more [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) into a primary user identity, for when the same person ended up with more than one user identity.
+   * Merges one or more [user identities](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) into a primary user identity, for when the same person ended up with more than one user identity.
    *
    * The primary user identity takes on any email address or phone number it was missing from the user identities merged into it, and the merged user identities are then deleted. Their IDs and keys keep working: looking one up returns the primary user identity, and they are listed on it as `merged_user_identity_ids` and `merged_user_identity_keys`.
    *
@@ -433,7 +433,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Removes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) from a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   * Removes a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) from a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   removeAcsUser(
     parameters: UserIdentitiesRemoveAcsUserParameters,
@@ -453,7 +453,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Revokes access to a specified [device](https://docs.seam.co/core-concepts/devices/) from a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   * Revokes access to a specified [device](https://www.seam.co/docs/core-concepts/devices) from a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   revokeAccessToDevice(
     parameters: UserIdentitiesRevokeAccessToDeviceParameters,
@@ -473,7 +473,7 @@ export class SeamHttpUserIdentities {
   }
 
   /**
-   * Updates a specified [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
+   * Updates a specified [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity).
    */
   update(
     parameters: UserIdentitiesUpdateParameters,

@@ -163,7 +163,7 @@ export class SeamHttpEvents {
   }
 
   /**
-   * Returns a specified event. This endpoint returns the same event that would be sent to a [webhook](https://docs.seam.co/developer-tools/webhooks), but it enables you to retrieve an event that already took place.
+   * Returns a specified event. This endpoint returns the same event that would be sent to a [webhook](https://www.seam.co/docs/developer-tools/webhooks), but it enables you to retrieve an event that already took place.
    */
   get(
     parameters: EventsGetParameters,
@@ -183,7 +183,7 @@ export class SeamHttpEvents {
   }
 
   /**
-   * Returns a list of all events. This endpoint returns the same events that would be sent to a [webhook](https://docs.seam.co/developer-tools/webhooks), but it enables you to filter or see events that already took place.
+   * Returns a list of all events. This endpoint returns the same events that would be sent to a [webhook](https://www.seam.co/docs/developer-tools/webhooks), but it enables you to filter or see events that already took place.
    */
   list(
     parameters: EventsListParameters,
@@ -359,7 +359,7 @@ export type EventsListParameters = RequireAtLeastOne<
       | 'access_code.delay_in_issuing'
       | 'access_code.failed_to_issue'
       | 'access_code.failed_to_update'
-      | 'access_code.failed_to_expire'
+      | 'access_code.failed_to_remove'
       | 'access_code.deleted'
       | 'access_code.delay_in_removing_from_device'
       | 'access_code.failed_to_remove_from_device'
@@ -479,7 +479,7 @@ export type EventsListParameters = RequireAtLeastOne<
           | 'access_code.delay_in_issuing'
           | 'access_code.failed_to_issue'
           | 'access_code.failed_to_update'
-          | 'access_code.failed_to_expire'
+          | 'access_code.failed_to_remove'
           | 'access_code.deleted'
           | 'access_code.delay_in_removing_from_device'
           | 'access_code.failed_to_remove_from_device'

@@ -49,7 +49,7 @@ export type AccessGrant = {
    */
   ends_at: string | null
   /**
-   * Errors associated with the [access grant](https://docs.seam.co/use-cases/granting-access).
+   * Errors associated with the [access grant](https://www.seam.co/docs/use-cases/granting-access).
    */
   errors: Array<
     /**
@@ -244,11 +244,11 @@ export type AccessGrant = {
   user_identity_id: string
 
   /**
-   * Warnings associated with the [access grant](https://docs.seam.co/use-cases/granting-access).
+   * Warnings associated with the [access grant](https://www.seam.co/docs/use-cases/granting-access).
    */
   warnings: Array<
     /**
-     * Indicates that the [access grant](https://docs.seam.co/use-cases/granting-access) is being deleted.
+     * Indicates that the [access grant](https://www.seam.co/docs/use-cases/granting-access) is being deleted.
      */
     | {
         /**
@@ -323,7 +323,7 @@ export type AccessGrant = {
          */
         warning_code: 'overprovisioned_access'
       } /**
-     * Indicates that the access times for this [access grant](https://docs.seam.co/use-cases/granting-access) are being updated.
+     * Indicates that the access times for this [access grant](https://www.seam.co/docs/use-cases/granting-access) are being updated.
      */
     | {
         /**

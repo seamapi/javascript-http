@@ -172,7 +172,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   /**
-   * Deletes a specified [connected account](https://docs.seam.co/core-concepts/connected-accounts).
+   * Deletes a specified [connected account](https://www.seam.co/docs/core-concepts/connected-accounts).
    *
    * Deleting a connected account triggers a `connected_account.deleted` event and removes the connected account and all data associated with the connected account from Seam, including devices, events, access codes, and so on. For every deleted resource, Seam sends a corresponding deleted event, but the resource is not deleted from the provider.
    *
@@ -196,7 +196,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   /**
-   * Returns a specified [connected account](https://docs.seam.co/core-concepts/connected-accounts).
+   * Returns a specified [connected account](https://www.seam.co/docs/core-concepts/connected-accounts).
    */
   get(
     parameters: ConnectedAccountsGetParameters,
@@ -216,7 +216,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   /**
-   * Returns a list of all [connected accounts](https://docs.seam.co/core-concepts/connected-accounts).
+   * Returns a list of all [connected accounts](https://www.seam.co/docs/core-concepts/connected-accounts).
    */
   list(
     parameters?: ConnectedAccountsListParameters,
@@ -237,7 +237,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   /**
-   * Request a [connected account](https://docs.seam.co/core-concepts/connected-accounts) sync attempt for the specified `connected_account_id`.
+   * Request a [connected account](https://www.seam.co/docs/core-concepts/connected-accounts) sync attempt for the specified `connected_account_id`.
    */
   sync(
     parameters: ConnectedAccountsSyncParameters,
@@ -257,7 +257,7 @@ export class SeamHttpConnectedAccounts {
   }
 
   /**
-   * Updates a [connected account](https://docs.seam.co/core-concepts/connected-accounts).
+   * Updates a [connected account](https://www.seam.co/docs/core-concepts/connected-accounts).
    */
   update(
     parameters: ConnectedAccountsUpdateParameters,
@@ -392,7 +392,7 @@ export type ConnectedAccountsUpdateParameters = {
       >
     | undefined
   /**
-   * Indicates whether newly-added devices should appear as [managed devices](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
+   * Indicates whether newly-added devices should appear as [managed devices](https://www.seam.co/docs/core-concepts/devices/managed-and-unmanaged-devices).
    */
   automatically_manage_new_devices?: boolean | undefined
   /**
@@ -401,7 +401,7 @@ export type ConnectedAccountsUpdateParameters = {
   connected_account_id: string
 
   /**
-   * Custom metadata that you want to associate with the connected account. Entirely replaces the existing custom metadata object. If a new Connect Webview contains custom metadata and is used to reconnect a connected account, the custom metadata from the Connect Webview will entirely replace the entire custom metadata object on the connected account. Supports up to 50 JSON key:value pairs, with key names up to 40 characters long that cannot contain a period (.). [Adding custom metadata to a connected account](https://docs.seam.co/core-concepts/connected-accounts/adding-custom-metadata-to-a-connected-account) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter connected accounts by the desired metadata](https://docs.seam.co/core-concepts/connected-accounts/filtering-connected-accounts-by-custom-metadata). Set a key to `null` or to an empty string to remove that key from the custom metadata.
+   * Custom metadata that you want to associate with the connected account. Entirely replaces the existing custom metadata object. If a new Connect Webview contains custom metadata and is used to reconnect a connected account, the custom metadata from the Connect Webview will entirely replace the entire custom metadata object on the connected account. Supports up to 50 JSON key:value pairs, with key names up to 40 characters long that cannot contain a period (.). [Adding custom metadata to a connected account](https://www.seam.co/docs/core-concepts/connected-accounts/adding-custom-metadata-to-a-connected-account) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter connected accounts by the desired metadata](https://www.seam.co/docs/core-concepts/connected-accounts/filtering-connected-accounts-by-custom-metadata). Set a key to `null` or to an empty string to remove that key from the custom metadata.
    */
   custom_metadata?: Record<string, string | boolean> | undefined
   /**

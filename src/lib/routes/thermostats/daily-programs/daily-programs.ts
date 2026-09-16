@@ -252,7 +252,7 @@ export type ThermostatsDailyProgramsCreateParameters = {
    */
   periods: Array<{
     /**
-     * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to activate at the `starts_at_time`.
+     * Key of the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) to activate at the `starts_at_time`.
      */
     climate_preset_key?: string | undefined
     /**
@@ -306,7 +306,7 @@ export type ThermostatsDailyProgramsUpdateParameters = {
    */
   periods: Array<{
     /**
-     * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to activate at the `starts_at_time`.
+     * Key of the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) to activate at the `starts_at_time`.
      */
     climate_preset_key?: string | undefined
     /**

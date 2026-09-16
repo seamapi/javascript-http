@@ -162,7 +162,7 @@ export class SeamHttpAcsSystems {
   }
 
   /**
-   * Returns a specified [access system](https://docs.seam.co/low-level-apis/access-systems).
+   * Returns a specified [access system](https://www.seam.co/docs/low-level-apis/access-systems).
    */
   get(
     parameters: AcsSystemsGetParameters,
@@ -182,7 +182,7 @@ export class SeamHttpAcsSystems {
   }
 
   /**
-   * Returns a list of all [access systems](https://docs.seam.co/low-level-apis/access-systems).
+   * Returns a list of all [access systems](https://www.seam.co/docs/low-level-apis/access-systems).
    *
    * To filter the list of returned access systems by a specific connected account ID, include the `connected_account_id` in the request body. If you omit the `connected_account_id` parameter, the response includes all access systems connected to your workspace.
    */
@@ -204,7 +204,7 @@ export class SeamHttpAcsSystems {
   }
 
   /**
-   * Returns a list of all credential manager systems that are compatible with a specified [access system](https://docs.seam.co/low-level-apis/access-systems).
+   * Returns a list of all credential manager systems that are compatible with a specified [access system](https://www.seam.co/docs/low-level-apis/access-systems).
    *
    * Specify the access system for which you want to retrieve all compatible credential manager systems by including the corresponding `acs_system_id` in the request body.
    */

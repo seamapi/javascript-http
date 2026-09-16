@@ -4,7 +4,7 @@
  */
 
 /**
- * Represents a [device](https://docs.seam.co/core-concepts/devices) that has been connected to Seam.
+ * Represents a [device](https://www.seam.co/docs/core-concepts/devices) that has been connected to Seam.
  */
 export type Device = {
   /**
@@ -88,7 +88,7 @@ export type Device = {
    */
   can_unlock_with_code?: boolean | undefined
   /**
-   * Collection of capabilities that the device supports when connected to Seam. Values are `access_code`, which indicates that the device can manage and utilize digital PIN codes for secure access; `lock`, which indicates that the device controls a door locking mechanism, enabling the remote opening and closing of doors and other entry points; `noise_detection`, which indicates that the device supports monitoring and responding to ambient noise levels; `thermostat`, which indicates that the device can regulate and adjust indoor temperatures; `battery`, which indicates that the device can manage battery life and health; and `phone`, which indicates that the device is a mobile device, such as a smartphone. **Important:** Superseded by [capability flags](https://docs.seam.co/capability-guides/device-and-system-capabilities#capability-flags).
+   * Collection of capabilities that the device supports when connected to Seam. Values are `access_code`, which indicates that the device can manage and utilize digital PIN codes for secure access; `lock`, which indicates that the device controls a door locking mechanism, enabling the remote opening and closing of doors and other entry points; `noise_detection`, which indicates that the device supports monitoring and responding to ambient noise levels; `thermostat`, which indicates that the device can regulate and adjust indoor temperatures; `battery`, which indicates that the device can manage battery life and health; and `phone`, which indicates that the device is a mobile device, such as a smartphone. **Important:** Superseded by [capability flags](https://www.seam.co/docs/capability-guides/device-and-system-capabilities#capability-flags).
    */
   capabilities_supported: Array<
     | 'access_code'
@@ -110,7 +110,7 @@ export type Device = {
   created_at: string
 
   /**
-   * Set of key:value pairs. Adding custom metadata to a resource, such as a [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews/attaching-custom-data-to-the-connect-webview), [connected account](https://docs.seam.co/core-concepts/connected-accounts/adding-custom-metadata-to-a-connected-account), or [device](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device), enables you to store custom information, like customer details or internal IDs from your application. Keys set to `null` or to an empty string are omitted.
+   * Set of key:value pairs. Adding custom metadata to a resource, such as a [Connect Webview](https://www.seam.co/docs/core-concepts/connect-webviews/attaching-custom-data-to-the-connect-webview), [connected account](https://www.seam.co/docs/core-concepts/connected-accounts/adding-custom-metadata-to-a-connected-account), or [device](https://www.seam.co/docs/core-concepts/devices/adding-custom-metadata-to-a-device), enables you to store custom information, like customer details or internal IDs from your application. Keys set to `null` or to an empty string are omitted.
    */
   custom_metadata: Record<string, string | boolean>
 
@@ -211,6 +211,7 @@ export type Device = {
     | 'ios_phone'
     | 'android_phone'
     | 'ring_camera'
+    | 'tapo_camera'
 
   /**
    * Display name of the device, defaults to nickname (if it is set) or `properties.appearance.name`, otherwise. Enables administrators and users to identify the device easily, especially when there are numerous devices.
@@ -236,7 +237,7 @@ export type Device = {
         error_code: 'account_disconnected'
 
         /**
-         * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
+         * Indicates that the error is a [connected account](https://www.seam.co/docs/api/connected_accounts/object) error.
          */
         is_connected_account_error: true
 
@@ -264,7 +265,7 @@ export type Device = {
         error_code: 'salto_ks_subscription_limit_exceeded'
 
         /**
-         * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
+         * Indicates that the error is a [connected account](https://www.seam.co/docs/api/connected_accounts/object) error.
          */
         is_connected_account_error: true
 
@@ -292,7 +293,7 @@ export type Device = {
         error_code: 'insufficient_permissions'
 
         /**
-         * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
+         * Indicates that the error is a [connected account](https://www.seam.co/docs/api/connected_accounts/object) error.
          */
         is_connected_account_error: true
 
@@ -320,7 +321,7 @@ export type Device = {
         error_code: 'dormakaba_sites_disconnected'
 
         /**
-         * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
+         * Indicates that the error is a [connected account](https://www.seam.co/docs/api/connected_accounts/object) error.
          */
         is_connected_account_error: true
 
@@ -426,7 +427,7 @@ export type Device = {
          */
         message: string
       } /**
-     * Indicates that the [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) is empty.
+     * Indicates that the [backup access code pool](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/backup-access-codes) is empty.
      */
     | {
         /**
@@ -541,7 +542,7 @@ export type Device = {
          */
         message: string
       } /**
-     * Indicates that the Seam API cannot communicate with [Seam Bridge](https://docs.seam.co/capability-guides/seam-bridge), for example, if the Seam Bridge executable has stopped or if the computer running the Seam Bridge executable is offline. See also [Troubleshooting Your Access Control System](https://docs.seam.co/low-level-apis/access-systems/troubleshooting-your-access-control-system#acs_system-errors-seam_bridge_disconnected).
+     * Indicates that the Seam API cannot communicate with [Seam Bridge](https://www.seam.co/docs/capability-guides/seam-bridge), for example, if the Seam Bridge executable has stopped or if the computer running the Seam Bridge executable is offline. See also [Troubleshooting Your Access Control System](https://www.seam.co/docs/low-level-apis/access-systems/troubleshooting-your-access-control-system#acs_system-errors-seam_bridge_disconnected).
      */
     | {
         /**
@@ -555,7 +556,7 @@ export type Device = {
         error_code: 'bridge_disconnected'
 
         /**
-         * Indicates whether the error is related to [Seam Bridge](https://docs.seam.co/capability-guides/seam-bridge).
+         * Indicates whether the error is related to [Seam Bridge](https://www.seam.co/docs/capability-guides/seam-bridge).
          */
         is_bridge_error?: boolean | undefined
         /**
@@ -570,7 +571,7 @@ export type Device = {
   >
 
   /**
-   * Indicates whether Seam manages the device. See also [Managed and Unmanaged Devices](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
+   * Indicates whether Seam manages the device. See also [Managed and Unmanaged Devices](https://www.seam.co/docs/core-concepts/devices/managed-and-unmanaged-devices).
    */
   is_managed: true
 
@@ -1792,6 +1793,25 @@ export type Device = {
         }
       | undefined
     /**
+     * Metadata for a Tapo camera.
+     */
+    tapo_metadata?:
+      | {
+          /**
+           * Firmware version reported by the camera.
+           */
+          firmware_version?: string | undefined
+          /**
+           * Hardware version reported by the camera.
+           */
+          hardware_version?: string | undefined
+          /**
+           * Model reported by the Tapo camera.
+           */
+          model?: string | undefined
+        }
+      | undefined
+    /**
      * Metadata for a Tedee device.
      */
     tedee_metadata?:
@@ -2023,7 +2043,7 @@ export type Device = {
      */
     auto_lock_enabled?: boolean | undefined
     /**
-     * Indicates whether the [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) is currently enabled for the device. To disable it, set this to `false` using [/devices/update](https://docs.seam.co/api/devices/update).
+     * Indicates whether the [backup access code pool](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/backup-access-codes) is currently enabled for the device. To disable it, set this to `false` using [/devices/update](https://www.seam.co/docs/api/devices/update).
      */
     backup_access_code_pool_enabled?: boolean | undefined
     /**
@@ -2203,37 +2223,37 @@ export type Device = {
      */
     supported_code_lengths?: Array<number> | undefined
     /**
-     * Indicates whether the device supports a [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes).
+     * Indicates whether the device supports a [backup access code pool](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/backup-access-codes).
      */
     supports_backup_access_code_pool?: boolean | undefined
     /**
-     * Active [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+     * Active [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
      * @deprecated Use `active_thermostat_schedule_id` with `/thermostats/schedules/get` instead.
      */
     active_thermostat_schedule?:
       | {
           /**
-           * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+           * Key of the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
            */
           climate_preset_key: string
 
           /**
-           * Date and time at which the [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) was created.
+           * Date and time at which the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) was created.
            */
           created_at: string
 
           /**
-           * ID of the desired [thermostat](https://docs.seam.co/capability-guides/thermostats) device.
+           * ID of the desired [thermostat](https://www.seam.co/docs/capability-guides/thermostats) device.
            */
           device_id: string
 
           /**
-           * Date and time at which the [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+           * Date and time at which the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
            */
           ends_at: string
 
           /**
-           * Errors associated with the [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+           * Errors associated with the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
            */
           errors: Array<{
             /**
@@ -2253,24 +2273,24 @@ export type Device = {
           }>
 
           /**
-           * Indicates whether a person at the thermostat can change the thermostat's settings after the [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) starts.
+           * Indicates whether a person at the thermostat can change the thermostat's settings after the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) starts.
            */
           is_override_allowed?: boolean | undefined
           /**
-           * Number of minutes for which a person at the thermostat can change the thermostat's settings after the activation of the scheduled [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets). See also [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+           * Number of minutes for which a person at the thermostat can change the thermostat's settings after the activation of the scheduled [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets). See also [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
            */
           max_override_period_minutes?: number | null | undefined
           /**
-           * User-friendly name to identify the [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+           * User-friendly name to identify the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
            */
           name: string | null
           /**
-           * Date and time at which the [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules) starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+           * Date and time at which the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
            */
           starts_at: string
 
           /**
-           * ID of the [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+           * ID of the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
            */
           thermostat_schedule_id: string
 
@@ -2282,7 +2302,7 @@ export type Device = {
       | null
       | undefined
     /**
-     * ID of the active [thermostat schedule](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+     * ID of the active [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
      */
     active_thermostat_schedule_id?: string | null | undefined
     /**
@@ -2292,27 +2312,27 @@ export type Device = {
       | Array<'home' | 'away' | 'wake' | 'sleep' | 'occupied' | 'unoccupied'>
       | undefined
     /**
-     * Available [climate presets](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for the thermostat.
+     * Available [climate presets](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) for the thermostat.
      */
     available_climate_presets?:
       | Array<{
           /**
-           * Indicates whether the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
+           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
            */
           can_delete: boolean
 
           /**
-           * Indicates whether the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
+           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
            */
           can_edit: boolean
 
           /**
-           * Indicates whether the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
+           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
            */
           can_use_with_thermostat_daily_programs: boolean
 
           /**
-           * Unique key to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+           * Unique key to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
            */
           climate_preset_key: string
 
@@ -2328,15 +2348,15 @@ export type Device = {
             | 'unoccupied'
             | undefined
           /**
-           * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           cooling_set_point_celsius?: number | undefined
           /**
-           * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           cooling_set_point_fahrenheit?: number | undefined
           /**
-           * Display name for the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+           * Display name for the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
            */
           display_name: string
 
@@ -2360,30 +2380,30 @@ export type Device = {
               }
             | undefined
           /**
-           * Desired [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+           * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
            */
           fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
           /**
-           * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           heating_set_point_celsius?: number | undefined
           /**
-           * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           heating_set_point_fahrenheit?: number | undefined
           /**
-           * Desired [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+           * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
            */
           hvac_mode_setting?:
             'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
           /**
-           * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+           * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
            * @deprecated Use 'thermostat_schedule.is_override_allowed'
            */
           manual_override_allowed: boolean
 
           /**
-           * User-friendly name to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+           * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
            */
           name?: string | null | undefined
         }>
@@ -2403,19 +2423,19 @@ export type Device = {
     current_climate_setting?:
       | {
           /**
-           * Indicates whether the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
+           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
            */
           can_delete?: boolean | undefined
           /**
-           * Indicates whether the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
+           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
            */
           can_edit?: boolean | undefined
           /**
-           * Indicates whether the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
+           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
            */
           can_use_with_thermostat_daily_programs?: boolean | undefined
           /**
-           * Unique key to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+           * Unique key to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
            */
           climate_preset_key?: string | undefined
           /**
@@ -2430,15 +2450,15 @@ export type Device = {
             | 'unoccupied'
             | undefined
           /**
-           * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           cooling_set_point_celsius?: number | undefined
           /**
-           * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           cooling_set_point_fahrenheit?: number | undefined
           /**
-           * Display name for the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+           * Display name for the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
            */
           display_name?: string | undefined
           /**
@@ -2461,29 +2481,29 @@ export type Device = {
               }
             | undefined
           /**
-           * Desired [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+           * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
            */
           fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
           /**
-           * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           heating_set_point_celsius?: number | undefined
           /**
-           * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           heating_set_point_fahrenheit?: number | undefined
           /**
-           * Desired [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+           * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
            */
           hvac_mode_setting?:
             'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
           /**
-           * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+           * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
            * @deprecated Use 'thermostat_schedule.is_override_allowed'
            */
           manual_override_allowed?: boolean | undefined
           /**
-           * User-friendly name to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+           * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
            */
           name?: string | null | undefined
         }
@@ -2494,19 +2514,19 @@ export type Device = {
     default_climate_setting?:
       | {
           /**
-           * Indicates whether the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
+           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
            */
           can_delete?: boolean | undefined
           /**
-           * Indicates whether the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
+           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
            */
           can_edit?: boolean | undefined
           /**
-           * Indicates whether the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
+           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
            */
           can_use_with_thermostat_daily_programs?: boolean | undefined
           /**
-           * Unique key to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+           * Unique key to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
            */
           climate_preset_key?: string | undefined
           /**
@@ -2521,15 +2541,15 @@ export type Device = {
             | 'unoccupied'
             | undefined
           /**
-           * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           cooling_set_point_celsius?: number | undefined
           /**
-           * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           cooling_set_point_fahrenheit?: number | undefined
           /**
-           * Display name for the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+           * Display name for the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
            */
           display_name?: string | undefined
           /**
@@ -2552,35 +2572,35 @@ export type Device = {
               }
             | undefined
           /**
-           * Desired [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+           * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
            */
           fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
           /**
-           * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           heating_set_point_celsius?: number | undefined
           /**
-           * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+           * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
            */
           heating_set_point_fahrenheit?: number | undefined
           /**
-           * Desired [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+           * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
            */
           hvac_mode_setting?:
             'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
           /**
-           * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+           * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
            * @deprecated Use 'thermostat_schedule.is_override_allowed'
            */
           manual_override_allowed?: boolean | undefined
           /**
-           * User-friendly name to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+           * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
            */
           name?: string | null | undefined
         }
       | undefined
     /**
-     * Key of the [fallback climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets/setting-the-fallback-climate-preset) for the thermostat.
+     * Key of the [fallback climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets/setting-the-fallback-climate-preset) for the thermostat.
      */
     fallback_climate_preset_key?: string | null | undefined
     /**
@@ -2604,19 +2624,19 @@ export type Device = {
      */
     is_temporary_manual_override_active?: boolean | undefined
     /**
-     * Maximum [cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °C.
+     * Maximum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °C.
      */
     max_cooling_set_point_celsius?: number | undefined
     /**
-     * Maximum [cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °F.
+     * Maximum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °F.
      */
     max_cooling_set_point_fahrenheit?: number | undefined
     /**
-     * Maximum [heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °C.
+     * Maximum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °C.
      */
     max_heating_set_point_celsius?: number | undefined
     /**
-     * Maximum [heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °F.
+     * Maximum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °F.
      */
     max_heating_set_point_fahrenheit?: number | undefined
     /**
@@ -2629,27 +2649,27 @@ export type Device = {
     max_unique_climate_presets_per_thermostat_weekly_program?:
       number | undefined
     /**
-     * Minimum [cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °C.
+     * Minimum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °C.
      */
     min_cooling_set_point_celsius?: number | undefined
     /**
-     * Minimum [cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °F.
+     * Minimum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °F.
      */
     min_cooling_set_point_fahrenheit?: number | undefined
     /**
-     * Minimum [temperature difference](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points#minimum-heating-cooling-temperature-delta) in °C between the cooling and heating set points when in heat-cool (auto) mode.
+     * Minimum [temperature difference](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#minimum-heating-cooling-temperature-delta) in °C between the cooling and heating set points when in heat-cool (auto) mode.
      */
     min_heating_cooling_delta_celsius?: number | undefined
     /**
-     * Minimum [temperature difference](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points#minimum-heating-cooling-temperature-delta) in °F between the cooling and heating set points when in heat-cool (auto) mode.
+     * Minimum [temperature difference](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#minimum-heating-cooling-temperature-delta) in °F between the cooling and heating set points when in heat-cool (auto) mode.
      */
     min_heating_cooling_delta_fahrenheit?: number | undefined
     /**
-     * Minimum [heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °C.
+     * Minimum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °C.
      */
     min_heating_set_point_celsius?: number | undefined
     /**
-     * Minimum [heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °F.
+     * Minimum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °F.
      */
     min_heating_set_point_fahrenheit?: number | undefined
     /**
@@ -2665,24 +2685,24 @@ export type Device = {
      */
     temperature_fahrenheit?: number | undefined
     /**
-     * Current [temperature threshold](https://docs.seam.co/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
+     * Current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
      */
     temperature_threshold?:
       | {
           /**
-           * Lower limit in °C within the current [temperature threshold](https://docs.seam.co/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
+           * Lower limit in °C within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
            */
           lower_limit_celsius: number | null
           /**
-           * Lower limit in °F within the current [temperature threshold](https://docs.seam.co/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
+           * Lower limit in °F within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
            */
           lower_limit_fahrenheit: number | null
           /**
-           * Upper limit in °C within the current [temperature threshold](https://docs.seam.co/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
+           * Upper limit in °C within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
            */
           upper_limit_celsius: number | null
           /**
-           * Upper limit in °F within the current [temperature threshold](https://docs.seam.co/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
+           * Upper limit in °F within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
            */
           upper_limit_fahrenheit: number | null
         }
@@ -2692,7 +2712,7 @@ export type Device = {
      */
     thermostat_daily_program_period_precision_minutes?: number | undefined
     /**
-     * Configured [daily programs](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-programs) for the thermostat.
+     * Configured [daily programs](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-programs) for the thermostat.
      */
     thermostat_daily_programs?:
       | Array<{
@@ -2715,7 +2735,7 @@ export type Device = {
            */
           periods: Array<{
             /**
-             * Key of the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) to activate at the `starts_at_time`.
+             * Key of the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) to activate at the `starts_at_time`.
              */
             climate_preset_key: string
 
@@ -2737,7 +2757,7 @@ export type Device = {
         }>
       | undefined
     /**
-     * Current [weekly program](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-programs) for the thermostat.
+     * Current [weekly program](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-programs) for the thermostat.
      */
     thermostat_weekly_program?:
       | {

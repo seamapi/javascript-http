@@ -164,7 +164,7 @@ export class SeamHttpConnectedAccountsSimulate {
   }
 
   /**
-   * Simulates a connected account becoming disconnected from Seam. Only applicable for [sandbox workspaces](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   * Simulates a connected account becoming disconnected from Seam. Only applicable for [sandbox workspaces](https://www.seam.co/docs/core-concepts/workspaces#sandbox-workspaces).
    */
   disconnect(
     parameters: ConnectedAccountsSimulateDisconnectParameters,

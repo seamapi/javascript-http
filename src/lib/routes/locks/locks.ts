@@ -171,7 +171,7 @@ export class SeamHttpLocks {
   }
 
   /**
-   * Configures the auto-lock setting for a specified [lock](https://docs.seam.co/low-level-apis/smart-locks).
+   * Configures the auto-lock setting for a specified [lock](https://www.seam.co/docs/low-level-apis/smart-locks).
    */
   configureAutoLock(
     parameters: LocksConfigureAutoLockParameters,
@@ -196,7 +196,7 @@ export class SeamHttpLocks {
   }
 
   /**
-   * Returns a specified [lock](https://docs.seam.co/low-level-apis/smart-locks).
+   * Returns a specified [lock](https://www.seam.co/docs/low-level-apis/smart-locks).
    * @deprecated Use `/devices/get` instead.
    */
   get(
@@ -217,7 +217,7 @@ export class SeamHttpLocks {
   }
 
   /**
-   * Returns a list of all [locks](https://docs.seam.co/low-level-apis/smart-locks).
+   * Returns a list of all [locks](https://www.seam.co/docs/low-level-apis/smart-locks).
    */
   list(
     parameters?: LocksListParameters,
@@ -237,7 +237,7 @@ export class SeamHttpLocks {
   }
 
   /**
-   * Locks a [lock](https://docs.seam.co/low-level-apis/smart-locks). See also [Locking and Unlocking Smart Locks](https://docs.seam.co/low-level-apis/smart-locks/lock-and-unlock).
+   * Locks a [lock](https://www.seam.co/docs/low-level-apis/smart-locks). See also [Locking and Unlocking Smart Locks](https://www.seam.co/docs/low-level-apis/smart-locks/lock-and-unlock).
    */
   lockDoor(
     parameters: LocksLockDoorParameters,
@@ -262,7 +262,7 @@ export class SeamHttpLocks {
   }
 
   /**
-   * Unlocks a [lock](https://docs.seam.co/low-level-apis/smart-locks). See also [Locking and Unlocking Smart Locks](https://docs.seam.co/low-level-apis/smart-locks/lock-and-unlock).
+   * Unlocks a [lock](https://www.seam.co/docs/low-level-apis/smart-locks). See also [Locking and Unlocking Smart Locks](https://www.seam.co/docs/low-level-apis/smart-locks/lock-and-unlock).
    */
   unlockDoor(
     parameters: LocksUnlockDoorParameters,

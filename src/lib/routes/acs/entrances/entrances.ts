@@ -165,7 +165,7 @@ export class SeamHttpAcsEntrances {
   }
 
   /**
-   * Returns a specified [access system entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Returns a specified [access system entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   get(
     parameters: AcsEntrancesGetParameters,
@@ -185,7 +185,7 @@ export class SeamHttpAcsEntrances {
   }
 
   /**
-   * Grants a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) access to a specified [access system entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Grants a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) access to a specified [access system entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   grantAccess(
     parameters: AcsEntrancesGrantAccessParameters,
@@ -205,7 +205,7 @@ export class SeamHttpAcsEntrances {
   }
 
   /**
-   * Returns a list of all [access system entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Returns a list of all [access system entrances](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   list(
     parameters?: AcsEntrancesListParameters,
@@ -226,7 +226,7 @@ export class SeamHttpAcsEntrances {
   }
 
   /**
-   * Returns a list of all [credentials](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) with access to a specified [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Returns a list of all [credentials](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) with access to a specified [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   listCredentialsWithAccess(
     parameters: AcsEntrancesListCredentialsWithAccessParameters,
@@ -246,7 +246,7 @@ export class SeamHttpAcsEntrances {
   }
 
   /**
-   * Remotely unlocks a specified [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) using a cloud_key credential. Returns an action attempt that tracks the progress of the unlock operation.
+   * Remotely unlocks a specified [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) using a cloud_key credential. Returns an action attempt that tracks the progress of the unlock operation.
    */
   unlock(
     parameters: AcsEntrancesUnlockParameters,

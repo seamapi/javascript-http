@@ -162,7 +162,7 @@ export class SeamHttpActionAttempts {
   }
 
   /**
-   * Returns a specified [action attempt](https://docs.seam.co/core-concepts/action-attempts).
+   * Returns a specified [action attempt](https://www.seam.co/docs/core-concepts/action-attempts).
    */
   get(
     parameters: ActionAttemptsGetParameters,
@@ -187,7 +187,7 @@ export class SeamHttpActionAttempts {
   }
 
   /**
-   * Returns a list of the [action attempts](https://docs.seam.co/core-concepts/action-attempts) that you specify as an array of `action_attempt_id`s.
+   * Returns a list of the [action attempts](https://www.seam.co/docs/core-concepts/action-attempts) that you specify as an array of `action_attempt_id`s.
    */
   list(
     parameters?: ActionAttemptsListParameters,

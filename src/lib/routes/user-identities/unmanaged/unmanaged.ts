@@ -165,7 +165,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
   }
 
   /**
-   * Returns a specified unmanaged [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) (where is_managed = false).
+   * Returns a specified unmanaged [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) (where is_managed = false).
    */
   get(
     parameters: UserIdentitiesUnmanagedGetParameters,
@@ -185,7 +185,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
   }
 
   /**
-   * Returns a list of all unmanaged [user identities](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) (where is_managed = false).
+   * Returns a list of all unmanaged [user identities](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) (where is_managed = false).
    */
   list(
     parameters?: UserIdentitiesUnmanagedListParameters,
@@ -206,7 +206,7 @@ export class SeamHttpUserIdentitiesUnmanaged {
   }
 
   /**
-   * Updates an unmanaged [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) to make it managed.
+   * Updates an unmanaged [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) to make it managed.
    *
    * This endpoint can only be used to convert unmanaged user identities to managed ones by setting `is_managed` to `true`. It cannot be used to convert managed user identities back to unmanaged.
    */

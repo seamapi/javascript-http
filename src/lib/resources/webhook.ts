@@ -4,19 +4,19 @@
  */
 
 /**
- * Represents a [webhook](https://docs.seam.co/developer-tools/webhooks) that enables you to receive notifications of events. When you create a webhook, specify the endpoint URL at which you want to receive events and the set of event types that you want to receive.
+ * Represents a [webhook](https://www.seam.co/docs/developer-tools/webhooks) that enables you to receive notifications of events. When you create a webhook, specify the endpoint URL at which you want to receive events and the set of event types that you want to receive.
  */
 export type Webhook = {
   /**
-   * Types of events that the [webhook](https://docs.seam.co/developer-tools/webhooks) should receive.
+   * Types of events that the [webhook](https://www.seam.co/docs/developer-tools/webhooks) should receive.
    */
   event_types?: Array<string> | undefined
   /**
-   * Secret associated with the [webhook](https://docs.seam.co/developer-tools/webhooks).
+   * Secret associated with the [webhook](https://www.seam.co/docs/developer-tools/webhooks).
    */
   secret?: string | undefined
   /**
-   * URL for the [webhook](https://docs.seam.co/developer-tools/webhooks).
+   * URL for the [webhook](https://www.seam.co/docs/developer-tools/webhooks).
    */
   url: string
 

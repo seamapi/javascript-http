@@ -4,7 +4,7 @@
  */
 
 /**
- * Represents a hardware device that encodes [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) data onto physical cards within an [access control system](https://docs.seam.co/low-level-apis/access-systems).
+ * Represents a hardware device that encodes [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) data onto physical cards within an [access control system](https://www.seam.co/docs/low-level-apis/access-systems).
  *
  * Some access control systems require credentials to be encoded onto plastic key cards using a card encoder. This process involves the following two key steps:
  *
@@ -15,38 +15,38 @@
  *
  * Separately, the Seam API also supports card scanning, which enables you to scan and read the encoded data on a card. You can use this action to confirm consistency with access control system records or diagnose discrepancies if needed.
  *
- * See [Working with Card Encoders and Scanners](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+ * See [Working with Card Encoders and Scanners](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
  *
- * To verify if your access control system requires a card encoder, see the corresponding [system integration guide](https://docs.seam.co/device-and-system-integration-guides#access-control-systems).
+ * To verify if your access control system requires a card encoder, see the corresponding [system integration guide](https://www.seam.co/docs/device-and-system-integration-guides#access-control-systems).
  */
 export type AcsEncoder = {
   /**
-   * ID of the [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   * ID of the [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
    */
   acs_encoder_id: string
 
   /**
-   * ID of the [access control system](https://docs.seam.co/low-level-apis/access-systems) that contains the [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   * ID of the [access control system](https://www.seam.co/docs/low-level-apis/access-systems) that contains the [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
    */
   acs_system_id: string
 
   /**
-   * ID of the connected account that contains the [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   * ID of the connected account that contains the [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
    */
   connected_account_id: string
 
   /**
-   * Date and time at which the [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) was created.
+   * Date and time at which the [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners) was created.
    */
   created_at: string
 
   /**
-   * Display name for the [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   * Display name for the [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
    */
   display_name: string
 
   /**
-   * Errors associated with the [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   * Errors associated with the [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
    */
   errors: Array<{
     /**
@@ -66,7 +66,7 @@ export type AcsEncoder = {
   }>
 
   /**
-   * ID of the workspace that contains the [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   * ID of the workspace that contains the [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
    */
   workspace_id: string
 }

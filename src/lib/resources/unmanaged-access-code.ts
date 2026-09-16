@@ -4,7 +4,7 @@
  */
 
 /**
- * Represents an [unmanaged smart lock access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+ * Represents an [unmanaged smart lock access code](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
  *
  * An access code is a code used for a keypad or pinpad device. Unlike physical keys, which can easily be lost or duplicated, PIN codes can be customized, tracked, and altered on the fly.
  *
@@ -14,7 +14,7 @@
  *
  * Not all providers support unmanaged access codes. The following providers do not support unmanaged access codes:
  *
- * - [Kwikset](https://docs.seam.co/device-and-system-integration-guides/kwikset-locks)
+ * - [Kwikset](https://www.seam.co/docs/device-and-system-integration-guides/kwikset-locks)
  */
 export type UnmanagedAccessCode = {
   /**
@@ -94,7 +94,7 @@ export type UnmanagedAccessCode = {
    */
   ends_at?: string | null | undefined
   /**
-   * Errors associated with the [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes).
+   * Errors associated with the [access code](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes).
    */
   errors: Array<
     /**
@@ -362,7 +362,7 @@ export type UnmanagedAccessCode = {
         /**
          * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
          */
-        error_code: 'failed_to_expire'
+        error_code: 'failed_to_remove'
 
         /**
          * Indicates that this is an access code error.
@@ -388,7 +388,7 @@ export type UnmanagedAccessCode = {
         error_code: 'account_disconnected'
 
         /**
-         * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
+         * Indicates that the error is a [connected account](https://www.seam.co/docs/api/connected_accounts/object) error.
          */
         is_connected_account_error: true
 
@@ -416,7 +416,7 @@ export type UnmanagedAccessCode = {
         error_code: 'salto_ks_subscription_limit_exceeded'
 
         /**
-         * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
+         * Indicates that the error is a [connected account](https://www.seam.co/docs/api/connected_accounts/object) error.
          */
         is_connected_account_error: true
 
@@ -444,7 +444,7 @@ export type UnmanagedAccessCode = {
         error_code: 'insufficient_permissions'
 
         /**
-         * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
+         * Indicates that the error is a [connected account](https://www.seam.co/docs/api/connected_accounts/object) error.
          */
         is_connected_account_error: true
 
@@ -472,7 +472,7 @@ export type UnmanagedAccessCode = {
         error_code: 'dormakaba_sites_disconnected'
 
         /**
-         * Indicates that the error is a [connected account](https://docs.seam.co/api/connected_accounts) error.
+         * Indicates that the error is a [connected account](https://www.seam.co/docs/api/connected_accounts/object) error.
          */
         is_connected_account_error: true
 
@@ -578,7 +578,7 @@ export type UnmanagedAccessCode = {
          */
         message: string
       } /**
-     * Indicates that the [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) is empty.
+     * Indicates that the [backup access code pool](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/backup-access-codes) is empty.
      */
     | {
         /**
@@ -693,7 +693,7 @@ export type UnmanagedAccessCode = {
          */
         message: string
       } /**
-     * Indicates that the Seam API cannot communicate with [Seam Bridge](https://docs.seam.co/capability-guides/seam-bridge), for example, if the Seam Bridge executable has stopped or if the computer running the Seam Bridge executable is offline. See also [Troubleshooting Your Access Control System](https://docs.seam.co/low-level-apis/access-systems/troubleshooting-your-access-control-system#acs_system-errors-seam_bridge_disconnected).
+     * Indicates that the Seam API cannot communicate with [Seam Bridge](https://www.seam.co/docs/capability-guides/seam-bridge), for example, if the Seam Bridge executable has stopped or if the computer running the Seam Bridge executable is offline. See also [Troubleshooting Your Access Control System](https://www.seam.co/docs/low-level-apis/access-systems/troubleshooting-your-access-control-system#acs_system-errors-seam_bridge_disconnected).
      */
     | {
         /**
@@ -707,7 +707,7 @@ export type UnmanagedAccessCode = {
         error_code: 'bridge_disconnected'
 
         /**
-         * Indicates whether the error is related to [Seam Bridge](https://docs.seam.co/capability-guides/seam-bridge).
+         * Indicates whether the error is related to [Seam Bridge](https://www.seam.co/docs/capability-guides/seam-bridge).
          */
         is_bridge_error?: boolean | undefined
         /**
@@ -746,7 +746,7 @@ export type UnmanagedAccessCode = {
   type: 'time_bound' | 'ongoing'
 
   /**
-   * Warnings associated with the [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes).
+   * Warnings associated with the [access code](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes).
    */
   warnings: Array<
     /**

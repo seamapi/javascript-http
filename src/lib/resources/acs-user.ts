@@ -4,15 +4,15 @@
  */
 
 /**
- * Represents a [user](https://docs.seam.co/low-level-apis/access-systems/user-management) in an [access system](https://docs.seam.co/low-level-apis/access-systems).
+ * Represents a [user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) in an [access system](https://www.seam.co/docs/low-level-apis/access-systems).
  *
  * An access system user typically refers to an individual who requires access, like an employee or resident. Each user can possess multiple credentials that serve as their keys or identifiers for access. The type of credential can vary widely. For example, in the Salto system, a user can have a PIN code, a mobile app account, and a fob. In other platforms, it is not uncommon for a user to have more than one of the same credential type, such as multiple key cards. Additionally, these credentials can have a schedule or validity period.
  *
- * For details about how to configure users in your access system, see the corresponding [system integration guide](https://docs.seam.co/device-and-system-integration-guides#access-control-systems).
+ * For details about how to configure users in your access system, see the corresponding [system integration guide](https://www.seam.co/docs/device-and-system-integration-guides#access-control-systems).
  */
 export type AcsUser = {
   /**
-   * `starts_at` and `ends_at` timestamps for the [access system user's](https://docs.seam.co/low-level-apis/access-systems/user-management) access.
+   * `starts_at` and `ends_at` timestamps for the [access system user's](https://www.seam.co/docs/low-level-apis/access-systems/user-management) access.
    */
   access_schedule?:
     | {
@@ -27,27 +27,27 @@ export type AcsUser = {
       }
     | undefined
   /**
-   * ID of the [access system](https://docs.seam.co/low-level-apis/access-systems) that contains the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * ID of the [access system](https://www.seam.co/docs/low-level-apis/access-systems) that contains the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   acs_system_id: string
 
   /**
-   * ID of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * ID of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   acs_user_id: string
 
   /**
-   * The ID of the connected account that is associated with the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * The ID of the connected account that is associated with the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   connected_account_id: string
 
   /**
-   * Date and time at which the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was created.
+   * Date and time at which the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) was created.
    */
   created_at: string
 
   /**
-   * Display name for the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Display name for the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   display_name: string
 
@@ -56,15 +56,15 @@ export type AcsUser = {
    */
   email?: string | undefined
   /**
-   * Email address of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Email address of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   email_address?: string | undefined
   /**
-   * Errors associated with the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Errors associated with the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   errors: Array<
     /**
-     * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was deleted from the [access system](https://docs.seam.co/low-level-apis/access-systems) outside of Seam.
+     * Indicates that the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) was deleted from the [access system](https://www.seam.co/docs/low-level-apis/access-systems) outside of Seam.
      */
     | {
         /**
@@ -79,7 +79,7 @@ export type AcsUser = {
          */
         message: string
       } /**
-     * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) could not be subscribed on Salto KS because the subscription limit has been exceeded.
+     * Indicates that the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) could not be subscribed on Salto KS because the subscription limit has been exceeded.
      */
     | {
         /**
@@ -94,7 +94,7 @@ export type AcsUser = {
          */
         message: string
       } /**
-     * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was not created on the [access system](https://docs.seam.co/low-level-apis/access-systems). This is likely due to an internal unexpected error. Contact Seam [support](mailto:support@seam.co).
+     * Indicates that the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) was not created on the [access system](https://www.seam.co/docs/low-level-apis/access-systems). This is likely due to an internal unexpected error. Contact Seam [support](mailto:support@seam.co).
      */
     | {
         /**
@@ -109,7 +109,7 @@ export type AcsUser = {
          */
         message: string
       } /**
-     * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was not updated on the [access system](https://docs.seam.co/low-level-apis/access-systems). This is likely due to an internal unexpected error. Contact Seam [support](mailto:support@seam.co).
+     * Indicates that the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) was not updated on the [access system](https://www.seam.co/docs/low-level-apis/access-systems). This is likely due to an internal unexpected error. Contact Seam [support](mailto:support@seam.co).
      */
     | {
         /**
@@ -124,7 +124,7 @@ export type AcsUser = {
          */
         message: string
       } /**
-     * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was not deleted on the [access system](https://docs.seam.co/low-level-apis/access-systems). This is likely due to an internal unexpected error. Contact Seam [support](mailto:support@seam.co).
+     * Indicates that the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) was not deleted on the [access system](https://www.seam.co/docs/low-level-apis/access-systems). This is likely due to an internal unexpected error. Contact Seam [support](mailto:support@seam.co).
      */
     | {
         /**
@@ -139,7 +139,7 @@ export type AcsUser = {
          */
         message: string
       } /**
-     * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was created from the Seam API but also exists on Mission Control. This is unsupported. Contact Seam [support](mailto:support@seam.co).
+     * Indicates that the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) was created from the Seam API but also exists on Mission Control. This is unsupported. Contact Seam [support](mailto:support@seam.co).
      */
     | {
         /**
@@ -157,7 +157,7 @@ export type AcsUser = {
   >
 
   /**
-   * Brand-specific terminology for the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) type.
+   * Brand-specific terminology for the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) type.
    */
   external_type?:
     | 'pti_user'
@@ -171,11 +171,11 @@ export type AcsUser = {
     | 'kisi_user'
     | undefined
   /**
-   * Display name that corresponds to the brand-specific terminology for the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) type.
+   * Display name that corresponds to the brand-specific terminology for the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) type.
    */
   external_type_display_name?: string | undefined
   /**
-   * Full name of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Full name of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   full_name?: string | undefined
   /**
@@ -188,11 +188,11 @@ export type AcsUser = {
   is_managed: true
 
   /**
-   * Indicates whether the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) is currently [suspended](https://docs.seam.co/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users).
+   * Indicates whether the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) is currently [suspended](https://www.seam.co/docs/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users).
    */
   is_suspended?: boolean | undefined
   /**
-   * Pending mutations associated with the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management). Seam is in the process of pushing these mutations to the integrated access system.
+   * Pending mutations associated with the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management). Seam is in the process of pushing these mutations to the integrated access system.
    */
   pending_mutations?:
     | Array<
@@ -493,11 +493,11 @@ export type AcsUser = {
       >
     | undefined
   /**
-   * Phone number of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) in E.164 format (for example, `+15555550100`).
+   * Phone number of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) in E.164 format (for example, `+15555550100`).
    */
   phone_number?: string | undefined
   /**
-   * Salto KS-specific metadata associated with the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Salto KS-specific metadata associated with the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   salto_ks_metadata?:
     | {
@@ -508,7 +508,7 @@ export type AcsUser = {
       }
     | undefined
   /**
-   * Salto Space-specific metadata associated with the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Salto Space-specific metadata associated with the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   salto_space_metadata?:
     | {
@@ -523,27 +523,27 @@ export type AcsUser = {
       }
     | undefined
   /**
-   * Email address of the user identity associated with the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Email address of the user identity associated with the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   user_identity_email_address?: string | null | undefined
   /**
-   * Full name of the user identity associated with the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Full name of the user identity associated with the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   user_identity_full_name?: string | null | undefined
   /**
-   * ID of the user identity associated with the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * ID of the user identity associated with the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   user_identity_id?: string | undefined
   /**
-   * Phone number of the user identity associated with the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) in E.164 format (for example, `+15555550100`).
+   * Phone number of the user identity associated with the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) in E.164 format (for example, `+15555550100`).
    */
   user_identity_phone_number?: string | null | undefined
   /**
-   * Warnings associated with the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Warnings associated with the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   warnings: Array<
     /**
-     * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) is being deleted from the [access system](https://docs.seam.co/low-level-apis/access-systems). This is a temporary state, and the access system user will be deleted shortly.
+     * Indicates that the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) is being deleted from the [access system](https://www.seam.co/docs/low-level-apis/access-systems). This is a temporary state, and the access system user will be deleted shortly.
      */
     | {
         /**
@@ -558,7 +558,7 @@ export type AcsUser = {
 
         warning_code: 'being_deleted'
       } /**
-     * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) is not subscribed on Salto KS, so they cannot unlock doors or perform any actions. This occurs when the their access schedule hasn’t started yet, if their access schedule has ended, if the site has reached its limit for active users (subscription slots), or if they have been manually unsubscribed.
+     * Indicates that the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) is not subscribed on Salto KS, so they cannot unlock doors or perform any actions. This occurs when the their access schedule hasn’t started yet, if their access schedule has ended, if the site has reached its limit for active users (subscription slots), or if they have been manually unsubscribed.
      */
     | {
         /**
@@ -573,7 +573,7 @@ export type AcsUser = {
 
         warning_code: 'salto_ks_user_not_subscribed'
       } /**
-     * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) exists but is not currently able to gain access—for example, because their access schedule has not started yet or has ended, the access system has reached its limit for active users, or they have been unsubscribed or deactivated. Refer to the warning message for the provider-specific reason. This is distinct from `is_suspended`, which indicates the user has been explicitly blocked.
+     * Indicates that the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) exists but is not currently able to gain access—for example, because their access schedule has not started yet or has ended, the access system has reached its limit for active users, or they have been unsubscribed or deactivated. Refer to the warning message for the provider-specific reason. This is distinct from `is_suspended`, which indicates the user has been explicitly blocked.
      */
     | {
         /**
@@ -588,7 +588,7 @@ export type AcsUser = {
 
         warning_code: 'acs_user_inactive'
       } /**
-     * An unknown issue occurred while syncing the state of this [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) with the provider. This issue may affect the proper functioning of this user.
+     * An unknown issue occurred while syncing the state of this [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) with the provider. This issue may affect the proper functioning of this user.
      */
     | {
         /**
@@ -603,7 +603,7 @@ export type AcsUser = {
 
         warning_code: 'unknown_issue_with_acs_user'
       } /**
-     * Indicates that the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) was created on Latch Mission Control. Please use the Latch Mission Control to manage this user.
+     * Indicates that the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) was created on Latch Mission Control. Please use the Latch Mission Control to manage this user.
      */
     | {
         /**
@@ -621,7 +621,7 @@ export type AcsUser = {
   >
 
   /**
-   * ID of the workspace that contains the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * ID of the workspace that contains the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   workspace_id: string
 }

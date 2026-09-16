@@ -164,7 +164,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   /**
-   * Adds a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) to a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   * Adds a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) to a specified [access group](https://www.seam.co/docs/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
    */
   addUser(
     parameters: AcsAccessGroupsAddUserParameters,
@@ -184,7 +184,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   /**
-   * Deletes a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   * Deletes a specified [access group](https://www.seam.co/docs/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
    */
   delete(
     parameters: AcsAccessGroupsDeleteParameters,
@@ -204,7 +204,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   /**
-   * Returns a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   * Returns a specified [access group](https://www.seam.co/docs/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
    */
   get(
     parameters: AcsAccessGroupsGetParameters,
@@ -224,7 +224,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   /**
-   * Returns a list of all [access groups](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   * Returns a list of all [access groups](https://www.seam.co/docs/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
    */
   list(
     parameters?: AcsAccessGroupsListParameters,
@@ -244,7 +244,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   /**
-   * Returns a list of all accessible entrances for a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   * Returns a list of all accessible entrances for a specified [access group](https://www.seam.co/docs/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
    */
   listAccessibleEntrances(
     parameters: AcsAccessGroupsListAccessibleEntrancesParameters,
@@ -264,7 +264,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   /**
-   * Returns a list of all [access system users](https://docs.seam.co/low-level-apis/access-systems/user-management) in an [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   * Returns a list of all [access system users](https://www.seam.co/docs/low-level-apis/access-systems/user-management) in an [access group](https://www.seam.co/docs/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
    */
   listUsers(
     parameters: AcsAccessGroupsListUsersParameters,
@@ -284,7 +284,7 @@ export class SeamHttpAcsAccessGroups {
   }
 
   /**
-   * Removes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) from a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   * Removes a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) from a specified [access group](https://www.seam.co/docs/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
    */
   removeUser(
     parameters: AcsAccessGroupsRemoveUserParameters,

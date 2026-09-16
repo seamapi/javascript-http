@@ -164,7 +164,7 @@ export class SeamHttpSpaces {
   }
 
   /**
-   * Adds [entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) to a specific space.
+   * Adds [entrances](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) to a specific space.
    */
   addAcsEntrances(
     parameters: SpacesAddAcsEntrancesParameters,
@@ -184,7 +184,7 @@ export class SeamHttpSpaces {
   }
 
   /**
-   * Adds a [connected account](https://docs.seam.co/core-concepts/connected-accounts) to a specific space.
+   * Adds a [connected account](https://www.seam.co/docs/core-concepts/connected-accounts) to a specific space.
    */
   addConnectedAccount(
     parameters: SpacesAddConnectedAccountParameters,
@@ -330,7 +330,7 @@ export class SeamHttpSpaces {
   }
 
   /**
-   * Removes [entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) from a specific space.
+   * Removes [entrances](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) from a specific space.
    */
   removeAcsEntrances(
     parameters: SpacesRemoveAcsEntrancesParameters,
@@ -350,7 +350,7 @@ export class SeamHttpSpaces {
   }
 
   /**
-   * Removes a [connected account](https://docs.seam.co/core-concepts/connected-accounts) from a specific space.
+   * Removes a [connected account](https://www.seam.co/docs/core-concepts/connected-accounts) from a specific space.
    */
   removeConnectedAccount(
     parameters: SpacesRemoveConnectedAccountParameters,

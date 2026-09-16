@@ -163,7 +163,7 @@ export class SeamHttpInstantKeys {
   }
 
   /**
-   * Deletes a specified [Instant Key](https://docs.seam.co/capability-guides/instant-keys).
+   * Deletes a specified [Instant Key](https://www.seam.co/docs/use-cases/granting-access/using-instant-keys).
    */
   delete(
     parameters: InstantKeysDeleteParameters,
@@ -183,7 +183,7 @@ export class SeamHttpInstantKeys {
   }
 
   /**
-   * Gets an [instant key](https://docs.seam.co/capability-guides/instant-keys).
+   * Gets an [instant key](https://www.seam.co/docs/use-cases/granting-access/using-instant-keys).
    */
   get(
     parameters: InstantKeysGetParameters,
@@ -203,7 +203,7 @@ export class SeamHttpInstantKeys {
   }
 
   /**
-   * Returns a list of all [instant keys](https://docs.seam.co/capability-guides/instant-keys).
+   * Returns a list of all [instant keys](https://www.seam.co/docs/use-cases/granting-access/using-instant-keys).
    */
   list(
     parameters?: InstantKeysListParameters,

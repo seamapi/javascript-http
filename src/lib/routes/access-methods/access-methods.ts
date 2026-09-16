@@ -221,7 +221,7 @@ export class SeamHttpAccessMethods {
   }
 
   /**
-   * Encodes an existing access method onto a plastic card placed on the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
+   * Encodes an existing access method onto a plastic card placed on the specified [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners).
    */
   encode(
     parameters: AccessMethodsEncodeParameters,
@@ -314,7 +314,7 @@ export class SeamHttpAccessMethods {
   }
 
   /**
-   * Remotely unlocks a specified [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) using the cloud key credential associated with an access method. Returns an action attempt that tracks the progress of the unlock operation.
+   * Remotely unlocks a specified [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) using the cloud key credential associated with an access method. Returns an action attempt that tracks the progress of the unlock operation.
    */
   unlockDoor(
     parameters: AccessMethodsUnlockDoorParameters,

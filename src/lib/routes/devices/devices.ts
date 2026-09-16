@@ -175,7 +175,7 @@ export class SeamHttpDevices {
   }
 
   /**
-   * Returns a specified [device](https://docs.seam.co/core-concepts/devices).
+   * Returns a specified [device](https://www.seam.co/docs/core-concepts/devices).
    *
    * You must specify either `device_id` or `name`.
    */
@@ -197,7 +197,7 @@ export class SeamHttpDevices {
   }
 
   /**
-   * Returns a list of all [devices](https://docs.seam.co/core-concepts/devices).
+   * Returns a list of all [devices](https://www.seam.co/docs/core-concepts/devices).
    */
   list(
     parameters?: DevicesListParameters,
@@ -220,9 +220,9 @@ export class SeamHttpDevices {
   /**
    * Returns a list of all device providers.
    *
-   * The information that this endpoint returns for each provider includes a set of [capability flags](https://docs.seam.co/capability-guides/device-and-system-capabilities#capability-flags), such as `device_provider.can_remotely_unlock`. If at least one supported device from a provider has a specific capability, the corresponding capability flag is `true`.
+   * The information that this endpoint returns for each provider includes a set of [capability flags](https://www.seam.co/docs/capability-guides/device-and-system-capabilities#capability-flags), such as `device_provider.can_remotely_unlock`. If at least one supported device from a provider has a specific capability, the corresponding capability flag is `true`.
    *
-   * When you create a [Connect Webview](https://docs.seam.co/core-concepts/connect-webviews), you can customize the providers—that is, the brands—that it displays. In the `/connect_webviews/create` request, include the desired set of device provider keys in the `accepted_providers` parameter. See also [Customize the Brands to Display in Your Connect Webviews](https://docs.seam.co/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-brands-to-display-in-your-connect-webviews).
+   * When you create a [Connect Webview](https://www.seam.co/docs/core-concepts/connect-webviews), you can customize the providers—that is, the brands—that it displays. In the `/connect_webviews/create` request, include the desired set of device provider keys in the `accepted_providers` parameter. See also [Customize the Brands to Display in Your Connect Webviews](https://www.seam.co/docs/core-concepts/connect-webviews/customizing-connect-webviews#customize-the-brands-to-display-in-your-connect-webviews).
    */
   listDeviceProviders(
     parameters?: DevicesListDeviceProvidersParameters,
@@ -262,9 +262,9 @@ export class SeamHttpDevices {
   }
 
   /**
-   * Updates a specified [device](https://docs.seam.co/core-concepts/devices).
+   * Updates a specified [device](https://www.seam.co/docs/core-concepts/devices).
    *
-   * You can add or change [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) for a device, change the device's name, or [convert a managed device to unmanaged](https://docs.seam.co/core-concepts/devices/managed-and-unmanaged-devices).
+   * You can add or change [custom metadata](https://www.seam.co/docs/core-concepts/devices/adding-custom-metadata-to-a-device) for a device, change the device's name, or [convert a managed device to unmanaged](https://www.seam.co/docs/core-concepts/devices/managed-and-unmanaged-devices).
    */
   update(
     parameters: DevicesUpdateParameters,
@@ -325,7 +325,7 @@ export type DevicesListParameters = {
    */
   created_before?: string | Date | Temporal.Instant | undefined
   /**
-   * Set of key:value [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices. Key names cannot contain a period (.). Specify `null` to match a key that is unset. A key given an empty string is omitted from the filter.
+   * Set of key:value [custom metadata](https://www.seam.co/docs/core-concepts/devices/adding-custom-metadata-to-a-device) pairs for which you want to list devices. Key names cannot contain a period (.). Specify `null` to match a key that is unset. A key given an empty string is omitted from the filter.
    */
   custom_metadata_has?: Record<string, string | boolean> | undefined
   /**
@@ -383,6 +383,7 @@ export type DevicesListParameters = {
     | 'ios_phone'
     | 'android_phone'
     | 'ring_camera'
+    | 'tapo_camera'
     | undefined
   /**
    * Array of device types for which you want to list devices.
@@ -432,6 +433,7 @@ export type DevicesListParameters = {
         | 'ios_phone'
         | 'android_phone'
         | 'ring_camera'
+        | 'tapo_camera'
       >
     | undefined
   /**
@@ -486,6 +488,7 @@ export type DevicesListParameters = {
     | 'tado'
     | 'ultraloq'
     | 'ring'
+    | 'tapo'
     | 'ical'
     | 'lodgify'
     | 'hostaway'
@@ -1909,11 +1912,11 @@ export interface DevicesReportProviderMetadataOptions {}
 
 export type DevicesUpdateParameters = {
   /**
-   * Indicates whether the device's [backup access code pool](https://docs.seam.co/low-level-apis/smart-locks/access-codes/backup-access-codes) is enabled. Set to `false` to disable the pool: Seam stops refilling it and removes any backup codes that have not yet been pulled into active use.
+   * Indicates whether the device's [backup access code pool](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/backup-access-codes) is enabled. Set to `false` to disable the pool: Seam stops refilling it and removes any backup codes that have not yet been pulled into active use.
    */
   backup_access_code_pool_enabled?: boolean | undefined
   /**
-   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs, with key names up to 40 characters long that cannot contain a period (.). [Adding custom metadata to a device](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter devices by the desired metadata](https://docs.seam.co/core-concepts/devices/filtering-devices-by-custom-metadata). Set a key to `null` or to an empty string to remove that key from the custom metadata.
+   * Custom metadata that you want to associate with the device. Supports up to 50 JSON key:value pairs, with key names up to 40 characters long that cannot contain a period (.). [Adding custom metadata to a device](https://www.seam.co/docs/core-concepts/devices/adding-custom-metadata-to-a-device) enables you to store custom information, like customer details or internal IDs from your application. Then, you can [filter devices by the desired metadata](https://www.seam.co/docs/core-concepts/devices/filtering-devices-by-custom-metadata). Set a key to `null` or to an empty string to remove that key from the custom metadata.
    */
   custom_metadata?: Record<string, string | boolean> | undefined
   /**

@@ -163,7 +163,7 @@ export class SeamHttpAcsCredentials {
   }
 
   /**
-   * Assigns a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) to a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Assigns a specified [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) to a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   assign(
     parameters: AcsCredentialsAssignParameters,
@@ -183,7 +183,7 @@ export class SeamHttpAcsCredentials {
   }
 
   /**
-   * Creates a new [credential](https://docs.seam.co/low-level-apis/managing-credentials) for a specified [ACS user](https://docs.seam.co/low-level-apis/access-systems/user-management). For granting access, we recommend [Access Grants](https://docs.seam.co/use-cases/granting-access) instead: they create and manage the underlying credentials for you, across access systems and standalone smart locks alike. Use this low-level endpoint only when you need direct control over an individual ACS credential.
+   * Creates a new [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) for a specified [ACS user](https://www.seam.co/docs/low-level-apis/access-systems/user-management). For granting access, we recommend [Access Grants](https://www.seam.co/docs/use-cases/granting-access) instead: they create and manage the underlying credentials for you, across access systems and standalone smart locks alike. Use this low-level endpoint only when you need direct control over an individual ACS credential.
    */
   create(
     parameters: AcsCredentialsCreateParameters,
@@ -203,7 +203,7 @@ export class SeamHttpAcsCredentials {
   }
 
   /**
-   * Deletes a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   * Deletes a specified [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
    */
   delete(
     parameters: AcsCredentialsDeleteParameters,
@@ -223,7 +223,7 @@ export class SeamHttpAcsCredentials {
   }
 
   /**
-   * Returns a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   * Returns a specified [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
    */
   get(
     parameters: AcsCredentialsGetParameters,
@@ -243,7 +243,7 @@ export class SeamHttpAcsCredentials {
   }
 
   /**
-   * Returns a list of all [credentials](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   * Returns a list of all [credentials](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
    */
   list(
     parameters?: AcsCredentialsListParameters,
@@ -264,7 +264,7 @@ export class SeamHttpAcsCredentials {
   }
 
   /**
-   * Returns a list of all [entrances](https://docs.seam.co/api/acs/entrances) to which a [credential](https://docs.seam.co/api/acs/credentials) grants access.
+   * Returns a list of all [entrances](https://www.seam.co/docs/api/acs/entrances/object) to which a [credential](https://www.seam.co/docs/api/acs/credentials/object) grants access.
    */
   listAccessibleEntrances(
     parameters: AcsCredentialsListAccessibleEntrancesParameters,
@@ -284,7 +284,7 @@ export class SeamHttpAcsCredentials {
   }
 
   /**
-   * Unassigns a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) from a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Unassigns a specified [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) from a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   unassign(
     parameters: AcsCredentialsUnassignParameters,
@@ -304,7 +304,7 @@ export class SeamHttpAcsCredentials {
   }
 
   /**
-   * Updates the code and ends at date and time for a specified [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   * Updates the code and ends at date and time for a specified [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
    */
   update(
     parameters: AcsCredentialsUpdateParameters,
@@ -364,7 +364,7 @@ export type AcsCredentialsCreateParameters = {
    */
   acs_user_id?: string | undefined
   /**
-   * Set of IDs of the [entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) for which the new credential grants access.
+   * Set of IDs of the [entrances](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) for which the new credential grants access.
    */
   allowed_acs_entrance_ids?: Array<string> | undefined
   /**
@@ -382,7 +382,7 @@ export type AcsCredentialsCreateParameters = {
       }
     | undefined
   /**
-   * Access (PIN) code for the new credential. There may be manufacturer-specific code restrictions. For details, see the applicable [device or system integration guide](https://docs.seam.co/device-and-system-integration-guides).
+   * Access (PIN) code for the new credential. There may be manufacturer-specific code restrictions. For details, see the applicable [device or system integration guide](https://www.seam.co/docs/device-and-system-integration-guides).
    */
   code?: string | undefined
   /**
@@ -394,7 +394,7 @@ export type AcsCredentialsCreateParameters = {
    */
   ends_at?: string | Date | Temporal.Instant | undefined
   /**
-   * Indicates whether the new credential is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
+   * Indicates whether the new credential is a [multi-phone sync credential](https://www.seam.co/docs/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
    */
   is_multi_phone_sync_credential?: boolean | undefined
   /**
@@ -403,7 +403,7 @@ export type AcsCredentialsCreateParameters = {
   salto_space_metadata?:
     | {
         /**
-         * Indicates whether to assign a first, new card to a user. See also [Programming Salto Space Card-based Credentials](https://docs.seam.co/device-and-system-integration-guides/salto-proaccess-space-access-system/programming-salto-space-card-based-credentials).
+         * Indicates whether to assign a first, new card to a user. See also [Programming Salto Space Card-based Credentials](https://www.seam.co/docs/device-and-system-integration-guides/salto-proaccess-space-access-system/programming-salto-space-card-based-credentials).
          */
         assign_new_key?: boolean | undefined
       }
