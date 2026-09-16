@@ -4,23 +4,23 @@
  */
 
 /**
- * Represents an [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) within an [access control system](https://docs.seam.co/low-level-apis/access-systems).
+ * Represents an [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) within an [access control system](https://www.seam.co/docs/low-level-apis/access-systems).
  *
  * In an access control system, an entrance is a secured door, gate, zone, or other method of entry. You can list details for all the `acs_entrance` resources in your workspace or get these details for a specific `acs_entrance`. You can also list all entrances associated with a specific credential, and you can list all credentials associated with a specific entrance.
  */
 export type AcsEntrance = {
   /**
-   * ID of the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * ID of the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   acs_entrance_id: string
 
   /**
-   * ID of the [access control system](https://docs.seam.co/low-level-apis/access-systems) that contains the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * ID of the [access control system](https://www.seam.co/docs/low-level-apis/access-systems) that contains the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   acs_system_id: string
 
   /**
-   * Akiles-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Akiles-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   akiles_metadata?:
     | {
@@ -54,7 +54,7 @@ export type AcsEntrance = {
       }
     | undefined
   /**
-   * ASSA ABLOY Vostio-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * ASSA ABLOY Vostio-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   assa_abloy_vostio_metadata?:
     | {
@@ -82,7 +82,7 @@ export type AcsEntrance = {
       }
     | undefined
   /**
-   * Avigilon Alta-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Avigilon Alta-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   avigilon_alta_metadata?:
     | {
@@ -117,7 +117,7 @@ export type AcsEntrance = {
       }
     | undefined
   /**
-   * Brivo-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Brivo-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   brivo_metadata?:
     | {
@@ -156,22 +156,22 @@ export type AcsEntrance = {
    */
   can_unlock_with_mobile_key?: boolean | undefined
   /**
-   * ID of the [connected account](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * ID of the [connected account](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   connected_account_id: string
 
   /**
-   * Date and time at which the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) was created.
+   * Date and time at which the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) was created.
    */
   created_at: string
 
   /**
-   * Display name for the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Display name for the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   display_name: string
 
   /**
-   * dormakaba Ambiance-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * dormakaba Ambiance-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   dormakaba_ambiance_metadata?:
     | {
@@ -182,7 +182,7 @@ export type AcsEntrance = {
       }
     | undefined
   /**
-   * dormakaba Community-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * dormakaba Community-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   dormakaba_community_metadata?:
     | {
@@ -193,7 +193,7 @@ export type AcsEntrance = {
       }
     | undefined
   /**
-   * Errors associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Errors associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   errors: Array<{
     /**
@@ -213,7 +213,7 @@ export type AcsEntrance = {
   }>
 
   /**
-   * Hotek-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Hotek-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   hotek_metadata?:
     | {
@@ -232,11 +232,11 @@ export type AcsEntrance = {
       }
     | undefined
   /**
-   * Indicates whether the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) is currently locked.
+   * Indicates whether the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) is currently locked.
    */
   is_locked?: boolean | undefined
   /**
-   * Latch-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Latch-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   latch_metadata?:
     | {
@@ -259,7 +259,7 @@ export type AcsEntrance = {
       }
     | undefined
   /**
-   * Salto KS-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Salto KS-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   salto_ks_metadata?:
     | {
@@ -298,7 +298,7 @@ export type AcsEntrance = {
       }
     | undefined
   /**
-   * Salto Space-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Salto Space-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   salto_space_metadata?:
     | {
@@ -334,7 +334,7 @@ export type AcsEntrance = {
   space_ids: Array<string>
 
   /**
-   * Visionline-specific metadata associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Visionline-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   visionline_metadata?:
     | {
@@ -371,7 +371,7 @@ export type AcsEntrance = {
       }
     | undefined
   /**
-   * Warnings associated with the [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+   * Warnings associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
   warnings: Array<
     /**

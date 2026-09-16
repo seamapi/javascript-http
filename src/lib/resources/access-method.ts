@@ -40,11 +40,11 @@ export type AccessMethod = {
   display_status: string
 
   /**
-   * Errors associated with the [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant).
+   * Errors associated with the [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant).
    */
   errors: Array<
     /**
-     * Indicates that Seam was unable to issue this [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant) before its access grant started, so the recipient may be unable to access the space. This usually points to a problem that needs attention, such as an offline or disconnected device. Seam keeps retrying, and this error clears automatically if the access method is eventually issued.
+     * Indicates that Seam was unable to issue this [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant) before its access grant started, so the recipient may be unable to access the space. This usually points to a problem that needs attention, such as an offline or disconnected device. Seam keeps retrying, and this error clears automatically if the access method is eventually issued.
      */
     {
       /**
@@ -99,7 +99,7 @@ export type AccessMethod = {
   mode: 'code' | 'card' | 'mobile_key' | 'cloud_key'
 
   /**
-   * Pending mutations for the [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant). Indicates operations that are in progress.
+   * Pending mutations for the [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant). Indicates operations that are in progress.
    */
   pending_mutations: Array<
     /**
@@ -228,11 +228,11 @@ export type AccessMethod = {
   >
 
   /**
-   * Warnings associated with the [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant).
+   * Warnings associated with the [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant).
    */
   warnings: Array<
     /**
-     * Indicates that the [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant) is being deleted.
+     * Indicates that the [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant) is being deleted.
      */
     | {
         /**
@@ -250,7 +250,7 @@ export type AccessMethod = {
          */
         warning_code: 'being_deleted'
       } /**
-     * Indicates that the access times for this [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant) are being updated.
+     * Indicates that the access times for this [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant) are being updated.
      */
     | {
         /**
@@ -290,7 +290,7 @@ export type AccessMethod = {
          */
         warning_code: 'pulled_backup_access_code'
       } /**
-     * Indicates that Seam has not yet issued this [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant), even though its access grant is about to begin, so access may not be ready when the recipient arrives. Seam is still attempting to issue it, and this warning clears automatically once issuance succeeds.
+     * Indicates that Seam has not yet issued this [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant), even though its access grant is about to begin, so access may not be ready when the recipient arrives. Seam is still attempting to issue it, and this warning clears automatically once issuance succeeds.
      */
     | {
         /**
@@ -308,7 +308,7 @@ export type AccessMethod = {
          */
         warning_code: 'delay_in_issuing'
       } /**
-     * Indicates that the access system delivers this mobile key through an app invitation sent to the recipient's email address, but the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities) for this [access grant](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant) has no email address, so the mobile key cannot be delivered. Set an email address on the user identity when you create the access grant.
+     * Indicates that the access system delivers this mobile key through an app invitation sent to the recipient's email address, but the [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities) for this [access grant](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant) has no email address, so the mobile key cannot be delivered. Set an email address on the user identity when you create the access grant.
      */
     | {
         /**
@@ -326,7 +326,7 @@ export type AccessMethod = {
          */
         warning_code: 'user_identity_missing_email_address'
       } /**
-     * Indicates that the access system delivers this mobile key to the recipient's phone number, but the [user identity](https://docs.seam.co/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities) for this [access grant](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant) has no phone number, so the mobile key cannot be delivered. Set a phone number on the user identity when you create the access grant.
+     * Indicates that the access system delivers this mobile key to the recipient's phone number, but the [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities) for this [access grant](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant) has no phone number, so the mobile key cannot be delivered. Set a phone number on the user identity when you create the access grant.
      */
     | {
         /**

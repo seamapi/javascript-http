@@ -4,7 +4,7 @@
  */
 
 /**
- * An [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes) was created.
+ * An [access code](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes) was created.
  */
 export type SeamEvent =
   | {
@@ -1932,7 +1932,7 @@ export type SeamEvent =
       access_grant_id: string
 
       /**
-       * ID of the affected [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+       * ID of the affected [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
        */
       acs_entrance_id: string
 
@@ -1969,7 +1969,7 @@ export type SeamEvent =
       access_grant_id: string
 
       /**
-       * ID of the affected [entrance](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details).
+       * ID of the affected [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
        */
       acs_entrance_id: string
 
@@ -5739,7 +5739,7 @@ export type SeamEvent =
        */
       is_via_nfc?: boolean | undefined
       /**
-       * Method by which the lock was unlocked. `keycode`: an [access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes) was used (see `access_code_id`). `manual`: a physical action such as a thumbturn or handle press. `remote`: a remote action via an app, Bluetooth, or the Seam API (see `action_attempt_id` if Seam-initiated; see `is_via_bluetooth` or `is_via_nfc` for the transport). `automatic`: triggered automatically, for example by a time-based schedule. `unknown`: could not be determined.
+       * Method by which the lock was unlocked. `keycode`: an [access code](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes) was used (see `access_code_id`). `manual`: a physical action such as a thumbturn or handle press. `remote`: a remote action via an app, Bluetooth, or the Seam API (see `action_attempt_id` if Seam-initiated; see `is_via_bluetooth` or `is_via_nfc` for the transport). `automatic`: triggered automatically, for example by a time-based schedule. `unknown`: could not be determined.
        */
       method:
         | 'keycode'
@@ -5911,11 +5911,11 @@ export type SeamEvent =
       connected_account_id: string
 
       /**
-       * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+       * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
        */
       cooling_set_point_celsius?: number | undefined
       /**
-       * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+       * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
        */
       cooling_set_point_fahrenheit?: number | undefined
       /**
@@ -5948,19 +5948,19 @@ export type SeamEvent =
       event_type: 'thermostat.manually_adjusted'
 
       /**
-       * Desired [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+       * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
        */
       fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
       /**
-       * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+       * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
        */
       heating_set_point_celsius?: number | undefined
       /**
-       * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+       * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
        */
       heating_set_point_fahrenheit?: number | undefined
       /**
-       * Desired [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+       * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
        */
       hvac_mode_setting?:
         'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined

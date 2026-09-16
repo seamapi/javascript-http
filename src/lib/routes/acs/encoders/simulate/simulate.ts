@@ -161,7 +161,7 @@ export class SeamHttpAcsEncodersSimulate {
   }
 
   /**
-   * Simulates that the next attempt to encode a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will fail. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   * Simulates that the next attempt to encode a [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will fail. You can only perform this action within a [sandbox workspace](https://www.seam.co/docs/core-concepts/workspaces#sandbox-workspaces).
    */
   nextCredentialEncodeWillFail(
     parameters: AcsEncodersSimulateNextCredentialEncodeWillFailParameters,
@@ -181,7 +181,7 @@ export class SeamHttpAcsEncodersSimulate {
   }
 
   /**
-   * Simulates that the next attempt to encode a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will succeed. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   * Simulates that the next attempt to encode a [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will succeed. You can only perform this action within a [sandbox workspace](https://www.seam.co/docs/core-concepts/workspaces#sandbox-workspaces).
    */
   nextCredentialEncodeWillSucceed(
     parameters: AcsEncodersSimulateNextCredentialEncodeWillSucceedParameters,
@@ -201,7 +201,7 @@ export class SeamHttpAcsEncodersSimulate {
   }
 
   /**
-   * Simulates that the next attempt to scan a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will fail. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   * Simulates that the next attempt to scan a [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will fail. You can only perform this action within a [sandbox workspace](https://www.seam.co/docs/core-concepts/workspaces#sandbox-workspaces).
    */
   nextCredentialScanWillFail(
     parameters: AcsEncodersSimulateNextCredentialScanWillFailParameters,
@@ -221,7 +221,7 @@ export class SeamHttpAcsEncodersSimulate {
   }
 
   /**
-   * Simulates that the next attempt to scan a [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://docs.seam.co/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will succeed. You can only perform this action within a [sandbox workspace](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces).
+   * Simulates that the next attempt to scan a [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) using the specified [encoder](https://www.seam.co/docs/low-level-apis/access-systems/working-with-card-encoders-and-scanners) will succeed. You can only perform this action within a [sandbox workspace](https://www.seam.co/docs/core-concepts/workspaces#sandbox-workspaces).
    */
   nextCredentialScanWillSucceed(
     parameters: AcsEncodersSimulateNextCredentialScanWillSucceedParameters,

@@ -13,7 +13,7 @@ export type Phone = {
   created_at: string
 
   /**
-   * Optional [custom metadata](https://docs.seam.co/core-concepts/devices/adding-custom-metadata-to-a-device) for the phone.
+   * Optional [custom metadata](https://www.seam.co/docs/core-concepts/devices/adding-custom-metadata-to-a-device) for the phone.
    */
   custom_metadata: Record<string, string | boolean>
 

@@ -183,7 +183,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Activates a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   * Activates a specified [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats).
    */
   activateClimatePreset(
     parameters: ThermostatsActivateClimatePresetParameters,
@@ -208,7 +208,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to [cool mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   * Sets a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats) to [cool mode](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings).
    */
   cool(
     parameters: ThermostatsCoolParameters,
@@ -233,7 +233,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Creates a [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   * Creates a [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats).
    */
   createClimatePreset(
     parameters: ThermostatsCreateClimatePresetParameters,
@@ -253,7 +253,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Deletes a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   * Deletes a specified [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats).
    */
   deleteClimatePreset(
     parameters: ThermostatsDeleteClimatePresetParameters,
@@ -273,7 +273,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to [heat mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   * Sets a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats) to [heat mode](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings).
    */
   heat(
     parameters: ThermostatsHeatParameters,
@@ -298,7 +298,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to [heat-cool ("auto") mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   * Sets a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats) to [heat-cool ("auto") mode](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings).
    */
   heatCool(
     parameters: ThermostatsHeatCoolParameters,
@@ -323,7 +323,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Returns a list of all [thermostats](https://docs.seam.co/capability-guides/thermostats).
+   * Returns a list of all [thermostats](https://www.seam.co/docs/capability-guides/thermostats).
    */
   list(
     parameters?: ThermostatsListParameters,
@@ -343,7 +343,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Sets a specified [thermostat](https://docs.seam.co/capability-guides/thermostats) to ["off" mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings).
+   * Sets a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats) to ["off" mode](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings).
    */
   off(
     parameters: ThermostatsOffParameters,
@@ -368,7 +368,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Sets a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) as the ["fallback"](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets/setting-the-fallback-climate-preset) preset for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   * Sets a specified [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) as the ["fallback"](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets/setting-the-fallback-climate-preset) preset for a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats).
    */
   setFallbackClimatePreset(
     parameters: ThermostatsSetFallbackClimatePresetParameters,
@@ -388,7 +388,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Sets the [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   * Sets the [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings) for a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats).
    */
   setFanMode(
     parameters: ThermostatsSetFanModeParameters,
@@ -413,7 +413,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Sets the [HVAC mode](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   * Sets the [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings) for a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats).
    */
   setHvacMode(
     parameters: ThermostatsSetHvacModeParameters,
@@ -438,7 +438,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Sets a [temperature threshold](https://docs.seam.co/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) for a specified thermostat. Seam emits a `thermostat.temperature_threshold_exceeded` event and adds a warning on a thermostat if it reports a temperature outside the threshold range.
+   * Sets a [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) for a specified thermostat. Seam emits a `thermostat.temperature_threshold_exceeded` event and adds a warning on a thermostat if it reports a temperature outside the threshold range.
    */
   setTemperatureThreshold(
     parameters: ThermostatsSetTemperatureThresholdParameters,
@@ -458,7 +458,7 @@ export class SeamHttpThermostats {
   }
 
   /**
-   * Updates a specified [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://docs.seam.co/capability-guides/thermostats).
+   * Updates a specified [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) for a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats).
    */
   updateClimatePreset(
     parameters: ThermostatsUpdateClimatePresetParameters,
@@ -534,11 +534,11 @@ export type ThermostatsActivateClimatePresetOptions = Pick<
 
 export type ThermostatsCoolParameters = {
   /**
-   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   * [Cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
    */
   cooling_set_point_celsius?: number | undefined
   /**
-   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   * [Cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
    */
   cooling_set_point_fahrenheit?: number | undefined
   /**
@@ -564,7 +564,7 @@ export type ThermostatsCoolOptions = Pick<
 
 export type ThermostatsCreateClimatePresetParameters = {
   /**
-   * Unique key to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+   * Unique key to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
    */
   climate_preset_key: string
 
@@ -574,11 +574,11 @@ export type ThermostatsCreateClimatePresetParameters = {
   climate_preset_mode?:
     'home' | 'away' | 'wake' | 'sleep' | 'occupied' | 'unoccupied' | undefined
   /**
-   * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
    */
   cooling_set_point_celsius?: number | undefined
   /**
-   * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
    */
   cooling_set_point_fahrenheit?: number | undefined
   /**
@@ -606,19 +606,19 @@ export type ThermostatsCreateClimatePresetParameters = {
       }
     | undefined
   /**
-   * Desired [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+   * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
    */
   fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
   /**
-   * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
    */
   heating_set_point_celsius?: number | undefined
   /**
-   * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
    */
   heating_set_point_fahrenheit?: number | undefined
   /**
-   * Desired [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+   * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
    */
   hvac_mode_setting?: 'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
   /**
@@ -627,7 +627,7 @@ export type ThermostatsCreateClimatePresetParameters = {
    */
   manual_override_allowed?: boolean | undefined
   /**
-   * User-friendly name to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+   * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
    */
   name?: string | null | undefined
 }
@@ -675,11 +675,11 @@ export type ThermostatsHeatParameters = {
   device_id: string
 
   /**
-   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   * [Heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
    */
   heating_set_point_celsius?: number | undefined
   /**
-   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   * [Heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
    */
   heating_set_point_fahrenheit?: number | undefined
 }
@@ -701,11 +701,11 @@ export type ThermostatsHeatOptions = Pick<
 
 export type ThermostatsHeatCoolParameters = {
   /**
-   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   * [Cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
    */
   cooling_set_point_celsius?: number | undefined
   /**
-   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   * [Cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
    */
   cooling_set_point_fahrenheit?: number | undefined
   /**
@@ -714,11 +714,11 @@ export type ThermostatsHeatCoolParameters = {
   device_id: string
 
   /**
-   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   * [Heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
    */
   heating_set_point_celsius?: number | undefined
   /**
-   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   * [Heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
    */
   heating_set_point_fahrenheit?: number | undefined
 }
@@ -858,7 +858,7 @@ export type ThermostatsSetFanModeParameters = {
    */
   fan_mode?: 'auto' | 'on' | 'circulate' | undefined
   /**
-   * [Fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings) that you want to set for the thermostat.
+   * [Fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings) that you want to set for the thermostat.
    */
   fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
 }
@@ -880,11 +880,11 @@ export type ThermostatsSetFanModeOptions = Pick<
 
 export type ThermostatsSetHvacModeParameters = {
   /**
-   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   * [Cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
    */
   cooling_set_point_celsius?: number | undefined
   /**
-   * [Cooling set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
+   * [Cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `cooling_set_point` parameters.
    */
   cooling_set_point_fahrenheit?: number | undefined
   /**
@@ -893,11 +893,11 @@ export type ThermostatsSetHvacModeParameters = {
   device_id: string
 
   /**
-   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   * [Heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °C that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
    */
   heating_set_point_celsius?: number | undefined
   /**
-   * [Heating set point](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
+   * [Heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points) in °F that you want to set for the thermostat. You must set one of the `heating_set_point` parameters.
    */
   heating_set_point_fahrenheit?: number | undefined
 
@@ -957,7 +957,7 @@ export interface ThermostatsSetTemperatureThresholdOptions {}
 
 export type ThermostatsUpdateClimatePresetParameters = {
   /**
-   * Unique key to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+   * Unique key to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
    */
   climate_preset_key: string
 
@@ -967,11 +967,11 @@ export type ThermostatsUpdateClimatePresetParameters = {
   climate_preset_mode?:
     'home' | 'away' | 'wake' | 'sleep' | 'occupied' | 'unoccupied' | undefined
   /**
-   * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
    */
   cooling_set_point_celsius?: number | undefined
   /**
-   * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
    */
   cooling_set_point_fahrenheit?: number | undefined
   /**
@@ -999,28 +999,28 @@ export type ThermostatsUpdateClimatePresetParameters = {
       }
     | undefined
   /**
-   * Desired [fan mode setting](https://docs.seam.co/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+   * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
    */
   fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
   /**
-   * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
    */
   heating_set_point_celsius?: number | undefined
   /**
-   * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+   * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
    */
   heating_set_point_fahrenheit?: number | undefined
   /**
-   * Desired [HVAC mode](https://docs.seam.co/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+   * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
    */
   hvac_mode_setting?: 'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
   /**
-   * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
+   * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
    * @deprecated Use 'thermostat_schedule.is_override_allowed'
    */
   manual_override_allowed?: boolean | undefined
   /**
-   * User-friendly name to identify the [climate preset](https://docs.seam.co/capability-guides/thermostats/creating-and-managing-climate-presets).
+   * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
    */
   name?: string | null | undefined
 }

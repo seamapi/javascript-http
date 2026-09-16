@@ -176,7 +176,7 @@ export class SeamHttpNoiseSensors {
   }
 
   /**
-   * Returns a list of all [noise sensors](https://docs.seam.co/capability-guides/noise-sensors).
+   * Returns a list of all [noise sensors](https://www.seam.co/docs/capability-guides/noise-sensors).
    */
   list(
     parameters?: NoiseSensorsListParameters,

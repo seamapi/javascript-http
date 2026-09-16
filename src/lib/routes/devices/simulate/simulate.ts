@@ -161,7 +161,7 @@ export class SeamHttpDevicesSimulate {
   }
 
   /**
-   * Simulates connecting a device to Seam. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://docs.seam.co/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
+   * Simulates connecting a device to Seam. Only applicable for [sandbox devices](https://www.seam.co/docs/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://www.seam.co/docs/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
    */
   connect(
     parameters: DevicesSimulateConnectParameters,
@@ -204,7 +204,7 @@ export class SeamHttpDevicesSimulate {
   }
 
   /**
-   * Simulates disconnecting a device from Seam. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://docs.seam.co/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
+   * Simulates disconnecting a device from Seam. Only applicable for [sandbox devices](https://www.seam.co/docs/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://www.seam.co/docs/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
    */
   disconnect(
     parameters: DevicesSimulateDisconnectParameters,
@@ -270,7 +270,7 @@ export class SeamHttpDevicesSimulate {
   }
 
   /**
-   * Simulates removing a device from Seam. Only applicable for [sandbox devices](https://docs.seam.co/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://docs.seam.co/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
+   * Simulates removing a device from Seam. Only applicable for [sandbox devices](https://www.seam.co/docs/core-concepts/workspaces#sandbox-workspaces). See also [Testing Your App Against Device Disconnection and Removal](https://www.seam.co/docs/core-concepts/devices/testing-your-app-against-device-disconnection-and-removal).
    */
   remove(
     parameters: DevicesSimulateRemoveParameters,

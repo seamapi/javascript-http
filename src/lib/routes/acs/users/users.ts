@@ -164,7 +164,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * Adds a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) to a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   * Adds a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) to a specified [access group](https://www.seam.co/docs/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
    */
   addToAccessGroup(
     parameters: AcsUsersAddToAccessGroupParameters,
@@ -184,7 +184,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * Creates a new [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Creates a new [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   create(
     parameters: AcsUsersCreateParameters,
@@ -204,7 +204,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * Deletes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) and invalidates the access system user's [credentials](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+   * Deletes a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) and invalidates the access system user's [credentials](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
    */
   delete(
     parameters: AcsUsersDeleteParameters,
@@ -228,7 +228,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * Returns a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Returns a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   get(
     parameters: AcsUsersGetParameters,
@@ -252,7 +252,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * Returns a list of all [access system users](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Returns a list of all [access system users](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   list(
     parameters?: AcsUsersListParameters,
@@ -273,7 +273,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * Lists the [entrances](https://docs.seam.co/api/acs/entrances) to which a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) has access.
+   * Lists the [entrances](https://www.seam.co/docs/api/acs/entrances/object) to which a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) has access.
    */
   listAccessibleEntrances(
     parameters: AcsUsersListAccessibleEntrancesParameters,
@@ -297,7 +297,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * Removes a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) from a specified [access group](https://docs.seam.co/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
+   * Removes a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) from a specified [access group](https://www.seam.co/docs/low-level-apis/access-systems/user-management/assigning-users-to-access-groups).
    */
   removeFromAccessGroup(
     parameters: AcsUsersRemoveFromAccessGroupParameters,
@@ -317,7 +317,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * Revokes access to all [entrances](https://docs.seam.co/api/acs/entrances) for a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Revokes access to all [entrances](https://www.seam.co/docs/api/acs/entrances/object) for a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   revokeAccessToAllEntrances(
     parameters: AcsUsersRevokeAccessToAllEntrancesParameters,
@@ -341,7 +341,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * [Suspends](https://docs.seam.co/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users#suspend-an-acs-user) a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management). Suspending an access system user revokes their access temporarily. To restore an access system user's access, you can [unsuspend](https://docs.seam.co/api/acs/users/unsuspend) them.
+   * [Suspends](https://www.seam.co/docs/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users#suspend-an-acs-user) a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management). Suspending an access system user revokes their access temporarily. To restore an access system user's access, you can [unsuspend](https://www.seam.co/docs/api/acs/users/unsuspend) them.
    */
   suspend(
     parameters: AcsUsersSuspendParameters,
@@ -365,7 +365,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * [Unsuspends](https://docs.seam.co/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users#unsuspend-an-acs-user) a specified suspended [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management). While [suspending an access system user](https://docs.seam.co/api/acs/users/suspend) revokes their access temporarily, unsuspending the access system user restores their access.
+   * [Unsuspends](https://www.seam.co/docs/low-level-apis/access-systems/user-management/suspending-and-unsuspending-users#unsuspend-an-acs-user) a specified suspended [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management). While [suspending an access system user](https://www.seam.co/docs/api/acs/users/suspend) revokes their access temporarily, unsuspending the access system user restores their access.
    */
   unsuspend(
     parameters: AcsUsersUnsuspendParameters,
@@ -389,7 +389,7 @@ export class SeamHttpAcsUsers {
   }
 
   /**
-   * Updates the properties of a specified [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Updates the properties of a specified [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   update(
     parameters: AcsUsersUpdateParameters,
@@ -470,7 +470,7 @@ export type AcsUsersCreateParameters = {
    */
   email?: string | undefined
   /**
-   * Email address of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+   * Email address of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   email_address?: string | undefined
   /**
@@ -479,7 +479,7 @@ export type AcsUsersCreateParameters = {
   full_name: string
 
   /**
-   * Phone number of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) in E.164 format (for example, `+15555550100`).
+   * Phone number of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) in E.164 format (for example, `+15555550100`).
    */
   phone_number?: string | undefined
   /**
@@ -779,11 +779,11 @@ export type AcsUsersUpdateParameters = RequireAtLeastOne<
      */
     email?: string | undefined
     /**
-     * Email address of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+     * Email address of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
      */
     email_address?: string | undefined
     /**
-     * Full name of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management).
+     * Full name of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
      */
     full_name?: string | undefined
     /**
@@ -791,7 +791,7 @@ export type AcsUsersUpdateParameters = RequireAtLeastOne<
      */
     hid_acs_system_id?: string | undefined
     /**
-     * Phone number of the [access system user](https://docs.seam.co/low-level-apis/access-systems/user-management) in E.164 format (for example, `+15555550100`).
+     * Phone number of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) in E.164 format (for example, `+15555550100`).
      */
     phone_number?: string | undefined
     /**

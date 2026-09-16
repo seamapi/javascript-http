@@ -165,7 +165,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   /**
-   * Creates a new [noise threshold](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors). Thresholds represent the limits of noise tolerated at a property, which can be customized for each hour of the day. Each device has its own default thresholds, but you can use the Seam API to modify them.
+   * Creates a new [noise threshold](https://www.seam.co/docs/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://www.seam.co/docs/capability-guides/noise-sensors). Thresholds represent the limits of noise tolerated at a property, which can be customized for each hour of the day. Each device has its own default thresholds, but you can use the Seam API to modify them.
    */
   create(
     parameters: NoiseSensorsNoiseThresholdsCreateParameters,
@@ -185,7 +185,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   /**
-   * Deletes a [noise threshold](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) from a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors).
+   * Deletes a [noise threshold](https://www.seam.co/docs/capability-guides/noise-sensors/configure-noise-threshold-settings) from a [noise sensor](https://www.seam.co/docs/capability-guides/noise-sensors).
    */
   delete(
     parameters: NoiseSensorsNoiseThresholdsDeleteParameters,
@@ -205,7 +205,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   /**
-   * Returns a specified [noise threshold](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors).
+   * Returns a specified [noise threshold](https://www.seam.co/docs/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://www.seam.co/docs/capability-guides/noise-sensors).
    */
   get(
     parameters: NoiseSensorsNoiseThresholdsGetParameters,
@@ -225,7 +225,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   /**
-   * Returns a list of all [noise thresholds](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors).
+   * Returns a list of all [noise thresholds](https://www.seam.co/docs/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://www.seam.co/docs/capability-guides/noise-sensors).
    */
   list(
     parameters: NoiseSensorsNoiseThresholdsListParameters,
@@ -245,7 +245,7 @@ export class SeamHttpNoiseSensorsNoiseThresholds {
   }
 
   /**
-   * Updates a [noise threshold](https://docs.seam.co/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://docs.seam.co/capability-guides/noise-sensors).
+   * Updates a [noise threshold](https://www.seam.co/docs/capability-guides/noise-sensors/configure-noise-threshold-settings) for a [noise sensor](https://www.seam.co/docs/capability-guides/noise-sensors).
    */
   update(
     parameters: NoiseSensorsNoiseThresholdsUpdateParameters,
@@ -285,7 +285,7 @@ export type NoiseSensorsNoiseThresholdsCreateParameters = {
    */
   noise_threshold_decibels?: number | undefined
   /**
-   * Noise level in Noiseaware Noise Risk Score (NRS) for the new noise threshold. This parameter is only relevant for [Noiseaware sensors](https://docs.seam.co/device-and-system-integration-guides/noiseaware-sensors).
+   * Noise level in Noiseaware Noise Risk Score (NRS) for the new noise threshold. This parameter is only relevant for [Noiseaware sensors](https://www.seam.co/docs/device-and-system-integration-guides/noiseaware-sensors).
    */
   noise_threshold_nrs?: number | undefined
   /**
@@ -398,7 +398,7 @@ export type NoiseSensorsNoiseThresholdsUpdateParameters = {
   noise_threshold_id: string
 
   /**
-   * Noise level in Noiseaware Noise Risk Score (NRS) for the noise threshold. This parameter is only relevant for [Noiseaware sensors](https://docs.seam.co/device-and-system-integration-guides/noiseaware-sensors).
+   * Noise level in Noiseaware Noise Risk Score (NRS) for the noise threshold. This parameter is only relevant for [Noiseaware sensors](https://www.seam.co/docs/device-and-system-integration-guides/noiseaware-sensors).
    */
   noise_threshold_nrs?: number | undefined
   /**

@@ -192,15 +192,15 @@ export type ActionAttempt =
          */
         acs_credential_on_encoder: {
           /**
-           * A number or string that physically identifies the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * A number or string that physically identifies the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           card_number: string | null
           /**
-           * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was created.
+           * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) was created.
            */
           created_at: string | null
           /**
-           * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) will stop being usable.
+           * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) will stop being usable.
            */
           ends_at: string | null
           /**
@@ -208,60 +208,60 @@ export type ActionAttempt =
            */
           is_issued: boolean | null
           /**
-           * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) becomes usable.
+           * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) becomes usable.
            */
           starts_at: string | null
           /**
-           * Visionline-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * Visionline-specific metadata for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           visionline_metadata?:
             | {
                 /**
-                 * Indicates whether the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is cancelled.
+                 * Indicates whether the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is cancelled.
                  */
                 cancelled?: boolean | undefined
                 /**
-                 * Format of the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+                 * Format of the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
                  */
                 card_format?: 'TLCode' | 'rfid48' | undefined
                 /**
-                 * Holder of the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+                 * Holder of the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
                  */
                 card_holder?: string | undefined
                 /**
-                 * Card ID for the Visionline card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+                 * Card ID for the Visionline card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
                  */
                 card_id?: string | undefined
                 /**
-                 * IDs of the common [entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+                 * IDs of the common [entrances](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
                  */
                 common_acs_entrance_ids?: Array<string> | undefined
                 /**
-                 * Indicates whether the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is discarded.
+                 * Indicates whether the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is discarded.
                  */
                 discarded?: boolean | undefined
                 /**
-                 * Indicates whether the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is expired.
+                 * Indicates whether the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is expired.
                  */
                 expired?: boolean | undefined
                 /**
-                 * IDs of the guest [entrances](https://docs.seam.co/low-level-apis/access-systems/retrieving-entrance-details) for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+                 * IDs of the guest [entrances](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
                  */
                 guest_acs_entrance_ids?: Array<string> | undefined
                 /**
-                 * Number of issued cards associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+                 * Number of issued cards associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
                  */
                 number_of_issued_cards?: number | undefined
                 /**
-                 * Indicates whether the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is overridden.
+                 * Indicates whether the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is overridden.
                  */
                 overridden?: boolean | undefined
                 /**
-                 * Indicates whether the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is overwritten.
+                 * Indicates whether the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is overwritten.
                  */
                 overwritten?: boolean | undefined
                 /**
-                 * Indicates whether the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is pending auto-update.
+                 * Indicates whether the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is pending auto-update.
                  */
                 pending_auto_update?: boolean | undefined
               }
@@ -272,12 +272,12 @@ export type ActionAttempt =
          */
         acs_credential_on_seam: {
           /**
-           * Access method for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials). Supported values: `code`, `card`, `mobile_key`, `cloud_key`.
+           * Access method for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials). Supported values: `code`, `card`, `mobile_key`, `cloud_key`.
            */
           access_method: 'code' | 'card' | 'mobile_key' | 'cloud_key'
 
           /**
-           * ID of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * ID of the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           acs_credential_id: string
 
@@ -286,16 +286,16 @@ export type ActionAttempt =
            */
           acs_credential_pool_id?: string | undefined
           /**
-           * ID of the [access control system](https://docs.seam.co/low-level-apis/access-systems) that contains the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * ID of the [access control system](https://www.seam.co/docs/low-level-apis/access-systems) that contains the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           acs_system_id: string
 
           /**
-           * ID of the [ACS user](https://docs.seam.co/low-level-apis/access-systems/user-management) to whom the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
+           * ID of the [ACS user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) to whom the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) belongs.
            */
           acs_user_id?: string | undefined
           /**
-           * Akiles-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * Akiles-specific metadata for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           akiles_metadata?:
             | {
@@ -306,7 +306,7 @@ export type ActionAttempt =
               }
             | undefined
           /**
-           * Vostio-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * Vostio-specific metadata for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           assa_abloy_vostio_metadata?:
             | {
@@ -337,34 +337,34 @@ export type ActionAttempt =
               }
             | undefined
           /**
-           * Number of the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * Number of the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           card_number?: string | null | undefined
           /**
-           * Access (PIN) code for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * Access (PIN) code for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           code?: string | null | undefined
           /**
-           * ID of the [connected account](https://docs.seam.co/core-concepts/connected-accounts) to which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
+           * ID of the [connected account](https://www.seam.co/docs/core-concepts/connected-accounts) to which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) belongs.
            */
           connected_account_id: string
 
           /**
-           * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was created.
+           * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) was created.
            */
           created_at: string
 
           /**
-           * Display name that corresponds to the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type.
+           * Display name that corresponds to the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) type.
            */
           display_name: string
 
           /**
-           * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) validity ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
+           * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) validity ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
            */
           ends_at?: string | undefined
           /**
-           * Errors associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * Errors associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           errors: Array<{
             /**
@@ -378,7 +378,7 @@ export type ActionAttempt =
           }>
 
           /**
-           * Brand-specific terminology for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type. Supported values: `pti_card`, `brivo_credential`, `hid_credential`, `visionline_card`.
+           * Brand-specific terminology for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) type. Supported values: `pti_card`, `brivo_credential`, `hid_credential`, `visionline_card`.
            */
           external_type?:
             | 'pti_card'
@@ -397,15 +397,15 @@ export type ActionAttempt =
             | 'akiles_credential'
             | undefined
           /**
-           * Display name that corresponds to the brand-specific terminology for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type.
+           * Display name that corresponds to the brand-specific terminology for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) type.
            */
           external_type_display_name?: string | undefined
           /**
-           * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) has been encoded onto a card.
+           * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) has been encoded onto a card.
            */
           is_issued?: boolean | undefined
           /**
-           * Indicates whether the latest state of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) has been synced from Seam to the provider.
+           * Indicates whether the latest state of the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) has been synced from Seam to the provider.
            */
           is_latest_desired_state_synced_with_provider?:
             boolean | null | undefined
@@ -413,36 +413,36 @@ export type ActionAttempt =
           is_managed: true | false
 
           /**
-           * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
+           * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://www.seam.co/docs/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
            */
           is_multi_phone_sync_credential?: boolean | undefined
           /**
-           * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) can only be used once. If `true`, the code becomes invalid after the first use.
+           * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) can only be used once. If `true`, the code becomes invalid after the first use.
            */
           is_one_time_use?: boolean | undefined
           /**
-           * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was encoded onto a card.
+           * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) was encoded onto a card.
            */
           issued_at?: string | null | undefined
           /**
-           * Date and time at which the state of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was most recently synced from Seam to the provider.
+           * Date and time at which the state of the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) was most recently synced from Seam to the provider.
            */
           latest_desired_state_synced_with_provider_at?:
             string | null | undefined
           /**
-           * ID of the parent [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * ID of the parent [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           parent_acs_credential_id?: string | undefined
           /**
-           * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) validity starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+           * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) validity starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
            */
           starts_at?: string | undefined
           /**
-           * ID of the [user identity](https://docs.seam.co/api/user_identities) to whom the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
+           * ID of the [user identity](https://www.seam.co/docs/api/user_identities/object) to whom the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) belongs.
            */
           user_identity_id?: string | undefined
           /**
-           * Visionline-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * Visionline-specific metadata for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           visionline_metadata?:
             | {
@@ -481,7 +481,7 @@ export type ActionAttempt =
               }
             | undefined
           /**
-           * Warnings associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * Warnings associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           warnings: Array<{
             /**
@@ -517,7 +517,7 @@ export type ActionAttempt =
           }>
 
           /**
-           * ID of the workspace that contains the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+           * ID of the workspace that contains the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
            */
           workspace_id: string
         } | null
@@ -613,12 +613,12 @@ export type ActionAttempt =
        */
       result: {
         /**
-         * Access method for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials). Supported values: `code`, `card`, `mobile_key`, `cloud_key`.
+         * Access method for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials). Supported values: `code`, `card`, `mobile_key`, `cloud_key`.
          */
         access_method: 'code' | 'card' | 'mobile_key' | 'cloud_key'
 
         /**
-         * ID of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * ID of the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         acs_credential_id: string
 
@@ -627,16 +627,16 @@ export type ActionAttempt =
          */
         acs_credential_pool_id?: string | undefined
         /**
-         * ID of the [access control system](https://docs.seam.co/low-level-apis/access-systems) that contains the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * ID of the [access control system](https://www.seam.co/docs/low-level-apis/access-systems) that contains the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         acs_system_id: string
 
         /**
-         * ID of the [ACS user](https://docs.seam.co/low-level-apis/access-systems/user-management) to whom the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
+         * ID of the [ACS user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) to whom the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) belongs.
          */
         acs_user_id?: string | undefined
         /**
-         * Akiles-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Akiles-specific metadata for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         akiles_metadata?:
           | {
@@ -647,7 +647,7 @@ export type ActionAttempt =
             }
           | undefined
         /**
-         * Vostio-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Vostio-specific metadata for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         assa_abloy_vostio_metadata?:
           | {
@@ -678,34 +678,34 @@ export type ActionAttempt =
             }
           | undefined
         /**
-         * Number of the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Number of the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         card_number?: string | null | undefined
         /**
-         * Access (PIN) code for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Access (PIN) code for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         code?: string | null | undefined
         /**
-         * ID of the [connected account](https://docs.seam.co/core-concepts/connected-accounts) to which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
+         * ID of the [connected account](https://www.seam.co/docs/core-concepts/connected-accounts) to which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) belongs.
          */
         connected_account_id: string
 
         /**
-         * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was created.
+         * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) was created.
          */
         created_at: string
 
         /**
-         * Display name that corresponds to the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type.
+         * Display name that corresponds to the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) type.
          */
         display_name: string
 
         /**
-         * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) validity ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
+         * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) validity ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
          */
         ends_at?: string | undefined
         /**
-         * Errors associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Errors associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         errors: Array<{
           /**
@@ -719,7 +719,7 @@ export type ActionAttempt =
         }>
 
         /**
-         * Brand-specific terminology for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type. Supported values: `pti_card`, `brivo_credential`, `hid_credential`, `visionline_card`.
+         * Brand-specific terminology for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) type. Supported values: `pti_card`, `brivo_credential`, `hid_credential`, `visionline_card`.
          */
         external_type?:
           | 'pti_card'
@@ -738,15 +738,15 @@ export type ActionAttempt =
           | 'akiles_credential'
           | undefined
         /**
-         * Display name that corresponds to the brand-specific terminology for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type.
+         * Display name that corresponds to the brand-specific terminology for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) type.
          */
         external_type_display_name?: string | undefined
         /**
-         * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) has been encoded onto a card.
+         * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) has been encoded onto a card.
          */
         is_issued?: boolean | undefined
         /**
-         * Indicates whether the latest state of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) has been synced from Seam to the provider.
+         * Indicates whether the latest state of the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) has been synced from Seam to the provider.
          */
         is_latest_desired_state_synced_with_provider?:
           boolean | null | undefined
@@ -754,35 +754,35 @@ export type ActionAttempt =
         is_managed: true | false
 
         /**
-         * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
+         * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://www.seam.co/docs/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
          */
         is_multi_phone_sync_credential?: boolean | undefined
         /**
-         * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) can only be used once. If `true`, the code becomes invalid after the first use.
+         * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) can only be used once. If `true`, the code becomes invalid after the first use.
          */
         is_one_time_use?: boolean | undefined
         /**
-         * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was encoded onto a card.
+         * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) was encoded onto a card.
          */
         issued_at?: string | null | undefined
         /**
-         * Date and time at which the state of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was most recently synced from Seam to the provider.
+         * Date and time at which the state of the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) was most recently synced from Seam to the provider.
          */
         latest_desired_state_synced_with_provider_at?: string | null | undefined
         /**
-         * ID of the parent [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * ID of the parent [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         parent_acs_credential_id?: string | undefined
         /**
-         * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) validity starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+         * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) validity starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
          */
         starts_at?: string | undefined
         /**
-         * ID of the [user identity](https://docs.seam.co/api/user_identities) to whom the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
+         * ID of the [user identity](https://www.seam.co/docs/api/user_identities/object) to whom the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) belongs.
          */
         user_identity_id?: string | undefined
         /**
-         * Visionline-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Visionline-specific metadata for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         visionline_metadata?:
           | {
@@ -821,7 +821,7 @@ export type ActionAttempt =
             }
           | undefined
         /**
-         * Warnings associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Warnings associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         warnings: Array<{
           /**
@@ -857,7 +857,7 @@ export type ActionAttempt =
         }>
 
         /**
-         * ID of the workspace that contains the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * ID of the workspace that contains the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         workspace_id: string
       }
@@ -940,12 +940,12 @@ export type ActionAttempt =
        */
       result: {
         /**
-         * Access method for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials). Supported values: `code`, `card`, `mobile_key`, `cloud_key`.
+         * Access method for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials). Supported values: `code`, `card`, `mobile_key`, `cloud_key`.
          */
         access_method: 'code' | 'card' | 'mobile_key' | 'cloud_key'
 
         /**
-         * ID of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * ID of the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         acs_credential_id: string
 
@@ -954,16 +954,16 @@ export type ActionAttempt =
          */
         acs_credential_pool_id?: string | undefined
         /**
-         * ID of the [access control system](https://docs.seam.co/low-level-apis/access-systems) that contains the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * ID of the [access control system](https://www.seam.co/docs/low-level-apis/access-systems) that contains the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         acs_system_id: string
 
         /**
-         * ID of the [ACS user](https://docs.seam.co/low-level-apis/access-systems/user-management) to whom the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
+         * ID of the [ACS user](https://www.seam.co/docs/low-level-apis/access-systems/user-management) to whom the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) belongs.
          */
         acs_user_id?: string | undefined
         /**
-         * Akiles-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Akiles-specific metadata for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         akiles_metadata?:
           | {
@@ -974,7 +974,7 @@ export type ActionAttempt =
             }
           | undefined
         /**
-         * Vostio-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Vostio-specific metadata for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         assa_abloy_vostio_metadata?:
           | {
@@ -1005,34 +1005,34 @@ export type ActionAttempt =
             }
           | undefined
         /**
-         * Number of the card associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Number of the card associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         card_number?: string | null | undefined
         /**
-         * Access (PIN) code for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Access (PIN) code for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         code?: string | null | undefined
         /**
-         * ID of the [connected account](https://docs.seam.co/core-concepts/connected-accounts) to which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
+         * ID of the [connected account](https://www.seam.co/docs/core-concepts/connected-accounts) to which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) belongs.
          */
         connected_account_id: string
 
         /**
-         * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was created.
+         * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) was created.
          */
         created_at: string
 
         /**
-         * Display name that corresponds to the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type.
+         * Display name that corresponds to the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) type.
          */
         display_name: string
 
         /**
-         * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) validity ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
+         * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) validity ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Must be a time in the future and after `starts_at`.
          */
         ends_at?: string | undefined
         /**
-         * Errors associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Errors associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         errors: Array<{
           /**
@@ -1046,7 +1046,7 @@ export type ActionAttempt =
         }>
 
         /**
-         * Brand-specific terminology for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type. Supported values: `pti_card`, `brivo_credential`, `hid_credential`, `visionline_card`.
+         * Brand-specific terminology for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) type. Supported values: `pti_card`, `brivo_credential`, `hid_credential`, `visionline_card`.
          */
         external_type?:
           | 'pti_card'
@@ -1065,15 +1065,15 @@ export type ActionAttempt =
           | 'akiles_credential'
           | undefined
         /**
-         * Display name that corresponds to the brand-specific terminology for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) type.
+         * Display name that corresponds to the brand-specific terminology for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) type.
          */
         external_type_display_name?: string | undefined
         /**
-         * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) has been encoded onto a card.
+         * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) has been encoded onto a card.
          */
         is_issued?: boolean | undefined
         /**
-         * Indicates whether the latest state of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) has been synced from Seam to the provider.
+         * Indicates whether the latest state of the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) has been synced from Seam to the provider.
          */
         is_latest_desired_state_synced_with_provider?:
           boolean | null | undefined
@@ -1083,35 +1083,35 @@ export type ActionAttempt =
         is_managed: true
 
         /**
-         * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://docs.seam.co/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
+         * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://www.seam.co/docs/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
          */
         is_multi_phone_sync_credential?: boolean | undefined
         /**
-         * Indicates whether the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) can only be used once. If `true`, the code becomes invalid after the first use.
+         * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) can only be used once. If `true`, the code becomes invalid after the first use.
          */
         is_one_time_use?: boolean | undefined
         /**
-         * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was encoded onto a card.
+         * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) was encoded onto a card.
          */
         issued_at?: string | null | undefined
         /**
-         * Date and time at which the state of the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) was most recently synced from Seam to the provider.
+         * Date and time at which the state of the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) was most recently synced from Seam to the provider.
          */
         latest_desired_state_synced_with_provider_at?: string | null | undefined
         /**
-         * ID of the parent [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * ID of the parent [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         parent_acs_credential_id?: string | undefined
         /**
-         * Date and time at which the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) validity starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+         * Date and time at which the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) validity starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
          */
         starts_at?: string | undefined
         /**
-         * ID of the [user identity](https://docs.seam.co/api/user_identities) to whom the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials) belongs.
+         * ID of the [user identity](https://www.seam.co/docs/api/user_identities/object) to whom the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) belongs.
          */
         user_identity_id?: string | undefined
         /**
-         * Visionline-specific metadata for the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Visionline-specific metadata for the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         visionline_metadata?:
           | {
@@ -1150,7 +1150,7 @@ export type ActionAttempt =
             }
           | undefined
         /**
-         * Warnings associated with the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * Warnings associated with the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         warnings: Array<{
           /**
@@ -1186,7 +1186,7 @@ export type ActionAttempt =
         }>
 
         /**
-         * ID of the workspace that contains the [credential](https://docs.seam.co/low-level-apis/access-systems/managing-credentials).
+         * ID of the workspace that contains the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials).
          */
         workspace_id: string
       }
@@ -1294,7 +1294,7 @@ export type ActionAttempt =
         display_status: string
 
         /**
-         * Errors associated with the [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant).
+         * Errors associated with the [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant).
          */
         errors: Array<{
           /**
@@ -1348,7 +1348,7 @@ export type ActionAttempt =
         mode: 'code' | 'card' | 'mobile_key' | 'cloud_key'
 
         /**
-         * Pending mutations for the [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant). Indicates operations that are in progress.
+         * Pending mutations for the [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant). Indicates operations that are in progress.
          */
         pending_mutations: Array<{
           /**
@@ -1397,7 +1397,7 @@ export type ActionAttempt =
         }>
 
         /**
-         * Warnings associated with the [access method](https://docs.seam.co/use-cases/granting-access/creating-an-access-grant).
+         * Warnings associated with the [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant).
          */
         warnings: Array<{
           /**

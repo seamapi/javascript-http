@@ -92,7 +92,7 @@ export class SeamHttpEndpointsWithoutWorkspace {
   }
 
   /**
-   * Creates a new [workspace](https://docs.seam.co/core-concepts/workspaces).
+   * Creates a new [workspace](https://www.seam.co/docs/core-concepts/workspaces).
    */
   get '/workspaces/create'(): (
     parameters: WorkspacesCreateParameters,
@@ -108,7 +108,7 @@ export class SeamHttpEndpointsWithoutWorkspace {
   }
 
   /**
-   * Returns a list of [workspaces](https://docs.seam.co/core-concepts/workspaces) associated with the authentication value.
+   * Returns a list of [workspaces](https://www.seam.co/docs/core-concepts/workspaces) associated with the authentication value.
    */
   get '/workspaces/list'(): (
     parameters?: WorkspacesListParameters,

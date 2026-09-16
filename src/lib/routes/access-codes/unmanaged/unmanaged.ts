@@ -163,7 +163,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   /**
-   * Converts an [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) to an [access code managed through Seam](https://docs.seam.co/low-level-apis/smart-locks/access-codes).
+   * Converts an [unmanaged access code](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes) to an [access code managed through Seam](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes).
    *
    * An unmanaged access code has a limited set of operations that you can perform on it. Once you convert an unmanaged access code to a managed access code, the full set of access code operations and lifecycle events becomes available for it.
    *
@@ -187,7 +187,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   /**
-   * Deletes an [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   * Deletes an [unmanaged access code](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
    */
   delete(
     parameters: AccessCodesUnmanagedDeleteParameters,
@@ -207,7 +207,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   /**
-   * Returns a specified [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   * Returns a specified [unmanaged access code](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
    *
    * You must specify either `access_code_id` or both `device_id` and `code`.
    */
@@ -229,7 +229,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   /**
-   * Returns a list of all [unmanaged access codes](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   * Returns a list of all [unmanaged access codes](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
    */
   list(
     parameters: AccessCodesUnmanagedListParameters,
@@ -250,7 +250,7 @@ export class SeamHttpAccessCodesUnmanaged {
   }
 
   /**
-   * Updates a specified [unmanaged access code](https://docs.seam.co/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
+   * Updates a specified [unmanaged access code](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/migrating-existing-access-codes).
    */
   update(
     parameters: AccessCodesUnmanagedUpdateParameters,
@@ -277,7 +277,7 @@ export type AccessCodesUnmanagedConvertToManagedParameters = {
   access_code_id: string
 
   /**
-   * Indicates whether [external modification](https://docs.seam.co/low-level-apis/smart-locks/access-codes#external-modification) of the access code is allowed.
+   * Indicates whether [external modification](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes#external-modification) of the access code is allowed.
    */
   allow_external_modification?: boolean | undefined
   /**
@@ -285,7 +285,7 @@ export type AccessCodesUnmanagedConvertToManagedParameters = {
    */
   force?: boolean | undefined
   /**
-   * Indicates whether [external modification](https://docs.seam.co/low-level-apis/smart-locks/access-codes#external-modification) of the access code is allowed.
+   * Indicates whether [external modification](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes#external-modification) of the access code is allowed.
    */
   is_external_modification_allowed?: boolean | undefined
 }
@@ -395,7 +395,7 @@ export type AccessCodesUnmanagedUpdateParameters = {
   access_code_id: string
 
   /**
-   * Indicates whether [external modification](https://docs.seam.co/low-level-apis/smart-locks/access-codes#external-modification) of the code is allowed.
+   * Indicates whether [external modification](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes#external-modification) of the code is allowed.
    */
   allow_external_modification?: boolean | undefined
   /**
@@ -403,7 +403,7 @@ export type AccessCodesUnmanagedUpdateParameters = {
    */
   force?: boolean | undefined
   /**
-   * Indicates whether [external modification](https://docs.seam.co/low-level-apis/smart-locks/access-codes#external-modification) of the code is allowed.
+   * Indicates whether [external modification](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes#external-modification) of the code is allowed.
    */
   is_external_modification_allowed?: boolean | undefined
 
