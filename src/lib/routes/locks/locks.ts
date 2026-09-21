@@ -457,6 +457,7 @@ export type LocksListParameters = {
     | 'keyincode'
     | 'akiles'
     | 'aqara'
+    | 'eufy'
     | 'dormakaba_oracode'
     | 'dormakaba_oracode_iho'
     | 'korelock'

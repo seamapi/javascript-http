@@ -421,6 +421,7 @@ export type DevicesUnmanagedListParameters = {
     | 'akiles'
     | 'aqara'
     | 'ecobee'
+    | 'eufy'
     | 'dormakaba_oracode'
     | 'dormakaba_oracode_iho'
     | 'honeywell_resideo'
