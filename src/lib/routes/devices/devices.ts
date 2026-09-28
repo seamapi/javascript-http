@@ -384,6 +384,7 @@ export type DevicesListParameters = {
     | 'android_phone'
     | 'ring_camera'
     | 'tapo_camera'
+    | 'arlo_camera'
     | undefined
   /**
    * Array of device types for which you want to list devices.
@@ -434,6 +435,7 @@ export type DevicesListParameters = {
         | 'android_phone'
         | 'ring_camera'
         | 'tapo_camera'
+        | 'arlo_camera'
       >
     | undefined
   /**
@@ -490,6 +492,7 @@ export type DevicesListParameters = {
     | 'ultraloq'
     | 'ring'
     | 'tapo'
+    | 'arlo'
     | 'ical'
     | 'lodgify'
     | 'hostaway'

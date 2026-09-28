@@ -325,6 +325,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'thirty_three_lock'
         | 'ring'
         | 'tapo'
+        | 'arlo'
         | 'ical'
         | 'lodgify'
         | 'hostaway'

@@ -212,6 +212,7 @@ export type Device = {
     | 'android_phone'
     | 'ring_camera'
     | 'tapo_camera'
+    | 'arlo_camera'
 
   /**
    * Display name of the device, defaults to nickname (if it is set) or `properties.appearance.name`, otherwise. Enables administrators and users to identify the device easily, especially when there are numerous devices.
@@ -842,6 +843,33 @@ export type Device = {
            * Time zone reported for an Aqara device (e.g. GMT-07:00).
            */
           time_zone?: string | null | undefined
+        }
+      | undefined
+    /**
+     * Metadata for an Arlo camera.
+     */
+    arlo_metadata?:
+      | {
+          /**
+           * Device ID reported by Arlo.
+           */
+          device_id?: string | undefined
+          /**
+           * Device name reported by Arlo.
+           */
+          device_name?: string | undefined
+          /**
+           * Firmware version reported by Arlo.
+           */
+          firmware_version?: string | undefined
+          /**
+           * Hardware version reported by Arlo.
+           */
+          hardware_version?: string | undefined
+          /**
+           * Model ID reported by Arlo.
+           */
+          model_id?: string | undefined
         }
       | undefined
     /**
