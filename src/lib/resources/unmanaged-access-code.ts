@@ -352,7 +352,7 @@ export type UnmanagedAccessCode = {
          */
         message: string
       } /**
-     * This access code is still active on the device even though its `ends_at` has passed, so the recipient may still be able to unlock the device after their access window ended. Seam is attempting to remove it, and this error clears automatically once the access code is no longer active.
+     * This access code is still active on the device even though its `ends_at` has passed, so the recipient may still be able to unlock the device after their access window ended. Seam is attempting to delete it, and this error clears automatically once the access code is no longer active.
      */
     | {
         /**
@@ -362,7 +362,7 @@ export type UnmanagedAccessCode = {
         /**
          * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
          */
-        error_code: 'failed_to_remove'
+        error_code: 'failed_to_delete'
 
         /**
          * Indicates that this is an access code error.
