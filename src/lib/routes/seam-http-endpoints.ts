@@ -320,6 +320,18 @@ import {
   SeamHttpActionAttempts,
 } from './action-attempts/index.js'
 import {
+  type CamerasLiveViewsCreateOptions,
+  type CamerasLiveViewsCreateParameters,
+  type CamerasLiveViewsCreateRequest,
+  type CamerasLiveViewsOfferOptions,
+  type CamerasLiveViewsOfferParameters,
+  type CamerasLiveViewsOfferRequest,
+  type CamerasLiveViewsStopOptions,
+  type CamerasLiveViewsStopParameters,
+  type CamerasLiveViewsStopRequest,
+  SeamHttpCamerasLiveViews,
+} from './cameras/live-views/index.js'
+import {
   type ClientSessionsCreateOptions,
   type ClientSessionsCreateParameters,
   type ClientSessionsCreateRequest,
@@ -494,6 +506,12 @@ import {
   SeamHttpLocksSimulate,
 } from './locks/simulate/index.js'
 import {
+  type MediaGetOptions,
+  type MediaGetParameters,
+  type MediaGetRequest,
+  SeamHttpMedia,
+} from './media/index.js'
+import {
   type NoiseSensorsListOptions,
   type NoiseSensorsListParameters,
   type NoiseSensorsListRequest,
@@ -597,6 +615,9 @@ import {
   type ThermostatsActivateClimatePresetOptions,
   type ThermostatsActivateClimatePresetParameters,
   type ThermostatsActivateClimatePresetRequest,
+  type ThermostatsActivateWeeklyProgramOptions,
+  type ThermostatsActivateWeeklyProgramParameters,
+  type ThermostatsActivateWeeklyProgramRequest,
   type ThermostatsCoolOptions,
   type ThermostatsCoolParameters,
   type ThermostatsCoolRequest,
@@ -2245,6 +2266,60 @@ export class SeamHttpEndpoints {
   }
 
   /**
+   * Creates a short-lived live view session for a single camera. Pass the returned session ID and token to `/cameras/live_views/offer` to start a WebRTC stream, and to `/cameras/live_views/stop` to end the session.
+   *
+   * Camera live view is in beta. To enable it for your workspace, contact Seam support. To check whether a camera supports live view, use `device.can_stream_live_video`.
+   */
+  get '/cameras/live_views/create'(): (
+    parameters: CamerasLiveViewsCreateParameters,
+    options?: CamerasLiveViewsCreateOptions,
+  ) => CamerasLiveViewsCreateRequest {
+    const { client, defaults } = this
+    return function camerasLiveViewsCreate(
+      ...args: Parameters<SeamHttpCamerasLiveViews['create']>
+    ): ReturnType<SeamHttpCamerasLiveViews['create']> {
+      const seam = SeamHttpCamerasLiveViews.fromClient(client, defaults)
+      return seam.create(...args)
+    }
+  }
+
+  /**
+   * Exchanges a WebRTC SDP offer for an SDP answer that starts streaming video from the camera, for a live view session that you created using `/cameras/live_views/create`.
+   *
+   * Camera live view is in beta. To enable it for your workspace, contact Seam support.
+   */
+  get '/cameras/live_views/offer'(): (
+    parameters: CamerasLiveViewsOfferParameters,
+    options?: CamerasLiveViewsOfferOptions,
+  ) => CamerasLiveViewsOfferRequest {
+    const { client, defaults } = this
+    return function camerasLiveViewsOffer(
+      ...args: Parameters<SeamHttpCamerasLiveViews['offer']>
+    ): ReturnType<SeamHttpCamerasLiveViews['offer']> {
+      const seam = SeamHttpCamerasLiveViews.fromClient(client, defaults)
+      return seam.offer(...args)
+    }
+  }
+
+  /**
+   * Stops a camera live view session that the current client session owns.
+   *
+   * Camera live view is in beta. To enable it for your workspace, contact Seam support.
+   */
+  get '/cameras/live_views/stop'(): (
+    parameters: CamerasLiveViewsStopParameters,
+    options?: CamerasLiveViewsStopOptions,
+  ) => CamerasLiveViewsStopRequest {
+    const { client, defaults } = this
+    return function camerasLiveViewsStop(
+      ...args: Parameters<SeamHttpCamerasLiveViews['stop']>
+    ): ReturnType<SeamHttpCamerasLiveViews['stop']> {
+      const seam = SeamHttpCamerasLiveViews.fromClient(client, defaults)
+      return seam.stop(...args)
+    }
+  }
+
+  /**
    * Creates a new [client session](https://www.seam.co/docs/core-concepts/authentication/client-session-tokens).
    */
   get '/client_sessions/create'(): (
@@ -3027,6 +3102,22 @@ export class SeamHttpEndpoints {
   }
 
   /**
+   * Returns a specified piece of media, such as a video clip or thumbnail image captured for a camera event, with a short-lived URL from which you can download it. Camera events list their media in `media_ids`. This endpoint is in beta.
+   */
+  get '/media/get'(): (
+    parameters: MediaGetParameters,
+    options?: MediaGetOptions,
+  ) => MediaGetRequest {
+    const { client, defaults } = this
+    return function mediaGet(
+      ...args: Parameters<SeamHttpMedia['get']>
+    ): ReturnType<SeamHttpMedia['get']> {
+      const seam = SeamHttpMedia.fromClient(client, defaults)
+      return seam.get(...args)
+    }
+  }
+
+  /**
    * Returns a list of all [noise sensors](https://www.seam.co/docs/capability-guides/noise-sensors).
    */
   get '/noise_sensors/list'(): (
@@ -3422,6 +3513,22 @@ export class SeamHttpEndpoints {
     ): ReturnType<SeamHttpThermostats['activateClimatePreset']> {
       const seam = SeamHttpThermostats.fromClient(client, defaults)
       return seam.activateClimatePreset(...args)
+    }
+  }
+
+  /**
+   * Returns a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats) to its [weekly program](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-programs), the schedule that is configured on the device itself, releasing any hold that Seam has set. Seam stops managing the thermostat's climate until you [activate a climate preset](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings), make a direct climate setting change, or one of the thermostat's [scheduled](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) presets reaches its activation time.
+   */
+  get '/thermostats/activate_weekly_program'(): (
+    parameters: ThermostatsActivateWeeklyProgramParameters,
+    options?: ThermostatsActivateWeeklyProgramOptions,
+  ) => ThermostatsActivateWeeklyProgramRequest {
+    const { client, defaults } = this
+    return function thermostatsActivateWeeklyProgram(
+      ...args: Parameters<SeamHttpThermostats['activateWeeklyProgram']>
+    ): ReturnType<SeamHttpThermostats['activateWeeklyProgram']> {
+      const seam = SeamHttpThermostats.fromClient(client, defaults)
+      return seam.activateWeeklyProgram(...args)
     }
   }
 
@@ -4307,6 +4414,7 @@ export type SeamHttpEndpointQueryPaths =
   | '/instant_keys/list'
   | '/locks/get'
   | '/locks/list'
+  | '/media/get'
   | '/noise_sensors/list'
   | '/noise_sensors/noise_thresholds/get'
   | '/noise_sensors/noise_thresholds/list'
@@ -4397,6 +4505,9 @@ export type SeamHttpEndpointMutationPaths =
   | '/acs/users/suspend'
   | '/acs/users/unsuspend'
   | '/acs/users/update'
+  | '/cameras/live_views/create'
+  | '/cameras/live_views/offer'
+  | '/cameras/live_views/stop'
   | '/client_sessions/create'
   | '/client_sessions/delete'
   | '/client_sessions/get_or_create'
@@ -4442,6 +4553,7 @@ export type SeamHttpEndpointMutationPaths =
   | '/spaces/remove_devices'
   | '/spaces/update'
   | '/thermostats/activate_climate_preset'
+  | '/thermostats/activate_weekly_program'
   | '/thermostats/cool'
   | '/thermostats/create_climate_preset'
   | '/thermostats/delete_climate_preset'

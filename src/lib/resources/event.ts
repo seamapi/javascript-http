@@ -6364,6 +6364,10 @@ export type SeamEvent =
        */
       image_url?: string | undefined
       /**
+       * IDs of the media, such as a video clip and a thumbnail image, captured for this activation. Use `/media/get` to retrieve each one.
+       */
+      media_ids?: Array<string> | undefined
+      /**
        * Sub-type of motion detected, if available.
        */
       motion_sub_type?: 'human' | 'vehicle' | 'package' | 'other' | undefined
@@ -6425,6 +6429,10 @@ export type SeamEvent =
        * URL to a thumbnail image captured at the time the doorbell was pressed.
        */
       image_url?: string | undefined
+      /**
+       * IDs of the media, such as a video clip and a thumbnail image, captured when the doorbell was pressed. Use `/media/get` to retrieve each one.
+       */
+      media_ids?: Array<string> | undefined
       /**
        * Date and time at which the event occurred.
        */
