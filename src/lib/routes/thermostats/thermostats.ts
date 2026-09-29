@@ -208,6 +208,31 @@ export class SeamHttpThermostats {
   }
 
   /**
+   * Returns a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats) to its [weekly program](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-programs), the schedule that is configured on the device itself, releasing any hold that Seam has set. Seam stops managing the thermostat's climate until you [activate a climate preset](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings), make a direct climate setting change, or one of the thermostat's [scheduled](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) presets reaches its activation time.
+   */
+  activateWeeklyProgram(
+    parameters: ThermostatsActivateWeeklyProgramParameters,
+    options: ThermostatsActivateWeeklyProgramOptions = {},
+  ): ThermostatsActivateWeeklyProgramRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/thermostats/activate_weekly_program',
+      method: 'POST',
+      body: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['device_id'],
+      atLeastOneParameterNames: [],
+      responseKey: 'action_attempt',
+      options,
+      actionAttempts: () =>
+        SeamHttpActionAttempts.fromClient(this.client, {
+          ...this.defaults,
+          waitForActionAttempt: false,
+        }),
+    })
+  }
+
+  /**
    * Sets a specified [thermostat](https://www.seam.co/docs/capability-guides/thermostats) to [cool mode](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings).
    */
   cool(
@@ -528,6 +553,30 @@ export type ThermostatsActivateClimatePresetRequest = SeamHttpRequest<
 >
 
 export type ThermostatsActivateClimatePresetOptions = Pick<
+  SeamHttpRequestOptions,
+  'waitForActionAttempt'
+>
+
+export type ThermostatsActivateWeeklyProgramParameters = {
+  /**
+   * ID of the thermostat device that you want to return to its weekly program.
+   */
+  device_id: string
+}
+
+/**
+ * @deprecated Use ThermostatsActivateWeeklyProgramRequest instead.
+ */
+export type ThermostatsActivateWeeklyProgramResponse = {
+  action_attempt: ActionAttempt
+}
+
+export type ThermostatsActivateWeeklyProgramRequest = SeamHttpRequest<
+  ThermostatsActivateWeeklyProgramResponse,
+  'action_attempt'
+>
+
+export type ThermostatsActivateWeeklyProgramOptions = Pick<
   SeamHttpRequestOptions,
   'waitForActionAttempt'
 >

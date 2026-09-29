@@ -8,6 +8,10 @@
  */
 export type UnmanagedDevice = {
   /**
+   * Indicates whether the thermostat can be returned to its weekly program, the schedule that is configured on the device itself, releasing any hold that Seam has set.
+   */
+  can_activate_weekly_program?: boolean | undefined
+  /**
    * Indicates whether the lock supports configuring automatic locking.
    */
   can_configure_auto_lock?: boolean | undefined
@@ -79,6 +83,10 @@ export type UnmanagedDevice = {
    * Indicates whether the device supports simulating removal in a sandbox.
    */
   can_simulate_removal?: boolean | undefined
+  /**
+   * Indicates whether the camera supports streaming live video through a camera live view session.
+   */
+  can_stream_live_video?: boolean | undefined
   /**
    * Indicates whether the thermostat can be turned off.
    */

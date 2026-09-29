@@ -1802,6 +1802,83 @@ export type ActionAttempt =
       action_attempt_id: string
 
       /**
+       * Action attempt to track the status of returning a thermostat to its weekly program.
+       */
+      action_type: 'ACTIVATE_WEEKLY_PROGRAM'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: {}
+
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of returning a thermostat to its weekly program.
+       */
+      action_type: 'ACTIVATE_WEEKLY_PROGRAM'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of returning a thermostat to its weekly program.
+       */
+      action_type: 'ACTIVATE_WEEKLY_PROGRAM'
+
+      /**
+       * Error associated with the action.
+       */
+      error: {
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Type of the error.
+         */
+        type: string
+      }
+
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
        * Action attempt to track the status of simulating a keypad code entry.
        */
       action_type: 'SIMULATE_KEYPAD_CODE_ENTRY'

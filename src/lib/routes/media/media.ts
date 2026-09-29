@@ -28,33 +28,15 @@ import {
   limitToSeamHttpRequestOptions,
   parseOptions,
 } from 'lib/parse-options.js'
-import type { SeamPaginatedRequest } from 'lib/seam-http-request.js'
+import type { Media } from 'lib/resources/media.js'
+import { SeamHttpClientSessions } from 'lib/routes/client-sessions/index.js'
+import {
+  SeamHttpRequest,
+  type SeamPaginatedRequest,
+} from 'lib/seam-http-request.js'
 import { SeamPaginator } from 'lib/seam-paginator.js'
 
-import { SeamHttpAccessCodes } from './access-codes/index.js'
-import { SeamHttpAccessGrants } from './access-grants/index.js'
-import { SeamHttpAccessMethods } from './access-methods/index.js'
-import { SeamHttpAcs } from './acs/index.js'
-import { SeamHttpActionAttempts } from './action-attempts/index.js'
-import { SeamHttpCameras } from './cameras/index.js'
-import { SeamHttpClientSessions } from './client-sessions/index.js'
-import { SeamHttpConnectWebviews } from './connect-webviews/index.js'
-import { SeamHttpConnectedAccounts } from './connected-accounts/index.js'
-import { SeamHttpCustomers } from './customers/index.js'
-import { SeamHttpDevices } from './devices/index.js'
-import { SeamHttpEvents } from './events/index.js'
-import { SeamHttpInstantKeys } from './instant-keys/index.js'
-import { SeamHttpLocks } from './locks/index.js'
-import { SeamHttpMedia } from './media/index.js'
-import { SeamHttpNoiseSensors } from './noise-sensors/index.js'
-import { SeamHttpPhones } from './phones/index.js'
-import { SeamHttpSpaces } from './spaces/index.js'
-import { SeamHttpThermostats } from './thermostats/index.js'
-import { SeamHttpUserIdentities } from './user-identities/index.js'
-import { SeamHttpWebhooks } from './webhooks/index.js'
-import { SeamHttpWorkspaces } from './workspaces/index.js'
-
-export class SeamHttp {
+export class SeamHttpMedia {
   client: Client
   readonly defaults: Required<SeamHttpRequestOptions>
 
@@ -67,23 +49,23 @@ export class SeamHttp {
   static fromClient(
     client: SeamHttpOptionsWithClient['client'],
     options: Omit<SeamHttpOptionsWithClient, 'client'> = {},
-  ): SeamHttp {
+  ): SeamHttpMedia {
     const constructorOptions = { ...options, client }
     if (!isSeamHttpOptionsWithClient(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing client')
     }
-    return new SeamHttp(constructorOptions)
+    return new SeamHttpMedia(constructorOptions)
   }
 
   static fromApiKey(
     apiKey: SeamHttpOptionsWithApiKey['apiKey'],
     options: Omit<SeamHttpOptionsWithApiKey, 'apiKey'> = {},
-  ): SeamHttp {
+  ): SeamHttpMedia {
     const constructorOptions = { ...options, apiKey }
     if (!isSeamHttpOptionsWithApiKey(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing apiKey')
     }
-    return new SeamHttp(constructorOptions)
+    return new SeamHttpMedia(constructorOptions)
   }
 
   static fromClientSessionToken(
@@ -92,24 +74,24 @@ export class SeamHttp {
       SeamHttpOptionsWithClientSessionToken,
       'clientSessionToken'
     > = {},
-  ): SeamHttp {
+  ): SeamHttpMedia {
     const constructorOptions = { ...options, clientSessionToken }
     if (!isSeamHttpOptionsWithClientSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError('Missing clientSessionToken')
     }
-    return new SeamHttp(constructorOptions)
+    return new SeamHttpMedia(constructorOptions)
   }
 
   static async fromPublishableKey(
     publishableKey: string,
     userIdentifierKey: string,
     options: SeamHttpFromPublishableKeyOptions = {},
-  ): Promise<SeamHttp> {
+  ): Promise<SeamHttpMedia> {
     warnOnInsecureuserIdentifierKey(userIdentifierKey)
     const clientOptions = parseOptions({ ...options, publishableKey })
     if (isSeamHttpOptionsWithClient(clientOptions)) {
       throw new SeamHttpInvalidOptionsError(
-        'The client option cannot be used with SeamHttp.fromPublishableKey',
+        'The client option cannot be used with SeamHttpMedia.fromPublishableKey',
       )
     }
     const client = createClient(clientOptions)
@@ -117,7 +99,7 @@ export class SeamHttp {
     const { token } = await clientSessions.getOrCreate({
       user_identifier_key: userIdentifierKey,
     })
-    return SeamHttp.fromClientSessionToken(token, options)
+    return SeamHttpMedia.fromClientSessionToken(token, options)
   }
 
   static fromConsoleSessionToken(
@@ -127,14 +109,14 @@ export class SeamHttp {
       SeamHttpOptionsWithConsoleSessionToken,
       'consoleSessionToken' | 'workspaceId'
     > = {},
-  ): SeamHttp {
+  ): SeamHttpMedia {
     const constructorOptions = { ...options, consoleSessionToken, workspaceId }
     if (!isSeamHttpOptionsWithConsoleSessionToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing consoleSessionToken or workspaceId',
       )
     }
-    return new SeamHttp(constructorOptions)
+    return new SeamHttpMedia(constructorOptions)
   }
 
   static fromPersonalAccessToken(
@@ -144,14 +126,14 @@ export class SeamHttp {
       SeamHttpOptionsWithPersonalAccessToken,
       'personalAccessToken' | 'workspaceId'
     > = {},
-  ): SeamHttp {
+  ): SeamHttpMedia {
     const constructorOptions = { ...options, personalAccessToken, workspaceId }
     if (!isSeamHttpOptionsWithPersonalAccessToken(constructorOptions)) {
       throw new SeamHttpInvalidOptionsError(
         'Missing personalAccessToken or workspaceId',
       )
     }
-    return new SeamHttp(constructorOptions)
+    return new SeamHttpMedia(constructorOptions)
   }
 
   createPaginator<const TResponse, const TResponseKey extends keyof TResponse>(
@@ -179,91 +161,43 @@ export class SeamHttp {
     await clientSessions.get()
   }
 
-  get accessCodes(): SeamHttpAccessCodes {
-    return SeamHttpAccessCodes.fromClient(this.client, this.defaults)
-  }
-
-  get accessGrants(): SeamHttpAccessGrants {
-    return SeamHttpAccessGrants.fromClient(this.client, this.defaults)
-  }
-
-  get accessMethods(): SeamHttpAccessMethods {
-    return SeamHttpAccessMethods.fromClient(this.client, this.defaults)
-  }
-
-  get acs(): SeamHttpAcs {
-    return SeamHttpAcs.fromClient(this.client, this.defaults)
-  }
-
-  get actionAttempts(): SeamHttpActionAttempts {
-    return SeamHttpActionAttempts.fromClient(this.client, this.defaults)
-  }
-
-  get cameras(): SeamHttpCameras {
-    return SeamHttpCameras.fromClient(this.client, this.defaults)
-  }
-
-  get clientSessions(): SeamHttpClientSessions {
-    return SeamHttpClientSessions.fromClient(this.client, this.defaults)
-  }
-
-  get connectWebviews(): SeamHttpConnectWebviews {
-    return SeamHttpConnectWebviews.fromClient(this.client, this.defaults)
-  }
-
-  get connectedAccounts(): SeamHttpConnectedAccounts {
-    return SeamHttpConnectedAccounts.fromClient(this.client, this.defaults)
-  }
-
-  get customers(): SeamHttpCustomers {
-    return SeamHttpCustomers.fromClient(this.client, this.defaults)
-  }
-
-  get devices(): SeamHttpDevices {
-    return SeamHttpDevices.fromClient(this.client, this.defaults)
-  }
-
-  get events(): SeamHttpEvents {
-    return SeamHttpEvents.fromClient(this.client, this.defaults)
-  }
-
-  get instantKeys(): SeamHttpInstantKeys {
-    return SeamHttpInstantKeys.fromClient(this.client, this.defaults)
-  }
-
-  get locks(): SeamHttpLocks {
-    return SeamHttpLocks.fromClient(this.client, this.defaults)
-  }
-
-  get media(): SeamHttpMedia {
-    return SeamHttpMedia.fromClient(this.client, this.defaults)
-  }
-
-  get noiseSensors(): SeamHttpNoiseSensors {
-    return SeamHttpNoiseSensors.fromClient(this.client, this.defaults)
-  }
-
-  get phones(): SeamHttpPhones {
-    return SeamHttpPhones.fromClient(this.client, this.defaults)
-  }
-
-  get spaces(): SeamHttpSpaces {
-    return SeamHttpSpaces.fromClient(this.client, this.defaults)
-  }
-
-  get thermostats(): SeamHttpThermostats {
-    return SeamHttpThermostats.fromClient(this.client, this.defaults)
-  }
-
-  get userIdentities(): SeamHttpUserIdentities {
-    return SeamHttpUserIdentities.fromClient(this.client, this.defaults)
-  }
-
-  get webhooks(): SeamHttpWebhooks {
-    return SeamHttpWebhooks.fromClient(this.client, this.defaults)
-  }
-
-  get workspaces(): SeamHttpWorkspaces {
-    return SeamHttpWorkspaces.fromClient(this.client, this.defaults)
+  /**
+   * Returns a specified piece of media, such as a video clip or thumbnail image captured for a camera event, with a short-lived URL from which you can download it. Camera events list their media in `media_ids`. This endpoint is in beta.
+   */
+  get(
+    parameters: MediaGetParameters,
+    options: MediaGetOptions = {},
+  ): MediaGetRequest {
+    return new SeamHttpRequest(this, {
+      pathname: '/media/get',
+      method: 'GET',
+      params: parameters,
+      parameters,
+      hasRequiredParameters: true,
+      requiredParameterNames: ['media_id'],
+      atLeastOneParameterNames: [],
+      responseKey: 'media',
+      options,
+    })
   }
 }
+
+export type MediaGetParameters = {
+  /**
+   * Response format. `json` returns the media object. `redirect` responds with a `302` redirect to the media's download URL, so you can use this endpoint directly as the source of an image or video.
+   */
+  format?: 'json' | 'redirect' | undefined
+  /**
+   * ID of the media that you want to get.
+   */
+  media_id: string
+}
+
+/**
+ * @deprecated Use MediaGetRequest instead.
+ */
+export type MediaGetResponse = { media: Media }
+
+export type MediaGetRequest = SeamHttpRequest<MediaGetResponse, 'media'>
+
+export interface MediaGetOptions {}
