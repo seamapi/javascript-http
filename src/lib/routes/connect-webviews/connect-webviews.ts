@@ -326,6 +326,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'ring'
         | 'tapo'
         | 'arlo'
+        | 'reolink'
         | 'ical'
         | 'lodgify'
         | 'hostaway'

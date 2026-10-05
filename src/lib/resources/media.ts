@@ -48,6 +48,10 @@ export type Media = {
    */
   url: string | null
   /**
+   * Video codec used to encode the media. Only present for video media. `hevc` (H.265) playback support varies by browser and device, so check compatibility before assuming a clip plays inline.
+   */
+  video_codec?: 'h264' | 'hevc' | undefined
+  /**
    * ID of the workspace that contains the media.
    */
   workspace_id: string

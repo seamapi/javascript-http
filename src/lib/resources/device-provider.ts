@@ -155,6 +155,7 @@ export type DeviceProvider = {
     | 'ring'
     | 'tapo'
     | 'arlo'
+    | 'reolink'
     | 'ical'
     | 'lodgify'
     | 'hostaway'
