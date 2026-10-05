@@ -385,6 +385,7 @@ export type DevicesListParameters = {
     | 'ring_camera'
     | 'tapo_camera'
     | 'arlo_camera'
+    | 'reolink_camera'
     | undefined
   /**
    * Array of device types for which you want to list devices.
@@ -436,6 +437,7 @@ export type DevicesListParameters = {
         | 'ring_camera'
         | 'tapo_camera'
         | 'arlo_camera'
+        | 'reolink_camera'
       >
     | undefined
   /**
@@ -493,6 +495,7 @@ export type DevicesListParameters = {
     | 'ring'
     | 'tapo'
     | 'arlo'
+    | 'reolink'
     | 'ical'
     | 'lodgify'
     | 'hostaway'

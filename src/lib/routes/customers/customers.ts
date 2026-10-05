@@ -264,9 +264,9 @@ export type CustomersCreatePortalParameters = {
                */
               name?: string | undefined
               /**
-               * Preferred PIN code to use when creating access for this reservation.
+               * Preferred PIN code to use when creating access for this reservation. Set to `null` to remove a previously set preferred code, so that access falls back to an automatically generated code. Omitting this field keeps any previously set preferred code.
                */
-              preferred_code?: string | undefined
+              preferred_code?: string | null | undefined
               /**
                * Property keys associated with the access grant.
                */
@@ -343,9 +343,9 @@ export type CustomersCreatePortalParameters = {
                */
               name?: string | undefined
               /**
-               * Preferred PIN code to use when creating access for this reservation.
+               * Preferred PIN code to use when creating access for this reservation. Set to `null` to remove a previously set preferred code, so that access falls back to an automatically generated code. Omitting this field keeps any previously set preferred code.
                */
-              preferred_code?: string | undefined
+              preferred_code?: string | null | undefined
               /**
                * Property keys associated with the access grant.
                */
@@ -422,6 +422,10 @@ export type CustomersCreatePortalParameters = {
          * Your unique identifier for the customer.
          */
         customer_key?: string | undefined
+        /**
+         * ID of the customization profile to use for this customer. Access grants that automations create for this customer use this profile. Pass `null` to remove the customer's customization profile.
+         */
+        customization_profile_id?: string | null | undefined
         /**
          * List of gym or fitness facilities.
          */
@@ -547,9 +551,9 @@ export type CustomersCreatePortalParameters = {
                */
               name?: string | undefined
               /**
-               * Preferred PIN code to use when creating access for this reservation.
+               * Preferred PIN code to use when creating access for this reservation. Set to `null` to remove a previously set preferred code, so that access falls back to an automatically generated code. Omitting this field keeps any previously set preferred code.
                */
-              preferred_code?: string | undefined
+              preferred_code?: string | null | undefined
               /**
                * Property keys associated with the access grant.
                */
@@ -1240,9 +1244,9 @@ export type CustomersPushDataParameters = {
          */
         name?: string | undefined
         /**
-         * Preferred PIN code to use when creating access for this reservation.
+         * Preferred PIN code to use when creating access for this reservation. Set to `null` to remove a previously set preferred code, so that access falls back to an automatically generated code. Omitting this field keeps any previously set preferred code.
          */
-        preferred_code?: string | undefined
+        preferred_code?: string | null | undefined
         /**
          * Property keys associated with the access grant.
          */
@@ -1319,9 +1323,9 @@ export type CustomersPushDataParameters = {
          */
         name?: string | undefined
         /**
-         * Preferred PIN code to use when creating access for this reservation.
+         * Preferred PIN code to use when creating access for this reservation. Set to `null` to remove a previously set preferred code, so that access falls back to an automatically generated code. Omitting this field keeps any previously set preferred code.
          */
-        preferred_code?: string | undefined
+        preferred_code?: string | null | undefined
         /**
          * Property keys associated with the access grant.
          */
@@ -1399,6 +1403,10 @@ export type CustomersPushDataParameters = {
    */
   customer_key: string
 
+  /**
+   * ID of the customization profile to use for this customer. Access grants that automations create for this customer use this profile. Pass `null` to remove the customer's customization profile.
+   */
+  customization_profile_id?: string | null | undefined
   /**
    * List of gym or fitness facilities.
    */
@@ -1524,9 +1532,9 @@ export type CustomersPushDataParameters = {
          */
         name?: string | undefined
         /**
-         * Preferred PIN code to use when creating access for this reservation.
+         * Preferred PIN code to use when creating access for this reservation. Set to `null` to remove a previously set preferred code, so that access falls back to an automatically generated code. Omitting this field keeps any previously set preferred code.
          */
-        preferred_code?: string | undefined
+        preferred_code?: string | null | undefined
         /**
          * Property keys associated with the access grant.
          */
