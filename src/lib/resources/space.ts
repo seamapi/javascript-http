@@ -86,6 +86,31 @@ export type Space = {
    */
   space_key?: string | undefined
   /**
+   * Warnings associated with the space.
+   */
+  warnings: Array<
+    /**
+     * Indicates that the space is being deleted. Seam removes it, revokes its access grants, and detaches its devices and entrances shortly.
+     */
+    {
+      /**
+       * Date and time at which Seam created the warning.
+       */
+      created_at: string
+
+      /**
+       * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+       */
+      message: string
+
+      /**
+       * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+       */
+      warning_code: 'being_deleted'
+    }
+  >
+
+  /**
    * ID of the workspace associated with the space.
    */
   workspace_id: string
