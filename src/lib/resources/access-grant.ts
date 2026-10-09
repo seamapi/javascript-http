@@ -55,27 +55,45 @@ export type AccessGrant = {
     /**
      * Indicates that Seam could not create one or more of the requested access methods for the access grant.
      */
-    {
-      /**
-       * Date and time at which Seam created the error.
-       */
-      created_at: string
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at: string
 
-      /**
-       * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
-       */
-      error_code: 'cannot_create_requested_access_methods'
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'cannot_create_requested_access_methods'
 
-      /**
-       * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
-       */
-      message: string
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
 
-      /**
-       * IDs of the devices that did not receive an access code at grant creation. Use these to identify which specific devices failed when the message reports a partial failure.
-       */
-      missing_device_ids?: Array<string> | undefined
-    }
+        /**
+         * IDs of the devices that did not receive an access code at grant creation. Use these to identify which specific devices failed when the message reports a partial failure.
+         */
+        missing_device_ids?: Array<string> | undefined
+      } /**
+     * Indicates that the access system rejected the access that Seam tried to set up for this access grant, so its credentials cannot open the affected entrances. For example, a hotel room may already be reserved or checked in for another guest. The message contains the reason that the access system gave. Seam keeps retrying, and this error clears automatically once the access system accepts the access.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at: string
+
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'access_not_provisioned'
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      }
   >
 
   /**
