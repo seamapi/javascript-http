@@ -38,22 +38,40 @@ export type UnmanagedAccessMethod = {
     /**
      * Indicates that Seam was unable to issue this [access method](https://www.seam.co/docs/use-cases/granting-access/creating-an-access-grant) before its access grant started, so the recipient may be unable to access the space. This usually points to a problem that needs attention, such as an offline or disconnected device. Seam keeps retrying, and this error clears automatically if the access method is eventually issued.
      */
-    {
-      /**
-       * Date and time at which Seam created the error.
-       */
-      created_at: string
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at: string
 
-      /**
-       * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
-       */
-      error_code: 'failed_to_issue'
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'failed_to_issue'
 
-      /**
-       * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
-       */
-      message: string
-    }
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      } /**
+     * Indicates that the access system rejected the access that Seam tried to set up for this access method, so its credential cannot open the affected entrances, even after it is issued. For example, a hotel room may already be reserved or checked in for another guest. The message contains the reason that the access system gave. Seam keeps retrying, and this error clears automatically once the access system accepts the access.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at: string
+
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'access_not_provisioned'
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      }
   >
 
   /**

@@ -1305,7 +1305,7 @@ export type ActionAttempt =
           /**
            * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
            */
-          error_code: 'failed_to_issue'
+          error_code: 'failed_to_issue' | 'access_not_provisioned'
 
           /**
            * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
@@ -2157,6 +2157,83 @@ export type ActionAttempt =
        * Action attempt to track the status of configuring the auto-lock on a lock.
        */
       action_type: 'CONFIGURE_AUTO_LOCK'
+
+      /**
+       * Error associated with the action.
+       */
+      error: {
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Type of the error.
+         */
+        type: string
+      }
+
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'error'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of converting an unmanaged access code to a managed access code.
+       */
+      action_type: 'CONVERT_ACCESS_CODE_TO_MANAGED'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: {}
+
+      status: 'success'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of converting an unmanaged access code to a managed access code.
+       */
+      action_type: 'CONVERT_ACCESS_CODE_TO_MANAGED'
+
+      /**
+       * Error associated with the action.
+       */
+      error: null
+      /**
+       * Result of the action.
+       */
+      result: null
+
+      status: 'pending'
+    }
+  | {
+      /**
+       * ID of the action attempt.
+       */
+      action_attempt_id: string
+
+      /**
+       * Action attempt to track the status of converting an unmanaged access code to a managed access code.
+       */
+      action_type: 'CONVERT_ACCESS_CODE_TO_MANAGED'
 
       /**
        * Error associated with the action.
