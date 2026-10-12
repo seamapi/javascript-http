@@ -2629,6 +2629,7 @@ export class SeamHttpEndpoints {
   /**
    * Deletes customer data including resources like spaces, properties, rooms, users, etc.
    * This will delete the partner resources and any related Seam resources (user identities, access grants, spaces).
+   * Space keys also match spaces created directly with a `space_key` (for example, through `/spaces/create`).
    */
   get '/customers/delete_data'(): (
     parameters?: CustomersDeleteDataParameters,

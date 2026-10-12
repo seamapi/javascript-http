@@ -388,7 +388,12 @@ export type ConnectedAccountsUpdateParameters = {
    */
   accepted_capabilities?:
     | Array<
-        'lock' | 'thermostat' | 'noise_sensor' | 'access_control' | 'camera'
+        | 'lock'
+        | 'thermostat'
+        | 'noise_sensor'
+        | 'access_control'
+        | 'camera'
+        | 'speaker'
       >
     | undefined
   /**

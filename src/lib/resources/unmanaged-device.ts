@@ -28,6 +28,18 @@ export type UnmanagedDevice = {
    */
   can_hvac_heat_cool?: boolean | undefined
   /**
+   * Indicates whether the speaker supports muting and unmuting.
+   */
+  can_mute_speaker?: boolean | undefined
+  /**
+   * Indicates whether the speaker supports pausing and resuming playback.
+   */
+  can_pause_speaker_playback?: boolean | undefined
+  /**
+   * Indicates whether the speaker supports playing a chime.
+   */
+  can_play_speaker_chime?: boolean | undefined
+  /**
    * Indicates whether the device supports programming offline access codes.
    */
   can_program_offline_access_codes?: boolean | undefined
@@ -59,6 +71,10 @@ export type UnmanagedDevice = {
    * Indicates whether the thermostat supports running climate programs.
    */
   can_run_thermostat_programs?: boolean | undefined
+  /**
+   * Indicates whether the speaker supports setting its volume.
+   */
+  can_set_speaker_volume?: boolean | undefined
   /**
    * Indicates whether the device supports simulating connection in a sandbox.
    */
@@ -177,6 +193,7 @@ export type UnmanagedDevice = {
     | 'tapo_camera'
     | 'arlo_camera'
     | 'reolink_camera'
+    | 'sonos_speaker'
 
   /**
    * Display name of the device, defaults to nickname (if it is set) or `properties.appearance.name`, otherwise. Enables administrators and users to identify the device easily, especially when there are numerous devices.

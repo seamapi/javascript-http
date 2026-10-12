@@ -11,7 +11,12 @@ export type ConnectedAccount = {
    * List of capabilities that were accepted during the account connection process.
    */
   accepted_capabilities: Array<
-    'lock' | 'thermostat' | 'noise_sensor' | 'access_control' | 'camera'
+    | 'lock'
+    | 'thermostat'
+    | 'noise_sensor'
+    | 'access_control'
+    | 'camera'
+    | 'speaker'
   >
 
   /**

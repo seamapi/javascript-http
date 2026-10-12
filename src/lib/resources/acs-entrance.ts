@@ -195,22 +195,27 @@ export type AcsEntrance = {
   /**
    * Errors associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
    */
-  errors: Array<{
+  errors: Array<
     /**
-     * Date and time at which Seam created the error.
+     * Indicates that the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details) was removed from the connected account, so Seam can no longer sync it.
      */
-    created_at: string
+    {
+      /**
+       * Date and time at which Seam created the error.
+       */
+      created_at: string
 
-    /**
-     * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
-     */
-    error_code: string
+      /**
+       * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+       */
+      error_code: 'entrance_removed'
 
-    /**
-     * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
-     */
-    message: string
-  }>
+      /**
+       * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+       */
+      message: string
+    }
+  >
 
   /**
    * Hotek-specific metadata associated with the [entrance](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).

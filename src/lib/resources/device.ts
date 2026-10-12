@@ -28,6 +28,18 @@ export type Device = {
    */
   can_hvac_heat_cool?: boolean | undefined
   /**
+   * Indicates whether the speaker supports muting and unmuting.
+   */
+  can_mute_speaker?: boolean | undefined
+  /**
+   * Indicates whether the speaker supports pausing and resuming playback.
+   */
+  can_pause_speaker_playback?: boolean | undefined
+  /**
+   * Indicates whether the speaker supports playing a chime.
+   */
+  can_play_speaker_chime?: boolean | undefined
+  /**
    * Indicates whether the device supports programming offline access codes.
    */
   can_program_offline_access_codes?: boolean | undefined
@@ -59,6 +71,10 @@ export type Device = {
    * Indicates whether the thermostat supports running climate programs.
    */
   can_run_thermostat_programs?: boolean | undefined
+  /**
+   * Indicates whether the speaker supports setting its volume.
+   */
+  can_set_speaker_volume?: boolean | undefined
   /**
    * Indicates whether the device supports simulating connection in a sandbox.
    */
@@ -222,6 +238,7 @@ export type Device = {
     | 'tapo_camera'
     | 'arlo_camera'
     | 'reolink_camera'
+    | 'sonos_speaker'
 
   /**
    * Display name of the device, defaults to nickname (if it is set) or `properties.appearance.name`, otherwise. Enables administrators and users to identify the device easily, especially when there are numerous devices.
@@ -1834,6 +1851,41 @@ export type Device = {
         }
       | undefined
     /**
+     * Metadata for a Sonos speaker.
+     */
+    sonos_metadata?:
+      | {
+          /**
+           * Models of the speakers bonded to this speaker, such as surrounds or a subwoofer.
+           */
+          bonded_member_models?: Array<string> | undefined
+          /**
+           * Color of the speaker, as reported by Sonos.
+           */
+          color?: string | undefined
+          /**
+           * ID of the Sonos household that the speaker belongs to.
+           */
+          household_id?: string | undefined
+          /**
+           * Model name of the speaker, as reported by Sonos.
+           */
+          model_display_name?: string | undefined
+          /**
+           * ID of the Sonos player for the speaker.
+           */
+          player_id?: string | undefined
+          /**
+           * Name of the speaker, as set in the Sonos app.
+           */
+          player_name?: string | undefined
+          /**
+           * Software version running on the speaker.
+           */
+          software_version?: string | undefined
+        }
+      | undefined
+    /**
      * Metadata for a tado° device.
      */
     tado_metadata?:
@@ -2273,6 +2325,81 @@ export type Device = {
            */
           time_zone?: string | undefined
         }>
+      | undefined
+    /**
+     * Audio state and capabilities of the speaker.
+     */
+    speaker?:
+      | {
+          /**
+           * IDs of the other speakers that are currently grouped with this speaker. Pausing or resuming playback on a speaker also affects the speakers in its group.
+           */
+          grouped_with_device_ids: Array<string>
+
+          /**
+           * Indicates whether the speaker's volume is fixed, for example, because the speaker's line-out level is controlled by an external amplifier. A speaker with a fixed volume cannot have its volume set through Seam.
+           */
+          has_fixed_volume: boolean
+
+          /**
+           * Indicates whether the speaker is muted.
+           */
+          is_muted: boolean
+
+          /**
+           * Maximum volume that you can set on the speaker. This is the ceiling of the speaker's native volume scale, not a limit configured for guests.
+           */
+          max_volume: number
+
+          /**
+           * Minimum volume that you can set on the speaker.
+           */
+          min_volume: number
+
+          /**
+           * Content that is currently playing on the speaker.
+           */
+          now_playing?:
+            | {
+                /**
+                 * Album of the content that is currently playing.
+                 */
+                album?: string | undefined
+                /**
+                 * Artist of the content that is currently playing.
+                 */
+                artist?: string | undefined
+                /**
+                 * Title of the content that is currently playing.
+                 */
+                title?: string | undefined
+              }
+            | undefined
+          /**
+           * Playback state of the speaker.
+           */
+          playback_state:
+            'playing' | 'paused' | 'idle' | 'buffering' | 'unknown'
+
+          /**
+           * Indicates whether the speaker can play a chime.
+           */
+          supports_chime: boolean
+
+          /**
+           * Current volume of the speaker, on the speaker's native volume scale from `min_volume` to `max_volume`. This is the native volume setting, not a decibel level.
+           */
+          volume: number
+
+          /**
+           * Date and time at which the speaker first reported its current volume.
+           */
+          volume_reported_at?: string | undefined
+          /**
+           * Increment between the volume values that you can set on the speaker.
+           */
+          volume_step: number
+        }
       | undefined
     /**
      * Supported code lengths for access codes.

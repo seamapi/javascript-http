@@ -386,6 +386,7 @@ export type DevicesListParameters = {
     | 'tapo_camera'
     | 'arlo_camera'
     | 'reolink_camera'
+    | 'sonos_speaker'
     | undefined
   /**
    * Array of device types for which you want to list devices.
@@ -438,6 +439,7 @@ export type DevicesListParameters = {
         | 'tapo_camera'
         | 'arlo_camera'
         | 'reolink_camera'
+        | 'sonos_speaker'
       >
     | undefined
   /**
@@ -505,6 +507,7 @@ export type DevicesListParameters = {
     | 'kisi'
     | 'slack'
     | 'yacan'
+    | 'sonos'
     | undefined
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.

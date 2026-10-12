@@ -321,9 +321,9 @@ export type AccessGrant = {
               device_id: string
 
               /**
-               * Reason the access code could not be revoked (e.g. `offline_access_code_not_revocable`).
+               * Reason the access code could not be revoked.
                */
-              error_code: string
+              error_code: 'offline_access_code_not_revocable'
 
               /**
                * Human-readable description of why revocation failed.
