@@ -92,7 +92,7 @@ export type UnmanagedAccessMethod = {
    */
   is_ready_for_assignment?: boolean | undefined
   /**
-   * Indicates whether the access method is ready to be encoded. This is true when the credential has been created and the card has not yet been issued.
+   * Indicates whether the access method is ready to be encoded. This is true when the card has not yet been issued and the access system has received all the access the card needs. While it is false, `pending_mutations` contains `waiting_for_access_on_acs_system`.
    */
   is_ready_for_encoding?: boolean | undefined
   /**
@@ -230,6 +230,24 @@ export type UnmanagedAccessMethod = {
            */
           starts_at: string | null
         }
+      } /**
+     * The access system has not yet received all the access this card needs. A card encoded now would carry only the access the system already has, so wait until this clears before encoding.
+     */
+    | {
+        /**
+         * Date and time at which the mutation was created.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the mutation.
+         */
+        message: string
+
+        /**
+         * Mutation code to indicate that the access system has not yet received all the access this card needs, so the card is not ready to be encoded.
+         */
+        mutation_code: 'waiting_for_access_on_acs_system'
       }
   >
 

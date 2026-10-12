@@ -259,7 +259,12 @@ export type ConnectWebviewsCreateParameters = {
    */
   accepted_capabilities?:
     | Array<
-        'lock' | 'thermostat' | 'noise_sensor' | 'access_control' | 'camera'
+        | 'lock'
+        | 'thermostat'
+        | 'noise_sensor'
+        | 'access_control'
+        | 'camera'
+        | 'speaker'
       >
     | undefined
   /**
@@ -335,6 +340,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'omnitec'
         | 'kisi'
         | 'aqara'
+        | 'sonos'
         | 'yale_access'
         | 'hid_cm'
         | 'google_nest'

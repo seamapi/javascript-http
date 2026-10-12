@@ -21,7 +21,12 @@ export type ConnectWebview = {
    * High-level device capabilities that the Connect Webview can accept. When creating a Connect Webview, you can specify the types of devices that it can connect to Seam. If you do not set custom `accepted_capabilities`, Seam uses a default set of `accepted_capabilities` for each provider. For example, if you create a Connect Webview that accepts SmartThing devices, without specifying `accepted_capabilities`, Seam accepts only SmartThings locks. To connect SmartThings thermostats and locks to Seam, create a Connect Webview and include both `thermostat` and `lock` in the `accepted_capabilities`.
    */
   accepted_capabilities: Array<
-    'lock' | 'thermostat' | 'noise_sensor' | 'access_control' | 'camera'
+    | 'lock'
+    | 'thermostat'
+    | 'noise_sensor'
+    | 'access_control'
+    | 'camera'
+    | 'speaker'
   >
 
   /**

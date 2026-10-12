@@ -184,6 +184,7 @@ export class SeamHttpCustomers {
   /**
    * Deletes customer data including resources like spaces, properties, rooms, users, etc.
    * This will delete the partner resources and any related Seam resources (user identities, access grants, spaces).
+   * Space keys also match spaces created directly with a `space_key` (for example, through `/spaces/create`).
    */
   deleteData(
     parameters?: CustomersDeleteDataParameters,
@@ -479,6 +480,10 @@ export type CustomersCreatePortalParameters = {
               name?: string | undefined
             }>
           | undefined
+        /**
+         * Battery level, from 0 to 1, at or below which `device.low_battery` events fire for this customer's devices. Overrides the workspace and device defaults. Pass `null` to remove the customer's override.
+         */
+        low_battery_alert_threshold?: number | null | undefined
         /**
          * List of short-term rental properties.
          */
@@ -927,6 +932,10 @@ export type CustomersCreatePortalParameters = {
                * Indicates whether the customer can customize the Instant Key profile for their properties.
                */
               allow_instant_key_customization?: boolean | undefined
+              /**
+               * Indicates whether the customer can customize their notification settings, such as the low-battery alert threshold.
+               */
+              allow_notification_customization?: boolean | undefined
               /**
                * Whether to exclude this feature from the portal.
                */
@@ -1460,6 +1469,10 @@ export type CustomersPushDataParameters = {
         name?: string | undefined
       }>
     | undefined
+  /**
+   * Battery level, from 0 to 1, at or below which `device.low_battery` events fire for this customer's devices. Overrides the workspace and device defaults. Pass `null` to remove the customer's override.
+   */
+  low_battery_alert_threshold?: number | null | undefined
   /**
    * List of short-term rental properties.
    */
