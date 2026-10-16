@@ -1426,11 +1426,20 @@ export type ActionAttempt =
             | 'delay_in_issuing'
             | 'user_identity_missing_email_address'
             | 'user_identity_missing_phone_number'
+            | 'requested_code_unavailable'
 
           /**
            * ID of the original access method from which this backup access method was split, if applicable.
            */
           original_access_method_id?: string | undefined
+          /**
+           * The PIN code that was assigned instead.
+           */
+          new_code?: string | undefined
+          /**
+           * The originally requested PIN code that could not be used.
+           */
+          original_code?: string | undefined
         }>
 
         /**

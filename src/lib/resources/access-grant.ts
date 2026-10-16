@@ -364,19 +364,22 @@ export type AccessGrant = {
          */
         warning_code: 'updating_access_times'
       } /**
-     * Indicates that the requested PIN code was already in use on a device, so a different code was assigned.
+     * Indicates that the requested PIN code could not be used, so a different code was assigned. For example, the code was already in use on a device, or the access system rejected it because it did not meet its PIN rules.
      */
     | {
+        /**
+         * ID of the access method whose requested code was unavailable. Present when an access system, such as Salto KS, assigned a different code.
+         */
+        access_method_id?: string | undefined
         /**
          * Date and time at which Seam created the warning.
          */
         created_at: string
 
         /**
-         * ID of the device where the requested code was unavailable.
+         * ID of the device where the requested code was unavailable. Present when the code was set directly on a device.
          */
-        device_id: string
-
+        device_id?: string | undefined
         /**
          * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
          */
