@@ -937,6 +937,10 @@ export type CustomersCreatePortalParameters = {
                */
               allow_notification_customization?: boolean | undefined
               /**
+               * Indicates whether the customer can customize the sound automation rules for their properties.
+               */
+              allow_sound_automation_rule_customization?: boolean | undefined
+              /**
                * Whether to exclude this feature from the portal.
                */
               exclude?: boolean | undefined
@@ -1008,6 +1012,10 @@ export type CustomersCreatePortalParameters = {
                * Whether to exclude this feature from the portal.
                */
               exclude?: boolean | undefined
+              /**
+               * Indicates whether to prevent the customer from converting their devices between managed and unmanaged. Managed devices are billed.
+               */
+              exclude_device_management?: boolean | undefined
               /**
                * Indicates whether the customer can manage reservations for their properties.
                */
