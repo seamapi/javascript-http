@@ -912,7 +912,9 @@ export type CustomersCreatePortalParameters = {
    * Whether to exclude the option to select a locale within the portal UI.
    */
   exclude_locale_picker?: boolean | undefined
-
+  /**
+   * Features to include in the portal. Settings you omit use the portal's customization profile, then the Seam default. Settings you pass take precedence over the customization profile's, so changing the profile doesn't change them.
+   */
   features?:
     | {
         /**
