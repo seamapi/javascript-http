@@ -25,18 +25,6 @@ export type DeviceProvider = {
    */
   can_hvac_heat_cool?: boolean | undefined
   /**
-   * Indicates whether the speaker supports muting.
-   */
-  can_mute_speaker?: boolean | undefined
-  /**
-   * Indicates whether the speaker supports pausing playback.
-   */
-  can_pause_speaker_playback?: boolean | undefined
-  /**
-   * Indicates whether the speaker supports playing a chime.
-   */
-  can_play_speaker_chime?: boolean | undefined
-  /**
    * Indicates whether the device supports programming offline access codes.
    */
   can_program_offline_access_codes?: boolean | undefined
@@ -65,17 +53,9 @@ export type DeviceProvider = {
    */
   can_remotely_unlock?: boolean | undefined
   /**
-   * Indicates whether the speaker supports resuming playback.
-   */
-  can_resume_speaker_playback?: boolean | undefined
-  /**
    * Indicates whether the thermostat supports running climate programs.
    */
   can_run_thermostat_programs?: boolean | undefined
-  /**
-   * Indicates whether the speaker supports setting its volume.
-   */
-  can_set_speaker_volume?: boolean | undefined
   /**
    * Indicates whether the device supports simulating connection in a sandbox.
    */
@@ -112,10 +92,6 @@ export type DeviceProvider = {
    * Indicates whether the lock supports unlocking with an access code.
    */
   can_unlock_with_code?: boolean | undefined
-  /**
-   * Indicates whether the speaker supports unmuting.
-   */
-  can_unmute_speaker?: boolean | undefined
   /**
    * Name of the device provider.
    */

@@ -524,6 +524,10 @@ export type UserIdentitiesCreateParameters = {
    */
   acs_system_ids?: Array<string> | undefined
   /**
+   * Customer key of the customer that owns the new user identity. Set it when the user identity will be used in access grants created through that customer's client session or Customer Portal.
+   */
+  customer_key?: string | undefined
+  /**
    * Unique email address for the new user identity.
    */
   email_address?: string | null | undefined

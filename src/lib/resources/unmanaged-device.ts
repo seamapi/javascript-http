@@ -28,18 +28,6 @@ export type UnmanagedDevice = {
    */
   can_hvac_heat_cool?: boolean | undefined
   /**
-   * Indicates whether the speaker supports muting.
-   */
-  can_mute_speaker?: boolean | undefined
-  /**
-   * Indicates whether the speaker supports pausing playback.
-   */
-  can_pause_speaker_playback?: boolean | undefined
-  /**
-   * Indicates whether the speaker supports playing a chime.
-   */
-  can_play_speaker_chime?: boolean | undefined
-  /**
    * Indicates whether the device supports programming offline access codes.
    */
   can_program_offline_access_codes?: boolean | undefined
@@ -68,17 +56,9 @@ export type UnmanagedDevice = {
    */
   can_remotely_unlock?: boolean | undefined
   /**
-   * Indicates whether the speaker supports resuming playback.
-   */
-  can_resume_speaker_playback?: boolean | undefined
-  /**
    * Indicates whether the thermostat supports running climate programs.
    */
   can_run_thermostat_programs?: boolean | undefined
-  /**
-   * Indicates whether the speaker supports setting its volume.
-   */
-  can_set_speaker_volume?: boolean | undefined
   /**
    * Indicates whether the device supports simulating connection in a sandbox.
    */
@@ -115,10 +95,6 @@ export type UnmanagedDevice = {
    * Indicates whether the lock supports unlocking with an access code.
    */
   can_unlock_with_code?: boolean | undefined
-  /**
-   * Indicates whether the speaker supports unmuting.
-   */
-  can_unmute_speaker?: boolean | undefined
   /**
    * Collection of capabilities that the device supports when connected to Seam. Values are `access_code`, which indicates that the device can manage and utilize digital PIN codes for secure access; `lock`, which indicates that the device controls a door locking mechanism, enabling the remote opening and closing of doors and other entry points; `noise_detection`, which indicates that the device supports monitoring and responding to ambient noise levels; `thermostat`, which indicates that the device can regulate and adjust indoor temperatures; `battery`, which indicates that the device can manage battery life and health; and `phone`, which indicates that the device is a mobile device, such as a smartphone. **Important:** Superseded by [capability flags](https://www.seam.co/docs/capability-guides/device-and-system-capabilities#capability-flags).
    */
