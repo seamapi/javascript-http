@@ -431,6 +431,29 @@ export type UnmanagedAccessGrant = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'device_time_constraints_violated'
+      } /**
+     * Indicates that one of this access grant's access methods no longer grants access because of a change outside Seam, for example its card was encoded again for another credential. Seam does not replace the access method; issue a new one if the user still needs it.
+     */
+    | {
+        /**
+         * ID of the access method whose access was revoked.
+         */
+        access_method_id: string
+
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'access_revoked'
       }
   >
 
