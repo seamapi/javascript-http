@@ -362,6 +362,24 @@ export type AcsCredential = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'requested_code_unavailable'
+      } /**
+     * Indicates that the access system can only end card access on fixed time marks, so access was extended past `ends_at` to the next mark. The message states when access actually ends.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'schedule_rounded_up'
       }
   >
 

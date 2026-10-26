@@ -164,6 +164,7 @@ export type DeviceProvider = {
     | 'omnitec'
     | 'kisi'
     | 'aqara'
+    | 'eufy'
     | 'sonos'
 
   /**

@@ -207,6 +207,7 @@ export type Device = {
     | 'omnitec_lock'
     | 'kisi_lock'
     | 'aqara_lock'
+    | 'eufy_lock'
     | 'keynest_key'
     | 'noiseaware_activity_zone'
     | 'minut_sensor'
@@ -1128,6 +1129,18 @@ export type Device = {
            * Device ID for an ecobee device.
            */
           ecobee_device_id?: string | undefined
+        }
+      | undefined
+    /**
+     * Metadata for a Eufy device.
+     */
+    eufy_metadata?:
+      | {
+          device_id?: string | undefined
+
+          device_name?: string | undefined
+
+          model?: string | undefined
         }
       | undefined
     /**

@@ -162,6 +162,7 @@ export type UnmanagedDevice = {
     | 'omnitec_lock'
     | 'kisi_lock'
     | 'aqara_lock'
+    | 'eufy_lock'
     | 'keynest_key'
     | 'noiseaware_activity_zone'
     | 'minut_sensor'

@@ -505,6 +505,7 @@ export type ActionAttempt =
               | 'unknown_issue_with_acs_credential'
               | 'needs_to_be_reissued'
               | 'requested_code_unavailable'
+              | 'schedule_rounded_up'
 
             /**
              * The PIN code that was assigned instead.
@@ -845,6 +846,7 @@ export type ActionAttempt =
             | 'unknown_issue_with_acs_credential'
             | 'needs_to_be_reissued'
             | 'requested_code_unavailable'
+            | 'schedule_rounded_up'
 
           /**
            * The PIN code that was assigned instead.
@@ -1174,6 +1176,7 @@ export type ActionAttempt =
             | 'unknown_issue_with_acs_credential'
             | 'needs_to_be_reissued'
             | 'requested_code_unavailable'
+            | 'schedule_rounded_up'
 
           /**
            * The PIN code that was assigned instead.
@@ -1427,6 +1430,7 @@ export type ActionAttempt =
             | 'user_identity_missing_email_address'
             | 'user_identity_missing_phone_number'
             | 'requested_code_unavailable'
+            | 'schedule_rounded_up'
 
           /**
            * ID of the original access method from which this backup access method was split, if applicable.
