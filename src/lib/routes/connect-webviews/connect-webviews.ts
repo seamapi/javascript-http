@@ -340,6 +340,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'omnitec'
         | 'kisi'
         | 'aqara'
+        | 'eufy'
         | 'sonos'
         | 'yale_access'
         | 'hid_cm'

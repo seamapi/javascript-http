@@ -389,6 +389,7 @@ export type LocksListParameters = {
     | 'omnitec_lock'
     | 'kisi_lock'
     | 'aqara_lock'
+    | 'eufy_lock'
     | undefined
   /**
    * Device types of the locks that you want to list.
@@ -426,6 +427,7 @@ export type LocksListParameters = {
         | 'omnitec_lock'
         | 'kisi_lock'
         | 'aqara_lock'
+        | 'eufy_lock'
       >
     | undefined
   /**
