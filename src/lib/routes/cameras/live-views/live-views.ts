@@ -165,7 +165,7 @@ export class SeamHttpCamerasLiveViews {
   /**
    * Creates a short-lived live view session for a single camera. Pass the returned session ID and token to `/cameras/live_views/offer` to start a WebRTC stream, and to `/cameras/live_views/stop` to end the session.
    *
-   * Camera live view is in beta. To enable it for your workspace, contact Seam support. To check whether a camera supports live view, use `device.can_stream_live_video`.
+   * Camera live view is in public beta and enabled by default in production and sandbox workspaces. Use your API key on your backend to create a client session with access to the camera's connected account, then authenticate live view requests with that client session's token. To check whether a camera supports live view, use `device.can_stream_live_video`.
    */
   create(
     parameters: CamerasLiveViewsCreateParameters,
@@ -187,7 +187,7 @@ export class SeamHttpCamerasLiveViews {
   /**
    * Exchanges a WebRTC SDP offer for an SDP answer that starts streaming video from the camera, for a live view session that you created using `/cameras/live_views/create`.
    *
-   * Camera live view is in beta. To enable it for your workspace, contact Seam support.
+   * Camera live view is in public beta and enabled by default in production and sandbox workspaces. Authenticate with the client session token used to create the live view session.
    */
   offer(
     parameters: CamerasLiveViewsOfferParameters,
@@ -213,7 +213,7 @@ export class SeamHttpCamerasLiveViews {
   /**
    * Stops a camera live view session that the current client session owns.
    *
-   * Camera live view is in beta. To enable it for your workspace, contact Seam support.
+   * Camera live view is in public beta and enabled by default in production and sandbox workspaces. Authenticate with the client session token used to create the live view session.
    */
   stop(
     parameters: CamerasLiveViewsStopParameters,
