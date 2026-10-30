@@ -92,22 +92,45 @@ export type Space = {
     /**
      * Indicates that the space is being deleted. Seam removes it, revokes its access grants, and detaches its devices and entrances shortly.
      */
-    {
-      /**
-       * Date and time at which Seam created the warning.
-       */
-      created_at: string
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
 
-      /**
-       * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
-       */
-      message: string
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
 
-      /**
-       * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
-       */
-      warning_code: 'being_deleted'
-    }
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'being_deleted'
+      } /**
+     * Indicates that Seam could not apply the noise sensor automation to one or more noise sensors in the space, for example because their settings keep changing back after Seam re-applies it, Seam does not know the sensor's time zone yet, or the sensor is shared with spaces that configure it differently.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * IDs of the noise sensors in the space that Seam could not bring in line with the noise sensor automation.
+         */
+        device_ids: Array<string>
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'noise_sensor_configuration_mismatch'
+      }
   >
 
   /**

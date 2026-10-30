@@ -939,6 +939,10 @@ export type CustomersCreatePortalParameters = {
                */
               allow_notification_customization?: boolean | undefined
               /**
+               * Indicates whether the customer can customize the sensor automation rules for their properties.
+               */
+              allow_sensor_automation_rule_customization?: boolean | undefined
+              /**
                * Indicates whether the customer can customize the sound automation rules for their properties.
                */
               allow_sound_automation_rule_customization?: boolean | undefined
