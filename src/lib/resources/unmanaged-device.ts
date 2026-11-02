@@ -937,7 +937,7 @@ export type UnmanagedDevice = {
          */
         warning_code: 'salto_ks_subscription_limit_almost_reached'
       } /**
-     * Indicates that a change in the reported device model has been detected for this Salto KS lock, which may occur after an IQ hub reset. Access code support may be affected. See https://help.getseam.com/articles/5098842588-salto-ks-lock-loses-access-code-support for troubleshooting steps.
+     * Indicates that a change in the reported device model has been detected for this Salto KS lock, which may occur after an IQ hub reset. Access code support may be affected. See https://www.seam.co/help/salto-ks-lock-loses-access-code-support for troubleshooting steps.
      */
     | {
         /**
@@ -1198,6 +1198,24 @@ export type UnmanagedDevice = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'max_access_codes_reached'
+      } /**
+     * Indicates that the camera's account plan does not include cloud recording, so event media such as motion clips is unavailable.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'cloud_recording_not_enabled'
       }
   >
 

@@ -584,6 +584,90 @@ export type CustomersCreatePortalParameters = {
                */
               starts_at?: string | Date | Temporal.Instant | undefined
               /**
+               * Parts of the reservation that each get their own access, for example one per room. Each sub-reservation inherits the reservation's name, times, preferred code, guest and custom metadata unless it sets its own, and must set its own location keys. A reservation with sub-reservations must not set location keys itself. Sending this list replaces the reservation's sub-reservations: any not included are removed, and an empty list removes all of them. Omitting it leaves existing sub-reservations unchanged.
+               */
+              sub_reservations?:
+                | Array<{
+                    /**
+                     * Building keys associated with the access grant.
+                     */
+                    building_keys?: Array<string> | undefined
+                    /**
+                     * Common area keys associated with the access grant.
+                     */
+                    common_area_keys?: Array<string> | undefined
+                    /**
+                     * Set key:value pairs for filtering sub-reservations by custom criteria. Merged over the reservation's custom metadata. Set a key to `null` or to an empty string to remove that key from the custom metadata.
+                     */
+                    custom_metadata?:
+                      Record<string, string | boolean> | undefined
+                    /**
+                     * Ending date and time for the access grant.
+                     */
+                    ends_at?: string | Date | Temporal.Instant | undefined
+                    /**
+                     * Facility keys associated with the access grant.
+                     */
+                    facility_keys?: Array<string> | undefined
+                    /**
+                     * Guest key associated with the access grant.
+                     */
+                    guest_key?: string | undefined
+                    /**
+                     * Listing keys associated with the access grant.
+                     */
+                    listing_keys?: Array<string> | undefined
+                    /**
+                     * Your name for this access grant resource.
+                     */
+                    name?: string | undefined
+                    /**
+                     * Preferred PIN code to use when creating access for this reservation. Set to `null` to remove a previously set preferred code, so that access falls back to an automatically generated code. Omitting this field keeps any previously set preferred code.
+                     */
+                    preferred_code?: string | null | undefined
+                    /**
+                     * Property keys associated with the access grant.
+                     */
+                    property_keys?: Array<string> | undefined
+                    /**
+                     * Resident key associated with the access grant.
+                     */
+                    resident_key?: string | undefined
+                    /**
+                     * Room keys associated with the access grant.
+                     */
+                    room_keys?: Array<string> | undefined
+                    /**
+                     * Space keys associated with the access grant.
+                     */
+                    space_keys?: Array<string> | undefined
+                    /**
+                     * Starting date and time for the access grant.
+                     */
+                    starts_at?: string | Date | Temporal.Instant | undefined
+                    /**
+                     * Your identifier for the sub-reservation. Must be unique within its reservation.
+                     */
+                    sub_reservation_key?: string | undefined
+                    /**
+                     * Tenant key associated with the access grant.
+                     */
+                    tenant_key?: string | undefined
+                    /**
+                     * Unit keys associated with the access grant.
+                     */
+                    unit_keys?: Array<string> | undefined
+                    /**
+                     * User identity key associated with the access grant.
+                     */
+                    user_identity_key?: string | undefined
+                    /**
+                     * User key associated with the access grant.
+                     */
+                    user_key?: string | undefined
+                  }>
+                | undefined
+              /**
                * Tenant key associated with the access grant.
                */
               tenant_key?: string | undefined
@@ -1586,6 +1670,89 @@ export type CustomersPushDataParameters = {
          * Starting date and time for the access grant.
          */
         starts_at?: string | Date | Temporal.Instant | undefined
+        /**
+         * Parts of the reservation that each get their own access, for example one per room. Each sub-reservation inherits the reservation's name, times, preferred code, guest and custom metadata unless it sets its own, and must set its own location keys. A reservation with sub-reservations must not set location keys itself. Sending this list replaces the reservation's sub-reservations: any not included are removed, and an empty list removes all of them. Omitting it leaves existing sub-reservations unchanged.
+         */
+        sub_reservations?:
+          | Array<{
+              /**
+               * Building keys associated with the access grant.
+               */
+              building_keys?: Array<string> | undefined
+              /**
+               * Common area keys associated with the access grant.
+               */
+              common_area_keys?: Array<string> | undefined
+              /**
+               * Set key:value pairs for filtering sub-reservations by custom criteria. Merged over the reservation's custom metadata. Set a key to `null` or to an empty string to remove that key from the custom metadata.
+               */
+              custom_metadata?: Record<string, string | boolean> | undefined
+              /**
+               * Ending date and time for the access grant.
+               */
+              ends_at?: string | Date | Temporal.Instant | undefined
+              /**
+               * Facility keys associated with the access grant.
+               */
+              facility_keys?: Array<string> | undefined
+              /**
+               * Guest key associated with the access grant.
+               */
+              guest_key?: string | undefined
+              /**
+               * Listing keys associated with the access grant.
+               */
+              listing_keys?: Array<string> | undefined
+              /**
+               * Your name for this access grant resource.
+               */
+              name?: string | undefined
+              /**
+               * Preferred PIN code to use when creating access for this reservation. Set to `null` to remove a previously set preferred code, so that access falls back to an automatically generated code. Omitting this field keeps any previously set preferred code.
+               */
+              preferred_code?: string | null | undefined
+              /**
+               * Property keys associated with the access grant.
+               */
+              property_keys?: Array<string> | undefined
+              /**
+               * Resident key associated with the access grant.
+               */
+              resident_key?: string | undefined
+              /**
+               * Room keys associated with the access grant.
+               */
+              room_keys?: Array<string> | undefined
+              /**
+               * Space keys associated with the access grant.
+               */
+              space_keys?: Array<string> | undefined
+              /**
+               * Starting date and time for the access grant.
+               */
+              starts_at?: string | Date | Temporal.Instant | undefined
+              /**
+               * Your identifier for the sub-reservation. Must be unique within its reservation.
+               */
+              sub_reservation_key?: string | undefined
+              /**
+               * Tenant key associated with the access grant.
+               */
+              tenant_key?: string | undefined
+              /**
+               * Unit keys associated with the access grant.
+               */
+              unit_keys?: Array<string> | undefined
+              /**
+               * User identity key associated with the access grant.
+               */
+              user_identity_key?: string | undefined
+              /**
+               * User key associated with the access grant.
+               */
+              user_key?: string | undefined
+            }>
+          | undefined
         /**
          * Tenant key associated with the access grant.
          */

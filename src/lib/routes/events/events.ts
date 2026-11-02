@@ -163,7 +163,7 @@ export class SeamHttpEvents {
   }
 
   /**
-   * Returns a specified event. This endpoint returns the same event that would be sent to a [webhook](https://www.seam.co/docs/developer-tools/webhooks), but it enables you to retrieve an event that already took place.
+   * Returns a specified event. This endpoint returns the same event that would be sent to a [webhook](https://www.seam.co/docs/developer-tools/webhooks), but it enables you to retrieve an event that already took place. Events older than 90 days are not returned.
    */
   get(
     parameters: EventsGetParameters,
@@ -183,7 +183,7 @@ export class SeamHttpEvents {
   }
 
   /**
-   * Returns a list of all events. This endpoint returns the same events that would be sent to a [webhook](https://www.seam.co/docs/developer-tools/webhooks), but it enables you to filter or see events that already took place.
+   * Returns a list of all events. This endpoint returns the same events that would be sent to a [webhook](https://www.seam.co/docs/developer-tools/webhooks), but it enables you to filter or see events that already took place. Only events from the last 90 days are returned.
    */
   list(
     parameters: EventsListParameters,
@@ -313,7 +313,7 @@ export type EventsListParameters = RequireAtLeastOne<
      */
     acs_user_id?: string | undefined
     /**
-     * Lower and upper timestamps to define an exclusive interval containing the events that you want to list. You must include `since` or `between`.
+     * Lower and upper timestamps to define an exclusive interval containing the events that you want to list. You must include `since` or `between`. Only events from the last 90 days are returned, so a lower timestamp older than 90 days is treated as 90 days ago.
      */
     between?: Array<string> | undefined
     /**
@@ -585,7 +585,7 @@ export type EventsListParameters = RequireAtLeastOne<
      */
     limit?: number | undefined
     /**
-     * Timestamp to indicate the beginning generation time for the events that you want to list. You must include `since` or `between`.
+     * Timestamp to indicate the beginning generation time for the events that you want to list. You must include `since` or `between`. Only events from the last 90 days are returned, so a `since` older than 90 days is treated as 90 days ago.
      */
     since?: string | undefined
     /**

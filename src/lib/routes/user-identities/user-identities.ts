@@ -657,6 +657,10 @@ export type UserIdentitiesListParameters = {
    */
   credential_manager_acs_system_id?: string | undefined
   /**
+   * Customer key for which you want to list user identities.
+   */
+  customer_key?: string | undefined
+  /**
    * Maximum number of records to return per page.
    */
   limit?: number | undefined
