@@ -258,6 +258,10 @@ export type AccessGrantsUnmanagedListParameters = {
    */
   acs_system_id?: string | undefined
   /**
+   * Customer key for which you want to list unmanaged Access Grants.
+   */
+  customer_key?: string | undefined
+  /**
    * Numerical limit on the number of unmanaged access grants to return.
    */
   limit?: number | undefined

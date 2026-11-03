@@ -284,6 +284,7 @@ export class SeamHttpClientSessions {
       requiredParameterNames: [],
       atLeastOneParameterNames: [],
       responseKey: 'client_sessions',
+      hasPagination: true,
       options,
     })
   }
@@ -495,6 +496,18 @@ export type ClientSessionsListParameters = {
    */
   connect_webview_id?: string | null | undefined
   /**
+   * Customer key for which you want to list client sessions.
+   */
+  customer_key?: string | undefined
+  /**
+   * Maximum number of records to return per page.
+   */
+  limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
+  page_cursor?: string | null | undefined
+  /**
    * Your user ID for the user by which you want to filter client sessions.
    */
   user_identifier_key?: string | undefined
@@ -515,7 +528,7 @@ export type ClientSessionsListResponse = {
   client_sessions: Array<ClientSession>
 }
 
-export type ClientSessionsListRequest = SeamHttpRequest<
+export type ClientSessionsListRequest = SeamPaginatedRequest<
   ClientSessionsListResponse,
   'client_sessions'
 >
