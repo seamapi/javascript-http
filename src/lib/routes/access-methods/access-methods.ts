@@ -304,6 +304,7 @@ export class SeamHttpAccessMethods {
         'access_grant_id',
         'access_grant_key',
         'acs_entrance_id',
+        'customer_key',
         'device_id',
         'space_id',
       ],
@@ -514,6 +515,10 @@ export type AccessMethodsListParameters = RequireAtLeastOne<
      */
     acs_entrance_id?: string | undefined
     /**
+     * Customer key for which you want to list access methods.
+     */
+    customer_key?: string | undefined
+    /**
      * ID of the device by which to filter the returned access methods. Must be combined with `access_grant_id`, `access_grant_key`, or `acs_entrance_id`.
      */
     device_id?: string | undefined
@@ -534,6 +539,7 @@ export type AccessMethodsListParameters = RequireAtLeastOne<
   | 'access_grant_id'
   | 'access_grant_key'
   | 'acs_entrance_id'
+  | 'customer_key'
   | 'device_id'
   | 'space_id'
 >

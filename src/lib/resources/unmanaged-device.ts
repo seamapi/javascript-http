@@ -84,7 +84,7 @@ export type UnmanagedDevice = {
    */
   can_simulate_removal?: boolean | undefined
   /**
-   * Indicates whether the camera supports streaming live video through a camera live view session.
+   * Indicates whether the camera can stream live video through a camera live view session. `false` while the camera is offline.
    */
   can_stream_live_video?: boolean | undefined
   /**
@@ -128,7 +128,7 @@ export type UnmanagedDevice = {
   device_id: string
 
   /**
-   * Type of the device.
+   * Type of the device. The `august_lock` and `yale_lock` values are deprecated. Use `yale_access_lock` in place of `august_lock`, and `yale_access_lock` or `yale_home_lock` in place of `yale_lock`.
    */
   device_type:
     | 'akuvox_lock'
@@ -148,6 +148,8 @@ export type UnmanagedDevice = {
     | 'smartthings_lock'
     | 'wyze_lock'
     | 'yale_lock'
+    | 'yale_access_lock'
+    | 'yale_home_lock'
     | 'two_n_intercom'
     | 'controlbyweb_device'
     | 'ttlock_lock'
@@ -178,6 +180,7 @@ export type UnmanagedDevice = {
     | 'tapo_camera'
     | 'arlo_camera'
     | 'reolink_camera'
+    | 'unifi_protect_camera'
     | 'sonos_speaker'
 
   /**
@@ -937,7 +940,7 @@ export type UnmanagedDevice = {
          */
         warning_code: 'salto_ks_subscription_limit_almost_reached'
       } /**
-     * Indicates that a change in the reported device model has been detected for this Salto KS lock, which may occur after an IQ hub reset. Access code support may be affected. See https://help.getseam.com/articles/5098842588-salto-ks-lock-loses-access-code-support for troubleshooting steps.
+     * Indicates that a change in the reported device model has been detected for this Salto KS lock, which may occur after an IQ hub reset. Access code support may be affected. See https://www.seam.co/help/salto-ks-lock-loses-access-code-support for troubleshooting steps.
      */
     | {
         /**
@@ -1198,6 +1201,24 @@ export type UnmanagedDevice = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'max_access_codes_reached'
+      } /**
+     * Indicates that the camera's account plan does not include cloud recording, so event media such as motion clips is unavailable.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'cloud_recording_not_enabled'
       }
   >
 

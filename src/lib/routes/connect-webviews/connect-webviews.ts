@@ -332,6 +332,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'tapo'
         | 'arlo'
         | 'reolink'
+        | 'unifi_protect'
         | 'ical'
         | 'lodgify'
         | 'hostaway'

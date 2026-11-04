@@ -81,7 +81,7 @@ export type DeviceProvider = {
    */
   can_simulate_removal?: boolean | undefined
   /**
-   * Indicates whether the camera supports streaming live video through a camera live view session.
+   * Indicates whether the camera can stream live video through a camera live view session. `false` while the camera is offline.
    */
   can_stream_live_video?: boolean | undefined
   /**
@@ -156,6 +156,7 @@ export type DeviceProvider = {
     | 'tapo'
     | 'arlo'
     | 'reolink'
+    | 'unifi_protect'
     | 'ical'
     | 'lodgify'
     | 'hostaway'
