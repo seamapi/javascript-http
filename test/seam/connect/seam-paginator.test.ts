@@ -4,6 +4,8 @@ import nock from 'nock'
 
 import { type Device, SeamHttp, SeamPaginator } from '@seamapi/http/connect'
 
+import { SeamHttpRequest } from 'lib/seam-http-request.js'
+
 test('SeamPaginator: creates a SeamPaginator', async (t) => {
   const { seed, endpoint } = await getTestServer(t)
   const seam = SeamHttp.fromApiKey(seed.seam_apikey1_token, { endpoint })
@@ -221,18 +223,29 @@ test('SeamPaginator: validates request parameters before fetching a page', async
 
   let requestCount = 0
   seam.client.interceptors.request.use((config) => {
-    if (config.url === '/access_codes/list') requestCount++
+    if (config.url === '/test/list') requestCount++
     return config
   })
 
-  const pages = seam.createPaginator(
-    // @ts-expect-error Verify an invalid request is rejected when paginated.
-    seam.accessCodes.list({}),
+  const request = new SeamHttpRequest<{ items: unknown[] }, 'items', true>(
+    seam,
+    {
+      pathname: '/test/list',
+      method: 'GET',
+      params: {},
+      parameters: {},
+      hasRequiredParameters: true,
+      requiredParameterNames: [],
+      atLeastOneParameterNames: ['device_id'],
+      responseKey: 'items',
+      hasPagination: true,
+    },
   )
+  const pages = seam.createPaginator(request)
 
   await t.throwsAsync(async () => await pages.firstPage(), {
     instanceOf: TypeError,
-    message: 'At least one parameter is required for /access_codes/list',
+    message: 'At least one parameter is required for /test/list',
   })
 
   t.is(requestCount, 0)

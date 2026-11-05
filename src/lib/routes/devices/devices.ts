@@ -357,6 +357,8 @@ export type DevicesListParameters = {
     | 'smartthings_lock'
     | 'wyze_lock'
     | 'yale_lock'
+    | 'yale_access_lock'
+    | 'yale_home_lock'
     | 'two_n_intercom'
     | 'controlbyweb_device'
     | 'ttlock_lock'
@@ -387,6 +389,7 @@ export type DevicesListParameters = {
     | 'tapo_camera'
     | 'arlo_camera'
     | 'reolink_camera'
+    | 'unifi_protect_camera'
     | 'sonos_speaker'
     | undefined
   /**
@@ -411,6 +414,8 @@ export type DevicesListParameters = {
         | 'smartthings_lock'
         | 'wyze_lock'
         | 'yale_lock'
+        | 'yale_access_lock'
+        | 'yale_home_lock'
         | 'two_n_intercom'
         | 'controlbyweb_device'
         | 'ttlock_lock'
@@ -441,6 +446,7 @@ export type DevicesListParameters = {
         | 'tapo_camera'
         | 'arlo_camera'
         | 'reolink_camera'
+        | 'unifi_protect_camera'
         | 'sonos_speaker'
       >
     | undefined
@@ -479,6 +485,7 @@ export type DevicesListParameters = {
     | 'controlbyweb'
     | 'tedee'
     | 'keyincode'
+    | 'ubiquiti'
     | 'akiles'
     | 'aqara'
     | 'ecobee'
@@ -500,6 +507,7 @@ export type DevicesListParameters = {
     | 'tapo'
     | 'arlo'
     | 'reolink'
+    | 'unifi_protect'
     | 'ical'
     | 'lodgify'
     | 'hostaway'

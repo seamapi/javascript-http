@@ -2,6 +2,8 @@ import test from 'ava'
 
 import { SeamHttp } from '@seamapi/http/connect'
 
+import { assertValidRequestParameters } from 'lib/request-parameters.js'
+
 const seam = SeamHttp.fromApiKey('seam_apikey1_token')
 
 const assertDatetimeParameterTypes = (instant: Temporal.Instant): void => {
@@ -93,30 +95,32 @@ test('endpoint rejects required parameters with only undefined values', async (t
   )
 })
 
-test('endpoint rejects required parameters satisfied only by pagination parameters', async (t) => {
-  await t.throwsAsync(
-    // @ts-expect-error Verify pagination parameters do not satisfy RequireAtLeastOne.
-    async () => await seam.accessCodes.list({ limit: 10 }),
+test('endpoint rejects required parameters satisfied only by pagination parameters', (t) => {
+  const assertValidParameters = (parameters: Record<string, unknown>): void =>
+    assertValidRequestParameters(
+      parameters,
+      '/test/list',
+      true,
+      [],
+      ['device_id'],
+    )
+
+  const error = t.throws(() => assertValidParameters({ limit: 10 }), {
+    instanceOf: TypeError,
+    message: 'At least one parameter is required for /test/list',
+  })
+  t.truthy(error)
+
+  t.throws(
+    () => assertValidParameters({ limit: 10, page_cursor: 'some-cursor' }),
     {
       instanceOf: TypeError,
-      message: 'At least one parameter is required for /access_codes/list',
+      message: 'At least one parameter is required for /test/list',
     },
   )
 
-  await t.throwsAsync(
-    async () =>
-      // @ts-expect-error Verify a page cursor does not satisfy RequireAtLeastOne.
-      await seam.accessCodes.list({ limit: 10, page_cursor: 'some-cursor' }),
-    {
-      instanceOf: TypeError,
-      message: 'At least one parameter is required for /access_codes/list',
-    },
-  )
-})
-
-test('endpoint accepts a filter parameter along with pagination parameters', (t) => {
   t.notThrows(() =>
-    seam.accessCodes.list({ device_id: 'device-id', limit: 10 }),
+    assertValidParameters({ device_id: 'device-id', limit: 10 }),
   )
 })
 

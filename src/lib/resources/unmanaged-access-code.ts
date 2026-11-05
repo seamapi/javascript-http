@@ -961,6 +961,28 @@ export type UnmanagedAccessCode = {
          */
         warning_code: 'being_deleted'
       } /**
+     * Seam had been unable to reach the device for an extended period when this access code was created, so the code is unlikely to be set until the device reconnects. Check the device's connection. This warning clears automatically when the device comes back online or the code is set on the device.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at?: string | undefined
+        /**
+         * Date and time since which Seam has been unable to reach the device.
+         */
+        device_unreachable_since: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'device_unreachable_for_extended_period'
+      } /**
      * An unknown issue occurred with the access code.
      */
     | {

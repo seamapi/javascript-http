@@ -1002,10 +1002,10 @@ export class SeamHttpEndpoints {
   /**
    * Returns a list of all [access codes](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes).
    *
-   * Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
+   * Without `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`, returns access codes across the workspace, or across the customer when `customer_key` is set. Use `limit` and `page_cursor` to page through them.
    */
   get '/access_codes/list'(): (
-    parameters: AccessCodesListParameters,
+    parameters?: AccessCodesListParameters,
     options?: AccessCodesListOptions,
   ) => AccessCodesListRequest {
     const { client, defaults } = this
@@ -2910,7 +2910,7 @@ export class SeamHttpEndpoints {
   }
 
   /**
-   * Returns a specified event. This endpoint returns the same event that would be sent to a [webhook](https://www.seam.co/docs/developer-tools/webhooks), but it enables you to retrieve an event that already took place.
+   * Returns a specified event. This endpoint returns the same event that would be sent to a [webhook](https://www.seam.co/docs/developer-tools/webhooks), but it enables you to retrieve an event that already took place. Events older than 90 days are not returned.
    */
   get '/events/get'(): (
     parameters: EventsGetParameters,
@@ -2926,7 +2926,7 @@ export class SeamHttpEndpoints {
   }
 
   /**
-   * Returns a list of all events. This endpoint returns the same events that would be sent to a [webhook](https://www.seam.co/docs/developer-tools/webhooks), but it enables you to filter or see events that already took place.
+   * Returns a list of all events. This endpoint returns the same events that would be sent to a [webhook](https://www.seam.co/docs/developer-tools/webhooks), but it enables you to filter or see events that already took place. Only events from the last 90 days are returned.
    */
   get '/events/list'(): (
     parameters: EventsListParameters,
@@ -4451,6 +4451,7 @@ export type SeamHttpEndpointPaginatedQueryPaths =
   | '/acs/entrances/list'
   | '/acs/users/list'
   | '/action_attempts/list'
+  | '/client_sessions/list'
   | '/connect_webviews/list'
   | '/connected_accounts/list'
   | '/devices/list'

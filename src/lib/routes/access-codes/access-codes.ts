@@ -288,10 +288,10 @@ export class SeamHttpAccessCodes {
   /**
    * Returns a list of all [access codes](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes).
    *
-   * Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
+   * Without `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`, returns access codes across the workspace, or across the customer when `customer_key` is set. Use `limit` and `page_cursor` to page through them.
    */
   list(
-    parameters: AccessCodesListParameters,
+    parameters?: AccessCodesListParameters,
     options: AccessCodesListOptions = {},
   ): AccessCodesListRequest {
     return new SeamHttpRequest(this, {
@@ -299,18 +299,9 @@ export class SeamHttpAccessCodes {
       method: 'GET',
       params: parameters,
       parameters,
-      hasRequiredParameters: true,
+      hasRequiredParameters: false,
       requiredParameterNames: [],
-      atLeastOneParameterNames: [
-        'access_code_ids',
-        'access_grant_id',
-        'access_grant_key',
-        'access_method_id',
-        'customer_key',
-        'device_id',
-        'search',
-        'user_identifier_key',
-      ],
+      atLeastOneParameterNames: [],
       responseKey: 'access_codes',
       hasPagination: true,
       options,
@@ -639,58 +630,48 @@ export type AccessCodesGetRequest = SeamHttpRequest<
 
 export interface AccessCodesGetOptions {}
 
-export type AccessCodesListParameters = RequireAtLeastOne<
-  {
-    /**
-     * IDs of the access codes that you want to retrieve. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
-     */
-    access_code_ids?: Array<string> | undefined
-    /**
-     * ID of the access grant for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
-     */
-    access_grant_id?: string | undefined
-    /**
-     * Key of the access grant for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
-     */
-    access_grant_key?: string | undefined
-    /**
-     * ID of the access method for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
-     */
-    access_method_id?: string | undefined
-    /**
-     * Customer key for which you want to list access codes.
-     */
-    customer_key?: string | undefined
-    /**
-     * ID of the device for which you want to list access codes. Specify `device_id`, `access_code_ids`, `access_method_id`, `access_grant_id`, or `access_grant_key`.
-     */
-    device_id?: string | undefined
-    /**
-     * Numerical limit on the number of access codes to return.
-     */
-    limit?: number | undefined
-    /**
-     * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
-     */
-    page_cursor?: string | null | undefined
-    /**
-     * String for which to search. Filters returned access codes to include all records that satisfy a partial match using `name`, `code` or `access_code_id`.
-     */
-    search?: string | undefined
-    /**
-     * Your user ID for the user by which to filter access codes.
-     */
-    user_identifier_key?: string | undefined
-  },
-  | 'access_code_ids'
-  | 'access_grant_id'
-  | 'access_grant_key'
-  | 'access_method_id'
-  | 'customer_key'
-  | 'device_id'
-  | 'search'
-  | 'user_identifier_key'
->
+export type AccessCodesListParameters = {
+  /**
+   * IDs of the access codes that you want to retrieve.
+   */
+  access_code_ids?: Array<string> | undefined
+  /**
+   * ID of the access grant for which you want to list access codes.
+   */
+  access_grant_id?: string | undefined
+  /**
+   * Key of the access grant for which you want to list access codes.
+   */
+  access_grant_key?: string | undefined
+  /**
+   * ID of the access method for which you want to list access codes.
+   */
+  access_method_id?: string | undefined
+  /**
+   * Customer key for which you want to list access codes.
+   */
+  customer_key?: string | undefined
+  /**
+   * ID of the device for which you want to list access codes.
+   */
+  device_id?: string | undefined
+  /**
+   * Numerical limit on the number of access codes to return.
+   */
+  limit?: number | undefined
+  /**
+   * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
+   */
+  page_cursor?: string | null | undefined
+  /**
+   * String for which to search. Filters returned access codes to include all records that satisfy a partial match using `name`, `code` or `access_code_id`.
+   */
+  search?: string | undefined
+  /**
+   * Your user ID for the user by which to filter access codes.
+   */
+  user_identifier_key?: string | undefined
+}
 
 /**
  * @deprecated Use AccessCodesListRequest instead.
