@@ -195,6 +195,7 @@ export type Device = {
     | 'yale_lock'
     | 'yale_access_lock'
     | 'yale_home_lock'
+    | 'yale_connect_lock'
     | 'two_n_intercom'
     | 'controlbyweb_device'
     | 'ttlock_lock'
@@ -2164,6 +2165,37 @@ export type Device = {
            * Serial number for a Yacan device.
            */
           serial_number?: string | undefined
+        }
+      | undefined
+    /**
+     * Metadata for a Yale Connect lock.
+     */
+    yale_connect_metadata?:
+      | {
+          /**
+           * Device ID for a Yale Connect lock.
+           */
+          device_id?: string | undefined
+          /**
+           * Device name for a Yale Connect lock.
+           */
+          device_name?: string | undefined
+          /**
+           * Firmware version reported by the Yale Connect lock.
+           */
+          firmware_version?: string | undefined
+          /**
+           * Name of the Yale Connect home that contains the lock.
+           */
+          home_name?: string | undefined
+          /**
+           * Model reported by the Yale Connect lock.
+           */
+          model?: string | undefined
+          /**
+           * Time zone of the Yale Connect home, as Yale reports it.
+           */
+          time_zone_description?: string | undefined
         }
       | undefined
     /**

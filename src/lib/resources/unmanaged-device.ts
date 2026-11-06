@@ -150,6 +150,7 @@ export type UnmanagedDevice = {
     | 'yale_lock'
     | 'yale_access_lock'
     | 'yale_home_lock'
+    | 'yale_connect_lock'
     | 'two_n_intercom'
     | 'controlbyweb_device'
     | 'ttlock_lock'
