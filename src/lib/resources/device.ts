@@ -8,6 +8,10 @@
  */
 export type Device = {
   /**
+   * Air quality index, if the device measures it.
+   */
+  air_quality_index?: number | undefined
+  /**
    * Indicates whether the thermostat can be returned to its weekly program, the schedule that is configured on the device itself, releasing any hold that Seam has set.
    */
   can_activate_weekly_program?: boolean | undefined
@@ -107,6 +111,14 @@ export type Device = {
     | 'phone'
   >
 
+  /**
+   * Carbon dioxide concentration in parts per million, if the device measures it.
+   */
+  co2_ppm?: number | undefined
+  /**
+   * Carbon monoxide concentration in parts per million, if the device measures it.
+   */
+  co_ppm?: number | undefined
   /**
    * Unique identifier for the account associated with the device.
    */
@@ -228,6 +240,7 @@ export type Device = {
     | 'reolink_camera'
     | 'unifi_protect_camera'
     | 'sonos_speaker'
+    | 'alertify_sensor'
 
   /**
    * Display name of the device, defaults to nickname (if it is set) or `properties.appearance.name`, otherwise. Enables administrators and users to identify the device easily, especially when there are numerous devices.
@@ -592,6 +605,14 @@ export type Device = {
   is_managed: true
 
   /**
+   * Indicates whether the device detects that the space is occupied, if the device measures occupancy.
+   */
+  is_occupied?: boolean | undefined
+  /**
+   * Indicates whether the device detects smoking, if the device measures it.
+   */
+  is_smoking_detected?: boolean | undefined
+  /**
    * Location information for the device.
    */
   location?:
@@ -616,9 +637,90 @@ export type Device = {
       }
     | undefined
   /**
+   * Mold risk level as reported by the device, if the device measures it.
+   */
+  mold_risk_level?: string | undefined
+  /**
+   * Additional sensors of the same kind on the device, each with a stable `sensor_name`. Present only when the device has more than one sensor of a kind or no single main sensor.
+   */
+  named_sensors?:
+    | Array<{
+        /**
+         * Air quality index, if the device measures it.
+         */
+        air_quality_index?: number | undefined
+        /**
+         * Carbon dioxide concentration in parts per million, if the device measures it.
+         */
+        co2_ppm?: number | undefined
+        /**
+         * Carbon monoxide concentration in parts per million, if the device measures it.
+         */
+        co_ppm?: number | undefined
+        /**
+         * Display name of the sensor. Defaults to `sensor_name`.
+         */
+        display_name: string
+
+        /**
+         * Indicates whether the device detects that the space is occupied, if the device measures occupancy.
+         */
+        is_occupied?: boolean | undefined
+        /**
+         * Indicates whether the device detects smoking, if the device measures it.
+         */
+        is_smoking_detected?: boolean | undefined
+        /**
+         * Mold risk level as reported by the device, if the device measures it.
+         */
+        mold_risk_level?: string | undefined
+        /**
+         * Noise level in decibels, if the device measures noise.
+         */
+        noise_level_decibels?: number | undefined
+        /**
+         * Noise level as a Noise Risk Score (NRS), if the device reports one.
+         */
+        noise_level_nrs?: number | undefined
+        /**
+         * Number of occupants the device detects, if the device counts occupants.
+         */
+        occupant_count?: number | undefined
+        /**
+         * Relative humidity, as a value between 0 and 1, inclusive, if the device measures humidity.
+         */
+        relative_humidity?: number | undefined
+        /**
+         * Stable, hardware-defined name of the sensor, such as a port number.
+         */
+        sensor_name: string
+
+        /**
+         * Temperature in °C, if the device measures temperature.
+         */
+        temperature_celsius?: number | undefined
+        /**
+         * Temperature in °F, if the device measures temperature.
+         */
+        temperature_fahrenheit?: number | undefined
+      }>
+    | undefined
+  /**
    * Optional nickname to describe the device, settable through Seam.
    */
   nickname?: string | undefined
+  /**
+   * Noise level in decibels, if the device measures noise.
+   */
+  noise_level_decibels?: number | undefined
+  /**
+   * Noise level as a Noise Risk Score (NRS), if the device reports one.
+   */
+  noise_level_nrs?: number | undefined
+  /**
+   * Number of occupants the device detects, if the device counts occupants.
+   */
+  occupant_count?: number | undefined
   /**
    * Properties of the device.
    */
@@ -2964,10 +3066,22 @@ export type Device = {
   }
 
   /**
+   * Relative humidity, as a value between 0 and 1, inclusive, if the device measures humidity.
+   */
+  relative_humidity?: number | undefined
+  /**
    * IDs of the spaces the device is in.
    */
   space_ids: Array<string>
 
+  /**
+   * Temperature in °C, if the device measures temperature.
+   */
+  temperature_celsius?: number | undefined
+  /**
+   * Temperature in °F, if the device measures temperature.
+   */
+  temperature_fahrenheit?: number | undefined
   /**
    * Array of warnings associated with the device. Each warning object within the array contains two fields: `warning_code` and `message`. `warning_code` is a string that uniquely identifies the type of warning, enabling quick recognition and categorization of the issue. `message` provides a more detailed description of the warning, offering insights into the issue and potentially how to rectify it.
    */

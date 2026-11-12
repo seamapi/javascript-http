@@ -392,6 +392,7 @@ export type DevicesListParameters = {
     | 'reolink_camera'
     | 'unifi_protect_camera'
     | 'sonos_speaker'
+    | 'alertify_sensor'
     | undefined
   /**
    * Array of device types for which you want to list devices.
@@ -450,6 +451,7 @@ export type DevicesListParameters = {
         | 'reolink_camera'
         | 'unifi_protect_camera'
         | 'sonos_speaker'
+        | 'alertify_sensor'
       >
     | undefined
   /**
@@ -511,6 +513,7 @@ export type DevicesListParameters = {
     | 'reolink'
     | 'unifi_protect'
     | 'yale_connect'
+    | 'alertify'
     | 'ical'
     | 'lodgify'
     | 'hostaway'
