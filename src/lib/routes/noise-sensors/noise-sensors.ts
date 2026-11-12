@@ -220,7 +220,7 @@ export type NoiseSensorsListParameters = {
   /**
    * Manufacturers of the noise sensors that you want to list.
    */
-  manufacturer?: 'minut' | 'noiseaware' | undefined
+  manufacturer?: 'minut' | 'noiseaware' | 'alertify' | undefined
 }
 
 /**
