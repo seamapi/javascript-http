@@ -12,26 +12,6 @@
  */
 export type AcsAccessGroup = {
   /**
-   * @deprecated Use `external_type`.
-   */
-  access_group_type:
-    | 'pti_unit'
-    | 'pti_access_level'
-    | 'salto_ks_access_group'
-    | 'brivo_group'
-    | 'salto_space_group'
-    | 'dormakaba_community_access_group'
-    | 'dormakaba_ambiance_access_group'
-    | 'avigilon_alta_group'
-    | 'kisi_access_group'
-    | 'akiles_member_group'
-
-  /**
-   * @deprecated Use `external_type_display_name`.
-   */
-  access_group_type_display_name: string
-
-  /**
    * `starts_at` and `ends_at` timestamps for the access group's access.
    */
   access_schedule?:

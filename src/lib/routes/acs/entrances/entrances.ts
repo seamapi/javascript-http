@@ -345,10 +345,6 @@ export type AcsEntrancesListParameters = {
    */
   limit?: number | undefined
   /**
-   * @deprecated Use `space_id`.
-   */
-  location_id?: string | null | undefined
-  /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */
   page_cursor?: string | null | undefined

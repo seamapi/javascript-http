@@ -374,6 +374,7 @@ export type DevicesListParameters = {
     | 'omnitec_lock'
     | 'kisi_lock'
     | 'aqara_lock'
+    | 'tuya_lock'
     | 'eufy_lock'
     | 'keynest_key'
     | 'noiseaware_activity_zone'
@@ -383,6 +384,7 @@ export type DevicesListParameters = {
     | 'honeywell_resideo_thermostat'
     | 'tado_thermostat'
     | 'sensi_thermostat'
+    | 'sensibo_thermostat'
     | 'smartthings_thermostat'
     | 'ios_phone'
     | 'android_phone'
@@ -393,6 +395,8 @@ export type DevicesListParameters = {
     | 'unifi_protect_camera'
     | 'sonos_speaker'
     | 'alertify_sensor'
+    | 'hayward_pool_system'
+    | 'hayward_pool'
     | undefined
   /**
    * Array of device types for which you want to list devices.
@@ -433,6 +437,7 @@ export type DevicesListParameters = {
         | 'omnitec_lock'
         | 'kisi_lock'
         | 'aqara_lock'
+        | 'tuya_lock'
         | 'eufy_lock'
         | 'keynest_key'
         | 'noiseaware_activity_zone'
@@ -442,6 +447,7 @@ export type DevicesListParameters = {
         | 'honeywell_resideo_thermostat'
         | 'tado_thermostat'
         | 'sensi_thermostat'
+        | 'sensibo_thermostat'
         | 'smartthings_thermostat'
         | 'ios_phone'
         | 'android_phone'
@@ -452,6 +458,8 @@ export type DevicesListParameters = {
         | 'unifi_protect_camera'
         | 'sonos_speaker'
         | 'alertify_sensor'
+        | 'hayward_pool_system'
+        | 'hayward_pool'
       >
     | undefined
   /**
@@ -504,6 +512,7 @@ export type DevicesListParameters = {
     | 'nest'
     | 'noiseaware'
     | 'sensi'
+    | 'sensibo'
     | 'smartthings'
     | 'tado'
     | 'ultraloq'
@@ -524,6 +533,8 @@ export type DevicesListParameters = {
     | 'slack'
     | 'yacan'
     | 'sonos'
+    | 'hayward_omnilogic'
+    | 'tuya'
     | undefined
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
@@ -537,10 +548,6 @@ export type DevicesListParameters = {
    * ID of the space for which you want to list devices.
    */
   space_id?: string | undefined
-  /**
-   * @deprecated Use `space_id`.
-   */
-  unstable_location_id?: string | null | undefined
   /**
    * Your own internal user ID for the user for which you want to list devices.
    */

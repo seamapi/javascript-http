@@ -261,7 +261,6 @@ export class SeamHttpClientSessions {
         'connected_account_ids',
         'user_identifier_key',
         'user_identity_id',
-        'user_identity_ids',
       ],
       responseKey: undefined,
       options,
@@ -341,11 +340,6 @@ export type ClientSessionsCreateParameters = {
    * ID of the [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) for which you want to create a client session.
    */
   user_identity_id?: string | undefined
-  /**
-   * IDs of the [user identities](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
-   * @deprecated Use `user_identity_id` instead.
-   */
-  user_identity_ids?: Array<string> | undefined
 }
 
 /**
@@ -420,11 +414,6 @@ export type ClientSessionsGetOrCreateParameters = {
    * ID of the [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session (or that are already associated with the existing client session).
    */
   user_identity_id?: string | undefined
-  /**
-   * IDs of the [user identities](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
-   * @deprecated Use `user_identity_id`.
-   */
-  user_identity_ids?: Array<string> | undefined
 }
 
 /**
@@ -463,18 +452,12 @@ export type ClientSessionsGrantAccessParameters = RequireAtLeastOne<
      * ID of the [user identity](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
      */
     user_identity_id?: string | undefined
-    /**
-     * IDs of the [user identities](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) that you want to associate with the client session.
-     * @deprecated Use `user_identity_id`.
-     */
-    user_identity_ids?: Array<string> | undefined
   },
   | 'client_session_id'
   | 'connect_webview_ids'
   | 'connected_account_ids'
   | 'user_identifier_key'
   | 'user_identity_id'
-  | 'user_identity_ids'
 >
 
 /**

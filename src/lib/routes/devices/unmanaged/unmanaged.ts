@@ -321,6 +321,7 @@ export type DevicesUnmanagedListParameters = {
     | 'omnitec_lock'
     | 'kisi_lock'
     | 'aqara_lock'
+    | 'tuya_lock'
     | 'eufy_lock'
     | 'keynest_key'
     | 'noiseaware_activity_zone'
@@ -330,6 +331,7 @@ export type DevicesUnmanagedListParameters = {
     | 'honeywell_resideo_thermostat'
     | 'tado_thermostat'
     | 'sensi_thermostat'
+    | 'sensibo_thermostat'
     | 'smartthings_thermostat'
     | 'ios_phone'
     | 'android_phone'
@@ -340,6 +342,8 @@ export type DevicesUnmanagedListParameters = {
     | 'unifi_protect_camera'
     | 'sonos_speaker'
     | 'alertify_sensor'
+    | 'hayward_pool_system'
+    | 'hayward_pool'
     | undefined
   /**
    * Array of device types for which you want to list devices.
@@ -380,6 +384,7 @@ export type DevicesUnmanagedListParameters = {
         | 'omnitec_lock'
         | 'kisi_lock'
         | 'aqara_lock'
+        | 'tuya_lock'
         | 'eufy_lock'
         | 'keynest_key'
         | 'noiseaware_activity_zone'
@@ -389,6 +394,7 @@ export type DevicesUnmanagedListParameters = {
         | 'honeywell_resideo_thermostat'
         | 'tado_thermostat'
         | 'sensi_thermostat'
+        | 'sensibo_thermostat'
         | 'smartthings_thermostat'
         | 'ios_phone'
         | 'android_phone'
@@ -399,6 +405,8 @@ export type DevicesUnmanagedListParameters = {
         | 'unifi_protect_camera'
         | 'sonos_speaker'
         | 'alertify_sensor'
+        | 'hayward_pool_system'
+        | 'hayward_pool'
       >
     | undefined
   /**
@@ -451,6 +459,7 @@ export type DevicesUnmanagedListParameters = {
     | 'nest'
     | 'noiseaware'
     | 'sensi'
+    | 'sensibo'
     | 'smartthings'
     | 'tado'
     | 'ultraloq'
@@ -471,6 +480,8 @@ export type DevicesUnmanagedListParameters = {
     | 'slack'
     | 'yacan'
     | 'sonos'
+    | 'hayward_omnilogic'
+    | 'tuya'
     | undefined
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.

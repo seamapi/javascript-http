@@ -406,7 +406,6 @@ export class SeamHttpAcsUsers {
         'access_schedule',
         'acs_system_id',
         'acs_user_id',
-        'email',
         'email_address',
         'full_name',
         'hid_acs_system_id',
@@ -465,10 +464,6 @@ export type AcsUsersCreateParameters = {
    */
   acs_system_id: string
 
-  /**
-   * @deprecated use email_address.
-   */
-  email?: string | undefined
   /**
    * Email address of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
@@ -775,10 +770,6 @@ export type AcsUsersUpdateParameters = RequireAtLeastOne<
      */
     acs_user_id?: string | undefined
     /**
-     * @deprecated use email_address.
-     */
-    email?: string | undefined
-    /**
      * Email address of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
      */
     email_address?: string | undefined
@@ -802,7 +793,6 @@ export type AcsUsersUpdateParameters = RequireAtLeastOne<
   | 'access_schedule'
   | 'acs_system_id'
   | 'acs_user_id'
-  | 'email'
   | 'email_address'
   | 'full_name'
   | 'hid_acs_system_id'

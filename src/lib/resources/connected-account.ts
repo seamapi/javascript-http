@@ -17,6 +17,7 @@ export type ConnectedAccount = {
     | 'access_control'
     | 'camera'
     | 'speaker'
+    | 'pool'
   >
 
   /**
@@ -220,34 +221,6 @@ export type ConnectedAccount = {
    * IANA time zone (e.g. America/Los_Angeles) for this connected account. Sourced from the connector configuration.
    */
   time_zone?: string | undefined
-  /**
-   * User identifier associated with the connected account.
-   * @deprecated Use `display_name` instead.
-   */
-  user_identifier?:
-    | {
-        /**
-         * API URL for the user identifier associated with the connected account.
-         */
-        api_url?: string | undefined
-        /**
-         * Email address of the user identifier associated with the connected account.
-         */
-        email?: string | undefined
-        /**
-         * Indicates whether the user identifier associated with the connected account is exclusive.
-         */
-        exclusive?: boolean | undefined
-        /**
-         * Phone number of the user identifier associated with the connected account.
-         */
-        phone?: string | undefined
-        /**
-         * Username of the user identifier associated with the connected account.
-         */
-        username?: string | undefined
-      }
-    | undefined
   /**
    * Warnings associated with the connected account.
    */

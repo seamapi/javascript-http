@@ -52,10 +52,6 @@ export type AcsUser = {
   display_name: string
 
   /**
-   * @deprecated use email_address.
-   */
-  email?: string | undefined
-  /**
    * Email address of the [access system user](https://www.seam.co/docs/low-level-apis/access-systems/user-management).
    */
   email_address?: string | undefined

@@ -344,29 +344,6 @@ export type AccessGrantsCreateParameters = {
    */
   ends_at?: string | null | undefined
   /**
-   * @deprecated Create a space first, then reference it using `space_ids`.
-   */
-  location?:
-    | {
-        /**
-         * @deprecated Use `acs_entrance_ids` at the top level.
-         */
-        acs_entrance_ids?: Array<string> | undefined
-        /**
-         * @deprecated Use `device_ids` at the top level.
-         */
-        device_ids?: Array<string> | undefined
-        /**
-         * Name of the location.
-         */
-        name?: string | undefined
-      }
-    | undefined
-  /**
-   * @deprecated Use `space_ids`.
-   */
-  location_ids?: Array<string> | undefined
-  /**
    * Name for the access grant.
    */
   name?: string | null | undefined
@@ -581,10 +558,6 @@ export type AccessGrantsListParameters = {
    * Numerical limit on the number of access grants to return.
    */
   limit?: number | undefined
-  /**
-   * @deprecated Use `space_id`.
-   */
-  location_id?: string | undefined
   /**
    * Identifies the specific page of results to return, obtained from the previous page's `next_page_cursor`.
    */

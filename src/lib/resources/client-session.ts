@@ -63,12 +63,6 @@ export type ClientSession = {
    */
   user_identity_id?: string | undefined
   /**
-   * IDs of the [user identities](https://www.seam.co/docs/capability-guides/mobile-access/managing-mobile-app-user-accounts-with-user-identities#what-is-a-user-identity) associated with the client session.
-   * @deprecated Use `user_identity_id` instead.
-   */
-  user_identity_ids: Array<string>
-
-  /**
    * ID of the workspace associated with the client session.
    */
   workspace_id: string

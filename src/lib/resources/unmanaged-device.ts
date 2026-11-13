@@ -105,6 +105,7 @@ export type UnmanagedDevice = {
     | 'thermostat'
     | 'battery'
     | 'phone'
+    | 'pool'
   >
 
   /**
@@ -165,6 +166,7 @@ export type UnmanagedDevice = {
     | 'omnitec_lock'
     | 'kisi_lock'
     | 'aqara_lock'
+    | 'tuya_lock'
     | 'eufy_lock'
     | 'keynest_key'
     | 'noiseaware_activity_zone'
@@ -174,6 +176,7 @@ export type UnmanagedDevice = {
     | 'honeywell_resideo_thermostat'
     | 'tado_thermostat'
     | 'sensi_thermostat'
+    | 'sensibo_thermostat'
     | 'smartthings_thermostat'
     | 'ios_phone'
     | 'android_phone'
@@ -184,6 +187,8 @@ export type UnmanagedDevice = {
     | 'unifi_protect_camera'
     | 'sonos_speaker'
     | 'alertify_sensor'
+    | 'hayward_pool_system'
+    | 'hayward_pool'
 
   /**
    * Display name of the device, defaults to nickname (if it is set) or `properties.appearance.name`, otherwise. Enables administrators and users to identify the device easily, especially when there are numerous devices.
@@ -564,127 +569,99 @@ export type UnmanagedDevice = {
          * Time zone of the device location.
          */
         time_zone?: string | undefined
-        /**
-         * Time zone of the device location.
-         * @deprecated Use `time_zone` instead.
-         */
-        timezone?: string | undefined
       }
     | undefined
   /**
    * properties of the device.
    */
-  properties: {
-    /**
-     * Accessory keypad properties and state.
-     */
-    accessory_keypad?:
-      | {
+  properties?:
+    | {
+        /**
+         * Accessory keypad properties and state.
+         */
+        accessory_keypad?:
+          | {
+              /**
+               * Keypad battery properties.
+               */
+              battery?:
+                | {
+                    level: number
+                  }
+                | undefined
+              /**
+               * Indicates if an accessory keypad is connected to the device.
+               */
+              is_connected: boolean
+            }
+          | undefined
+        /**
+         * Represents the current status of the battery charge level.
+         */
+        battery?:
+          | {
+              /**
+               * Battery charge level as a value between 0 and 1, inclusive.
+               */
+              level: number
+
+              /**
+               * Represents the current status of the battery charge level. Values are `critical`, which indicates an extremely low level, suggesting imminent shutdown or an urgent need for charging; `low`, which signifies that the battery is under the preferred threshold and should be charged soon; `good`, which denotes a satisfactory charge level, adequate for normal use without the immediate need for recharging; and `full`, which represents a battery that is fully charged, providing the maximum duration of usage.
+               */
+              status: 'critical' | 'low' | 'good' | 'full'
+            }
+          | undefined
+        /**
+         * Indicates the battery level of the device as a decimal value between 0 and 1, inclusive.
+         */
+        battery_level?: number | undefined
+        /**
+         * Alt text for the device image.
+         */
+        image_alt_text?: string | undefined
+        /**
+         * Image URL for the device.
+         */
+        image_url?: string | undefined
+        /**
+         * Manufacturer of the device. When a device, such as a smart lock, is connected through a smart hub, the manufacturer of the device might be different from that of the smart hub.
+         */
+        manufacturer?: string | undefined
+        /**
+         * Device model-related properties.
+         */
+        model: {
           /**
-           * Keypad battery properties.
+           * Indicates whether the device can connect a accessory keypad.
            */
-          battery?:
-            | {
-                level: number
-              }
-            | undefined
+          can_connect_accessory_keypad?: boolean | undefined
           /**
-           * Indicates if an accessory keypad is connected to the device.
+           * Display name of the device model.
            */
-          is_connected: boolean
+          display_name: string
+
+          /**
+           * Indicates whether the device has a built in accessory keypad.
+           */
+          has_built_in_keypad?: boolean | undefined
+          /**
+           * Display name that corresponds to the manufacturer-specific terminology for the device.
+           */
+          manufacturer_display_name: string
         }
-      | undefined
-    /**
-     * Represents the current status of the battery charge level.
-     */
-    battery?:
-      | {
-          /**
-           * Battery charge level as a value between 0 and 1, inclusive.
-           */
-          level: number
 
-          /**
-           * Represents the current status of the battery charge level. Values are `critical`, which indicates an extremely low level, suggesting imminent shutdown or an urgent need for charging; `low`, which signifies that the battery is under the preferred threshold and should be charged soon; `good`, which denotes a satisfactory charge level, adequate for normal use without the immediate need for recharging; and `full`, which represents a battery that is fully charged, providing the maximum duration of usage.
-           */
-          status: 'critical' | 'low' | 'good' | 'full'
-        }
-      | undefined
-    /**
-     * Indicates the battery level of the device as a decimal value between 0 and 1, inclusive.
-     */
-    battery_level?: number | undefined
-    /**
-     * Alt text for the device image.
-     */
-    image_alt_text?: string | undefined
-    /**
-     * Image URL for the device.
-     */
-    image_url?: string | undefined
-    /**
-     * Manufacturer of the device. When a device, such as a smart lock, is connected through a smart hub, the manufacturer of the device might be different from that of the smart hub.
-     */
-    manufacturer?: string | undefined
-    /**
-     * Device model-related properties.
-     */
-    model: {
-      /**
-       * @deprecated use device.properties.model.can_connect_accessory_keypad
-       */
-      accessory_keypad_supported?: boolean | undefined
-      /**
-       * Indicates whether the device can connect a accessory keypad.
-       */
-      can_connect_accessory_keypad?: boolean | undefined
-      /**
-       * Display name of the device model.
-       */
-      display_name: string
+        /**
+         * Name of the device.
+         * @deprecated use device.display_name instead
+         */
+        name: string
 
-      /**
-       * Indicates whether the device has a built in accessory keypad.
-       */
-      has_built_in_keypad?: boolean | undefined
-      /**
-       * Display name that corresponds to the manufacturer-specific terminology for the device.
-       */
-      manufacturer_display_name: string
-
-      /**
-       * @deprecated use device.can_program_offline_access_codes.
-       */
-      offline_access_codes_supported?: boolean | undefined
-      /**
-       * @deprecated use device.can_program_online_access_codes.
-       */
-      online_access_codes_supported?: boolean | undefined
-    }
-
-    /**
-     * Name of the device.
-     * @deprecated use device.display_name instead
-     */
-    name: string
-
-    /**
-     * Indicates whether it is currently possible to use offline access codes for the device.
-     * @deprecated use device.can_program_offline_access_codes
-     */
-    offline_access_codes_enabled?: boolean | undefined
-    /**
-     * Indicates whether the device is online.
-     */
-    online: boolean
-
-    /**
-     * Indicates whether it is currently possible to use online access codes for the device.
-     * @deprecated use device.can_program_online_access_codes
-     */
-    online_access_codes_enabled?: boolean | undefined
-  }
-
+        /**
+         * Indicates whether the device is online.
+         */
+        online: boolean
+      }
+    | undefined
   /**
    * Array of warnings associated with the device. Each warning object within the array contains two fields: `warning_code` and `message`. `warning_code` is a string that uniquely identifies the type of warning, enabling quick recognition and categorization of the issue. `message` provides a more detailed description of the warning, offering insights into the issue and potentially how to rectify it.
    */
@@ -1086,6 +1063,24 @@ export type UnmanagedDevice = {
          */
         warning_code: 'hub_required_for_additional_capabilities'
       } /**
+     * Indicates that a technician has put the pool controller in service mode. Schedules and remote changes will not run until it is switched back.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'service_mode'
+      } /**
      * Indicates a provider-specific issue that may affect device functionality.
      */
     | {
@@ -1203,6 +1198,24 @@ export type UnmanagedDevice = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'max_access_codes_reached'
+      } /**
+     * Indicates that a third-party subscription is required to enable additional device capabilities.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'subscription_required_for_additional_capabilities'
       } /**
      * Indicates that the camera's account plan does not include cloud recording, so event media such as motion clips is unavailable.
      */

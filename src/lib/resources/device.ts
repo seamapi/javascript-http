@@ -109,6 +109,7 @@ export type Device = {
     | 'thermostat'
     | 'battery'
     | 'phone'
+    | 'pool'
   >
 
   /**
@@ -222,6 +223,7 @@ export type Device = {
     | 'omnitec_lock'
     | 'kisi_lock'
     | 'aqara_lock'
+    | 'tuya_lock'
     | 'eufy_lock'
     | 'keynest_key'
     | 'noiseaware_activity_zone'
@@ -231,6 +233,7 @@ export type Device = {
     | 'honeywell_resideo_thermostat'
     | 'tado_thermostat'
     | 'sensi_thermostat'
+    | 'sensibo_thermostat'
     | 'smartthings_thermostat'
     | 'ios_phone'
     | 'android_phone'
@@ -241,6 +244,8 @@ export type Device = {
     | 'unifi_protect_camera'
     | 'sonos_speaker'
     | 'alertify_sensor'
+    | 'hayward_pool_system'
+    | 'hayward_pool'
 
   /**
    * Display name of the device, defaults to nickname (if it is set) or `properties.appearance.name`, otherwise. Enables administrators and users to identify the device easily, especially when there are numerous devices.
@@ -600,14 +605,18 @@ export type Device = {
   >
 
   /**
+   * Estimated number of occupants detected by the device.
+   */
+  estimated_occupant_count?: number | undefined
+  /**
    * Indicates whether Seam manages the device. See also [Managed and Unmanaged Devices](https://www.seam.co/docs/core-concepts/devices/managed-and-unmanaged-devices).
    */
   is_managed: true
 
   /**
-   * Indicates whether the device detects that the space is occupied, if the device measures occupancy.
+   * Indicates whether the device detects occupancy.
    */
-  is_occupied?: boolean | undefined
+  is_occupancy_detected?: boolean | undefined
   /**
    * Indicates whether the device detects smoking, if the device measures it.
    */
@@ -629,11 +638,6 @@ export type Device = {
          * Time zone of the device location.
          */
         time_zone?: string | undefined
-        /**
-         * Time zone of the device location.
-         * @deprecated Use `time_zone` instead.
-         */
-        timezone?: string | undefined
       }
     | undefined
   /**
@@ -663,9 +667,13 @@ export type Device = {
         display_name: string
 
         /**
-         * Indicates whether the device detects that the space is occupied, if the device measures occupancy.
+         * Estimated number of occupants detected by the device.
          */
-        is_occupied?: boolean | undefined
+        estimated_occupant_count?: number | undefined
+        /**
+         * Indicates whether the device detects occupancy.
+         */
+        is_occupancy_detected?: boolean | undefined
         /**
          * Indicates whether the device detects smoking, if the device measures it.
          */
@@ -682,10 +690,6 @@ export type Device = {
          * Noise level as a Noise Risk Score (NRS), if the device reports one.
          */
         noise_level_nrs?: number | undefined
-        /**
-         * Number of occupants the device detects, if the device counts occupants.
-         */
-        occupant_count?: number | undefined
         /**
          * Relative humidity, as a value between 0 and 1, inclusive, if the device measures humidity.
          */
@@ -718,2353 +722,2162 @@ export type Device = {
    */
   noise_level_nrs?: number | undefined
   /**
-   * Number of occupants the device detects, if the device counts occupants.
-   */
-  occupant_count?: number | undefined
-  /**
    * Properties of the device.
    */
-  properties: {
-    /**
-     * Accessory keypad properties and state.
-     */
-    accessory_keypad?:
-      | {
+  properties?:
+    | {
+        /**
+         * Accessory keypad properties and state.
+         */
+        accessory_keypad?:
+          | {
+              /**
+               * Keypad battery properties.
+               */
+              battery?:
+                | {
+                    level: number
+                  }
+                | undefined
+              /**
+               * Indicates if an accessory keypad is connected to the device.
+               */
+              is_connected: boolean
+            }
+          | undefined
+        /**
+         * Appearance-related properties, as reported by the device.
+         */
+        appearance: {
           /**
-           * Keypad battery properties.
+           * Name of the device as seen from the provider API and application, not settable through Seam.
            */
-          battery?:
-            | {
-                level: number
-              }
-            | undefined
-          /**
-           * Indicates if an accessory keypad is connected to the device.
-           */
-          is_connected: boolean
+          name: string
         }
-      | undefined
-    /**
-     * Appearance-related properties, as reported by the device.
-     */
-    appearance: {
-      /**
-       * Name of the device as seen from the provider API and application, not settable through Seam.
-       */
-      name: string
-    }
 
-    /**
-     * Represents the current status of the battery charge level.
-     */
-    battery?:
-      | {
-          /**
-           * Battery charge level as a value between 0 and 1, inclusive.
-           */
-          level: number
+        /**
+         * Represents the current status of the battery charge level.
+         */
+        battery?:
+          | {
+              /**
+               * Battery charge level as a value between 0 and 1, inclusive.
+               */
+              level: number
 
-          /**
-           * Represents the current status of the battery charge level. Values are `critical`, which indicates an extremely low level, suggesting imminent shutdown or an urgent need for charging; `low`, which signifies that the battery is under the preferred threshold and should be charged soon; `good`, which denotes a satisfactory charge level, adequate for normal use without the immediate need for recharging; and `full`, which represents a battery that is fully charged, providing the maximum duration of usage.
-           */
-          status: 'critical' | 'low' | 'good' | 'full'
-        }
-      | undefined
-    /**
-     * Indicates the battery level of the device as a decimal value between 0 and 1, inclusive.
-     */
-    battery_level?: number | undefined
-    /**
-     * Array of noise threshold IDs that are currently triggering.
-     */
-    currently_triggering_noise_threshold_ids?: Array<string> | undefined
-    /**
-     * Indicates whether the device has direct power.
-     */
-    has_direct_power?: boolean | undefined
-    /**
-     * Alt text for the device image.
-     */
-    image_alt_text?: string | undefined
-    /**
-     * Image URL for the device.
-     */
-    image_url?: string | undefined
-    /**
-     * Manufacturer of the device. When a device, such as a smart lock, is connected through a smart hub, the manufacturer of the device might be different from that of the smart hub.
-     */
-    manufacturer?: string | undefined
-    /**
-     * Device model-related properties.
-     */
-    model: {
-      /**
-       * @deprecated use device.properties.model.can_connect_accessory_keypad
-       */
-      accessory_keypad_supported?: boolean | undefined
-      /**
-       * Indicates whether the device can connect a accessory keypad.
-       */
-      can_connect_accessory_keypad?: boolean | undefined
-      /**
-       * Display name of the device model.
-       */
-      display_name: string
-
-      /**
-       * Indicates whether the device has a built in accessory keypad.
-       */
-      has_built_in_keypad?: boolean | undefined
-      /**
-       * Display name that corresponds to the manufacturer-specific terminology for the device.
-       */
-      manufacturer_display_name: string
-
-      /**
-       * @deprecated use device.can_program_offline_access_codes.
-       */
-      offline_access_codes_supported?: boolean | undefined
-      /**
-       * @deprecated use device.can_program_online_access_codes.
-       */
-      online_access_codes_supported?: boolean | undefined
-    }
-
-    /**
-     * Name of the device.
-     * @deprecated use device.display_name instead
-     */
-    name: string
-
-    /**
-     * Indicates current noise level in decibels, if the device supports noise detection.
-     */
-    noise_level_decibels?: number | undefined
-    /**
-     * Indicates whether it is currently possible to use offline access codes for the device.
-     * @deprecated use device.can_program_offline_access_codes
-     */
-    offline_access_codes_enabled?: boolean | undefined
-    /**
-     * Indicates whether the device is online.
-     */
-    online: boolean
-
-    /**
-     * Indicates whether it is currently possible to use online access codes for the device.
-     * @deprecated use device.can_program_online_access_codes
-     */
-    online_access_codes_enabled?: boolean | undefined
-    /**
-     * Serial number of the device.
-     */
-    serial_number?: string | undefined
-    /**
-     * @deprecated use device.properties.model.can_connect_accessory_keypad
-     */
-    supports_accessory_keypad?: boolean | undefined
-    /**
-     * @deprecated use offline_access_codes_enabled
-     */
-    supports_offline_access_codes?: boolean | undefined
-    /**
-     * ASSA ABLOY Credential Service metadata for the phone.
-     */
-    assa_abloy_credential_service_metadata?:
-      | {
-          /**
-           * Endpoints associated with the phone.
-           */
-          endpoints?:
-            | Array<{
-                /**
-                 * ID of the associated endpoint.
-                 */
-                endpoint_id?: string | undefined
-                /**
-                 * Indicated whether the endpoint is active.
-                 */
-                is_active?: boolean | undefined
-              }>
-            | undefined
-          /**
-           * Indicates whether the credential service has active endpoints associated with the phone.
-           */
-          has_active_endpoint?: boolean | undefined
-        }
-      | undefined
-    /**
-     * Salto Space credential service metadata for the phone.
-     */
-    salto_space_credential_service_metadata?:
-      | {
-          /**
-           * Indicates whether the credential service has an active associated phone.
-           */
-          has_active_phone?: boolean | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an Akiles device.
-     */
-    akiles_metadata?:
-      | {
-          /**
-           * Gadget ID for an Akiles device.
-           */
-          gadget_id?: string | undefined
-          /**
-           * Gadget name for an Akiles device.
-           */
-          gadget_name?: string | undefined
-          /**
-           * Product name for an Akiles device.
-           */
-          product_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an Aqara device.
-     */
-    aqara_metadata?:
-      | {
-          /**
-           * Device name for an Aqara device.
-           */
-          device_name?: string | undefined
-          /**
-           * Device ID (did) for an Aqara device.
-           */
-          did?: string | undefined
-          /**
-           * Firmware version for an Aqara device.
-           */
-          firmware_version?: string | null | undefined
-          /**
-           * Model identifier for an Aqara device.
-           */
-          model?: string | undefined
-          /**
-           * Model type for an Aqara device.
-           */
-          model_type?: number | undefined
-          /**
-           * Parent gateway device ID for an Aqara device.
-           */
-          parent_did?: string | undefined
-          /**
-           * Position (room) ID for an Aqara device.
-           */
-          position_id?: string | null | undefined
-          /**
-           * Time zone reported for an Aqara device (e.g. GMT-07:00).
-           */
-          time_zone?: string | null | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an Arlo camera.
-     */
-    arlo_metadata?:
-      | {
-          /**
-           * Device ID reported by Arlo.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name reported by Arlo.
-           */
-          device_name?: string | undefined
-          /**
-           * Firmware version reported by Arlo.
-           */
-          firmware_version?: string | undefined
-          /**
-           * Hardware version reported by Arlo.
-           */
-          hardware_version?: string | undefined
-          /**
-           * Model ID reported by Arlo.
-           */
-          model_id?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an ASSA ABLOY Vostio system.
-     */
-    assa_abloy_vostio_metadata?:
-      | {
-          /**
-           * Encoder name for an ASSA ABLOY Vostio system.
-           */
-          encoder_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an August device.
-     */
-    august_metadata?:
-      | {
-          /**
-           * Indicates whether an August device has a keypad.
-           */
-          has_keypad?: boolean | undefined
-          /**
-           * House ID for an August device.
-           */
-          house_id?: string | undefined
-          /**
-           * House name for an August device.
-           */
-          house_name?: string | undefined
-          /**
-           * Keypad battery level for an August device.
-           */
-          keypad_battery_level?: string | undefined
-          /**
-           * Lock ID for an August device.
-           */
-          lock_id?: string | undefined
-          /**
-           * Lock name for an August device.
-           */
-          lock_name?: string | undefined
-          /**
-           * Model for an August device.
-           */
-          model?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an Avigilon Alta system.
-     */
-    avigilon_alta_metadata?:
-      | {
-          /**
-           * Entry name for an Avigilon Alta system.
-           */
-          entry_name?: string | undefined
-          /**
-           * Total count of entry relays for an Avigilon Alta system.
-           */
-          entry_relays_total_count?: number | undefined
-          /**
-           * Organization name for an Avigilon Alta system.
-           */
-          org_name?: string | undefined
-          /**
-           * Site ID for an Avigilon Alta system.
-           */
-          site_id?: number | undefined
-          /**
-           * Site name for an Avigilon Alta system.
-           */
-          site_name?: string | undefined
-          /**
-           * Zone ID for an Avigilon Alta system.
-           */
-          zone_id?: number | undefined
-          /**
-           * Zone name for an Avigilon Alta system.
-           */
-          zone_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Brivo device.
-     */
-    brivo_metadata?:
-      | {
-          /**
-           * Indicates whether the Brivo access point has activation (remote unlock) enabled.
-           */
-          activation_enabled?: boolean | undefined
-          /**
-           * Device name for a Brivo device.
-           */
-          device_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a ControlByWeb device.
-     */
-    controlbyweb_metadata?:
-      | {
-          /**
-           * Device ID for a ControlByWeb device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a ControlByWeb device.
-           */
-          device_name?: string | undefined
-          /**
-           * Relay name for a ControlByWeb device.
-           */
-          relay_name?: string | null | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a dormakaba Oracode Homeowner's Portal device.
-     */
-    dormakaba_oracode_iho_metadata?:
-      | {
-          /**
-           * Door ID for a dormakaba Oracode Homeowner's Portal device.
-           */
-          door_id?: number | undefined
-          /**
-           * Name of the door for a dormakaba Oracode Homeowner's Portal device.
-           */
-          door_name?: string | undefined
-          /**
-           * IANA time zone for a dormakaba Oracode Homeowner's Portal device.
-           */
-          iana_timezone?: string | undefined
-          /**
-           * User levels for a dormakaba Oracode Homeowner's Portal device.
-           */
-          user_levels?:
-            | Array<{
-                user_level?: number | undefined
-
-                user_level_check_in_time?: string | undefined
-
-                user_level_check_out_time?: string | undefined
-
-                user_level_name?: string | undefined
-
-                user_level_type?: string | undefined
-              }>
-            | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a dormakaba Oracode device.
-     */
-    dormakaba_oracode_metadata?:
-      | {
-          /**
-           * Device ID for a dormakaba Oracode device.
-           */
-          device_id?: string | undefined
-          /**
-           * Door ID for a dormakaba Oracode device.
-           */
-          door_id?: number | undefined
-          /**
-           * Indicates whether a door is wireless for a dormakaba Oracode device.
-           */
-          door_is_wireless?: boolean | undefined
-          /**
-           * Door name for a dormakaba Oracode device.
-           */
-          door_name?: string | undefined
-          /**
-           * IANA time zone for a dormakaba Oracode device.
-           */
-          iana_timezone?: string | undefined
-          /**
-           * Predefined time slots for a dormakaba Oracode device.
-           */
-          predefined_time_slots?:
-            | Array<{
-                /**
-                 * Check in time for a time slot for a dormakaba Oracode device.
-                 */
-                check_in_time?: string | undefined
-                /**
-                 * Checkout time for a time slot for a dormakaba Oracode device.
-                 */
-                check_out_time?: string | undefined
-                /**
-                 * ID of a user level for a dormakaba Oracode device.
-                 */
-                dormakaba_oracode_user_level_id?: string | undefined
-                /**
-                 * Prefix for a user level for a dormakaba Oracode device.
-                 */
-                dormakaba_oracode_user_level_prefix?: number | undefined
-                /**
-                 * Indicates whether a time slot for a dormakaba Oracode device is a 24-hour time slot.
-                 */
-                is_24_hour?: boolean | undefined
-                /**
-                 * Indicates whether a time slot for a dormakaba Oracode device is in biweekly mode.
-                 */
-                is_biweekly_mode?: boolean | undefined
-                /**
-                 * Indicates whether a time slot for a dormakaba Oracode device is a master time slot.
-                 */
-                is_master?: boolean | undefined
-                /**
-                 * Indicates whether a time slot for a dormakaba Oracode device is a one-shot time slot.
-                 */
-                is_one_shot?: boolean | undefined
-                /**
-                 * Name of a time slot for a dormakaba Oracode device.
-                 */
-                name?: string | undefined
-                /**
-                 * Prefix for a time slot for a dormakaba Oracode device.
-                 */
-                prefix?: number | undefined
-              }>
-            | undefined
-          /**
-           * Site ID for a dormakaba Oracode device.
-           * @deprecated Previously marked as "@DEPRECATED."
-           */
-          site_id?: number | null | undefined
-          /**
-           * Site name for a dormakaba Oracode device.
-           */
-          site_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an ecobee device.
-     */
-    ecobee_metadata?:
-      | {
-          /**
-           * Device name for an ecobee device.
-           */
-          device_name?: string | undefined
-          /**
-           * Device ID for an ecobee device.
-           */
-          ecobee_device_id?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Eufy device.
-     */
-    eufy_metadata?:
-      | {
-          device_id?: string | undefined
-
-          device_name?: string | undefined
-
-          model?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a 4SUITES device.
-     */
-    four_suites_metadata?:
-      | {
-          /**
-           * Device ID for a 4SUITES device.
-           */
-          device_id?: number | undefined
-          /**
-           * Device name for a 4SUITES device.
-           */
-          device_name?: string | undefined
-          /**
-           * Reclose delay, in seconds, for a 4SUITES device.
-           */
-          reclose_delay_in_seconds?: number | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Genie device.
-     */
-    genie_metadata?:
-      | {
-          /**
-           * Lock name for a Genie device.
-           */
-          device_name?: string | undefined
-          /**
-           * Door name for a Genie device.
-           */
-          door_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Honeywell Resideo device.
-     */
-    honeywell_resideo_metadata?:
-      | {
-          /**
-           * Device name for a Honeywell Resideo device.
-           */
-          device_name?: string | undefined
-          /**
-           * Device ID for a Honeywell Resideo device.
-           */
-          honeywell_resideo_device_id?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an igloo device.
-     */
-    igloo_metadata?:
-      | {
-          /**
-           * Bridge ID for an igloo device.
-           */
-          bridge_id?: string | undefined
-          /**
-           * Device ID for an igloo device.
-           */
-          device_id?: string | undefined
-          /**
-           * Model for an igloo device.
-           */
-          model?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an igloohome device.
-     */
-    igloohome_metadata?:
-      | {
-          /**
-           * Bridge ID for an igloohome device.
-           */
-          bridge_id?: string | undefined
-          /**
-           * Bridge name for an igloohome device.
-           */
-          bridge_name?: string | undefined
-          /**
-           * Device ID for an igloohome device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for an igloohome device.
-           */
-          device_name?: string | undefined
-          /**
-           * Indicates whether a keypad is linked to a bridge for an igloohome device.
-           */
-          is_accessory_keypad_linked_to_bridge?: boolean | undefined
-          /**
-           * Keypad ID for an igloohome device.
-           */
-          keypad_id?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a KeyNest device.
-     */
-    keynest_metadata?:
-      | {
-          /**
-           * Address for a KeyNest device.
-           */
-          address?: string | null | undefined
-          /**
-           * Current or last store ID for a KeyNest device.
-           */
-          current_or_last_store_id?: number | undefined
-          /**
-           * Current status for a KeyNest device.
-           */
-          current_status?: string | null | undefined
-          /**
-           * Current user company for a KeyNest device.
-           */
-          current_user_company?: string | null | undefined
-          /**
-           * Current user email for a KeyNest device.
-           */
-          current_user_email?: string | null | undefined
-          /**
-           * Current user name for a KeyNest device.
-           */
-          current_user_name?: string | null | undefined
-          /**
-           * Current user phone number for a KeyNest device.
-           */
-          current_user_phone_number?: string | null | undefined
-          /**
-           * Default office ID for a KeyNest device.
-           */
-          default_office_id?: number | undefined
-          /**
-           * Device name for a KeyNest device.
-           */
-          device_name?: string | undefined
-          /**
-           * Fob ID for a KeyNest device.
-           */
-          fob_id?: number | undefined
-          /**
-           * Handover method for a KeyNest device.
-           */
-          handover_method?: string | null | undefined
-          /**
-           * Whether the KeyNest device has a photo.
-           */
-          has_photo?: boolean | undefined
-          /**
-           * Whether the key is in a locker that does not support the access codes API.
-           */
-          is_quadient_locker?: boolean | undefined
-          /**
-           * Key ID for a KeyNest device.
-           */
-          key_id?: string | undefined
-          /**
-           * Key notes for a KeyNest device.
-           */
-          key_notes?: string | null | undefined
-          /**
-           * KeyNest app user for a KeyNest device.
-           */
-          keynest_app_user?: string | null | undefined
-          /**
-           * Last movement timestamp for a KeyNest device.
-           */
-          last_movement?: string | undefined
-          /**
-           * Property ID for a KeyNest device.
-           */
-          property_id?: string | null | undefined
-          /**
-           * Property postcode for a KeyNest device.
-           */
-          property_postcode?: string | null | undefined
-          /**
-           * Status type for a KeyNest device.
-           */
-          status_type?: string | undefined
-          /**
-           * Subscription plan for a KeyNest device.
-           */
-          subscription_plan?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Kisi device.
-     */
-    kisi_metadata?:
-      | {
-          /**
-           * Description for a Kisi device.
-           */
-          description?: string | null | undefined
-          /**
-           * Lock ID for a Kisi device.
-           */
-          lock_id?: number | undefined
-          /**
-           * Lock name for a Kisi device.
-           */
-          lock_name?: string | undefined
-          /**
-           * Place name for a Kisi device.
-           */
-          place_name?: string | null | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Korelock device.
-     */
-    korelock_metadata?:
-      | {
-          /**
-           * Device ID for a Korelock device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a Korelock device.
-           */
-          device_name?: string | undefined
-          /**
-           * Firmware version for a Korelock device.
-           */
-          firmware_version?: string | undefined
-          /**
-           * Location ID for a Korelock device. Required for timebound access codes.
-           */
-          location_id?: string | null | undefined
-          /**
-           * Model code for a Korelock device.
-           */
-          model_code?: string | undefined
-          /**
-           * Serial number for a Korelock device.
-           */
-          serial_number?: string | undefined
-          /**
-           * WiFi signal strength (0-1) for a Korelock device.
-           */
-          wifi_signal_strength?: number | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Kwikset device.
-     */
-    kwikset_metadata?:
-      | {
-          /**
-           * Device ID for a Kwikset device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a Kwikset device.
-           */
-          device_name?: string | undefined
-          /**
-           * Model number for a Kwikset device.
-           */
-          model_number?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Lockly device.
-     */
-    lockly_metadata?:
-      | {
-          /**
-           * Device ID for a Lockly device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a Lockly device.
-           */
-          device_name?: string | undefined
-          /**
-           * Model for a Lockly device.
-           */
-          model?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Minut device.
-     */
-    minut_metadata?:
-      | {
-          /**
-           * Device ID for a Minut device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a Minut device.
-           */
-          device_name?: string | undefined
-          /**
-           * Latest sensor values for a Minut device.
-           */
-          latest_sensor_values?:
-            | {
-                /**
-                 * Latest accelerometer Z-axis reading for a Minut device.
-                 */
-                accelerometer_z?:
-                  | {
-                      /**
-                       * Time of latest accelerometer Z-axis reading for a Minut device.
-                       */
-                      time?: string | undefined
-                      /**
-                       * Value of latest accelerometer Z-axis reading for a Minut device.
-                       */
-                      value?: number | undefined
-                    }
-                  | undefined
-                /**
-                 * Latest humidity reading for a Minut device.
-                 */
-                humidity?:
-                  | {
-                      /**
-                       * Time of latest humidity reading for a Minut device.
-                       */
-                      time?: string | undefined
-                      /**
-                       * Value of latest humidity reading for a Minut device.
-                       */
-                      value?: number | undefined
-                    }
-                  | undefined
-                /**
-                 * Latest pressure reading for a Minut device.
-                 */
-                pressure?:
-                  | {
-                      /**
-                       * Time of latest pressure reading for a Minut device.
-                       */
-                      time?: string | undefined
-                      /**
-                       * Value of latest pressure reading for a Minut device.
-                       */
-                      value?: number | undefined
-                    }
-                  | undefined
-                /**
-                 * Latest sound reading for a Minut device.
-                 */
-                sound?:
-                  | {
-                      /**
-                       * Time of latest sound reading for a Minut device.
-                       */
-                      time?: string | undefined
-                      /**
-                       * Value of latest sound reading for a Minut device.
-                       */
-                      value?: number | undefined
-                    }
-                  | undefined
-                /**
-                 * Latest temperature reading for a Minut device.
-                 */
-                temperature?:
-                  | {
-                      /**
-                       * Time of latest temperature reading for a Minut device.
-                       */
-                      time?: string | undefined
-                      /**
-                       * Value of latest temperature reading for a Minut device.
-                       */
-                      value?: number | undefined
-                    }
-                  | undefined
-              }
-            | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Google Nest device.
-     */
-    nest_metadata?:
-      | {
-          /**
-           * Custom device name for a Google Nest device. The device owner sets this value.
-           */
-          device_custom_name?: string | undefined
-          /**
-           * Device name for a Google Nest device. Google sets this value.
-           */
-          device_name?: string | undefined
-          /**
-           * Name of the Google Home room containing the device. The device owner sets this value.
-           */
-          display_name?: string | undefined
-          /**
-           * Device ID for a Google Nest device.
-           */
-          nest_device_id?: string | undefined
-          /**
-           * ID of the Google Nest structure containing the device.
-           */
-          nest_structure_id?: string | undefined
-          /**
-           * Name of the Google Nest structure containing the device. The device owner sets this value.
-           */
-          structure_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a NoiseAware device.
-     */
-    noiseaware_metadata?:
-      | {
-          /**
-           * Device ID for a NoiseAware device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device model for a NoiseAware device.
-           */
-          device_model?: 'indoor' | 'outdoor' | undefined
-          /**
-           * Device name for a NoiseAware device.
-           */
-          device_name?: string | undefined
-          /**
-           * Noise level, in decibels, for a NoiseAware device.
-           */
-          noise_level_decibel?: number | undefined
-          /**
-           * Noise level, expressed as a Noise Risk Score (NRS), for a NoiseAware device.
-           */
-          noise_level_nrs?: number | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Nuki device.
-     */
-    nuki_metadata?:
-      | {
-          /**
-           * Device ID for a Nuki device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a Nuki device.
-           */
-          device_name?: string | undefined
-          /**
-           * Indicates whether keypad 2 is paired for a Nuki device.
-           */
-          keypad_2_paired?: boolean | undefined
-          /**
-           * Indicates whether the keypad battery is in a critical state for a Nuki device.
-           */
-          keypad_battery_critical?: boolean | undefined
-          /**
-           * Indicates whether the keypad is paired for a Nuki device.
-           */
-          keypad_paired?: boolean | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an Omnitec device.
-     */
-    omnitec_metadata?:
-      | {
-          /**
-           * Whether the Omnitec lock has a connected gateway for remote operations.
-           */
-          has_gateway?: boolean | undefined
-          /**
-           * Operator-assigned alias for an Omnitec device.
-           */
-          lock_alias?: string | undefined
-          /**
-           * Lock ID for an Omnitec device.
-           */
-          lock_id?: number | undefined
-          /**
-           * Bluetooth MAC address for an Omnitec device.
-           */
-          lock_mac?: string | undefined
-          /**
-           * Lock name for an Omnitec device.
-           */
-          lock_name?: string | undefined
-          /**
-           * IANA time zone for the Omnitec device, used to schedule time-bound access codes at the correct local time (accounting for DST).
-           */
-          time_zone?: string | null | undefined
-          /**
-           * Static UTC offset of the Omnitec lock in milliseconds. Does not account for DST.
-           */
-          timezone_raw_offset_ms?: number | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Reolink camera.
-     */
-    reolink_metadata?:
-      | {
-          /**
-           * Firmware version reported by the camera.
-           */
-          firmware_version?: string | undefined
-          /**
-           * Hardware version reported by the camera.
-           */
-          hardware_version?: string | undefined
-          /**
-           * Model reported by the Reolink camera.
-           */
-          model?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Ring device.
-     */
-    ring_metadata?:
-      | {
-          /**
-           * Device ID for a Ring device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a Ring device.
-           */
-          device_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Salto KS device.
-     */
-    salto_ks_metadata?:
-      | {
-          /**
-           * Battery level for a Salto KS device.
-           */
-          battery_level?: string | undefined
-          /**
-           * Customer reference for a Salto KS device.
-           */
-          customer_reference?: string | undefined
-          /**
-           * Indicates whether the site has a Salto KS subscription that supports custom PINs.
-           */
-          has_custom_pin_subscription?: boolean | undefined
-          /**
-           * Lock ID for a Salto KS device.
-           */
-          lock_id?: string | undefined
-          /**
-           * Lock type for a Salto KS device.
-           */
-          lock_type?: string | undefined
-          /**
-           * Locked state for a Salto KS device.
-           */
-          locked_state?: string | undefined
-          /**
-           * Model for a Salto KS device.
-           */
-          model?: string | undefined
-          /**
-           * Site ID for the Salto KS site to which the device belongs.
-           */
-          site_id?: string | undefined
-          /**
-           * Site name for the Salto KS site to which the device belongs.
-           */
-          site_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metada for a Salto device.
-     * @deprecated Use `salto_ks_metadata` instead.
-     */
-    salto_metadata?:
-      | {
-          /**
-           * Battery level for a Salto device.
-           */
-          battery_level?: string | undefined
-          /**
-           * Customer reference for a Salto device.
-           */
-          customer_reference?: string | undefined
-          /**
-           * Lock ID for a Salto device.
-           */
-          lock_id?: string | undefined
-          /**
-           * Lock type for a Salto device.
-           */
-          lock_type?: string | undefined
-          /**
-           * Locked state for a Salto device.
-           */
-          locked_state?: string | undefined
-          /**
-           * Model for a Salto device.
-           */
-          model?: string | undefined
-          /**
-           * Site ID for the Salto KS site to which the device belongs.
-           */
-          site_id?: string | undefined
-          /**
-           * Site name for the Salto KS site to which the device belongs.
-           */
-          site_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Schlage device.
-     */
-    schlage_metadata?:
-      | {
-          /**
-           * Device ID for a Schlage device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a Schlage device.
-           */
-          device_name?: string | undefined
-          /**
-           * Model for a Schlage device.
-           */
-          model?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for Seam Bridge.
-     */
-    seam_bridge_metadata?:
-      | {
-          /**
-           * Device number for Seam Bridge.
-           */
-          device_num?: number | undefined
-          /**
-           * Name for Seam Bridge.
-           */
-          name?: string | undefined
-          /**
-           * Unlock method for Seam Bridge.
-           */
-          unlock_method?: 'bridge' | 'doorking' | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Sensi device.
-     */
-    sensi_metadata?:
-      | {
-          /**
-           * Device ID for a Sensi device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a Sensi device.
-           */
-          device_name?: string | undefined
-          /**
-           * Deprecated. Seam no longer sets this field.
-           */
-          dual_setpoints_not_supported?: boolean | undefined
-          /**
-           * Product type for a Sensi device.
-           */
-          product_type?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a SmartThings device.
-     */
-    smartthings_metadata?:
-      | {
-          /**
-           * Device ID for a SmartThings device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a SmartThings device.
-           */
-          device_name?: string | undefined
-          /**
-           * Location ID for a SmartThings device.
-           */
-          location_id?: string | undefined
-          /**
-           * Model for a SmartThings device.
-           */
-          model?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a tado° device.
-     */
-    tado_metadata?:
-      | {
-          /**
-           * Serial numbers of all tado° devices in the zone.
-           */
-          device_serial_numbers?: Array<string> | undefined
-          /**
-           * Device type of the main tado° device in the zone, such as `RU02`, `VA02` or `WR02`.
-           */
-          device_type?: string | undefined
-          /**
-           * Generation of the tado° home, such as `PRE_LINE_X`.
-           */
-          home_generation?: string | undefined
-          /**
-           * ID of the tado° home.
-           */
-          home_id?: string | undefined
-          /**
-           * Name of the tado° home.
-           */
-          home_name?: string | undefined
-          /**
-           * Serial number of the main tado° device in the zone, such as its wall thermostat or Smart AC Control.
-           */
-          serial_no?: string | undefined
-          /**
-           * ID of the tado° zone within its home.
-           */
-          zone_id?: string | undefined
-          /**
-           * Name of the tado° zone.
-           */
-          zone_name?: string | undefined
-          /**
-           * Type of the tado° zone: `HEATING` or `AIR_CONDITIONING`.
-           */
-          zone_type?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Tapo camera.
-     */
-    tapo_metadata?:
-      | {
-          /**
-           * Firmware version reported by the camera.
-           */
-          firmware_version?: string | undefined
-          /**
-           * Hardware version reported by the camera.
-           */
-          hardware_version?: string | undefined
-          /**
-           * Model reported by the Tapo camera.
-           */
-          model?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Tedee device.
-     */
-    tedee_metadata?:
-      | {
-          /**
-           * Bridge ID for a Tedee device.
-           */
-          bridge_id?: number | undefined
-          /**
-           * Bridge name for a Tedee device.
-           */
-          bridge_name?: string | undefined
-          /**
-           * Device ID for a Tedee device.
-           */
-          device_id?: number | undefined
-          /**
-           * Device model for a Tedee device.
-           */
-          device_model?: string | undefined
-          /**
-           * Device name for a Tedee device.
-           */
-          device_name?: string | undefined
-          /**
-           * Keypad ID for a Tedee device.
-           */
-          keypad_id?: number | undefined
-          /**
-           * Serial number for a Tedee device.
-           */
-          serial_number?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a TTLock device.
-     */
-    ttlock_metadata?:
-      | {
-          /**
-           * Feature value for a TTLock device.
-           */
-          feature_value?: string | undefined
-          /**
-           * Features for a TTLock device.
-           */
-          features?:
-            | {
-                /**
-                 * Indicates whether a TTLock device supports auto-lock time configuration.
-                 */
-                auto_lock_time_config?: boolean | undefined
-                /**
-                 * Indicates whether a TTLock device supports an incomplete keyboard passcode.
-                 */
-                incomplete_keyboard_passcode?: boolean | undefined
-                /**
-                 * Indicates whether a TTLock device supports the lock command.
-                 */
-                lock_command?: boolean | undefined
-                /**
-                 * Indicates whether a TTLock device supports a passcode.
-                 */
-                passcode?: boolean | undefined
-                /**
-                 * Indicates whether a TTLock device supports passcode management.
-                 */
-                passcode_management?: boolean | undefined
-                /**
-                 * Indicates whether a TTLock device supports unlock via gateway.
-                 */
-                unlock_via_gateway?: boolean | undefined
-                /**
-                 * Indicates whether a TTLock device supports Wi-Fi.
-                 */
-                wifi?: boolean | undefined
-              }
-            | undefined
-          /**
-           * Indicates whether a TTLock device has a gateway.
-           */
-          has_gateway?: boolean | undefined
-          /**
-           * Lock alias for a TTLock device.
-           */
-          lock_alias?: string | undefined
-          /**
-           * Lock ID for a TTLock device.
-           */
-          lock_id?: number | undefined
-          /**
-           * Lock-side timezone offset in milliseconds east of UTC, as configured in the TTLock app. Source of truth for the lock's wall-clock interpretation of access code start/end times — a misconfigured value here is the typical cause of customer "codes offset by N hours" reports. Diagnostic only; Seam does not convert times based on this value.
-           */
-          timezone_raw_offset_ms?: number | null | undefined
-          /**
-           * Wireless keypads for a TTLock device.
-           */
-          wireless_keypads?:
-            | Array<{
-                /**
-                 * ID for a wireless keypad for a TTLock device.
-                 */
-                wireless_keypad_id?: number | undefined
-                /**
-                 * Name for a wireless keypad for a TTLock device.
-                 */
-                wireless_keypad_name?: string | undefined
-              }>
-            | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a 2N device.
-     */
-    two_n_metadata?:
-      | {
-          /**
-           * Device ID for a 2N device.
-           */
-          device_id?: number | undefined
-          /**
-           * Device name for a 2N device.
-           */
-          device_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an Ultraloq device.
-     */
-    ultraloq_metadata?:
-      | {
-          /**
-           * Device ID for an Ultraloq device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for an Ultraloq device.
-           */
-          device_name?: string | undefined
-          /**
-           * Device type for an Ultraloq device.
-           */
-          device_type?: string | undefined
-          /**
-           * IANA timezone for the Ultraloq device.
-           */
-          time_zone?: string | null | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a UniFi Protect camera.
-     */
-    unifi_protect_metadata?:
-      | {
-          /**
-           * Camera ID reported by UniFi Protect.
-           */
-          camera_id?: string | undefined
-          /**
-           * Camera name reported by UniFi Protect.
-           */
-          camera_name?: string | undefined
-          /**
-           * Whether the camera has a microphone.
-           */
-          has_mic?: boolean | undefined
-          /**
-           * MAC address reported by the UniFi Protect camera.
-           */
-          mac?: string | undefined
-          /**
-           * Model reported by the UniFi Protect camera.
-           */
-          model?: string | undefined
-          /**
-           * Name of the UniFi Protect console that manages the camera.
-           */
-          nvr_name?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for an ASSA ABLOY Visionline system.
-     */
-    visionline_metadata?:
-      | {
-          /**
-           * Encoder ID for an ASSA ABLOY Visionline system.
-           */
-          encoder_id?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Wyze device.
-     */
-    wyze_metadata?:
-      | {
-          /**
-           * Device ID for a Wyze device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device information model for a Wyze device.
-           */
-          device_info_model?: string | undefined
-          /**
-           * Device name for a Wyze device.
-           */
-          device_name?: string | undefined
-          /**
-           * Keypad UUID for a Wyze device.
-           */
-          keypad_uuid?: string | undefined
-          /**
-           * Locker status (hardlock) for a Wyze device.
-           */
-          locker_status_hardlock?: number | undefined
-          /**
-           * Product model for a Wyze device.
-           */
-          product_model?: string | undefined
-          /**
-           * Product name for a Wyze device.
-           */
-          product_name?: string | undefined
-          /**
-           * Product type for a Wyze device.
-           */
-          product_type?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Yacan device.
-     */
-    yacan_metadata?:
-      | {
-          /**
-           * Device ID for a Yacan device.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a Yacan device.
-           */
-          device_name?: string | undefined
-          /**
-           * Device type for a Yacan device.
-           */
-          device_type?: string | undefined
-          /**
-           * Serial number for a Yacan device.
-           */
-          serial_number?: string | undefined
-        }
-      | undefined
-    /**
-     * Metadata for a Yale Connect lock.
-     */
-    yale_connect_metadata?:
-      | {
-          /**
-           * Device ID for a Yale Connect lock.
-           */
-          device_id?: string | undefined
-          /**
-           * Device name for a Yale Connect lock.
-           */
-          device_name?: string | undefined
-          /**
-           * Firmware version reported by the Yale Connect lock.
-           */
-          firmware_version?: string | undefined
-          /**
-           * Name of the Yale Connect home that contains the lock.
-           */
-          home_name?: string | undefined
-          /**
-           * Model reported by the Yale Connect lock.
-           */
-          model?: string | undefined
-          /**
-           * Time zone of the Yale Connect home, as Yale reports it.
-           */
-          time_zone_description?: string | undefined
-        }
-      | undefined
-    /**
-     * The delay in seconds before the lock automatically locks after being unlocked.
-     */
-    auto_lock_delay_seconds?: number | undefined
-    /**
-     * Indicates whether automatic locking is enabled.
-     */
-    auto_lock_enabled?: boolean | undefined
-    /**
-     * Indicates whether the [backup access code pool](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/backup-access-codes) is currently enabled for the device. To disable it, set this to `false` using [/devices/update](https://www.seam.co/docs/api/devices/update).
-     */
-    backup_access_code_pool_enabled?: boolean | undefined
-    /**
-     * Constraints on access codes for the device. Seam represents each constraint as an object with a `constraint_type` property. Depending on the constraint type, there may also be additional properties. Note that some constraints are manufacturer- or device-specific.
-     */
-    code_constraints?:
-      | Array<{
-          constraint_type:
-            | 'no_zeros'
-            | 'cannot_start_with_12'
-            | 'no_triple_consecutive_ints'
-            | 'cannot_specify_pin_code'
-            | 'pin_code_matches_existing_set'
-            | 'start_date_in_future'
-            | 'no_ascending_or_descending_sequence'
-            | 'at_least_three_unique_digits'
-            | 'cannot_contain_089'
-            | 'cannot_contain_0789'
-            | 'unique_first_four_digits'
-            | 'no_all_same_digits'
-            | 'name_length'
-            | 'name_must_be_unique'
-
-          /**
-           * Maximum name length constraint for access codes.
-           */
-          max_length?: number | undefined
-          /**
-           * Minimum name length constraint for access codes.
-           */
-          min_length?: number | undefined
-        }>
-      | undefined
-    /**
-     * Indicates whether the door is open.
-     */
-    door_open?: boolean | undefined
-    /**
-     * Indicates whether the device supports native entry events.
-     */
-    has_native_entry_events?: boolean | undefined
-    /**
-     * Keypad battery status.
-     */
-    keypad_battery?:
-      | {
-          /**
-           * Keypad battery charge level.
-           */
-          level: number
-        }
-      | undefined
-    /**
-     * Indicates whether the lock is locked.
-     */
-    locked?: boolean | undefined
-    /**
-     * Maximum number of active access codes that the device supports.
-     */
-    max_active_codes_supported?: number | undefined
-    /**
-     * Time frames that may be requested when creating an offline access code, expressed as a list of options. The caller picks one option (by matching the requested duration when the options' duration ranges do not overlap, or by `display_name` when they do) and satisfies that one option's rules. When `undefined`, any time frame works.
-     */
-    offline_time_frame_options?:
-      | Array<{
-          /**
-           * Label for this option. For a single-option device, the product name (for example, `algoPIN` or `SmartPIN`); for a multi-option device, a label that distinguishes it (for example, `Hourly` or `Fixed start times`).
+              /**
+               * Represents the current status of the battery charge level. Values are `critical`, which indicates an extremely low level, suggesting imminent shutdown or an urgent need for charging; `low`, which signifies that the battery is under the preferred threshold and should be charged soon; `good`, which denotes a satisfactory charge level, adequate for normal use without the immediate need for recharging; and `full`, which represents a battery that is fully charged, providing the maximum duration of usage.
+               */
+              status: 'critical' | 'low' | 'good' | 'full'
+            }
+          | undefined
+        /**
+         * Indicates the battery level of the device as a decimal value between 0 and 1, inclusive.
+         */
+        battery_level?: number | undefined
+        /**
+         * Array of noise threshold IDs that are currently triggering.
+         */
+        currently_triggering_noise_threshold_ids?: Array<string> | undefined
+        /**
+         * Indicates whether the device has direct power.
+         */
+        has_direct_power?: boolean | undefined
+        /**
+         * Alt text for the device image.
+         */
+        image_alt_text?: string | undefined
+        /**
+         * Image URL for the device.
+         */
+        image_url?: string | undefined
+        /**
+         * Manufacturer of the device. When a device, such as a smart lock, is connected through a smart hub, the manufacturer of the device might be different from that of the smart hub.
+         */
+        manufacturer?: string | undefined
+        /**
+         * Device model-related properties.
+         */
+        model: {
+          /**
+           * Indicates whether the device can connect a accessory keypad.
+           */
+          can_connect_accessory_keypad?: boolean | undefined
+          /**
+           * Display name of the device model.
            */
           display_name: string
 
           /**
-           * iCalendar recurrence rule (RRULE) that the end date must fall on. Constrains which calendar dates are selectable, independent of the time-of-day rules.
+           * Indicates whether the device has a built in accessory keypad.
            */
-          end_date_recurrence_rule?: string | undefined
+          has_built_in_keypad?: boolean | undefined
           /**
-           * When `true`, the start and end must fall at the same time of day (the caller picks which). Mutually exclusive with `time_pairs`.
+           * Display name that corresponds to the manufacturer-specific terminology for the device.
            */
-          matching_start_end_time?: true | undefined
-          /**
-           * Maximum duration this option covers, as an ISO 8601 duration (for example, `PT672H` or `P367D`). Omitted when there is no maximum.
-           */
-          max_duration?: string | undefined
-          /**
-           * Minimum duration this option covers, as an ISO 8601 duration (for example, `PT1H` or `P29D`). Omitted when there is no minimum.
-           */
-          min_duration?: string | undefined
-          /**
-           * iCalendar recurrence rule (RRULE) that the start date must fall on (for example, `FREQ=MONTHLY;BYDAY=1MO,3MO`). Constrains which calendar dates are selectable, independent of the time-of-day rules.
-           */
-          start_date_recurrence_rule?: string | undefined
-          /**
-           * Fixed start/end time pairings the caller chooses from. Mutually exclusive with `matching_start_end_time`.
-           */
-          time_pairs?:
-            | Array<{
+          manufacturer_display_name: string
+        }
+
+        /**
+         * Name of the device.
+         * @deprecated use device.display_name instead
+         */
+        name: string
+
+        /**
+         * Indicates current noise level in decibels, if the device supports noise detection.
+         */
+        noise_level_decibels?: number | undefined
+        /**
+         * Indicates whether the device is online.
+         */
+        online: boolean
+
+        /**
+         * Serial number of the device.
+         */
+        serial_number?: string | undefined
+        /**
+         * ASSA ABLOY Credential Service metadata for the phone.
+         */
+        assa_abloy_credential_service_metadata?:
+          | {
+              /**
+               * Endpoints associated with the phone.
+               */
+              endpoints?:
+                | Array<{
+                    /**
+                     * ID of the associated endpoint.
+                     */
+                    endpoint_id?: string | undefined
+                    /**
+                     * Indicated whether the endpoint is active.
+                     */
+                    is_active?: boolean | undefined
+                  }>
+                | undefined
+              /**
+               * Indicates whether the credential service has active endpoints associated with the phone.
+               */
+              has_active_endpoint?: boolean | undefined
+            }
+          | undefined
+        /**
+         * Salto Space credential service metadata for the phone.
+         */
+        salto_space_credential_service_metadata?:
+          | {
+              /**
+               * Indicates whether the credential service has an active associated phone.
+               */
+              has_active_phone?: boolean | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an Akiles device.
+         */
+        akiles_metadata?:
+          | {
+              /**
+               * Gadget ID for an Akiles device.
+               */
+              gadget_id?: string | undefined
+              /**
+               * Gadget name for an Akiles device.
+               */
+              gadget_name?: string | undefined
+              /**
+               * Product name for an Akiles device.
+               */
+              product_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an Aqara device.
+         */
+        aqara_metadata?:
+          | {
+              /**
+               * Device name for an Aqara device.
+               */
+              device_name?: string | undefined
+              /**
+               * Device ID (did) for an Aqara device.
+               */
+              did?: string | undefined
+              /**
+               * Firmware version for an Aqara device.
+               */
+              firmware_version?: string | null | undefined
+              /**
+               * Model identifier for an Aqara device.
+               */
+              model?: string | undefined
+              /**
+               * Model type for an Aqara device.
+               */
+              model_type?: number | undefined
+              /**
+               * Parent gateway device ID for an Aqara device.
+               */
+              parent_did?: string | undefined
+              /**
+               * Position (room) ID for an Aqara device.
+               */
+              position_id?: string | null | undefined
+              /**
+               * Time zone reported for an Aqara device (e.g. GMT-07:00).
+               */
+              time_zone?: string | null | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an Arlo camera.
+         */
+        arlo_metadata?:
+          | {
+              /**
+               * Device ID reported by Arlo.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name reported by Arlo.
+               */
+              device_name?: string | undefined
+              /**
+               * Firmware version reported by Arlo.
+               */
+              firmware_version?: string | undefined
+              /**
+               * Hardware version reported by Arlo.
+               */
+              hardware_version?: string | undefined
+              /**
+               * Model ID reported by Arlo.
+               */
+              model_id?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an ASSA ABLOY Vostio system.
+         */
+        assa_abloy_vostio_metadata?:
+          | {
+              /**
+               * Encoder name for an ASSA ABLOY Vostio system.
+               */
+              encoder_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an August device.
+         */
+        august_metadata?:
+          | {
+              /**
+               * Indicates whether an August device has a keypad.
+               */
+              has_keypad?: boolean | undefined
+              /**
+               * House ID for an August device.
+               */
+              house_id?: string | undefined
+              /**
+               * House name for an August device.
+               */
+              house_name?: string | undefined
+              /**
+               * Keypad battery level for an August device.
+               */
+              keypad_battery_level?: string | undefined
+              /**
+               * Lock ID for an August device.
+               */
+              lock_id?: string | undefined
+              /**
+               * Lock name for an August device.
+               */
+              lock_name?: string | undefined
+              /**
+               * Model for an August device.
+               */
+              model?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an Avigilon Alta system.
+         */
+        avigilon_alta_metadata?:
+          | {
+              /**
+               * Entry name for an Avigilon Alta system.
+               */
+              entry_name?: string | undefined
+              /**
+               * Total count of entry relays for an Avigilon Alta system.
+               */
+              entry_relays_total_count?: number | undefined
+              /**
+               * Organization name for an Avigilon Alta system.
+               */
+              org_name?: string | undefined
+              /**
+               * Site ID for an Avigilon Alta system.
+               */
+              site_id?: number | undefined
+              /**
+               * Site name for an Avigilon Alta system.
+               */
+              site_name?: string | undefined
+              /**
+               * Zone ID for an Avigilon Alta system.
+               */
+              zone_id?: number | undefined
+              /**
+               * Zone name for an Avigilon Alta system.
+               */
+              zone_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Brivo device.
+         */
+        brivo_metadata?:
+          | {
+              /**
+               * Indicates whether the Brivo access point has activation (remote unlock) enabled.
+               */
+              activation_enabled?: boolean | undefined
+              /**
+               * Device name for a Brivo device.
+               */
+              device_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a ControlByWeb device.
+         */
+        controlbyweb_metadata?:
+          | {
+              /**
+               * Device ID for a ControlByWeb device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a ControlByWeb device.
+               */
+              device_name?: string | undefined
+              /**
+               * Relay name for a ControlByWeb device.
+               */
+              relay_name?: string | null | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a dormakaba Oracode Homeowner's Portal device.
+         */
+        dormakaba_oracode_iho_metadata?:
+          | {
+              /**
+               * Door ID for a dormakaba Oracode Homeowner's Portal device.
+               */
+              door_id?: number | undefined
+              /**
+               * Name of the door for a dormakaba Oracode Homeowner's Portal device.
+               */
+              door_name?: string | undefined
+              /**
+               * IANA time zone for a dormakaba Oracode Homeowner's Portal device.
+               */
+              iana_timezone?: string | undefined
+              /**
+               * User levels for a dormakaba Oracode Homeowner's Portal device.
+               */
+              user_levels?:
+                | Array<{
+                    user_level?: number | undefined
+
+                    user_level_check_in_time?: string | undefined
+
+                    user_level_check_out_time?: string | undefined
+
+                    user_level_name?: string | undefined
+
+                    user_level_type?: string | undefined
+                  }>
+                | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a dormakaba Oracode device.
+         */
+        dormakaba_oracode_metadata?:
+          | {
+              /**
+               * Device ID for a dormakaba Oracode device.
+               */
+              device_id?: string | undefined
+              /**
+               * Door ID for a dormakaba Oracode device.
+               */
+              door_id?: number | undefined
+              /**
+               * Indicates whether a door is wireless for a dormakaba Oracode device.
+               */
+              door_is_wireless?: boolean | undefined
+              /**
+               * Door name for a dormakaba Oracode device.
+               */
+              door_name?: string | undefined
+              /**
+               * IANA time zone for a dormakaba Oracode device.
+               */
+              iana_timezone?: string | undefined
+              /**
+               * Predefined time slots for a dormakaba Oracode device.
+               */
+              predefined_time_slots?:
+                | Array<{
+                    /**
+                     * Check in time for a time slot for a dormakaba Oracode device.
+                     */
+                    check_in_time?: string | undefined
+                    /**
+                     * Checkout time for a time slot for a dormakaba Oracode device.
+                     */
+                    check_out_time?: string | undefined
+                    /**
+                     * ID of a user level for a dormakaba Oracode device.
+                     */
+                    dormakaba_oracode_user_level_id?: string | undefined
+                    /**
+                     * Prefix for a user level for a dormakaba Oracode device.
+                     */
+                    dormakaba_oracode_user_level_prefix?: number | undefined
+                    /**
+                     * Indicates whether a time slot for a dormakaba Oracode device is a 24-hour time slot.
+                     */
+                    is_24_hour?: boolean | undefined
+                    /**
+                     * Indicates whether a time slot for a dormakaba Oracode device is in biweekly mode.
+                     */
+                    is_biweekly_mode?: boolean | undefined
+                    /**
+                     * Indicates whether a time slot for a dormakaba Oracode device is a master time slot.
+                     */
+                    is_master?: boolean | undefined
+                    /**
+                     * Indicates whether a time slot for a dormakaba Oracode device is a one-shot time slot.
+                     */
+                    is_one_shot?: boolean | undefined
+                    /**
+                     * Name of a time slot for a dormakaba Oracode device.
+                     */
+                    name?: string | undefined
+                    /**
+                     * Prefix for a time slot for a dormakaba Oracode device.
+                     */
+                    prefix?: number | undefined
+                  }>
+                | undefined
+              /**
+               * Site name for a dormakaba Oracode device.
+               */
+              site_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an ecobee device.
+         */
+        ecobee_metadata?:
+          | {
+              /**
+               * Device name for an ecobee device.
+               */
+              device_name?: string | undefined
+              /**
+               * Device ID for an ecobee device.
+               */
+              ecobee_device_id?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Eufy device.
+         */
+        eufy_metadata?:
+          | {
+              device_id?: string | undefined
+
+              device_name?: string | undefined
+
+              model?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a 4SUITES device.
+         */
+        four_suites_metadata?:
+          | {
+              /**
+               * Device ID for a 4SUITES device.
+               */
+              device_id?: number | undefined
+              /**
+               * Device name for a 4SUITES device.
+               */
+              device_name?: string | undefined
+              /**
+               * Reclose delay, in seconds, for a 4SUITES device.
+               */
+              reclose_delay_in_seconds?: number | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Genie device.
+         */
+        genie_metadata?:
+          | {
+              /**
+               * Lock name for a Genie device.
+               */
+              device_name?: string | undefined
+              /**
+               * Door name for a Genie device.
+               */
+              door_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Honeywell Resideo device.
+         */
+        honeywell_resideo_metadata?:
+          | {
+              /**
+               * Device name for a Honeywell Resideo device.
+               */
+              device_name?: string | undefined
+              /**
+               * Device ID for a Honeywell Resideo device.
+               */
+              honeywell_resideo_device_id?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an igloo device.
+         */
+        igloo_metadata?:
+          | {
+              /**
+               * Bridge ID for an igloo device.
+               */
+              bridge_id?: string | undefined
+              /**
+               * Device ID for an igloo device.
+               */
+              device_id?: string | undefined
+              /**
+               * Model for an igloo device.
+               */
+              model?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an igloohome device.
+         */
+        igloohome_metadata?:
+          | {
+              /**
+               * Bridge ID for an igloohome device.
+               */
+              bridge_id?: string | undefined
+              /**
+               * Bridge name for an igloohome device.
+               */
+              bridge_name?: string | undefined
+              /**
+               * Device ID for an igloohome device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for an igloohome device.
+               */
+              device_name?: string | undefined
+              /**
+               * Indicates whether a keypad is linked to a bridge for an igloohome device.
+               */
+              is_accessory_keypad_linked_to_bridge?: boolean | undefined
+              /**
+               * Keypad ID for an igloohome device.
+               */
+              keypad_id?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a KeyNest device.
+         */
+        keynest_metadata?:
+          | {
+              /**
+               * Address for a KeyNest device.
+               */
+              address?: string | null | undefined
+              /**
+               * Current or last store ID for a KeyNest device.
+               */
+              current_or_last_store_id?: number | undefined
+              /**
+               * Current status for a KeyNest device.
+               */
+              current_status?: string | null | undefined
+              /**
+               * Current user company for a KeyNest device.
+               */
+              current_user_company?: string | null | undefined
+              /**
+               * Current user email for a KeyNest device.
+               */
+              current_user_email?: string | null | undefined
+              /**
+               * Current user name for a KeyNest device.
+               */
+              current_user_name?: string | null | undefined
+              /**
+               * Current user phone number for a KeyNest device.
+               */
+              current_user_phone_number?: string | null | undefined
+              /**
+               * Default office ID for a KeyNest device.
+               */
+              default_office_id?: number | undefined
+              /**
+               * Device name for a KeyNest device.
+               */
+              device_name?: string | undefined
+              /**
+               * Fob ID for a KeyNest device.
+               */
+              fob_id?: number | undefined
+              /**
+               * Handover method for a KeyNest device.
+               */
+              handover_method?: string | null | undefined
+              /**
+               * Whether the KeyNest device has a photo.
+               */
+              has_photo?: boolean | undefined
+              /**
+               * Whether the key is in a locker that does not support the access codes API.
+               */
+              is_quadient_locker?: boolean | undefined
+              /**
+               * Key ID for a KeyNest device.
+               */
+              key_id?: string | undefined
+              /**
+               * Key notes for a KeyNest device.
+               */
+              key_notes?: string | null | undefined
+              /**
+               * KeyNest app user for a KeyNest device.
+               */
+              keynest_app_user?: string | null | undefined
+              /**
+               * Last movement timestamp for a KeyNest device.
+               */
+              last_movement?: string | undefined
+              /**
+               * Property ID for a KeyNest device.
+               */
+              property_id?: string | null | undefined
+              /**
+               * Property postcode for a KeyNest device.
+               */
+              property_postcode?: string | null | undefined
+              /**
+               * Status type for a KeyNest device.
+               */
+              status_type?: string | undefined
+              /**
+               * Subscription plan for a KeyNest device.
+               */
+              subscription_plan?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Kisi device.
+         */
+        kisi_metadata?:
+          | {
+              /**
+               * Description for a Kisi device.
+               */
+              description?: string | null | undefined
+              /**
+               * Lock ID for a Kisi device.
+               */
+              lock_id?: number | undefined
+              /**
+               * Lock name for a Kisi device.
+               */
+              lock_name?: string | undefined
+              /**
+               * Place name for a Kisi device.
+               */
+              place_name?: string | null | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Korelock device.
+         */
+        korelock_metadata?:
+          | {
+              /**
+               * Device ID for a Korelock device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Korelock device.
+               */
+              device_name?: string | undefined
+              /**
+               * Firmware version for a Korelock device.
+               */
+              firmware_version?: string | undefined
+              /**
+               * Location ID for a Korelock device. Required for timebound access codes.
+               */
+              location_id?: string | null | undefined
+              /**
+               * Model code for a Korelock device.
+               */
+              model_code?: string | undefined
+              /**
+               * Serial number for a Korelock device.
+               */
+              serial_number?: string | undefined
+              /**
+               * WiFi signal strength (0-1) for a Korelock device.
+               */
+              wifi_signal_strength?: number | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Kwikset device.
+         */
+        kwikset_metadata?:
+          | {
+              /**
+               * Device ID for a Kwikset device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Kwikset device.
+               */
+              device_name?: string | undefined
+              /**
+               * Model number for a Kwikset device.
+               */
+              model_number?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Lockly device.
+         */
+        lockly_metadata?:
+          | {
+              /**
+               * Device ID for a Lockly device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Lockly device.
+               */
+              device_name?: string | undefined
+              /**
+               * Model for a Lockly device.
+               */
+              model?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Minut device.
+         */
+        minut_metadata?:
+          | {
+              /**
+               * Device ID for a Minut device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Minut device.
+               */
+              device_name?: string | undefined
+              /**
+               * Latest sensor values for a Minut device.
+               */
+              latest_sensor_values?:
+                | {
+                    /**
+                     * Latest accelerometer Z-axis reading for a Minut device.
+                     */
+                    accelerometer_z?:
+                      | {
+                          /**
+                           * Time of latest accelerometer Z-axis reading for a Minut device.
+                           */
+                          time?: string | undefined
+                          /**
+                           * Value of latest accelerometer Z-axis reading for a Minut device.
+                           */
+                          value?: number | undefined
+                        }
+                      | undefined
+                    /**
+                     * Latest humidity reading for a Minut device.
+                     */
+                    humidity?:
+                      | {
+                          /**
+                           * Time of latest humidity reading for a Minut device.
+                           */
+                          time?: string | undefined
+                          /**
+                           * Value of latest humidity reading for a Minut device.
+                           */
+                          value?: number | undefined
+                        }
+                      | undefined
+                    /**
+                     * Latest pressure reading for a Minut device.
+                     */
+                    pressure?:
+                      | {
+                          /**
+                           * Time of latest pressure reading for a Minut device.
+                           */
+                          time?: string | undefined
+                          /**
+                           * Value of latest pressure reading for a Minut device.
+                           */
+                          value?: number | undefined
+                        }
+                      | undefined
+                    /**
+                     * Latest sound reading for a Minut device.
+                     */
+                    sound?:
+                      | {
+                          /**
+                           * Time of latest sound reading for a Minut device.
+                           */
+                          time?: string | undefined
+                          /**
+                           * Value of latest sound reading for a Minut device.
+                           */
+                          value?: number | undefined
+                        }
+                      | undefined
+                    /**
+                     * Latest temperature reading for a Minut device.
+                     */
+                    temperature?:
+                      | {
+                          /**
+                           * Time of latest temperature reading for a Minut device.
+                           */
+                          time?: string | undefined
+                          /**
+                           * Value of latest temperature reading for a Minut device.
+                           */
+                          value?: number | undefined
+                        }
+                      | undefined
+                  }
+                | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Google Nest device.
+         */
+        nest_metadata?:
+          | {
+              /**
+               * Custom device name for a Google Nest device. The device owner sets this value.
+               */
+              device_custom_name?: string | undefined
+              /**
+               * Device name for a Google Nest device. Google sets this value.
+               */
+              device_name?: string | undefined
+              /**
+               * Name of the Google Home room containing the device. The device owner sets this value.
+               */
+              display_name?: string | undefined
+              /**
+               * Device ID for a Google Nest device.
+               */
+              nest_device_id?: string | undefined
+              /**
+               * ID of the Google Nest structure containing the device.
+               */
+              nest_structure_id?: string | undefined
+              /**
+               * Name of the Google Nest structure containing the device. The device owner sets this value.
+               */
+              structure_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a NoiseAware device.
+         */
+        noiseaware_metadata?:
+          | {
+              /**
+               * Device ID for a NoiseAware device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device model for a NoiseAware device.
+               */
+              device_model?: 'indoor' | 'outdoor' | undefined
+              /**
+               * Device name for a NoiseAware device.
+               */
+              device_name?: string | undefined
+              /**
+               * Noise level, in decibels, for a NoiseAware device.
+               */
+              noise_level_decibel?: number | undefined
+              /**
+               * Noise level, expressed as a Noise Risk Score (NRS), for a NoiseAware device.
+               */
+              noise_level_nrs?: number | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Nuki device.
+         */
+        nuki_metadata?:
+          | {
+              /**
+               * Device ID for a Nuki device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Nuki device.
+               */
+              device_name?: string | undefined
+              /**
+               * Indicates whether keypad 2 is paired for a Nuki device.
+               */
+              keypad_2_paired?: boolean | undefined
+              /**
+               * Indicates whether the keypad battery is in a critical state for a Nuki device.
+               */
+              keypad_battery_critical?: boolean | undefined
+              /**
+               * Indicates whether the keypad is paired for a Nuki device.
+               */
+              keypad_paired?: boolean | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an Omnitec device.
+         */
+        omnitec_metadata?:
+          | {
+              /**
+               * Whether the Omnitec lock has a connected gateway for remote operations.
+               */
+              has_gateway?: boolean | undefined
+              /**
+               * Operator-assigned alias for an Omnitec device.
+               */
+              lock_alias?: string | undefined
+              /**
+               * Lock ID for an Omnitec device.
+               */
+              lock_id?: number | undefined
+              /**
+               * Bluetooth MAC address for an Omnitec device.
+               */
+              lock_mac?: string | undefined
+              /**
+               * Lock name for an Omnitec device.
+               */
+              lock_name?: string | undefined
+              /**
+               * IANA time zone for the Omnitec device, used to schedule time-bound access codes at the correct local time (accounting for DST).
+               */
+              time_zone?: string | null | undefined
+              /**
+               * Static UTC offset of the Omnitec lock in milliseconds. Does not account for DST.
+               */
+              timezone_raw_offset_ms?: number | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Reolink camera.
+         */
+        reolink_metadata?:
+          | {
+              /**
+               * Firmware version reported by the camera.
+               */
+              firmware_version?: string | undefined
+              /**
+               * Hardware version reported by the camera.
+               */
+              hardware_version?: string | undefined
+              /**
+               * Model reported by the Reolink camera.
+               */
+              model?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Ring device.
+         */
+        ring_metadata?:
+          | {
+              /**
+               * Device ID for a Ring device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Ring device.
+               */
+              device_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Salto KS device.
+         */
+        salto_ks_metadata?:
+          | {
+              /**
+               * Battery level for a Salto KS device.
+               */
+              battery_level?: string | undefined
+              /**
+               * Customer reference for a Salto KS device.
+               */
+              customer_reference?: string | undefined
+              /**
+               * Indicates whether the site has a Salto KS subscription that supports custom PINs.
+               */
+              has_custom_pin_subscription?: boolean | undefined
+              /**
+               * Lock ID for a Salto KS device.
+               */
+              lock_id?: string | undefined
+              /**
+               * Lock type for a Salto KS device.
+               */
+              lock_type?: string | undefined
+              /**
+               * Locked state for a Salto KS device.
+               */
+              locked_state?: string | undefined
+              /**
+               * Model for a Salto KS device.
+               */
+              model?: string | undefined
+              /**
+               * Site ID for the Salto KS site to which the device belongs.
+               */
+              site_id?: string | undefined
+              /**
+               * Site name for the Salto KS site to which the device belongs.
+               */
+              site_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Schlage device.
+         */
+        schlage_metadata?:
+          | {
+              /**
+               * Device ID for a Schlage device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Schlage device.
+               */
+              device_name?: string | undefined
+              /**
+               * Model for a Schlage device.
+               */
+              model?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for Seam Bridge.
+         */
+        seam_bridge_metadata?:
+          | {
+              /**
+               * Device number for Seam Bridge.
+               */
+              device_num?: number | undefined
+              /**
+               * Name for Seam Bridge.
+               */
+              name?: string | undefined
+              /**
+               * Unlock method for Seam Bridge.
+               */
+              unlock_method?: 'bridge' | 'doorking' | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Sensi device.
+         */
+        sensi_metadata?:
+          | {
+              /**
+               * Device ID for a Sensi device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Sensi device.
+               */
+              device_name?: string | undefined
+              /**
+               * Product type for a Sensi device.
+               */
+              product_type?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Sensibo device.
+         */
+        sensibo_metadata?:
+          | {
+              /**
+               * Firmware version of the Sensibo device.
+               */
+              firmware_version?: string | undefined
+              /**
+               * MAC address of the Sensibo device.
+               */
+              mac_address?: string | undefined
+              /**
+               * ID of the Sensibo device, which Sensibo calls a pod.
+               */
+              pod_id?: string | undefined
+              /**
+               * Product model of the Sensibo device, such as `skyv2` or `air`.
+               */
+              product_model?: string | undefined
+              /**
+               * Name of the room that the Sensibo device is in.
+               */
+              room_name?: string | undefined
+              /**
+               * Serial number of the Sensibo device.
+               */
+              serial_number?: string | undefined
+              /**
+               * Temperature unit that the Sensibo device displays: `C` or `F`.
+               */
+              temperature_unit?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a SmartThings device.
+         */
+        smartthings_metadata?:
+          | {
+              /**
+               * Device ID for a SmartThings device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a SmartThings device.
+               */
+              device_name?: string | undefined
+              /**
+               * Location ID for a SmartThings device.
+               */
+              location_id?: string | undefined
+              /**
+               * Model for a SmartThings device.
+               */
+              model?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a tado° device.
+         */
+        tado_metadata?:
+          | {
+              /**
+               * Serial numbers of all tado° devices in the zone.
+               */
+              device_serial_numbers?: Array<string> | undefined
+              /**
+               * Device type of the main tado° device in the zone, such as `RU02`, `VA02` or `WR02`.
+               */
+              device_type?: string | undefined
+              /**
+               * Generation of the tado° home, such as `PRE_LINE_X`.
+               */
+              home_generation?: string | undefined
+              /**
+               * ID of the tado° home.
+               */
+              home_id?: string | undefined
+              /**
+               * Name of the tado° home.
+               */
+              home_name?: string | undefined
+              /**
+               * Serial number of the main tado° device in the zone, such as its wall thermostat or Smart AC Control.
+               */
+              serial_no?: string | undefined
+              /**
+               * ID of the tado° zone within its home.
+               */
+              zone_id?: string | undefined
+              /**
+               * Name of the tado° zone.
+               */
+              zone_name?: string | undefined
+              /**
+               * Type of the tado° zone: `HEATING` or `AIR_CONDITIONING`.
+               */
+              zone_type?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Tapo camera.
+         */
+        tapo_metadata?:
+          | {
+              /**
+               * Firmware version reported by the camera.
+               */
+              firmware_version?: string | undefined
+              /**
+               * Hardware version reported by the camera.
+               */
+              hardware_version?: string | undefined
+              /**
+               * Model reported by the Tapo camera.
+               */
+              model?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Tedee device.
+         */
+        tedee_metadata?:
+          | {
+              /**
+               * Bridge ID for a Tedee device.
+               */
+              bridge_id?: number | undefined
+              /**
+               * Bridge name for a Tedee device.
+               */
+              bridge_name?: string | undefined
+              /**
+               * Device ID for a Tedee device.
+               */
+              device_id?: number | undefined
+              /**
+               * Device model for a Tedee device.
+               */
+              device_model?: string | undefined
+              /**
+               * Device name for a Tedee device.
+               */
+              device_name?: string | undefined
+              /**
+               * Keypad ID for a Tedee device.
+               */
+              keypad_id?: number | undefined
+              /**
+               * Serial number for a Tedee device.
+               */
+              serial_number?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a TTLock device.
+         */
+        ttlock_metadata?:
+          | {
+              /**
+               * Feature value for a TTLock device.
+               */
+              feature_value?: string | undefined
+              /**
+               * Features for a TTLock device.
+               */
+              features?:
+                | {
+                    /**
+                     * Indicates whether a TTLock device supports auto-lock time configuration.
+                     */
+                    auto_lock_time_config?: boolean | undefined
+                    /**
+                     * Indicates whether a TTLock device supports an incomplete keyboard passcode.
+                     */
+                    incomplete_keyboard_passcode?: boolean | undefined
+                    /**
+                     * Indicates whether a TTLock device supports the lock command.
+                     */
+                    lock_command?: boolean | undefined
+                    /**
+                     * Indicates whether a TTLock device supports a passcode.
+                     */
+                    passcode?: boolean | undefined
+                    /**
+                     * Indicates whether a TTLock device supports passcode management.
+                     */
+                    passcode_management?: boolean | undefined
+                    /**
+                     * Indicates whether a TTLock device supports unlock via gateway.
+                     */
+                    unlock_via_gateway?: boolean | undefined
+                    /**
+                     * Indicates whether a TTLock device supports Wi-Fi.
+                     */
+                    wifi?: boolean | undefined
+                  }
+                | undefined
+              /**
+               * Indicates whether a TTLock device has a gateway.
+               */
+              has_gateway?: boolean | undefined
+              /**
+               * Lock alias for a TTLock device.
+               */
+              lock_alias?: string | undefined
+              /**
+               * Lock ID for a TTLock device.
+               */
+              lock_id?: number | undefined
+              /**
+               * Lock-side timezone offset in milliseconds east of UTC, as configured in the TTLock app. Source of truth for the lock's wall-clock interpretation of access code start/end times — a misconfigured value here is the typical cause of customer "codes offset by N hours" reports. Diagnostic only; Seam does not convert times based on this value.
+               */
+              timezone_raw_offset_ms?: number | null | undefined
+              /**
+               * Wireless keypads for a TTLock device.
+               */
+              wireless_keypads?:
+                | Array<{
+                    /**
+                     * ID for a wireless keypad for a TTLock device.
+                     */
+                    wireless_keypad_id?: number | undefined
+                    /**
+                     * Name for a wireless keypad for a TTLock device.
+                     */
+                    wireless_keypad_name?: string | undefined
+                  }>
+                | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Tuya device.
+         */
+        tuya_metadata?:
+          | {
+              /**
+               * Tuya product category code for the device (e.g. ms).
+               */
+              category?: string | undefined
+              /**
+               * Device ID for a Tuya device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Tuya device.
+               */
+              device_name?: string | undefined
+              /**
+               * Model reported for a Tuya device.
+               */
+              model?: string | null | undefined
+              /**
+               * Tuya product ID for the device.
+               */
+              product_id?: string | undefined
+              /**
+               * Tuya product name for the device.
+               */
+              product_name?: string | undefined
+              /**
+               * Time zone reported for a Tuya device (e.g. +08:00).
+               */
+              time_zone?: string | null | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a 2N device.
+         */
+        two_n_metadata?:
+          | {
+              /**
+               * Device ID for a 2N device.
+               */
+              device_id?: number | undefined
+              /**
+               * Device name for a 2N device.
+               */
+              device_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an Ultraloq device.
+         */
+        ultraloq_metadata?:
+          | {
+              /**
+               * Device ID for an Ultraloq device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for an Ultraloq device.
+               */
+              device_name?: string | undefined
+              /**
+               * Device type for an Ultraloq device.
+               */
+              device_type?: string | undefined
+              /**
+               * IANA timezone for the Ultraloq device.
+               */
+              time_zone?: string | null | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a UniFi Protect camera.
+         */
+        unifi_protect_metadata?:
+          | {
+              /**
+               * Camera ID reported by UniFi Protect.
+               */
+              camera_id?: string | undefined
+              /**
+               * Camera name reported by UniFi Protect.
+               */
+              camera_name?: string | undefined
+              /**
+               * Whether the camera has a microphone.
+               */
+              has_mic?: boolean | undefined
+              /**
+               * MAC address reported by the UniFi Protect camera.
+               */
+              mac?: string | undefined
+              /**
+               * Model reported by the UniFi Protect camera.
+               */
+              model?: string | undefined
+              /**
+               * Name of the UniFi Protect console that manages the camera.
+               */
+              nvr_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for an ASSA ABLOY Visionline system.
+         */
+        visionline_metadata?:
+          | {
+              /**
+               * Encoder ID for an ASSA ABLOY Visionline system.
+               */
+              encoder_id?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Wyze device.
+         */
+        wyze_metadata?:
+          | {
+              /**
+               * Device ID for a Wyze device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device information model for a Wyze device.
+               */
+              device_info_model?: string | undefined
+              /**
+               * Device name for a Wyze device.
+               */
+              device_name?: string | undefined
+              /**
+               * Keypad UUID for a Wyze device.
+               */
+              keypad_uuid?: string | undefined
+              /**
+               * Locker status (hardlock) for a Wyze device.
+               */
+              locker_status_hardlock?: number | undefined
+              /**
+               * Product model for a Wyze device.
+               */
+              product_model?: string | undefined
+              /**
+               * Product name for a Wyze device.
+               */
+              product_name?: string | undefined
+              /**
+               * Product type for a Wyze device.
+               */
+              product_type?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Yacan device.
+         */
+        yacan_metadata?:
+          | {
+              /**
+               * Device ID for a Yacan device.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Yacan device.
+               */
+              device_name?: string | undefined
+              /**
+               * Device type for a Yacan device.
+               */
+              device_type?: string | undefined
+              /**
+               * Serial number for a Yacan device.
+               */
+              serial_number?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Yale Connect lock.
+         */
+        yale_connect_metadata?:
+          | {
+              /**
+               * Device ID for a Yale Connect lock.
+               */
+              device_id?: string | undefined
+              /**
+               * Device name for a Yale Connect lock.
+               */
+              device_name?: string | undefined
+              /**
+               * Firmware version reported by the Yale Connect lock.
+               */
+              firmware_version?: string | undefined
+              /**
+               * Name of the Yale Connect home that contains the lock.
+               */
+              home_name?: string | undefined
+              /**
+               * Model reported by the Yale Connect lock.
+               */
+              model?: string | undefined
+              /**
+               * Time zone of the Yale Connect home, as Yale reports it.
+               */
+              time_zone_description?: string | undefined
+            }
+          | undefined
+        /**
+         * The delay in seconds before the lock automatically locks after being unlocked.
+         */
+        auto_lock_delay_seconds?: number | undefined
+        /**
+         * Indicates whether automatic locking is enabled.
+         */
+        auto_lock_enabled?: boolean | undefined
+        /**
+         * Indicates whether the [backup access code pool](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/backup-access-codes) is currently enabled for the device. To disable it, set this to `false` using [/devices/update](https://www.seam.co/docs/api/devices/update).
+         */
+        backup_access_code_pool_enabled?: boolean | undefined
+        /**
+         * Constraints on access codes for the device. Seam represents each constraint as an object with a `constraint_type` property. Depending on the constraint type, there may also be additional properties. Note that some constraints are manufacturer- or device-specific.
+         */
+        code_constraints?:
+          | Array<{
+              constraint_type:
+                | 'no_zeros'
+                | 'cannot_start_with_12'
+                | 'no_triple_consecutive_ints'
+                | 'cannot_specify_pin_code'
+                | 'pin_code_matches_existing_set'
+                | 'start_date_in_future'
+                | 'no_ascending_or_descending_sequence'
+                | 'at_least_three_unique_digits'
+                | 'cannot_contain_089'
+                | 'cannot_contain_0789'
+                | 'unique_first_four_digits'
+                | 'no_all_same_digits'
+                | 'name_length'
+                | 'name_must_be_unique'
+
+              /**
+               * Maximum name length constraint for access codes.
+               */
+              max_length?: number | undefined
+              /**
+               * Minimum name length constraint for access codes.
+               */
+              min_length?: number | undefined
+            }>
+          | undefined
+        /**
+         * Indicates whether the door is open.
+         */
+        door_open?: boolean | undefined
+        /**
+         * Indicates whether the device supports native entry events.
+         */
+        has_native_entry_events?: boolean | undefined
+        /**
+         * Keypad battery status.
+         */
+        keypad_battery?:
+          | {
+              /**
+               * Keypad battery charge level.
+               */
+              level: number
+            }
+          | undefined
+        /**
+         * Indicates whether the lock is locked.
+         */
+        locked?: boolean | undefined
+        /**
+         * Maximum number of active access codes that the device supports.
+         */
+        max_active_codes_supported?: number | undefined
+        /**
+         * Time frames that may be requested when creating an offline access code, expressed as a list of options. The caller picks one option (by matching the requested duration when the options' duration ranges do not overlap, or by `display_name` when they do) and satisfies that one option's rules. When `undefined`, any time frame works.
+         */
+        offline_time_frame_options?:
+          | Array<{
+              /**
+               * Label for this option. For a single-option device, the product name (for example, `algoPIN` or `SmartPIN`); for a multi-option device, a label that distinguishes it (for example, `Hourly` or `Fixed start times`).
+               */
+              display_name: string
+
+              /**
+               * iCalendar recurrence rule (RRULE) that the end date must fall on. Constrains which calendar dates are selectable, independent of the time-of-day rules.
+               */
+              end_date_recurrence_rule?: string | undefined
+              /**
+               * When `true`, the start and end must fall at the same time of day (the caller picks which). Mutually exclusive with `time_pairs`.
+               */
+              matching_start_end_time?: true | undefined
+              /**
+               * Maximum duration this option covers, as an ISO 8601 duration (for example, `PT672H` or `P367D`). Omitted when there is no maximum.
+               */
+              max_duration?: string | undefined
+              /**
+               * Minimum duration this option covers, as an ISO 8601 duration (for example, `PT1H` or `P29D`). Omitted when there is no minimum.
+               */
+              min_duration?: string | undefined
+              /**
+               * iCalendar recurrence rule (RRULE) that the start date must fall on (for example, `FREQ=MONTHLY;BYDAY=1MO,3MO`). Constrains which calendar dates are selectable, independent of the time-of-day rules.
+               */
+              start_date_recurrence_rule?: string | undefined
+              /**
+               * Fixed start/end time pairings the caller chooses from. Mutually exclusive with `matching_start_end_time`.
+               */
+              time_pairs?:
+                | Array<{
+                    /**
+                     * Label for the start/end time pairing.
+                     */
+                    display_name: string
+
+                    /**
+                     * End time of day as a 24-hour `HH:MM` value, interpreted in the option's `time_zone`. An `end_time` earlier on the clock than `start_time` means the end falls on a later date.
+                     */
+                    end_time: string
+
+                    /**
+                     * Start time of day as a 24-hour `HH:MM` value, interpreted in the option's `time_zone`.
+                     */
+                    start_time: string
+                  }>
+                | undefined
+              /**
+               * IANA time zone for interpreting `time_pairs` and the date recurrence rules. Present only when the option fixes times or dates.
+               */
+              time_zone?: string | undefined
+            }>
+          | undefined
+        /**
+         * Time frames that may be requested when creating an online access code, expressed as a list of options. The caller picks one option (by matching the requested duration when the options' duration ranges do not overlap, or by `display_name` when they do) and satisfies that one option's rules. When `undefined`, any time frame works.
+         */
+        online_time_frame_options?:
+          | Array<{
+              /**
+               * Label for this option. For a single-option device, the product name (for example, `algoPIN` or `SmartPIN`); for a multi-option device, a label that distinguishes it (for example, `Hourly` or `Fixed start times`).
+               */
+              display_name: string
+
+              /**
+               * iCalendar recurrence rule (RRULE) that the end date must fall on. Constrains which calendar dates are selectable, independent of the time-of-day rules.
+               */
+              end_date_recurrence_rule?: string | undefined
+              /**
+               * When `true`, the start and end must fall at the same time of day (the caller picks which). Mutually exclusive with `time_pairs`.
+               */
+              matching_start_end_time?: true | undefined
+              /**
+               * Maximum duration this option covers, as an ISO 8601 duration (for example, `PT672H` or `P367D`). Omitted when there is no maximum.
+               */
+              max_duration?: string | undefined
+              /**
+               * Minimum duration this option covers, as an ISO 8601 duration (for example, `PT1H` or `P29D`). Omitted when there is no minimum.
+               */
+              min_duration?: string | undefined
+              /**
+               * iCalendar recurrence rule (RRULE) that the start date must fall on (for example, `FREQ=MONTHLY;BYDAY=1MO,3MO`). Constrains which calendar dates are selectable, independent of the time-of-day rules.
+               */
+              start_date_recurrence_rule?: string | undefined
+              /**
+               * Fixed start/end time pairings the caller chooses from. Mutually exclusive with `matching_start_end_time`.
+               */
+              time_pairs?:
+                | Array<{
+                    /**
+                     * Label for the start/end time pairing.
+                     */
+                    display_name: string
+
+                    /**
+                     * End time of day as a 24-hour `HH:MM` value, interpreted in the option's `time_zone`. An `end_time` earlier on the clock than `start_time` means the end falls on a later date.
+                     */
+                    end_time: string
+
+                    /**
+                     * Start time of day as a 24-hour `HH:MM` value, interpreted in the option's `time_zone`.
+                     */
+                    start_time: string
+                  }>
+                | undefined
+              /**
+               * IANA time zone for interpreting `time_pairs` and the date recurrence rules. Present only when the option fixes times or dates.
+               */
+              time_zone?: string | undefined
+            }>
+          | undefined
+        /**
+         * Supported code lengths for access codes.
+         */
+        supported_code_lengths?: Array<number> | undefined
+        /**
+         * Indicates whether the device supports a [backup access code pool](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/backup-access-codes).
+         */
+        supports_backup_access_code_pool?: boolean | undefined
+        /**
+         * ID of the active [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+         */
+        active_thermostat_schedule_id?: string | null | undefined
+        /**
+         * Climate preset modes that the thermostat supports, such as "home", "away", "wake", "sleep", "occupied", and "unoccupied".
+         */
+        available_climate_preset_modes?:
+          | Array<
+              'home' | 'away' | 'wake' | 'sleep' | 'occupied' | 'unoccupied'
+            >
+          | undefined
+        /**
+         * Available [climate presets](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) for the thermostat.
+         */
+        available_climate_presets?:
+          | Array<{
+              /**
+               * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
+               */
+              can_delete: boolean
+
+              /**
+               * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
+               */
+              can_edit: boolean
+
+              /**
+               * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
+               */
+              can_use_with_thermostat_daily_programs: boolean
+
+              /**
+               * Unique key to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
+               */
+              climate_preset_key: string
+
+              /**
+               * The climate preset mode for the thermostat, based on the available climate preset modes reported by the device.
+               */
+              climate_preset_mode?:
+                | 'home'
+                | 'away'
+                | 'wake'
+                | 'sleep'
+                | 'occupied'
+                | 'unoccupied'
+                | undefined
+              /**
+               * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+               */
+              cooling_set_point_celsius?: number | undefined
+              /**
+               * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+               */
+              cooling_set_point_fahrenheit?: number | undefined
+              /**
+               * Display name for the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
+               */
+              display_name: string
+
+              /**
+               * Metadata specific to the Ecobee climate, if applicable.
+               */
+              ecobee_metadata?:
+                | {
+                    /**
+                     * Reference to the Ecobee climate, if applicable.
+                     */
+                    climate_ref?: string | undefined
+                    /**
+                     * Indicates if the climate preset is optimized by Ecobee.
+                     */
+                    is_optimized?: boolean | undefined
+                    /**
+                     * Indicates whether the climate preset is owned by the user or the system.
+                     */
+                    owner?: 'user' | 'system' | undefined
+                  }
+                | undefined
+              /**
+               * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+               */
+              fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
+              /**
+               * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+               */
+              heating_set_point_celsius?: number | undefined
+              /**
+               * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+               */
+              heating_set_point_fahrenheit?: number | undefined
+              /**
+               * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+               */
+              hvac_mode_setting?:
+                'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
+              /**
+               * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
+               */
+              name?: string | null | undefined
+            }>
+          | undefined
+        /**
+         * Fan mode settings that the thermostat supports.
+         */
+        available_fan_mode_settings?:
+          Array<'auto' | 'on' | 'circulate'> | undefined
+        /**
+         * HVAC mode settings that the thermostat supports.
+         */
+        available_hvac_mode_settings?:
+          Array<'off' | 'heat' | 'cool' | 'heat_cool' | 'eco'> | undefined
+        /**
+         * Current climate setting.
+         */
+        current_climate_setting?:
+          | {
+              /**
+               * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
+               */
+              can_delete?: boolean | undefined
+              /**
+               * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
+               */
+              can_edit?: boolean | undefined
+              /**
+               * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
+               */
+              can_use_with_thermostat_daily_programs?: boolean | undefined
+              /**
+               * Unique key to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
+               */
+              climate_preset_key?: string | undefined
+              /**
+               * The climate preset mode for the thermostat, based on the available climate preset modes reported by the device.
+               */
+              climate_preset_mode?:
+                | 'home'
+                | 'away'
+                | 'wake'
+                | 'sleep'
+                | 'occupied'
+                | 'unoccupied'
+                | undefined
+              /**
+               * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+               */
+              cooling_set_point_celsius?: number | undefined
+              /**
+               * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+               */
+              cooling_set_point_fahrenheit?: number | undefined
+              /**
+               * Display name for the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
+               */
+              display_name?: string | undefined
+              /**
+               * Metadata specific to the Ecobee climate, if applicable.
+               */
+              ecobee_metadata?:
+                | {
+                    /**
+                     * Reference to the Ecobee climate, if applicable.
+                     */
+                    climate_ref?: string | undefined
+                    /**
+                     * Indicates if the climate preset is optimized by Ecobee.
+                     */
+                    is_optimized?: boolean | undefined
+                    /**
+                     * Indicates whether the climate preset is owned by the user or the system.
+                     */
+                    owner?: 'user' | 'system' | undefined
+                  }
+                | undefined
+              /**
+               * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
+               */
+              fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
+              /**
+               * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+               */
+              heating_set_point_celsius?: number | undefined
+              /**
+               * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
+               */
+              heating_set_point_fahrenheit?: number | undefined
+              /**
+               * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
+               */
+              hvac_mode_setting?:
+                'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
+              /**
+               * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
+               */
+              name?: string | null | undefined
+            }
+          | undefined
+        /**
+         * Key of the [fallback climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets/setting-the-fallback-climate-preset) for the thermostat.
+         */
+        fallback_climate_preset_key?: string | null | undefined
+        /**
+         * Indicates whether the connected HVAC system is currently cooling, as reported by the thermostat.
+         */
+        is_cooling?: boolean | undefined
+        /**
+         * Indicates whether the fan in the connected HVAC system is currently running, as reported by the thermostat.
+         */
+        is_fan_running?: boolean | undefined
+        /**
+         * Indicates whether the connected HVAC system is currently heating, as reported by the thermostat.
+         */
+        is_heating?: boolean | undefined
+        /**
+         * Indicates whether the current thermostat settings differ from the most recent active program or schedule that Seam activated. For this condition to occur, `current_climate_setting.manual_override_allowed` must also be `true`.
+         */
+        is_temporary_manual_override_active?: boolean | undefined
+        /**
+         * Maximum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °C.
+         */
+        max_cooling_set_point_celsius?: number | undefined
+        /**
+         * Maximum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °F.
+         */
+        max_cooling_set_point_fahrenheit?: number | undefined
+        /**
+         * Maximum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °C.
+         */
+        max_heating_set_point_celsius?: number | undefined
+        /**
+         * Maximum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °F.
+         */
+        max_heating_set_point_fahrenheit?: number | undefined
+        /**
+         * Maximum number of periods that the thermostat can support per day. For example, if the thermostat supports 4 periods per day, this value is 4.
+         */
+        max_thermostat_daily_program_periods_per_day?: number | undefined
+        /**
+         * Maximum number of climate presets that the thermostat can support for weekly programming.
+         */
+        max_unique_climate_presets_per_thermostat_weekly_program?:
+          number | undefined
+        /**
+         * Minimum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °C.
+         */
+        min_cooling_set_point_celsius?: number | undefined
+        /**
+         * Minimum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °F.
+         */
+        min_cooling_set_point_fahrenheit?: number | undefined
+        /**
+         * Minimum [temperature difference](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#minimum-heating-cooling-temperature-delta) in °C between the cooling and heating set points when in heat-cool (auto) mode.
+         */
+        min_heating_cooling_delta_celsius?: number | undefined
+        /**
+         * Minimum [temperature difference](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#minimum-heating-cooling-temperature-delta) in °F between the cooling and heating set points when in heat-cool (auto) mode.
+         */
+        min_heating_cooling_delta_fahrenheit?: number | undefined
+        /**
+         * Minimum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °C.
+         */
+        min_heating_set_point_celsius?: number | undefined
+        /**
+         * Minimum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °F.
+         */
+        min_heating_set_point_fahrenheit?: number | undefined
+        /**
+         * Reported relative humidity, as a value between 0 and 1, inclusive.
+         */
+        relative_humidity?: number | undefined
+        /**
+         * Reported temperature in °C.
+         */
+        temperature_celsius?: number | undefined
+        /**
+         * Reported temperature in °F.
+         */
+        temperature_fahrenheit?: number | undefined
+        /**
+         * Current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
+         */
+        temperature_threshold?:
+          | {
+              /**
+               * Lower limit in °C within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
+               */
+              lower_limit_celsius: number | null
+              /**
+               * Lower limit in °F within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
+               */
+              lower_limit_fahrenheit: number | null
+              /**
+               * Upper limit in °C within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
+               */
+              upper_limit_celsius: number | null
+              /**
+               * Upper limit in °F within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
+               */
+              upper_limit_fahrenheit: number | null
+            }
+          | undefined
+        /**
+         * Precision of the thermostat's period in minutes. For example, if the thermostat supports 15-minute periods, this value is 15. All values are relative to the top of the hour, so for 15 minutes, the periods would be 0, 15, 30, and 45 minutes past the hour.
+         */
+        thermostat_daily_program_period_precision_minutes?: number | undefined
+        /**
+         * Configured [daily programs](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-programs) for the thermostat.
+         */
+        thermostat_daily_programs?:
+          | Array<{
+              /**
+               * Date and time at which the thermostat daily program was created.
+               */
+              created_at: string
+
+              /**
+               * ID of the thermostat device on which the thermostat daily program is configured.
+               */
+              device_id: string
+
+              /**
+               * User-friendly name to identify the thermostat daily program.
+               */
+              name: string | null
+              /**
+               * Array of thermostat daily program periods.
+               */
+              periods: Array<{
                 /**
-                 * Label for the start/end time pairing.
+                 * Key of the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) to activate at the `starts_at_time`.
                  */
-                display_name: string
+                climate_preset_key: string
 
                 /**
-                 * End time of day as a 24-hour `HH:MM` value, interpreted in the option's `time_zone`. An `end_time` earlier on the clock than `start_time` means the end falls on a later date.
+                 * Time at which the thermostat daily program period starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
                  */
-                end_time: string
-
-                /**
-                 * Start time of day as a 24-hour `HH:MM` value, interpreted in the option's `time_zone`.
-                 */
-                start_time: string
+                starts_at_time: string
               }>
-            | undefined
-          /**
-           * IANA time zone for interpreting `time_pairs` and the date recurrence rules. Present only when the option fixes times or dates.
-           */
-          time_zone?: string | undefined
-        }>
-      | undefined
-    /**
-     * Time frames that may be requested when creating an online access code, expressed as a list of options. The caller picks one option (by matching the requested duration when the options' duration ranges do not overlap, or by `display_name` when they do) and satisfies that one option's rules. When `undefined`, any time frame works.
-     */
-    online_time_frame_options?:
-      | Array<{
-          /**
-           * Label for this option. For a single-option device, the product name (for example, `algoPIN` or `SmartPIN`); for a multi-option device, a label that distinguishes it (for example, `Hourly` or `Fixed start times`).
-           */
-          display_name: string
 
-          /**
-           * iCalendar recurrence rule (RRULE) that the end date must fall on. Constrains which calendar dates are selectable, independent of the time-of-day rules.
-           */
-          end_date_recurrence_rule?: string | undefined
-          /**
-           * When `true`, the start and end must fall at the same time of day (the caller picks which). Mutually exclusive with `time_pairs`.
-           */
-          matching_start_end_time?: true | undefined
-          /**
-           * Maximum duration this option covers, as an ISO 8601 duration (for example, `PT672H` or `P367D`). Omitted when there is no maximum.
-           */
-          max_duration?: string | undefined
-          /**
-           * Minimum duration this option covers, as an ISO 8601 duration (for example, `PT1H` or `P29D`). Omitted when there is no minimum.
-           */
-          min_duration?: string | undefined
-          /**
-           * iCalendar recurrence rule (RRULE) that the start date must fall on (for example, `FREQ=MONTHLY;BYDAY=1MO,3MO`). Constrains which calendar dates are selectable, independent of the time-of-day rules.
-           */
-          start_date_recurrence_rule?: string | undefined
-          /**
-           * Fixed start/end time pairings the caller chooses from. Mutually exclusive with `matching_start_end_time`.
-           */
-          time_pairs?:
-            | Array<{
-                /**
-                 * Label for the start/end time pairing.
-                 */
-                display_name: string
+              /**
+               * ID of the thermostat daily program.
+               */
+              thermostat_daily_program_id: string
 
-                /**
-                 * End time of day as a 24-hour `HH:MM` value, interpreted in the option's `time_zone`. An `end_time` earlier on the clock than `start_time` means the end falls on a later date.
-                 */
-                end_time: string
+              /**
+               * ID of the workspace that contains the thermostat daily program.
+               */
+              workspace_id: string
+            }>
+          | undefined
+        /**
+         * Current [weekly program](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-programs) for the thermostat.
+         */
+        thermostat_weekly_program?:
+          | {
+              /**
+               * Date and time at which the thermostat weekly program was created.
+               */
+              created_at: string
 
-                /**
-                 * Start time of day as a 24-hour `HH:MM` value, interpreted in the option's `time_zone`.
-                 */
-                start_time: string
-              }>
-            | undefined
-          /**
-           * IANA time zone for interpreting `time_pairs` and the date recurrence rules. Present only when the option fixes times or dates.
-           */
-          time_zone?: string | undefined
-        }>
-      | undefined
-    /**
-     * Supported code lengths for access codes.
-     */
-    supported_code_lengths?: Array<number> | undefined
-    /**
-     * Indicates whether the device supports a [backup access code pool](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/backup-access-codes).
-     */
-    supports_backup_access_code_pool?: boolean | undefined
-    /**
-     * Active [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
-     * @deprecated Use `active_thermostat_schedule_id` with `/thermostats/schedules/get` instead.
-     */
-    active_thermostat_schedule?:
-      | {
-          /**
-           * Key of the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) to use for the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
-           */
-          climate_preset_key: string
-
-          /**
-           * Date and time at which the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) was created.
-           */
-          created_at: string
-
-          /**
-           * ID of the desired [thermostat](https://www.seam.co/docs/capability-guides/thermostats) device.
-           */
-          device_id: string
-
-          /**
-           * Date and time at which the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-           */
-          ends_at: string
-
-          /**
-           * Errors associated with the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
-           */
-          errors: Array<{
-            /**
-             * Date and time at which Seam created the error.
-             */
-            created_at: string
-
-            /**
-             * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
-             */
-            error_code: string
-
-            /**
-             * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
-             */
-            message: string
-          }>
-
-          /**
-           * Indicates whether a person at the thermostat can change the thermostat's settings after the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) starts.
-           */
-          is_override_allowed?: boolean | undefined
-          /**
-           * Number of minutes for which a person at the thermostat can change the thermostat's settings after the activation of the scheduled [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets). See also [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
-           */
-          max_override_period_minutes?: number | null | undefined
-          /**
-           * User-friendly name to identify the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
-           */
-          name: string | null
-          /**
-           * Date and time at which the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-           */
-          starts_at: string
-
-          /**
-           * ID of the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
-           */
-          thermostat_schedule_id: string
-
-          /**
-           * ID of the workspace that contains the thermostat schedule.
-           */
-          workspace_id: string
-        }
-      | null
-      | undefined
-    /**
-     * ID of the active [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
-     */
-    active_thermostat_schedule_id?: string | null | undefined
-    /**
-     * Climate preset modes that the thermostat supports, such as "home", "away", "wake", "sleep", "occupied", and "unoccupied".
-     */
-    available_climate_preset_modes?:
-      | Array<'home' | 'away' | 'wake' | 'sleep' | 'occupied' | 'unoccupied'>
-      | undefined
-    /**
-     * Available [climate presets](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) for the thermostat.
-     */
-    available_climate_presets?:
-      | Array<{
-          /**
-           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
-           */
-          can_delete: boolean
-
-          /**
-           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
-           */
-          can_edit: boolean
-
-          /**
-           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
-           */
-          can_use_with_thermostat_daily_programs: boolean
-
-          /**
-           * Unique key to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
-           */
-          climate_preset_key: string
-
-          /**
-           * The climate preset mode for the thermostat, based on the available climate preset modes reported by the device.
-           */
-          climate_preset_mode?:
-            | 'home'
-            | 'away'
-            | 'wake'
-            | 'sleep'
-            | 'occupied'
-            | 'unoccupied'
-            | undefined
-          /**
-           * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          cooling_set_point_celsius?: number | undefined
-          /**
-           * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          cooling_set_point_fahrenheit?: number | undefined
-          /**
-           * Display name for the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
-           */
-          display_name: string
-
-          /**
-           * Metadata specific to the Ecobee climate, if applicable.
-           */
-          ecobee_metadata?:
-            | {
-                /**
-                 * Reference to the Ecobee climate, if applicable.
-                 */
-                climate_ref?: string | undefined
-                /**
-                 * Indicates if the climate preset is optimized by Ecobee.
-                 */
-                is_optimized?: boolean | undefined
-                /**
-                 * Indicates whether the climate preset is owned by the user or the system.
-                 */
-                owner?: 'user' | 'system' | undefined
-              }
-            | undefined
-          /**
-           * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
-           */
-          fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
-          /**
-           * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          heating_set_point_celsius?: number | undefined
-          /**
-           * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          heating_set_point_fahrenheit?: number | undefined
-          /**
-           * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
-           */
-          hvac_mode_setting?:
-            'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
-          /**
-           * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
-           * @deprecated Use 'thermostat_schedule.is_override_allowed'
-           */
-          manual_override_allowed: boolean
-
-          /**
-           * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
-           */
-          name?: string | null | undefined
-        }>
-      | undefined
-    /**
-     * Fan mode settings that the thermostat supports.
-     */
-    available_fan_mode_settings?: Array<'auto' | 'on' | 'circulate'> | undefined
-    /**
-     * HVAC mode settings that the thermostat supports.
-     */
-    available_hvac_mode_settings?:
-      Array<'off' | 'heat' | 'cool' | 'heat_cool' | 'eco'> | undefined
-    /**
-     * Current climate setting.
-     */
-    current_climate_setting?:
-      | {
-          /**
-           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
-           */
-          can_delete?: boolean | undefined
-          /**
-           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
-           */
-          can_edit?: boolean | undefined
-          /**
-           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
-           */
-          can_use_with_thermostat_daily_programs?: boolean | undefined
-          /**
-           * Unique key to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
-           */
-          climate_preset_key?: string | undefined
-          /**
-           * The climate preset mode for the thermostat, based on the available climate preset modes reported by the device.
-           */
-          climate_preset_mode?:
-            | 'home'
-            | 'away'
-            | 'wake'
-            | 'sleep'
-            | 'occupied'
-            | 'unoccupied'
-            | undefined
-          /**
-           * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          cooling_set_point_celsius?: number | undefined
-          /**
-           * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          cooling_set_point_fahrenheit?: number | undefined
-          /**
-           * Display name for the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
-           */
-          display_name?: string | undefined
-          /**
-           * Metadata specific to the Ecobee climate, if applicable.
-           */
-          ecobee_metadata?:
-            | {
-                /**
-                 * Reference to the Ecobee climate, if applicable.
-                 */
-                climate_ref?: string | undefined
-                /**
-                 * Indicates if the climate preset is optimized by Ecobee.
-                 */
-                is_optimized?: boolean | undefined
-                /**
-                 * Indicates whether the climate preset is owned by the user or the system.
-                 */
-                owner?: 'user' | 'system' | undefined
-              }
-            | undefined
-          /**
-           * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
-           */
-          fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
-          /**
-           * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          heating_set_point_celsius?: number | undefined
-          /**
-           * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          heating_set_point_fahrenheit?: number | undefined
-          /**
-           * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
-           */
-          hvac_mode_setting?:
-            'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
-          /**
-           * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
-           * @deprecated Use 'thermostat_schedule.is_override_allowed'
-           */
-          manual_override_allowed?: boolean | undefined
-          /**
-           * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
-           */
-          name?: string | null | undefined
-        }
-      | undefined
-    /**
-     * @deprecated use fallback_climate_preset_key to specify a fallback climate preset instead.
-     */
-    default_climate_setting?:
-      | {
-          /**
-           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be deleted.
-           */
-          can_delete?: boolean | undefined
-          /**
-           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be edited.
-           */
-          can_edit?: boolean | undefined
-          /**
-           * Indicates whether the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) key can be programmed in a thermostat daily program.
-           */
-          can_use_with_thermostat_daily_programs?: boolean | undefined
-          /**
-           * Unique key to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
-           */
-          climate_preset_key?: string | undefined
-          /**
-           * The climate preset mode for the thermostat, based on the available climate preset modes reported by the device.
-           */
-          climate_preset_mode?:
-            | 'home'
-            | 'away'
-            | 'wake'
-            | 'sleep'
-            | 'occupied'
-            | 'unoccupied'
-            | undefined
-          /**
-           * Temperature to which the thermostat should cool (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          cooling_set_point_celsius?: number | undefined
-          /**
-           * Temperature to which the thermostat should cool (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          cooling_set_point_fahrenheit?: number | undefined
-          /**
-           * Display name for the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
-           */
-          display_name?: string | undefined
-          /**
-           * Metadata specific to the Ecobee climate, if applicable.
-           */
-          ecobee_metadata?:
-            | {
-                /**
-                 * Reference to the Ecobee climate, if applicable.
-                 */
-                climate_ref?: string | undefined
-                /**
-                 * Indicates if the climate preset is optimized by Ecobee.
-                 */
-                is_optimized?: boolean | undefined
-                /**
-                 * Indicates whether the climate preset is owned by the user or the system.
-                 */
-                owner?: 'user' | 'system' | undefined
-              }
-            | undefined
-          /**
-           * Desired [fan mode setting](https://www.seam.co/docs/capability-guides/thermostats/configure-current-climate-settings#fan-mode-settings), such as `on`, `auto`, or `circulate`.
-           */
-          fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
-          /**
-           * Temperature to which the thermostat should heat (in °C). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          heating_set_point_celsius?: number | undefined
-          /**
-           * Temperature to which the thermostat should heat (in °F). See also [Set Points](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points).
-           */
-          heating_set_point_fahrenheit?: number | undefined
-          /**
-           * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
-           */
-          hvac_mode_setting?:
-            'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
-          /**
-           * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
-           * @deprecated Use 'thermostat_schedule.is_override_allowed'
-           */
-          manual_override_allowed?: boolean | undefined
-          /**
-           * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
-           */
-          name?: string | null | undefined
-        }
-      | undefined
-    /**
-     * Key of the [fallback climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets/setting-the-fallback-climate-preset) for the thermostat.
-     */
-    fallback_climate_preset_key?: string | null | undefined
-    /**
-     * @deprecated Use `current_climate_setting.fan_mode_setting` instead.
-     */
-    fan_mode_setting?: 'auto' | 'on' | 'circulate' | undefined
-    /**
-     * Indicates whether the connected HVAC system is currently cooling, as reported by the thermostat.
-     */
-    is_cooling?: boolean | undefined
-    /**
-     * Indicates whether the fan in the connected HVAC system is currently running, as reported by the thermostat.
-     */
-    is_fan_running?: boolean | undefined
-    /**
-     * Indicates whether the connected HVAC system is currently heating, as reported by the thermostat.
-     */
-    is_heating?: boolean | undefined
-    /**
-     * Indicates whether the current thermostat settings differ from the most recent active program or schedule that Seam activated. For this condition to occur, `current_climate_setting.manual_override_allowed` must also be `true`.
-     */
-    is_temporary_manual_override_active?: boolean | undefined
-    /**
-     * Maximum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °C.
-     */
-    max_cooling_set_point_celsius?: number | undefined
-    /**
-     * Maximum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °F.
-     */
-    max_cooling_set_point_fahrenheit?: number | undefined
-    /**
-     * Maximum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °C.
-     */
-    max_heating_set_point_celsius?: number | undefined
-    /**
-     * Maximum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °F.
-     */
-    max_heating_set_point_fahrenheit?: number | undefined
-    /**
-     * Maximum number of periods that the thermostat can support per day. For example, if the thermostat supports 4 periods per day, this value is 4.
-     */
-    max_thermostat_daily_program_periods_per_day?: number | undefined
-    /**
-     * Maximum number of climate presets that the thermostat can support for weekly programming.
-     */
-    max_unique_climate_presets_per_thermostat_weekly_program?:
-      number | undefined
-    /**
-     * Minimum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °C.
-     */
-    min_cooling_set_point_celsius?: number | undefined
-    /**
-     * Minimum [cooling set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#cooling-set-point) in °F.
-     */
-    min_cooling_set_point_fahrenheit?: number | undefined
-    /**
-     * Minimum [temperature difference](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#minimum-heating-cooling-temperature-delta) in °C between the cooling and heating set points when in heat-cool (auto) mode.
-     */
-    min_heating_cooling_delta_celsius?: number | undefined
-    /**
-     * Minimum [temperature difference](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#minimum-heating-cooling-temperature-delta) in °F between the cooling and heating set points when in heat-cool (auto) mode.
-     */
-    min_heating_cooling_delta_fahrenheit?: number | undefined
-    /**
-     * Minimum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °C.
-     */
-    min_heating_set_point_celsius?: number | undefined
-    /**
-     * Minimum [heating set point](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/set-points#heating-set-point) in °F.
-     */
-    min_heating_set_point_fahrenheit?: number | undefined
-    /**
-     * Reported relative humidity, as a value between 0 and 1, inclusive.
-     */
-    relative_humidity?: number | undefined
-    /**
-     * Reported temperature in °C.
-     */
-    temperature_celsius?: number | undefined
-    /**
-     * Reported temperature in °F.
-     */
-    temperature_fahrenheit?: number | undefined
-    /**
-     * Current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
-     */
-    temperature_threshold?:
-      | {
-          /**
-           * Lower limit in °C within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
-           */
-          lower_limit_celsius: number | null
-          /**
-           * Lower limit in °F within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
-           */
-          lower_limit_fahrenheit: number | null
-          /**
-           * Upper limit in °C within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
-           */
-          upper_limit_celsius: number | null
-          /**
-           * Upper limit in °F within the current [temperature threshold](https://www.seam.co/docs/capability-guides/thermostats/setting-and-monitoring-temperature-thresholds) set for the thermostat.
-           */
-          upper_limit_fahrenheit: number | null
-        }
-      | undefined
-    /**
-     * Precision of the thermostat's period in minutes. For example, if the thermostat supports 15-minute periods, this value is 15. All values are relative to the top of the hour, so for 15 minutes, the periods would be 0, 15, 30, and 45 minutes past the hour.
-     */
-    thermostat_daily_program_period_precision_minutes?: number | undefined
-    /**
-     * Configured [daily programs](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-programs) for the thermostat.
-     */
-    thermostat_daily_programs?:
-      | Array<{
-          /**
-           * Date and time at which the thermostat daily program was created.
-           */
-          created_at: string
-
-          /**
-           * ID of the thermostat device on which the thermostat daily program is configured.
-           */
-          device_id: string
-
-          /**
-           * User-friendly name to identify the thermostat daily program.
-           */
-          name: string | null
-          /**
-           * Array of thermostat daily program periods.
-           */
-          periods: Array<{
-            /**
-             * Key of the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets) to activate at the `starts_at_time`.
-             */
-            climate_preset_key: string
-
-            /**
-             * Time at which the thermostat daily program period starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-             */
-            starts_at_time: string
-          }>
-
-          /**
-           * ID of the thermostat daily program.
-           */
-          thermostat_daily_program_id: string
-
-          /**
-           * ID of the workspace that contains the thermostat daily program.
-           */
-          workspace_id: string
-        }>
-      | undefined
-    /**
-     * Current [weekly program](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-programs) for the thermostat.
-     */
-    thermostat_weekly_program?:
-      | {
-          /**
-           * Date and time at which the thermostat weekly program was created.
-           */
-          created_at: string
-
-          /**
-           * ID of the thermostat daily program to run on Fridays.
-           */
-          friday_program_id: string | null
-          /**
-           * ID of the thermostat daily program to run on Mondays.
-           */
-          monday_program_id: string | null
-          /**
-           * ID of the thermostat daily program to run on Saturdays.
-           */
-          saturday_program_id: string | null
-          /**
-           * ID of the thermostat daily program to run on Sundays.
-           */
-          sunday_program_id: string | null
-          /**
-           * ID of the thermostat daily program to run on Thursdays.
-           */
-          thursday_program_id: string | null
-          /**
-           * ID of the thermostat daily program to run on Tuesdays.
-           */
-          tuesday_program_id: string | null
-          /**
-           * ID of the thermostat daily program to run on Wednesdays.
-           */
-          wednesday_program_id: string | null
-        }
-      | null
-      | undefined
-  }
-
+              /**
+               * ID of the thermostat daily program to run on Fridays.
+               */
+              friday_program_id: string | null
+              /**
+               * ID of the thermostat daily program to run on Mondays.
+               */
+              monday_program_id: string | null
+              /**
+               * ID of the thermostat daily program to run on Saturdays.
+               */
+              saturday_program_id: string | null
+              /**
+               * ID of the thermostat daily program to run on Sundays.
+               */
+              sunday_program_id: string | null
+              /**
+               * ID of the thermostat daily program to run on Thursdays.
+               */
+              thursday_program_id: string | null
+              /**
+               * ID of the thermostat daily program to run on Tuesdays.
+               */
+              tuesday_program_id: string | null
+              /**
+               * ID of the thermostat daily program to run on Wednesdays.
+               */
+              wednesday_program_id: string | null
+            }
+          | null
+          | undefined
+      }
+    | undefined
   /**
    * Relative humidity, as a value between 0 and 1, inclusive, if the device measures humidity.
    */
@@ -3483,6 +3296,24 @@ export type Device = {
          */
         warning_code: 'hub_required_for_additional_capabilities'
       } /**
+     * Indicates that a technician has put the pool controller in service mode. Schedules and remote changes will not run until it is switched back.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'service_mode'
+      } /**
      * Indicates a provider-specific issue that may affect device functionality.
      */
     | {
@@ -3600,6 +3431,24 @@ export type Device = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'max_access_codes_reached'
+      } /**
+     * Indicates that a third-party subscription is required to enable additional device capabilities.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'subscription_required_for_additional_capabilities'
       } /**
      * Indicates that the camera's account plan does not include cloud recording, so event media such as motion clips is unavailable.
      */

@@ -762,6 +762,22 @@ export type SpacesUpdateParameters = {
    */
   device_ids?: Array<string> | undefined
   /**
+   * Geographic coordinates of the space. Pass null to clear them. Seam keeps this value until the connected PMS reports different coordinates for the space.
+   */
+  geolocation?:
+    | {
+        /**
+         * Latitude of the space, in decimal degrees.
+         */
+        latitude?: number | undefined
+        /**
+         * Longitude of the space, in decimal degrees.
+         */
+        longitude?: number | undefined
+      }
+    | null
+    | undefined
+  /**
    * Name of the space.
    */
   name?: string | undefined

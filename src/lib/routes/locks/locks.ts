@@ -392,6 +392,7 @@ export type LocksListParameters = {
     | 'omnitec_lock'
     | 'kisi_lock'
     | 'aqara_lock'
+    | 'tuya_lock'
     | 'eufy_lock'
     | undefined
   /**
@@ -433,6 +434,7 @@ export type LocksListParameters = {
         | 'omnitec_lock'
         | 'kisi_lock'
         | 'aqara_lock'
+        | 'tuya_lock'
         | 'eufy_lock'
       >
     | undefined
@@ -476,6 +478,7 @@ export type LocksListParameters = {
     | 'omnitec'
     | 'kisi'
     | 'yacan'
+    | 'tuya'
     | undefined
 }
 

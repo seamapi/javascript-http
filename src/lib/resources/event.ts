@@ -3188,48 +3188,6 @@ export type SeamEvent =
     }
   | {
       /**
-       * ID of the Connect Webview associated with the event.
-       */
-      connect_webview_id: string
-
-      /**
-       * Custom metadata of the connected account, present when connected_account_id is provided.
-       */
-      connected_account_custom_metadata?:
-        Record<string, string | boolean> | undefined
-      /**
-       * ID of the affected connected account.
-       */
-      connected_account_id: string
-
-      /**
-       * Date and time at which the event was created.
-       */
-      created_at: string
-
-      /**
-       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
-       */
-      event_description?: string | undefined
-      /**
-       * ID of the event.
-       */
-      event_id: string
-
-      event_type: 'connected_account.successful_login'
-
-      /**
-       * Date and time at which the event occurred.
-       */
-      occurred_at: string
-
-      /**
-       * ID of the workspace associated with the event.
-       */
-      workspace_id: string
-    }
-  | {
-      /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
       connected_account_custom_metadata?:
@@ -4552,12 +4510,6 @@ export type SeamEvent =
        * Number in the range 0 to 1.0 indicating the battery level of the affected device's paired accessory keypad, when the device has one and its level is known.
        */
       accessory_keypad_battery_level?: number | undefined
-      /**
-       * Number in the range 0 to 1.0 indicating the level of the battery whose drop triggered this event.
-       * @deprecated Use device_battery_level and accessory_keypad_battery_level, which distinguish the device's own battery from a paired accessory keypad's battery.
-       */
-      battery_level: number
-
       /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
@@ -6467,11 +6419,6 @@ export type SeamEvent =
     }
   | {
       /**
-       * The reason the camera was activated.
-       */
-      activation_reason: 'motion_detected'
-
-      /**
        * Custom metadata of the connected account, present when connected_account_id is provided.
        */
       connected_account_custom_metadata?:
@@ -6514,6 +6461,10 @@ export type SeamEvent =
        * URL to a thumbnail image captured at the time of activation.
        */
       image_url?: string | undefined
+      /**
+       * Whether motion detection activated the camera, if known.
+       */
+      is_motion_detected?: boolean | undefined
       /**
        * IDs of the media, such as a video clip and a thumbnail image, captured for this activation. Use `/media/get` to retrieve each one.
        */
