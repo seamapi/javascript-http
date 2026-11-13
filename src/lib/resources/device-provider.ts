@@ -145,6 +145,7 @@ export type DeviceProvider = {
     | 'tado'
     | 'salto_space'
     | 'sensi'
+    | 'sensibo'
     | 'keynest'
     | 'korelock'
     | 'keyincode'
@@ -171,6 +172,8 @@ export type DeviceProvider = {
     | 'aqara'
     | 'eufy'
     | 'sonos'
+    | 'hayward_omnilogic'
+    | 'tuya'
 
   /**
    * Display name for the device provider.

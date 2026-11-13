@@ -1015,6 +1015,10 @@ export type CustomersCreatePortalParameters = {
                */
               allow_access_automation_rule_customization?: boolean | undefined
               /**
+               * Indicates whether the customer can move a connected account to a new Seam Bridge when its current bridge is disconnected.
+               */
+              allow_bridge_replacement?: boolean | undefined
+              /**
                * Indicates whether the customer can customize the climate automation rules for their properties.
                */
               allow_climate_automation_rule_customization?: boolean | undefined
@@ -1122,20 +1126,6 @@ export type CustomersCreatePortalParameters = {
                * Indicates whether the customer can manage staff for their properties.
                */
               exclude_staff_management?: boolean | undefined
-            }
-          | undefined
-        /**
-         * Configuration for the manage devices feature.
-         * ---
-         * deprecated: Use `manage` instead.
-         * ---
-         */
-        manage_devices?:
-          | {
-              /**
-               * Whether to exclude this feature from the portal.
-               */
-              exclude?: boolean | undefined
             }
           | undefined
         /**

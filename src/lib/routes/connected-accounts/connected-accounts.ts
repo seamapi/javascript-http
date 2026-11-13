@@ -394,6 +394,7 @@ export type ConnectedAccountsUpdateParameters = {
         | 'access_control'
         | 'camera'
         | 'speaker'
+        | 'pool'
       >
     | undefined
   /**

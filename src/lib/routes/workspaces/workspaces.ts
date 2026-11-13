@@ -271,11 +271,6 @@ export class SeamHttpWorkspaces {
 
 export type WorkspacesCreateParameters = {
   /**
-   * Company name for the new workspace.
-   * @deprecated Use `connect_partner_name` instead.
-   */
-  company_name?: string | undefined
-  /**
    * Connect partner name for the new workspace.
    */
   connect_partner_name?: string | null | undefined
@@ -315,22 +310,6 @@ export type WorkspacesCreateParameters = {
    * ID of the organization to associate with the new workspace. If omitted, the new workspace is associated with the organization that you administer, if you administer exactly one. If you administer no organization, Seam creates one for you and associates the new workspace with it.
    */
   organization_id?: string | undefined
-  /**
-   * @deprecated Use `connect_webview_customization.webview_logo_shape` instead.
-   */
-  webview_logo_shape?: 'circle' | 'square' | undefined
-  /**
-   * @deprecated Use `connect_webview_customization.webview_primary_button_color` instead.
-   */
-  webview_primary_button_color?: string | undefined
-  /**
-   * @deprecated Use `connect_webview_customization.webview_primary_button_text_color` instead.
-   */
-  webview_primary_button_text_color?: string | undefined
-  /**
-   * @deprecated Use `connect_webview_customization.webview_success_message` instead.
-   */
-  webview_success_message?: string | undefined
 }
 
 /**

@@ -265,6 +265,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'access_control'
         | 'camera'
         | 'speaker'
+        | 'pool'
       >
     | undefined
   /**
@@ -321,6 +322,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'tado'
         | 'salto_space'
         | 'sensi'
+        | 'sensibo'
         | 'keynest'
         | 'korelock'
         | 'keyincode'
@@ -347,6 +349,8 @@ export type ConnectWebviewsCreateParameters = {
         | 'aqara'
         | 'eufy'
         | 'sonos'
+        | 'hayward_omnilogic'
+        | 'tuya'
         | 'hid_cm'
         | 'google_nest'
         | 'slack'

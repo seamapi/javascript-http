@@ -27,6 +27,7 @@ export type ConnectWebview = {
     | 'access_control'
     | 'camera'
     | 'speaker'
+    | 'pool'
   >
 
   /**

@@ -671,11 +671,6 @@ export type ThermostatsCreateClimatePresetParameters = {
    */
   hvac_mode_setting?: 'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
   /**
-   * Indicates whether a person at the thermostat or using the API can change the thermostat's settings.
-   * @deprecated Use 'thermostat_schedule.is_override_allowed'
-   */
-  manual_override_allowed?: boolean | undefined
-  /**
    * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
    */
   name?: string | null | undefined
@@ -809,6 +804,7 @@ export type ThermostatsListParameters = {
     | 'honeywell_resideo_thermostat'
     | 'tado_thermostat'
     | 'sensi_thermostat'
+    | 'sensibo_thermostat'
     | 'smartthings_thermostat'
     | undefined
   /**
@@ -821,6 +817,7 @@ export type ThermostatsListParameters = {
         | 'honeywell_resideo_thermostat'
         | 'tado_thermostat'
         | 'sensi_thermostat'
+        | 'sensibo_thermostat'
         | 'smartthings_thermostat'
       >
     | undefined
@@ -832,6 +829,7 @@ export type ThermostatsListParameters = {
     | 'honeywell_resideo'
     | 'nest'
     | 'sensi'
+    | 'sensibo'
     | 'smartthings'
     | 'tado'
     | undefined
@@ -1063,11 +1061,6 @@ export type ThermostatsUpdateClimatePresetParameters = {
    * Desired [HVAC mode](https://www.seam.co/docs/capability-guides/thermostats/understanding-thermostat-concepts/hvac-mode) setting, such as `heat`, `cool`, `heat_cool`, or `off`.
    */
   hvac_mode_setting?: 'off' | 'heat' | 'cool' | 'heat_cool' | 'eco' | undefined
-  /**
-   * Indicates whether a person at the thermostat can change the thermostat's settings. See [Specifying Manual Override Permissions](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules#specifying-manual-override-permissions).
-   * @deprecated Use 'thermostat_schedule.is_override_allowed'
-   */
-  manual_override_allowed?: boolean | undefined
   /**
    * User-friendly name to identify the [climate preset](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-climate-presets).
    */

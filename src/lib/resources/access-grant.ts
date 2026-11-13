@@ -101,11 +101,6 @@ export type AccessGrant = {
    */
   instant_key_url?: string | undefined
   /**
-   * @deprecated Use `space_ids`.
-   */
-  location_ids: Array<string>
-
-  /**
    * Name of the Access Grant. If not provided, the display name will be computed.
    */
   name: string | null

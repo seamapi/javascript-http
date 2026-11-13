@@ -471,10 +471,6 @@ export type AccessCodesCreateParameters = {
    * Indicates whether to use a [backup access code pool](https://www.seam.co/docs/low-level-apis/smart-locks/access-codes/backup-access-codes) provided by Seam. If `true`, you can use [`/access_codes/pull_backup_access_code`](https://www.seam.co/docs/api/access_codes/pull_backup_access_code).
    */
   use_backup_access_code_pool?: boolean | undefined
-  /**
-   * @deprecated Use `is_offline_access_code` instead.
-   */
-  use_offline_access_code?: boolean | undefined
 }
 
 /**

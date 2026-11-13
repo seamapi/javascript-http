@@ -30,12 +30,6 @@ export type AcsSystem = {
   connected_account_id: string
 
   /**
-   * IDs of the [connected accounts](https://www.seam.co/docs/core-concepts/connected-accounts) associated with the [access control system](https://www.seam.co/docs/low-level-apis/access-systems).
-   * @deprecated Use `connected_account_id`.
-   */
-  connected_account_ids: Array<string>
-
-  /**
    * Date and time at which the [access control system](https://www.seam.co/docs/low-level-apis/access-systems) was created.
    */
   created_at: string
@@ -297,32 +291,6 @@ export type AcsSystem = {
   name: string
 
   /**
-   * @deprecated Use `external_type`.
-   */
-  system_type?:
-    | 'pti_site'
-    | 'avigilon_alta_org'
-    | 'salto_ks_site'
-    | 'salto_space_system'
-    | 'brivo_account'
-    | 'hid_credential_manager_organization'
-    | 'visionline_system'
-    | 'assa_abloy_credential_service'
-    | 'latch_building'
-    | 'dormakaba_community_site'
-    | 'dormakaba_ambiance_site'
-    | 'legic_connect_credential_service'
-    | 'assa_abloy_vostio'
-    | 'assa_abloy_vostio_credential_service'
-    | 'hotek_site'
-    | 'kisi_organization'
-    | 'akiles_organization'
-    | undefined
-  /**
-   * @deprecated Use `external_type_display_name`.
-   */
-  system_type_display_name?: string | undefined
-  /**
    * Visionline-specific metadata for the [access control system](https://www.seam.co/docs/low-level-apis/access-systems).
    */
   visionline_metadata?:
@@ -364,7 +332,7 @@ export type AcsSystem = {
          */
         warning_code: 'salto_ks_subscription_limit_almost_reached'
       } /**
-     * Indicates the [access control system](https://www.seam.co/docs/low-level-apis/access-systems) time zone could not be determined because the reported physical location does not match the time zone configured on the physical [ACS entrances](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
+     * Indicates that the Salto KS site does not accept custom PIN codes, either because its Salto subscription does not include the Custom PIN feature or because Custom PIN is turned off in the site's settings. Salto KS generates every PIN on the site, so a PIN code requested on an access grant or reservation is replaced with a Salto-generated one. The message says which of the two applies.
      */
     | {
         /**
@@ -378,9 +346,23 @@ export type AcsSystem = {
         message: string
 
         /**
-         * @deprecated this field is deprecated.
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
-        misconfigured_acs_entrance_ids?: Array<string> | undefined
+        warning_code: 'salto_ks_custom_pins_not_supported'
+      } /**
+     * Indicates the [access control system](https://www.seam.co/docs/low-level-apis/access-systems) time zone could not be determined because the reported physical location does not match the time zone configured on the physical [ACS entrances](https://www.seam.co/docs/low-level-apis/access-systems/retrieving-entrance-details).
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
         /**
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
