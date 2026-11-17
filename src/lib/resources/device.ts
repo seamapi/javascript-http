@@ -244,7 +244,7 @@ export type Device = {
     | 'unifi_protect_camera'
     | 'sonos_speaker'
     | 'alertify_sensor'
-    | 'hayward_pool_system'
+    | 'hayward_pool_controller'
     | 'hayward_pool'
 
   /**
@@ -2344,6 +2344,7 @@ export type Device = {
         has_native_entry_events?: boolean | undefined
         /**
          * Keypad battery status.
+         * @deprecated Use `accessory_keypad.battery` instead.
          */
         keypad_battery?:
           | {
