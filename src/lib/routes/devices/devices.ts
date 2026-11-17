@@ -395,7 +395,7 @@ export type DevicesListParameters = {
     | 'unifi_protect_camera'
     | 'sonos_speaker'
     | 'alertify_sensor'
-    | 'hayward_pool_system'
+    | 'hayward_pool_controller'
     | 'hayward_pool'
     | undefined
   /**
@@ -458,7 +458,7 @@ export type DevicesListParameters = {
         | 'unifi_protect_camera'
         | 'sonos_speaker'
         | 'alertify_sensor'
-        | 'hayward_pool_system'
+        | 'hayward_pool_controller'
         | 'hayward_pool'
       >
     | undefined
