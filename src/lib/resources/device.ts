@@ -1869,9 +1869,13 @@ export type Device = {
                */
               pod_id?: string | undefined
               /**
-               * Product model of the Sensibo device, such as `skyv2` or `air`.
+               * Product model of the Sensibo device, such as `skyv2` or `skyplus`.
                */
               product_model?: string | undefined
+              /**
+               * Product name of the Sensibo device, such as `Sensibo Sky` or `Sensibo Air`.
+               */
+              product_name?: string | undefined
               /**
                * Name of the room that the Sensibo device is in.
                */
