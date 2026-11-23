@@ -234,6 +234,7 @@ export type Device = {
     | 'tado_thermostat'
     | 'sensi_thermostat'
     | 'sensibo_thermostat'
+    | 'cielo_thermostat'
     | 'smartthings_thermostat'
     | 'ios_phone'
     | 'android_phone'
@@ -1053,6 +1054,33 @@ export type Device = {
                * Device name for a Brivo device.
                */
               device_name?: string | undefined
+            }
+          | undefined
+        /**
+         * Metadata for a Cielo device.
+         */
+        cielo_metadata?:
+          | {
+              /**
+               * ID of the air conditioner or heat pump model that the Cielo device is set up to control.
+               */
+              appliance_id?: string | undefined
+              /**
+               * Device type that Cielo reports, such as `Thermostat` for a Cielo thermostat.
+               */
+              cielo_device_type?: string | undefined
+              /**
+               * Name of the device in the Cielo Home app.
+               */
+              device_name?: string | undefined
+              /**
+               * MAC address of the Cielo device.
+               */
+              mac_address?: string | undefined
+              /**
+               * Temperature unit that the Cielo device displays: `C` or `F`.
+               */
+              temperature_unit?: string | undefined
             }
           | undefined
         /**

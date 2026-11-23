@@ -177,6 +177,7 @@ export type UnmanagedDevice = {
     | 'tado_thermostat'
     | 'sensi_thermostat'
     | 'sensibo_thermostat'
+    | 'cielo_thermostat'
     | 'smartthings_thermostat'
     | 'ios_phone'
     | 'android_phone'

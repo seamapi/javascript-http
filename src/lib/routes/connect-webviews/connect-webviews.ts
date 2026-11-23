@@ -323,6 +323,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'salto_space'
         | 'sensi'
         | 'sensibo'
+        | 'cielo'
         | 'keynest'
         | 'korelock'
         | 'keyincode'

@@ -811,6 +811,11 @@ export type AccessCode = {
         created_at: string
 
         /**
+         * Indicates whether the access code may still unlock the device while Seam removes it, based on the last state Seam observed. `false` means the device has already stopped accepting the code, for example, because a natively scheduled code passed its `ends_at`, and only cleanup remains.
+         */
+        is_code_usable: boolean
+
+        /**
          * Detailed description of the mutation.
          */
         message: string
