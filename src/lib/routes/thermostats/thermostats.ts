@@ -805,6 +805,7 @@ export type ThermostatsListParameters = {
     | 'tado_thermostat'
     | 'sensi_thermostat'
     | 'sensibo_thermostat'
+    | 'cielo_thermostat'
     | 'smartthings_thermostat'
     | undefined
   /**
@@ -818,6 +819,7 @@ export type ThermostatsListParameters = {
         | 'tado_thermostat'
         | 'sensi_thermostat'
         | 'sensibo_thermostat'
+        | 'cielo_thermostat'
         | 'smartthings_thermostat'
       >
     | undefined
@@ -827,6 +829,7 @@ export type ThermostatsListParameters = {
   manufacturer?:
     | 'ecobee'
     | 'honeywell_resideo'
+    | 'cielo'
     | 'nest'
     | 'sensi'
     | 'sensibo'

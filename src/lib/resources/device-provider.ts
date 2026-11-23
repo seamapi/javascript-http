@@ -146,6 +146,7 @@ export type DeviceProvider = {
     | 'salto_space'
     | 'sensi'
     | 'sensibo'
+    | 'cielo'
     | 'keynest'
     | 'korelock'
     | 'keyincode'

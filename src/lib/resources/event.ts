@@ -40,7 +40,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -115,7 +116,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -171,7 +173,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -247,7 +250,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -323,7 +327,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -402,7 +407,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -483,7 +489,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -539,7 +546,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -590,7 +598,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -761,7 +770,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -932,7 +942,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -987,7 +998,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1158,7 +1170,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1329,7 +1342,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1380,7 +1394,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1431,7 +1446,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1487,7 +1503,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1538,7 +1555,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1709,7 +1727,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1760,7 +1779,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1811,7 +1831,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1843,7 +1864,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1875,7 +1897,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1907,7 +1930,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1944,7 +1968,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -1981,7 +2006,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2021,7 +2047,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2062,7 +2089,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2111,7 +2139,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2156,7 +2185,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2197,7 +2227,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2238,7 +2269,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2283,7 +2315,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2328,7 +2361,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2369,7 +2403,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2410,7 +2445,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2446,7 +2482,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2482,7 +2519,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2598,7 +2636,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2639,7 +2678,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2680,7 +2720,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2721,7 +2762,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2762,7 +2804,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2803,7 +2846,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2844,7 +2888,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2885,7 +2930,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2926,7 +2972,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -2967,7 +3014,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3008,7 +3056,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3049,7 +3098,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3081,7 +3131,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3126,7 +3177,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3168,7 +3220,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3245,7 +3298,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3282,7 +3336,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3323,7 +3378,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3360,7 +3416,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3437,7 +3494,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3482,7 +3540,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3532,7 +3591,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3582,7 +3642,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3632,7 +3693,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3682,7 +3744,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3732,7 +3795,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3782,7 +3846,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3832,7 +3897,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3883,7 +3949,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3915,7 +3982,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -3965,7 +4033,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4015,7 +4084,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4065,7 +4135,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4115,7 +4186,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4165,7 +4237,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4296,12 +4369,16 @@ export type SeamEvent =
        * Error code associated with the disconnection event, if any.
        */
       error_code:
-        'account_disconnected' | 'hub_disconnected' | 'device_disconnected'
+        | 'account_disconnected'
+        | 'hub_disconnected'
+        | 'device_disconnected'
+        | 'bridge_disconnected'
 
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4432,12 +4509,16 @@ export type SeamEvent =
        * Error code associated with the disconnection event, if any.
        */
       error_code:
-        'account_disconnected' | 'hub_disconnected' | 'device_disconnected'
+        | 'account_disconnected'
+        | 'hub_disconnected'
+        | 'device_disconnected'
+        | 'bridge_disconnected'
 
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4487,7 +4568,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4495,6 +4577,14 @@ export type SeamEvent =
 
       event_type: 'device.tampered'
 
+      /**
+       * Whether the device casing was tampered with at the time of the event. Omitted when the provider did not report this state.
+       */
+      is_casing_tampered_with?: boolean | undefined
+      /**
+       * Whether the device was detached from its mounting plate at the time of the event. Omitted when the provider did not report this state.
+       */
+      is_detached_from_mounting_plate?: boolean | undefined
       /**
        * Date and time at which the event occurred.
        */
@@ -4545,7 +4635,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4605,7 +4696,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4655,7 +4747,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4709,7 +4802,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4759,7 +4853,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4809,7 +4904,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4859,7 +4955,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -4909,7 +5006,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5039,7 +5137,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5089,7 +5188,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5219,7 +5319,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5269,7 +5370,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5319,7 +5421,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5449,7 +5552,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5499,7 +5603,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5589,7 +5694,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5674,7 +5780,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5747,7 +5854,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5820,7 +5928,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5870,7 +5979,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5920,7 +6030,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -5975,7 +6086,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6042,7 +6154,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6114,7 +6227,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6190,7 +6304,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6274,7 +6389,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6334,7 +6450,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6399,7 +6516,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6449,7 +6567,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6519,7 +6638,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6567,7 +6687,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6604,7 +6725,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6653,7 +6775,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
@@ -6702,7 +6825,8 @@ export type SeamEvent =
       /**
        * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
        */
-      event_description?: string | undefined
+      event_description: string
+
       /**
        * ID of the event.
        */
