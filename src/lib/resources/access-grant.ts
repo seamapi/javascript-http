@@ -471,6 +471,24 @@ export type AccessGrant = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'access_revoked'
+      } /**
+     * Indicates that Seam did not issue the mobile key requested for this access grant, because the user's email address or phone number belongs to other user identities and Seam cannot tell which person's app should receive it. The other requested access methods were issued.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'mobile_key_withheld'
       }
   >
 

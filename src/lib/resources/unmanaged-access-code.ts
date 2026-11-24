@@ -352,7 +352,7 @@ export type UnmanagedAccessCode = {
          */
         message: string
       } /**
-     * This access code is still active on the device even though its `ends_at` has passed, so the recipient may still be able to unlock the device after their access window ended. Seam is attempting to delete it, and this error clears automatically once the access code is no longer active.
+     * Seam was unable to remove this access code from the device in time after it was deleted or its `ends_at` passed, so the recipient may still be able to unlock the device. Seam keeps trying to delete it, and this error clears automatically once the access code is no longer usable on the device.
      */
     | {
         /**
@@ -613,6 +613,29 @@ export type UnmanagedAccessCode = {
          * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
          */
         error_code: 'august_lock_not_authorized'
+
+        /**
+         * Indicates that the error is a device error.
+         */
+        is_device_error: true
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      } /**
+     * Indicates that the lock has about one week, two days, or a critically low amount of battery life remaining. Replace the lock's batteries promptly to avoid losing access.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at: string
+
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'low_battery'
 
         /**
          * Indicates that the error is a device error.
@@ -944,7 +967,7 @@ export type UnmanagedAccessCode = {
          */
         warning_code: 'using_backup_access_code'
       } /**
-     * Access code is being deleted.
+     * Access code is being deleted, because it was deleted or passed its `ends_at`. It can no longer be updated.
      */
     | {
         /**
