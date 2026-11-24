@@ -198,6 +198,7 @@ export class SeamHttpAccessMethods {
 
   /**
    * Deletes an access method.
+   * @deprecated Access methods are managed by their access grant. Some workflows still need this endpoint today; access grant routes will replace it for them soon.
    */
   delete(
     parameters: AccessMethodsDeleteParameters,

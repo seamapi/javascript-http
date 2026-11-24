@@ -287,6 +287,29 @@ export type Phone = {
          */
         message: string
       } /**
+     * Indicates that the lock has about one week, two days, or a critically low amount of battery life remaining. Replace the lock's batteries promptly to avoid losing access.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at: string
+
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: 'low_battery'
+
+        /**
+         * Indicates that the error is a device error.
+         */
+        is_device_error: true
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      } /**
      * Indicates that device credentials are missing.
      */
     | {
@@ -921,6 +944,24 @@ export type Phone = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'accessory_keypad_low_battery'
+      } /**
+     * Indicates that the lock has about two weeks of battery life remaining or the provider otherwise recommends replacing the lock's batteries soon.
+     */
+    | {
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: 'battery_replacement_recommended'
       } /**
      * Indicates that the device may optimistically be reported as online because the provider does not reliably report its online status.
      */
