@@ -245,8 +245,6 @@ export type Device = {
     | 'unifi_protect_camera'
     | 'sonos_speaker'
     | 'alertify_sensor'
-    | 'hayward_pool_controller'
-    | 'hayward_pool'
 
   /**
    * Display name of the device, defaults to nickname (if it is set) or `properties.appearance.name`, otherwise. Enables administrators and users to identify the device easily, especially when there are numerous devices.
@@ -3364,24 +3362,6 @@ export type Device = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'hub_required_for_additional_capabilities'
-      } /**
-     * Indicates that a technician has put the pool controller in service mode. Schedules and remote changes will not run until it is switched back.
-     */
-    | {
-        /**
-         * Date and time at which Seam created the warning.
-         */
-        created_at: string
-
-        /**
-         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
-         */
-        message: string
-
-        /**
-         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
-         */
-        warning_code: 'service_mode'
       } /**
      * Indicates a provider-specific issue that may affect device functionality.
      */

@@ -410,7 +410,7 @@ export type ActionAttempt =
           is_latest_desired_state_synced_with_provider?:
             boolean | null | undefined
 
-          is_managed: true | false
+          is_managed: true
 
           /**
            * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://www.seam.co/docs/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).
@@ -752,7 +752,7 @@ export type ActionAttempt =
         is_latest_desired_state_synced_with_provider?:
           boolean | null | undefined
 
-        is_managed: true | false
+        is_managed: true
 
         /**
          * Indicates whether the [credential](https://www.seam.co/docs/low-level-apis/access-systems/managing-credentials) is a [multi-phone sync credential](https://www.seam.co/docs/capability-guides/mobile-access/issuing-mobile-credentials-from-an-access-control-system#what-are-multi-phone-sync-credentials).

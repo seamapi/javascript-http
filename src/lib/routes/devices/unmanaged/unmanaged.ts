@@ -343,8 +343,6 @@ export type DevicesUnmanagedListParameters = {
     | 'unifi_protect_camera'
     | 'sonos_speaker'
     | 'alertify_sensor'
-    | 'hayward_pool_controller'
-    | 'hayward_pool'
     | undefined
   /**
    * Array of device types for which you want to list devices.
@@ -407,8 +405,6 @@ export type DevicesUnmanagedListParameters = {
         | 'unifi_protect_camera'
         | 'sonos_speaker'
         | 'alertify_sensor'
-        | 'hayward_pool_controller'
-        | 'hayward_pool'
       >
     | undefined
   /**

@@ -808,69 +808,6 @@ export type CustomersCreatePortalParameters = {
             }>
           | undefined
         /**
-         * List of staff members.
-         */
-        staff_members?:
-          | Array<{
-              /**
-               * List of unique identifiers for the buildings the staff member is associated with.
-               */
-              building_keys?: Array<string> | undefined
-              /**
-               * List of unique identifiers for the common areas the staff member is associated with.
-               */
-              common_area_keys?: Array<string> | undefined
-              /**
-               * Email address associated with the user identity.
-               */
-              email_address?: string | undefined
-              /**
-               * List of unique identifiers for the facilities the staff member is associated with.
-               */
-              facility_keys?: Array<string> | undefined
-              /**
-               * List of unique identifiers for the listings the staff member is associated with.
-               */
-              listing_keys?: Array<string> | undefined
-              /**
-               * Your display name for this user identity resource.
-               */
-              name?: string | undefined
-              /**
-               * Phone number associated with the user identity.
-               */
-              phone_number?: string | undefined
-              /**
-               * List of unique identifiers for the properties the staff member is associated with.
-               */
-              property_keys?: Array<string> | undefined
-              /**
-               * List of unique identifiers for the property listings the staff member is associated with.
-               */
-              property_listing_keys?: Array<string> | undefined
-              /**
-               * List of unique identifiers for the rooms the staff member is associated with.
-               */
-              room_keys?: Array<string> | undefined
-              /**
-               * List of unique identifiers for the sites the staff member is associated with.
-               */
-              site_keys?: Array<string> | undefined
-              /**
-               * List of unique identifiers for the spaces the staff member is associated with.
-               */
-              space_keys?: Array<string> | undefined
-              /**
-               * Your unique identifier for the staff.
-               */
-              staff_member_key?: string | undefined
-              /**
-               * List of unique identifiers for the units the staff member is associated with.
-               */
-              unit_keys?: Array<string> | undefined
-            }>
-          | undefined
-        /**
          * List of tenants.
          */
         tenants?:
@@ -983,19 +920,6 @@ export type CustomersCreatePortalParameters = {
    * The ID of the customization profile to use for the portal.
    */
   customization_profile_id?: string | undefined
-  /**
-   * Deep link target resource for initial redirect. When set, the portal will navigate directly to the specified resource.
-   */
-  deep_link?:
-    | {
-        resource_id?: string | undefined
-
-        resource_key?: string | undefined
-
-        resource_type?:
-          'reservation' | 'space' | 'device' | 'acs_entrance' | undefined
-      }
-    | undefined
   /**
    * Whether to exclude the option to select a locale within the portal UI.
    */
@@ -1889,69 +1813,6 @@ export type CustomersPushDataParameters = {
          * Your unique identifier for the space.
          */
         space_key?: string | undefined
-      }>
-    | undefined
-  /**
-   * List of staff members.
-   */
-  staff_members?:
-    | Array<{
-        /**
-         * List of unique identifiers for the buildings the staff member is associated with.
-         */
-        building_keys?: Array<string> | undefined
-        /**
-         * List of unique identifiers for the common areas the staff member is associated with.
-         */
-        common_area_keys?: Array<string> | undefined
-        /**
-         * Email address associated with the user identity.
-         */
-        email_address?: string | undefined
-        /**
-         * List of unique identifiers for the facilities the staff member is associated with.
-         */
-        facility_keys?: Array<string> | undefined
-        /**
-         * List of unique identifiers for the listings the staff member is associated with.
-         */
-        listing_keys?: Array<string> | undefined
-        /**
-         * Your display name for this user identity resource.
-         */
-        name?: string | undefined
-        /**
-         * Phone number associated with the user identity.
-         */
-        phone_number?: string | undefined
-        /**
-         * List of unique identifiers for the properties the staff member is associated with.
-         */
-        property_keys?: Array<string> | undefined
-        /**
-         * List of unique identifiers for the property listings the staff member is associated with.
-         */
-        property_listing_keys?: Array<string> | undefined
-        /**
-         * List of unique identifiers for the rooms the staff member is associated with.
-         */
-        room_keys?: Array<string> | undefined
-        /**
-         * List of unique identifiers for the sites the staff member is associated with.
-         */
-        site_keys?: Array<string> | undefined
-        /**
-         * List of unique identifiers for the spaces the staff member is associated with.
-         */
-        space_keys?: Array<string> | undefined
-        /**
-         * Your unique identifier for the staff.
-         */
-        staff_member_key?: string | undefined
-        /**
-         * List of unique identifiers for the units the staff member is associated with.
-         */
-        unit_keys?: Array<string> | undefined
       }>
     | undefined
   /**
