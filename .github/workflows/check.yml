@@ -21,7 +21,7 @@ jobs:
           - ubuntu-latest
         node:
           - '22'
-          - '24'
+          - '26'
         include:
           - os: ubuntu-latest
             os_name: Linux
@@ -29,7 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Setup
-        uses: ./.github/actions/setup
+        uses: $/.github/actions/setup
         with:
           node_version: ${{ matrix.node }}
       - name: Test
@@ -43,12 +43,12 @@ jobs:
       matrix:
         node:
           - '22'
-          - '24'
+          - '26'
     steps:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Setup
-        uses: ./.github/actions/setup
+        uses: $/.github/actions/setup
         with:
           node_version: ${{ matrix.node }}
       - name: Lint
@@ -68,7 +68,7 @@ jobs:
           - ubuntu-latest
         node:
           - '22'
-          - '24'
+          - '26'
         include:
           - os: ubuntu-latest
             os_name: Linux
@@ -116,12 +116,12 @@ jobs:
       matrix:
         node:
           - '22'
-          - '24'
+          - '26'
     steps:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Setup
-        uses: ./.github/actions/setup
+        uses: $/.github/actions/setup
         with:
           node_version: ${{ matrix.node }}
       - name: Typecheck
@@ -134,6 +134,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup
-        uses: ./.github/actions/setup
+        uses: $/.github/actions/setup
       - name: Build docs
         run: npm run docs:build
