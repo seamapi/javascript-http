@@ -480,6 +480,7 @@ export type DevicesUnmanagedListParameters = {
     | 'yacan'
     | 'sonos'
     | 'hayward_omnilogic'
+    | 'jandy_iaqualink'
     | 'tuya'
     | undefined
   /**

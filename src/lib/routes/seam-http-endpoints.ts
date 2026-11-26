@@ -2251,7 +2251,7 @@ export class SeamHttpEndpoints {
   }
 
   /**
-   * Returns a list of the [action attempts](https://www.seam.co/docs/core-concepts/action-attempts) that you specify as an array of `action_attempt_id`s.
+   * Returns a list of the [action attempts](https://www.seam.co/docs/core-concepts/action-attempts) that you specify as an array of `action_attempt_id`s or by `device_id`, newest first.
    */
   get '/action_attempts/list'(): (
     parameters?: ActionAttemptsListParameters,

@@ -174,6 +174,7 @@ export type DeviceProvider = {
     | 'eufy'
     | 'sonos'
     | 'hayward_omnilogic'
+    | 'jandy_iaqualink'
     | 'tuya'
 
   /**

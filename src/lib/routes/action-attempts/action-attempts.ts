@@ -187,7 +187,7 @@ export class SeamHttpActionAttempts {
   }
 
   /**
-   * Returns a list of the [action attempts](https://www.seam.co/docs/core-concepts/action-attempts) that you specify as an array of `action_attempt_id`s.
+   * Returns a list of the [action attempts](https://www.seam.co/docs/core-concepts/action-attempts) that you specify as an array of `action_attempt_id`s or by `device_id`, newest first.
    */
   list(
     parameters?: ActionAttemptsListParameters,
@@ -235,6 +235,44 @@ export type ActionAttemptsListParameters = {
    * IDs of the action attempts that you want to retrieve.
    */
   action_attempt_ids?: Array<string> | undefined
+  /**
+   * Types of the action attempts that you want to list, such as `LOCK_DOOR` and `UNLOCK_DOOR`.
+   */
+  action_types?:
+    | Array<
+        | 'LOCK_DOOR'
+        | 'UNLOCK_DOOR'
+        | 'SCAN_CREDENTIAL'
+        | 'ENCODE_CREDENTIAL'
+        | 'SCAN_TO_ASSIGN_CREDENTIAL'
+        | 'ASSIGN_CREDENTIAL'
+        | 'RESET_SANDBOX_WORKSPACE'
+        | 'SET_FAN_MODE'
+        | 'SET_HVAC_MODE'
+        | 'ACTIVATE_CLIMATE_PRESET'
+        | 'ACTIVATE_WEEKLY_PROGRAM'
+        | 'SIMULATE_KEYPAD_CODE_ENTRY'
+        | 'SIMULATE_MANUAL_LOCK_VIA_KEYPAD'
+        | 'PUSH_THERMOSTAT_PROGRAMS'
+        | 'CONFIGURE_AUTO_LOCK'
+        | 'CONVERT_ACCESS_CODE_TO_MANAGED'
+        | 'SET_SPEAKER_VOLUME'
+        | 'SET_SPEAKER_MUTE'
+        | 'PAUSE_SPEAKER_PLAYBACK'
+        | 'RESUME_SPEAKER_PLAYBACK'
+        | 'PLAY_SPEAKER_CHIME'
+        | 'PLAY_SPEAKER_FAVORITE'
+        | 'PLAY_SPEAKER_AUDIO_CLIP'
+        | 'SET_TEMPERATURE_CONTROLLER_MODE'
+        | 'SYNC_ACCESS_CODES'
+        | 'CREATE_ACCESS_CODE'
+        | 'DELETE_ACCESS_CODE'
+        | 'UPDATE_ACCESS_CODE'
+        | 'CREATE_NOISE_THRESHOLD'
+        | 'DELETE_NOISE_THRESHOLD'
+        | 'UPDATE_NOISE_THRESHOLD'
+      >
+    | undefined
   /**
    * ID of the device to filter action attempts by.
    */

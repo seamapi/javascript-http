@@ -1159,6 +1159,10 @@ export type SeamEvent =
       created_at: string
 
       /**
+       * Human-readable description of the deletion and its source.
+       */
+      description?: string | undefined
+      /**
        * Custom metadata of the device, present when device_id is provided.
        */
       device_custom_metadata?: Record<string, string | boolean> | undefined
@@ -2450,6 +2454,10 @@ export type SeamEvent =
 
       event_type: 'access_method.deleted'
 
+      /**
+       * IDs of the access codes that were still set on a device when the access method was deleted. Access may still be possible with these codes until Seam removes them from the device. Each access code keeps its own deletion lifecycle, so watch it for `access_code.deleted` or `access_code.failed_to_delete`. Only present when at least one access code was still set on a device.
+       */
+      failed_to_delete_access_code_ids?: Array<string> | undefined
       /**
        * Date and time at which the event occurred.
        */
@@ -4769,6 +4777,57 @@ export type SeamEvent =
     }
   | {
       /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
+      /**
+       * ID of the connected account associated with the event.
+       */
+      connected_account_id: string
+
+      /**
+       * Date and time at which the event was created.
+       */
+      created_at: string
+
+      /**
+       * The customer key associated with the device, if any.
+       */
+      customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
+      device_custom_metadata?: Record<string, string | boolean> | undefined
+      /**
+       * ID of the affected device.
+       */
+      device_id: string
+
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
+      event_description: string
+
+      /**
+       * ID of the event.
+       */
+      event_id: string
+
+      event_type: 'sensor.smoking_detected'
+
+      /**
+       * Date and time at which the event occurred.
+       */
+      occurred_at: string
+
+      /**
+       * ID of the workspace associated with the event.
+       */
+      workspace_id: string
+    }
+  | {
+      /**
        * Number in the range 0 to 1.0 indicating the battery level of the affected device's paired accessory keypad, when the device has one and its level is known.
        */
       accessory_keypad_battery_level?: number | undefined
@@ -6361,6 +6420,152 @@ export type SeamEvent =
        * Date and time at which the event occurred.
        */
       occurred_at: string
+
+      /**
+       * ID of the workspace associated with the event.
+       */
+      workspace_id: string
+    }
+  | {
+      /**
+       * Custom metadata of the connected account, present when connected_account_id is provided.
+       */
+      connected_account_custom_metadata?:
+        Record<string, string | boolean> | undefined
+      /**
+       * Errors associated with the connected account.
+       */
+      connected_account_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at: string
+
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: string
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      }>
+
+      /**
+       * ID of the connected account associated with the event.
+       */
+      connected_account_id: string
+
+      /**
+       * Warnings associated with the connected account.
+       */
+      connected_account_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: string
+      }>
+
+      /**
+       * Date and time at which the event was created.
+       */
+      created_at: string
+
+      /**
+       * The customer key associated with the device, if any.
+       */
+      customer_key?: string | undefined
+      /**
+       * Custom metadata of the device, present when device_id is provided.
+       */
+      device_custom_metadata?: Record<string, string | boolean> | undefined
+      /**
+       * Errors associated with the device.
+       */
+      device_errors: Array<{
+        /**
+         * Date and time at which Seam created the error.
+         */
+        created_at: string
+
+        /**
+         * Unique identifier of the type of error. Enables quick recognition and categorization of the issue.
+         */
+        error_code: string
+
+        /**
+         * Detailed description of the error. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+      }>
+
+      /**
+       * ID of the affected device.
+       */
+      device_id: string
+
+      /**
+       * Warnings associated with the device.
+       */
+      device_warnings: Array<{
+        /**
+         * Date and time at which Seam created the warning.
+         */
+        created_at: string
+
+        /**
+         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+         */
+        message: string
+
+        /**
+         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+         */
+        warning_code: string
+      }>
+
+      /**
+       * Human-readable description of the event. Persisted when the event is created (so the creating code, including a provider, can supply a tailored description) and otherwise derived from the event.
+       */
+      event_description: string
+
+      /**
+       * ID of the event.
+       */
+      event_id: string
+
+      event_type: 'thermostat_schedule.climate_preset_activation_may_fail'
+
+      /**
+       * Date and time at which the event occurred.
+       */
+      occurred_at: string
+
+      /**
+       * Date and time at which the thermostat schedule ends, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+       */
+      thermostat_schedule_ends_at: string
+
+      /**
+       * ID of the thermostat schedule whose climate preset activation may fail.
+       */
+      thermostat_schedule_id: string
+
+      /**
+       * Date and time at which the thermostat schedule starts, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+       */
+      thermostat_schedule_starts_at: string
 
       /**
        * ID of the workspace associated with the event.

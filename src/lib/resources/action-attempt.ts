@@ -19,6 +19,11 @@ export type ActionAttempt =
       action_type: 'LOCK_DOOR'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -46,6 +51,11 @@ export type ActionAttempt =
       action_type: 'LOCK_DOOR'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -66,6 +76,11 @@ export type ActionAttempt =
        * Action attempt to track the status of locking a door.
        */
       action_type: 'LOCK_DOOR'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -101,6 +116,11 @@ export type ActionAttempt =
       action_type: 'UNLOCK_DOOR'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -128,6 +148,11 @@ export type ActionAttempt =
       action_type: 'UNLOCK_DOOR'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -148,6 +173,11 @@ export type ActionAttempt =
        * Action attempt to track the status of unlocking a door.
        */
       action_type: 'UNLOCK_DOOR'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -181,6 +211,11 @@ export type ActionAttempt =
        * Action attempt to track the status of scanning a credential.
        */
       action_type: 'SCAN_CREDENTIAL'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       error: null
       /**
@@ -553,6 +588,11 @@ export type ActionAttempt =
        */
       action_type: 'SCAN_CREDENTIAL'
 
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
       error: null
       /**
        * Result of scanning a card. If the attempt was successful, includes a snapshot of credential data read from the physical encoder, the corresponding data stored on Seam and the access system, and any associated warnings.
@@ -571,6 +611,11 @@ export type ActionAttempt =
        * Action attempt to track the status of scanning a credential.
        */
       action_type: 'SCAN_CREDENTIAL'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       error: {
         /**
@@ -607,6 +652,11 @@ export type ActionAttempt =
        * Action attempt to track the status of encoding credential data from the physical encoder onto a card.
        */
       action_type: 'ENCODE_CREDENTIAL'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       error: null
       /**
@@ -877,6 +927,11 @@ export type ActionAttempt =
        */
       action_type: 'ENCODE_CREDENTIAL'
 
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
       error: null
       /**
        * Result of an encoding attempt. If the attempt was successful, includes the credential data that was encoded onto the card.
@@ -895,6 +950,11 @@ export type ActionAttempt =
        * Action attempt to track the status of encoding credential data from the physical encoder onto a card.
        */
       action_type: 'ENCODE_CREDENTIAL'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       error: {
         /**
@@ -935,6 +995,11 @@ export type ActionAttempt =
        * Action attempt to track the status of scanning a physical card and assigning the credential to an ACS user.
        */
       action_type: 'SCAN_TO_ASSIGN_CREDENTIAL'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       error: null
       /**
@@ -1207,6 +1272,11 @@ export type ActionAttempt =
        */
       action_type: 'SCAN_TO_ASSIGN_CREDENTIAL'
 
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
       error: null
       /**
        * Result of a scan to assign attempt. If the attempt was successful, includes the credential data that was scanned and assigned.
@@ -1225,6 +1295,11 @@ export type ActionAttempt =
        * Action attempt to track the status of scanning a physical card and assigning the credential to an ACS user.
        */
       action_type: 'SCAN_TO_ASSIGN_CREDENTIAL'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       error: {
         /**
@@ -1258,6 +1333,11 @@ export type ActionAttempt =
        * Action attempt to track the status of assigning a pre-registered card credential to an access method.
        */
       action_type: 'ASSIGN_CREDENTIAL'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       error: null
       /**
@@ -1465,6 +1545,11 @@ export type ActionAttempt =
        */
       action_type: 'ASSIGN_CREDENTIAL'
 
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
       error: null
       /**
        * Result of assigning a credential. If successful, includes the updated access method with the assigned credential.
@@ -1483,6 +1568,11 @@ export type ActionAttempt =
        * Action attempt to track the status of assigning a pre-registered card credential to an access method.
        */
       action_type: 'ASSIGN_CREDENTIAL'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       error: {
         /**
@@ -1518,6 +1608,11 @@ export type ActionAttempt =
       action_type: 'RESET_SANDBOX_WORKSPACE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1540,6 +1635,11 @@ export type ActionAttempt =
       action_type: 'RESET_SANDBOX_WORKSPACE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1562,6 +1662,11 @@ export type ActionAttempt =
       action_type: 'RESET_SANDBOX_WORKSPACE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: {
@@ -1595,6 +1700,11 @@ export type ActionAttempt =
       action_type: 'SET_FAN_MODE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1617,6 +1727,11 @@ export type ActionAttempt =
       action_type: 'SET_FAN_MODE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1637,6 +1752,11 @@ export type ActionAttempt =
        * Action attempt to track the status of setting the fan mode on a thermostat.
        */
       action_type: 'SET_FAN_MODE'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -1672,6 +1792,11 @@ export type ActionAttempt =
       action_type: 'SET_HVAC_MODE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1694,6 +1819,11 @@ export type ActionAttempt =
       action_type: 'SET_HVAC_MODE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1716,6 +1846,11 @@ export type ActionAttempt =
       action_type: 'SET_HVAC_MODE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: {
@@ -1749,6 +1884,11 @@ export type ActionAttempt =
       action_type: 'ACTIVATE_CLIMATE_PRESET'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1771,6 +1911,11 @@ export type ActionAttempt =
       action_type: 'ACTIVATE_CLIMATE_PRESET'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1791,6 +1936,11 @@ export type ActionAttempt =
        * Action attempt to track the status of a climate preset activation.
        */
       action_type: 'ACTIVATE_CLIMATE_PRESET'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -1826,6 +1976,11 @@ export type ActionAttempt =
       action_type: 'ACTIVATE_WEEKLY_PROGRAM'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1848,6 +2003,11 @@ export type ActionAttempt =
       action_type: 'ACTIVATE_WEEKLY_PROGRAM'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1870,6 +2030,11 @@ export type ActionAttempt =
       action_type: 'ACTIVATE_WEEKLY_PROGRAM'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: {
@@ -1903,6 +2068,11 @@ export type ActionAttempt =
       action_type: 'SIMULATE_KEYPAD_CODE_ENTRY'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1925,6 +2095,11 @@ export type ActionAttempt =
       action_type: 'SIMULATE_KEYPAD_CODE_ENTRY'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -1945,6 +2120,11 @@ export type ActionAttempt =
        * Action attempt to track the status of simulating a keypad code entry.
        */
       action_type: 'SIMULATE_KEYPAD_CODE_ENTRY'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -1980,6 +2160,11 @@ export type ActionAttempt =
       action_type: 'SIMULATE_MANUAL_LOCK_VIA_KEYPAD'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2002,6 +2187,11 @@ export type ActionAttempt =
       action_type: 'SIMULATE_MANUAL_LOCK_VIA_KEYPAD'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2024,6 +2214,11 @@ export type ActionAttempt =
       action_type: 'SIMULATE_MANUAL_LOCK_VIA_KEYPAD'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: {
@@ -2057,6 +2252,11 @@ export type ActionAttempt =
       action_type: 'PUSH_THERMOSTAT_PROGRAMS'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2079,6 +2279,11 @@ export type ActionAttempt =
       action_type: 'PUSH_THERMOSTAT_PROGRAMS'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2099,6 +2304,11 @@ export type ActionAttempt =
        * Action attempt to track the status of pushing thermostat programs.
        */
       action_type: 'PUSH_THERMOSTAT_PROGRAMS'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2134,6 +2344,11 @@ export type ActionAttempt =
       action_type: 'CONFIGURE_AUTO_LOCK'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2156,6 +2371,11 @@ export type ActionAttempt =
       action_type: 'CONFIGURE_AUTO_LOCK'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2176,6 +2396,11 @@ export type ActionAttempt =
        * Action attempt to track the status of configuring the auto-lock on a lock.
        */
       action_type: 'CONFIGURE_AUTO_LOCK'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2211,6 +2436,11 @@ export type ActionAttempt =
       action_type: 'CONVERT_ACCESS_CODE_TO_MANAGED'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2233,6 +2463,11 @@ export type ActionAttempt =
       action_type: 'CONVERT_ACCESS_CODE_TO_MANAGED'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2253,6 +2488,11 @@ export type ActionAttempt =
        * Action attempt to track the status of converting an unmanaged access code to a managed access code.
        */
       action_type: 'CONVERT_ACCESS_CODE_TO_MANAGED'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2288,6 +2528,11 @@ export type ActionAttempt =
       action_type: 'SYNC_ACCESS_CODES'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2310,6 +2555,11 @@ export type ActionAttempt =
       action_type: 'SYNC_ACCESS_CODES'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2330,6 +2580,11 @@ export type ActionAttempt =
        * Syncing access codes is pending.
        */
       action_type: 'SYNC_ACCESS_CODES'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2363,6 +2618,11 @@ export type ActionAttempt =
        * Creating an access code is pending.
        */
       action_type: 'CREATE_ACCESS_CODE'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2392,6 +2652,11 @@ export type ActionAttempt =
       action_type: 'CREATE_ACCESS_CODE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2412,6 +2677,11 @@ export type ActionAttempt =
        * Creating an access code is pending.
        */
       action_type: 'CREATE_ACCESS_CODE'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2447,6 +2717,11 @@ export type ActionAttempt =
       action_type: 'DELETE_ACCESS_CODE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2469,6 +2744,11 @@ export type ActionAttempt =
       action_type: 'DELETE_ACCESS_CODE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2489,6 +2769,11 @@ export type ActionAttempt =
        * Deleting an access code is pending.
        */
       action_type: 'DELETE_ACCESS_CODE'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2522,6 +2807,11 @@ export type ActionAttempt =
        * Updating an access code is pending.
        */
       action_type: 'UPDATE_ACCESS_CODE'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2551,6 +2841,11 @@ export type ActionAttempt =
       action_type: 'UPDATE_ACCESS_CODE'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2571,6 +2866,11 @@ export type ActionAttempt =
        * Updating an access code is pending.
        */
       action_type: 'UPDATE_ACCESS_CODE'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2604,6 +2904,11 @@ export type ActionAttempt =
        * Creating a noise threshold is pending.
        */
       action_type: 'CREATE_NOISE_THRESHOLD'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2633,6 +2938,11 @@ export type ActionAttempt =
       action_type: 'CREATE_NOISE_THRESHOLD'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2653,6 +2963,11 @@ export type ActionAttempt =
        * Creating a noise threshold is pending.
        */
       action_type: 'CREATE_NOISE_THRESHOLD'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2688,6 +3003,11 @@ export type ActionAttempt =
       action_type: 'DELETE_NOISE_THRESHOLD'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2710,6 +3030,11 @@ export type ActionAttempt =
       action_type: 'DELETE_NOISE_THRESHOLD'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2730,6 +3055,11 @@ export type ActionAttempt =
        * Deleting a noise threshold is pending.
        */
       action_type: 'DELETE_NOISE_THRESHOLD'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2763,6 +3093,11 @@ export type ActionAttempt =
        * Updating a noise threshold is pending.
        */
       action_type: 'UPDATE_NOISE_THRESHOLD'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
@@ -2792,6 +3127,11 @@ export type ActionAttempt =
       action_type: 'UPDATE_NOISE_THRESHOLD'
 
       /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
+
+      /**
        * Error associated with the action.
        */
       error: null
@@ -2812,6 +3152,11 @@ export type ActionAttempt =
        * Updating a noise threshold is pending.
        */
       action_type: 'UPDATE_NOISE_THRESHOLD'
+
+      /**
+       * Date and time at which the action attempt was created.
+       */
+      created_at: string
 
       /**
        * Error associated with the action.
