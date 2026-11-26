@@ -215,9 +215,9 @@ export type AccessCode = {
      */
     | {
         /**
-         * Indicates the type of external modification. `modified` means the code's PIN or schedule was changed. `removed` means the code was deleted from the device.
+         * Indicates the type of external modification. `modified` means the code's PIN or schedule was changed. `removed` means the code was deleted from the device. `deactivated` means the code is still on the device but was disabled or suspended.
          */
-        change_type?: 'modified' | 'removed' | undefined
+        change_type?: 'modified' | 'removed' | 'deactivated' | undefined
         /**
          * Date and time at which Seam created the error.
          */
@@ -990,9 +990,9 @@ export type AccessCode = {
      */
     | {
         /**
-         * Indicates the type of external modification. `modified` means the code's PIN or schedule was changed. `removed` means the code was deleted from the device.
+         * Indicates the type of external modification. `modified` means the code's PIN or schedule was changed. `removed` means the code was deleted from the device. `deactivated` means the code is still on the device but was disabled or suspended.
          */
-        change_type?: 'modified' | 'removed' | undefined
+        change_type?: 'modified' | 'removed' | 'deactivated' | undefined
         /**
          * Date and time at which Seam created the warning.
          */

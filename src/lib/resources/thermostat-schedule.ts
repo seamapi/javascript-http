@@ -70,6 +70,31 @@ export type ThermostatSchedule = {
   thermostat_schedule_id: string
 
   /**
+   * Warnings associated with the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules).
+   */
+  warnings: Array<
+    /**
+     * Indicates that the [thermostat](https://www.seam.co/docs/capability-guides/thermostats) may fail to activate a climate preset when the [thermostat schedule](https://www.seam.co/docs/capability-guides/thermostats/creating-and-managing-thermostat-schedules) starts or ends. The warning message explains the cause. Currently present while the thermostat is offline and the next start or end of the thermostat schedule is less than an hour away; it clears automatically once the thermostat is back online or that time passes.
+     */
+    {
+      /**
+       * Date and time at which Seam created the warning.
+       */
+      created_at: string
+
+      /**
+       * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
+       */
+      message: string
+
+      /**
+       * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
+       */
+      warning_code: 'climate_preset_activation_may_fail'
+    }
+  >
+
+  /**
    * ID of the workspace that contains the thermostat schedule.
    */
   workspace_id: string

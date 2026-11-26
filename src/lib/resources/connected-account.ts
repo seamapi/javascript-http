@@ -380,24 +380,6 @@ export type ConnectedAccount = {
          * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
          */
         warning_code: 'setup_required'
-      } /**
-     * Indicates that one or more dormakaba sites associated with the connected account are not approved. Contact support@getseam.com to finish setting up your account.
-     */
-    | {
-        /**
-         * Date and time at which Seam created the warning.
-         */
-        created_at: string
-
-        /**
-         * Detailed description of the warning. Provides insights into the issue and potentially how to rectify it.
-         */
-        message: string
-
-        /**
-         * Unique identifier of the type of warning. Enables quick recognition and categorization of the issue.
-         */
-        warning_code: 'dormakaba_sites_unapproved'
       }
   >
 }

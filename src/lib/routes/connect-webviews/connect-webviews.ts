@@ -351,6 +351,7 @@ export type ConnectWebviewsCreateParameters = {
         | 'eufy'
         | 'sonos'
         | 'hayward_omnilogic'
+        | 'jandy_iaqualink'
         | 'tuya'
         | 'hid_cm'
         | 'google_nest'
